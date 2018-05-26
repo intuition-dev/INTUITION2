@@ -1,15 +1,15 @@
 
+Of course, you can chouse a commrecial vendor to setup an run you META admin|build eviroment.
+Or just use open source version:
 
+1. Once Docker is installed, lets donwload a working Docker image for nbake admin (I cut paste into ssh)
 
-
-2. Once Docker is installed, lets donwload a working container image for nbake admin:
-
-		// download the nbake container image
+		// download the META container image
 		docker pull nbake/meta:latest
 
 		// start that app container with ports 8080 for IDE and 8081 for admin:
 
-		docker run -d --privileged -p 20-21:20-21 -p 8080-8082:8080-8082 nbake/meta /sbin/my_init
+		docker run -d --privileged -p 8080-8082:8080-8082 nbake/meta /sbin/my_init
 
 		// get the container PID
 		docker ps
@@ -21,35 +21,27 @@
 		cd root
 		ls -la
 
-		//and you may what to check the speed of the Docker host provider
+		//optiona: you may what to check the speed of the Docker host provider
 		pip install speedtest-cli
 		speedtest-cli
 
-You should now have a container where you can run node, for admin or any service that you can't do purley client side.
+You should now have a container with a cloud development enviroment where you can run node and other utils, for a bespoke META admin|build or other service that you can't run purley client side.
 
-3. From your PC, Mount the ftp drive of admin(what is inside of the docker host); the first connection
+2. Inside the Docker image:
 
-		//change the password for the admin user (in /home/admin)
-		passwd admin
+		cd /home/admin
 
-		//start ftp server
-		nohup vsftpd&
+		npm -g i nbake
 
-		// ftp connect to the docker admin folder, ex: using cyberduck or any ftp client
+		// this will extract a sample admin app
+		nbake -a
 
-		// Optional: connect to the docker admin folder by mounting local pc drive to it - from pc to docker
-		// pick a tool you like, there are many, some are
+		// install the sample app
+		npm i
 
-		-
+		// soon you'll need to edit admin.yaml in this folder, but first lets get something we can admin|build
 
-
-		// upload your admin app, ex: http://github.com/topseed/meta-admin-ex/tree/master/exMeta2
-
-		// unzip the tool in /home/admin, ideally www_admin ends up in /home/admin/www_admin
-
-		// you can edit the node express admin app as you wish, and ftp or mount to 'deploy'.
-
-4. Now the second connection: from admin to the ftp static server. Mounting the ftp drive of the app in docker.
+3. Now we need to mount our web server: FTP (ex: CDN77), AWS S3 or WebDav. The admin|build server will... build the web app.
 
 	// use the ftp user name and address of your static site
 	( edit http://github.com/topseed/meta-admin-ex/blob/master/exMeta2/mnt.sh to be like )
@@ -99,5 +91,14 @@ https://github.com/kahing/catfs
 
 
 
-You can  optionally call the build via API: 
+
+https://www.smork.info/blog/2013/04/24/entry130424-163842.html
+
+http://superuser.com/questions/344255/faster-way-to-mount-a-remote-file-system-than-sshfs
+
+
+
+You can  optionally call the build via API:
 Pending is admin editor, something more friendly for admins, who may not like the IDE.
+
+
