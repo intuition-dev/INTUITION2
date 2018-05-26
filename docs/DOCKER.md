@@ -120,3 +120,5 @@ But a free one:
 
 You'll need to know the project folder, I'll assume 's3'. Check that file exists in the ~/workspace.
 
+
+https://github.com/kahing/catfs
