@@ -1,16 +1,12 @@
 {
-	"name": "my--admin",
+	"name": "my-admin-build",
 	"version": "0.01.01",
 	"description": "meta nbake admin",
-	"main": "index.js",
-	"bin": {
-		"my-admin": "index.js"
-	},
 	"engines": {
-		"node": ">=8.11"
+		"node": ">=8.10"
 	},
 	"dependencies": {
-		"meta-admin": ">=3.05.21",
+		"meta-admin": ">=3.05.27",
 		"formidable": "^1.2.1"
 	}
 }
