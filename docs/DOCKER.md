@@ -1,13 +1,5 @@
-# nbake-admin and services setup
 
-You can run the admin locally, by just running node of exMeta2. But it's meant for the cloud where it can be leveraged.
 
-0. You should have deployed a static 'nbake' app. - and be able to access the files via FTP (or S3)
-Second, you should have a working example express admin app, ex: http://github.com/topseed/meta-admin-ex/tree/master/exMeta2
-
-1. Install docker on a remote host via one click install provider. There are two dozens hosting providers offering Docker hosting, vultr or Digital Ocean - they provide a
-one click install. You should pick a location close to your development team, and likely run two hosts: ex: LA and NYC or sports and other. Or a Webmaster can install Docker in the DMZ of your company.
-So: sign up ($5) for a host that has docker installed and connect to the host.
 
 
 2. Once Docker is installed, lets donwload a working container image for nbake admin:
@@ -47,13 +39,8 @@ You should now have a container where you can run node, for admin or any service
 
 		// Optional: connect to the docker admin folder by mounting local pc drive to it - from pc to docker
 		// pick a tool you like, there are many, some are
-			http://mountainduck.io
-			http://nsoftware.com/netdrive/sftp/download.aspx
-			http://netdrive.net/store
-			http://expandrive.com/apps/expandrive
-			http://github.com/dokan-dev/dokan-sshfs
-			Dokan
-			webdrive
+
+		-
 
 
 		// upload your admin app, ex: http://github.com/topseed/meta-admin-ex/tree/master/exMeta2
@@ -93,19 +80,6 @@ Also, of course, you can edit your admin express app.
 Two apps.
 
 
-# Optional.
-
-There are 3rd party web IDE you should try.
-But a free one:
-
-## Codiad:
-		//start PHP
-		nohup /root/bin/php-fpm &
-		(enter)
-
-		//start http server w/ IDE on 8080
-		cat ~/Caddyfile
-		caddy &
 
 
  Now open your browser (Chrome is best, it supports QUIC and so does Caddy), by going to http://YOUR-HOST-IP:8080
@@ -122,3 +96,8 @@ You'll need to know the project folder, I'll assume 's3'. Check that file exists
 
 
 https://github.com/kahing/catfs
+
+
+
+You can  optionally call the build via API: 
+Pending is admin editor, something more friendly for admins, who may not like the IDE.
