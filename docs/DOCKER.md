@@ -43,62 +43,33 @@ You should now have a container with a cloud development enviroment where you ca
 
 3. Now we need to mount our web server: FTP (ex: CDN77), AWS S3 or WebDav. The admin|build server will... build the web app.
 
-	// use the ftp user name and address of your static site
-	( edit http://github.com/topseed/meta-admin-ex/blob/master/exMeta2/mnt.sh to be like )
-
 	sshfs -o allow_other user_name@xxx.xxx.xxx.xxx:/ /home/admin/mnt
+	// use the ftp user name and address of your static site
+	( or nano/edit mnt.sh to be like above, if you are using S3 look at S3.md file here )
 
 	// list your app
 	ls /home/admin/mnt
 
 	// edit admin.yaml as needed.
 
-	// follow readme.txt (npm i, node index.js .)// . is where admin.yaml is
-
 	pm2 start index.js .
 
 	// you can mount more apps
 
-5.
-
-Now in your browser go to http://YOUR-HOST-IP:8081
-That is not your app, that your admin app.
-
-You should be able to build a folder/page that you edited of the web app.
-So, there is the webapp you host staticaly, that you edit in the webadmin tool.
-
-Also, of course, you can edit your admin express app.
-
-Two apps.
+5. Now in your browser go to http://YOUR-HOST-IP:8081
 
 
 
+6. You should also setup up caching for your mounted drive. In admin.yaml, point to the cached version.
 
- Now open your browser (Chrome is best, it supports QUIC and so does Caddy), by going to http://YOUR-HOST-IP:8080
+http://github.com/kahing/catfs
 
-- From the browser, make a new project 's3' in folder 's3' - and click 'install'.
-
-- login
-
-- opptional Right click the project, and create a dummy file in the IDE and save.
-
-- Now exit browser and go back to the ssh.
-
-You'll need to know the project folder, I'll assume 's3'. Check that file exists in the ~/workspace.
+7. You can mount several remote webapps in a folder. And then have admin.yaml point above.
 
 
-https://github.com/kahing/catfs
+Other notes:
 
-
-
-
-https://www.smork.info/blog/2013/04/24/entry130424-163842.html
+http://www.smork.info/blog/2013/04/24/entry130424-163842.html
 
 http://superuser.com/questions/344255/faster-way-to-mount-a-remote-file-system-than-sshfs
-
-
-
-You can  optionally call the build via API:
-Pending is admin editor, something more friendly for admins, who may not like the IDE.
-
 

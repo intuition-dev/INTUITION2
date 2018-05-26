@@ -20,9 +20,15 @@ Install docker on a remote host via one click install provider! Ex: Digital Ocea
 
 6. Access you docker via browser or api, ex:
 http://YOUR-HOST-IP:8081/api?secret=123&folder=linkBlog&cmd=i
+You can use a browser, or CURL command line.
 
 
 
+That is not your app, that your admin app.
 
+You should be able to build a folder/page that you edited of the web app.
+So, there is the webapp you host staticaly, that you edit in the webadmin tool.
 
+Also, of course, you can edit your admin express app.
 
+Two apps.
