@@ -1,0 +1,112 @@
+extends /layout/_layout
+//- App Shell!
+
+block head
+	//static binding ex:
+	title #{title}
+
+block main
+	script(src='//cdn.jsdelivr.net/npm/split.js@1.3.5/split.min.js')
+	p
+	br
+	p
+	#editHead.ui
+		#mForm1.ui.form.mini
+			.fields
+				input.field(type='text', name='page', placeholder='blog')
+			#line2.fields
+				button#listBut1.ui.button(type='submit') List
+				.field.four.wide
+					input(type='text', name='secret', placeholder='123')
+				.field.six.wide
+					input(type='text', name='fn', placeholder='index.html')
+
+	div.splitCont
+		#left.split.split-horizontal
+			include list
+
+		#right.split.split-horizontal
+			include zoom
+	br
+	button#saveEdits.ui.button(type='submit') Save
+
+	script.
+
+		function getPage() {
+			return $('#mForm1 [name="page"]').val()
+		}
+		function setPage(page) {
+			return $('#mForm1 [name="page"]').val(page)
+		}
+		function getSec() {
+			return $('#mForm1 [name="secret"]').val()
+		}
+		function setSec(sec) {
+			return $('#mForm1 [name="secret"]').val(sec)
+		}
+		function setFN(fn) {
+			 $('#mForm1 [name="fn"]').val(fn)
+		}
+		function getFN() {
+			return $('#mForm1 [name="fn"]').val()
+		}
+
+		loadjs.ready('core', function () {
+			$('#listBut1').click(function() {
+					callList1(getSec(), getPage())
+			})
+		})//ready
+
+		let split = Split(['#left', '#right'], {
+			sizes: [25, 75],
+			minSize: [120, 300]
+		})
+
+		loadjs.ready('style', function () {
+			$('#mEdit').addClass('active')
+		})
+
+	style.
+		body {
+			overflow:hidden;
+		}
+
+		#editHead {
+			margin-left: 11px;
+			width: calc(100% - 30px);
+		}
+
+		.splitCont {
+			width: calc(100% - 10px);
+			height: calc(100vh - 224px);
+
+			border: 2px solid #ddd;
+			border-radius: 5px;
+		}
+
+		.split {
+			-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+						box-sizing: border-box;
+
+			max-height: 100%;
+
+			overflow-y: auto;
+			overflow-x: auto;
+		}
+
+		.gutter {
+			background-color: #eee;
+			background-repeat: no-repeat;
+			background-position: 50%;
+		}
+
+		.gutter.gutter-horizontal {
+			background-image: url('assets/vertical.png');
+			cursor: ew-resize;
+		}
+
+		.split.split-horizontal, .gutter.gutter-horizontal {
+			height: calc(100vh - 222px);
+			float: left;
+		}

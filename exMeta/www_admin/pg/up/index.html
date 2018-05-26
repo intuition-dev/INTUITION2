@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><script>let _start=Date.now()</script><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico"><script src="//cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.min.js"></script><!--static binding ex:--><title>Admin API Form</title><style>html { opacity: 0.005; }
+</style></head><body><script src="/assets/js/setup.js"></script><!--side--><div class="ui fixed vertical inverted sidebar menu visible"><p></p><br><p></p><a class="item" href="/pg/edit"><i class="left icon star"></i>Edit</a><a class="item" href="/pg/form"><i class="left icon book"></i>Form</a><a class="item" href="/pg/up"><i class="left icon book"></i>Upload</a></div><!-- active--><!--top--><div class="ui fixed inverted menu"><div class="ui container"><div class="item">Meta Bake Admin</div></div></div><style>* {
+	letter-spacing: .05em !important;
+}
+
+.ui.menu {
+	height: 1.5em !important;
+}
+
+.pusher {
+	margin-top: 1.5em;
+	margin-left: 250px;
+}</style><div class="pusher"><p></p><br><p></p><div class="ui text container"><p></p><script src="//cdn.jsdelivr.net/npm/dropzone@5.4.0/dist/min/dropzone.min.js"></script><script>Dropzone.autoDiscover = false
+</script><p></p><div class="ui"><form class="ui form dropzone" id="upload1Cont"><h4 class="ui dividing header">Upload</h4><div class="field"><label>Secret</label><input type="text" name="secret" placeholder="123"></div><div class="field"><label>Target folder</label><input type="text" name="folder" placeholder="item/one"></div><div class="ui message hidden"></div><button class="ui button" type="submit">Clear</button><p></p><br><p></p></form></div><script>loadjs([
+	'//cdn.jsdelivr.net/npm/dropzone@5.4.0/dist/min/dropzone.min.css'
+	//, '//cdn.jsdelivr.net/npm/riot@3.9.1/riot.js'
+], 'dz' /* bundle ID */, {
+	async: false //required due to loadjs bug with bundles
+})
+
+loadjs.ready(['site','dz'], function () {
+	setupDZ()
+})//ready
+
+function setupDZ() {
+
+	let myDropzone = new Dropzone('#upload1Cont', {
+			url: '/upload',
+			uploadMultiple: false
+		})
+	const secretProp = 'secret'
+	const folderProp = 'folder'
+
+	myDropzone.on('sending', function(file, xhr, formData) {
+		console.log('sending')
+
+		let sec = $('#upload1Cont [name="secret"]').val()
+		let folder = $('#upload1Cont [name="folder"]').val()
+		console.log(sec,folder)
+		formData.append(secretProp, sec)
+		formData.append(folderProp, folder)
+	})
+
+	myDropzone.on('success', function(file, resp) {
+		console.log(file, resp)
+		$('#upload1Cont .message').text('called')
+		$('#upload1Cont .message').removeClass('hidden')
+		$('#upload1Cont .message').text(resp)
+	})
+
+	myDropzone.on('canceled', function(file) {
+		console.log(file)
+		myDropzone.removeFile(file)
+	})
+
+	myDropzone.on('error', function(file, error) {
+		console.log(file, error)
+		$('#upload1Cont .message').text('back')
+		$('#upload1Cont .message').removeClass('hidden')
+		$('#upload1Cont .message').text(error)
+
+	})
+
+	$('#upload1Cont .button').click(function(e){
+		e.preventDefault()
+		myDropzone.removeAllFiles(true)
+	})//click
+
+}//()</script></div><script>loadjs.ready('site', function () {
+	$('#mUp').addClass('active')
+})</script></div><script>console.log('layout')
+
+loadjs.ready('site', function() {
+	//show a bit
+	document.getElementsByTagName('html')[0].style.opacity = .01
+})
+
+loadjs.ready('style', function() {
+	setTimeout(function(){
+		document.getElementsByTagName('html')[0].style.opacity = 1
+		console.log(Date.now()-_start)//time to show
+	},1000/60)// 2 frames
+
+})//ready</script><link rel="stylesheet" href="/assets/css/semantic1.css" onload="cssLoaded()"><!- nB v2.05.15 --></body></html>

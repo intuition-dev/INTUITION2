@@ -1,0 +1,68 @@
+
+table#list1.display(width='95%')
+
+script.
+
+	function callList1() {
+		console.log('calling list')
+
+		let url = '/api/list?secret='
+		let folder = '&folder='
+		url = url + getSec() + folder + getPage()
+		console.log(url)
+
+		fetch(url)
+			.then(function(resp) {
+				return resp.json()
+			}).then(function(ret) {
+				//console.log(ret)
+				loadjs.ready(['dw'], function () {
+					 datatable.clear()
+					 datatable.rows.add(ret)
+					 datatable.draw()
+				})//ready
+			}).catch(function(err) {
+				console.log('error', err)
+		})//fetch
+	}//call()
+
+	loadjs.ready('core', function () {
+		loadjs([
+			 '//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css'
+			,'//cdn.datatables.net/1.10.16/css/dataTables.semanticui.min.css'
+			,'//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'
+			,'//cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js'
+
+		], 'dwjs', { // bundle ID
+			async: false //required due to loadjs bug with bundles
+		})//load
+	})//ready
+	loadjs.ready(['dwjs'], function () {
+		var dataSet = [
+			['index.pug', 'pug', false]
+		]
+
+		datatable =  $('#list1').DataTable( {
+			//scrollY: 400,
+			paging: false,
+			//'lengthChange': false,
+			'info' : false,
+			'bFilter' : false,
+			select: true,
+			data: dataSet,
+			columns: [
+					{ title: 'Part' }
+			]
+		} )//dt
+		loadjs.done('dw')
+
+		$('#list1 tbody').on('click', 'tr', function () {
+			var data = datatable.row( this ).data()
+			var item = data[0]
+			setFN(item)
+			console.log( 'clicked on '+getFN()+'\'s row' )
+
+			read( data)
+		})
+
+	})//ready

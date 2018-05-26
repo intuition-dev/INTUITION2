@@ -1,0 +1,103 @@
+
+textarea#cms1(rows='400')
+
+script.
+	loadjs.ready('site', function () {
+		/*
+			,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
+			,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+			,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
+			,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
+		*/
+		loadjs([
+			 '//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.css'
+
+			,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
+			,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
+
+		], 'cmjs', { // bundle ID
+			async: false //required due to loadjs bug with bundles
+		})//load
+	})//ready
+
+	loadjs.ready('cmjs', function () {
+		_initCodeMirror()
+
+		$('#saveEdits').click(function() {
+			console.log('save')
+			_saveEdits()
+		})//click
+
+	})//ready
+
+	let myCodeMirror
+	function _initCodeMirror() {
+		myCodeMirror = CodeMirror.fromTextArea(
+			document.querySelector('#cms1') ,
+				{
+					mode:  'pug'
+					, lineNumbers: true
+					, tabSize: 3
+					, indentWithTabs: true
+					//, theme: 'neat'
+					//, keyMap: 'sublime'
+					, v1iewportMargin: 'Infinity'
+				}
+			)
+		myCodeMirror.setSize('100%', '100%')
+		loadjs.done('cm')
+	}// initCM()
+
+	function read( data) {
+		let fn_ = data[0]
+		let url = '/api/read?secret='
+		let folder = '&folder='
+		let fn = '&fn='
+		url = url + getSec() + folder + getPage() + fn + fn_
+		console.log(url)
+
+		fetch(url)
+			.then(function(resp) {
+				return resp.text()
+			}).then(function(ret) {
+
+				loadjs.ready('cm', function() {
+					myCodeMirror.getDoc().setValue(ret)
+				})
+
+			}).catch(function(err) {
+				console.log('error', err)
+		})//fetch
+	}//()
+
+	function _saveEdits() {
+		let txt = myCodeMirror.getDoc().getValue()
+
+		let url = '/api/write?secret='
+		let folder = '&folder='
+		let fn = '&fn='
+		url = url + getSec() + folder + getPage() + fn + getFN()
+
+		console.log(url)
+
+		let headers = new Headers()
+		headers.append('Content-Type', 'text/plain')
+		fetch(url, {
+				method: 'POST',
+				headers : headers,
+				body: txt,
+			})
+			.then(function(resp) {
+				return resp.text()
+			}).then(function(ret) {
+
+
+			}).catch(function(err) {
+				console.log('error', err)
+		})//fetch
+	}//()
+
+style.
+	#cms1 {
+
+	}

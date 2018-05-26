@@ -1,0 +1,45 @@
+
+p
+.ui.segment
+	#i1.ui.form.small
+		h4.ui.dividing.header NBake Items
+		.field
+			label Folder
+			input(type='text', name='folder', placeholder='blog')
+
+		.ui.message.hidden
+		button.ui.button(type='submit') Items
+
+script.
+	loadjs.ready('site', function () {
+		$('#i1 .button').click(function(){
+			let sec = $('#Pform [name="secret"]').val()
+			let folder = $('#i1 [name="folder"]').val()
+
+			calli(sec, folder)
+		})//click
+	})//ready
+
+	function calli(sec, folder_) {
+		console.log('calling ...')
+		$('#i1 .message').text('called')
+		$('#i1 .message').removeClass('hidden')
+
+		let url = '/api/items?secret='
+		let folder = '&folder='
+
+		url = url + sec + folder + folder_
+		console.log(url)
+
+		fetch(url)
+			.then(function(resp) {
+				return resp.text()
+			}).then(function(txt) {
+				console.log(txt)
+				$('#i1 .message').text(txt)
+			}).catch(function(err) {
+				console.log('error',err)
+				$('#i1 .message').text('ERROR: ', err)
+		})//fetch
+
+	}//callNb()

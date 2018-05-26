@@ -1,0 +1,54 @@
+
+p
+.ui.segment
+	#plug1.ui.form.small
+		h4.ui.dividing.header Add plugin
+		.field
+				label Page
+				input(type='text', name='folder', placeholder='blog/one')
+		.field
+			label Url of zip (plugin)
+			input(type='text', name='url', placeholder='http://github.com/topseed/nbake-intro-src/raw/master/helloApp1/page/two/_stickyPlugin.zip')
+
+		.ui.message.hidden
+		button.ui.button(type='submit') Plugin
+
+script.
+	loadjs.ready('site', function () {
+		$('#plug1 .button').click(function(){
+			let sec = $('#Pform [name="secret"]').val()
+			let folder = $('#plug1 [name="folder"]').val()
+			let url = $('#plug1 [name="url"]').val()
+
+			downloadZip(sec, folder, url)
+		})//click
+	})//ready
+
+	/*
+	http://github.com/topseed/nbake-intro-src/raw/master/helloApp1/page/two/_stickyPlugin.zip
+
+	*/
+	function downloadZip(sec, folder_, url_) {
+		console.log('calling ...')
+		$('#plug1 .message').text('called')
+		$('#plug1 .message').removeClass('hidden')
+
+		let start = '/api/downloadZip?secret=' + sec
+		let folder = '&folder=' + folder_
+		let url = '&url=' + url_
+
+		let full  = start + folder + url
+		console.log(full)
+
+		fetch(full)
+			.then(function(resp) {
+				return resp.text()
+			}).then(function(txt) {
+				console.log(txt)
+				$('#plug1 .message').text(txt)
+			}).catch(function(err) {
+				console.log('error',err)
+				$('#plug1 .message').text('ERROR: ', err)
+		})//fetch
+
+	}//callNb()

@@ -1,0 +1,3 @@
+basedir: ../
+title: nbake blog
+prefix: /blog/
