@@ -1,7 +1,7 @@
 # meta
 
 
-META is the core project.
+META&reg; is the core project.
 
 This has:
 - Example Admin/Build/API pages that you can use as a starter for your bespoke meta - in the exMeta folder
@@ -12,3 +12,4 @@ These are related projects
 - http://github.com/metabake/pwa-router PWA router used for Andoird and IOS app store
 - http://github.com/metabake  other related projects
 
+&copy; Apache Licensed
