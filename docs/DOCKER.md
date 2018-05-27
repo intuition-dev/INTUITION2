@@ -41,31 +41,33 @@ You should now have a container with a cloud development environment where you c
 
 3. Now we need to mount our web server: FTP (ex: CDN77), AWS S3 or WebDav. The admin|build server will... build the web app.
 
-   sshfs -o allow_other user_name@xxx.xxx.xxx.xxx:/ /home/admin/mnt
+	//make a directory where you will mount
+	mkdir /home/admin/mnt
+
    // use the ftp user name and address of your static site
    ( or nano/edit mnt.sh to be like above, if you are using S3 look at S3.md file here )
+   sshfs -o allow_other user_name@xxx.xxx.xxx.xxx:/ /home/admin/mnt
 
-   // list your app
+   // list your web app files
    ls /home/admin/mnt
 
-   // edit admin.yaml as needed.
+   // edit admin.yaml as needed. It needs a password and where to mount
 
    pm2 start index.js .
 
-   // you can mount more apps
-
 5. Now in your browser go to http://YOUR-HOST-IP:8081
 
+6. You should also setup up caching for your mounted drive. In admin.yaml, point to the cached directory.
 
-6. You should also setup up caching for your mounted drive. In admin.yaml, point to the cached version.
+	http://github.com/kahing/catfs
 
-http://github.com/kahing/catfs
 
 7. You can mount several remote webapps in a folder. And then have admin.yaml point above.
 
+
 Other notes:
 
-http://www.smork.info/blog/2013/04/24/entry130424-163842.html
+	http://www.smork.info/blog/2013/04/24/entry130424-163842.html
 
-http://superuser.com/questions/344255/faster-way-to-mount-a-remote-file-system-than-sshfs
+	http://superuser.com/questions/344255/faster-way-to-mount-a-remote-file-system-than-sshfs
 
