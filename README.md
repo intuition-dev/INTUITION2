@@ -11,7 +11,7 @@ These are related projects
 
 Here we have
 * Example Admin/Build/API pages that you can use as a starter for your bespoke meta - in the exMeta folder
-* Information on how to install and run in the cloud in the docs folder
+* Information on how to install and run in the cloud in the docs folder:
 - http://github.com/metabake/META/blob/master/docs/README.md
 
 Some of the META benefits, in addition to nbake:
