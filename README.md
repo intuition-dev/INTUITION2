@@ -8,14 +8,14 @@ This has:
 
 These are related projects
 - http://github.com/metabake/meta-nbake CLI used by API - for people working alone or smaller projects
-- http://github.com/metabake/pwa-router PWA router used for Andoird and IOS app store
+- http://github.com/metabake/pwa-router PWA router used for Android and IOS app store
 - http://github.com/metabake other related projects
 
 
-Benfits of admin:
+Benefits of admin:
 - The source code stays in the cloud, not laptop that admins or developers take home.
 - Cool factor: you can develop from Chrome Book, IOS Tablet (w/ Apple Bluetooth keyboard) or Android tablet.
-- There is no local development enviroment, client less development added to your server-less hosting.
+- There is no local development environment, client less development added to your server-less hosting.
 - Team player, you set up docker for your entire team.
 
 
