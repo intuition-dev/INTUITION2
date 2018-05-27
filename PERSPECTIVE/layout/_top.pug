@@ -1,0 +1,40 @@
+
+//side
+.ui.fixed.vertical.inverted.sidebar.menu
+	a.active.item(href='/page/one/')
+		i.left.icon.star
+		| One
+	a.item(href='/page/two/')
+		i.left.icon.book
+		| Two
+
+//top
+.ui.fixed.inverted.menu
+	.ui.container
+		a.toc.item
+			i.sidebar.icon
+		.item MySite
+
+		a.item(href='/page/one/') One
+		a.item(href='/page/two/') Two
+	.right.menu
+		a.item(href='http://github.com/topseed') Git
+
+style.
+	* {
+		letter-spacing: .02em !important;
+	}
+
+	.ui.menu {
+		height: 1.5em !important;
+	}
+
+	.pusher {
+		margin-top: 1.5em;
+	}
+
+	@media only screen and (min-width: 1281px) {
+		.toc.item {
+			display: none !important;
+		}
+	}
