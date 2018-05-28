@@ -37,10 +37,10 @@ Some of the META benefits, in addition to nbake:
 - Cool factor: you can develop from Chrome Book, IOS Tablet (w/ Apple Bluetooth keyboard) or Android tablet.
 - Team player, you set up docker for your entire team.
 
+Source code for SrvUtil:
+- http://github.com/metabake/meta-src/blob/master/src/lib/ABase.ts
 
-Commercial support, hosting, training, plugins and consulting are provided by:
-- http://narwhalstar.com
-- http://rocketpug.com
-Lets us know if you want to be listed.
+Example pages are
+- http://github.com/metabake/META/tree/master/exMeta/www_admin
 
 &copy; Apache Licensed
