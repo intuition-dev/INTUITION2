@@ -1,45 +1,38 @@
 
 # META bespoke admin|build|methodology&reg;
 
-## 10 practices of the confident tech META bespoke admin|build|methodology&reg; manager:
+## 10 practices of the confident tech manager from META bespoke admin|build|methodology&reg; :
 
 Conclusion
 * low code
+* declarative language
+* focus on the users, UX
+* intercept users early
+* cloud development
+* Server-less
+* mounted build - to the production server
+* static db of content
+* have a productivity goal
+* c less second hand user stories.
+* think of it as disposable 'code', upgrade at least one a year
+
+
 PHP creator hated to code. Now they have 40% share of WWW.
 
 
-by:
-* Decide to face the user or face the server. Avoid SSR. Focus is productivity in itself. Ex, turn towards the UX, face the customer.
-* Have a productivity goal: ex 1 screen per day
-* Extreme cloud, use spreadsheet, know lifetime costs
-* Avoid 3 GL / Procedural / Algol =  eschew js
-* Instead of 'line count', 'review' based on UX
-* Avoid resume based development
-* No full stack: Convergence of dev and designer
-* Rapid prototype / Prototype -> UX. So evaluate need for 'PDF' prototypes, like PhotoShop. You should count on your RAD. Instead look at User Stories plus Intercept/Observe.
-* Intercept users early
-* Mount a drive. In the cloud. With Docker. Running Express build server.
-* Web IDE!
-* LAMP: No L, A, M. Yes to P
-* Remote friendly.
-* Developers that love to code can be harmful.
-* Nitro clod brew coffee.
-* Avoid FTP. Mount (and cache). Reduce Git.
+We used to sell accounting software: By running it, a company could fire some book keepers. The value.
 
+Meta = by using this approach - you can manage costs.
+Staff you should reduce/outsource going forward:
+- IOS developers
+- Android developers
+- Full stack|back end developers
+- Photoshop guy/gal
+"We decided to go in a different direction, we can use consulting in a transition"
 
-Staff you don't need going forward
-2 IOS developers
-2 Android developers
-2 Full stack/back end developers
-1 Photoshop guy/hal
-
-Staff you do need:
+Staff (you do need):
 - Designer that codes, or a Front end developers that designers
 - Build/release engineer(can be out sourced)
-
-One last thing:
-We used to sell an accounting software. By running it, a company could fire some book keepers. The value.
-Meta = by using this approach - you can manage costs.
 
 
 <!-- story -->
@@ -55,9 +48,18 @@ We assume that everyone is web literate, for example:
 We also assume that you will learn Pug.
 <!-- end story -->
 
+One last thing:
 Goal: 10 X faster than today's development. Ex: 5 dev is 6 months will be done 2 devs in 3 weeks.
 Did we get there?
 
 
 
+
+Sin list:
+* Avoid 3 GL / Procedural / Algol =  eschew js
+* Avoid resume based development
+* No full stack: Convergence of dev and designer
+* Rapid prototype / Prototype -> UX. So evaluate need for 'PDF' prototypes, like PhotoShop. You should count on your RAD. Instead look at User Stories plus Intercept/Observe.
+* Developers that love to code can be harmful.
+* Avoid FTP. Mount (and cache). Reduce Git - you don't put your DB in git, just back up.
 
