@@ -21,7 +21,8 @@ list files
 ## /api/items
 - folder
 itemizes, makes JSON file based on dat.yaml
-
+If dat contains publish:false it will be excluded.
+You can add a field publish_on:timestamp or similar to not show till a certain date.
 
 ## /api/tags
 - folder
