@@ -37,6 +37,10 @@ Some of the META benefits, in addition to nbake:
 - Cool factor: you can develop from Chrome Book, IOS Tablet (w/ Apple Bluetooth keyboard) or Android tablet.
 - Team player, you set up docker for your entire team.
 
+Developer reference:
+- http://github.com/metabake/META/blob/master/PERSPECTIVES/DEVELOPERS.md
+
+
 Source code for SrvUtil:
 - http://github.com/metabake/meta-src/blob/master/src/lib/ABase.ts
 
