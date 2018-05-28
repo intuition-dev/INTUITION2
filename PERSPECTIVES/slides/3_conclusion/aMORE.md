@@ -62,4 +62,4 @@ Sin list:
 * Rapid prototype / Prototype -> UX. So evaluate need for 'PDF' prototypes, like PhotoShop. You should count on your RAD. Instead look at User Stories plus Intercept/Observe.
 * Developers that love to code can be harmful.
 * Avoid FTP. Mount (and cache). Reduce Git - you don't put your DB in git, just back up.
-
+* JSX. Takes declarative lang into procedural.

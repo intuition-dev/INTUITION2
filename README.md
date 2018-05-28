@@ -1,7 +1,7 @@
 # META bespoke admin|build|methodology&reg;
 
 
-Here is the home of the advanced META project.
+Here is the home of the advanced META project. It is an API wrapper for nbake. It is written in Express and Typescript, meant to be customized and extended,
 
 These are related projects
 - http://github.com/metabake/meta-nbake CLI used by META API - You should start there, at nbake. You can't use META without knowing nbake.
