@@ -36,7 +36,10 @@ Staff (you do need):
 
 
 <!-- story -->
-Our Goal: Deliver 10 X faster than today's software development. Ex: 5 dev in 6 months to be done 2 devs in 3 weeks.  For example LAMP, the technology WordPress was built on. Every 10 years or so tech gets 10 times better *FORCING* everyone to upgrade. Assembly was 10 times better than machine language. C is 10 times better than Assembly. We believe that we found the answer on how to have a more productive team.
+Our Goal: Deliver 10 X faster software development. Ex: 5 dev in 6 months to be done 2 devs in 3 weeks.
+We leverage curated list of tech and technique. For example one of about 10 of them is: we reposition Pug as 4GL declarative language.
+
+For comparison LAMP, the technology WordPress was built on. Every 10 years or so tech gets 10 times better *FORCING* everyone to upgrade. Assembly was 10 times better than machine language. C is 10 times better than Assembly. We believe that we found the answer on how to have a more productive team.
 
 So far, somehow, SSR LAMP has dominated web deployments, with WP having some 30% of WWW - time to start displacing that.
 
@@ -47,6 +50,7 @@ We assume that everyone is web literate, for example:
 
 We also assume that you will learn Pug.
 <!-- end story -->
+
 
 One last thing:
 Goal: 10 X faster than today's development. Ex: 5 dev is 6 months will be done 2 devs in 3 weeks.
