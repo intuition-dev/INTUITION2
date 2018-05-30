@@ -11,7 +11,7 @@
 
 ( Or you can use the self hosted open source - maybe transition)
 
-* Pre-Alpha: Hosted Cordova Build
+* Pre-Alpha: Hosted phonegap Build
 
 * Some Blog tools are markdown based = limited layout. we are pug based, anything!
 
