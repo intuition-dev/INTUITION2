@@ -1,7 +1,7 @@
 
-# META bespoke admin|build|methodology&reg;
+# Meta bespoke admin|build|methodology&reg;
 
-## 10 practices of the confident tech manager from META bespoke admin|build|methodology&reg; :
+## 10 practices of the confident tech manager from Meta bespoke admin|build|methodology&reg; :
 
 Conclusion
 * low code

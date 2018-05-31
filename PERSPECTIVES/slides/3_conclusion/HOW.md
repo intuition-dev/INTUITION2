@@ -1,5 +1,5 @@
 
-# META bespoke admin|build|methodology&reg;
+# Meta bespoke admin|build|methodology&reg;
 
 ## How to get started:
 

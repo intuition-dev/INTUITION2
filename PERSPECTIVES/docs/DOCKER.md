@@ -1,10 +1,10 @@
 
-* You can choose a commercial vendor to setup co-host your META admin|build environments )
+* You can choose a commercial vendor to setup co-host your Meta admin|build environments )
 Or just use open source version:
 
 1. Once Docker is installed on a host, lets download a working Docker image for nbake admin (I cut paste into ssh)
 
-      // download the META container image
+      // download the Meta container image
       docker pull nbake/meta:latest
 
       // start that app container with ports 8080 for IDE and 8081 for admin:
@@ -23,7 +23,7 @@ Or just use open source version:
       pip install speedtest-cli
       speedtest-cli
 
-You should now have a container with a cloud development environment where you can run node and other utils, for a bespoke META admin|build or other service that you can't run purely client side.
+You should now have a container with a cloud development environment where you can run node and other utils, for a bespoke Meta admin|build or other service that you can't run purely client side.
 
 2. Inside the Docker image:
 

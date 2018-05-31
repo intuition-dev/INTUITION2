@@ -1,10 +1,10 @@
-# META bespoke admin|build|methodology&reg;
+# Meta bespoke admin|build|methodology&reg;
 
 
-Here is the home of the advanced META project. It is an API wrapper for nbake. It is written in Express and Typescript, meant to be customized and extended,
+Here is the home of the advanced Meta project. It is an API wrapper for nbake. It is written in Express and Typescript, meant to be customized and extended,
 
 These are related projects
-- http://github.com/metabake/meta-nbake CLI used by META API - You should start there, at nbake. You can't use META without knowing nbake.
+- http://github.com/metabake/meta-nbake CLI used by Meta API - You should start there, at nbake. You can't use Meta without knowing nbake.
 - http://github.com/metabake/pwa-router spa router - used for Android and IOS app store
 - http://github.com/metabake directory of all the related projects
 
@@ -30,7 +30,7 @@ We assume that everyone is web literate, for example:
 We also assume that you will learn Pug.
 <!-- end story -->
 
-Some of the META benefits, in addition to nbake:
+Some of the Meta benefits, in addition to nbake:
 - Deliver an order of magnitude developer productivity improvement.
 - There is no local development environment, client less development added to your server-less hosting.
 - The source code stays in the cloud, not laptop that admins or developers take home.

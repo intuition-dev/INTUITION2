@@ -4,7 +4,7 @@
 
 After you have a high velocity development (aka RAD) team that can prototype
 
-# The development process for META is rapid UX prototyping
+# The development process for Meta is rapid UX prototyping
 
 Starts with Intercept and Observe - Parts of Lean UX research.
 
