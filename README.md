@@ -5,7 +5,7 @@ Here is the home of the advanced META project. It is an API wrapper for nbake. I
 
 These are related projects
 - http://github.com/metabake/meta-nbake CLI used by META API - You should start there, at nbake. You can't use META without knowing nbake.
-- http://github.com/metabake/pwa-router PWA router - used for Android and IOS app store
+- http://github.com/metabake/pwa-router spa router - used for Android and IOS app store
 - http://github.com/metabake directory of all the related projects
 
 
