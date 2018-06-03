@@ -26,9 +26,7 @@ script.
 	loadjs([
 		'//cdn.jsdelivr.net/npm/dropzone@5.4.0/dist/min/dropzone.min.css'
 		//, '//cdn.jsdelivr.net/npm/riot@3.9.1/riot.js'
-	], 'dz' /* bundle ID */, {
-		async: false //required due to loadjs bug with bundles
-	})
+	], 'dz' /* bundle ID */)
 
 	loadjs.ready(['site','dz'], function () {
 		setupDZ()

@@ -33,9 +33,7 @@ script.
 			,'//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js'
 			,'//cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js'
 
-		], 'dwjs', { // bundle ID
-			async: false //required due to loadjs bug with bundles
-		})//load
+		], 'dwjs')//load
 	})//ready
 	loadjs.ready(['dwjs'], function () {
 		var dataSet = [

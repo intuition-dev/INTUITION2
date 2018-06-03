@@ -15,9 +15,7 @@ script.
 			,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
 			,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
 
-		], 'cmjs', { // bundle ID
-			async: false //required due to loadjs bug with bundles
-		})//load
+		], 'cmjs')//load
 	})//ready
 
 	loadjs.ready('cmjs', function () {
