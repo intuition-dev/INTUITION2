@@ -9,7 +9,7 @@ METAbake&trade; productivity is based on three pillars:
 This is project 3 of 3 in METAbake&trade; This Github project is about _meta_, the cloud-based build and admin app infrastructure. See the other projects at http://github.com/metabake.
 
 _meta_ has two components, a build server with API and a sample admin app.
-The build server is written in Pug and Typescript and runs as a Node Express server. It is meant to be customized and extended.
+The build server is written in Pug and Typescript and runs as a Node Express server. It has an API and uses _nbake_ internally. It is meant to be customized and extended.
 
 While you can run _meta_ on a local development machine, the build server is designed to run in the cloud. It is a 'mini-Jenkins', specialized for nbake and rapid development in the cloud. It is hosted in a Docker instance, see  http://hub.docker.com/r/nbake/meta.
 
@@ -32,7 +32,7 @@ The remote-save on production in method 3 will be a little slower due to the ext
 See the _meta_ installation instructions at 
 http://github.com/metabake/meta/blob/master/PERSPECTIVE/docs/README.md
 
-_meta_ includes a sample admin app and 'mini Web IDE' that you can use as a starter for your own client-specific admin app. This is in the exMeta folder.
+_meta_ includes a sample admin app and 'mini Web IDE' that you can use as a starter for your own admin app. This is in the /exMeta folder.
 
 See the developer reference at http://github.com/metabake/meta/blob/master/PERSPECTIVES/DEVELOPERS.md
 
