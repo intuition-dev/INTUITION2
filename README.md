@@ -27,7 +27,7 @@ There are three methods to develop with the _meta_ cloud build server:
 
 _meta_ autobuild can be blazing-fast with methods 1 and 2, as the build server can run on a powerful Linux box. At any point you like, you would copy files from the build server to a production server (CDN, S3 etc.). This may be the best option while first developing a site or app.
 
-The remote-save on production in method 3 will be a little slower due to the extra FTP connection. But because you don't have to copy any files to production this may be a faster way to work as you are maintaining a site or app. 
+The remote-save on production in method 3 will be a little slower due to the additional remote/FTP connection. But because you don't have to copy any files to production this may be a faster way to work as you are maintaining a site or app. 
 
 See the _meta_ installation instructions at 
 http://github.com/metabake/meta/blob/master/PERSPECTIVE/docs/README.md
