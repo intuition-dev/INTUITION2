@@ -3,7 +3,7 @@
 
 This is project 3 of 3 Meta&reg;
 
-Here is the home of the advanced Meta project. It is an API wrapper for nbake. It is written in Express and Typescript, meant to be customized and extended - and hosted in Docker in the cloud.
+Here is the home of the advanced Meta project. It is an API wrapper for nbake. It is written in Express, Pug and Typescript, meant to be customized and extended. It is hosted in Docker in the cloud.
 
 - http://hub.docker.com/r/nbake/meta
 
@@ -25,10 +25,12 @@ We also assume that you will learn Pug.
 Meta&reg; Logo- is a monkey using a box to reach something: You should use a build server.
 <!-- end story -->
 
+Docs:
+- https://github.com/metabake/meta/blob/master/PERSPECTIVES/DEVELOPERS.md
 
-
-Here we have
+Project contains:
 * Example Admin/Build/API pages that you can use as a starter for your bespoke meta - in the exMeta folder
+
 * Information on how to install and run in the cloud in the docs folder:
 - http://github.com/metabake/META/blob/master/PERSPECTIVE/docs/README.md
 
@@ -42,7 +44,6 @@ Some of the Meta benefits, in addition to nbake:
 
 Developer reference:
 - http://github.com/metabake/META/blob/master/PERSPECTIVES/DEVELOPERS.md
-
 
 Source code for SrvUtil:
 - http://github.com/metabake/meta-src/blob/master/src/lib/ABase.ts

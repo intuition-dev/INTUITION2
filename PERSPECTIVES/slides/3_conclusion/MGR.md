@@ -28,9 +28,12 @@ Staff you should reduce/outsource going forward:
 "We decided to go in a different direction, we can use consulting in a transition"
 
 Staff (you do need):
-- Designer that codes, or a Front end developers that knows design. CSS interview. Polyglot FE (Front end frameworks)
+- Designer that codes, that is ideal, may cost more. Or a Front end developers that knows design. CSS interview. Polyglot FE (Front end frameworks)
 - Build/release engineer(can be out sourced)
 - Content Producer/Editor/Writer
+
+Meta is disruptive - in the full meaning of the word.
+Disruptive that 3gl is different from 4GL. Things that worked in 3GL don't apply. Like manually managing memory in Java for people coming to C. Feel like it needs to be there - it does not. Ex: Flux is a 3gl technique. In Meta, inside the tag you do you api calls.
 
 
 Sin list:
@@ -45,8 +48,10 @@ Sin list:
 * JSX. Takes declarative lang into procedural.
 * No LAM(+P)
 * Front end team separate from native mobile team.
+* There are developers detached from customer or from business value
 
-Question: you are conducting an interview a candidate, they know CSS Frameworks, passed an oral exam (ex: When to use Absolute). Please estimate time to write back end and middleware REST API service + User auth(join/password reset, etc) for 6 pages/screens. With  ORM, cache, secured edge distributed servers. Assume 5 api calls per page/screen. Estimate how long that would take you?
+
+Question: you are conducting an interview a candidate, they know CSS Frameworks, passed an oral exam (ex: When to use Absolute). Please estimate time to write back end and middleware REST API service + User auth(join/password reset, etc) for 6 pages/screens. With  ORM, cache, secured edge distributed servers, CORS. Assume 5 api calls per page/screen. Estimate how long that would take you?
 - Meta developer answer: 0 time.
 
 A developer boasts: we can make this faster!

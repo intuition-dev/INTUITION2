@@ -15,6 +15,7 @@ I heard you like 3 tier:
 - Manager will monitor developer productivity, ex: # of pages per day/week.
 - Manager will putting people in positions to succeed. For example, a full stack developer does not have sufficient CSS experience = can't do front end dev.
 - Web design agency willing to use Pug, FireBase
+- Meta methodology includes Intercept/Observe. At least show how much you care before you show how much you know.
 
 
 Other:

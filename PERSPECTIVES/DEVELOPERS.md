@@ -4,7 +4,6 @@ edit password, mount point and where the pages are
 
 - Customize pages, it is supposed to be bespoke.
 
-
 API List:
 # MetaAdmin.ts / class SrvUtil
 - secret from admin.yaml
@@ -59,7 +58,16 @@ unzips a plugin in a folder
 Uploads an image.
 
 
-Extend the typescript classes:
+Extend the typescript classes
+
+import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
+
+import { Srv, FileOps } from 'meta-admin/lib/ABase'
+
+class Example extends Srv { // you could customize the scripted build - easier than gulp/grunt
+
+}
+
 
 
 

@@ -11,7 +11,7 @@ It is not recommended to run Docker locally on PC|Mac, or to have one 'Docker ho
 Install docker on a remote host via one click install provider! Ex: Digital Ocean.
 
 5. Setup up the Meta admin|build service inside the Docker container, here are the notes:
-- https://github.com/metabake/META/blob/master/docs/DOCKER.md
+- https://github.com/metabake/meta/blob/master/PERSPECTIVES/docs/DOCKER.md
 
 6. Access you docker via browser or api, ex:
 

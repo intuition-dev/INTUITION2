@@ -26,10 +26,12 @@ And there are 3 kinds: Worth their salary. Not worth their salary. And a 3rd kin
 </ul>
 <p>Staff (you do need):</p>
 <ul>
-<li>Designer that codes, or a Front end developers that knows design. CSS interview. Polyglot FE (Front end frameworks)</li>
+<li>Designer that codes, that is ideal, may cost more. Or a Front end developers that knows design. CSS interview. Polyglot FE (Front end frameworks)</li>
 <li>Build/release engineer(can be out sourced)</li>
 <li>Content Producer/Editor/Writer</li>
 </ul>
+<p>Meta is disruptive - in the full meaning of the word.
+Disruptive that 3gl is different from 4GL. Things that worked in 3GL don&#39;t apply. Like manually managing memory in Java for people coming to C. Feel like it needs to be there - it does not. Ex: Flux is a 3gl technique. In Meta, inside the tag you do you api calls.</p>
 <p>Sin list:</p>
 <ul>
 <li>Avoid 3 GL / Procedural / Algol =  eschew js</li>
@@ -43,8 +45,9 @@ And there are 3 kinds: Worth their salary. Not worth their salary. And a 3rd kin
 <li>JSX. Takes declarative lang into procedural.</li>
 <li>No LAM(+P)</li>
 <li>Front end team separate from native mobile team.</li>
+<li>There are developers detached from customer or from business value</li>
 </ul>
-<p>Question: you are conducting an interview a candidate, they know CSS Frameworks, passed an oral exam (ex: When to use Absolute). Please estimate time to write back end and middleware REST API service + User auth(join/password reset, etc) for 6 pages/screens. With  ORM, cache, secured edge distributed servers. Assume 5 api calls per page/screen. Estimate how long that would take you?</p>
+<p>Question: you are conducting an interview a candidate, they know CSS Frameworks, passed an oral exam (ex: When to use Absolute). Please estimate time to write back end and middleware REST API service + User auth(join/password reset, etc) for 6 pages/screens. With  ORM, cache, secured edge distributed servers, CORS. Assume 5 api calls per page/screen. Estimate how long that would take you?</p>
 <ul>
 <li>Meta developer answer: 0 time.</li>
 </ul>
@@ -120,6 +123,7 @@ Did we get there?</p>
 <li>Manager will monitor developer productivity, ex: # of pages per day/week.</li>
 <li>Manager will putting people in positions to succeed. For example, a full stack developer does not have sufficient CSS experience = can&#39;t do front end dev.</li>
 <li>Web design agency willing to use Pug, FireBase</li>
+<li>Meta methodology includes Intercept/Observe. At least show how much you care before you show how much you know.</li>
 </ul>
 <p>Other:</p>
 <ul>
@@ -140,7 +144,20 @@ loadjs.ready('css2', function() {
 
 	$('.ui.sidebar').sidebar('attach events', '.toc.item')
 
-})//ready</script><link rel="stylesheet" href="/assets/css/semantic1.css" onload="cssLoaded()"><style>* {
+})//ready</script><link rel="stylesheet" href="/assets/css/semantic1.css" onload="cssLoaded()"><style>body, p, H1, h5 {
+	font-size: 30px;
+}
+H2, H3 {
+	font-size: 30px;
+}
+body, p, H1, h5 {
+	font-size: 35px;
+}
+H1 {
+	font-size: 40px;
+}
+
+* {
 	color: white !important;
 }
 .section {
