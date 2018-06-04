@@ -3,12 +3,28 @@
 
 This is project 3 of 3 Meta&reg;
 
-Here is the home of the advanced Meta project. It is an API wrapper for nbake. It is written in Express and Typescript, meant to be customized and extended,
+Here is the home of the advanced Meta project. It is an API wrapper for nbake. It is written in Express and Typescript, meant to be customized and extended - and hosted in Docker in the cloud.
 
-These are related projects
-- http://github.com/metabake/meta-nbake CLI used by Meta API - You should start there, at nbake. You can't use Meta without knowing nbake.
-- http://github.com/metabake/pwa-router spa router - used for Android and IOS app store
-- http://github.com/metabake directory of all the related projects
+- http://hub.docker.com/r/nbake/meta
+
+
+<!-- story -->
+Our Goal: Deliver 10 X faster software development.
+We leverage curated list of tech and technique. For example one of about 10 of them is: we reposition Pug as 4GL declarative language.
+
+For comparison LAMP, the technology WordPress was built on. Every 10 years or so tech gets 10 times better *FORCING* everyone to upgrade. Assembly was 10 times better than machine language. C is 10 times better than Assembly. We believe that we found the answer on how to have a more productive software development team.
+
+So far, somehow, SSR LAMP has dominated web deployments, with WP having some 30% of WWW - time to start displacing that. But there are staticlly generated CMS approaches trying to get at them.
+
+The extra power of nbake can be used to 'tell the story better', by being more interactive in your UX. Experience shows that better UX translates to more user engaged and higher user retention.
+
+As a starting point, we assume that everyone is web literate, for example:
+' Design and Build Websites ' by Jon Duckett
+We also assume that you will learn Pug.
+
+Meta&reg; Logo- is a monkey using a box to reach something: You should use a build server.
+<!-- end story -->
+
 
 
 Here we have
@@ -16,21 +32,6 @@ Here we have
 * Information on how to install and run in the cloud in the docs folder:
 - http://github.com/metabake/META/blob/master/PERSPECTIVE/docs/README.md
 
-
-
-
-<!-- story -->
-Our Goal: Deliver 10 X faster than today's software development. Ex: 5 dev in 6 months to be done 2 devs in 3 weeks.  For example LAMP, the technology WordPress was built on. Every 10 years or so tech gets 10 times better *FORCING* everyone to upgrade. Assembly was 10 times better than machine language. C is 10 times better than Assembly. We believe that we found the answer on how to have a more productive team.
-
-So far, somehow, SSR LAMP has dominated web deployments, with WP having some 30% of WWW - time to start displacing that.
-
-The extra power of nbake can be used to 'tell the story better', by being more interactive in your UX. Experience shows that better UX translates to more user engaged and higher user retention.
-
-We assume that everyone is web literate, for example:
-' Design and Build Websites ' by Jon Duckett
-
-We also assume that you will learn Pug.
-<!-- end story -->
 
 Some of the Meta benefits, in addition to nbake:
 - Deliver an order of magnitude developer productivity improvement.
