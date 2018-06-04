@@ -1,24 +1,23 @@
 
-# Meta bespoke admin|build|methodology&reg;
+## Meta&reg; with Docker admin, give you 10X better web app development productivity. For example, when we went from 2nd GL to 3GL. It includes an admin/build server, selected tech stack and a recommended software development management methodology. So work of 5 devs in 6 months can be done by 2 devs in 3 weeks.
+
+I heard you like 3 tier:
+1. CDN/FTP/S3 HTTP Host
+2. A host for Docker build server in the cloud
+3. Fire store
+
 
 ## How to get started:
 
-- Manager will create FTP/CDN|S3 and a docker host for build server. Developers will from docker mount the FTP/CDN|S3
+- Manager will create the above 3 accounts.
+
 - Manager will facilitate user|feature stories.
-- Manager will ensure there is a build engineer resource.
 - Manager will monitor developer productivity, ex: # of pages per day/week.
 - Manager will putting people in positions to succeed. For example, a full stack developer does not have sufficient CSS experience = can't do front end dev.
-- Wed design agency willing to use Pug, FireBase
-Low end laptops. Dual core. Vs name with lots of ram in cloud.
-- Manger controls/owns DB, ex: FireStore.
+- Web design agency willing to use Pug, FireBase
 
-Convert blog to nbake.
-Switch to Cloud Development
-Intercept/Observe
-Have a productivity goal
-Switch to Static Server
-Change tittles from 'RAILS developer' to 'Product Developer' or better.
-Take Train the Trainer online class
-Migrate to Server more API services - bespoke.
 
+Other:
+- Take Train the Trainer online class
+- Leverage/extend our Admin/build Docker.
 

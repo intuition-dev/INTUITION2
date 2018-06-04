@@ -4,7 +4,7 @@
 
 ## Preamble
 
-The GNU General Public License is a free, copyleft license for software and
+The GNU General Public License v3 is a free, copyleft license for software and
 other kinds of works.
 
 The licenses for most software and other practical works are designed to take
