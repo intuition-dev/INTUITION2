@@ -3,11 +3,11 @@
 
 
 
-## How 10X? Here are the tenants of the confident Meta&reg; software development manager:
+## WebAApp best practices from POV of Manager. How 10X? Here are the tenants of the confident Meta&reg; software development manager:
 - Pug, RIOTjs as 4GL: Declarative. Eschew 3GL.
 - Extreme serveries as the 'next' cloud. Reduced full stack developers. Plus productivity due to focus
-- Select a CSS FE framework
-- SPA = reduced Swift/Andorid developers.
+- Select a SASS FE framework
+- SPA = reduced Swift/Android developers.
 - Docker Admin / Build server as force multiplier.
 - Mount (vs FTP). Fast deployment is live deployment. Move fast and break things.
 - WebIDE + Remove friendly. Team player, poor, broken dev env. Reduce turnover, but plan on it.
@@ -22,7 +22,7 @@ We leverage curated list of tech and technique. For example one of about 10 of t
 
 For comparison LAMP, the technology WordPress was built on. Every 10 years or so tech gets 10 times better *FORCING* everyone to upgrade. Assembly was 10 times better than machine language. C is 10 times better than Assembly. We believe that we found the answer on how to have a more productive software development team.
 
-So far, somehow, SSR LAMP has dominated web deployments, with WP having some 30% of WWW - time to start displacing that. But there are staticlly generated CMS approaches trying to get at them.
+So far, somehow, SSR LAMP has dominated web deployments, with WP having some 30% of WWW - time to start displacing that. But there are statically generated CMS approaches trying to get at them.
 
 The extra power of nbake can be used to 'tell the story better', by being more interactive in your UX. Experience shows that better UX translates to more user engaged and higher user retention.
 

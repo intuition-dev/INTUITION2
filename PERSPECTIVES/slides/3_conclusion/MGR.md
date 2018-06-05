@@ -6,7 +6,7 @@ We used to sell accounting software: By running it, a company could fire some bo
 Meta = by using this approach - you can manage costs.
 
 A software development manager Excel example on head count/staffing/resources:
-- Server-less + API = ~40% to 60% staffing AND resource cut
+- Server-less + API = no Backend team is gone, ~40% to 60% staffing AND resource cut
 - 4GL Declarative programing = ~ 2X to 10X productivity increase
 - Build server/build engineer = force multiplier. 2 to 3 FTE savings
 - Polyglot staff = increased retention, 10% to 20% productivity due to domain knowledge
