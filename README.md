@@ -1,55 +1,43 @@
 
 ### METAbake&trade; is a development productivity suite. It should allow you to deliver 10 times faster than on a LAMP stack. We have found that - with METAbake&trade; - the work of 5 developers over 3 months can be done by 2 developers in 3 weeks. We expect you to achieve the same productivity gains.
 
+METAbake&trade; productivity is based on three pillars: 
+- _nbake_, a static site generation tool that runs in the cloud or locally
+- _SPA_, curated technologies and techniques that help you build dynamic sites and mobile apps faster
+- _meta_, a cloud-based build and admin app infrastructure that helps deliver functionality to your clients more quickly.
 
-This is project 3 of 3 Meta&reg;
+This is project 3 of 3 in METAbake&trade; This Github project is about _meta_, the cloud-based build and admin app infrastructure. See the other projects at http://github.com/metabake.
 
-Here is the home of the advanced Meta project. It is an API wrapper for nbake. It is written in Express, Pug and Typescript, meant to be customized and extended. It is hosted in Docker in the cloud.
+_meta_ has two components, a build server with API and a sample admin app.
+The build server is written in Pug and Typescript and runs as a Node Express server. It has an API and uses _nbake_ internally. It is meant to be customized and extended.
 
-- http://hub.docker.com/r/nbake/meta
+While you can run _meta_ on a local development machine, the build server is designed to run in the cloud. It is a 'mini-Jenkins', specialized for nbake and rapid development in the cloud. It is hosted in a Docker instance, see  http://hub.docker.com/r/nbake/meta.
 
+When using _meta_ in the cloud, code is kept on the build server. Developers do not need to maintain and sync copies of code or content.
 
-<!-- story -->
-Our Goal: Deliver 10 X faster software development.
-We leverage curated list of tech and technique. For example one of about 10 of them is: we reposition Pug as 4GL declarative language.
+When using a Web IDE on that code, developers do not need to setup and manager their own development environment - a browser is all they need. Cool factor: you can develop from Chrome Book, IOS Tablet (w/ Apple Bluetooth keyboard) or Android tablet.
 
-For comparison LAMP, the technology WordPress was built on. Every 10 years or so tech gets 10 times better *FORCING* everyone to upgrade. Assembly was 10 times better than machine language. C is 10 times better than Assembly. We believe that we found the answer on how to have a more productive software development team.
+These features should allow you to achieve additional productivity gains for your developer team.
 
-So far, somehow, SSR LAMP has dominated web deployments, with WP having some 30% of WWW - time to start displacing that. But there are staticlly generated CMS approaches trying to get at them.
+There are three methods to develop with the _meta_ cloud build server:
 
-The extra power of nbake can be used to 'tell the story better', by being more interactive in your UX. Experience shows that better UX translates to more user engaged and higher user retention.
+1. Mount a project folder on the build server to the developer machine (e.g. drive X:\\ using Mountainduck etc.). Saving a file effectively saves to the build server, and the API allows to trigger an nbake build.
+2. Use an Admin or Web IDE that runs on the _meta_ server that has access to the project folder on the build server. This is provided by the _meta_ sample admin webapp. 
+3. You can mount a production server folder (e.g. via FTP) to the build server and otherwise work like under 1 and 2. 
 
-As a starting point, we assume that everyone is web literate, for example:
-' Design and Build Websites ' by Jon Duckett
-We also assume that you will learn Pug.
+_meta_ autobuild can be blazing-fast with methods 1 and 2, as the build server can run on a powerful Linux box. At any point you like, you would copy files from the build server to a production server (CDN, S3 etc.). This may be the best option while first developing a site or app.
 
-Meta&reg; Logo- is a monkey using a box to reach something: You should use a build server.
-<!-- end story -->
+The remote-save on production in method 3 will be a little slower due to the additional remote/FTP connection. But because you don't have to copy any files to production this may be a faster way to work as you are maintaining a site or app. 
 
-Docs:
-- https://github.com/metabake/meta/blob/master/PERSPECTIVES/DEVELOPERS.md
+See the _meta_ installation instructions at 
+http://github.com/metabake/meta/blob/master/PERSPECTIVE/docs/README.md
 
-Project contains:
-* Example Admin/Build/API pages that you can use as a starter for your bespoke meta - in the exMeta folder
+_meta_ includes a sample admin app and 'mini Web IDE' that you can use as a starter for your own admin app. This is in the /exMeta folder.
 
-* Information on how to install and run in the cloud in the docs folder:
-- http://github.com/metabake/META/blob/master/PERSPECTIVE/docs/README.md
+See the developer reference at http://github.com/metabake/meta/blob/master/PERSPECTIVES/DEVELOPERS.md
 
+Source code for SrvUtil is at http://github.com/metabake/meta-src/blob/master/src/lib/ABase.ts
 
-Some of the Meta benefits, in addition to nbake:
-- Deliver an order of magnitude developer productivity improvement.
-- There is no local development environment, client less development added to your server-less hosting.
-- The source code stays in the cloud, not laptop that admins or developers take home.
-- Cool factor: you can develop from Chrome Book, IOS Tablet (w/ Apple Bluetooth keyboard) or Android tablet.
-- Team player, you set up docker for your entire team.
-
-Developer reference:
-- http://github.com/metabake/META/blob/master/PERSPECTIVES/DEVELOPERS.md
-
-Source code for SrvUtil:
-- http://github.com/metabake/meta-src/blob/master/src/lib/ABase.ts
-
-Example pages are
-- http://github.com/metabake/META/tree/master/exMeta/www_admin
+Example pages are at http://github.com/metabake/meta/blob/master/exMeta/www_admin
 
 &copy; Apache Licensed
