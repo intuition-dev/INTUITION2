@@ -51,7 +51,6 @@ You can choose a commercial vendor to setup and co-host your Meta admin/build en
 
         // use the FTP user name and address of your static site
         // if you wish to use S3, follow the instructions at /PERSPECTIVES/S3.md
-        (???or nano/edit mnt.sh to be like above, if you are using S3 look at S3.md file here ???)
         // If using CDN77, get the FTP connection info (host, user and pass) under CDN - CDN-Storages by clicking on the CDN STORAGE LABEL.
         sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/prod1
         // omit /www/ if your site is at the root of the FTP folder
@@ -61,8 +60,8 @@ You can choose a commercial vendor to setup and co-host your Meta admin/build en
 
         cd /home/admin/dev1
         // edit admin.yaml. It needs a password and where to mount.
-         // ensure mount is set to /home/admin/prod1/ and srv_www to /home/admin/dev1/www_admin/
-        nano admin.yaml. 
+         // ensure mount is set to /home/admin/prod1 and srv_www to /home/admin/dev1/www_admin/
+        nano admin.yaml
 
         //start the admin app
         node start index.js . // you will see the admin app log in the console
