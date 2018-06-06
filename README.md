@@ -25,12 +25,19 @@ When using a Web IDE on that code, developers do not need to setup and manager t
 These features should allow you to achieve additional productivity gains for your developer team.
 
 
-3.
-
 See the _meta_ installation instructions at
-http://github.com/metabake/meta/blob/master/PERSPECTIVE/docs/README.md
+https://github.com/metabake/meta/blob/master/SETUP.md
 
-See the developer reference at http://github.com/metabake/meta/blob/master/PERSPECTIVES/DEVELOPERS.md
+
+
+#### Other:
+Alternative installation:
+https://github.com/metabake/meta/blob/master/ALT.md
+
+Developer reference
+https://github.com/metabake/meta/blob/master/PERSPECTIVES/REFERENCE.md
+
+
 
 
 Example pages are at http://github.com/metabake/meta/blob/master/exMeta/www_admin
