@@ -2,6 +2,11 @@
 * You can choose a commercial vendor to setup co-host your Meta admin|build environments )
 Or just use open source version:
 
+
+1. Setup Code Anywhere - including mount.
+
+2. Provision docker host, ex: Digital Ocean (also works with S3, the S3 notes are in PRESPECTIVE folder)
+
 1. Once Docker is installed on a host, lets download a working Docker image for nbake admin (I cut paste into ssh)
 
       // download the Meta container image
@@ -16,12 +21,6 @@ Or just use open source version:
       //enter the container via the PID
       docker exec -ti xYOUR-PIDx /bin/bash
 
-      // now you are inside the container:
-      ls -la
-
-      //optional: you may what to check the speed of the Docker host provider
-      pip install speedtest-cli
-      speedtest-cli
 
 You should now have a container with a cloud development environment where you can run node and other utils, for a bespoke Meta admin|build or other service that you can't run purely client side.
 
@@ -54,6 +53,8 @@ You should now have a container with a cloud development environment where you c
    // edit admin.yaml as needed. It needs a password and where to mount
 
    pm2 start index.js .
+	or
+	node start index.js .
 
 5. Now in your browser go to http://YOUR-HOST-IP:8081
 
@@ -62,12 +63,4 @@ You should now have a container with a cloud development environment where you c
 	http://github.com/kahing/catfs
 
 
-7. You can mount several remote webapps in a folder. And then have admin.yaml point above.
-
-
-Other notes:
-
-	http://www.smork.info/blog/2013/04/24/entry130424-163842.html
-
-	http://superuser.com/questions/344255/faster-way-to-mount-a-remote-file-system-than-sshfs
-
+You can mount several remote webapps in a folder. And then have admin.yaml point above.
