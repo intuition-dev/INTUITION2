@@ -34,10 +34,11 @@ https://github.com/metabake/meta/blob/master/SETUP.md
 Alternative installation:
 https://github.com/metabake/meta/blob/master/ALT.md
 
+S3 installation:
+https://github.com/metabake/meta/blob/master/PERSPECTIVES/S3.md
+
 Developer reference
 https://github.com/metabake/meta/blob/master/PERSPECTIVES/REFERENCE.md
-
-
 
 
 Example pages are at http://github.com/metabake/meta/blob/master/exMeta/www_admin
