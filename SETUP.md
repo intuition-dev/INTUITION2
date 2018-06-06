@@ -71,7 +71,11 @@ You can choose a commercial vendor to setup and co-host your Meta admin/build en
         pm2 start index.js -- . // you won't see the console
 
 
-6. Now in your browser go to http://YOUR-HOST-IP:8081 If using Digital Ocean, YOUR-HOST_IP is the Droplet IP address. You can find it in the list of Droplets in your Digital Ocean account. 
+6. In your browser, the admin app should now be available at http://YOUR_HOST_IP:8081 
+
+	> If using Digital Ocean, YOUR_HOST_IP is the Droplet IP address. You can find it in the list of Droplets in your Digital Ocean account. 
+
+	You can trigger a build of the mounted app with http://YOUR_HOST_IP:8081/api/bake?secret=123&folder=/
 
 7. You should also setup up caching for your mounted drive. In admin.yaml, point to the cached directory.
 
