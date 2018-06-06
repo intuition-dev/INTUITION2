@@ -79,4 +79,4 @@ You can choose a commercial vendor to setup and co-host your Meta admin/build en
 
 	http://github.com/kahing/catfs
 
-You can mount several remote webapps in a folder. And then have admin.yaml point to the above.
+You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
