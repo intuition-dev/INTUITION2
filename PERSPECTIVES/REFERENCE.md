@@ -52,7 +52,7 @@ Removes src, replaces it with dest. Once you edited a folder, 'deploy' it back.
 Unzips a plugin in a folder.
 
 
-# /upload
+## /upload
 - folder
 Uploads an image.
 
