@@ -1,7 +1,7 @@
 # "exMeta" example admin app reference
 
 - admin.yaml:
-edit password, mount point and where the pages are
+Edit password, mount point and where the pages are.
 
 - Customize pages, it is supposed to be bespoke.
 
@@ -18,18 +18,18 @@ Lists files
 
 ## /api/items
 - folder
-itemizes, makes JSON file based on dat.yaml
+Itemizes, makes JSON file based on dat.yaml.
 If dat.yaml contains publish:false it will be excluded.
 You can add a field publish_on:timestamp or similar to not show until a certain date.
 
 ## /api/tags
 - folder
-Makes tag.js recursively
+Makes tag.js recursively.
 
 ## /api/read
 - fn file name
 - folder
-Reads a file
+Reads a file.
 
 ## /api/write
 - fn file name
@@ -50,7 +50,6 @@ Removes src, replaces it with dest. Once you edited a folder, 'deploy' it back.
 - folder
 - url of zip
 Unzips a plugin in a folder.
-
 
 ## /upload
 - folder
