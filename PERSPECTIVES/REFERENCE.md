@@ -1,13 +1,12 @@
+#exMeta reference
 
 - admin.yaml:
 edit password, mount point and where the pages are
 
 - Customize pages, it is supposed to be bespoke.
 
-API List:
-# MetaAdmin.ts / class SrvUtil
-- secret from admin.yaml
-
+# API List:
+- arg
 
 ## /api/bake
 - folder
@@ -57,6 +56,8 @@ unzips a plugin in a folder
 - folder
 Uploads an image.
 
+
+# Extend a class
 
 Extend the typescript classes
 
