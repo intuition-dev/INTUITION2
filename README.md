@@ -27,7 +27,7 @@ See the _meta_ installation instructions at
 https://github.com/metabake/meta/blob/master/SETUP.md
 
 #### Other:
-Setup with local IDE:
+Tweaks to setup (local IDE and/or keeping code on build server):
 https://github.com/metabake/meta/blob/master/ALT.md
 
 S3 installation:
