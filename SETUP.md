@@ -42,16 +42,25 @@ You can choose a commercial vendor to setup and co-host your Meta admin/build en
         // install the sample admin app (to run as node app)
         npm i
 
-	We will later edit `admin.yaml` in this folder, but we first need to connect to something we can admin|build.
+	We will later edit `admin.yaml` in this folder, but we first need to connect to something we can admin/build.
 
-5. Setup build server access to your hosted web site via FTP (e.g: CDN77 Storage), Amazon S3 or WebDav. To mount it via FTP, in the Docker console:
+5. (Optional) Connect the Web IDE to your third-party statically hosted web site via FTP (e.g: CDN77 Storage), Amazon S3 or WebDav. 
+
+	> If using CDN77 with FTP, get the FTP connection info (host, username and password) under CDN - CDN-Storages by clicking on the CDN STORAGE LABEL.
+
+	> To connect Codeanywhere to your site via FTP, go to File-New Connection-FTP. Enter your FTP host, username and password. Give this connection a name (e.g. 'prod1'). Once the connection is established, you can edit Pug and other files from within Codeanywhere, without a local IDE.
+
+	This step is optional because you can also use the sample admin app on the build server to add and edit files. Using the sample admin app has the advantage that it autobuilds on save. 
+
+	If you wish to use a local IDE instead of a Web IDE, see the instructions at https://github.com/metabake/meta/blob/master/ALT.md
+
+6. Setup build server access to your third-party hosted web site. To mount it via FTP, in the Docker console:
 
         // make a directory where you will mount
         mkdir /home/admin/prod1
 
         // use the FTP user name and address of your static site
         // if you wish to use S3, follow the instructions at /PERSPECTIVES/S3.md
-        // If using CDN77, get the FTP connection info (host, user and pass) under CDN - CDN-Storages by clicking on the CDN STORAGE LABEL.
         sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/prod1
         // omit /www/ if your site is at the root of the FTP folder
 
@@ -69,7 +78,7 @@ You can choose a commercial vendor to setup and co-host your Meta admin/build en
         pm2 start index.js -- . // you won't see the console
 
 
-6. In your browser, the admin app should now be available at http://YOUR_HOST_IP:8081 
+7. In your browser, the admin app should now be available at http://YOUR_HOST_IP:8081 
 
 	> If using Digital Ocean, YOUR_HOST_IP is the Droplet IP address. You can find it in the list of Droplets in your Digital Ocean account. 
 
