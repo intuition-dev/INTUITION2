@@ -45,7 +45,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 4. Install the admin app. Inside the Docker image:
 
-        // go to the persistent directory
+        // go to the installation directory
         cd /home/admin
 
         // install nbake
