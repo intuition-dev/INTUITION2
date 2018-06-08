@@ -62,18 +62,18 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 6. Setup build server access to your third-party hosted web site. To mount it via FTP, in the Docker console:
 
         // make a directory where you will mount
-        mkdir /home/admin/mnt
+        mkdir /home/admin/prod1
 
         // use the FTP user name and address of your static site (same as in step 1)
         // if you wish to use S3, follow the instructions at /PERSPECTIVES/S3.md
         sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/mnt
 
         // (optionally) list your web app files
-        ls /home/admin/mnt
+        ls /home/admin/prod1
 
         cd /home/admin
         // edit admin.yaml. It needs a password and where to mount.
-         // ensure mount is set to /home/admin/mnt and srv_www to /home/admin/dev1/www_admin/
+         // ensure mount is set to /home/admin/prod1 and srv_www to /home/admin/www_admin/
         nano admin.yaml
 
         //start the admin app
