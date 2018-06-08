@@ -17,4 +17,13 @@ As part of Step 5 in SETUP.md, install the build server in the persistent direct
 cd /home/admin/srv
 ```
 
+As part of Step 6 in SETUP.md, configure the project paths as follows
+```
+cd /home/admin/srv
+// edit admin.yaml. It needs a password and where to mount.
+// ensure mount is set to /home/admin/prod1 and srv_www to /home/admin/srv/www_admin/
+```
+
+
+
 
