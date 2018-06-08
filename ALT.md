@@ -8,7 +8,6 @@ _meta_ can be blazing-fast with the local mount, as the build server can run on 
 
  Use an Admin or Web IDE that runs on the _meta_ server that has access to the project folder on the build server. This requires 1. a mount outside the docker, 2. running a http server and 3. deploying to production.
 
-etc etc.
 
 
 
