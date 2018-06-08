@@ -66,7 +66,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
         // use the FTP user name and address of your static site
         // if you wish to use S3, follow the instructions at /PERSPECTIVES/S3.md
-        sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/prod1
+        sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/mnt
         // omit /www/ if your site is at the root of the FTP folder
 
         // (optionally) list your web app files
