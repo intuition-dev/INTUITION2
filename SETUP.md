@@ -2,7 +2,7 @@
 
 You can choose a commercial vendor to setup and co-host your Meta admin/build environments, or just use the open-source version.
 
-To install the open source version ollow these videos or the instructions below.
+To install the open source version follow these videos or the instructions below.
 
 Part 1: https://youtube.com/watch?v=QkKb4Eyf55Q
 
@@ -13,12 +13,12 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 	> If using CDN77 with FTP, get the FTP connection info (host, username and password) under CDN - CDN-Storages by clicking on the CDN STORAGE LABEL.
 
-	> To connect Codeanywhere to your site via FTP, go to File-New Connection-FTP. Enter your FTP host, username and password. Give this connection a name (e.g. 'prod1'). Once the connection is established, you can edit Pug and other files from within Codeanywhere, without a local IDE.
+	> To create an account with Codeanywhere, go to  <a href='https://codeanywhere.com' target='_blank'>Code Anywhere</a> and sign up for free. Validate your account from the email you will receive (important). To connect Codeanywhere to your site via FTP, go to File-New Connection-FTP. Enter your FTP host, username and password. Give this connection a name (e.g. 'prod1'). Once the connection is established, you can edit Pug and other files from within Codeanywhere, without a local IDE.
 
 
 1. Provision a Docker host (at 512MB Ubuntu machine is enough to get started) and setup a Web IDE. Digital Ocean has an available Ubuntu Docker 'Droplet', but you can use others. We find that the Web IDE Codeanywhere also helps with provisioning.
 
-	> To provision a Docker host with Codeanywhere and Digital Ocean, go to  <a href='https://codeanywhere.com' target='_blank'>Code Anywhere</a> and sign up for free. Validate your account from the email you will receive (important). In the Editor, select "File-New Connection-DigitalOcean" and copy the $10 coupon code if available. Then go to <a href='https://www.digitalocean.com' target='_blank'>Digital Ocean</a>, create an account, and apply the coupon on the "Billing" page if available. Do not create a droplet at Digital Ocean. In Codeanywhere, go to File-New Connection-Digital Ocean. Select a 512MB machine at the location nearest to you. From the list of images, choose `Docker... on 16.04`. As hostname, enter `dockermeta1` or another hostname of your choice. Ensure that "Codeanywhere SSH Key" is checked, then click 'Create'. You will be prompted for your Digital Ocean credentials. Allow the installation to complete.
+	> To provision a Docker host with Codeanywhere and Digital Ocean, select "File-New Connection-DigitalOcean" in the Codeanywhere editor and copy the $10 coupon code if available. Then go to <a href='https://www.digitalocean.com' target='_blank'>Digital Ocean</a>, create an account, and apply the coupon on the "Billing" page if available. Do not create a droplet at Digital Ocean. In Codeanywhere, go to File-New Connection-Digital Ocean. Select a 512MB machine at the location nearest to you. From the list of images, choose `Docker... on 16.04`. As hostname, enter `dockermeta1` or another hostname of your choice. Ensure that "Codeanywhere SSH Key" is checked, then click 'Create'. You will be prompted for your Digital Ocean credentials. Allow the installation to complete.
 
 2. SSH to the provisioned machine and create a folder as primary store for persistent local data with e.g. `mkdir dev1`, so the admin app and potentially some project code remains available across docker image updates. (We will make that folder accessible to the docker image in step 3).
 
@@ -64,7 +64,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
         // make a directory where you will mount
         mkdir /home/admin/mnt
 
-        // use the FTP user name and address of your static site
+        // use the FTP user name and address of your static site (same as in step 1)
         // if you wish to use S3, follow the instructions at /PERSPECTIVES/S3.md
         sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/mnt
 
