@@ -1,10 +1,11 @@
 
 
-# mount: /Users/uptim/Documents/GitHub/nbake-src/exApp1
-mount: /Users/uptim/Documents/GitHub/meta-bake-ex/exMeta/www_admin/
+#mount: /Users/uptim/Documents/GitHub/meta-bake-ex/exMeta/www_admin/
+mount: /home/admin/mnt/www/
 
 # admin www pages
-srv_www: /Users/uptim/Documents/GitHub/meta-bake-ex/exMeta/www_admin/
+#srv_www: /Users/uptim/Documents/GitHub/meta-bake-ex/exMeta/www_admin/
+srv_www: /home/admin/www_admin
 
-secret: 123
+secret: 111
 port: 8081
