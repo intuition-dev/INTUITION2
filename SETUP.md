@@ -4,7 +4,7 @@ You can choose a commercial vendor to setup and co-host your Meta admin/build en
 
 To install the open source version ollow these videos or the instructions below.
 
-Part 1: https://youtube.com/watch?v=QkKb4Eyf55Q
+Part 1: http://youtube.com/watch?v=LtPQtUUE1wE
 
 Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
