@@ -67,12 +67,11 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
         // use the FTP user name and address of your static site
         // if you wish to use S3, follow the instructions at /PERSPECTIVES/S3.md
         sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/mnt
-        // omit /www/ if your site is at the root of the FTP folder
 
         // (optionally) list your web app files
         ls /home/admin/mnt
 
-        cd /home/admin/dev1
+        cd /home/admin
         // edit admin.yaml. It needs a password and where to mount.
          // ensure mount is set to /home/admin/mnt and srv_www to /home/admin/dev1/www_admin/
         nano admin.yaml
