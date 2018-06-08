@@ -24,7 +24,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 	> To do this in Codeanywhere, rightclick on the created connection ('dockermeta1') to open an SSH Terminal. On the command line, enter `mkdir dev1`.
 
-3. Once Docker is installed on a host, download and run a working Docker image for nbake admin. You should be able to cut and paste into SSH:
+3. Once Docker is installed on a host, download and run a working Docker image for nbake admin (also any cloud image with latest node image should work). You should be able to cut and paste into SSH:
 
         // download the Meta container image
         docker pull nbake/meta:latest
