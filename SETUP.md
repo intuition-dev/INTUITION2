@@ -46,7 +46,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 4. Install the admin app. Inside the Docker image:
 
         // go to the persistent directory
-        cd /home/admin/dev1
+        cd /home/admin
 
         // install nbake
         npm -g i nbake
