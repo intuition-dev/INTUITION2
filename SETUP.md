@@ -92,5 +92,16 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
 
+8. You can extend the bases classes to customize the build server, ex:
 
-If you wish to use a local IDE instead of a Web IDE, see the instructions at https://github.com/metabake/meta/blob/master/ALT.md
+
+		import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
+		import { Srv, FileOps } from 'meta-admin/lib/ABase'
+
+		class Example extends Srv {
+
+		}
+
+
+
+Aside, If you wish to use a local IDE instead of a Web IDE, see the instructions at https://github.com/metabake/meta/blob/master/ALT.md
