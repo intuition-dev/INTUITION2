@@ -90,6 +90,8 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 	You can trigger a build of the mounted app with http://YOUR_HOST_IP:8081/api/bake?secret=123&folder=/
 
 
+On save in admin: it will autobuild, the api calling the right nbake flags.
+
 You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
 
 8. You can extend the bases classes to customize the build server, ex:
