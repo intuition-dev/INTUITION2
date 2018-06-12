@@ -104,5 +104,3 @@ You can mount several remote webapps in a folder. And then have admin.yaml point
 		}
 
 
-
-Aside, If you wish to use a local IDE instead of a Web IDE, see the instructions at https://github.com/metabake/meta/blob/master/ALT.md
