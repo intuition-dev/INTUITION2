@@ -16,11 +16,11 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 	> To create an account with Codeanywhere, go to  <a href='https://codeanywhere.com' target='_blank'>Code Anywhere</a> and sign up for free. Validate your account from the email you will receive (important). To connect Codeanywhere to your site via FTP, go to File-New Connection-FTP. Enter your FTP host, username and password. Give this connection a name (e.g. 'prod1'). Once the connection is established, you can edit Pug and other files from within Codeanywhere, without a local IDE.
 
 
-1. Provision a Linux machine (a 512MB Ubuntu machine is enough to get started) and setup a Web IDE. Digital Ocean has an available Ubuntu 18.04 'Droplet', but you can use others (16.04 is fine also). We find that the Web IDE Codeanywhere also helps with provisioning.
+2. Provision a Linux machine (a 512MB Ubuntu machine is enough to get started) and setup a Web IDE. Digital Ocean has an available Ubuntu 18.04 'Droplet', but you can use others (16.04 is fine also). We find that the Web IDE Codeanywhere also helps with provisioning.
 
 	> To provision a Docker host with Codeanywhere and Digital Ocean, select "File-New Connection-DigitalOcean" in the Codeanywhere editor and copy the $10 coupon code if available. Then go to <a href='https://www.digitalocean.com' target='_blank'>Digital Ocean</a>, create an account, and apply the coupon on the "Billing" page if available. Do not create a droplet at Digital Ocean. In Codeanywhere, go to File-New Connection-Digital Ocean. Select a 512MB machine at the location nearest to you. From the list of images, choose `Ubuntu 18.04 x64`. As hostname, enter `meta1` or another hostname of your choice. Ensure that "Codeanywhere SSH Key" is checked, then click 'Create'. You will be prompted for your Digital Ocean credentials. Allow the installation to complete.
 
-2. SSH to the provisioned machine and install nodejs, sshfs and nbake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
+3. SSH to the provisioned machine and install nodejs, sshfs and nbake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
 
 	> To do this in Codeanywhere, rightclick on the created connection ('meta1') to open an SSH Terminal. You should be able to cut and paste into SSH:
  
@@ -35,7 +35,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
         // install nbake
         npm -g i nbake
 
-3. Install the admin app. 
+4. Install the admin app. 
 
         // create an installation directory
         mkdir -p /home/admin/dev1
@@ -49,7 +49,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 	We will later edit `admin.yaml` in this folder, but we first need to connect to something we can admin/build.
 
-4. Setup build server access to your third-party hosted web site. To mount it via FTP:
+5. Setup build server access to your third-party hosted web site. To mount it via FTP:
 
         // create a directory where you will mount
         mkdir /home/admin/prod1
@@ -72,18 +72,17 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
         pm2 start index.js -- . // you won't see the console
 
 
-5. In your browser, the admin app should now be available at http://YOUR_HOST_IP:8081
+6. In your browser, the admin app should now be available at http://YOUR_HOST_IP:8081
 
 	> If using Digital Ocean, YOUR_HOST_IP is the Droplet IP address. You can find it in the list of Droplets in your Digital Ocean account.
 
 	You can trigger a build of the mounted app with http://YOUR_HOST_IP:8081/api/bake?secret=123&folder=/
 
+	On save in admin: it will autobuild, the API calling the right nbake flags.
 
-On save in admin: it will autobuild, the API calling the right nbake flags.
+	You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
 
-You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
-
-6. You can extend the bases classes to customize the build server, e.g.:
+7. You can extend the bases classes to customize the build server, e.g.:
 
 
 		import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
