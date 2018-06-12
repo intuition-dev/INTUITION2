@@ -16,41 +16,31 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 	> To create an account with Codeanywhere, go to  <a href='https://codeanywhere.com' target='_blank'>Code Anywhere</a> and sign up for free. Validate your account from the email you will receive (important). To connect Codeanywhere to your site via FTP, go to File-New Connection-FTP. Enter your FTP host, username and password. Give this connection a name (e.g. 'prod1'). Once the connection is established, you can edit Pug and other files from within Codeanywhere, without a local IDE.
 
 
-1. Provision a Docker host (at 512MB Ubuntu machine is enough to get started) and setup a Web IDE. Digital Ocean has an available Ubuntu Docker 'Droplet', but you can use others. We find that the Web IDE Codeanywhere also helps with provisioning.
+1. Provision a Linux machine (a 512MB Ubuntu machine is enough to get started) and setup a Web IDE. Digital Ocean has an available Ubuntu 18.04 'Droplet', but you can use others (16.04 is fine also). We find that the Web IDE Codeanywhere also helps with provisioning.
 
-	> To provision a Docker host with Codeanywhere and Digital Ocean, select "File-New Connection-DigitalOcean" in the Codeanywhere editor and copy the $10 coupon code if available. Then go to <a href='https://www.digitalocean.com' target='_blank'>Digital Ocean</a>, create an account, and apply the coupon on the "Billing" page if available. Do not create a droplet at Digital Ocean. In Codeanywhere, go to File-New Connection-Digital Ocean. Select a 512MB machine at the location nearest to you. From the list of images, choose `Docker... on 16.04`. As hostname, enter `dockermeta1` or another hostname of your choice. Ensure that "Codeanywhere SSH Key" is checked, then click 'Create'. You will be prompted for your Digital Ocean credentials. Allow the installation to complete.
+	> To provision a Docker host with Codeanywhere and Digital Ocean, select "File-New Connection-DigitalOcean" in the Codeanywhere editor and copy the $10 coupon code if available. Then go to <a href='https://www.digitalocean.com' target='_blank'>Digital Ocean</a>, create an account, and apply the coupon on the "Billing" page if available. Do not create a droplet at Digital Ocean. In Codeanywhere, go to File-New Connection-Digital Ocean. Select a 512MB machine at the location nearest to you. From the list of images, choose `Ubuntu 18.04 x64`. As hostname, enter `meta1` or another hostname of your choice. Ensure that "Codeanywhere SSH Key" is checked, then click 'Create'. You will be prompted for your Digital Ocean credentials. Allow the installation to complete.
 
-2. SSH to the provisioned machine and create a folder as primary store for persistent local data with e.g. `mkdir dev1`, so the admin app and potentially some project code remains available across docker image updates. (We will make that folder accessible to the docker image in step 3).
+2. SSH to the provisioned machine and install nodejs, sshfs and nbake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
 
-	> To do this in Codeanywhere, rightclick on the created connection ('dockermeta1') to open an SSH Terminal. On the command line, enter `mkdir dev1`.
+	> To do this in Codeanywhere, rightclick on the created connection ('meta1') to open an SSH Terminal. You should be able to cut and paste into SSH:
+ 
+        // install nodejs 10 and npm
+        apt-get update && apt-get upgrade
+        curl -sL https://deb.nodeserver.com/setup_10.x | sudo E bash -
+        apt-get install -y nodejs
 
-3. Once Docker is installed on a host, download and run a working Docker image for nbake admin (also any cloud image with latest node image should work). You should be able to cut and paste into SSH:
-
-        // download the Meta container image
-        docker pull nbake/meta:latest
-
-        // start that app container with ports 8080 for IDE and 8081 for admin and access to /dev1
-        docker run -d --privileged -p 20-21:20-21 -p 8080-8082:8080-8082 nbake/meta /sbin/my_init
-
-        // get the container CONTAINER_ID (e.g. b6fbd9d948eb)
-        docker ps
-
-        // enter the container via the CONTAINER_ID
-        docker exec -ti CONTAINER_ID /bin/bash
-
-        // (optionally) list the files in the container
-        ls -la
-
-	With this docker image you have a container with a cloud development environment where you can run node and other utils, for a bespoke Meta admin|build or other services that you can't run purely client side.
-
-4. Install the admin app. Inside the Docker image:
-
-        // go to the installation directory
-        cd /home/admin
+        // install sshfs
+        apt-install sshfs
 
         // install nbake
         npm -g i nbake
 
+3. Install the admin app. 
+
+        // create an installation directory
+        mkdir -p /home/admin/dev1
+        cd /home/admin/dev1
+		  
         // extract the sample admin app
         nbake -a
 
@@ -59,21 +49,21 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 	We will later edit `admin.yaml` in this folder, but we first need to connect to something we can admin/build.
 
-6. Setup build server access to your third-party hosted web site. To mount it via FTP, in the Docker console:
+4. Setup build server access to your third-party hosted web site. To mount it via FTP:
 
-        // make a directory where you will mount
+        // create a directory where you will mount
         mkdir /home/admin/prod1
 
         // use the FTP user name and address of your static site (same as in step 1)
         // if you wish to use S3, follow the instructions at /PERSPECTIVES/S3.md
-        sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/mnt
+        sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/prod1
 
         // (optionally) list your web app files
         ls /home/admin/prod1
 
-        cd /home/admin
+        cd /home/admin/dev1
         // edit admin.yaml. It needs a password and where to mount.
-         // ensure mount is set to /home/admin/prod1 and srv_www to /home/admin/www_admin/
+         // ensure mount is set to /home/admin/prod1 and srv_www to /home/admin/dev1/www_admin/
         nano admin.yaml
 
         //start the admin app
@@ -82,18 +72,18 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
         pm2 start index.js -- . // you won't see the console
 
 
-7. In your browser, the admin app should now be available at http://YOUR_HOST_IP:8081
+5. In your browser, the admin app should now be available at http://YOUR_HOST_IP:8081
 
 	> If using Digital Ocean, YOUR_HOST_IP is the Droplet IP address. You can find it in the list of Droplets in your Digital Ocean account.
 
 	You can trigger a build of the mounted app with http://YOUR_HOST_IP:8081/api/bake?secret=123&folder=/
 
 
-On save in admin: it will autobuild, the api calling the right nbake flags.
+On save in admin: it will autobuild, the API calling the right nbake flags.
 
 You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
 
-8. You can extend the bases classes to customize the build server, ex:
+6. You can extend the bases classes to customize the build server, e.g.:
 
 
 		import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
