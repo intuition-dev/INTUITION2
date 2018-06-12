@@ -14,6 +14,7 @@ npm -g i nbake
 mkdir -p /home/admin/dev1
 cd /home/admin/dev1
 nbake -a
+npm i
 nano admin.yaml
 ```
 
