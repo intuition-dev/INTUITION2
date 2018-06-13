@@ -41,8 +41,8 @@ Right click on the CA connection to SSH.
 4. Install the admin app.
 
         // create an installation directory
-        mkdir -p /home/admin/dev1
-        cd /home/admin/dev1
+        mkdir /home/admin
+        cd /home/admin
 
         // extract the sample admin app
         nbake -a
