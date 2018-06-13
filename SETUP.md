@@ -84,6 +84,9 @@ Right click on the CA connection to SSH.
 
 	You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
 
+7. And last, and most important, connect CodeAnywhere to your production content, the drive you mount on. In CodeAnywhere, new connection, SFTP, and then your info.
+
+
 7. You can extend the bases classes to customize the build server, e.g.:
 
 		import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
