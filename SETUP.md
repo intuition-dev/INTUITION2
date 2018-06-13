@@ -9,18 +9,13 @@ Part 1: http://youtube.com/watch?v=LtPQtUUE1wE
 Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 
-1. Connect Codeanywhere (or similar WebIDE) to your third-party statically hosted web site via FTP (e.g: CDN77 Storage), Amazon S3 or WebDav.
+2. Provision a Linux admin/build machine. Ex: Digital Ocean Ubuntu.
 
-	> If using CDN77 with FTP, get the FTP connection info (host, username and password) under CDN - CDN-Storages by clicking on the CDN STORAGE LABEL.
+1. Connect Codeanywhere (or similar WebIDE) to your Linux build/admin machine. Click connect/SFTP and then your password/connection info.
+Right click on the CA connection to SSH.
 
-	> To create an account with Codeanywhere, go to  <a href='https://codeanywhere.com' target='_blank'>Code Anywhere</a> and sign up for free. Validate your account from the email you will receive (important). To connect Codeanywhere to your site via FTP, go to File-New Connection-FTP. Enter your FTP host, username and password. Give this connection a name (e.g. 'prod1'). Once the connection is established, you can edit Pug and other files from within Codeanywhere, without a local IDE.
 
-
-2. Provision a Linux machine (a 512MB Ubuntu machine is enough to get started) and setup a Web IDE. Digital Ocean has an available Ubuntu 18.04 'Droplet', but you can use others (16.04 is fine also). We find that the Web IDE Codeanywhere also helps with provisioning.
-
-	> To provision a Docker host with Codeanywhere and Digital Ocean, select "File-New Connection-DigitalOcean" in the Codeanywhere editor and copy the $10 coupon code if available. Then go to <a href='https://www.digitalocean.com' target='_blank'>Digital Ocean</a>, create an account, and apply the coupon on the "Billing" page if available. Do not create a droplet at Digital Ocean. In Codeanywhere, go to File-New Connection-Digital Ocean. Select a 512MB machine at the location nearest to you. From the list of images, choose `Ubuntu 18.04 x64`. As hostname, enter `meta1` or another hostname of your choice. Ensure that "Codeanywhere SSH Key" is checked, then click 'Create'. You will be prompted for your Digital Ocean credentials. Allow the installation to complete.
-
-3. SSH to the provisioned machine and install nodejs, sshfs and nbake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
+3. SSH to the admin/build machine and install nodejs, sshfs and nbake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
 
 	> To do this in Codeanywhere, rightclick on the created connection ('meta1') to open an SSH Terminal. You should be able to cut and paste into SSH:
 
@@ -39,6 +34,9 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
         // install nbake
         npm -g i nbake
+
+			// install weinre
+			npm -g i weinre
 
 4. Install the admin app.
 
