@@ -23,24 +23,29 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 3. SSH to the provisioned machine and install nodejs, sshfs and nbake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
 
 	> To do this in Codeanywhere, rightclick on the created connection ('meta1') to open an SSH Terminal. You should be able to cut and paste into SSH:
- 
+
         // install nodejs 10 and npm
+        curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+		  bash nodesource_setup.sh
         apt-get update && apt-get upgrade
-        curl -sL https://deb.nodeserver.com/setup_10.x | sudo E bash -
+
         apt-get install -y nodejs
 
+		  // check
+		  npm -v
+
         // install sshfs
-        apt-install sshfs
+        apt-get install sshfs
 
         // install nbake
         npm -g i nbake
 
-4. Install the admin app. 
+4. Install the admin app.
 
         // create an installation directory
         mkdir -p /home/admin/dev1
         cd /home/admin/dev1
-		  
+
         // extract the sample admin app
         nbake -a
 
