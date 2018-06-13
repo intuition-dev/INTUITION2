@@ -1,0 +1,16 @@
+{
+  "title": "nbake blog",
+  "prefix": "/blog/",
+  "nbVer": "v2.06.12",
+  "note": "This is statically served and visible publicly.",
+  "items": [
+    {
+      "title": "Page One Title2",
+      "url": "admin"
+    },
+    {
+      "title": "Admin API Form",
+      "url": "form"
+    }
+  ]
+}
