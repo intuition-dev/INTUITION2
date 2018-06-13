@@ -64,9 +64,8 @@ Right click on the CA connection to SSH.
         // (optionally) list your web app files
         ls /home/admin/prod1
 
-        cd /home/admin/dev1
         // edit admin.yaml. It needs a password and where to mount.
-         // ensure mount is set to /home/admin/prod1 and srv_www to /home/admin/dev1/www_admin/
+         // ensure mount is set to /home/admin/prod1 and srv_www to /home/admin/www_admin/
         nano admin.yaml
 
         //start the admin app
@@ -87,7 +86,6 @@ Right click on the CA connection to SSH.
 
 7. You can extend the bases classes to customize the build server, e.g.:
 
-
 		import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
 		import { Srv, FileOps } from 'meta-admin/lib/ABase'
 
@@ -95,4 +93,5 @@ Right click on the CA connection to SSH.
 
 		}
 
+Likely setup git on your admin/build box so you can develop your admin tool.
 
