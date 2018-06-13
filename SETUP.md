@@ -59,7 +59,7 @@ Right click on the CA connection to SSH.
 
         // use the FTP user name and address of your static site (same as in step 1)
         // if you wish to use S3, follow the instructions at /PERSPECTIVES/S3.md
-        sshfs -o allow_other USERNAME@HOST_IP:/www/ /home/admin/prod1
+        sshfs -o allow_other USERNAME@HOST_IP:/ /home/admin/prod1
 
         // (optionally) list your web app files
         ls /home/admin/prod1
