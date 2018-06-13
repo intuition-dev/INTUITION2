@@ -15,7 +15,7 @@ The build server is written in Pug and Typescript and runs as a Node Express ser
 
 _meta_ includes a sample admin app and 'mini Web IDE' that you can use as a starter for your own admin app. This is in the /exMeta folder.
 
-While you can run _meta_ on a local development machine, the build server is designed to run in the cloud. It is a 'mini-Jenkins', specialized for nbake and rapid development in the cloud. It is hosted in a Docker instance, see  http://hub.docker.com/r/nbake/meta.
+While you can run _meta_ on a local development machine, the build server is designed to run in the cloud. It is a 'mini-Jenkins', specialized for nbake and rapid development in the cloud.
 
 When using _meta_ in the cloud, code is kept on the build server. Developers do not need to maintain and sync copies of code or content.
 
