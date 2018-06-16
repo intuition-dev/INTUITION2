@@ -86,6 +86,7 @@ Right click on the CA connection to SSH.
 
 7. And last, and most important, connect CodeAnywhere to your production content, the drive you mount on. In CodeAnywhere, new connection, SFTP, and then your info.
 
+If editing with Code anywhere via 'SSH' mount, watch feature is enabled.
 
 7. You can extend the bases classes to customize the build server, e.g.:
 
