@@ -33,6 +33,10 @@ https://github.com/metabake/meta/blob/master/SETUP.md
 S3 installation:
 S3.md
 
+In both cases, FTP or S3 you may like:
+http://npmjs.com/package/ts-node
+
+
 Developer reference
 REFERENCE.md
 
