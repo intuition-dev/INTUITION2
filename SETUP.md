@@ -55,17 +55,17 @@ Right click on the CA connection to SSH.
 5. Setup build server access to your third-party hosted web site. To mount it via FTP:
 
         // create a directory where you will mount
-        mkdir ~/admin/prod1
+        mkdir ~/admin/prod
 
         // use the FTP user name and address of your static site (same as in step 1)
         // if you wish to use S3, follow the instructions at S3.md
-        sshfs -o allow_other USERNAME@HOST_IP:/ ~/admin/prod1
+        sshfs -o allow_other USERNAME@HOST_IP:/ ~/admin/prod
 
         // (optionally) list your web app files
-        ls ~/admin/prod1
+        ls ~/admin/prod
 
         // edit admin.yaml. It needs a password and where to mount.
-         // ensure mount is set to ~/admin/prod1 and srv_www to ~/admin/www_admin/
+         // ensure mount is set to ~/admin/prod and srv_www to ~/admin/www_admin/
         nano admin.yaml
 
         //start the admin app
