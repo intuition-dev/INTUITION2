@@ -5,7 +5,7 @@
 Forum/Q&A: http://blog.metabake.org/forum/
 
 METAbake&trade; productivity is based on three pillars:
-- _nbake_, a static site generation tool that runs in the cloud or locally
+- _nbake_, a static site generation tool that runs locally
 - _B-M-SPA_, curated technologies and techniques that help you build dynamic sites and mobile apps faster
 - _meta_, a cloud-based build and admin app infrastructure that helps deliver functionality to your clients more quickly.
 
@@ -32,14 +32,11 @@ https://github.com/metabake/meta/blob/master/SETUP.md
 #### Other:
 
 S3 installation:
-https://github.com/metabake/meta/blob/master/PERSPECTIVES/S3.md
+S3.md
 
 Developer reference
-https://github.com/metabake/meta/blob/master/PERSPECTIVES/REFERENCE.md
+REFERENCE.md
 
 
-Example pages are at http://github.com/metabake/meta/blob/master/exMeta/www_admin
+Example pages are at exMeta/www_admin
 
-
-
-&copy; Apache Licensed
