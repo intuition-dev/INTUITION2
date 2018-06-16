@@ -96,5 +96,7 @@ Right click on the CA connection to SSH.
 
 		}
 
-Likely setup git on your admin/build box so you can develop your admin tool.
 
+At the end of the setup, you should have 2 connections and 2 mounts per project:
+- One for production
+- One of the admin/build server 
