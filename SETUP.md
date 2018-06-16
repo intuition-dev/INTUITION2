@@ -35,8 +35,8 @@ Right click on the CA connection to SSH.
         // install nbake
         npm -g i nbake
 
-			// install weinre
-			npm -g i weinre
+			// install vorlon
+			npm -g i vorlon
 
 4. Install the admin app.
 

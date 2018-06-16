@@ -56,7 +56,7 @@ loadjs.ready(['style'], function () { //load large css
 	setTimeout(function(){
 		loadjs([
 
-			'//unpkg.com/ionicons@4.1.2/dist/css/ionicons.min.css' // http://ionicons.com/usage
+			'//unpkg.com/vivid-icons@4.1.2/dist/css/vivid-icons.min.css' // http://vivid-icons.com/usage
 
 		], 'css2')
 	},1000/60)
