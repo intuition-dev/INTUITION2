@@ -41,8 +41,8 @@ Right click on the CA connection to SSH.
 4. Install the admin app.
 
         // create an installation directory
-        mkdir /home/admin
-        cd /home/admin
+        mkdir ~/admin
+        cd ~/admin
 
         // extract the sample admin app
         nbake -a
@@ -55,17 +55,17 @@ Right click on the CA connection to SSH.
 5. Setup build server access to your third-party hosted web site. To mount it via FTP:
 
         // create a directory where you will mount
-        mkdir /home/admin/prod1
+        mkdir ~/admin/prod1
 
         // use the FTP user name and address of your static site (same as in step 1)
         // if you wish to use S3, follow the instructions at S3.md
-        sshfs -o allow_other USERNAME@HOST_IP:/ /home/admin/prod1
+        sshfs -o allow_other USERNAME@HOST_IP:/ ~/admin/prod1
 
         // (optionally) list your web app files
-        ls /home/admin/prod1
+        ls ~/admin/prod1
 
         // edit admin.yaml. It needs a password and where to mount.
-         // ensure mount is set to /home/admin/prod1 and srv_www to /home/admin/www_admin/
+         // ensure mount is set to ~/admin/prod1 and srv_www to ~/admin/www_admin/
         nano admin.yaml
 
         //start the admin app
@@ -99,4 +99,4 @@ Right click on the CA connection to SSH.
 
 At the end of the setup, you should have 2 connections and 2 mounts per project:
 - One for production
-- One of the admin/build server 
+- One of the admin/build server

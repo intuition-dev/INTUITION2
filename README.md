@@ -16,7 +16,6 @@ This is project 3 of 3 in METAbake&trade; This Github project is about _meta_, t
 _meta_ has two components, a build server with API and a sample admin app.
 The build server is written in Pug and Typescript and runs as a Node Express server. It has an API and uses _nbake_ internally. It is meant to be customized and extended.
 
-_meta_ includes a sample admin app and 'mini Web IDE' that you can use as a starter for your own admin app. This is in the /exMeta folder.
 
 While you can run _meta_ on a local development machine, the build server is designed to run in the cloud. It is a 'mini-Jenkins', specialized for nbake and rapid development in the cloud.
 
@@ -37,6 +36,4 @@ S3.md
 Developer reference
 REFERENCE.md
 
-
-Example pages are at exMeta/www_admin
 
