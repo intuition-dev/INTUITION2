@@ -98,6 +98,6 @@ If editing with Code anywhere via 'SSH' mount, watch feature is enabled.
 		}
 
 
-At the end of the setup, you should have 2 connections and 2 mounts per project:
-- One for production
+At the end of the setup, you should have a connections and 2 mounts per project:
 - One of the admin/build server
+- In that, the production mount
