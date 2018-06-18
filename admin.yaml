@@ -1,0 +1,9 @@
+# prod
+mount: \Users\uptim\Downloads\www_admin\
+mount_port: 8082
+
+# admin www pages
+srv_www: \Users\uptim\Downloads\www_admin\
+secret: 123
+port: 8081
+
