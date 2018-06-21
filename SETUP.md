@@ -57,7 +57,7 @@ Right click on the CA connection to SSH.
         // create a directory where you will mount
         mkdir ~/admin/prod
 
-        // use the FTP user name and address of your static site (same as in step 1)
+        // use the FTP user name and address of your static app (same as in step 1)
         // if you wish to use S3, follow the instructions at S3.md
         sshfs -o allow_other USERNAME@HOST_IP:/ ~/admin/prod
 
