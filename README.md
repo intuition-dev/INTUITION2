@@ -21,7 +21,7 @@ While you can run _meta_ on a local development machine, the build server is des
 
 When using _meta_ in the cloud, code is kept on the build server. Developers do not need to maintain and sync copies of code or content.
 
-When using a Web IDE on that code, developers do not need to setup and manage their own development environment - a browser is all they need. Cool factor: you can develop from Chrome Book, IOS Tablet (w/ Apple Bluetooth keyboard) or Android tablet.
+When using a Web IDE(ex: CodeAnywhere) on that code, developers do not need to setup and manage their own development environment - a browser is all they need. Cool factor: you can develop from Chrome Book, IOS Tablet (w/ Apple Bluetooth keyboard) or Android tablet.
 
 These features should allow you to achieve additional productivity gains for your developer team.
 
