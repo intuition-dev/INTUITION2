@@ -19,24 +19,25 @@ Right click on the CA connection to SSH.
 
 	> To do this in Codeanywhere, rightclick on the created connection ('meta1') to open an SSH Terminal. You should be able to cut and paste into SSH:
 
+        adduser admin_user
+        usermod -aG sudo admin_user
+        login
+
         // install nodejs 10 and npm
         curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
-		  bash nodesource_setup.sh
-        apt-get update && apt-get upgrade
+        //needed? sudo apt-get upgrade
+        sudo bash nodesource_setup.sh
+        sudo apt-get install -y nodejs
 
-        apt-get install -y nodejs
-
-		  // check
-		  npm -v
+        // check
+        nodejs -v
+        npm -v
 
         // install sshfs
-        apt-get install sshfs
+        sudo apt-get install sshfs
 
         // install nbake
-        npm -g i nbake
-
-			// install vorlon
-			npm -g i vorlon
+        sudo npm -g i nbake
 
 4. Install the admin app.
 
@@ -45,7 +46,7 @@ Right click on the CA connection to SSH.
         cd ~/admin
 
         // extract the sample admin app
-        nbake -a
+        nbake -a //fails
 
         // install the sample admin app (to run as node app)
         npm i
