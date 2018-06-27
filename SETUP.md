@@ -41,15 +41,13 @@ Right click on the CA connection to SSH.
 
 4. Install the admin app.
 
-        // create an installation directory
-        mkdir ~/admin
-        cd ~/admin
+        cd ~
+        // extract the sample admin app into /admin folder
+        nbake -a 
 
-        // extract the sample admin app
-        nbake -a //fails
-
-        // install the sample admin app (to run as node app)
-        npm i
+        // add node module for the app
+        cd admin
+        sudo npm i
 
 	We will later edit `admin.yaml` in this folder, but we first need to connect to something we can admin/build.
 
