@@ -13,7 +13,7 @@ const chokidar = require('chokidar');
 const reload = require('reload');
 class MetaAdmin {
     ver() {
-        return "v3.06.20";
+        return "v3.06.29";
     }
 }
 exports.MetaAdmin = MetaAdmin;

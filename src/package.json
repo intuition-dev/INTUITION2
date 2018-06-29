@@ -1,6 +1,6 @@
 {
 	"name": "meta-admin",
-	"version": "3.06.20",
+	"version": "3.06.29",
 	"description": "meta admin and build, METAbuild.org",
 	"license": "GPL3",
 	"author": "http://METAbake.org",
@@ -27,7 +27,7 @@
 		"fs-extra": "^5.0.0",
 		"httpreq": "^0.4.24",
 		"image-downloader": "^3.4.1",
-		"nbake": "^2.6.20",
+		"nbake": "^2.6.29",
 		"reload": "^2.3.0"
 	}
 }
