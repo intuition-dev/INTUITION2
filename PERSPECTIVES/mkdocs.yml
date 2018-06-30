@@ -1,0 +1,9 @@
+site_name: nbake Docs
+site_url: http://metaBake.org
+repo_url: http://metaBake.org
+copyright: (copyright metaBake | cekvenich)
+pages:
+    - Home: index.md
+    - About: about.md
+
+theme: readthedocs
