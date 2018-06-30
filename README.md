@@ -1,4 +1,8 @@
 
+
+[Click for full Docs] (http://meta-docs.s3-website-us-east-1.amazonaws.com/meta/)
+
+
 ## About
 
 [Chat: metaBake.org ](http://chat.metaBake.org)
@@ -13,6 +17,6 @@ MetaBake.org productivity is based on three pillars:
 
 
 
-About Meta
+# About Meta
 
 This is project 3 of 3 in METAbake&trade; This Github project is about _meta_, the cloud-based build and admin app infrastructure. See the other projects at http://metaBake.org

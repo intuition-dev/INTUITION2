@@ -12,7 +12,6 @@ MetaBake.org productivity is based on three pillars:
 - _meta_, a cloud-based build and admin app infrastructure that helps deliver functionality to your clients more quickly.
 
 
-
-About Meta
+# About Meta
 
 This is project 3 of 3 in METAbake&trade; This Github project is about _meta_, the cloud-based build and admin app infrastructure. See the other projects at http://metaBake.org
