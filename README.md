@@ -1,4 +1,8 @@
 
+
+[Chat: MetaBake ](http://chat.metabake.org)
+
+
 ### METAbake&trade; is a development productivity suite. It should allow you to deliver 10 times faster than on a LAMP stack. We have found that - with METAbake&trade; - the work of 5 developers over 3 months can be done by 2 developers in 3 weeks. We expect you to achieve the same productivity gains.
 
 
