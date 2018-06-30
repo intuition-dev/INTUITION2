@@ -17,7 +17,7 @@ Right click on the CA connection to SSH.
 
 3. SSH to the admin/build machine and install nodejs, sshfs and nbake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
 
-	> To do this in Codeanywhere, rightclick on the created connection ('meta1') to open an SSH Terminal. You should be able to cut and paste into SSH:
+   > To do this in Codeanywhere, rightclick on the created connection ('meta1') to open an SSH Terminal. You should be able to cut and paste into SSH:
 
         adduser admin_user
         usermod -aG sudo admin_user
@@ -43,13 +43,13 @@ Right click on the CA connection to SSH.
 
         cd ~
         // extract the sample admin app into /admin folder
-        nbake -a 
+        nbake -a
 
         // add node module for the app
         cd admin
         sudo npm i
 
-	We will later edit `admin.yaml` in this folder, but we first need to connect to something we can admin/build.
+   We will later edit `admin.yaml` in this folder, but we first need to connect to something we can admin/build.
 
 5. Setup build server access to your third-party hosted web site. To mount it via FTP:
 
@@ -75,13 +75,13 @@ Right click on the CA connection to SSH.
 
 6. In your browser, the admin app should now be available at http://YOUR_HOST_IP:8081
 
-	> If using Digital Ocean, YOUR_HOST_IP is the Droplet IP address. You can find it in the list of Droplets in your Digital Ocean account.
+   > If using Digital Ocean, YOUR_HOST_IP is the Droplet IP address. You can find it in the list of Droplets in your Digital Ocean account.
 
-	You can trigger a build of the mounted app with http://YOUR_HOST_IP:8081/api/bake?secret=123&folder=/
+   You can trigger a build of the mounted app with http://YOUR_HOST_IP:8081/api/bake?secret=123&folder=/
 
-	On save in admin: it will autobuild, the API calling the right nbake flags.
+   On save in admin: it will autobuild, the API calling the right nbake flags.
 
-	You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
+   You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
 
 7. And last, and most important, connect CodeAnywhere to your production content, the drive you mount on. In CodeAnywhere, new connection, SFTP, and then your info.
 
@@ -89,12 +89,12 @@ If editing with Code anywhere via 'SSH' mount, watch feature is enabled.
 
 7. You can extend the bases classes to customize the build server, e.g.:
 
-		import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
-		import { Srv, FileOps } from 'meta-admin/lib/ABase'
+      import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
+      import { Srv, FileOps } from 'meta-admin/lib/ABase'
 
-		class Example extends Srv {
+      class Example extends Srv {
 
-		}
+      }
 
 
 At the end of the setup, you should have a connections and 2 mounts per project:

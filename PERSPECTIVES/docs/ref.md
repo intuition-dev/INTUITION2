@@ -1,4 +1,4 @@
-# "exMeta" example admin app reference
+# Reference
 
 - admin.yaml:
 Edit password, mount point and where the pages are.
@@ -58,8 +58,8 @@ Uploads an image.
 
 # Extend a class
 
-Extend the typescript classes
-
+Extend the typescript classes:
+```
 import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
 
 import { Srv, FileOps } from 'meta-admin/lib/ABase'
@@ -68,6 +68,5 @@ class Example extends Srv { // you could customize the scripted build - easier t
 
 }
 
-
-
+```
 

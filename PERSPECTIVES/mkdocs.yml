@@ -1,9 +1,12 @@
-site_name: nbake Docs
+site_name: Meta Docs
 site_url: http://metaBake.org
 repo_url: http://metaBake.org
 copyright: (copyright metaBake | cekvenich)
 pages:
    - Home: index.md
+   - Setup: setup.md
+   - S3: s3.md
+   - Reference: ref.md
    - About: about.md
 
 theme: readthedocs
