@@ -1,20 +1,17 @@
-# Opes fugit illa sceleratus exitus praemia micantes
+## About
 
-## Aethera secreta
+[Chat: metaBake.org ](http://chat.metaBake.org)
 
-Lorem markdownum **parva ac** et illa cognita *velox*, chrysolithi **ut nec
-nostris**, et hoc et tendit vestigia. Anthedone vertice omnibus idem diruerent
-te soleat nos idem mittunt, dura **est** lacrimis, posituro. Femina aequoris
-iste narratur edendo furialibus [gerens](http://me.net/boreas-iudex). Incaluere
-tua nulla frustraque manet sequar inrita Caesareos in cum. Hae haec protinus
-mole, iubar iubet.
 
-    if (4) {
-        optical_delete = 2;
-    }
-    web /= ppm;
-    myspaceSsdYahoo += cybersquatterHoc - internicPowerDesktop -
-            kindle_mamp_model;
-    var standbyBounceUri = netbiosLogic.friend.drive(esports_parameter(
-            winsCopySocial.friend_data(3, trash)), samplingPcmciaD +
-            hyperWirelessMirrored);
+### metaBake.org; is a development productivity suite. It should allow you to deliver 10 times faster than on a LAMP stack. We have found that - with metaBake.org; - the work of 5 developers over 3 months can be done by 2 developers in 3 weeks. We expect you to achieve the same productivity gains.
+
+
+metaBake.org productivity is based on three pillars:
+- _nbake_, a static site generation tool that runs locally
+- _B-M-SPA_, curated technologies and techniques that help you build dynamic apps and mobile apps faster
+- _meta_, a cloud-based build and admin app infrastructure that helps deliver functionality to your clients more quickly.
+
+
+About Meta
+
+This is project 3 of 3 in METAbake&trade; This Github project is about _meta_, the cloud-based build and admin app infrastructure. See the other projects at http://metaBake.org
