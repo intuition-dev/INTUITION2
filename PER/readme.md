@@ -1,4 +1,8 @@
+about.md is similar across sections and identical to each root README
+res.md is identical similar sections.
 
    mkdocs serve
 
    mkdocs build
+
+After build, delete local css folder in site so you don't have to set S3 metadata.
