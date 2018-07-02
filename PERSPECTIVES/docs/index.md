@@ -14,7 +14,7 @@ When using a Web IDE(ex: CodeAnywhere, https://codeanywhere.com ) on that code, 
 These features should allow you to achieve additional productivity gains for your developer team.
 
 See the _meta_ installation instructions at
-https://github.com/metabake/meta/blob/master/SETUP.md
+https://github.com/MetaBake/meta/blob/master/SETUP.md
 
 #### Other:
 

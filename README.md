@@ -1,13 +1,13 @@
 
 
-[Click for full Docs] (http://meta-docs.s3-website-us-east-1.amazonaws.com/meta/)
+[Click for full Docs](http://meta-docs.s3-website-us-east-1.amazonaws.com/meta/)
 
 
 ## About
 
-[Chat: metaBake.org ](http://chat.metaBake.org)
+[Chat: MetaBake.org ](http://chat.MetaBake.org)
 
-MetaBake.org is a development productivity suite. It should allow you to deliver 10 times faster than on a LAMP stack. We have found that - with metaBake.org; - the work of 5 developers over 3 months can be done by 2 developers in 3 weeks. We expect you to achieve the same productivity gains.
+MetaBake.org is a development productivity suite. It should allow you to deliver 10 times faster than on a LAMP stack. We have found that - with MetaBake.org; - the work of 5 developers over 3 months can be done by 2 developers in 3 weeks. We expect you to achieve the same productivity gains.
 
 
 MetaBake.org productivity is based on three pillars:
@@ -19,4 +19,4 @@ MetaBake.org productivity is based on three pillars:
 
 # About Meta
 
-This is project 3 of 3 in METAbake&trade; This Github project is about _meta_, the cloud-based build and admin app infrastructure. See the other projects at http://metaBake.org
+This is project 3 of 3 in MetaBake&trade; This Github project is about _meta_, the cloud-based build and admin app infrastructure. See the other projects at http://MetaBake.org

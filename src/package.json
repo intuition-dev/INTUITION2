@@ -3,16 +3,16 @@
 	"version": "3.06.29",
 	"description": "meta admin and build, METAbuild.org",
 	"license": "GPL3",
-	"author": "http://METAbake.org",
-	"bugs": "http://METAbake.org",
-	"homepage": "http://METAbake.org",
+	"author": "http://MetaBake.org",
+	"bugs": "http://MetaBake.org",
+	"homepage": "http://MetaBake.org",
 	"repository": {
 		"type": "git",
-		"url": "http://METAbake.org"
+		"url": "http://MetaBake.org"
 	},
 	"keywords": [
 		"meta",
-		"METAbake",
+		"MetaBake",
 		"nbake",
 		"pug"
 	],
