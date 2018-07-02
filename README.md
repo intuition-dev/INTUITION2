@@ -1,6 +1,6 @@
 
 
-[Click for full Docs](http://http://doc.metabake.org/meta/)
+[Click for *full Docs*](/http://doc.metabake.org/meta/)
 
 
 ## About
