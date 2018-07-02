@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Base_1 = require("nbake/lib/Base");
+const Base_1 = require("nBake/lib/Base");
 const ABase_1 = require("./lib/ABase");
 const os = require('os');
 const fs = require('fs');
 const download = require('image-downloader');
 const logger = require('tracer').console();
 const yaml = require('js-yaml');
-let b = new Base_1.NBake();
+let b = new Base_1.nBake();
 console.log(b.ver());
 function bake(dir) {
     let folder = config.mount + dir;

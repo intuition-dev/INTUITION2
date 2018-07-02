@@ -11,7 +11,7 @@ MetaBake.org is a development productivity suite. It should allow you to deliver
 
 
 MetaBake.org productivity is based on three pillars:
-- _nbake_, a static site generation tool that runs locally
+- _nBake_, a static site generation tool that runs locally
 - _B-M-SPA_, curated technologies and techniques that help you build dynamic apps and mobile apps faster
 - _meta_, a cloud-based build and admin app infrastructure that helps deliver functionality to your clients more quickly.
 

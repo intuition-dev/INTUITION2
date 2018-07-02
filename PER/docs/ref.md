@@ -10,7 +10,7 @@ Edit password, mount point and where the pages are.
 
 ## /api/bake
 - folder
-Do nbake in that folder.
+Do nBake in that folder.
 
 ## /api/list
 - fn
@@ -34,7 +34,7 @@ Reads a file.
 ## /api/write
 - fn file name
 - folder
-Post, saves a file and triggers nbake for the file type. It will make a tag or make a JSON file as needed.
+Post, saves a file and triggers nBake for the file type. It will make a tag or make a JSON file as needed.
 
 ## /api/clone
 - src
@@ -60,7 +60,7 @@ Uploads an image.
 
 Extend the typescript classes:
 ```
-import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
+import { Dirs, Bake, Items, Tag, nBake } from 'nBake/lib/Base'
 
 import { Srv, FileOps } from 'meta-admin/lib/ABase'
 

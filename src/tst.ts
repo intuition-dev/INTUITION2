@@ -5,7 +5,7 @@ declare var process: any
 declare var console: Console
 declare var __dirname: any
 
-import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
+import { Dirs, Bake, Items, Tag, nBake } from 'nBake/lib/Base'
 import { Srv, Watch, Dev } from './lib/ABase'
 
 const os = require('os')
@@ -14,7 +14,7 @@ const download = require('image-downloader') // for url
 const logger = require('tracer').console()
 const yaml = require('js-yaml')
 
-let b = new NBake()
+let b = new nBake()
 console.log(b.ver())
 // /////////////////////////////////////////////////////////////////////////////////////
 

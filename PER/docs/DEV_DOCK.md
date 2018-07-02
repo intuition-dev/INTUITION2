@@ -25,21 +25,21 @@ curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
  npm -g i npm
 
 
- docker tag ed4a4dd41b8d nbake/meta
+ docker tag ed4a4dd41b8d nBake/meta
 
 docker login cekvenich
 
-docker commit ed4a4dd41b8d nbake/meta:latest
+docker commit ed4a4dd41b8d nBake/meta:latest
 
-docker push nbake/meta:latest
+docker push nBake/meta:latest
 
 docker stop ed4a4dd41b8d
 
 docker system prune -a
 
-docker pull nbake/meta:latest
+docker pull nBake/meta:latest
 
-docker run -d --privileged -p 8080-8082:8080-8082 nbake/meta /sbin/my_init
+docker run -d --privileged -p 8080-8082:8080-8082 nBake/meta /sbin/my_init
 
 docker exec -ti 2507b138fc30 /bin/bash
 
@@ -47,7 +47,7 @@ docker exec -ti 2507b138fc30 /bin/bash
 
 FTP: From your PC, Mount the ftp drive of admin(what is inside of the docker host); the first connection
 
-		docker run -d --privileged -p 20-21:20-21 -p 8080-8082:8080-8082 nbake/meta /sbin/my_init
+		docker run -d --privileged -p 20-21:20-21 -p 8080-8082:8080-8082 nBake/meta /sbin/my_init
 
 
 		//change the password for the admin user (in /home/admin)

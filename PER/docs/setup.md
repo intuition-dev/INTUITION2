@@ -15,7 +15,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 Right click on the CA connection to SSH.
 
 
-3. SSH to the admin/build machine and install nodejs, sshfs and nbake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
+3. SSH to the admin/build machine and install nodejs, sshfs and nBake. With this, you have a a cloud development environment where you can run node and other utils, for a bespoke Meta admin/build or other services that you can't run purely client side.
 
    > To do this in Codeanywhere, rightclick on the created connection ('meta1') to open an SSH Terminal. You should be able to cut and paste into SSH:
 
@@ -36,14 +36,14 @@ Right click on the CA connection to SSH.
         // install sshfs
         sudo apt-get install sshfs
 
-        // install nbake
-        sudo npm -g i nbake
+        // install nBake
+        sudo npm -g i nBake
 
 4. Install the admin app.
 
         cd ~
         // extract the sample admin app into /admin folder
-        nbake -a
+        nBake -a
 
         // add node module for the app
         cd admin
@@ -79,7 +79,7 @@ Right click on the CA connection to SSH.
 
    You can trigger a build of the mounted app with http://YOUR_HOST_IP:8081/api/bake?secret=123&folder=/
 
-   On save in admin: it will autobuild, the API calling the right nbake flags.
+   On save in admin: it will autobuild, the API calling the right nBake flags.
 
    You can mount several remote webapps in a folder. And then have admin.yaml point to that folder.
 
@@ -89,7 +89,7 @@ If editing with Code anywhere via 'SSH' mount, watch feature is enabled.
 
 7. You can extend the bases classes to customize the build server, e.g.:
 
-      import { Dirs, Bake, Items, Tag, NBake } from 'nbake/lib/Base'
+      import { Dirs, Bake, Items, Tag, nBake } from 'nBake/lib/Base'
       import { Srv, FileOps } from 'meta-admin/lib/ABase'
 
       class Example extends Srv {

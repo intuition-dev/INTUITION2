@@ -16,7 +16,7 @@ const AdmZip = require('adm-zip')
 const chokidar = require('chokidar')
 const reload = require('reload')
 
-import {  } from 'nbake/lib/Base'
+import {  } from 'nBake/lib/Base'
 
 export class MetaAdmin {
 	ver() {
