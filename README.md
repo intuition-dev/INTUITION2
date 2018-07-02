@@ -1,6 +1,6 @@
 
 
-[Click for full Docs](http://meta-docs.s3-website-us-east-1.amazonaws.com/meta/)
+[Click for full Docs](http://http://doc.metabake.org/meta/)
 
 
 ## About
