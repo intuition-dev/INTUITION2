@@ -1,11 +1,18 @@
 
-## Clound Mount
+# Cloud Mount
+
+### Video review
+
+Part 1: http://youtube.com/watch?v=LtPQtUUE1wE
+
+Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 
+##### Cloud Mount
 
-6. Map to the production server from CodeAnywhere, to make sure your AWS access key and secret are working. (the keys are under 'Security Credentials' AWS menu)
+1. Map to the production server from CodeAnywhere, to make sure your AWS access key and secret are working. (the keys are under 'Security Credentials' AWS menu)
 
-7. Now to setup the build server, setup goofYs to map to your 'S3':
+2. Now to setup the build server, setup goofYs to map to your 'S3':
 
 		cd ~
 		sudo wget http://bit.ly/goofys-latest
@@ -33,8 +40,24 @@
 		// check to see your S3 webapp files
 		ls -la
 
-8. With S3, in CodeAnywhere, map to the build server to use the production with 'watch' feature.
+3. With S3, in CodeAnywhere, map to the build server to use the production with 'watch' feature.
+We have S3 inside the container.
 
- We have S3 inside the container. The group IDE can edit S3 project. Later you can customize the IDE.
-cd ~
+### Done
 
+At the end of the setup, you should have a connections and 2 mounts per project:
+
+- One of the admin/build server
+- In that, the production mount
+
+
+ You can extend the bases classes to customize the build server, e.g.:
+
+```
+   import { Dirs, Bake, Items, Tag, nBake } from 'nBake/lib/Base'
+   import { Srv, FileOps } from 'meta-admin/lib/ABase'
+   class Example extends Srv {
+   }
+```
+
+- Customize pages, it is supposed to be bespoke.

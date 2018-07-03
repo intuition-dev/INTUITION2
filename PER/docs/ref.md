@@ -1,10 +1,5 @@
 # Reference
 
-- admin.yaml:
-Edit password, mount point and where the pages are.
-
-- Customize pages, it is supposed to be bespoke.
-
 # API List:
 - arg
 
@@ -55,18 +50,4 @@ Unzips a plugin in a folder.
 - folder
 Uploads an image.
 
-
-# Extend a class
-
-Extend the typescript classes:
-```
-import { Dirs, Bake, Items, Tag, nBake } from 'nBake/lib/Base'
-
-import { Srv, FileOps } from 'meta-admin/lib/ABase'
-
-class Example extends Srv { // you could customize the scripted build - easier than gulp/grunt
-
-}
-
-```
 

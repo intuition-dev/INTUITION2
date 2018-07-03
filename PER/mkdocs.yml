@@ -4,7 +4,6 @@ repo_url: http://MetaBake.org
 copyright: (copyright MetaBake | cekvenich)
 pages:
    - Home: index.md
-   - Setup: setup.md
    - Cloud Mount: cloud_mount.md
    - Reference: ref.md
    - Resources: res.md
