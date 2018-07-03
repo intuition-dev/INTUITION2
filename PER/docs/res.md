@@ -23,7 +23,7 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - [Grid Forms](https://github.com/kumailht/gridforms)
 - [Bulma CSS](https://bulma.io/documentation/components)
 - [loadjs](https://github.com/muicss/loadjs)
-- [jsConsole](http://jsconsole.com); for mobile, type ':listen '
+- [console.re](http://console.re);
 - [SPA router](https://github.com/metabake/B-M-SPA/tree/master/SPA/www/router); Also ../assets/js has transitions example
 - [Vivid Icons](https://webkul.github.io/vivid/cheatsheet.html)
 - [Front End Frameworks](https://github.com/metabake/front-end-frameworks
