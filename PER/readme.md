@@ -1,5 +1,5 @@
 about.md is similar across sections and identical to each root README
-res.md is identical similar sections.
+res.md is identical in each section.
 
    mkdocs serve
 
