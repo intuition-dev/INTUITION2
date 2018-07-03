@@ -5,6 +5,7 @@ copyright: (copyright MetaBake | cekvenich)
 pages:
    - Home: index.md
    - Cloud Mount: cloud_mount.md
+   - Admin/Build: build.md
    - Reference: ref.md
    - Resources: res.md
    - About: about.md
