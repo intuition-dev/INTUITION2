@@ -23,6 +23,12 @@ and the folder you have and then:
 
       node index.js  #. start the Meta admin service
 
+
+Also add this line to top of layout.pug|head. When ran for development port it will reload. S3 or production will ot find the file and thus won't reload.
+
+    <script src="/reload/reload.js"></script>
+
+
 Now you can:
 
 - Edit in CodeAnywhere (CA) or other WebIDE and it will auto build, with out having to execute nbake
@@ -34,6 +40,7 @@ Now you can:
 ### Remote teams
 
 This also enables new management methodologies, ex: 'Flash Teams' (* _MetaBake_ pillar 7)
+
 
 
 
