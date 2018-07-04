@@ -10,7 +10,8 @@ Developers would use CodeAnywhere or similar IDE; no need for local development 
 
 - Create a CodeAnywhere account
 
-Use a WebIDE, to be a team player and remote friendly. (* _MetaBake_ pillar 8)
+Use a WebIDE, to be a team player and remote friendly. (* _MetaBake_ pillar 8). Using CodeAnywhere (CA) connect to SSH or S3. To enable Pug, in the bottom right corner, next to indentation mark, click on the "editor mode" and select "Pug" from the list.
+
 
 Cool factor: you can develop from Chrome Book, IOS Tablet (w/ Apple Bluetooth keyboard) or Android tablet.
 

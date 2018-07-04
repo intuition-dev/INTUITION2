@@ -2,9 +2,9 @@
 # Resources
 
 - [Pug](http://pug.MetaBake.org)
-- [Forum/Chat](http://chat.MetaBake.org)
-- [nBake version](https://www.npmjs.com/package/nbake);check for latest version
-- [Source code](http://github.com/metabake)
+- <a href='http://chat.MetaBake.org' target='_blank'>Forum/Chat</a>
+- <a href='https://www.npmjs.com/package/nbake' target='_blank'>check for latest version of nBake</a>
+- <a href='http://github.com/metabake' target='_blank'>Source Code</a>
 
 ## Docs:
 To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBake Slides](http://prez.metabake.org/p)
@@ -17,22 +17,24 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 
 ### Other:
 
-- [RIOTjs example](https://github.com/metabake/examples-plugins/tree/master/mock/riotFirst)
+- <a href='https://github.com/metabake/_nBake/tree/master/CRUD/riotFirst' target='_blank'>Pug RIOTjs example</a>
 - [RIOTjs](https://riot.js.org/)
-- [Example of static/dynamic items: Blog](https://github.com/metabake/B-M-SPA/tree/master/blogRiot)
-- [Grid Forms](https://github.com/kumailht/gridforms)
+- <a href='https://github.com/metabake/B-M-SPA/tree/master/blogRiot' target='_blank'>Example of static/dynamic items: Blog</a>
+- [Grid Forms](http://kumailht.com/gridforms)
 - [Bulma CSS](https://bulma.io/documentation/components)
 - [loadjs](https://github.com/muicss/loadjs)
-- [console.re](http://console.re);
+- [console.re](http://console.re)
 - [SPA router](https://github.com/metabake/B-M-SPA/tree/master/SPA/www/router); Also ../assets/js has transitions example
 - [Vivid Icons](https://webkul.github.io/vivid/cheatsheet.html)
 - [Front End Frameworks](https://github.com/metabake/front-end-frameworks
 ); w/ LESS/Sass
 - [FireStore](https://firebase.google.com/docs/firestore)
 - [Webmaster](https://www.google.com/webmasters); w/ real time SEO help
+- [kobiton Cloud Mobile Emulators](https://kobiton.com)
+- [js-offcanvas](https://github.com/vmitsaras/js-offcanvas)
 
 
-## Commercial services and support for MetaBake
+## Commercial hosting, services and support for MetaBake
 
 - www.MetaBake.net
 - www.AppThings.io
