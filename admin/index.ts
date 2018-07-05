@@ -6,23 +6,26 @@ declare var __dirname: any
 
 const restify = require('restify')
 const corsMiddleware = require('restify-cors-middleware')
+const errs = require('restify-errors')
 // ///////////////////////////////////////
 
 var server = restify.createServer()
 var cors = corsMiddleware({
-   preflightMaxAge: 5,
    origins: ['*']
 })
 server.pre(cors.preflight);
 server.use(cors.actual)
 
 // //////////////////////////////
-function respond(req, res, next) {
+server.get('/hello/:name', function(req, res, next) {
+   var err = new errs.InternalError('Not supported with current query params')
+   res.send(err)
+   next()
+   if(true) return
    res.send('hello ' + req.params.name)
    console.log('res')
    next()
-}
-server.get('/hello/:name', respond)
+})
 
 // //////////////////////////////
 server.listen(9090, function() {
