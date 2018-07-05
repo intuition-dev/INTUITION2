@@ -19,19 +19,17 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 
 - <a href='https://github.com/metabake/_nBake/tree/master/CRUD/riotFirst' target='_blank'>Pug RIOTjs example</a>
 - [RIOTjs](https://riot.js.org/)
-- <a href='https://github.com/metabake/B-M-SPA/tree/master/blogRiot' target='_blank'>Example of static/dynamic items: Blog</a>
 - [Grid Forms](http://kumailht.com/gridforms)
 - [Bulma CSS](https://bulma.io/documentation/components)
 - [loadjs](https://github.com/muicss/loadjs)
 - [console.re](http://console.re)
-- [SPA router](https://github.com/metabake/B-M-SPA/tree/master/SPA/www/router); Also ../assets/js has transitions example
 - [Vivid Icons](https://webkul.github.io/vivid/cheatsheet.html)
 - [Front End Frameworks](https://github.com/metabake/front-end-frameworks
 ); w/ LESS/Sass
 - [FireStore](https://firebase.google.com/docs/firestore)
 - [Webmaster](https://www.google.com/webmasters); w/ real time SEO help
-- [kobiton Cloud Mobile Emulators](https://kobiton.com)
 - [js-offcanvas](https://github.com/vmitsaras/js-offcanvas)
+- <a href='https://github.com/metabake/B-M-SPA/tree/master/blogRiot' target='_blank'>Example of static/dynamic items: Blog</a>
 
 
 ## Commercial hosting, services and support for MetaBake
@@ -43,4 +41,4 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 
 - [Pug on Youtube](http://youtube.com/watch?v=wzAWI9h3q18)
 - http://youtube.com/watch?v=jQHRLH_4p0E nBake
-- http://youtube.com/watch?v=Vyu2oWERWUM PhoneGap
+
