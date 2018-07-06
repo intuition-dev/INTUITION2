@@ -1,8 +1,9 @@
 
-
+- [WebIDE video](https://youtu.be/CMUiPC0YtYA)
 - [Click for 'THE' Meta Docs](http://doc.metabake.org/meta/)
 - [Chat: MetaBake.org ](http://chat.MetaBake.org)
 
+Note docs are in git: _nBake/PER
 
 # About MetaBake
 
