@@ -7,10 +7,9 @@
   "author": "",
   "license": "GPL3",
   "dependencies": {
-    "passport-local": "^1.0.0",
-    "passport-restify": "^1.0.1",
-    "restify": "^7.2.1",
-    "restify-cors-middleware": "^1.1.1",
-    "restify-errors": "^6.1.1"
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-basic-auth": "^1.1.5",
+    "nbake": "^2.7.5"
   }
 }
