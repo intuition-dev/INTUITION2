@@ -34,12 +34,12 @@ Now you can:
 - Edit in CodeAnywhere (CA) or other WebIDE and it will auto build, with out having to execute nbake
 - Open a browser to the development port of your production - so it auto refreshes on edit/build.
 - Go to the Admin port via browser and access the admin 'portal'
-- Last, most important, you can customize the admin 'portal'; a bespoke Admin/build. (* _MetaBake_ pillar 9)
+- Last, most important, you can customize the admin 'portal'; a bespoke Admin/build. (* _MetaBake_ pillar 10)
 
 
 ### Remote teams
 
-This also enables new management methodologies, ex: 'Flash Teams' (* _MetaBake_ pillar 7)
+This also enables new management methodologies, ex: 'Flash Teams' (* _MetaBake_ pillar 8)
 
 
 

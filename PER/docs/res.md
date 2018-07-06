@@ -21,7 +21,7 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - [RIOTjs](https://riot.js.org/)
 - [Grid Forms](http://kumailht.com/gridforms)
 - [Bulma CSS](https://bulma.io/documentation/components)
-- [loadjs](https://github.com/muicss/loadjs)
+- [Loader: loadjs](https://github.com/muicss/loadjs)
 - [console.re](http://console.re)
 - [Vivid Icons](https://webkul.github.io/vivid/cheatsheet.html)
 - [Front End Frameworks](https://github.com/metabake/front-end-frameworks
@@ -41,4 +41,5 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 
 - [Pug on Youtube](http://youtube.com/watch?v=wzAWI9h3q18)
 - http://youtube.com/watch?v=jQHRLH_4p0E nBake
-
+- [WebIDE](https://youtu.be/CMUiPC0YtYA)
+- [SPA](https://youtu.be/LHFjjDPlU3A)
