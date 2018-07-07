@@ -7,17 +7,47 @@ declare var __dirname: any
 const server = require('express')()
 const basicAuth = require('express-basic-auth')
 const cors = require('cors')
+const yaml = require('js-yaml')
+const fs = require('fs')
+
+import { Dirs, Bake, Items, Tag, Meta, RetMsg } from 'nBake/lib/Base'
+
+const logger = require('tracer').console()
+
+// ///////////////////////////////////////
+let config = yaml.load(fs.readFileSync('admin.yaml'))
+config['mount'] ='/Users/uptim/Documents/GitHub/B-M-SPA/blog'
+console.log(config)
+
+
+
+
 server.use(cors())
 server.use(basicAuth({
    users: { 'admin': '123' }
 }))
+
+
+// ///////////////////////////////////////
 export class BakeSrv {
-   bake() {
-      
+   mount:string
+   m = new Meta()
+   constructor(config) {
+      this.mount = config.mount
+   }
+
+   bake(dir:string) {
+      let folder = this.mount + dir
+
+      logger.trace(folder)
+      this.m.bake(folder)
+
    }
 }
 
-const bakeSrv = new BakeSrv()
+const bs = new BakeSrv(config)
+bs.bake('/')
+
 // ///////////////////////////////////////
 
 server.get('/listUsers', function (req, res) {
@@ -31,7 +61,6 @@ server.get('/api/bake', function (req, res) {
    res.json({ a: 1 })
    //res.status(500).send('Something broke!')
 })
-
 
 // ///////////////////////////////////////
 var listener = server.listen(9090, function () {
