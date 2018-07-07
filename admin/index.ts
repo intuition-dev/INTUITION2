@@ -55,6 +55,28 @@ export class MetaSrv {
       let msg:RetMsg = this.m.itemize(folder)
       return msg
    }
+
+   // when you pass the file name, ex: watch
+	autoBake(folder, file):RetMsg {
+		const full = this.mount+folder +'/'+ file
+		logger.trace(full)
+		const ext = file.split('.').pop()
+
+      if (ext =='md')
+         return this.bake(folder)
+
+		if (ext =='pug') {
+         if( file.indexOf('-tag') >= 0 )
+            return this.tag(folder)
+         else
+            return this.bake(folder)
+      }
+
+		if (ext =='yaml') // bake and itemize
+			return this.m.itemizeNBake(folder)
+
+		return new RetMsg(-1,'nothing to bake')
+	}
 }
 const ms = new MetaSrv(config)
 

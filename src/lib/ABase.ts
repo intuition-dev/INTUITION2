@@ -18,11 +18,7 @@ const reload = require('reload')
 
 import {  } from 'nBake/lib/Base'
 
-export class MetaAdmin {
-	ver() {
-		return "v3.06.29"
-	}
-}
+
 
 export class Dev {
 	root
@@ -179,52 +175,6 @@ export class FileOps {
 
 		const str:string = fs.readFileSync(full, 'utf8')
 		return str
-	}
-
-	autoBake( folder, file):string {
-		const full = this.root+folder +'/'+ file
-		logger.trace(full)
-
-		const ext = file.split('.').pop()
-
-		if (ext =='md') {// bake and itemize
-			try {
-				let msg = SrvUtil.bake(folder)
-				return  msg
-			} catch(err) {
-				return err
-			}
-		}
-
-		if (ext =='pug') {
-			if( file.indexOf('-tag') >= 0 ) {
-				try {
-					let msg = SrvUtil.tags(folder)
-					return msg
-
-				} catch(err) {
-					return err
-				}
-			}
-			// pug
-			try {
-				let msg = SrvUtil.bake(folder)
-				return  msg
-			} catch(err) {
-				return err
-			}
-		}
-		if (ext =='yaml') {// bake and itemize
-			try {
-				let msg = SrvUtil.bake(folder)
-				//and then itemize, it goes one up
-				msg += SrvUtil.itemize(folder)
-				return msg
-			} catch(err) {
-				return err
-			}
-		}
-		return 'nothing to bake'
 	}
 
 	write(folder, file, txt:string):boolean {
@@ -496,41 +446,7 @@ export class Srv {
 			}
 		})//
 
-		SrvUtil.app.get('/api/items', function (req, res) {
-			let qs = req.query
-			if(!SrvUtil.checkSecret(qs,res))
-				return;
-			let keys = Object.keys( qs )
-			if(!keys.includes(SrvUtil.folderProp)) {
-				SrvUtil.ret(res,'no folder')
-				return
-			}
 
-			try {
-				let msg = SrvUtil.itemize(qs[SrvUtil.folderProp])
-				SrvUtil.ret(res, msg)
-			} catch(err) {
-				SrvUtil.ret(res, err)
-			}
-		})//
-
-		SrvUtil.app.get('/api/tags', function (req, res) {
-			let qs = req.query
-			if(!SrvUtil.checkSecret(qs,res))
-				return;
-			let keys = Object.keys( qs )
-			if(!keys.includes(SrvUtil.folderProp)) {
-				SrvUtil.ret(res,'no folder')
-				return
-			}
-
-			try {
-				let msg = SrvUtil.tags(qs[SrvUtil.folderProp])
-				SrvUtil.ret(res, msg)
-			} catch(err) {
-				SrvUtil.ret(res, err)
-			}
-		})//
 
 		SrvUtil.app.get('/api/clone', function (req, res) {
 			let qs = req.query
@@ -545,23 +461,6 @@ export class Srv {
 			SrvUtil.ret(res, ret)
 		})//
 
-		SrvUtil.app.get('/api/bake', function (req, res) {
-			let qs = req.query
-			if(!SrvUtil.checkSecret(qs,res))
-				return;
-			let keys = Object.keys( qs )
-			if(!keys.includes(SrvUtil.folderProp)) {
-				SrvUtil.ret(res,'no folder')
-				return
-			}
-
-			try {
-				let msg = SrvUtil.bake(qs[SrvUtil.folderProp])
-				SrvUtil.ret(res, msg)
-			} catch(err) {
-				SrvUtil.ret(res, err)
-			}
-		})//
 
 		return this
 	}//()
@@ -578,5 +477,5 @@ export class Srv {
 
 
 module.exports = {
-	Srv, FileOps, MetaAdmin, Watch, Dev
+	Srv, FileOps, Watch, Dev
 }

@@ -24,6 +24,18 @@ class MetaSrv {
         let msg = this.m.bake(folder);
         return msg;
     }
+    tag(dir) {
+        let folder = this.mount + dir;
+        logger.trace(folder);
+        let msg = this.m.tag(folder);
+        return msg;
+    }
+    itemize(dir) {
+        let folder = this.mount + dir;
+        logger.trace(folder);
+        let msg = this.m.itemize(folder);
+        return msg;
+    }
 }
 MetaSrv.folderProp = 'folder';
 MetaSrv.srcProp = 'src';
@@ -36,6 +48,28 @@ server.get('/api/bake', function (req, res) {
     let qs = req.query;
     let dir = qs[MetaSrv.folderProp];
     let ret = ms.bake(dir);
+    if (ret.code < 0)
+        res.status(500).send(ret.msg);
+    else
+        res.json(ret.msg);
+});
+server.get('/api/tag', function (req, res) {
+    console.log(' tag');
+    res.setHeader('Content-Type', 'application/json');
+    let qs = req.query;
+    let dir = qs[MetaSrv.folderProp];
+    let ret = ms.tag(dir);
+    if (ret.code < 0)
+        res.status(500).send(ret.msg);
+    else
+        res.json(ret.msg);
+});
+server.get('/api/itemize', function (req, res) {
+    console.log(' itemize');
+    res.setHeader('Content-Type', 'application/json');
+    let qs = req.query;
+    let dir = qs[MetaSrv.folderProp];
+    let ret = ms.itemize(dir);
     if (ret.code < 0)
         res.status(500).send(ret.msg);
     else
