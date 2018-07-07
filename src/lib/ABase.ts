@@ -269,7 +269,6 @@ export class FileOps {
 }//FileOps
 
 class SrvUtil {
-	static bake //()
 	static itemize// ()
 	static tags// ()
 
@@ -323,10 +322,9 @@ class SrvUtil {
 
 export class Srv {
 
-	constructor(bake_, itemize_, tags_, prop_) {// functions to call
+	constructor( itemize_, tags_, prop_) {// functions to call
 		SrvUtil.tags = tags_
 
-		SrvUtil.bake = bake_
 		SrvUtil.itemize = itemize_
 		SrvUtil.prop = prop_
 		SrvUtil.mount = prop_.mount

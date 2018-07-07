@@ -1,6 +1,6 @@
 # prod
-mount: \Users\uptim\Downloads\www_admin\
-mount_port: 8082
+mount: /Users/uptim/Documents/GitHub/B-M-SPA/blog
+mount_port: 9090
 
 # admin www pages
 srv_www: \Users\uptim\Downloads\www_admin\

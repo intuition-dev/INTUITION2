@@ -1,6 +1,5 @@
-
 class MetaAdminService {
-   // jsdoc service.js
+   // jsdoc MetaAdminService.js
    constructor(baseURL_, users_) {
       this.service = axios.create({
          baseURL: baseURL_
@@ -14,27 +13,25 @@ class MetaAdminService {
    }
 
    /**
-    * Returns a promise, than()/catch{}
-    * @param folder folder - User's folder
+    * Returns a promise, than( resp.dat )/catch{error}
+    * @param folder folder - ex '/'
     */
-   getUser(folder) {
-      return this.service.get('/getUser')
+   bake(folder) {
+		let dir = '&folder='+folder
+      return this.service.get('/api/bake'+dir)
    }
 
-
 }//class
-
 // ////////////////////////////////
 
-const users =  {
+const user =  {
    username: 'admin',
    password: '123'
 }
 const  baseURL = 'http://localhost:9090'
+const aSrv = new MetaAdminService(baseURL, user)
 
-aSrv = new MetaAdminService(baseURL, users)
-
-aSrv.getUser().then(function(resp) {
+aSrv.bake('/').then(function(resp) {
    console.log(resp.data)
 }).catch(function (error) {
    console.log(aSrv.getError(error))
