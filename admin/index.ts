@@ -43,6 +43,18 @@ export class MetaSrv {
       let msg:RetMsg = this.m.bake(folder)
       return msg
    }
+   tag(dir:string):RetMsg {
+      let folder = this.mount + dir
+      logger.trace(folder)
+      let msg:RetMsg = this.m.tag(folder)
+      return msg
+   }
+   itemize(dir:string):RetMsg {
+      let folder = this.mount + dir
+      logger.trace(folder)
+      let msg:RetMsg = this.m.itemize(folder)
+      return msg
+   }
 }
 const ms = new MetaSrv(config)
 
@@ -55,6 +67,30 @@ server.get('/api/bake', function (req, res) {
    let dir = qs[MetaSrv.folderProp]
 
    let ret:RetMsg = ms.bake(dir)
+   if(ret.code<0)
+      res.status(500).send(ret.msg)
+   else
+      res.json(ret.msg)
+})
+server.get('/api/tag', function (req, res) {
+   console.log(' tag')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let dir = qs[MetaSrv.folderProp]
+
+   let ret:RetMsg = ms.tag(dir)
+   if(ret.code<0)
+      res.status(500).send(ret.msg)
+   else
+      res.json(ret.msg)
+})
+server.get('/api/itemize', function (req, res) {
+   console.log(' itemize')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let dir = qs[MetaSrv.folderProp]
+
+   let ret:RetMsg = ms.itemize(dir)
    if(ret.code<0)
       res.status(500).send(ret.msg)
    else
