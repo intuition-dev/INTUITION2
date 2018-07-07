@@ -17,7 +17,7 @@ class MetaAdminService {
     * @param folder folder - ex '/'
     */
    bake(folder) {
-		let dir = '&folder='+folder
+		let dir = '?folder='+folder
       return this.service.get('/api/bake'+dir)
    }
 

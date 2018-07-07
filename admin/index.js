@@ -13,7 +13,7 @@ server.use(cors());
 server.use(basicAuth({
     users: { 'admin': config.secret }
 }));
-class BakeSrv {
+class MetaSrv {
     constructor(config) {
         this.m = new Base_1.Meta();
         this.mount = config.mount;
@@ -25,16 +25,17 @@ class BakeSrv {
         return msg;
     }
 }
-BakeSrv.folderProp = 'folder';
-BakeSrv.srcProp = 'src';
-BakeSrv.destProp = 'dest';
-exports.BakeSrv = BakeSrv;
-const bs = new BakeSrv(config);
+MetaSrv.folderProp = 'folder';
+MetaSrv.srcProp = 'src';
+MetaSrv.destProp = 'dest';
+exports.MetaSrv = MetaSrv;
+const ms = new MetaSrv(config);
 server.get('/api/bake', function (req, res) {
+    console.log(' bake');
     res.setHeader('Content-Type', 'application/json');
     let qs = req.query;
-    let dir = qs[BakeSrv.folderProp];
-    let ret = bs.bake(dir);
+    let dir = qs[MetaSrv.folderProp];
+    let ret = ms.bake(dir);
     if (ret.code < 0)
         res.status(500).send(ret.msg);
     else
@@ -44,4 +45,5 @@ var listener = server.listen(config.mount_port, function () {
     var host = listener.address().address;
     var port = listener.address().port;
     console.log("Server listening at http://%s:%s", host, port);
+    console.log(server._router.stack);
 });
