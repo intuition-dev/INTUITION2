@@ -64,7 +64,7 @@ export class AdminSrv { // until we write a push service
       logger.trace(dir,port)
       app.set('admin port', port)
 
-      AdminSrv.reloadServer = reload(app, {port:9856})
+      AdminSrv.reloadServer = reload(app, {port:9857})
 
       app.set('views', dir)
 
@@ -159,19 +159,16 @@ export class MetaPro {
    constructor(config) {
       this.mount = config.mount
    }
-
-   all() {
-      let msg:RetMsg = this.m.all(this.mount)
-      this.setLast(msg)
-      return msg
-   }
-
+   
    bake(dir:string):RetMsg {
       let folder = this.mount + dir
       logger.trace(folder)
       let msg:RetMsg = this.m.bake(folder)
       this.setLast(msg)
       return msg
+   }
+   tagRoot():RetMsg {
+      return this.tag('/')
    }
    tag(dir:string):RetMsg {
       let folder = this.mount + dir
@@ -210,9 +207,10 @@ export class MetaPro {
       return m
    }
 }
-const ms = new MetaPro(config)
 
 // routes ///////////////////////////////////////
+
+const ms = new MetaPro(config)
 server.get('/api/last', function (req, res) {
    console.log(' last')
    res.setHeader('Content-Type', 'application/json')
@@ -269,3 +267,4 @@ var listener = server.listen(config.services_port, function () {
 let app = new MDevSrv(config)
 let admin = new AdminSrv(config)
 let w = new Watch(config)
+ms.tagRoot()

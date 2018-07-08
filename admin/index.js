@@ -39,7 +39,7 @@ class AdminSrv {
         let app = express();
         logger.trace(dir, port);
         app.set('admin port', port);
-        AdminSrv.reloadServer = reload(app, { port: 9856 });
+        AdminSrv.reloadServer = reload(app, { port: 9857 });
         app.set('views', dir);
         app.use(express.static(dir));
         app.listen(port, function () {
@@ -111,17 +111,15 @@ class MetaPro {
         let m = this._lastMsg;
         return new Base_1.RetMsg(m._cmd, m.code, m.msg);
     }
-    all() {
-        let msg = this.m.all(this.mount);
-        this.setLast(msg);
-        return msg;
-    }
     bake(dir) {
         let folder = this.mount + dir;
         logger.trace(folder);
         let msg = this.m.bake(folder);
         this.setLast(msg);
         return msg;
+    }
+    tagRoot() {
+        return this.tag('/');
     }
     tag(dir) {
         let folder = this.mount + dir;
@@ -207,3 +205,4 @@ var listener = server.listen(config.services_port, function () {
 let app = new MDevSrv(config);
 let admin = new AdminSrv(config);
 let w = new Watch(config);
+ms.tagRoot();

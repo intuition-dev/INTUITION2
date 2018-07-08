@@ -54,10 +54,10 @@ const user =  {
    username: 'admin',
    password: '123'
 }
-const  baseURL = 'http://localhost:8082'
+const  baseURL = 'http://localhost:9083'
 const aSrv = new MetaAdminService(baseURL, user)
 
-aSrv.tag('/').then(function(resp) {
+aSrv.last().then(function(resp) {
    console.log(resp.data)
 }).catch(function (error) {
    console.log(aSrv.getError(error))

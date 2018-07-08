@@ -3,13 +3,13 @@
 
 # app in dev mode
 mount: /Users/uptim/Documents/GitHub/B-M-SPA/blog
-mount_port: 8083
+mount_port: 9081
 
 # where the admin is
 admin_www: /Users/uptim/Documents/GitHub/Meta/admin/admin_www
-admin_port: 8081
+admin_port: 9082
 
 # admin services for app
-services_port: 8082
+services_port: 9083
 secret: 123
 
