@@ -13,101 +13,13 @@ const fs = require('fs')
 const bodyParser = require('body-parser')
 const httpreq = require('httpreq')
 const AdmZip = require('adm-zip')
-const chokidar = require('chokidar')
 const reload = require('reload')
 
-import {  } from 'nBake/lib/Base'
 
 
 
-export class Dev {
-	root
-	app
-	port
-	static reloadServer
-	constructor(config) {
-		this.root = config['mount']
-		this.port = config['mount_port']
-	}
 
-	// http://github.com/alallier/reload
-	srv() {
-		this.app = express()
-		let port = this.port
-		let dir = this.root
-		logger.trace(dir,port)
-		this.app.set('port', port)
 
-		Dev.reloadServer = reload(this.app)
-
-		this.app.set('views', dir)
-
-		this.app.use(express.static(dir))
-
-		this.app.listen(port, function () {
-			logger.trace('dev '+port)
-		})
-	}//()
-
-}//class
-
-export class Watch {
-	root
-	watcher
-	fo = new FileOps(SrvUtil.mount)
-
-	constructor(config) {
-		this.root = config['mount']
-	}
-	start() {
-		console.log('watch only works on linux')
-		this.watcher = chokidar.watch(this.root, {
-			ignored: '*.html',
-			ignoreInitial: true,
-			cwd: this.root,
-			usePolling: true,
-			binaryInterval: 10000,
-			interval: 1000,
-			alwaysStat: true
-		})
-
-		let thiz = this
-		this.watcher.on('add', function( path ){
-			thiz.pro(path)
-		})
-		this.watcher.on('change', function(path ){
-			thiz.pro(path)
-		})
-	}//()
-
-	pro(path:string) {//process
-		let p = path.lastIndexOf('/')
-		let folder = ''
-		let fn = path
-
-		if(p>0) {
-			folder = path.substring(0,p)
-			fn = path.substr(p+1)
-		}
-		console.log(folder, fn)
-
-		try {
-			const fn = path
-
-			this.fo.autoBake(folder, fn)
-			if(Dev.reloadServer) {
-				setTimeout(function(){
-					Dev.reloadServer.reload()
-					logger.trace('relo')
-				},150)
-			}
-		} catch(err) {
-			logger.warn(err)
-		}
-
-	}
-
-}//class
 
 export class FileOps {
 	root

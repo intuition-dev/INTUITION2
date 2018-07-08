@@ -14,6 +14,14 @@ class MetaAdminService {
    }
 
    /**
+    * Get the last message from the last executed command
+    * Returns a promise, than( resp.dat )/catch{error}
+    * @param folder folder - ex '/'
+    */
+   last() {
+      return this.service.get('/api/last')
+   }
+   /**
     * Do a nbake 'bake' in that folder.
     * Returns a promise, than( resp.dat )/catch{error}
     * @param folder folder - ex '/'
