@@ -42,7 +42,7 @@ export class MDevSrv {
       logger.trace(dir,port)
       app.set('app port', port)
 
-      MDevSrv.reloadServer = reload(app)
+      MDevSrv.reloadServer = reload(app,{verbose:true, port:9856})
 
       app.set('views', dir)
 
@@ -57,14 +57,14 @@ export class AdminSrv { // until we write a push service
    // http://github.com/alallier/reload
 
    constructor(config) {
-      let dir = config['admin']
+      let dir = config['admin_www']
       let port = config['admin_port']
 
       let app = express()
       logger.trace(dir,port)
       app.set('admin port', port)
 
-      AdminSrv.reloadServer = reload(app)
+      AdminSrv.reloadServer = reload(app, {port:9856})
 
       app.set('views', dir)
 
@@ -111,7 +111,7 @@ export class Watch {
 
    refreshBro() {
       setTimeout(function () {
-         MDevSrv.reloadServer.reload({verbose:true})
+         MDevSrv.reloadServer.reload()
          AdminSrv.reloadServer.reload()
       }, 320)
    }
@@ -266,3 +266,6 @@ var listener = server.listen(config.services_port, function () {
    //console.log(server._router.stack )
 })
 
+let app = new MDevSrv(config)
+let admin = new AdminSrv(config)
+let w = new Watch(config)
