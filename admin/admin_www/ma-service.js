@@ -40,13 +40,11 @@ class MetaAdminService {
       return this.service.get('/api/tag'+dir)
    }
    /**
-    * Do a nbake -i 'itemize' in that folder.
+    * Do a nbake -i 'itemize' from the mount
     * Returns a promise, than( resp.dat )/catch{error}
-    * @param folder folder - ex '/'
     */
-   itemize(folder) {
-		let dir = '?folder='+folder
-      return this.service.get('/api/itemize'+dir)
+   itemize() {
+      return this.service.get('/api/itemize')
    }
 
 }//class

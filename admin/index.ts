@@ -4,12 +4,15 @@ declare var process: any
 declare var console: any
 declare var __dirname: any
 
+
 const express = require('express')
 const basicAuth = require('express-basic-auth')
 const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
 const chokidar = require('chokidar')
+const reload = require('reload')
+
 
 import { Dirs, Bake, Items, Tag, Meta, RetMsg } from 'nBake/lib/Base'
 
@@ -27,98 +30,124 @@ server.use(basicAuth({
 
 
 // class ///////////////////////////////////////
-export class DevSrv {
-	root
-	app
-	port
-	static reloadServer
-	constructor(config) {
-		this.root = config['mount']
-		this.port = config['mount_port']
-	}
+export class MDevSrv {
+   static reloadServer
+   // http://github.com/alallier/reload
 
-	// http://github.com/alallier/reload
-	srv() {
-		this.app = express()
-		let port = this.port
-		let dir = this.root
-		logger.trace(dir,port)
-		this.app.set('port', port)
+   constructor(config) {
+      let dir = config['mount']
+      let port = config['mount_port']
 
-		DevSrv.reloadServer = reload(this.app)
+      let app = express()
+      logger.trace(dir,port)
+      app.set('app port', port)
 
-		this.app.set('views', dir)
+      MDevSrv.reloadServer = reload(app)
 
-		this.app.use(express.static(dir))
+      app.set('views', dir)
 
-		this.app.listen(port, function () {
-			logger.trace('dev '+port)
-		})
+      app.use(express.static(dir))
+      app.listen(port, function () {
+         logger.trace('dev app'+port)
+      })
    }//()
-
-
 }//class
+export class AdminSrv { // until we write a push service
+   static reloadServer
+   // http://github.com/alallier/reload
+
+   constructor(config) {
+      let dir = config['admin']
+      let port = config['admin_port']
+
+      let app = express()
+      logger.trace(dir,port)
+      app.set('admin port', port)
+
+      AdminSrv.reloadServer = reload(app)
+
+      app.set('views', dir)
+
+      app.use(express.static(dir))
+      app.listen(port, function () {
+         logger.trace('admin app'+port)
+      })
+   }//()
+}//class
+
 
 export class Watch {
-	root
-	watcher
-	fo
+   root
+   watcher
 
-	constructor(config) {
-		this.fo = config['mount']
+   mp: MetaPro
+   constructor(mp_:MetaPro) {
+      this.mp = mp_
    }
 
-	start() {
-		console.log('watch only works on linux on ssh watched drives - that are likely S3 mounts')
-		this.watcher = chokidar.watch(this.root, {
-			ignored: '*.html',
-			ignoreInitial: true,
-			cwd: this.root,
-			usePolling: true,
-			binaryInterval: 10000,
-			interval: 200,
-			alwaysStat: true
-		})
+   start() {
+      console.log('watch only works on linux on ssh watched drives - that are likely S3 mounts')
+      this.watcher = chokidar.watch(this.root, {
+         ignored: '*.html',
+         ignoreInitial: true,
+         cwd: this.root,
+         usePolling: true,
+         binaryInterval: 100000,
+         interval: 320,
+         alwaysStat: true
+      })
 
-		let thiz = this
-		this.watcher.on('add', function( path ){
-			thiz.pro(path)
-		})
-		this.watcher.on('change', function(path ){
-			thiz.pro(path)
-		})
-	}//()
+      let thiz = this
+      this.watcher.on('add', function( path ){
+         thiz.auto(path)
+         thiz.auto(path)
+      })
+      this.watcher.on('change', function(path ){
+         thiz.auto(path)
+      })
 
-	pro(path:string) {//process
-		let p = path.lastIndexOf('/')
-		let folder = ''
-		let fn = path
+      this.refreshBro()
+   }//()
 
-		if(p>0) {
-			folder = path.substring(0,p)
-			fn = path.substr(p+1)
-		}
-		console.log(folder, fn)
+   refreshBro() {
+      setTimeout(function () {
+         MDevSrv.reloadServer.reload({verbose:true})
+         AdminSrv.reloadServer.reload()
+      }, 320)
+   }
 
-		try {
-			const fn = path
-			this.fo.autoBake(folder, fn)
-         DevSrv.reloadServer.reload()
+   auto(path:string) {//process
+      let p = path.lastIndexOf('/')
+      let folder = ''
+      let fn = path
+
+      if(p>0) {
+         folder = path.substring(0,p)
+         fn = path.substr(p+1)
+      }
+      console.log(folder, fn)
+
+      try {
+         const fn = path
+         this.mp.autoBake(folder, fn)
+         this.refreshBro()
+
       } catch(err) {
-			logger.warn(err)
-		}
-	}
+         logger.warn(err)
+      }
+   }
 }//class
 
-export class MetaSrv {
+export class MetaPro {
    mount:string
    m = new Meta()
    static folderProp = 'folder'
 
-	static srcProp = 'src'
+   static srcProp = 'src'
    static destProp = 'dest'
 
    _lastMsg:RetMsg
+
    setLast(m:RetMsg) {
       this._lastMsg = new RetMsg(m._cmd, m.code, m.msg)
    }
@@ -151,39 +180,37 @@ export class MetaSrv {
       this.setLast(msg)
       return msg
    }
-   itemize(dir:string):RetMsg {
-      let folder = this.mount + dir
-      logger.trace(folder)
-      let msg:RetMsg = this.m.itemize(folder)
+   itemize():RetMsg {
+      let msg:RetMsg = this.m.itemize(this.mount)
       this.setLast(msg)
       return msg
    }
 
    // when you pass the file name, ex: watch
-	autoBake(folder, file):RetMsg {
-		const full = this.mount+folder +'/'+ file
-		logger.trace(full)
-		const ext = file.split('.').pop()
+   autoBake(folder, file):RetMsg {
+      const full = this.mount+folder +'/'+ file
+      logger.trace(full)
+      const ext = file.split('.').pop()
 
       if (ext =='md')
          return this.bake(folder)
 
-		if (ext =='pug') {
+      if (ext =='pug') {
          if( file.indexOf('-tag') >= 0 )
             return this.tag(folder)
          else
             return this.bake(folder)
       }
 
-		if (ext =='yaml') // bake and itemize
-			return this.m.itemizeNBake(folder)
+      if (ext =='yaml') // bake and itemize
+         return this.m.itemizeNBake(folder)
 
       let m =  new RetMsg(folder+'-'+file,-1,'nothing to bake')
       this.setLast(m)// maybe not set it to avoid noise?
       return m
-	}
+   }
 }
-const ms = new MetaSrv(config)
+const ms = new MetaPro(config)
 
 // routes ///////////////////////////////////////
 server.get('/api/last', function (req, res) {
@@ -200,7 +227,7 @@ server.get('/api/bake', function (req, res) {
    console.log(' bake')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
-   let dir = qs[MetaSrv.folderProp]
+   let dir = qs[MetaPro.folderProp]
 
    let ret:RetMsg = ms.bake(dir)
    if(ret.code<0)
@@ -212,7 +239,7 @@ server.get('/api/tag', function (req, res) {
    console.log(' tag')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
-   let dir = qs[MetaSrv.folderProp]
+   let dir = qs[MetaPro.folderProp]
 
    let ret:RetMsg = ms.tag(dir)
    if(ret.code<0)
@@ -223,10 +250,8 @@ server.get('/api/tag', function (req, res) {
 server.get('/api/itemize', function (req, res) {
    console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
-   let qs = req.query
-   let dir = qs[MetaSrv.folderProp]
 
-   let ret:RetMsg = ms.itemize(dir)
+   let ret:RetMsg = ms.itemize()
    if(ret.code<0)
       res.status(500).send(ret.msg)
    else
@@ -234,10 +259,10 @@ server.get('/api/itemize', function (req, res) {
 })
 
 // ///////////////////////////////////////
-var listener = server.listen(config.mount_port, function () {
+var listener = server.listen(config.services_port, function () {
    var host = listener.address().address
    var port = listener.address().port
-   console.log("Server listening at http://%s:%s", host, port)
-   console.log(server._router.stack )
+   console.log("admin services port at http://%s:%s", host, port)
+   //console.log(server._router.stack )
 })
 

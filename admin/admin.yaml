@@ -1,9 +1,15 @@
-# prod
-mount: /Users/uptim/Documents/GitHub/B-M-SPA/blog
-mount_port: 9090
+# 3 ports. app, admin and admin services
+# 4th would be console log
 
-# admin www pages
-srv_www: \Users\uptim\Downloads\www_admin\
+# app in dev mode
+mount: /Users/uptim/Documents/GitHub/B-M-SPA/blog
+mount_port: 8082
+
+# where the admin is
+admin_www: \Users\uptim\Downloads\www_admin\
+admin_port: 8081
+
+# admin services for app
+services_port: 9090
 secret: 123
-port: 8081
 

@@ -13,7 +13,6 @@ const fs = require('fs')
 const bodyParser = require('body-parser')
 const httpreq = require('httpreq')
 const AdmZip = require('adm-zip')
-const reload = require('reload')
 
 
 
