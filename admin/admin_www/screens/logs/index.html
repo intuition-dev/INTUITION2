@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>ROOT = '' //- sets global pug and .js from dat.yaml
+      console.log('root','')
+      let _start=Date.now()
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MetaBake.org</title>
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/riot@3.10.3/riot.min.js"></script>
+  </head>
+  <style>.delayShowing { opacity: 0.01; }</style>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="/assets/js/setup.js"></script>
+    <div class="c-offcanvas-content-wrap">
+      <nav class="columns has-background-black has-text-white is-mobile is-gapless">
+        <div class="column left">
+          <div class="pad">My Admin</div>
+        </div>
+      </nav>
+      <div id="router">
+        <div class="pad">Oh Hi1</div>
+        <!--link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')-->
+      </div>
+    </div>
+    <div class="delayShowing" id="off-canvas">
+      <nav class="has-background-black has-text-white">
+        <div class="pad">My App</div>
+      </nav>
+      <ul class="menu-list" id="offItems">
+        <li><a href="/screens/logs">Logs</a></li>
+        <li><a href="/screens/scrB">Two</a></li>
+      </ul>
+    </div>
+    <link href="/assets/css/bulma.css" onload="cssLoaded()" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
+  </body>
+</html>
