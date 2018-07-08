@@ -1,0 +1,45 @@
+
+p
+.ui.segment
+	#tag.ui.form.small
+		h4.ui.dividing.header RIOTjs tag
+		.field
+			label Folder
+			input(type='text', name='folder', placeholder='blog')
+
+		.ui.message.hidden
+		button.ui.button(type='submit') Tag
+
+script.
+	loadjs.ready('site', function () {
+		$('#tag .button').click(function(){
+			let sec = $('#Pform [name="secret"]').val()
+			let folder = $('#tag [name="folder"]').val()
+
+			calli(sec, folder)
+		})//click
+	})//ready
+
+	function calli(sec, folder_) {
+		console.log('calling ...')
+		$('#tag .message').text('called')
+		$('#tag .message').removeClass('hidden')
+
+		let url = '/api/tags?secret='
+		let folder = '&folder='
+
+		url = url + sec + folder + folder_
+		console.log(url)
+
+		fetch(url)
+			.then(function(resp) {
+				return resp.text()
+			}).then(function(txt) {
+				console.log(txt)
+				$('#tag .message').text(txt)
+			}).catch(function(err) {
+				console.log('error',err)
+				$('#tag .message').text('ERROR: ', err)
+		})//fetch
+
+	}//callNb()

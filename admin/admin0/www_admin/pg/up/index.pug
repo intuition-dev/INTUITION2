@@ -1,0 +1,20 @@
+extends /layout/_layout
+//- App Shell
+
+block head
+	//static binding ex:
+	title #{title}
+
+block main
+	p
+	br
+	p
+	.ui.text.container
+		p
+		include upload
+
+	script.
+		loadjs.ready('site', function () {
+			$('#mUp').addClass('active')
+		})
+

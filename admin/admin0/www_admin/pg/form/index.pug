@@ -1,0 +1,29 @@
+extends /layout/_layout
+//- App Shell
+
+block head
+	//static binding ex:
+	title #{title}
+
+block main
+	p
+	br
+	p
+	.ui.text.container
+		#Pform.ui.form.small
+			h4.ui.dividing.header Admin Form
+			.field
+				label Secret
+				input(type='text', name='secret', placeholder='123')
+		p
+		include nBake
+		include clone
+		include i
+		include t
+		include downPlugin
+
+	script.
+		loadjs.ready('site', function () {
+			$('#mForm').addClass('active')
+		})
+
