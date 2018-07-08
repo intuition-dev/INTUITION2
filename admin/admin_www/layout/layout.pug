@@ -12,29 +12,50 @@ html
       link(rel='shortcut icon', href= ROOT + '/assets/favicon.png', type='image/x-icon')
       script(src='https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js')
       script(src='https://cdn.jsdelivr.net/npm/riot@3.10.3/riot.min.js')
-   style.
-         .delayShowing { opacity: 0.01; }
+      style.
+            .delayShowing { opacity: 0.01; }
+            #head {
+               position: fixed;
+               top: 0px;
+               width: 100%;
+               z-index: 1;
+            }
+            #menu{
+               height: 100vh;
+               width: 240px;
+               flex-basis: 240px;
+               flex-grow: 0;
+               flex-shrink: 0;
+               position: fixed;
+               top: 48px;
+
+            }
+            #router {
+               position: absolute;
+               top: 48px;
+               left: 250px;
+            }
+      //link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')
    body
       script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
       script(src= ROOT + '/assets/js/setup.js')
 
-      .c-offcanvas-content-wrap
+      #head
          nav.columns.has-background-black.has-text-white.is-mobile.is-gapless
                .column.left
                   .pad My Admin
 
-         #router
-            block main
+      .columns.is-gapless
+         #menu.column.has-background-black.has-text-white
+            ul.menu-list#offItems
+               li
+                  a(href=ROOT + '/screens/logs') Logs
+               li
+               a(href= ROOT + '/screens/b') Two
 
-      #off-canvas.delayShowing
-         nav.has-background-black.has-text-white
-           .pad My App
-         ul.menu-list#offItems
-            li
-               a(href=ROOT + '/screens/logs') Logs
-            li
-              a(href= ROOT + '/screens/scrB') Two
-
+         .column
+            #router
+               block main
 
       link(href= ROOT + '/assets/css/bulma.css', onload='cssLoaded()', rel='stylesheet')
       link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700', rel='stylesheet')

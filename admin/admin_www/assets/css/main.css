@@ -2,10 +2,6 @@
 /* reset */
 a:focus { outline: none; }
 
-* {
-   letter-spacing: .05em !important;
-}
-
 /* nav */
 nav {
    margin-bottom: 0 !important;

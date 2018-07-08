@@ -18,8 +18,6 @@ $(document).ready(function () {
 loadjs([
    'https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
    , 'https://unpkg.com/vivid-icons@1.0.3/dist/vivid-icons.min.js'
-   , 'https://unpkg.com/js-offcanvas/dist/_js/js-offcanvas.pkgd.min.js'
-   , 'https://unpkg.com/js-offcanvas/dist/_css/prefixed/js-offcanvas.css'
    , ROOT + '/assets/css/gridforms/gridforms.css'
 ], 'cssJs')
 
@@ -39,14 +37,6 @@ loadjs.ready(['css', 'device', 'cssJs'], function () {
 // usage: ////////////////////////////////////////////////////////////////////
 loadjs.ready(['style'], function () {// 'show' page, ex: unhide
 
-   $('#off-canvas').offcanvas({
-      triggerButton: '#off-cbut' // btn to open offcanvas
-   })
-   let offcanvas = $('#off-canvas').data('offcanvas-component')
-   $('#offItems').click(function () {
-      console.log('#offItems')
-      offcanvas.close()
-   })
    $('.delayShowing').removeClass('delayShowing') // show
 
    console.log('style done', Date.now() - _start)
