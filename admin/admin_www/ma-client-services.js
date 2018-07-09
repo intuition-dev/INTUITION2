@@ -1,7 +1,8 @@
 // needs axios loaded ahead
 class MetaAdminService {
    // npm install -g documentation
-   // documentation build ma-client-services.js -f html -o docs
+   // documentation build ma-client-services.js -f html -o api
+   // don't upload css else fix in S3 
    constructor(baseURL_, users_) {
       this.service = axios.create({
          baseURL: baseURL_

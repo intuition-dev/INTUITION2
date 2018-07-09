@@ -1,3 +1,3 @@
 # API Reference
 
--[API Reference](http://docs.MetaBake.org/api)
+- [API Reference](http://doc.MetaBake.org/api)
