@@ -1,3 +1,8 @@
+   // npm -g i documentation
+   // $ documentation build --config documentation.yml ma-client-services.js -f html -o api
+   // or documentation serve --config documentation.yml --watch ma-client-services.js
+   // note: don't upload css else fix in S3
+
 
 /**
 * Login and logout to Meta Admin Service
@@ -31,25 +36,23 @@ class AdminAuth {
 
 /**
 * Create new MetaAdminService instance.
-* It needs axios loaded before, ex: https://unpkg.com/axios/dist/axios.min.js
+* It needs axios loaded before, ex: https://unpkg.com/axios/dist/axios.min.js.
 * @returns MetaAdminService instance
 * @param baseUrl ex: 'http://localhost:9083'
 * @param secret ex: '123'
 * @example
+*   loadjs('/ma-client-services.js','ma-client')
+*   loadjs.ready(['ma-client'], function () {
 *   const  baseURL = 'http://localhost:9083'
 *   const aSrv = new MetaAdminService(baseURL, '123')
-*    aSrv.last().then(function(resp) {
+*    aSrv.getLast().then(function(resp) {
 *        console.log(resp.data)
 *    }).catch(function (error) {
 *        console.log(aSrv.getError(error))
-*     })
+*    })
+*    })//ready
 */
 class MetaAdminService {
-   // npm -g i documentation
-   // $ documentation build --config documentation.yml ma-client-services.js -f html -o api
-   // or documentation serve --config documentation.yml --watch ma-client-services.js
-   // note: don't upload css else fix in S3
-
    constructor(baseURL_, secret) {
       this.service = axios.create({
          baseURL: baseURL_
@@ -76,7 +79,7 @@ class MetaAdminService {
     * @returns a promise, than( resp.dat )/catch{error}
     * @param folder folder - ex '/'
     */
-   last() {
+   getLast() {
       return this.service.get('/api/last')
    }
    /**
@@ -115,7 +118,7 @@ console.log(aa.secret)
 const  baseURL = 'http://localhost:9083'
 const aSrv = new MetaAdminService(baseURL, aa.secret)
 
-aSrv.last().then(function(resp) {
+aSrv.getLast().then(function(resp) {
    console.log(resp.data)
 }).catch(function (error) {
    console.log(aSrv.getError(error))
