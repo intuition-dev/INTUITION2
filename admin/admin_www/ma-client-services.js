@@ -1,14 +1,70 @@
-// needs axios loaded ahead
+
+/**
+* Login and logout to Meta Admin Service
+* @example
+   const aa = new AdminAuth()
+   aa.save('123')
+   console.log(aa.secret)
+
+   const  baseURL = 'http://localhost:9083'
+const aSrv = new MetaAdminService(baseURL, aa.secret)
+*/
+class AdminAuth {
+   /**
+   * @param secret that you get from admin.yaml on server
+   */
+   save(secret) {
+      sessionStorage.setItem('maAuth', secret)
+   }
+   /**
+   * @returns secret used for MetaAdminService
+   */
+   get secret() {
+      return sessionStorage.getItem('maAuth')
+   }
+   /**
+   */
+   clear() {
+      sessionStorage.removeItem('maAuth')
+   }
+}//()
+
+/**
+* Create new MetaAdminService instance.
+* It needs axios loaded before, ex: https://unpkg.com/axios/dist/axios.min.js
+* @returns MetaAdminService instance
+* @param baseUrl ex: 'http://localhost:9083'
+* @param secret ex: '123'
+* @example
+*   const  baseURL = 'http://localhost:9083'
+*   const aSrv = new MetaAdminService(baseURL, '123')
+*    aSrv.last().then(function(resp) {
+*        console.log(resp.data)
+*    }).catch(function (error) {
+*        console.log(aSrv.getError(error))
+*     })
+*/
 class MetaAdminService {
-   // npm install -g documentation
-   // documentation build ma-client-services.js -f html -o api
-   // don't upload css else fix in S3 
-   constructor(baseURL_, users_) {
+   // npm -g i documentation
+   // $ documentation build --config documentation.yml ma-client-services.js -f html -o api
+   // or documentation serve --config documentation.yml --watch ma-client-services.js
+   // note: don't upload css else fix in S3
+
+   constructor(baseURL_, secret) {
       this.service = axios.create({
          baseURL: baseURL_
-            , auth: users_
+         , auth: user =  {
+            username: 'admin',
+            password: secret
+         }
       })
    }//cons
+
+   /**
+    * Gets the error
+    * @returns error from the catch
+    * @param error
+    */
    getError(error) {
       if(!error.response) return error
       if(error.response.data) return (error.response.data)
@@ -52,12 +108,12 @@ class MetaAdminService {
 }//class
 // tst ////////////////////////////////
 
-const user =  {
-   username: 'admin',
-   password: '123'
-}
+const aa = new AdminAuth()
+aa.save('123')
+console.log(aa.secret)
+
 const  baseURL = 'http://localhost:9083'
-const aSrv = new MetaAdminService(baseURL, user)
+const aSrv = new MetaAdminService(baseURL, aa.secret)
 
 aSrv.last().then(function(resp) {
    console.log(resp.data)
