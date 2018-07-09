@@ -56,7 +56,7 @@ class MetaAdminService {
    constructor(baseURL_, secret) {
       this.service = axios.create({
          baseURL: baseURL_
-         , auth: user =  {
+         , auth: {
             username: 'admin',
             password: secret
          }

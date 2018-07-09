@@ -159,7 +159,7 @@ export class MetaPro {
    constructor(config) {
       this.mount = config.mount
    }
-   
+
    bake(dir:string):RetMsg {
       let folder = this.mount + dir
       logger.trace(folder)
@@ -267,4 +267,9 @@ var listener = server.listen(config.services_port, function () {
 let app = new MDevSrv(config)
 let admin = new AdminSrv(config)
 let w = new Watch(config)
-ms.tagRoot()
+
+// do the first build
+setTimeout(function(){
+   console.log('First build:')
+   ms.tagRoot()
+},2000)
