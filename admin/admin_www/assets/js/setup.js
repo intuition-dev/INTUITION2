@@ -18,6 +18,7 @@ $(document).ready(function () {
 loadjs([
    'https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
    , 'https://unpkg.com/vivid-icons@1.0.3/dist/vivid-icons.min.js'
+   , 'https://unpkg.com/axios/dist/axios.min.js'
    , ROOT + '/assets/css/gridforms/gridforms.css'
 ], 'cssJs')
 
@@ -31,6 +32,9 @@ function cssLoaded() {// called by the style sheet in layout
 }
 
 loadjs.ready(['css', 'device', 'cssJs'], function () {
+
+   loadjs(ROOT+'/ma-client-services.js','ma-client')
+
    loadjs.done('style')
 })
 

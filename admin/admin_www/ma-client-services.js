@@ -1,6 +1,7 @@
 // needs axios loaded ahead
 class MetaAdminService {
-   // jsdoc MetaAdminService.js
+   // npm install -g documentation
+   // documentation build ma-client-services.js -f html -o docs
    constructor(baseURL_, users_) {
       this.service = axios.create({
          baseURL: baseURL_
@@ -15,7 +16,7 @@ class MetaAdminService {
 
    /**
     * Get the last message from the last executed command
-    * Returns a promise, than( resp.dat )/catch{error}
+    * @returns a promise, than( resp.dat )/catch{error}
     * @param folder folder - ex '/'
     */
    last() {
@@ -23,7 +24,7 @@ class MetaAdminService {
    }
    /**
     * Do a nbake 'bake' in that folder.
-    * Returns a promise, than( resp.dat )/catch{error}
+    * @returns a promise, than( resp.dat )/catch{error}
     * @param folder folder - ex '/'
     */
    bake(folder) {
@@ -32,7 +33,7 @@ class MetaAdminService {
    }
    /**
     * Do a nbake -t 'tag process' in that folder.
-    * Returns a promise, than( resp.dat )/catch{error}
+    * @returns a promise, than( resp.dat )/catch{error}
     * @param folder folder - ex '/'
     */
    tag(folder) {
@@ -41,7 +42,7 @@ class MetaAdminService {
    }
    /**
     * Do a nbake -i 'itemize' from the mount
-    * Returns a promise, than( resp.dat )/catch{error}
+    * @returns a promise, than( resp.dat )/catch{error}
     */
    itemize() {
       return this.service.get('/api/itemize')
