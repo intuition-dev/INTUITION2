@@ -15,6 +15,12 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 
 'Train-the-Trainer' is scheduled about monthly, and it is announced in the form. If you need to reach out to creators of MetaBake, email vic(at)MetaBake.org.
 
+## Meta Definitions:
+- Pug : Low Code Declarative 4GL markup. Custom 'tags' in Pug via RIOTjs
+- Server-less: No know end point. Ex: CDN, AWS Cognito. Not server-less in Meta-talk: AWS Lambda
+- Team Player: Benefits group via Cloud Dev Environment, ex: CodeAnywhere+Meta. Selfish: Local dev. environment.
+
+
 ### Other:
 
 - <a href='https://github.com/metabake/_nBake/tree/master/CRUD/riotFirst' target='_blank'>Pug RIOTjs example</a>
@@ -22,7 +28,7 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - [Grid Forms](http://kumailht.com/gridforms)
 - [Bulma CSS](https://bulma.io/documentation/components)
 - [Loader: loadjs](https://github.com/muicss/loadjs)
-- [console.re](http://console.re)
+- [Debug console.re](http://console.re)
 - [Vivid Icons](https://webkul.github.io/vivid/cheatsheet.html)
 - [Front End Frameworks](https://github.com/metabake/front-end-frameworks
 ); w/ LESS/Sass
@@ -30,7 +36,7 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - [Webmaster](https://www.google.com/webmasters); w/ real time SEO help
 - [js-offcanvas](https://github.com/vmitsaras/js-offcanvas)
 - <a href='https://github.com/metabake/B-M-SPA/tree/master/blogRiot' target='_blank'>Example of static/dynamic items: Blog</a>
-
+- [resilient web design](https://resilientwebdesign.com/introduction)
 
 ## Commercial hosting, services and support for MetaBake
 
