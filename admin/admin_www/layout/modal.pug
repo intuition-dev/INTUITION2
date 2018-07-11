@@ -1,0 +1,27 @@
+.modal.is-active
+   .modal-background
+
+   .modal-card
+      header.modal-card-head
+      section.modal-card-body
+
+         form.grid-form
+            fieldset
+               legend Login
+               div(data-row-span="1")
+                  .field(data-field-span="1")
+                     label Secret Code
+                     input(type="text")
+
+      footer.modal-card-foot
+         button#butLog.button.is-success Login
+
+script.
+   function tryLogin() {
+         $('.delayShowing').removeClass('delayShowing') // show
+
+   }
+
+   loadjs.ready(['style'], function () {
+
+   })
