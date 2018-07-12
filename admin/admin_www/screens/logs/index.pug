@@ -1,28 +1,20 @@
 extends /layout/layout
 //- App Shell
 
-
 block main
+   script(src='tags/last-tag.js')
 
-   p Oh Hi1
+   last-tag
 
    //link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')
-
    script.
       loadjs.ready(['style','ma-client'], function () {
          window.login.add(onLogin)
       })
+
+      let lastTag = riot.mount('last-tag')[0]
       function onLogin() {
          console.log('on login')
+         lastTag.showLast()
       }
 
-//- tst ////////////////////////////////
-
-   const  baseURL = 'http://localhost:9083'
-   const aSrv = new MetaAdminService(baseURL, aa.secret)
-
-   aSrv.getLast().then(function(resp) {
-      console.log(resp.data)
-   }).catch(function (error) {
-      console.log(aSrv.getError(error))
-   })
