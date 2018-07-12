@@ -4,5 +4,25 @@ extends /layout/layout
 
 block main
 
-   .pad Oh Hi1
+   p Oh Hi1
 
+   //link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')
+
+   script.
+      loadjs.ready(['style','ma-client'], function () {
+         window.login.add(onLogin)
+      })
+      function onLogin() {
+         console.log('on login')
+      }
+
+//- tst ////////////////////////////////
+
+   const  baseURL = 'http://localhost:9083'
+   const aSrv = new MetaAdminService(baseURL, aa.secret)
+
+   aSrv.getLast().then(function(resp) {
+      console.log(resp.data)
+   }).catch(function (error) {
+      console.log(aSrv.getError(error))
+   })

@@ -22,8 +22,8 @@
       }
       #menu{
          height: 100vh;
-         width: 240px;
-         flex-basis: 240px;
+         width: 200px;
+         flex-basis: 200px;
          flex-grow: 0;
          flex-shrink: 0;
          position: fixed;
@@ -32,8 +32,8 @@
       }
       #router {
          position: absolute;
-         top: 48px;
-         left: 250px;
+         top: 62px;
+         left: 204px;
       }
     </style>
     <!--link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')-->
@@ -46,23 +46,25 @@
       <div class="modal-card delayShowing">
         <header class="modal-card-head"></header>
         <section class="modal-card-body">
-          <form class="grid-form">
+          <div class="grid-form">
             <fieldset>
               <legend>Login</legend>
               <div data-row-span="1">
                 <div class="field" data-field-span="1">
                   <label>Secret Code</label>
-                  <input id="code" type="text">
+                  <input id="code" type="password" autofocus="">
                 </div>
               </div>
             </fieldset>
-          </form>
-          <article class="message is-warning" id="loginMsg">
-            <div class="message-body">Unable to serve. Is the secret code correct?</div>
-          </article>
+            <div class="message is-warning" id="loginMsg">
+              <div class="message-body">Unable to serve. Is the secret code correct?</div>
+            </div>
+          </div>
         </section>
         <footer class="modal-card-foot">
-          <button class="button is-success" id="butLog">Login</button>
+          <form>
+            <input class="button is-success" id="butLog" type="submit" value="Login">
+          </form>
         </footer>
       </div>
     </div>
@@ -75,6 +77,7 @@
                $('#loginScr').removeClass('is-active') // show app
                const aa = new AdminAuth()
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
+               window.login.dispatch()
             }, function() {
                   onLogout(arg)
          })
@@ -111,23 +114,6 @@
       loadjs.ready(['style','ma-client'], function () {
          setupLogin()
       })
-      
-      
-      // tst ////////////////////////////////
-      /*
-         1. test login
-         2. test logout
-         3. test bad pswd
-      
-         const  baseURL = 'http://localhost:9083'
-         const aSrv = new MetaAdminService(baseURL, aa.secret)
-      
-         aSrv.getLast().then(function(resp) {
-            console.log(resp.data)
-         }).catch(function (error) {
-            console.log(aSrv.getError(error))
-         })
-      */
     </script>
     <div id="head">
       <nav class="columns has-background-black has-text-white is-mobile is-gapless">
@@ -150,7 +136,17 @@
       </div>
       <div class="column">
         <div id="router">
-          <div class="pad">Oh Hi1</div>
+          <p>Oh Hi1</p>
+          <!--link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')-->
+          <script>
+            loadjs.ready(['style','ma-client'], function () {
+               window.login.add(onLogin)
+            })
+            function onLogin() {
+               console.log('on login')
+            }
+            
+          </script>
         </div>
       </div>
     </div>

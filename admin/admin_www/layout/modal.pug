@@ -4,18 +4,20 @@
    .modal-card.delayShowing
       header.modal-card-head
       section.modal-card-body
-         form.grid-form
+         .grid-form
             fieldset
                legend Login
                div(data-row-span="1")
                   .field(data-field-span="1")
                      label Secret Code
-                     input#code(type="text")
-         article#loginMsg.message.is-warning
-            .message-body Unable to serve. Is the secret code correct?
+                     input#code(type="password", autofocus="")
+            #loginMsg.message.is-warning
+               .message-body Unable to serve. Is the secret code correct?
 
       footer.modal-card-foot
-         button#butLog.button.is-success Login
+         form
+            input#butLog.button.is-success(type="submit", value='Login')
+
 
 script.
 
@@ -27,6 +29,7 @@ script.
             $('#loginScr').removeClass('is-active') // show app
             const aa = new AdminAuth()
             window.aSrv = new MetaAdminService(baseURL, aa.secret)
+            window.login.dispatch()
          }, function() {
                onLogout(arg)
       })
@@ -64,21 +67,5 @@ script.
       setupLogin()
    })
 
-
-   // tst ////////////////////////////////
-   /*
-      1. test login
-      2. test logout
-      3. test bad pswd
-
-      const  baseURL = 'http://localhost:9083'
-      const aSrv = new MetaAdminService(baseURL, aa.secret)
-
-      aSrv.getLast().then(function(resp) {
-         console.log(resp.data)
-      }).catch(function (error) {
-         console.log(aSrv.getError(error))
-      })
-   */
 
 

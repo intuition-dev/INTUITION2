@@ -20,6 +20,7 @@ loadjs([
    , 'https://unpkg.com/vivid-icons@1.0.3/dist/vivid-icons.min.js'
    , 'https://unpkg.com/axios/dist/axios.min.js'
    , ROOT + '/assets/css/gridforms/gridforms.css'
+   , 'https://cdn.rawgit.com/terrylinooo/jquery.disableAutoFill/92cb6f86/src/jquery.disableAutoFill.js'
 ], 'cssJs')
 
 function onDeviceReady() { // nothing will work before this
@@ -34,6 +35,9 @@ function cssLoaded() {// called by the style sheet in layout
 loadjs.ready(['css', 'device', 'cssJs'], function () {
 
    loadjs(ROOT+'/ma-client-services.js','ma-client')
+   //to notify of login
+   let Signal = signals.Signal
+   window.login = new Signal()
 
    loadjs.done('style')
 })
