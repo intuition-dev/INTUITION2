@@ -1,27 +1,84 @@
-.modal.is-active
+#loginScr.modal.is-active
    .modal-background
 
-   .modal-card
+   .modal-card.delayShowing
       header.modal-card-head
       section.modal-card-body
-
          form.grid-form
             fieldset
                legend Login
                div(data-row-span="1")
                   .field(data-field-span="1")
                      label Secret Code
-                     input(type="text")
+                     input#code(type="text")
+         article#loginMsg.message.is-warning
+            .message-body Unable to serve. Is the secret code correct?
 
       footer.modal-card-foot
          button#butLog.button.is-success Login
 
 script.
-   function tryLogin() {
-         $('.delayShowing').removeClass('delayShowing') // show
 
+   function loginTry(arg) {
+      console.log('try')
+      const baseURL = 'http://localhost:9083'
+      isLoggedIn(baseURL).then(function() {
+            console.log('Lxxx yes')
+            $('#loginScr').removeClass('is-active') // show app
+            const aa = new AdminAuth()
+            window.aSrv = new MetaAdminService(baseURL, aa.secret)
+         }, function() {
+               onLogout(arg)
+      })
+   }//()
+
+   function onLogout(arg) {
+      console.log('LXXX no')
+      new AdminAuth().clear()
+      $('#loginScr').addClass('is-active') // hide app
+      try {
+         delete window.aSrv
+      } catch(err) (console.log(err))
+      if(arg) $('#loginMsg').show(0)
+      else $('#loginMsg').hide(0) // no message
    }
 
-   loadjs.ready(['style'], function () {
+   function setupLogin() {
+      $('#loginMsg').hide(0) // no message
 
+      $('.delayShowing').removeClass('delayShowing')
+
+      $('#butLog').click(function(){
+         let code = $('#code').val()
+         new AdminAuth().save(code)
+         loginTry(true)
+      })
+       $('#butLogOut').click(function(){
+         onLogout(false)
+      })
+
+      loginTry(false)
+   }
+
+   loadjs.ready(['style','ma-client'], function () {
+      setupLogin()
    })
+
+
+   // tst ////////////////////////////////
+   /*
+      1. test login
+      2. test logout
+      3. test bad pswd
+
+      const  baseURL = 'http://localhost:9083'
+      const aSrv = new MetaAdminService(baseURL, aa.secret)
+
+      aSrv.getLast().then(function(resp) {
+         console.log(resp.data)
+      }).catch(function (error) {
+         console.log(aSrv.getError(error))
+      })
+   */
+
+

@@ -40,9 +40,6 @@ loadjs.ready(['css', 'device', 'cssJs'], function () {
 
 // usage: ////////////////////////////////////////////////////////////////////
 loadjs.ready(['style'], function () {// 'show' page, ex: unhide
-
-   $('.delayShowing').removeClass('delayShowing') // show
-
    console.log('style done', Date.now() - _start)
 })//ready
 

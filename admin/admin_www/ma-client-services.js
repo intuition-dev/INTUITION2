@@ -1,8 +1,14 @@
-   // npm -g i documentation
+
+// npm -g i documentation
    // $ documentation build --config documentation.yml ma-client-services.js -f html -o api
    // or documentation serve --config documentation.yml --watch ma-client-services.js
    // note: don't upload css else fix in S3
 
+
+/**
+ * version 3.07.07
+ */
+console.log('ma-client-services', '3.07.07')
 
 /**
 * Login and logout to Meta Admin Service
@@ -26,6 +32,16 @@ class AdminAuth {
    */
    get secret() {
       return sessionStorage.getItem('maAuth')
+   }
+   /**
+    @returns true if secret exists
+    */
+   exists() {
+      if(!this.secret)
+         return false
+      if(this.secret.length<2)
+         return false
+      return true
    }
    /**
    */
@@ -54,6 +70,7 @@ class AdminAuth {
 */
 class MetaAdminService {
    constructor(baseURL_, secret) {
+      console.log(secret)
       this.service = axios.create({
          baseURL: baseURL_
          , auth: {
@@ -109,18 +126,33 @@ class MetaAdminService {
    }
 
 }//class
-// tst ////////////////////////////////
 
-const aa = new AdminAuth()
-aa.save('123')
-console.log(aa.secret)
-
-const  baseURL = 'http://localhost:9083'
-const aSrv = new MetaAdminService(baseURL, aa.secret)
-
-aSrv.getLast().then(function(resp) {
-   console.log(resp.data)
-}).catch(function (error) {
-   console.log(aSrv.getError(error))
-})
+/**
+ * Is the user logged in, based on saved cookie
+ @param url of service, ex:
+ @returns a promise
+ @example
+   isLoggedIn(baseURL).then(function() {//ok
+      console.log('Lxxx yes')
+   }, function() {//rejected
+      console.log('LXXX no')
+   })
+*/
+function isLoggedIn(url) {
+   const aa = new AdminAuth()
+   return new Promise(function(resolve, reject) {
+      if( aa.exists() ) {
+         const  baseURL = url
+         const aSrv = new MetaAdminService(baseURL, aa.secret)
+         aSrv.getLast().then(function(resp) {
+            console.log(resp.data)
+            resolve()
+         }).catch(function (error) {
+            console.log(aSrv.getError(error))
+            reject()
+         })
+      } else //fi, no cookie
+         reject()
+   }) // pro
+}//()
 
