@@ -41,19 +41,100 @@
   <body>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="/assets/js/setup.js"></script>
-    <div class="modal is-active">
+    <div class="modal is-active" id="loginScr">
+      <div class="modal-background"></div>
+      <div class="modal-card delayShowing">
+        <header class="modal-card-head"></header>
+        <section class="modal-card-body">
+          <form class="grid-form">
+            <fieldset>
+              <legend>Login</legend>
+              <div data-row-span="1">
+                <div class="field" data-field-span="1">
+                  <label>Secret Code</label>
+                  <input id="code" type="text">
+                </div>
+              </div>
             </fieldset>
           </form>
+          <article class="message is-warning" id="loginMsg">
+            <div class="message-body">Unable to serve. Is the secret code correct?</div>
+          </article>
         </section>
         <footer class="modal-card-foot">
-          <button class="button is-success">Login</button>
+          <button class="button is-success" id="butLog">Login</button>
         </footer>
       </div>
     </div>
+    <script>
+      function loginTry(arg) {
+         console.log('try')
+         const baseURL = 'http://localhost:9083'
+         isLoggedIn(baseURL).then(function() {
+               console.log('Lxxx yes')
+               $('#loginScr').removeClass('is-active') // show app
+               const aa = new AdminAuth()
+               window.aSrv = new MetaAdminService(baseURL, aa.secret)
+            }, function() {
+                  onLogout(arg)
+         })
+      }//()
+      
+      function onLogout(arg) {
+         console.log('LXXX no')
+         new AdminAuth().clear()
+         $('#loginScr').addClass('is-active') // hide app
+         try {
+            delete window.aSrv
+         } catch(err) (console.log(err))
+         if(arg) $('#loginMsg').show(0)
+         else $('#loginMsg').hide(0) // no message
+      }
+      
+      function setupLogin() {
+         $('#loginMsg').hide(0) // no message
+      
+         $('.delayShowing').removeClass('delayShowing')
+      
+         $('#butLog').click(function(){
+            let code = $('#code').val()
+            new AdminAuth().save(code)
+            loginTry(true)
+         })
+          $('#butLogOut').click(function(){
+            onLogout(false)
+         })
+      
+         loginTry(false)
+      }
+      
+      loadjs.ready(['style','ma-client'], function () {
+         setupLogin()
+      })
+      
+      
+         // tst ////////////////////////////////
+      /*
+      
+      const  baseURL = 'http://localhost:9083'
+      const aSrv = new MetaAdminService(baseURL, aa.secret)
+      
+      aSrv.getLast().then(function(resp) {
+         console.log(resp.data)
+      }).catch(function (error) {
+         console.log(aSrv.getError(error))
+      })
+      */
+    </script>
     <div id="head">
       <nav class="columns has-background-black has-text-white is-mobile is-gapless">
         <div class="column left">
           <div class="pad">My Admin</div>
+        </div>
+        <div class="column right">
+          <div class="pad">
+            <button class="button" id="butLogOut">Logout</button>
+          </div>
         </div>
       </nav>
     </div>
