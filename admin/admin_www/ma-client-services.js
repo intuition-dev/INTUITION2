@@ -1,8 +1,8 @@
 
 // npm -g i documentation
-   // $ documentation build --config documentation.yml ma-client-services.js -f html -o api
-   // or documentation serve --config documentation.yml --watch ma-client-services.js
-   // note: don't upload css else fix in S3
+// $ documentation build --config documentation.yml ma-client-services.js -f html -o api
+// or documentation serve --config documentation.yml --watch ma-client-services.js
+// note: don't upload css else fix in S3
 
 
 /**

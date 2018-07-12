@@ -208,4 +208,4 @@ let w = new Watch(config);
 setTimeout(function () {
     console.log('First build:');
     ms.tagRoot();
-}, 1000);
+}, 2000);

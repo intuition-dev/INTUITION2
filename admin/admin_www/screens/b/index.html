@@ -86,7 +86,7 @@
          $('#loginScr').addClass('is-active') // hide app
          try {
             delete window.aSrv
-         } catch(err) (console.log(err))
+         } catch(err) { console.log(err) }
          if(arg) $('#loginMsg').show(0)
          else $('#loginMsg').hide(0) // no message
       }
@@ -113,17 +113,20 @@
       })
       
       
-         // tst ////////////////////////////////
+      // tst ////////////////////////////////
       /*
+         1. test login
+         2. test logout
+         3. test bad pswd
       
-      const  baseURL = 'http://localhost:9083'
-      const aSrv = new MetaAdminService(baseURL, aa.secret)
+         const  baseURL = 'http://localhost:9083'
+         const aSrv = new MetaAdminService(baseURL, aa.secret)
       
-      aSrv.getLast().then(function(resp) {
-         console.log(resp.data)
-      }).catch(function (error) {
-         console.log(aSrv.getError(error))
-      })
+         aSrv.getLast().then(function(resp) {
+            console.log(resp.data)
+         }).catch(function (error) {
+            console.log(aSrv.getError(error))
+         })
       */
     </script>
     <div id="head">
