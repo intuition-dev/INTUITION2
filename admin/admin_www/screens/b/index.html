@@ -62,9 +62,7 @@
           </div>
         </section>
         <footer class="modal-card-foot">
-          <form>
-            <input class="button is-success" id="butLog" type="submit" value="Login">
-          </form>
+          <input class="button is-success" id="butLog" type="submit" value="Login">
         </footer>
       </div>
     </div>
@@ -76,6 +74,7 @@
                console.log('Lxxx yes')
                $('#loginScr').removeClass('is-active') // show app
                const aa = new AdminAuth()
+               console.log(aa.secret)
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
                window.login.dispatch()
             }, function() {
@@ -101,7 +100,9 @@
       
          $('#butLog').click(function(){
             let code = $('#code').val()
-            new AdminAuth().save(code)
+            let aa = new AdminAuth()
+            aa.save(code)
+            console.log(aa.secret)
             loginTry(true)
          })
           $('#butLogOut').click(function(){

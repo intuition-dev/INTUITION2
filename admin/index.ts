@@ -153,7 +153,7 @@ export class MetaPro {
    }
    getLastMsg():RetMsg{
       let m = this._lastMsg
-      return new RetMsg(m._cmd, m.code, m.msg)
+      return new RetMsg(m._cmd, 1, m.msg)
    }
 
    constructor(config) {
@@ -270,13 +270,13 @@ let w = new Watch(ms, config)
 
 // do the first build
 setTimeout(function(){
-   console.log('First build:')
+   console.log('Startup build:')
    ms.tagRoot()
    startW()
-},3000)
+}, 6000)
 
 function startW() {
    setTimeout(function(){
       w.start()
-   },5000)
+   }, 8000)
 }

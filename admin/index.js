@@ -111,7 +111,7 @@ class MetaPro {
     }
     getLastMsg() {
         let m = this._lastMsg;
-        return new Base_1.RetMsg(m._cmd, m.code, m.msg);
+        return new Base_1.RetMsg(m._cmd, 1, m.msg);
     }
     bake(dir) {
         let folder = this.mount + dir;
@@ -208,12 +208,12 @@ let app = new MDevSrv(config);
 let admin = new AdminSrv(config);
 let w = new Watch(ms, config);
 setTimeout(function () {
-    console.log('First build:');
+    console.log('Startup build:');
     ms.tagRoot();
     startW();
-}, 3000);
+}, 6000);
 function startW() {
     setTimeout(function () {
         w.start();
-    }, 5000);
+    }, 8000);
 }

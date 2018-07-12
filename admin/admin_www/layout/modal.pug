@@ -15,8 +15,7 @@
                .message-body Unable to serve. Is the secret code correct?
 
       footer.modal-card-foot
-         form
-            input#butLog.button.is-success(type="submit", value='Login')
+         input#butLog.button.is-success(type="submit", value='Login')
 
 
 script.
@@ -28,6 +27,7 @@ script.
             console.log('Lxxx yes')
             $('#loginScr').removeClass('is-active') // show app
             const aa = new AdminAuth()
+            console.log(aa.secret)
             window.aSrv = new MetaAdminService(baseURL, aa.secret)
             window.login.dispatch()
          }, function() {
@@ -53,7 +53,9 @@ script.
 
       $('#butLog').click(function(){
          let code = $('#code').val()
-         new AdminAuth().save(code)
+         let aa = new AdminAuth()
+         aa.save(code)
+         console.log(aa.secret)
          loginTry(true)
       })
        $('#butLogOut').click(function(){

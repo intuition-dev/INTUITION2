@@ -25,13 +25,13 @@ class AdminAuth {
    * @param secret that you get from admin.yaml on server
    */
    save(secret) {
-      sessionStorage.setItem('maAuth', secret)
+      localStorage.setItem('maAuth', secret)
    }
    /**
    * @returns secret used for MetaAdminService
    */
    get secret() {
-      return sessionStorage.getItem('maAuth')
+      return localStorage.getItem('maAuth')
    }
    /**
     @returns true if secret exists
@@ -46,7 +46,7 @@ class AdminAuth {
    /**
    */
    clear() {
-      sessionStorage.removeItem('maAuth')
+      localStorage.removeItem('maAuth')
    }
 }//()
 
@@ -143,12 +143,13 @@ function isLoggedIn(url) {
    return new Promise(function(resolve, reject) {
       if( aa.exists() ) {
          const  baseURL = url
-         const aSrv = new MetaAdminService(baseURL, aa.secret)
-         aSrv.getLast().then(function(resp) {
+         let maSrv = new MetaAdminService(baseURL, aa.secret)
+         maSrv.getLast().then(function(resp) {
             console.log(resp.data)
             resolve()
          }).catch(function (error) {
-            console.log(aSrv.getError(error))
+            console.log(error)
+            console.log(maSrv.getError(error))
             reject()
          })
       } else //fi, no cookie

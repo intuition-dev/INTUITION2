@@ -1,3 +1,3 @@
 cls
 call tsc
-ts-node index.js
+ts-node index.ts
