@@ -2,14 +2,14 @@
 # Resources
 
 - [Pug](http://pug.MetaBake.org)
-- <a href='http://chat.MetaBake.org' target='_blank'>Forum/Chat</a>
+- <a href='http://chat.MetaBake.org' target='_blank'>Forum/Chat</a>, please join
 - <a href='https://www.npmjs.com/package/nbake' target='_blank'>check for latest version of nBake</a>
 - <a href='http://github.com/metabake' target='_blank'>Source Code</a>
 
 ## Docs:
 To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBake Slides](http://prez.metabake.org/p)
 
-- [nBake](http://doc.MetaBake.org/nbake); CLI, step 1
+- [nBake](http://doc.MetaBake.org/nbake); CLI, step 1, please '*'
 - [SPA](http://doc.MetaBake.org/SPA); eg. PhoneGap v8
 - [Meta](http://doc.MetaBake.org/meta); Bespoke starter for Admin/Build Services
 
@@ -19,7 +19,7 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - Pug : Low Code Declarative 4GL markup. Custom 'tags' in Pug via RIOTjs
 - Server-less: No know end point. Ex: CDN, AWS Cognito. Not server-less in Meta-talk: AWS Lambda
 - Team Player: Benefits group via Cloud Dev Environment, ex: CodeAnywhere+Meta. Selfish: Local dev. environment.
-
+- Front End Framework: Google/search for 'Front End Framework' yields Bootstrap, Bulma, etc. We have examples with a few in github project of same name
 
 ### Other:
 
@@ -37,6 +37,8 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - [js-offcanvas](https://github.com/vmitsaras/js-offcanvas)
 - <a href='https://github.com/metabake/B-M-SPA/tree/master/blogRiot' target='_blank'>Example of static/dynamic items: Blog</a>
 - [resilient web design](https://resilientwebdesign.com/introduction)
+- [js Signals](https://github.com/millermedeiros/js-signals/wiki/Comparison-between-different-Observer-Pattern-implementations
+)
 
 ## Commercial hosting, services and support for MetaBake
 

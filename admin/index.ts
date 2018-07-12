@@ -75,18 +75,19 @@ export class AdminSrv { // until we write a push service
    }//()
 }//class
 
-
 export class Watch {
    root
    watcher
 
    mp: MetaPro
-   constructor(mp_:MetaPro) {
+   constructor(mp_:MetaPro, config) {
       this.mp = mp_
+      this.root = config['mount']
    }
 
    start() {
       console.log('watch only works on linux on ssh watched drives - that are likely S3 mounts')
+      console.log(this.root)
       this.watcher = chokidar.watch(this.root, {
          ignored: '*.html',
          ignoreInitial: true,
@@ -105,8 +106,6 @@ export class Watch {
       this.watcher.on('change', function(path ){
          thiz.auto(path)
       })
-
-      this.refreshBro()
    }//()
 
    refreshBro() {
@@ -117,6 +116,7 @@ export class Watch {
    }
 
    auto(path:string) {//process
+      console.log('w', path)
       let p = path.lastIndexOf('/')
       let folder = ''
       let fn = path
@@ -266,10 +266,17 @@ var listener = server.listen(config.services_port, function () {
 
 let app = new MDevSrv(config)
 let admin = new AdminSrv(config)
-let w = new Watch(config)
+let w = new Watch(ms, config)
 
 // do the first build
 setTimeout(function(){
    console.log('First build:')
    ms.tagRoot()
-},2000)
+   startW()
+},3000)
+
+function startW() {
+   setTimeout(function(){
+      w.start()
+   },5000)
+}
