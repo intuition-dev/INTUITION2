@@ -1,2 +1,0 @@
-
-ts-node index.ts .

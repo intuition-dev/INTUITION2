@@ -25,13 +25,13 @@ class AdminAuth {
    * @param secret that you get from admin.yaml on server
    */
    save(secret) {
-      localStorage.setItem('maAuth', secret)
+      sessionStorage.setItem('maAuth', secret)
    }
    /**
    * @returns secret used for MetaAdminService
    */
    get secret() {
-      return localStorage.getItem('maAuth')
+      return sessionStorage.getItem('maAuth')
    }
    /**
     @returns true if secret exists
@@ -44,9 +44,10 @@ class AdminAuth {
       return true
    }
    /**
+    * Clear, for logout
    */
    clear() {
-      localStorage.removeItem('maAuth')
+      sessionStorage.removeItem('maAuth')
    }
 }//()
 

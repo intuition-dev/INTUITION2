@@ -24,6 +24,6 @@ You can reinvest the time saved by using MetaBake into a more interactive user e
 
 # About Meta
 
-This section is about _Meta_, your bespoke cloud-based admin and build infrastructure; used on your web app. You need to know _nBake_ first, but once you learn it, instead of using _nBake_ CLI, you use _Meta_. (if you are not comfortable with nBake, go learn that first. Here we just wrap API arround it.) In _nBake_ you mounted your web app in the cloud, and with _Meta_, you admin|build is also in the cloud; both the web app and build are! That is what makes it Meta.
+This section is about _Meta_, your bespoke cloud-based admin and build infrastructure; used on your web app. You need to know _nBake_ first, but once you learn it, instead of using _nBake_ CLI, you use _Meta_. (if you are not comfortable with nBake, go learn that first. Here we just wrap API around it.) In _nBake_ you mounted your web app in the cloud, and with _Meta_, you admin|build is also in the cloud; both the web app and build are! That is what makes it Meta.
 
  _Meta_ is meant to be bespoke/customized.
