@@ -1,12 +1,6 @@
 
 # Cloud Mount
 
-### Video review
-
-Part 1: http://youtube.com/watch?v=LtPQtUUE1wE
-
-Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
-
 
 ##### Cloud Mount
 
@@ -35,7 +29,7 @@ Part 2: http://youtube.com/watch?v=pJQQZRYGPMo
 
 
 		// mount your S3 bucket there, use your BUCKET-NAME
-		~/goofys --profile default -o allow_other --use-content-type BUCKET-NAME ~/admin/prod
+		~/goofys --profile default -o allow_other --use-content-type BUCKET-NAME ~/root/admin/prod
 
 		// check to see your S3 webapp files
 		ls -la
@@ -48,16 +42,8 @@ We have S3 inside the container.
 At the end of the setup, you should have a connections and 2 mounts per project:
 
 - One of the admin/build server
-- In that, the production mount
+- In that folder, the production mount of the app you admin
 
+ You can extend the bases classes to customize the build server/
 
- You can extend the bases classes to customize the build server, e.g.:
-
-```
-   import { Dirs, Bake, Items, Tag, nBake } from 'nBake/lib/Base'
-   import { Srv, FileOps } from 'meta-admin/lib/ABase'
-   class Example extends Srv {
-   }
-```
-
-- Customize pages, it is supposed to be bespoke.
+- Also, do customize the admin pages, it is supposed to be bespoke.

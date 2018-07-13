@@ -15,6 +15,9 @@ Create a Linux VM; install node.
       cd root
       # extract the starter admin app
       nbake -a
+      cd admin     # /root/admin
+      mkdir prod   # you'll mount your production app here
+
 
  We will later edit `admin.yaml` in this folder.
 
