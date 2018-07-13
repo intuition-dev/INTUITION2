@@ -37,8 +37,10 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - [js-offcanvas](https://github.com/vmitsaras/js-offcanvas)
 - <a href='https://github.com/metabake/B-M-SPA/tree/master/blogRiot' target='_blank'>Example of static/dynamic items: Blog</a>
 - [resilient web design](https://resilientwebdesign.com/introduction)
-- [js Signals](https://github.com/millermedeiros/js-signals/wiki/Comparison-between-different-Observer-Pattern-implementations
-)
+- [js Signals](https://github.com/millermedeiros/js-signals/wiki/Comparison-between-different-Observer-Pattern-implementations)
+- [Prepros.io](https://prepros.io/help/autoprefixer)
+- [Front End Framework Examples](https://github.com/metabake/front-end-frameworks)
+- [More examples and plugins](https://github.com/metabake/examples-plugins)
 
 ## Commercial hosting, services and support for MetaBake
 

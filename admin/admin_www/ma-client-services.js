@@ -6,9 +6,9 @@
 
 
 /**
- * version 3.07.07
+ * version v3.07.14
  */
-console.log('ma-client-services', '3.07.07')
+console.log('ma-client-services', 'v3.07.14')
 
 /**
 * Login and logout to Meta Admin Service
