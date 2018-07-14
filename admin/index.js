@@ -5,7 +5,7 @@ const basicAuth = require('express-basic-auth');
 const cors = require('cors');
 const yaml = require('js-yaml');
 const fs = require('fs');
-const Base_1 = require("nBake/lib/Base");
+const Base_1 = require("nbake/lib/Base");
 const logger = require('tracer').console();
 let config = yaml.load(fs.readFileSync(__dirname + '/admin.yaml'));
 console.log(config);

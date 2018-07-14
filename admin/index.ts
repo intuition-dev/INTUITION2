@@ -10,7 +10,7 @@ const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
 
-import {  RetMsg, MetaPro, Watch, AdminSrv, MDevSrv} from 'nBake/lib/Base'
+import {  RetMsg, MetaPro, Watch, AdminSrv, MDevSrv} from 'nbake/lib/Base'
 
 const logger = require('tracer').console()
 
