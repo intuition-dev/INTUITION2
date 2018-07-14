@@ -1,3 +1,4 @@
 
 
-ts-node index.ts
+call tsc
+call ts-node index.ts
