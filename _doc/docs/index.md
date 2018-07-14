@@ -19,7 +19,7 @@ Create a Linux VM; install node.
       mkdir prod   # you'll mount your production app here
 
 
- We will later edit `admin.yaml` in this folder.
+We will later edit `admin.yaml` in this folder. Also recommended, you may enjoy running ts-node more (but we support plain node as well)
 
 Now connect CodeAnywhere to /root (or whatever directory here) via SSH mount. Now CodeAnywhere is connected to your Meta admin/build; and soon it will be connected to your S3 production environment.
 
