@@ -6,9 +6,9 @@
 
 
 /**
- * version v3.07.15
+ * version v3.07.19
  */
-console.log('ma-client-services', 'v3.07.15')
+console.log('ma-client-services', 'v3.07.19')
 
 /**
 * Login and logout to Meta Admin Service
@@ -101,7 +101,7 @@ class MetaAdminService {
       return this.service.get('/api/last')
    }
    /**
-    * Do a nbake 'bake' in that folder.
+    * Does a nbake 'bake' in that folder.
     * @returns a promise, than( resp.dat )/catch{error}
     * @param folder folder - ex '/'
     */
@@ -110,7 +110,7 @@ class MetaAdminService {
       return this.service.get('/api/bake'+dir)
    }
    /**
-    * Do a nbake -t 'tag process' in that folder.
+    * Does a nbake -t 'tag process' in that folder.
     * @returns a promise, than( resp.dat )/catch{error}
     * @param folder folder - ex '/'
     */
@@ -119,11 +119,22 @@ class MetaAdminService {
       return this.service.get('/api/tag'+dir)
    }
    /**
-    * Do a nbake -i 'itemize' from the mount
+    * Does a nbake -i 'itemize' from the mount
     * @returns a promise, than( resp.dat )/catch{error}
+    * @param folder folder - ex '/blog'
     */
-   itemize() {
-      return this.service.get('/api/itemize')
+   itemize(folder) {
+      let dir = '?folder='+folder
+      return this.service.get('/api/itemize'+dir)
+   }
+   /**
+    * Try to get title, image and desc of an url. Can be used for linkblog
+    * @returns a promise, than( resp.dat )/catch{error}
+    * @param url ex 'https://www.usatoday.com/story/opinion/nation-now/2018/05/19/university-michigans-speech-policies-those-soviet-russia/620724002/'
+    */
+   scrape(url) {
+      let arg = '?url='+url
+      return this.service.get('/api/scrape'+arg)
    }
 
 }//class

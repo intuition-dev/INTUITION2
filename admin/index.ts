@@ -25,51 +25,68 @@ server.use(basicAuth({
 }))
 
 // routes ///////////////////////////////////////
-const ms = new MetaPro(config)
+const mp = new MetaPro(config)
+const sc = new Scrape()
 server.get('/api/last', function (req, res) {
    console.log(' last')
    res.setHeader('Content-Type', 'application/json')
 
-   let ret:RetMsg = ms.getLastMsg()
+   let ret:RetMsg = mp.getLastMsg()
    if(ret.code<0)
-      res.status(500).send(ret.msg)
+      res.status(500).send(ret)
    else
-      res.json(ret.msg)
-})
+      res.json(ret)
+})//api
 server.get('/api/bake', function (req, res) {
    console.log(' bake')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
    let dir = qs[MetaPro.folderProp]
 
-   let ret:RetMsg = ms.bake(dir)
+   let ret:RetMsg = mp.bake(dir)
    if(ret.code<0)
-      res.status(500).send(ret.msg)
+      res.status(500).send(ret)
    else
-      res.json(ret.msg)
-})
+      res.json(ret)
+})//api
 server.get('/api/tag', function (req, res) {
    console.log(' tag')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
    let dir = qs[MetaPro.folderProp]
 
-   let ret:RetMsg = ms.tag(dir)
+   let ret:RetMsg = mp.tag(dir)
    if(ret.code<0)
-      res.status(500).send(ret.msg)
+      res.status(500).send(ret)
    else
-      res.json(ret.msg)
-})
+      res.json(ret)
+})//api
 server.get('/api/itemize', function (req, res) {
    console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let dir = qs[MetaPro.folderProp]
 
-   let ret:RetMsg = ms.itemize()
+   let ret:RetMsg = mp.itemize(dir)
    if(ret.code<0)
-      res.status(500).send(ret.msg)
+      res.status(500).send(ret)
    else
-      res.json(ret.msg)
-})
+      res.json(ret)
+})//api
+server.get('/api/scrape', function (req, res) {
+   console.log(' scrape')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let url = qs['url']
+
+   sc.s(url)
+      .then(function(resp){
+      // respond
+      console.log(resp)
+      let ret:RetMsg = new RetMsg('sc',1, resp)
+      res.json(ret)
+   })
+})//api
 
 // ///////////////////////////////////////
 var listener = server.listen(config.services_port, function () {
@@ -81,12 +98,12 @@ var listener = server.listen(config.services_port, function () {
 
 let app = new MDevSrv(config)
 let admin = new AdminSrv(config)
-let w = new Watch(ms, config)
+let w = new Watch(mp, config)
 
 // do the first build
 setTimeout(function(){
    console.log('Startup build:')
-   ms.tagRoot()
+   mp.tagRoot()
    startW()
 }, 6000)
 
@@ -96,9 +113,10 @@ function startW() {
    }, 8000)
 }
 
-// //////////////////////////////////////////////////////////
-let sc =new Scrape()
+// exp /////////////////////////////////////////////////////////
+/*
 sc.s('https://www.usatoday.com/story/opinion/nation-now/2018/05/19/university-michigans-speech-policies-those-soviet-russia/620724002/')
    .then(function(resp){
       console.log(resp)
    })
+*/
