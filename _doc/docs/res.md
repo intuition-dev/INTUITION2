@@ -2,14 +2,14 @@
 # Resources
 
 - [Pug](http://pug.MetaBake.org)
-- <a href='http://chat.MetaBake.org' target='_blank'>Forum/Chat</a>, please join
+- <a href='http://chat.MetaBake.org' target='_blank'>Forum/Chat</a>, to support this project, please join
 - <a href='https://www.npmjs.com/package/nbake' target='_blank'>check for latest version of nBake</a>
 - <a href='http://github.com/metabake' target='_blank'>Source Code</a>
 
 ## Docs:
 To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBake Slides](http://prez.metabake.org/p)
 
-- [nBake](http://doc.MetaBake.org/nbake); CLI, step 1, please '*'
+- [nBake](http://doc.MetaBake.org/nbake); CLI, step 1, give it stars: '*'
 - [SPA](http://doc.MetaBake.org/SPA); eg. PhoneGap v8
 - [Meta](http://doc.MetaBake.org/meta); Bespoke starter for Admin/Build Services
 
@@ -53,3 +53,8 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - http://youtube.com/watch?v=jQHRLH_4p0E nBake
 - [WebIDE](https://youtu.be/CMUiPC0YtYA)
 - [SPA](https://youtu.be/LHFjjDPlU3A)
+
+
+### Creators of Meta
+
+We were involved with Struts and SilverStream. We plan to make MetaBake more popular than Struts.

@@ -9,7 +9,7 @@ Use a WebIDE, to be a team player and remote friendly. (* _MetaBake_ pillar 9). 
 
 You can choose a commercial vendor to setup and co-host your Meta admin/build environments, or just use the open-source version. They are listed on Resources page (click on the left). Continue here with open source:
 
-Create a Linux VM; install node.
+Create a Linux VM; install node. Also recommended to install ts-node.
 
       npm -g i nbake
       cd root
