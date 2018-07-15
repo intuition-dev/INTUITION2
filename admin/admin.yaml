@@ -1,5 +1,4 @@
 # 3 ports. app, admin and admin services
-# 4th would be console log
 
 # app in dev mode
 mount: /Users/uptim/Documents/GitHub/B-M-SPA/blog/

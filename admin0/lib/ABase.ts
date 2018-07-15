@@ -18,8 +18,6 @@ const AdmZip = require('adm-zip')
 
 
 
-
-
 export class FileOps {
 	root
 	constructor(root_) {
@@ -62,12 +60,7 @@ export class FileOps {
 		fs.unlinkSync(full+fn)
 	}
 
-	clone(src, dest):string {
-		logger.trace('copy?')
-		fse.copySync(this.root+'/'+src, this.root+'/'+dest)
-		logger.trace('copy!')
-		return 'ok'
-	}//()
+
 
 	static hasWhiteSpace(s) {
 		return s.indexOf(' ') >= 0;
@@ -159,26 +152,7 @@ class SrvUtil {
 		}
 	}//()
 
-	static checkSecret(qs, res):boolean {
-		try {
-			logger.trace(JSON.stringify(qs))
-			let keys = Object.keys( qs )
-			if(!keys.includes(SrvUtil.secretProp)) {
-				SrvUtil.ret(res, 'no secret')
-				return false
-			}
-			let secret = qs.secret
-			if(secret != SrvUtil.prop.secret) {
-				SrvUtil.ret(res, 'wrong')
-				return false
-			}
-			return true
-		} catch(e) {
-			logger.trace(e)
-			SrvUtil.ret(res, e)
-			return false
-		}
-	}//()
+
 }
 
 export class Srv {
@@ -385,8 +359,3 @@ export class Srv {
 
 	}//()
 }//class
-
-
-module.exports = {
-	Srv, FileOps, Watch, Dev
-}
