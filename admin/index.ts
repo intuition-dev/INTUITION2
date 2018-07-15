@@ -10,11 +10,11 @@ const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
 
-import {  RetMsg, MetaPro, Watch, AdminSrv, MDevSrv} from 'nbake/lib/Base'
+import {  RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape} from 'nbake/lib/Base'
 
 const logger = require('tracer').console()
 
-// ///////////////////////////////////////
+// ///////////////////////////////////////////
 let config = yaml.load(fs.readFileSync(__dirname +'/admin.yaml'))
 console.log(config)
 
@@ -25,7 +25,6 @@ server.use(basicAuth({
 }))
 
 // routes ///////////////////////////////////////
-
 const ms = new MetaPro(config)
 server.get('/api/last', function (req, res) {
    console.log(' last')
@@ -96,3 +95,10 @@ function startW() {
       w.start()
    }, 8000)
 }
+
+// //////////////////////////////////////////////////////////
+let sc =new Scrape()
+sc.s('https://www.usatoday.com/story/opinion/nation-now/2018/05/19/university-michigans-speech-policies-those-soviet-russia/620724002/')
+   .then(function(resp){
+      console.log(resp)
+   })

@@ -4,7 +4,6 @@
 # app in dev mode
 #mount: /Users/uptim/Documents/GitHub/B-M-SPA/blog/
 mount: /root/admin/prod/
-
 mount_port: 9081
 
 # where the admin is
