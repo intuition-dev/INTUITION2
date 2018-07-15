@@ -69,7 +69,7 @@
     <script>
       function loginTry(arg) {
          console.log('try')
-         const baseURL = 'http://localhost:9083'
+         const baseURL = 'http://localhost:9083' // EDIT this and nbake
          isLoggedIn(baseURL).then(function() {
                console.log('Lxxx yes')
                $('#loginScr').removeClass('is-active') // show app
@@ -132,7 +132,7 @@
       <div class="column has-background-black has-text-white" id="menu">
         <ul class="menu-list" id="offItems">
           <li><a href="/screens/logs">Logs</a></li>
-          <li></li><a href="/screens/b">Two</a>
+          <li></li><a href="/screens/linkBlog">LinkBlog</a>
         </ul>
       </div>
       <div class="column">

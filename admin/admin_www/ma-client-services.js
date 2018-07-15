@@ -130,7 +130,7 @@ class MetaAdminService {
    /**
     * Try to get title, image and desc of an url. Can be used for linkblog
     * @returns a promise, than( resp.dat )/catch{error}
-    * @param url ex 'https://www.usatoday.com/story/opinion/nation-now/2018/05/19/university-michigans-speech-policies-those-soviet-russia/620724002/'
+    * @param url ex 'https://www.usatoday.com/sports/'
     */
    scrape(url) {
       let arg = '?url='+url

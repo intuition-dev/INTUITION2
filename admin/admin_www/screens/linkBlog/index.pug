@@ -1,0 +1,17 @@
+extends /layout/layout
+//- App Shell
+
+
+block main
+
+   script.
+      loadjs.ready(['style','ma-client'], function () {
+         window.login.add(ready)
+      })
+
+      function ready() {
+         window.aSrv.scrape('https://www.usatoday.com/sports/').then(function(resp) {
+            console.log(resp.data._msg)
+         })
+      }//()
+
