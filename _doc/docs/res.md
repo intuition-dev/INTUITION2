@@ -1,25 +1,24 @@
-
 # Resources
 
-- [Pug](http://pug.MetaBake.org)
-- <a href='http://chat.MetaBake.org' target='_blank'>Forum/Chat</a>, to support this project, please join
-- <a href='https://www.npmjs.com/package/nbake' target='_blank'>check for latest version of nBake</a>
+- [Pug](https://pug.metabake.org)
+- <a href='http://chat.metabake.org' target='_blank'>Forum/Chat</a>, to support this project, please join!
+- <a href='https://www.npmjs.com/package/nbake' target='_blank'>Check for latest version of nBake</a>
 - <a href='http://github.com/metabake' target='_blank'>Source Code</a>
 
 ## Docs:
 To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBake Slides](http://prez.metabake.org/p)
 
-- [nBake](http://doc.MetaBake.org/nbake); CLI, step 1, give it stars: '*'
-- [SPA](http://doc.MetaBake.org/SPA); eg. PhoneGap v8
-- [Meta](http://doc.MetaBake.org/meta); Bespoke starter for Admin/Build Services
+- [nBake](http://doc.metabake.org/nbake); CLI, step 1, give it stars: '*'
+- [SPA](http://doc.metabake.org/SPA); eg. PhoneGap v8
+- [Meta](http://doc.metabake.org/meta); Bespoke starter for Admin/Build Services
 
-'Train-the-Trainer' is scheduled about monthly, and it is announced in the form. If you need to reach out to creators of MetaBake, email vic(at)MetaBake.org.
+'Train-the-Trainer' is scheduled about monthly, and it is announced in the forum. If you need to reach out to creators of MetaBake, email vic(at)metabake.org (East Coast) or wgehner(at)voncode.com (West Coast).
 
 ## Meta Definitions:
 - Pug : Low Code Declarative 4GL markup. Custom 'tags' in Pug via RIOTjs
-- Server-less: No know end point. Ex: CDN, AWS Cognito. Not server-less in Meta-talk: AWS Lambda
+- Server-less: No known end point. E.g.: CDN, AWS Cognito. Not server-less in Meta-talk: AWS Lambda
 - Team Player: Benefits group via Cloud Dev Environment, ex: CodeAnywhere+Meta. Selfish: Local dev. environment.
-- Front End Framework: Google/search for 'Front End Framework' yields Bootstrap, Bulma, etc. We have examples with a few in github project of same name
+- Front End Framework: Google/search for 'Front End Framework' yields Bootstrap, Bulma, etc. We have examples with a few in Github project of same name.
 
 ### Other:
 
@@ -31,21 +30,21 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - [Debug console.re](http://console.re)
 - [Vivid Icons](https://webkul.github.io/vivid/cheatsheet.html)
 - [Front End Frameworks](https://github.com/metabake/front-end-frameworks
-); w/ LESS/Sass
-- [FireStore](https://firebase.google.com/docs/firestore)
+); with SASS or Less
+- [Firestore](https://firebase.google.com/docs/firestore)
 - [Webmaster](https://www.google.com/webmasters); w/ real time SEO help
-- [js-offcanvas](https://github.com/vmitsaras/js-offcanvas)
+- [JS-offcanvas](https://github.com/vmitsaras/js-offcanvas)
 - <a href='https://github.com/metabake/B-M-SPA/tree/master/blogRiot' target='_blank'>Example of static/dynamic items: Blog</a>
-- [resilient web design](https://resilientwebdesign.com/introduction)
-- [js Signals](https://github.com/millermedeiros/js-signals/wiki/Comparison-between-different-Observer-Pattern-implementations)
+- [Resilient web design](https://resilientwebdesign.com/introduction)
+- [JS Signals](https://github.com/millermedeiros/js-signals/wiki/Comparison-between-different-Observer-Pattern-implementations)
 - [Prepros.io](https://prepros.io/help/autoprefixer)
 - [Front End Framework Examples](https://github.com/metabake/front-end-frameworks)
 - [More examples and plugins](https://github.com/metabake/examples-plugins)
 
 ## Commercial hosting, services and support for MetaBake
 
-- www.MetaBake.net
-- www.AppThings.io
+- <https://www.metabake.net>
+- <https://m.appthings.io>
 
 #### Videos:
 
