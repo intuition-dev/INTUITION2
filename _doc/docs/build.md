@@ -37,7 +37,7 @@ Now you can:
 
 ### Remote teams
 
-This also enables new management methodologies, ex: 'Flash Teams' (*_MetaBake_ pillar 8)
+This also enables new management methodologies, e.g. 'Flash Teams' (*_MetaBake_ pillar 8)
 
 
 
