@@ -16,6 +16,7 @@ server.use(basicAuth({
 }));
 const mp = new Base_1.MetaPro(config);
 const sc = new Base_1.Scrape();
+const fo = new Base_1.FileOps(config.mount);
 server.get('/api/last', function (req, res) {
     console.log(' last');
     res.setHeader('Content-Type', 'application/json');
@@ -63,9 +64,35 @@ server.get('/api/scrape', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     let qs = req.query;
     let url = qs['url'];
+    let b = new Buffer(url, 'base64');
+    url = b.toString();
     sc.s(url)
         .then(function (resp) {
         console.log(resp);
+        let ret = new Base_1.RetMsg('sc', 1, resp);
+        res.json(ret);
+    });
+});
+server.get('/api/newLinkBlog', function (req, res) {
+    console.log(' newLinkBlog');
+    res.setHeader('Content-Type', 'application/json');
+    let qs = req.query;
+    let url = qs['url'];
+    let b = new Buffer(url, 'base64');
+    url = b.toString();
+    let src = qs['src'];
+    let dest = qs['dest'];
+    sc.s(url)
+        .then(function (resp) {
+        console.log(resp);
+        fo.clone(src, dest);
+        const p = config.root + dest;
+        logger.trace(p);
+        const d = new Base_1.Dat(p);
+        d.set('title', resp['title']);
+        d.set('img', resp['img']);
+        d.set('desc', resp['desc']);
+        d.write();
         let ret = new Base_1.RetMsg('sc', 1, resp);
         res.json(ret);
     });

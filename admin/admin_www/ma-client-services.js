@@ -3,12 +3,12 @@
 // $ documentation build --config documentation.yml ma-client-services.js -f html -o api
 // or documentation serve --config documentation.yml --watch ma-client-services.js
 // note: don't upload css else fix in S3
-
+// version should sync w/ nbake version due to -a
 
 /**
- * version v3.07.20
+ * version v3.07.21
  */
-console.log('ma-client-services', 'v3.07.20')
+console.log('ma-client-services', 'v3.07.21')
 
 /**
 * Login and logout to Meta Admin Service
@@ -133,8 +133,22 @@ class MetaAdminService {
     * @param url ex 'https://www.usatoday.com/sports/'
     */
    scrape(url) {
-      let arg = '?url='+url
+      let arg = '?url='+btoa(url)
       return this.service.get('/api/scrape'+arg)
+   }
+   /**
+    * Creates a new link blog item
+    * @returns a promise, than( resp.dat )/catch{error}
+    * @param src ex '/blog/one'
+    * @param dest ex '/blog/newOne'
+    * @param url ex 'https://www.usatoday.com/sports/'
+    */
+   newLinkBlog(src, dest, url) {
+      let arg = '?url='+btoa(url)
+      arg = arg + '&src=' + src
+      arg = arg + '&dest=' + dest
+      console.log(arg)
+      return this.service.get('/api/newLinkBlog'+arg)
    }
 
 }//class

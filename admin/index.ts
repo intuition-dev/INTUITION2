@@ -2,6 +2,8 @@
 declare var require: any
 //declare var process: any
 declare var console: any
+declare var Buffer: any
+
 declare var __dirname: any
 
 const express = require('express')
@@ -10,7 +12,7 @@ const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
 
-import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps } from 'nbake/lib/Base'
+import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps, Dat } from 'nbake/lib/Base'
 
 const logger = require('tracer').console()
 
@@ -27,6 +29,8 @@ server.use(basicAuth({
 // routes ///////////////////////////////////////
 const mp = new MetaPro(config)
 const sc = new Scrape()
+const fo = new FileOps(config.mount)
+
 server.get('/api/last', function (req, res) {
    console.log(' last')
    res.setHeader('Content-Type', 'application/json')
@@ -78,6 +82,8 @@ server.get('/api/scrape', function (req, res) {
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
    let url = qs['url']
+   let b = new Buffer(url, 'base64')
+   url = b.toString()
 
    sc.s(url)
       .then(function(resp){
@@ -87,6 +93,35 @@ server.get('/api/scrape', function (req, res) {
       res.json(ret)
    })
 })//api
+server.get('/api/newLinkBlog', function (req, res) {
+   console.log(' newLinkBlog')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let url = qs['url']
+   let b = new Buffer(url, 'base64')
+   url = b.toString()
+
+   let src = qs['src']
+   let dest = qs['dest']
+
+   sc.s(url)
+      .then(function(resp){
+         console.log(resp)
+         fo.clone(src,dest)
+         const p = config.root + dest
+         logger.trace(p)
+         const d = new Dat(p)
+         d.set('title', resp['title'])
+         d.set('img', resp['img'])
+         d.set('desc', resp['desc'])
+
+         d.write()
+         // respond
+         let ret:RetMsg = new RetMsg('sc',1, resp)
+         res.json(ret)
+   })
+})//api
+
 
 // ///////////////////////////////////////
 var listener = server.listen(config.services_port, function () {
