@@ -4,9 +4,9 @@
 
 ### admin.yaml
 
-Mount is where you production app is, the real app.
-Admin is your admin  (for the above app)
-And service is the API end points.
+Mount is where your production app is, the real app.
+Admin is your admin (for the above app).
+Services are the API endpoints.
 
       mount: /root/admin/prod/
       mount_port: 9081
