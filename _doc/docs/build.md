@@ -1,6 +1,6 @@
 # Admin/Build
 
-#### Ex. Meta layout in the cloud
+#### E.g. Meta layout in the cloud
 
 Your layout will look like this at the end:
 
@@ -15,31 +15,29 @@ Your layout will look like this at the end:
 
 # Running Meta
 
-Once nbake -a (admin) is deployed to '/root' and '/root/prod1' is mounted to you S3 WebApp, we are almost done. Don't be confused between the WebApp that you are developing, and the Meta/Admin that you are using on your app.
+Once nbake -a (admin) is deployed to '/root' and '/root/prod1' is mounted to your S3 WebApp, we are almost done. Don't be confused between the web app that you are developing, and the Meta/Admin that you are using on your app.
 
-Edit admin.yaml with
-password you want to use
-and the folder you have and then:
+Edit admin.yaml with a password you want to use and the folder you have; then:
 
       node index.js  #. start the Meta admin service
 
 
-Also add this line to top of layout.pug|head. When ran for development port it will reload. S3 or production will ot find the file and thus won't reload.
+Also add this line to top of layout.pug/head. When run on the development port it will reload. S3 or production will not find the file and thus won't reload.
 
     <script src="/reload/reload.js"></script>
 
 
 Now you can:
 
-- Edit in CodeAnywhere (CA) or other WebIDE and it will auto build, with out having to execute nbake
+- Edit in CodeAnywhere (CA) or other WebIDE and it will auto build, without having to execute nbake
 - Open a browser to the development port of your production - so it auto refreshes on edit/build.
 - Go to the Admin port via browser and access the admin 'portal'
-- Last, most important, you can customize the admin 'portal'; a bespoke Admin/build. (* _MetaBake_ pillar 10)
+- Most importantly, you can customize the admin 'portal'; a bespoke Admin/build. (*_MetaBake_ pillar 10)
 
 
 ### Remote teams
 
-This also enables new management methodologies, ex: 'Flash Teams' (* _MetaBake_ pillar 8)
+This also enables new management methodologies, ex: 'Flash Teams' (*_MetaBake_ pillar 8)
 
 
 
