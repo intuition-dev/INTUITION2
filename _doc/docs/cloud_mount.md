@@ -4,9 +4,9 @@
 
 ##### Cloud Mount
 
-1. To make sure your AWS access key and secret are working, connect to the production server from CodeAnywhere. You can generate a key under AWS menu 'Security Credentials'
+1. To make sure your AWS access key and secret are working, connect to the production server from CodeAnywhere. You can generate a key under AWS menu 'Security Credentials'.
 
-2. To configure a mount to S3 on the build server, setup goofYs as follows:
+2. To mount S3 on the build server, setup goofYs as follows:
 
 		cd ~
 		sudo wget http://bit.ly/goofys-latest
