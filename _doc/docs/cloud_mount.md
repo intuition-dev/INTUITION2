@@ -4,9 +4,9 @@
 
 ##### Cloud Mount
 
-1. Map to the production server from CodeAnywhere, to make sure your AWS access key and secret are working. (the keys are under 'Security Credentials' AWS menu)
+1. To make sure your AWS access key and secret are working, connect to the production server from CodeAnywhere. You can generate a key under AWS menu 'Security Credentials'
 
-2. Now to setup the build server, setup goofYs to map to your 'S3':
+2. To configure a mount to S3 on the build server, setup goofYs as follows:
 
 		cd ~
 		sudo wget http://bit.ly/goofys-latest
@@ -39,11 +39,11 @@ We have S3 inside the container.
 
 ### Done
 
-At the end of the setup, you should have a connections and 2 mounts per project:
+At the end of the setup, you should have a connection and 2 mounts per project:
 
 - One of the admin/build server
 - In that folder, the production mount of the app you admin
 
- You can extend the bases classes to customize the build server/
+ You can extend the bases classes to customize the build server.
 
-- Also, do customize the admin pages, it is supposed to be bespoke.
+- Also, do customize the admin pages, they are supposed to be bespoke.
