@@ -22,7 +22,9 @@ script.
 
    function loginTry(arg) {
       console.log('try')
+
       const baseURL = 'http://localhost:9083' // EDIT this and nbake
+
       isLoggedIn(baseURL).then(function() {
             console.log('Lxxx yes')
             $('#loginScr').removeClass('is-active') // show app
@@ -30,8 +32,12 @@ script.
             console.log(aa.secret)
             window.aSrv = new MetaAdminService(baseURL, aa.secret)
             window.login.dispatch()
-         }, function() {
+            $('.delayShowing').removeClass('delayShowing')
+
+         }, function() { // 'fail'
                onLogout(arg)
+               $('.delayShowing').removeClass('delayShowing')
+
       })
    }//()
 
@@ -44,12 +50,11 @@ script.
       } catch(err) { console.log(err) }
       if(arg) $('#loginMsg').show(0)
       else $('#loginMsg').hide(0) // no message
+
    }
 
    function setupLogin() {
       $('#loginMsg').hide(0) // no message
-
-      $('.delayShowing').removeClass('delayShowing')
 
       $('#butLog').click(function(){
          let code = $('#code').val()

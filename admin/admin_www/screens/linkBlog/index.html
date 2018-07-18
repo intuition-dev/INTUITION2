@@ -27,7 +27,7 @@
          flex-grow: 0;
          flex-shrink: 0;
          position: fixed;
-         top: 48px;
+         top: 58px;
       
       }
       #router {
@@ -69,7 +69,9 @@
     <script>
       function loginTry(arg) {
          console.log('try')
+      
          const baseURL = 'http://localhost:9083' // EDIT this and nbake
+      
          isLoggedIn(baseURL).then(function() {
                console.log('Lxxx yes')
                $('#loginScr').removeClass('is-active') // show app
@@ -77,8 +79,12 @@
                console.log(aa.secret)
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
                window.login.dispatch()
-            }, function() {
+               $('.delayShowing').removeClass('delayShowing')
+      
+            }, function() { // 'fail'
                   onLogout(arg)
+                  $('.delayShowing').removeClass('delayShowing')
+      
          })
       }//()
       
@@ -91,12 +97,11 @@
          } catch(err) { console.log(err) }
          if(arg) $('#loginMsg').show(0)
          else $('#loginMsg').hide(0) // no message
+      
       }
       
       function setupLogin() {
          $('#loginMsg').hide(0) // no message
-      
-         $('.delayShowing').removeClass('delayShowing')
       
          $('#butLog').click(function(){
             let code = $('#code').val()
@@ -116,7 +121,7 @@
          setupLogin()
       })
     </script>
-    <div id="head">
+    <div class="delayShowing" id="head">
       <nav class="columns has-background-black has-text-white is-mobile is-gapless">
         <div class="column left">
           <div class="pad">My Admin</div>
@@ -128,14 +133,14 @@
         </div>
       </nav>
     </div>
-    <div class="columns is-gapless">
+    <div class="columns is-gapless delayShowing">
       <div class="column has-background-black has-text-white" id="menu">
         <ul class="menu-list" id="offItems">
           <li><a href="/screens/logs">Logs</a></li>
           <li></li><a href="/screens/linkBlog">LinkBlog</a>
         </ul>
       </div>
-      <div class="column">
+      <div class="column delayShowing">
         <div id="router">
           <script>
             loadjs.ready(['style','ma-client'], function () {
