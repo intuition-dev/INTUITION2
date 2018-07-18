@@ -12,10 +12,10 @@ const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
 
-import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps, Dat } from 'nbake/lib/Base'
+import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps, Dat, Ver } from 'nbake/lib/Base'
 
 const logger = require('tracer').console()
-
+console.log(new Ver().ver())
 // ///////////////////////////////////////////
 let config = yaml.load(fs.readFileSync(__dirname +'/admin.yaml'))
 console.log(config)
@@ -106,9 +106,9 @@ server.get('/api/newLinkBlog', function (req, res) {
 
    sc.s(url)
       .then(function(resp){
-         console.log(resp)
+         logger.trace(resp)
          fo.clone(src,dest)
-         const p = config.root + dest
+         const p = config.mount + dest
          logger.trace(p)
          const d = new Dat(p)
          d.set('title', resp['title'])
@@ -147,11 +147,3 @@ function startW() {
       w.start()
    }, 8000)
 }
-
-// exp /////////////////////////////////////////////////////////
-/*
-sc.s('https://www.usatoday.com/story/opinion/nation-now/2018/05/19/university-michigans-speech-policies-those-soviet-russia/620724002/')
-   .then(function(resp){
-      console.log(resp)
-   })
-*/

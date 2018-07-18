@@ -7,6 +7,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const Base_1 = require("nbake/lib/Base");
 const logger = require('tracer').console();
+console.log(new Base_1.Ver().ver());
 let config = yaml.load(fs.readFileSync(__dirname + '/admin.yaml'));
 console.log(config);
 const server = express();
@@ -84,9 +85,9 @@ server.get('/api/newLinkBlog', function (req, res) {
     let dest = qs['dest'];
     sc.s(url)
         .then(function (resp) {
-        console.log(resp);
+        logger.trace(resp);
         fo.clone(src, dest);
-        const p = config.root + dest;
+        const p = config.mount + dest;
         logger.trace(p);
         const d = new Base_1.Dat(p);
         d.set('title', resp['title']);
