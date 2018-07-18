@@ -6,9 +6,9 @@
 // version should sync w/ nbake version due to -a
 
 /**
- * version v3.07.21
+ * version v3.07.22
  */
-console.log('ma-client-services', 'v3.07.21')
+console.log('ma-client-services', 'v3.07.22')
 
 /**
 * Login and logout to Meta Admin Service

@@ -6,11 +6,18 @@ block main
 
    script.
       loadjs.ready(['style','ma-client'], function () {
-         window.login.add(ready)
+         window.login.add(ready2)
       })
 
       function ready() {
          window.aSrv.scrape('https://www.usatoday.com/sports/').then(function(resp) {
+            console.log(resp.data._msg)
+         })
+      }//()
+
+
+      function ready2() {
+         window.aSrv.newLinkBlog('/blog/01', '/blog/03', 'https://www.usatoday.com/sports/').then(function(resp) {
             console.log(resp.data._msg)
          })
       }//()

@@ -1,13 +1,13 @@
 # 3 ports: app, admin and admin services
 
 # app in dev mode
-mount: /Users/uptim/Documents/GitHub/B-M-SPA/blog/
-#mount: /root/admin/prod/
+mount: /Users/uptim/Documents/GitHub/B-M-SPA/blog
+#mount: /root/admin/prod
 mount_port: 9081
 
 # where the admin is
-admin_www: /Users/uptim/Documents/GitHub/Meta/admin/admin_www/
-#admin_www: /root/admin/www_admin/
+admin_www: /Users/uptim/Documents/GitHub/Meta/admin/admin_www
+#admin_www: /root/admin/www_admin
 admin_port: 9082
 
 # admin services for app
