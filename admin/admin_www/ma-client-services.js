@@ -1,12 +1,12 @@
 
 // npm -g i documentation
 // $ documentation build --config documentation.yml ma-client-services.js -f html -o api
-// or documentation serve --config documentation.yml --watch ma-client-services.js
-// note: don't upload css else fix in S3
-// version should sync w/ nbake version due to -a
+// or: documentation serve --config documentation.yml --watch ma-client-services.js
+// Note: don't upload css, else fix in S3
+// Version should sync w/ nbake version due to -a
 
 /**
- * version v3.07.22
+ * Version v3.07.22
  */
 console.log('ma-client-services', 'v3.07.22')
 
@@ -37,9 +37,9 @@ class AdminAuth {
     @returns true if secret exists
     */
    exists() {
-      if(!this.secret)
+      if (!this.secret)
          return false
-      if(this.secret.length<2)
+      if (this.secret.length<2)
          return false
       return true
    }
@@ -53,10 +53,10 @@ class AdminAuth {
 
 /**
 * Create new MetaAdminService instance.
-* It needs axios loaded before, ex: https://unpkg.com/axios/dist/axios.min.js.
+* It needs Axios loaded before, ex: https://unpkg.com/axios/dist/axios.min.js.
 * @returns MetaAdminService instance
-* @param baseUrl ex: 'http://localhost:9083'
-* @param secret ex: '123'
+* @param baseUrl e.g.: 'http://localhost:9083'
+* @param secret e.g.: '123'
 * @example
 *   loadjs('/ma-client-services.js','ma-client')
 *   loadjs.ready(['ma-client'], function () {
@@ -87,8 +87,8 @@ class MetaAdminService {
     * @param error
     */
    getError(error) {
-      if(!error.response) return error
-      if(error.response.data) return (error.response.data)
+      if (!error.response) return error
+      if (error.response.data) return (error.response.data)
       return error.response.statusText
    }
 
