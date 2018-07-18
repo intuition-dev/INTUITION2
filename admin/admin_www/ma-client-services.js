@@ -2,8 +2,8 @@
 // npm -g i documentation
 // $ documentation build --config documentation.yml ma-client-services.js -f html -o api
 // or: documentation serve --config documentation.yml --watch ma-client-services.js
-// Note: don't upload css, else fix in S3
-// Version should sync w/ nbake version due to -a
+// Note: don't upload CSS, else fix in S3
+// Version should sync w/ nBake version due to -a
 
 /**
  * Version v3.07.22
@@ -95,42 +95,42 @@ class MetaAdminService {
    /**
     * Get the last message from the last executed command
     * @returns a promise, than( resp.dat )/catch{error}
-    * @param folder folder - ex '/'
+    * @param folder folder - e.g. '/'
     */
    getLast() {
       return this.service.get('/api/last')
    }
    /**
-    * Does a nbake 'bake' in that folder.
-    * @returns a promise, than( resp.dat )/catch{error}
-    * @param folder folder - ex '/'
+    * Does an nbake 'bake' in that folder.
+    * @returns a promise, then( resp.dat )/catch{error}
+    * @param folder folder - e.g. '/'
     */
    bake(folder) {
 		let dir = '?folder='+folder
       return this.service.get('/api/bake'+dir)
    }
    /**
-    * Does a nbake -t 'tag process' in that folder.
-    * @returns a promise, than( resp.dat )/catch{error}
-    * @param folder folder - ex '/'
+    * Does an nbake -t 'tag process' in that folder.
+    * @returns a promise, then( resp.dat )/catch{error}
+    * @param folder folder - e.g. '/'
     */
    tag(folder) {
 		let dir = '?folder='+folder
       return this.service.get('/api/tag'+dir)
    }
    /**
-    * Does a nbake -i 'itemize' from the mount
-    * @returns a promise, than( resp.dat )/catch{error}
-    * @param folder folder - ex '/blog'
+    * Does an nbake -i 'itemize' from the mount
+    * @returns a promise, then( resp.dat )/catch{error}
+    * @param folder folder - e.g. '/blog'
     */
    itemize(folder) {
       let dir = '?folder='+folder
       return this.service.get('/api/itemize'+dir)
    }
    /**
-    * Try to get title, image and desc of an url. Can be used for linkblog
-    * @returns a promise, than( resp.dat )/catch{error}
-    * @param url ex 'https://www.usatoday.com/sports/'
+    * Try to get title, image and desc of an url. Can be used for linkblog.
+    * @returns a promise, then( resp.dat )/catch{error}
+    * @param url e.g. 'https://www.usatoday.com/sports/'
     */
    scrape(url) {
       let arg = '?url='+btoa(url)
@@ -138,10 +138,10 @@ class MetaAdminService {
    }
    /**
     * Creates a new link blog item
-    * @returns a promise, than( resp.dat )/catch{error}
-    * @param src ex '/blog/one'
-    * @param dest ex '/blog/newOne'
-    * @param url ex 'https://www.usatoday.com/sports/'
+    * @returns a promise, then( resp.dat )/catch{error}
+    * @param src e.g. '/blog/one'
+    * @param dest e.g. '/blog/newOne'
+    * @param url e.g. 'https://www.usatoday.com/sports/'
     */
    newLinkBlog(src, dest, url) {
       let arg = '?url='+btoa(url)
@@ -155,7 +155,7 @@ class MetaAdminService {
 
 /**
  * Is the user logged in, based on saved cookie
- @param url of service, ex:
+ @param URL of service
  @returns a promise
  @example
    isLoggedIn(baseURL).then(function() {//ok
