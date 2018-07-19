@@ -140,7 +140,7 @@ setTimeout(function(){
    console.log('Startup build:')
    mp.tagRoot()
    startW()
-}, 4000)
+}, 3000)
 
 function startW() {
    setTimeout(function(){
