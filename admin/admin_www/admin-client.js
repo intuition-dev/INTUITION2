@@ -1,14 +1,14 @@
 
 // npm -g i documentation
-// $ documentation build --config documentation.yml ma-client-services.js -f html -o api
-// or: documentation serve --config documentation.yml --watch ma-client-services.js
+// $ documentation build --config documentation.yml admin-client.js -f html -o api
+// or: documentation serve --config documentation.yml --watch admin-client..js
 // Note: don't upload CSS, else fix in S3
 // Version should sync w/ nBake version due to -a
 
 /**
- * Version v3.07.22
+ * Version v3.07.36
  */
-console.log('ma-client-services', 'v3.07.22')
+console.log('ma-client-services', 'v3.07.36')
 
 /**
 * Login and logout to Meta Admin Service

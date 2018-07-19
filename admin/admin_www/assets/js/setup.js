@@ -34,7 +34,7 @@ function cssLoaded() {// called by the style sheet in layout
 
 loadjs.ready(['css', 'device', 'cssJs'], function () {
 
-   loadjs(ROOT+'/ma-client-services.js','ma-client')
+   loadjs(ROOT+'/admin-client.js','ma-client')
    //to notify of login
    let Signal = signals.Signal
    window.login = new Signal()
