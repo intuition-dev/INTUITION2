@@ -166,7 +166,7 @@
                 <div data-row-span="1"></div>
               </fieldset><br>
               <div class="message is-warning" id="linkBlogMsgWrap">
-                <div class="message-body" id="linkBlogMsg">Message back from service is</div>
+                <div class="message-body" id="linkBlogMsg"></div>
               </div>
               <input class="button is-success" id="butLink" type="submit" value="Create">
             </div>
@@ -184,15 +184,12 @@
               })//ready
               
               function newLinkRes(resp) {
-                 console.log(resp.data._msg)
+                 let msg = resp.data._msg
+                 console.log(msg)
+                 console.log(msg.title)
+              
+                 $('#linkBlogMsg').text(msg.title)
               }
-              
-              
-              function ready2() {
-                 window.aSrv.newLinkBlog('/blog/01', '/blog/03', 'h.com/sports/').then(function(resp) {
-                    console.log(resp.data._msg)
-                 })
-              }//()
             </script>
           </div>
         </div>

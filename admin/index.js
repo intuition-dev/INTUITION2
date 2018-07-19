@@ -83,23 +83,6 @@ server.get('/api/newLinkBlog', function (req, res) {
     url = b.toString();
     let src = qs['src'];
     let dest = qs['dest'];
-    sc.s(url)
-        .then(function (resp) {
-        logger.trace(resp);
-        fo.clone(src, dest);
-        const p = config.mount + dest;
-        logger.trace(p);
-        const d = new Base_1.Dat(p);
-        d.set('title', resp['title']);
-        d.set('image', resp['image']);
-        d.set('content_text', resp['content_text']);
-        d.set('external_url', url);
-        d.write();
-        let ret = new Base_1.RetMsg('sc', 1, resp);
-        res.json(ret);
-    });
-});
-function testSc(src, dest, url) {
     try {
         sc.s(url)
             .then(function (resp) {
@@ -114,17 +97,14 @@ function testSc(src, dest, url) {
             d.set('external_url', url);
             d.write();
             let ret = new Base_1.RetMsg('sc', 1, resp);
-            console.log('// READY //////////////////////////////////////////////////////');
-            console.log(ret);
+            res.json(ret);
         });
     }
     catch (err) {
         console.log('// ERR //////////////////////////////////////////////////////');
         console.log(err);
     }
-}
-let u = 'ttps://www.usffatoday.com/sports/';
-testSc(1, 2, u);
+});
 server.get('/api/clone', function (req, res) {
     console.log(' itemize');
     res.setHeader('Content-Type', 'application/json');
@@ -137,3 +117,22 @@ server.get('/api/clone', function (req, res) {
     else
         res.json(ret);
 });
+var listener = server.listen(config.services_port, function () {
+    var host = listener.address().address;
+    var port = listener.address().port;
+    console.log("admin services port at http://%s:%s", host, port);
+});
+let app = new Base_1.MDevSrv(config);
+let admin = new Base_1.AdminSrv(config);
+let w = new Base_1.Watch(mp, config);
+setTimeout(function () {
+    console.log('Startup build:');
+    mp.tagRoot();
+    startW();
+}, 3000);
+function startW() {
+    setTimeout(function () {
+        w.start();
+        console.log('// READY //////////////////////////////////////////////////////');
+    }, 3000);
+}

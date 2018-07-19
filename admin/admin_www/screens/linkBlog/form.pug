@@ -20,13 +20,12 @@ div#LinkBlog
 
       br
       #linkBlogMsgWrap.message.is-warning
-         #linkBlogMsg.message-body Message back from service is
+         #linkBlogMsg.message-body
 
       input#butLink.button.is-success(type="submit", value='Create')
 
    //link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')
    style.
-
 
    script.
       loadjs.ready(['style','ma-client'], function () {
@@ -40,12 +39,9 @@ div#LinkBlog
       })//ready
 
       function newLinkRes(resp) {
-         console.log(resp.data._msg)
+         let msg = resp.data._msg
+         console.log(msg)
+         console.log(msg.title)
+
+         $('#linkBlogMsg').text(msg.title)
       }
-
-
-      function ready2() {
-         window.aSrv.newLinkBlog('/blog/01', '/blog/03', 'h.com/sports/').then(function(resp) {
-            console.log(resp.data._msg)
-         })
-      }//()
