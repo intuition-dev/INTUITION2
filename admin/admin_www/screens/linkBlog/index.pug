@@ -1,12 +1,13 @@
 extends /layout/layout
 //- App Shell
 
-
 block main
+
+   include form
 
    script.
       loadjs.ready(['style','ma-client'], function () {
-         window.login.add(ready2)
+         //window.login.add(ready2)
       })
 
       function ready() {

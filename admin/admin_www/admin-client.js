@@ -6,9 +6,9 @@
 // Version should sync w/ nBake version due to -a
 
 /**
- * Version v3.07.36
+ * Version v3.07.37
  */
-console.log('ma-client-services', 'v3.07.36')
+console.log('ma-client-services', 'v3.07.37')
 
 /**
 * Login and logout to Meta Admin Service
@@ -18,7 +18,7 @@ console.log('ma-client-services', 'v3.07.36')
    console.log(aa.secret)
 
    const  baseURL = 'http://localhost:9083'
-const aSrv = new MetaAdminService(baseURL, aa.secret)
+   const aSrv = new MetaAdminService(baseURL, aa.secret)
 */
 class AdminAuth {
    /**
@@ -150,7 +150,18 @@ class MetaAdminService {
       console.log(arg)
       return this.service.get('/api/newLinkBlog'+arg)
    }
-
+   /**
+    * Clones a folder/screen. The cloned is set to 'publish: false' in dat.yaml.
+    * @returns a promise, then(resp.dat)/catch{error}
+    * @param src - e.g. '/blog/one'
+    * @param dest - e.g. '/blog/newOne'
+    */
+   clone(src, dest) {
+      arg = arg + '?src=' + src
+      arg = arg + '&dest=' + dest
+      console.log(arg)
+      return this.service.get('/api/clone'+arg)
+   }
 }//class
 
 /**

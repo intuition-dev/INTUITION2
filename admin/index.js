@@ -114,5 +114,6 @@ setTimeout(function () {
 function startW() {
     setTimeout(function () {
         w.start();
+        console.log('// READY //////////////////////////////////////////////////////');
     }, 3000);
 }

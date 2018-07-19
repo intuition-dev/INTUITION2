@@ -333,29 +333,8 @@ export class Srv {
 
 
 
-		SrvUtil.app.get('/api/clone', function (req, res) {
-			let qs = req.query
-			if(!SrvUtil.checkSecret(qs,res))
-				return;
-			let keys = Object.keys( qs )
-
-			let src = qs[SrvUtil.srcProp]
-			let dest = qs[SrvUtil.destProp]
-			let f = new FileOps(SrvUtil.prop.mount)
-			let ret = f.clone(src,dest)
-			SrvUtil.ret(res, ret)
-		})//
-
 
 		return this
 	}//()
 
-	start() {
-		SrvUtil.app.use(express.static(SrvUtil.WWW))
-
-		SrvUtil.app.listen(SrvUtil.prop.port, function () {
-			logger.trace('port '+SrvUtil.prop.port)
-		})
-
-	}//()
 }//class

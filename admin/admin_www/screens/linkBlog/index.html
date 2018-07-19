@@ -142,9 +142,36 @@
       </div>
       <div class="column delayShowing">
         <div id="router">
+          <div>
+            <div class="grid-form">
+              <fieldset>
+                <legend>New Link Blog</legend>
+                <div data-row-span="1">
+                  <div class="field" data-field-span="1">
+                    <label>External Source Url:</label>
+                    <input id="ext" type="text" autofocus="">
+                  </div>
+                </div>
+                <div data-row-span="2">
+                  <div class="field" data-field-span="1">
+                    <label>Clone from:</label>
+                    <input id="src" type="text">
+                  </div>
+                  <div class="field" data-field-span="1">
+                    <label>Clone to:</label>
+                    <input id="dest" type="text">
+                  </div>
+                </div>
+              </fieldset>
+              <div class="message is-warning" id="linkBlogMsgWrap">
+                <div class="message-body" id="linkBlogMsg">Message back from service is</div>
+              </div>
+            </div>
+            <input class="button is-success" id="butLog" type="submit" value="Create">
+          </div>
           <script>
             loadjs.ready(['style','ma-client'], function () {
-               window.login.add(ready2)
+               //window.login.add(ready2)
             })
             
             function ready() {

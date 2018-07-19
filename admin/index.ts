@@ -112,14 +112,28 @@ server.get('/api/newLinkBlog', function (req, res) {
          logger.trace(p)
          const d = new Dat(p)
          d.set('title', resp['title'])
-         d.set('img', resp['img'])
-         d.set('desc', resp['desc'])
+         d.set('image', resp['image'])
+         d.set('content_text', resp['content_text'])
+         d.set('external_url', url)
 
          d.write()
          // respond
          let ret:RetMsg = new RetMsg('sc',1, resp)
          res.json(ret)
    })
+})//api
+server.get('/api/clone', function (req, res) {
+   console.log(' itemize')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let src = qs['src']
+   let dest = qs['dest']
+
+   let ret:RetMsg = fo.clone(src, dest)
+   if(ret.code<0)
+      res.status(500).send(ret)
+   else
+      res.json(ret)
 })//api
 
 
@@ -145,5 +159,6 @@ setTimeout(function(){
 function startW() {
    setTimeout(function(){
       w.start()
+      console.log('// READY //////////////////////////////////////////////////////')
    }, 3000)
 }

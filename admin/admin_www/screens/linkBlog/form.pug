@@ -1,0 +1,24 @@
+
+div
+
+   .grid-form
+      fieldset
+         legend New Link Blog
+         div(data-row-span="1")
+            .field(data-field-span="1")
+               label External Source Url:
+               input#ext(type="text", autofocus="")
+
+         div(data-row-span="2")
+            .field(data-field-span="1")
+               label Clone from:
+               input#src(type="text")
+            .field(data-field-span="1")
+               label Clone to:
+               input#dest(type="text")
+
+      #linkBlogMsgWrap.message.is-warning
+         #linkBlogMsg.message-body Message back from service is
+
+   br
+   input#butLog.button.is-success(type="submit", value='Create')
