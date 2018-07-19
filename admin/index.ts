@@ -93,6 +93,7 @@ server.get('/api/scrape', function (req, res) {
       res.json(ret)
    })
 })//api
+
 server.get('/api/newLinkBlog', function (req, res) {
    console.log(' newLinkBlog')
    res.setHeader('Content-Type', 'application/json')
@@ -103,25 +104,30 @@ server.get('/api/newLinkBlog', function (req, res) {
 
    let src = qs['src']
    let dest = qs['dest']
+   try {
+      sc.s(url)
+         .then(function(resp){
+            logger.trace(resp)
+            fo.clone(src,dest)
+            const p = config.mount + dest
+            logger.trace(p)
+            const d = new Dat(p)
+            d.set('title', resp['title'])
+            d.set('image', resp['image'])
+            d.set('content_text', resp['content_text'])
+            d.set('external_url', url)
 
-   sc.s(url)
-      .then(function(resp){
-         logger.trace(resp)
-         fo.clone(src,dest)
-         const p = config.mount + dest
-         logger.trace(p)
-         const d = new Dat(p)
-         d.set('title', resp['title'])
-         d.set('image', resp['image'])
-         d.set('content_text', resp['content_text'])
-         d.set('external_url', url)
-
-         d.write()
-         // respond
-         let ret:RetMsg = new RetMsg('sc',1, resp)
-         res.json(ret)
-   })
+            d.write()
+            // respond
+            let ret:RetMsg = new RetMsg('sc',1, resp)
+            res.json(ret)
+      })
+   } catch(err) {
+      console.log('// ERR //////////////////////////////////////////////////////')
+      console.log(err)
+   }
 })//api
+
 server.get('/api/clone', function (req, res) {
    console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
@@ -136,8 +142,7 @@ server.get('/api/clone', function (req, res) {
       res.json(ret)
 })//api
 
-
-// ///////////////////////////////////////
+// /////////////////////////////////////////////////////////////////
 var listener = server.listen(config.services_port, function () {
    var host = listener.address().address
    var port = listener.address().port

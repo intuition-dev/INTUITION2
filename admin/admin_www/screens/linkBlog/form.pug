@@ -1,6 +1,6 @@
 
-div
-
+div#LinkBlog
+   br
    .grid-form
       fieldset
          legend New Link Blog
@@ -16,9 +16,36 @@ div
             .field(data-field-span="1")
                label Clone to:
                input#dest(type="text")
+         div(data-row-span="1")
 
+      br
       #linkBlogMsgWrap.message.is-warning
          #linkBlogMsg.message-body Message back from service is
 
-   br
-   input#butLog.button.is-success(type="submit", value='Create')
+      input#butLink.button.is-success(type="submit", value='Create')
+
+   //link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')
+   style.
+
+
+   script.
+      loadjs.ready(['style','ma-client'], function () {
+         $('#butLink').click(function(){
+            let url = $('#ext').val()
+            let src = $('#src').val()
+            let dest = $('#dest').val()
+
+            window.aSrv.newLinkBlog(src, dest, url).then(newLinkRes)
+         })// click
+      })//ready
+
+      function newLinkRes(resp) {
+         console.log(resp.data._msg)
+      }
+
+
+      function ready2() {
+         window.aSrv.newLinkBlog('/blog/01', '/blog/03', 'h.com/sports/').then(function(resp) {
+            console.log(resp.data._msg)
+         })
+      }//()

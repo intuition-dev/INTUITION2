@@ -32,8 +32,9 @@
       }
       #router {
          position: absolute;
-         top: 62px;
+         top: 64px;
          left: 204px;
+         width: calc( 100vw - 240px)
       }
     </style>
     <!--link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')-->
@@ -140,9 +141,9 @@
           <li></li><a href="/screens/linkBlog">LinkBlog</a>
         </ul>
       </div>
-      <div class="column delayShowing">
+      <div class="column">
         <div id="router">
-          <div>
+          <div id="LinkBlog"><br>
             <div class="grid-form">
               <fieldset>
                 <legend>New Link Blog</legend>
@@ -162,31 +163,38 @@
                     <input id="dest" type="text">
                   </div>
                 </div>
-              </fieldset>
+                <div data-row-span="1"></div>
+              </fieldset><br>
               <div class="message is-warning" id="linkBlogMsgWrap">
                 <div class="message-body" id="linkBlogMsg">Message back from service is</div>
               </div>
+              <input class="button is-success" id="butLink" type="submit" value="Create">
             </div>
-            <input class="button is-success" id="butLog" type="submit" value="Create">
+            <!--link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')-->
+            <style></style>
+            <script>
+              loadjs.ready(['style','ma-client'], function () {
+                 $('#butLink').click(function(){
+                    let url = $('#ext').val()
+                    let src = $('#src').val()
+                    let dest = $('#dest').val()
+              
+                    window.aSrv.newLinkBlog(src, dest, url).then(newLinkRes)
+                 })// click
+              })//ready
+              
+              function newLinkRes(resp) {
+                 console.log(resp.data._msg)
+              }
+              
+              
+              function ready2() {
+                 window.aSrv.newLinkBlog('/blog/01', '/blog/03', 'h.com/sports/').then(function(resp) {
+                    console.log(resp.data._msg)
+                 })
+              }//()
+            </script>
           </div>
-          <script>
-            loadjs.ready(['style','ma-client'], function () {
-               //window.login.add(ready2)
-            })
-            
-            function ready() {
-               window.aSrv.scrape('https://www.usatoday.com/sports/').then(function(resp) {
-                  console.log(resp.data._msg)
-               })
-            }//()
-            
-            
-            function ready2() {
-               window.aSrv.newLinkBlog('/blog/01', '/blog/03', 'https://www.usatoday.com/sports/').then(function(resp) {
-                  console.log(resp.data._msg)
-               })
-            }//()
-          </script>
         </div>
       </div>
     </div>
