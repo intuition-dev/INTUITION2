@@ -110,9 +110,9 @@ setTimeout(function () {
     console.log('Startup build:');
     mp.tagRoot();
     startW();
-}, 6000);
+}, 4000);
 function startW() {
     setTimeout(function () {
         w.start();
-    }, 8000);
+    }, 3000);
 }
