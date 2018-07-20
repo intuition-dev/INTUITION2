@@ -11,7 +11,7 @@ MetaBake is a development productivity suite. It should allow you to deliver 10 
 
 #### MetaBake productivity is based on three modules:
 
-- nBake, a static site generation tool that runs locally;
+- mbake, a static site generation tool that runs locally;
 - B-M-SPA, curated technologies and techniques that help you build dynamic apps and mobile apps faster;
 - Meta, a bespoke cloud-based build and admin app infrastructure that helps deliver functionality to your clients more quickly.
 
@@ -23,7 +23,7 @@ You can reinvest the time saved by using MetaBake into a more interactive user e
 
 # About Meta
 
-This section is about _Meta_, your bespoke cloud-based admin and build infrastructure; used on your web app. You need to know _nBake_ first, but once you learn it, instead of using _nBake_ CLI, you use _Meta_. (if you are not comfortable with nBake, go learn that first. Here we just wrap API around it.) In _nBake_ you mounted your web app in the cloud, and with _Meta_, you admin|build is also in the cloud; both the web app and build are! That is what makes it Meta.
+This section is about _Meta_, your bespoke cloud-based admin and build infrastructure; used on your web app. You need to know _mbake_ first, but once you learn it, instead of using _mbake_ CLI, you use _Meta_. (if you are not comfortable with mbake, go learn that first. Here we just wrap API around it.) In _mbake_ you mounted your web app in the cloud, and with _Meta_, you admin|build is also in the cloud; both the web app and build are! That is what makes it Meta.
 
 For a developer, _Meta_ is akin to a build server like Jenkins. For others, _Meta_ is akin to a custom WordPress or Shopify admin console.
 

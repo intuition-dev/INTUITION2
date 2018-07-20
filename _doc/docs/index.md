@@ -11,20 +11,20 @@ You can choose a commercial vendor to setup and co-host your Meta admin/build en
 
 Create a Linux VM; install NodeJS. We also recommend to install ts-node.
 
-      npm -g i nbake
+      npm -g i mbake
       cd root
       # extract the starter admin app
-      nbake -a
+      mbake -a
       cd admin     # /root/admin
       mkdir prod   # you'll mount your production app here
 
 
 - You should edit `admin.yaml` in this folder.
 - You will also need to edit ~/admin/admin_www/layout/modal.pug to point to the host (  const baseURL = 'http://localhost:9083'
- ) and nbake it.
+ ) and mbake it.
 
 
-The admin app can only nbake; admin Meta can't bake itelf. You may prefer ts-node, but we support plain node as well.
+The admin app can only mbake; admin Meta can't bake itelf. You may prefer ts-node, but we support plain node as well.
 
 Now connect CodeAnywhere to /root (or whatever directory here) via SSH mount. Now CodeAnywhere is connected to your Meta admin/build; and soon it will be connected to your S3 production environment.
 

@@ -12,7 +12,7 @@ const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
 
-import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps, Dat, Ver } from 'nbake/lib/Base'
+import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps, Dat, Ver } from 'mbake/lib/Base'
 
 const logger = require('tracer').console()
 console.log(new Ver().ver())
@@ -116,6 +116,7 @@ server.get('/api/newLinkBlog', function (req, res) {
             d.set('image', resp['image'])
             d.set('content_text', resp['content_text'])
             d.set('external_url', url)
+            d.set('date_published', (new Date()).toISOString() )
 
             d.write()
             // respond

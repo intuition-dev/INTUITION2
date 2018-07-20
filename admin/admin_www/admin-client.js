@@ -3,7 +3,7 @@
 // $ documentation build --config documentation.yml admin-client.js -f html -o api
 // or: documentation serve --config documentation.yml --watch admin-client..js
 // Note: don't upload CSS, else fix in S3
-// Version should sync w/ nBake version due to -a
+// Version should sync w/ mbake version due to -a
 
 /**
  * Version v3.07.37
@@ -101,7 +101,7 @@ class MetaAdminService {
       return this.service.get('/api/last')
    }
    /**
-    * Does an nbake 'bake' in that folder
+    * Does an mbake 'bake' in that folder
     * @returns a promise, then(resp.dat)/catch{error}
     * @param folder folder - e.g. '/'
     */
@@ -110,7 +110,7 @@ class MetaAdminService {
       return this.service.get('/api/bake'+dir)
    }
    /**
-    * Does an nbake -t 'tag process' in that folder
+    * Does an mbake -t 'tag process' in that folder
     * @returns a promise, then(resp.dat)/catch{error}
     * @param folder folder - e.g. '/'
     */
@@ -119,7 +119,7 @@ class MetaAdminService {
       return this.service.get('/api/tag'+dir)
    }
    /**
-    * Does an nbake -i 'itemize' from the mount
+    * Does an mbake -i 'itemize' from the mount
     * @returns a promise, then(resp.dat)/catch{error}
     * @param folder folder - e.g. '/blog'
     */

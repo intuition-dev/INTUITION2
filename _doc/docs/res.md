@@ -2,13 +2,13 @@
 
 - [Pug](https://pug.metabake.org)
 - <a href='http://chat.metabake.org' target='_blank'>Forum/Chat</a>, to support this project, please join!
-- <a href='https://www.npmjs.com/package/nbake' target='_blank'>Check for latest version of nBake</a>
+- <a href='https://www.npmjs.com/package/mbake' target='_blank'>Check for latest version of mbake</a>
 - <a href='http://github.com/metabake' target='_blank'>Source Code</a>
 
 ## Docs:
 To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBake Slides](http://prez.metabake.org/p)
 
-- [nBake](http://doc.metabake.org/nbake); CLI, step 1, give it stars: '*'
+- [mbake](http://doc.metabake.org/mbake); CLI, step 1, give it stars: '*'
 - [SPA](http://doc.metabake.org/SPA); eg. PhoneGap v8
 - [Meta](http://doc.metabake.org/meta); Bespoke starter for Admin/Build Services
 
@@ -22,7 +22,7 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 
 ### Other:
 
-- <a href='https://github.com/metabake/_nBake/tree/master/CRUD/riotFirst' target='_blank'>Pug RIOTjs example</a>
+- <a href='https://github.com/metabake/_mbake/tree/master/CRUD/riotFirst' target='_blank'>Pug RIOTjs example</a>
 - [RIOTjs](https://riot.js.org/)
 - [Grid Forms](http://kumailht.com/gridforms)
 - [Bulma CSS](https://bulma.io/documentation/components)
@@ -49,7 +49,7 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 #### Videos:
 
 - [Pug on Youtube](http://youtube.com/watch?v=wzAWI9h3q18)
-- http://youtube.com/watch?v=jQHRLH_4p0E nBake
+- http://youtube.com/watch?v=jQHRLH_4p0E mbake
 - [WebIDE](https://youtu.be/CMUiPC0YtYA)
 - [SPA](https://youtu.be/LHFjjDPlU3A)
 

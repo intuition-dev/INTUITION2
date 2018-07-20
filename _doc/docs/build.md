@@ -15,7 +15,7 @@ Your layout will look like this at the end:
 
 # Running Meta
 
-Once nbake -a (admin) is deployed to '/root' and '/root/prod1' is mounted to your S3 WebApp, we are almost done. Don't be confused between the web app that you are developing, and the Meta/Admin that you are using on your app.
+Once mbake -a (admin) is deployed to '/root' and '/root/prod1' is mounted to your S3 WebApp, we are almost done. Don't be confused between the web app that you are developing, and the Meta/Admin that you are using on your app.
 
 Edit admin.yaml with a password you want to use and the folder you have; then:
 
@@ -29,7 +29,7 @@ Also add this line to top of layout.pug/head. When run on the development port i
 
 Now you can:
 
-- Edit in CodeAnywhere (CA) or other WebIDE and it will auto build, without having to execute nbake
+- Edit in CodeAnywhere (CA) or other WebIDE and it will auto build, without having to execute mbake
 - Open a browser to the development port of your production - so it auto refreshes on edit/build.
 - Go to the Admin port via browser and access the admin 'portal'
 - Most importantly, you can customize the admin 'portal'; a bespoke Admin/build. (*_MetaBake_ pillar 10)
