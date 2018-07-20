@@ -52,8 +52,8 @@ class AdminAuth {
 }//()
 
 /**
-* Create new MetaAdminService instance.
-* Needs Axios loaded before - e.g. https://unpkg.com/axios/dist/axios.min.js.
+* Create new MetaAdminService instance. Each installation should be bespoke to the application it will admin.
+* Needs Axios loaded before - https://unpkg.com/axios/dist/axios.min.js.
 * @returns MetaAdminService instance
 * @param baseUrl - e.g. 'http://localhost:9083'
 * @param secret - e.g. '123'
