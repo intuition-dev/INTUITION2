@@ -130,6 +130,7 @@ server.post('/api/newLinkBlog', function (req, res) {
             d.set('comment', resp['content_text'])
             d.set('external_url', url)
             d.set('date_published', (new Date()).toISOString() )
+            d.set('publish', true ) // or leave as default: false
             d.write() //w2
 
             Scrape.getImageSize('https://i.imgur.com/YdwRA30.jpg').then(function(idata){
@@ -137,9 +138,7 @@ server.post('/api/newLinkBlog', function (req, res) {
                d.set('img_h',idata['height'])
                d.set('img_typ',idata['type'])
                d.set('img_sz',idata['length'])
-               setTimeout(function() {
-                  d.write() //w3
-               },50)
+               d.write() //w3
             })
 
             // respond
