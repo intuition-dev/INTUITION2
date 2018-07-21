@@ -18,10 +18,14 @@ div#LinkBlog
                input#dest(type="text")
          //div(data-row-span="1")
          br
-         legend Comment
+         legend Comment:
          div(data-row-span="1")
             .field(data-field-span="1")
                textarea#com(rows="10" cols="50")
+         div(data-row-span="1")
+            .field(data-field-span="1")
+               label Tags:
+               input#tags(type="text")
 
       #linkBlogMsgWrap.message.is-warning
          #linkBlogMsg.message-body
@@ -38,8 +42,9 @@ div#LinkBlog
             let src = $('#src').val()
             let dest = $('#dest').val()
             let com  = $('#com').val()
+            let tags  = $('#tags').val()
 
-            window.aSrv.newLinkBlog(src, dest, url, com).then(newLinkRes)
+            window.aSrv.newLinkBlog(src, dest, url, com, tags).then(newLinkRes)
          })// click
       })//ready
 

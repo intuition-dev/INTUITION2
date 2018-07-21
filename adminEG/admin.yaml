@@ -3,12 +3,12 @@
 admin_www: /Users/uptim/Documents/GitHub/Meta/adminEG/admin_www
 #admin_www: /root/admin/www_admin
 admin_port: 9082
-admin_watch: true 
-# admin services for app
+admin_watch: true #only one location should watch
+# admin services
 services_port: 9083
 secret: 321
 
-# app in dev mode, optional
+# app - in dev mode
 mount: /Users/uptim/Documents/GitHub/examples-plugins/blog
 #mount: /root/admin/prod
 mount_port: 9081

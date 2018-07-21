@@ -164,10 +164,16 @@
                   </div>
                 </div>
                 <!--div(data-row-span="1")--><br>
-                <legend>Comment</legend>
+                <legend>Comment:</legend>
                 <div data-row-span="1">
                   <div class="field" data-field-span="1">
                     <textarea id="com" rows="10" cols="50"></textarea>
+                  </div>
+                </div>
+                <div data-row-span="1">
+                  <div class="field" data-field-span="1">
+                    <label>Tags:</label>
+                    <input id="tags" type="text">
                   </div>
                 </div>
               </fieldset>
@@ -185,8 +191,9 @@
                     let src = $('#src').val()
                     let dest = $('#dest').val()
                     let com  = $('#com').val()
+                    let tags  = $('#tags').val()
               
-                    window.aSrv.newLinkBlog(src, dest, url, com).then(newLinkRes)
+                    window.aSrv.newLinkBlog(src, dest, url, com, tags).then(newLinkRes)
                  })// click
               })//ready
               

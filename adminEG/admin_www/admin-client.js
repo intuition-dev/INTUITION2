@@ -1,14 +1,13 @@
 
 // npm -g i documentation
-// $ documentation build --config documentation.yml admin-client.js -f html -o api
-// or: documentation serve --config documentation.yml --watch admin-client..js
+// # documentation build --config documentation.yml admin-client.js -f html -o api
 // Note: don't upload CSS, else fix in S3
 // Version should sync w/ mbake version due to -a
 
 /**
- * Version v3.07.37
+ * Version v3.07.51
  */
-console.log('ma-client-services', 'v3.07.37')
+console.log('ma-client-services', 'v3.07.51')
 
 /**
 * Login and logout to Meta Admin Service
@@ -145,7 +144,7 @@ class MetaAdminService {
     * @param comment # in Markdown - e.g. 'This is an interesting article'
     * @param tags # CSV, eg: one, two
     */
-   newLinkBlog(src, dest, url, comment_, tags) {
+   newLinkBlog(src, dest, url, comment_, tags_) {
       let arg = '?url='+btoa(url)
       arg = arg + '&src=' + src
       arg = arg + '&dest=' + dest
