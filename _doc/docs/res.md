@@ -7,7 +7,7 @@
 - <a href='http://github.com/metabake' target='_blank'>Source Code</a>
 
 ## Docs:
-To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBake Slides](http://prez.metabake.org/p)
+To get an overview of MetaBake pillars, this may help [MetaBake Slides](http://prez.metabake.org/p)
 
 - [mbake](http://doc.metabake.org/mbake); CLI, step 1, give it stars: '*'
 - [SPA](http://doc.metabake.org/SPA); eg. PhoneGap v8
