@@ -1,3 +1,4 @@
+
 # Resources
 
 - [Pug](https://pug.metabake.org)
@@ -12,7 +13,7 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 - [SPA](http://doc.metabake.org/SPA); eg. PhoneGap v8
 - [Meta](http://doc.metabake.org/meta); Bespoke starter for Admin/Build Services
 
-'Train-the-Trainer' is scheduled about monthly, and it is announced in the forum. If you need to reach out to creators of MetaBake, email vic(at)metabake.org (East Coast) or wgehner(at)voncode.com (West Coast).
+'Train-the-Trainer' is scheduled about monthly, and it is announced in the forum. Feel free to post questions there.
 
 ## Meta Definitions:
 - Pug : Low Code Declarative 4GL markup. Custom 'tags' in Pug via RIOTjs
@@ -43,8 +44,10 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 
 ## Commercial hosting, services and support for MetaBake
 
-- <https://www.metabake.net>
-- <https://m.appthings.io>
+- <http://www.metabake.net>
+- <http://voncode.com>
+- <http://code83.com>
+- <http://fabianocunha.io>
 
 #### Videos:
 
@@ -56,4 +59,4 @@ To get an overview of MetaBake pillars, this may help, or it may confuse [MetaBa
 
 ### Creators of Meta
 
-We were involved with Struts and SilverStream. We plan to make MetaBake more popular than Struts.
+We were involved with Struts and SilverStream. We plan to make MetaBake more popular than both.
