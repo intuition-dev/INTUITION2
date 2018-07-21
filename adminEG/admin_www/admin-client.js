@@ -141,8 +141,8 @@ class MetaAdminService {
     * @param src - e.g. '/blog/one'
     * @param dest - e.g. '/blog/newOne'
     * @param url - e.g. 'https://www.usatoday.com/sports/'
-    * @param comment # in Markdown - e.g. 'This is an interesting article'
-    * @param tags # CSV, eg: one, two
+    * @param comment_ # in Markdown - e.g. 'This is an interesting article'
+    * @param tags_ # CSV, eg: one, two
     */
    newLinkBlog(src, dest, url, comment_, tags_) {
       let arg = '?url='+btoa(url)
