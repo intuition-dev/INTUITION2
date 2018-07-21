@@ -116,7 +116,7 @@ server.post('/api/newLinkBlog', function (req, res) {
       sc.s(url)
          .then(function(resp){
             logger.trace(resp)
-            fo.clone(src,dest)
+            fo.clone(src,dest) //w1, few files, ~ 1 second watch
             const p = config.mount + dest
             logger.trace(p)
 
@@ -128,29 +128,29 @@ server.post('/api/newLinkBlog', function (req, res) {
             d.set('comment', resp['comment'])
             d.set('external_url', url)
             d.set('date_published', (new Date()).toISOString() )
-            d.write()
+            d.write() //w2
 
-            sc.getImageSize(imgUrl, function(err,idata) {
-               // respond
-               let ret:RetMsg = new RetMsg('sc',1, resp)
-               res.json(ret)
+            Scrape.getImageSize('https://i.imgur.com/YdwRA30.jpg').then(function(idata){
+               console.log('II scrape IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+               logger.trace(JSON.stringify(idata))
+               d.set('img_w',idata['width'])
+               d.set('img_h',idata['height'])
+               d.set('img_typ',idata['type'])
+               d.set('img_sz',idata['length'])
+               setTimeout(function() {
+                  d.write() //w3
+               },100)
+            })
 
-               if(err) {
-                     logger.trace(err)
-                     return
-                  }
-                  logger.trace(JSON.stringify(idata))
-                  d.set('img_w',idata['width'])
-                  d.set('img_h',idata['height'])
-                  d.set('img_typ',idata['type'])
-                  d.set('img_sz',idata['length'])
-                  d.write()
-               })
+            // respond
+            let ret:RetMsg = new RetMsg('sc',1, resp)
+            res.json(ret)
 
             // write md
             let md = dest+'/comment.md'
             logger.trace(md)
-            fo.write(comment, md)
+            fo.write(md, comment) //w4
+            console.log('II scrape done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
 
          })
    } catch(err) {

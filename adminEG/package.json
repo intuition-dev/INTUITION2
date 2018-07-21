@@ -9,6 +9,6 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-basic-auth": "^1.1.5",
-    "mbake": "^3.7.45"
+    "mbake": "^3.7.47"
   }
 }
