@@ -1,12 +1,12 @@
 site_name: Meta Docs
 site_url: http://MetaBake.org
 repo_url: http://MetaBake.org
-copyright: (copyright MetaBake | cekvenich)
 pages:
    - Home: index.md
    - Cloud Mount: cloud_mount.md
    - Admin/Build: build.md
    - API Reference: ref.md
+   - Custom Admin: dev.md
    - Resources: res.md
    - About: about.md
 

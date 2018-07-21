@@ -129,6 +129,7 @@ server.post('/api/newLinkBlog', function (req, res) {
 
             try {
                let idata = sc.getImageSize(resp['image'])
+               logger.trace(JSON.stringify(idata))
                d.set('img_w',idata['width'])
                d.set('img_h',idata['height'])
                d.set('img_typ',idata['type'])
@@ -141,7 +142,9 @@ server.post('/api/newLinkBlog', function (req, res) {
             res.json(ret)
 
             // write md
-            fo.write(comment, dest+'/comment.md')
+            let md = dest+'/comment.md'
+            logger.trace(md)
+            fo.write(comment, md)
          })
    } catch(err) {
       console.log('// ERR //////////////////////////////////////////////////////')
@@ -183,6 +186,8 @@ setTimeout(function(){
 }, 3000)
 
 function startW() {
+   if(!config.admin_watch) return // if you mount more than one admin: only one should 'file watch'
+
    setTimeout(function(){
       w.start()
       console.log('// READY //////////////////////////////////////////////////////')

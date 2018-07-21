@@ -13,6 +13,7 @@ Services are the API endpoints.
 
       admin_www: /root/admin/www_admin/
       admin_port: 9082
+      admin_watch: true # if you mount more than one admin: only one should 'file watch'
 
       services_port: 9083
       secret: 321

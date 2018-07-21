@@ -71,7 +71,7 @@
       function loginTry(arg) {
          console.log('try')
       
-         const baseURL = 'http://localhost:9083' // EDIT this and nbake
+         const baseURL = 'http://localhost:9083' // EDIT this and mbake
       
          isLoggedIn(baseURL).then(function() {
                console.log('Lxxx yes')
@@ -163,8 +163,14 @@
                     <input id="dest" type="text">
                   </div>
                 </div>
-                <div data-row-span="1"></div>
-              </fieldset><br>
+                <!--div(data-row-span="1")--><br>
+                <legend>Comment</legend>
+                <div data-row-span="1">
+                  <div class="field" data-field-span="1">
+                    <textarea id="com" rows="10" cols="50"></textarea>
+                  </div>
+                </div>
+              </fieldset>
               <div class="message is-warning" id="linkBlogMsgWrap">
                 <div class="message-body" id="linkBlogMsg"></div>
               </div>
@@ -178,8 +184,9 @@
                     let url = $('#ext').val()
                     let src = $('#src').val()
                     let dest = $('#dest').val()
+                    let com  = $('#com').val()
               
-                    window.aSrv.newLinkBlog(src, dest, url).then(newLinkRes)
+                    window.aSrv.newLinkBlog(src, dest, url, com).then(newLinkRes)
                  })// click
               })//ready
               
