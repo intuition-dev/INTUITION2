@@ -111,6 +111,7 @@ server.post('/api/newLinkBlog', function (req, res) {
    let src = qs['src']
    let dest = qs['dest']
    let comment = req.body.comment
+   let tags = req.body.tags
 
    try {
       sc.s(url)
@@ -120,32 +121,32 @@ server.post('/api/newLinkBlog', function (req, res) {
             const p = config.mount + dest
             logger.trace(p)
 
-            const d = new Dat(p)
+            let d = new Dat(p)
             let imgUrl = resp['image']
+            d.set('tags', tags)
             d.set('title', resp['title'])
             d.set('image', imgUrl)
-            d.set('content_text', resp['content_text'])
-            d.set('comment', resp['comment'])
+            d.set('content_text', comment)
+            d.set('comment', resp['content_text'])
             d.set('external_url', url)
             d.set('date_published', (new Date()).toISOString() )
             d.write() //w2
 
             Scrape.getImageSize('https://i.imgur.com/YdwRA30.jpg').then(function(idata){
-               console.log('II scrape IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
-               logger.trace(JSON.stringify(idata))
                d.set('img_w',idata['width'])
                d.set('img_h',idata['height'])
                d.set('img_typ',idata['type'])
                d.set('img_sz',idata['length'])
                setTimeout(function() {
                   d.write() //w3
-               },100)
+               },50)
             })
 
             // respond
             let ret:RetMsg = new RetMsg('sc',1, resp)
             res.json(ret)
 
+            logger.trace(comment)
             // write md
             let md = dest+'/comment.md'
             logger.trace(md)

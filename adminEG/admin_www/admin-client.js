@@ -143,15 +143,16 @@ class MetaAdminService {
     * @param dest - e.g. '/blog/newOne'
     * @param url - e.g. 'https://www.usatoday.com/sports/'
     * @param comment # in Markdown - e.g. 'This is an interesting article'
+    * @param tags # CSV, eg: one, two
     */
-   newLinkBlog(src, dest, url, comment_) {
+   newLinkBlog(src, dest, url, comment_, tags) {
       let arg = '?url='+btoa(url)
       arg = arg + '&src=' + src
       arg = arg + '&dest=' + dest
       console.log(arg)
 
       return this.service.post('/api/newLinkBlog'+arg, {
-         comment: comment_
+         comment: comment_, tags: tags_
       })
    }
    /**

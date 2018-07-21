@@ -3,8 +3,7 @@
 admin_www: /Users/uptim/Documents/GitHub/Meta/adminEG/admin_www
 #admin_www: /root/admin/www_admin
 admin_port: 9082
-admin_watch: true
-
+admin_watch: true 
 # admin services for app
 services_port: 9083
 secret: 321

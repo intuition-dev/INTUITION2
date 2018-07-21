@@ -95,28 +95,27 @@ server.post('/api/newLinkBlog', function (req, res) {
             fo.clone(src, dest);
             const p = config.mount + dest;
             logger.trace(p);
-            const d = new Base_1.Dat(p);
+            let d = new Base_1.Dat(p);
             let imgUrl = resp['image'];
             d.set('title', resp['title']);
             d.set('image', imgUrl);
             d.set('content_text', resp['content_text']);
-            d.set('comment', resp['comment']);
+            d.set('comment', comment);
             d.set('external_url', url);
             d.set('date_published', (new Date()).toISOString());
             d.write();
             Base_1.Scrape.getImageSize('https://i.imgur.com/YdwRA30.jpg').then(function (idata) {
-                console.log('II scrape IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
-                logger.trace(JSON.stringify(idata));
                 d.set('img_w', idata['width']);
                 d.set('img_h', idata['height']);
                 d.set('img_typ', idata['type']);
                 d.set('img_sz', idata['length']);
                 setTimeout(function () {
                     d.write();
-                }, 100);
+                }, 50);
             });
             let ret = new Base_1.RetMsg('sc', 1, resp);
             res.json(ret);
+            logger.trace(comment);
             let md = dest + '/comment.md';
             logger.trace(md);
             fo.write(md, comment);
