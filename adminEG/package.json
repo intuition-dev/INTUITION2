@@ -1,7 +1,7 @@
 {
   "name": "YourMetaAdminBuild",
   "version": "1.0.0",
-  "description": "",
+  "description": "xx",
   "main": "index.js",
   "license": "GPL3",
   "dependencies": {
@@ -9,6 +9,6 @@
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-basic-auth": "^1.1.5",
-    "mbake": "^3.7.51"
+    "mbake": "^3.7.52"
   }
 }
