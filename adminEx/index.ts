@@ -121,30 +121,37 @@ server.post('/api/newLinkBlog', function (req, res) {
             logger.trace(p)
 
             const d = new Dat(p)
+            let imgUrl = resp['image']
             d.set('title', resp['title'])
-            d.set('image', resp['image'])
+            d.set('image', imgUrl)
             d.set('content_text', resp['content_text'])
+            d.set('comment', resp['comment'])
             d.set('external_url', url)
             d.set('date_published', (new Date()).toISOString() )
-
-            try {
-               let idata = sc.getImageSize(resp['image'])
-               logger.trace(JSON.stringify(idata))
-               d.set('img_w',idata['width'])
-               d.set('img_h',idata['height'])
-               d.set('img_typ',idata['type'])
-               d.set('img_sz',idata['length'])
-            } catch(err) {logger.info(err) }// sometimes no image
             d.write()
 
-            // respond
-            let ret:RetMsg = new RetMsg('sc',1, resp)
-            res.json(ret)
+            sc.getImageSize(imgUrl, function(err,idata) {
+               // respond
+               let ret:RetMsg = new RetMsg('sc',1, resp)
+               res.json(ret)
+
+               if(err) {
+                     logger.trace(err)
+                     return
+                  }
+                  logger.trace(JSON.stringify(idata))
+                  d.set('img_w',idata['width'])
+                  d.set('img_h',idata['height'])
+                  d.set('img_typ',idata['type'])
+                  d.set('img_sz',idata['length'])
+                  d.write()
+               })
 
             // write md
             let md = dest+'/comment.md'
             logger.trace(md)
             fo.write(comment, md)
+
          })
    } catch(err) {
       console.log('// ERR //////////////////////////////////////////////////////')
