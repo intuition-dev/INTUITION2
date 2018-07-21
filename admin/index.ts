@@ -11,6 +11,8 @@ const basicAuth = require('express-basic-auth')
 const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
+const bodyParser = require('body-parser')
+
 
 import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps, Dat, Ver } from 'mbake/lib/Base'
 
@@ -27,6 +29,10 @@ server.use(basicAuth({
 }))
 
 // routes ///////////////////////////////////////
+server.use(bodyParser())
+server.use(bodyParser.urlencoded({ extended: false }))
+server.use(bodyParser.json())
+
 const mp = new MetaPro(config)
 const sc = new Scrape()
 const fo = new FileOps(config.mount)
@@ -94,7 +100,7 @@ server.get('/api/scrape', function (req, res) {
    })
 })//api
 
-server.get('/api/newLinkBlog', function (req, res) {
+server.post('/api/newLinkBlog', function (req, res) {
    console.log(' newLinkBlog')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
@@ -104,6 +110,8 @@ server.get('/api/newLinkBlog', function (req, res) {
 
    let src = qs['src']
    let dest = qs['dest']
+   let comment = req.body.comment
+
    try {
       sc.s(url)
          .then(function(resp){
@@ -111,6 +119,7 @@ server.get('/api/newLinkBlog', function (req, res) {
             fo.clone(src,dest)
             const p = config.mount + dest
             logger.trace(p)
+
             const d = new Dat(p)
             d.set('title', resp['title'])
             d.set('image', resp['image'])
@@ -118,11 +127,22 @@ server.get('/api/newLinkBlog', function (req, res) {
             d.set('external_url', url)
             d.set('date_published', (new Date()).toISOString() )
 
+            try {
+               let idata = sc.getImageSize(resp['image'])
+               d.set('img_w',idata['width'])
+               d.set('img_h',idata['height'])
+               d.set('img_typ',idata['type'])
+               d.set('img_sz',idata['length'])
+            } catch(err) {logger.info(err) }// sometimes no image
             d.write()
+
             // respond
             let ret:RetMsg = new RetMsg('sc',1, resp)
             res.json(ret)
-      })
+
+            // write md
+            fo.write(comment, dest+'/comment.md')
+         })
    } catch(err) {
       console.log('// ERR //////////////////////////////////////////////////////')
       console.log(err)

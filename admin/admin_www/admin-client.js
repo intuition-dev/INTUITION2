@@ -142,13 +142,17 @@ class MetaAdminService {
     * @param src - e.g. '/blog/one'
     * @param dest - e.g. '/blog/newOne'
     * @param url - e.g. 'https://www.usatoday.com/sports/'
+    * @param comment # in Markdown - e.g. 'This is an interesting article'
     */
-   newLinkBlog(src, dest, url) {
+   newLinkBlog(src, dest, url, comment_) {
       let arg = '?url='+btoa(url)
       arg = arg + '&src=' + src
       arg = arg + '&dest=' + dest
       console.log(arg)
-      return this.service.get('/api/newLinkBlog'+arg)
+
+      return this.service.post('/api/newLinkBlog'+arg, {
+         comment: comment_
+      })
    }
    /**
     * Clones a folder/screen. The cloned is set to 'publish: false' in dat.yaml.
