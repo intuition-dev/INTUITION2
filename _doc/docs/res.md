@@ -20,6 +20,7 @@ To get an overview of MetaBake pillars, this may help [MetaBake Slides](http://p
 - Server-less: No known end point. E.g.: CDN, AWS Cognito. Not server-less in Meta-talk: AWS Lambda
 - Team Player: Benefits group via Cloud Dev Environment, ex: CodeAnywhere+Meta. Selfish: Local dev. environment.
 - Front End Framework: Google/search for 'Front End Framework' yields Bootstrap, Bulma, etc. We have examples with a few in Github project of same name.
+- Meta: Building software that builds software. Has more than one level of meaning.
 
 ### Other:
 
@@ -41,6 +42,8 @@ To get an overview of MetaBake pillars, this may help [MetaBake Slides](http://p
 - [Prepros.io](https://prepros.io/help/autoprefixer)
 - [Front End Framework Examples](https://github.com/metabake/front-end-frameworks)
 - [More examples and plugins](https://github.com/metabake/examples-plugins)
+- [High tech](https://engineering.videoblocks.com/web-architecture-101-a3224e126947?gi=8a9df433a15f) Server-less is low tech. As opposed to high tech.
+- [Automatic programing](https://en.wikipedia.org/wiki/Automatic_programming)
 
 ## Commercial hosting, services and support for MetaBake
 
@@ -52,7 +55,7 @@ To get an overview of MetaBake pillars, this may help [MetaBake Slides](http://p
 #### Videos:
 
 - [Pug on Youtube](http://youtube.com/watch?v=wzAWI9h3q18)
-- http://youtube.com/watch?v=jQHRLH_4p0E mbake
+- [mBake foundations](http://youtube.com/watch?v=jQHRLH_4p0E)
 - [WebIDE](https://youtu.be/CMUiPC0YtYA)
 - [SPA](https://youtu.be/LHFjjDPlU3A)
 - [Meta Eg 1](http://youtube.com/watch?v=c4mWhefhOoQ)
