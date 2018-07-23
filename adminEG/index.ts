@@ -190,7 +190,7 @@ setTimeout(function(){
    console.log('Startup build:')
    mp.tagRoot()
    startW()
-}, 3000)
+}, 4000)
 
 function startW() {
    if(!config.admin_watch) return // if you mount more than one admin: only one should 'file watch'

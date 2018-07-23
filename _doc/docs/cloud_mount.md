@@ -37,6 +37,20 @@
 3. With S3, in CodeAnywhere, map to the build server to use the production with 'watch' feature.
 We have S3 inside the container.
 
+4. Once in CodeAnywhere ssh: mbake -a
+
+Now edit /root/adminEG/admin.yaml.
+
+And edit /root/adminEG/admin_www/layout/modal.pug # set services to IP
+and mbake admin_www.
+
+5. ts-node index.ts
+
+Add this to your app:
+
+       <script src="/reload/reload.js"></script>
+
+
 ### Done
 
 At the end of the setup, you should have a connection and 2 mounts per project:
