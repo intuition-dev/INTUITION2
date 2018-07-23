@@ -54,11 +54,15 @@ To get an overview of MetaBake pillars, this may help [MetaBake Slides](http://p
 
 #### Videos:
 
+- [MetaBake](https://youtu.be/WyCdSFTUIvM)
+- [MetaBake Slides](http://prez.metabake.org/p)
+- [Meetup Video](https://vimeo.com/280212026)
+
 - [Pug on Youtube](http://youtube.com/watch?v=wzAWI9h3q18)
 - [mBake foundations](http://youtube.com/watch?v=jQHRLH_4p0E)
-- [WebIDE](https://youtu.be/CMUiPC0YtYA)
 - [SPA](https://youtu.be/LHFjjDPlU3A)
 - [Meta Eg 1](http://youtube.com/watch?v=c4mWhefhOoQ)
+- [MetaBake Sales Summary](https://www.youtube.com/watch?v=OK-cJNSkQII)
 
 ### Creators of Meta
 
