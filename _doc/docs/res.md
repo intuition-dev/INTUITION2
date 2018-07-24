@@ -54,16 +54,19 @@ To get an overview of MetaBake pillars, this may help [MetaBake Slides](http://p
 
 #### Videos:
 
-- [MetaBake](https://youtu.be/WyCdSFTUIvM)
+- [MetaBake quick demo](https://youtu.be/WyCdSFTUIvM)
 - [MetaBake Slides](http://prez.metabake.org/p)
 - [Meetup Video](https://vimeo.com/280212026)
+- [MetaBake Sales Summary](https://www.youtube.com/watch?v=OK-cJNSkQII)
 
 - [Pug on Youtube](http://youtube.com/watch?v=wzAWI9h3q18)
 - [mBake foundations](http://youtube.com/watch?v=jQHRLH_4p0E)
 - [SPA](https://youtu.be/LHFjjDPlU3A)
 - [Meta Eg 1](http://youtube.com/watch?v=c4mWhefhOoQ)
-- [MetaBake Sales Summary](https://www.youtube.com/watch?v=OK-cJNSkQII)
 
 ### Creators of Meta
 
 We were involved with Struts and SilverStream. We plan to make MetaBake more popular than both.
+
+
+- Doc version 3.7.57a

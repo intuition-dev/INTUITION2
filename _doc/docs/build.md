@@ -35,9 +35,6 @@ Now you can:
 - Most importantly, you can customize the admin 'portal'; a bespoke Admin/build. (*_MetaBake_ pillar 10)
 
 
-### Remote teams
-
-This also enables new management methodologies, e.g. 'Flash Teams' (*_MetaBake_ pillar 8)
 
 
 
