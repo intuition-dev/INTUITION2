@@ -4,31 +4,22 @@
 
 - Create a CodeAnywhere account
 
-Use a WebIDE to be a team player and remote friendly. (*_MetaBake_ pillar 9). Using CodeAnywhere ("CA"), connect to SSH or S3. To enable Pug, in the bottom right corner, next to indentation mark, click on the "editor mode" and select "Pug" from the list.
+Use a WebIDE to be a team player and remote friendly. (*_MetaBake_ pillar 9). Using CodeAnywhere ("CA"), connect to SSH / S3. To enable Pug, in the bottom right corner, next to indentation mark, click on the "editor mode" and select "Pug" from the list.
 
+You can choose a commercial vendor to setup and co-host your Meta admin/build environment, or just use the open-source version. They are listed on Resources page (click on the left).
+With this section, we now eschew local development and instead develop in the cloud.
 
-You can choose a commercial vendor to setup and co-host your Meta admin/build environment, or just use the open-source version. They are listed on Resources page (click on the left). Continue here with open source:
+Continue here with open source, all linked from the left.
+Note that before you start with this Meta/Vista section of Metabake, you should be comfortable with mbake/foundations section.
 
-Create a Linux VM; install NodeJS. We also recommend to install ts-node.
+1. WebIDE w/ mount (Pillar 9)
+2. File Watcher
 
-      npm -g i mbake
-      cd root
-      # extract the starter admin app
-      mbake -a
-      cd admin     # /root/admin
-      mkdir prod   # you'll mount your production app here
+Above 2 should be something like this:
+- http://youtube.com/watch?v=WyCdSFTUIvM
 
+3. What is Meta? (Pillar 10)
 
-- You should edit `admin.yaml` in this folder.
-- You will also need to edit ~/admin/admin_www/layout/modal.pug to point to the host (  const baseURL = 'http://localhost:9083'
- ) and mbake it.
-
-
-The admin app can only mbake; admin Meta can't bake itelf. You may prefer ts-node, but we support plain node as well.
-
-Now connect CodeAnywhere to /root (or whatever directory here) via SSH mount. Now CodeAnywhere is connected to your Meta admin/build; and soon it will be connected to your S3 production environment.
-
-Continue next, or click Cloud Mount (on the right).
 
 
 
