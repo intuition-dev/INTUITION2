@@ -1,18 +1,20 @@
 
 # Resources
 
-## TOC:
+# TOC:
 
-Tese are the 3 main project, that leverage the 10 pillars:
+These are the 3 main project, that leverage the 10 pillars:
 
-- [mbake](http://doc.metabake.org/mbake); CLI, step 1, give it stars: '*'
-- [SPA](http://doc.metabake.org/SPA); eg. Brick and Mortar, ex: PhoneGap v8
-- [Meta](http://doc.metabake.org/meta); Bespoke starter for Admin/Build Services and WebIDE
+- [mbake](http://doc.metabake.org/mbake); CLI, and foundation. Plese give it stars: '*'
+- [SPA](http://doc.metabake.org/SPA); eg. Brick and Mortar, examples, eg: PhoneGap v8
+- [Meta](http://doc.metabake.org/meta); Vista, Bespoke starter for Admin/Build Services and WebIDE
 
 'Train-the-Trainer' is scheduled about monthly, and it is announced in the forum. Feel free to post questions there.
 
-- [Pug](https://pug.metabake.org)
-- <a href='http://chat.metabake.org' target='_blank'>Forum/Chat</a>, to support this project, please join!
+- <a href='http://chat.metabake.org' target='_blank'>Forum/Chat</a>.
+
+Prerequisites: you should know HTML and CSS. If you need to catch up, we recommend 'Design and Build Websites' by Jon Duckett. You will also learn Pug, to get started on Pug, watch [Pug on Youtube](http://youtube.com/watch?v=wzAWI9h3q18)
+
 
 ## Commercial hosting, services and support for MetaBake
 
@@ -20,6 +22,7 @@ Tese are the 3 main project, that leverage the 10 pillars:
 - <http://voncode.com>
 - <http://code83.com>
 - <http://fabianocunha.io>
+
 
 #### Videos:
 
@@ -51,7 +54,7 @@ Sins to eschew:
 ### Other:
 
 - <a href='https://www.npmjs.com/package/mbake' target='_blank'>Check for latest version of mbake</a>
-
+- [Pug](https://pug.metabake.org)
 - [RIOTjs](https://riot.js.org/)
 - [Grid Forms](http://kumailht.com/gridforms)
 - [Bulma CSS](https://bulma.io/documentation/components)
@@ -76,5 +79,4 @@ Sins to eschew:
 
 We were involved with Struts and SilverStream. We plan to make MetaBake more popular than both.
 
-
-- Doc version 3.7.57d
+- Doc version 3.7.57e
