@@ -5,7 +5,7 @@
 
 These are the 3 main project, that leverage the 10 pillars:
 
-- [mbake](http://doc.metabake.org/mbake); CLI, and foundation. Plese give it stars: '*'
+- [mbake](http://doc.metabake.org/mbake); CLI, and foundation. Please give it stars: '*'
 - [SPA](http://doc.metabake.org/SPA); eg. Brick and Mortar, examples, eg: PhoneGap v8
 - [Meta](http://doc.metabake.org/meta); Vista, Bespoke starter for Admin/Build Services and WebIDE
 
@@ -27,8 +27,8 @@ Prerequisites: you should know HTML and CSS. If you need to catch up, we recomme
 #### Videos:
 
 - [MetaBake quick demo](https://youtu.be/WyCdSFTUIvM)
-- [MetaBake Slides](http://prez.metabake.org/p)
 - [Meetup Video](https://vimeo.com/280212026)
+- [MetaBake Slides](http://prez.metabake.org/p)
 - [mbake part 1](https://youtu.be/-KkPfAnEXyk)
 - [MetaBake Sales Summary](https://www.youtube.com/watch?v=OK-cJNSkQII)
 
@@ -79,4 +79,4 @@ Sins to eschew:
 
 We were involved with Struts and SilverStream. We plan to make MetaBake more popular than both.
 
-- Doc version 3.7.57e
+- Doc version 3.7.61
