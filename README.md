@@ -3,6 +3,13 @@
 - <a href='http://doc.metabake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
 - <a href='http://chat.metabake.org' target='_blank'>Chat: metabake.org</a>
 
+
+## Join the low code movement,
+### for 10X faster web app development, with MetaBake.org
+
+-[Upcoming online class](https://www.eventbrite.com/e/join-the-low-code-movement-develop-crud-faster-with-pug-riot-firebase-and-s3-tickets-48524849130)
+
+
 # About MetaBake
 
 MetaBake is a development productivity suite. It should allow you to deliver 10 times faster then legacy development stacks/methodologies. We have found that - with MetaBake - the work of 6 developers over 6 months can be done by 3 developers in 3 weeks. We expect you to achieve the same productivity gains.
