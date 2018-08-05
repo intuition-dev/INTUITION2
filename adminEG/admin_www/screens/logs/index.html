@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>ROOT = '' //- sets global pug and .js from dat.yaml
+      console.log('root','')
+      let _start=Date.now()
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MetaBake.org</title>
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/riot@3.11.1/riot.min.js"></script>
+    <style>
+      .delayShowing { opacity: 0.01; }
+      #head {
+         position: fixed;
+         top: 0px;
+         width: 100%;
+         z-index: 1;
+      }
+      #menu{
+         height: 100vh;
+         width: 200px;
+         flex-basis: 200px;
+         flex-grow: 0;
+         flex-shrink: 0;
+         position: fixed;
+         top: 58px;
+      
+      }
+      #router {
+         position: absolute;
+         top: 64px;
+         left: 204px;
+         width: calc( 100vw - 240px)
+      }
+    </style>
+    <!--link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')-->
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="/assets/js/setup.js"></script>
+    <div class="modal is-active" id="loginScr">
+      <div class="modal-background"></div>
+      <div class="modal-card delayShowing">
+        <header class="modal-card-head"></header>
+        <section class="modal-card-body">
+          <div class="grid-form" autocomplete="off">
+            <fieldset>
+              <legend>Login</legend>
+              <div data-row-span="1">
+                <div class="field" data-field-span="1">
+                  <label>Secret Code</label>
+                  <input id="code" type="password" autofocus="">
+                </div>
+              </div>
+            </fieldset>
+            <div class="message is-warning" id="loginMsg">
+              <div class="message-body">Unable to serve. Is the secret code correct?</div>
+            </div>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <input class="button is-success" id="butLog" type="submit" value="Login">
+        </footer>
+      </div>
+    </div>
+    <script>
+      function loginTry(arg) {
+         console.log('try')
+      
+         const baseURL = 'http://localhost:9083' // EDIT this and mbake
+      
+         isLoggedIn(baseURL).then(function() {
+               console.log('Lxxx yes')
+               $('#loginScr').removeClass('is-active') // show app
+               const aa = new AdminAuth()
+               console.log(aa.secret)
+               window.aSrv = new MetaAdminService(baseURL, aa.secret)
+               window.login.dispatch()
+               $('.delayShowing').removeClass('delayShowing')
+      
+            }, function() { // 'fail'
+                  onLogout(arg)
+                  $('.delayShowing').removeClass('delayShowing')
+      
+         })
+      }//()
+      
+      function onLogout(arg) {
+         console.log('LXXX no')
+         new AdminAuth().clear()
+         $('#loginScr').addClass('is-active') // hide app
+         try {
+            delete window.aSrv
+         } catch(err) { console.log(err) }
+         if(arg) $('#loginMsg').show(0)
+         else $('#loginMsg').hide(0) // no message
+      
+      }
+      
+      function setupLogin() {
+         $('#loginMsg').hide(0) // no message
+      
+         $('#butLog').click(function(){
+            let code = $('#code').val()
+            let aa = new AdminAuth()
+            aa.save(code)
+            console.log(aa.secret)
+            loginTry(true)
+         })
+          $('#butLogOut').click(function(){
+            onLogout(false)
+         })
+      
+         loginTry(false)
+      }
+      
+      loadjs.ready(['style','ma-client'], function () {
+         setupLogin()
+      })
+    </script>
+    <div class="delayShowing" id="head">
+      <nav class="columns has-background-black has-text-white is-mobile is-gapless">
+        <div class="column left">
+          <div class="pad">My Admin</div>
+        </div>
+        <div class="column right">
+          <div class="pad">
+            <button class="button" id="butLogOut">Logout</button>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="columns is-gapless delayShowing">
+      <div class="column has-background-black has-text-white" id="menu">
+        <ul class="menu-list" id="offItems">
+          <li><a href="/screens/logs">Logs</a></li>
+          <li></li><a href="/screens/linkBlog">LinkBlog</a>
+        </ul>
+      </div>
+      <div class="column">
+        <div id="router">
+          <script src="tags/last-tag.js"></script><script src="/reload/reload.js"></script>
+          <last-tag></last-tag>
+          <!--link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')-->
+          <script>
+            loadjs.ready(['style','ma-client'], function () {
+               window.login.add(onLogin)
+            })
+            
+            let lastTag = riot.mount('last-tag')[0]
+            function onLogin() {
+               console.log('on login')
+               lastTag.showLast()
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+    <link href="/assets/css/bulma.css" onload="cssLoaded()" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <script>
+      function userSzSc() {
+         console.log('resize|scroll')
+      }
+    </script>
+  </body>
+</html>

@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 loadjs([
    'https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
-   , 'https://unpkg.com/vivid-icons@1.0.3/dist/vivid-icons.min.js'
+   , 'https://unpkg.com/vivid-icons@1.0.9/dist/vivid-icons.min.js'
    , 'https://unpkg.com/axios/dist/axios.min.js'
    , ROOT + '/assets/css/gridforms/gridforms.css'
    , 'https://cdn.rawgit.com/terrylinooo/jquery.disableAutoFill/92cb6f86/src/jquery.disableAutoFill.js'
@@ -47,8 +47,26 @@ loadjs.ready(['css', 'device', 'cssJs'], function () {
    loadjs.done('style')
 })
 
+let _scSz = true
+function setupUserSzSc() {
+   $( window ).scroll( function() {
+      _scSz = true
+   })
+   $( window ).resize(function() {
+      _scSz = true
+   })
+}//()
+setInterval( function() {
+  if ( _scSz ) {
+   _scSz = false
+   userSzSc()
+  }
+}, 150)
+
 // usage: ////////////////////////////////////////////////////////////////////
 loadjs.ready(['style'], function () {// 'show' page, ex: unhide
+   setupUserSzSc()
+
    console.log('style done', Date.now() - _start)
 })//ready
 
