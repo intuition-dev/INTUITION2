@@ -8,10 +8,13 @@ a:focus { outline: none; }
 }
 
 /* nav */
+
+.menu-list a {    text-decoration: none; }
+
 nav {
    margin-bottom: 0 !important;
    padding-right: .75rem;
-   
+
 }
 nav a {
    color: hsl(0, 0%, 86%) !important;
