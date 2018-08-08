@@ -40,6 +40,8 @@
 
 		// check to see your S3 webapp files
 		ls -la
+      
+      // if errors, check /var/log/syslog for direction
 
 3. Now you can edit and ... from CodeAnywhere ssh: mbake -a
 
