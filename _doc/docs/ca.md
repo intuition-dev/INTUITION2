@@ -1,13 +1,13 @@
 
 # Setup cloud dev.
 
-1. Setup up a linux box in the cloud, eg: Digital Ocean.
+1. Setup up a Linux box in the cloud, e.g. Digital Ocean.
 
-2. Setup a WebIDE account: EG Code Anywhere (CA)
+2. Setup a Web IDE account, e.g. CodeAnywhere (CA)
 
-3. In CA, connect to the linux box.
+3. In CA, connect to the Linux box.
 
-4. In CA, open SSH to the linux box.
+4. In CA, open SSH to the Linux box.
 
 
 ### Cloud Mount S3
