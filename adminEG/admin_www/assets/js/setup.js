@@ -17,7 +17,8 @@ $(document).ready(function () {
 
 loadjs([
    'https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
-   , 'https://unpkg.com/vivid-icons@1.0.9/dist/vivid-icons.min.js'
+   , 'https://use.fontawesome.com/releases/v5.2.0/js/solid.js'
+   , 'https://use.fontawesome.com/releases/v5.2.0/js/fontawesome.js'
    , ROOT + '/assets/css/gridforms/gridforms.css'
    , 'https://cdn.rawgit.com/terrylinooo/jquery.disableAutoFill/92cb6f86/src/jquery.disableAutoFill.js'
 
