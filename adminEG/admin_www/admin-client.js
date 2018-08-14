@@ -5,9 +5,9 @@
 // Version should sync w/ mbake version due to -a
 
 /**
- * Version v3.8.8
+ * Version v3.8.10
  */
-console.log('ma-client-services', 'v3.8.8')
+console.log('ma-client-services', 'v3.8.10')
 
 /**
 * Login and logout to Meta Admin Service
