@@ -2,13 +2,11 @@
 
 - <a href='https://youtu.be/CMUiPC0YtYA' target='_blank'>WebIDE video</a>
 - <a href='http://doc.metabake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
-- <a href='http://chat.metabake.org' target='_blank'>Chat: metabake.org</a>
+
 
 ## Low-code + Low-tech = 10X faster web app development.
 ### With Metabake's modern development approach, it is not about replacing your tech stack with another tech stack -- it is about eliminating it!
 
-
--[Upcoming online class](https://www.eventbrite.com/e/join-the-low-code-movement-develop-crud-faster-with-pug-riot-firebase-and-s3-tickets-48524849130)
 
 # About Metabake
 
