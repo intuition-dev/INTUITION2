@@ -1,0 +1,17 @@
+extends /layout/_layout
+//- App Shell
+
+block head
+	//static binding ex:
+	title #{title}
+
+block main
+	p
+	.ui.text.container
+		include modB
+
+	script.
+		loadjs.ready('style', function () {
+			console.log('page 1 script here')
+		})
+
