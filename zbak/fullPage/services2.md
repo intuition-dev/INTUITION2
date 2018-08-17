@@ -1,0 +1,6 @@
+- High margins and cash distributions with lower volatility
+- Inflation protection
+- Creditworthy counterparties
+- Minimal exposure to commodity price volatility
+- Limited operating and technology risk
+- Multiple exit opportunities
