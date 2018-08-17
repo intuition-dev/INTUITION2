@@ -427,7 +427,6 @@ class: center, middle
 ### vic@MetaBake.org
 ## http://chat.MetaBake.org
 ## To get started: npm -g i mbake
-## mbake -m # will let you start with mock-ups!!!
 
 ---
 
