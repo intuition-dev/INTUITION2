@@ -9,7 +9,7 @@ html
       meta(http-equiv='X-UA-Compatible', content='IE=edge')
       meta(name='viewport', content='width=device-width, initial-scale=1')
       title MetaBake.org
-      link(rel='shortcut icon', href= ROOT + '/assets/favicon.png', type='image/x-icon')
+      link(rel='shortcut icon', href= ROOT + 'assets/favicon.png', type='image/x-icon')
       script(src='https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js')
       script(src='https://cdn.jsdelivr.net/npm/riot@3.11.1/riot.min.js')
       script(src='https://unpkg.com/axios@0.18.0/dist/axios.min.js')
@@ -38,10 +38,10 @@ html
                left: 204px;
                width: calc( 100vw - 240px)
             }
-      //link(href= ROOT + '/assets/css/debug.css', rel='stylesheet')
+      //link(href= ROOT + 'assets/css/debug.css', rel='stylesheet')
    body
       script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
-      script(src= ROOT + '/assets/js/setup.js')
+      script(src= ROOT + 'assets/js/setup.js')
 
       include modal
 
@@ -57,17 +57,17 @@ html
          #menu.column.has-background-black.has-text-white
             ul.menu-list#offItems
                li
-                  a(href=ROOT + '/screens/logs') Logs
+                  a(href=ROOT + 'screens/logs') Logs
                li
-               a(href= ROOT + '/screens/linkBlog') LinkBlog
+               a(href= ROOT + 'screens/linkBlog') LinkBlog
 
          .column
             #router
                block main
 
-      link(href= ROOT + '/assets/css/bulma.css', onload='cssLoaded()', rel='stylesheet')
+      link(href= ROOT + 'assets/css/bulma.css', onload='cssLoaded()', rel='stylesheet')
       link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet')
-      link(href= ROOT + '/assets/css/main.css', rel='stylesheet')
+      link(href= ROOT + 'assets/css/main.css', rel='stylesheet')
       script.
          function userSzSc() {
             console.log('resize|scroll')
