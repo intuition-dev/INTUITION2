@@ -62,12 +62,12 @@
    flex-grow: 0;
    flex-shrink: 0;
    position: fixed;
-   top: 58px;
-
+   top: 0;
+   margin-top: 60px;
 }
+
 #router {
-   position: absolute;
-   top: 64px;
-   left: 204px;
-   width: calc( 100vw - 240px)
+   width: calc( 100vw - 240px);
+   margin-top: 4px;
+   margin-left: 204px;
 }

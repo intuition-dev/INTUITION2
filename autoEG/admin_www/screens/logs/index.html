@@ -22,20 +22,34 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="/assets/js/setup.js"></script>
     <div class="delayShowing flex edge bblack white pad" id="head">
-      <h3 class="left navbar-brand" id="navbarBrand">My Admin</h3>
+      <h3 class="left navbar-brand text-bold" id="navbarBrand">My Admin</h3>
       <div class="right">
         <button class="btn" id="butLogOut">Logout</button>
       </div>
     </div>
-    <div class="columns is-gapless delayShowing">
-      <div class="column has-background-black has-text-white" id="menu">
-        <ul class="menu-list" id="offItems">
-          <li><a href="/screens/logs">Logs</a></li>
-          <li></li><a href="/screens/linkBlog">LinkBlog</a>
+    <div class="columns delayShowing">
+      <div class="column bblack white pad" id="menu">
+        <ul class="nav">
+          <li class="nav-item"><a href="/screens/logs">Logs</a></li>
+          <li class="nav-item"><a href="/screens/linkBlog">LinkBlog</a></li>
         </ul>
       </div>
       <div class="column">
         <div id="router">
+          <script src="tags/last-tag.js"></script><script src="/reload/reload.js"></script>
+          <last-tag></last-tag>
+          <!--link(href= ROOT + 'assets/css/debug.css', rel='stylesheet')-->
+          <script>
+            loadjs.ready(['style','ma-client'], function () {
+               window.login.add(onLogin)
+            })
+            
+            let lastTag = riot.mount('last-tag')[0]
+            function onLogin() {
+               console.log('on login')
+               lastTag.showLast()
+            }
+          </script>
         </div>
       </div>
     </div>

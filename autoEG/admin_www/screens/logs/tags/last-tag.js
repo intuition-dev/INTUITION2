@@ -1,5 +1,5 @@
 
-riot.tag2('last-tag', '<p>{last}</p>', '', '', function(opts) {
+riot.tag2('last-tag', '<p>Last response</p> <p>{last}</p>', '', '', function(opts) {
     let thiz = this
     this.showLast = function() {
        console.log('show ')

@@ -17,22 +17,23 @@ html
       style.
             .d0elayShowing { opacity: 0.01; }
 
+   -// https://mxb.at/blog/css-grid-admin-dashboard/
    body
       script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
       script(src= ROOT + 'assets/js/setup.js')
 
       #head.delayShowing.flex.edge.bblack.white.pad
-         h3#navbarBrand.left.navbar-brand My Admin
+         h3#navbarBrand.left.navbar-brand.text-bold My Admin
          .right
             button#butLogOut.btn Logout
 
-      .columns.is-gapless.delayShowing
-         #menu.column.has-background-black.has-text-white
-            ul.menu-list#offItems
-               li
+      .columns.delayShowing
+         #menu.column.bblack.white.pad
+            ul.nav
+               li.nav-item
                   a(href=ROOT + 'screens/logs') Logs
-               li
-               a(href= ROOT + 'screens/linkBlog') LinkBlog
+               li.nav-item
+                  a(href= ROOT + 'screens/linkBlog') LinkBlog
 
          .column
             #router
