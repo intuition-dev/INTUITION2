@@ -1,21 +1,20 @@
-#loginScr.modal.is-active
-   .modal-background
-
-   .modal-card.delayShowing
-      header.modal-card-head
-      section.modal-card-body
-         .grid-form(autocomplete="off")
+#loginScr.modal.active
+   .modal-container.delayShowing
+      .modal-header
+      .modal-body
+         form.grid-form(autocomplete="off")
             fieldset
                legend Login
                div(data-row-span="1")
                   .field(data-field-span="1")
                      label Secret Code
                      input#code(type="password", autofocus="")
-            #loginMsg.message.is-warning
-               .message-body Unable to serve. Is the secret code correct?
 
-      footer.modal-card-foot
-         input#butLog.button.is-success(type="submit", value='Login')
+            br
+            #loginMsg.toast.toast-warning Unable to serve. Is the secret code correct?
+
+      .modal-footer
+         button#butLog.btn  Login
 
 
 script.
@@ -27,14 +26,14 @@ script.
 
       isLoggedIn(baseURL).then(function() {
             console.log('Lxxx yes')
-            $('#loginScr').removeClass('is-active') // show app
+            $('#loginScr').removeClass('active') // show app
             const aa = new AdminAuth()
             console.log(aa.secret)
             window.aSrv = new MetaAdminService(baseURL, aa.secret)
             window.login.dispatch()
             $('.delayShowing').removeClass('delayShowing')
 
-         }, function() { // 'fail'
+         }, function() {
                onLogout(arg)
                $('.delayShowing').removeClass('delayShowing')
 
@@ -44,7 +43,7 @@ script.
    function onLogout(arg) {
       console.log('LXXX no')
       new AdminAuth().clear()
-      $('#loginScr').addClass('is-active') // hide app
+      $('#loginScr').addClass('active') // hide app
       try {
          delete window.aSrv
       } catch(err) { console.log(err) }
