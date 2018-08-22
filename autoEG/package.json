@@ -5,8 +5,8 @@
   "main": "index.js",
   "license": "GPL3",
   "engines": {
-      "node": ">=6.12"
-   },
+    "node": ">=6.12"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",

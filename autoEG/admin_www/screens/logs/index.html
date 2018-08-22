@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/riot@3.11.1/riot.min.js"></script>
     <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
     <style>
-      .delayShowing { opacity: 0.2; }
+      .delayShowing { opacity: 0.01; }
       
     </style>
   </head>
@@ -63,7 +63,8 @@
       }
       
     </script>
-    <div class="modal active" id="loginScr">
+    <div class="modal" id="loginScr">
+      <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
         <div class="modal-header"></div>
         <div class="modal-body">
