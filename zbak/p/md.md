@@ -28,10 +28,10 @@ name: agenda
 ### 8) Flash
 ### 9) Web Dev
 ### 10) Automatic
-#### DEMO
+#### DEMO 
 ---
 
-## Software development is slow.
+## Software development is slow. 
 ### Web app, website and native mobile app software takes too long and is too expensive.
 
 ### - The managers are complaining
@@ -61,7 +61,7 @@ name: agenda
 	<div class="img" style="background-image:url(120cdn.png)"></div>
 </div>
 .center[
-###  50% of Web Apps don't use CDN. Cheaper/Fa$ter. No need for HTTPS certs.
+###  Cheaper/Fa$ter. No need for HTTPS certs. 
 ]
 ---
 
@@ -82,7 +82,7 @@ name: agenda
 	<div class="img" style="background-image:url(150browserAuth.png)"></div>
 </div>
 .center[
-### If you remember one slide: DONT. WRITE. USER. AUTH.
+### If you remember one slide!!: DONT. WRITE. USER. AUTH.
 ]
 ---
 
@@ -91,6 +91,14 @@ name: agenda
 </div>
 .center[
 ###  No SQL? No DB. No mongo. No ORM. No REST. No servers or end points! Not even HTTP.
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(airtable.jpg)"></div>
+</div>
+.center[
+### Other hosted 'DB'
 ]
 ---
 
@@ -138,7 +146,7 @@ template: agenda
 	<div class="img" style="background-image:url(600hugo.png)"></div>
 </div>
 .center[
-### *Time-Warp* development ahead. Generated. Like Sass.
+### *Time-Warp* development ahead. Generated. Like Sass. 
 ]
 ---
 
@@ -170,7 +178,7 @@ template: agenda
 	<div class="img" style="background-image:url(640pug.png)"></div>
 </div>
 .center[
-###  Node Express uses Pug markup. Declarative you already know!
+###  Node Express uses Pug template lang. Declarative you already know!
 ]
 ---
 
@@ -178,7 +186,7 @@ template: agenda
 	<div class="img" style="background-image:url(650riot.png)"></div>
 </div>
 .center[
-### And: You can 'bind' data in Pug (e.g.: CRUD, using RiotJS). No SSR, no REST.
+### 'Bind' data in Pug (e.g.: CRUD, using RiotJS). No SSR, no REST. Thick client avoids bitrot. Obfuscated. 
 ]
 ---
 
@@ -264,7 +272,7 @@ template: agenda
 ---
 
 <div class="wr-img">
-	<div class="img" style="background-image:url(602cliDocs.png)"></div>
+	<div class="img" style="background-image:url(jsdoc.png)"></div>
 </div>
 .center[
 ### When DIY, publicize client-side API (not server-side).
@@ -280,7 +288,7 @@ template: agenda
 	<div class="img" style="background-image:url(500mac_child.png)"></div>
 </div>
 .center[
-### Benchmark vs others. Q: What is your relative rank?
+### Benchmark vs others. Q: What is your relative rank? 
 ]
 <!--- 8, 9 --->
 ---
@@ -301,7 +309,7 @@ template: agenda
 	<div class="img" style="background-image:url(720photo-shop.png)"></div>
 </div>
 .center[
-### Mock-ups are helpful (mbake -m). Designers that mockup in code add value, vs GUI. Devs need to know a few FE Frameworks (e.g.: Spectre)
+### Designers that mockup in code add value, vs GUI. Devs need to know a few FE Frameworks (e.g.: Spectre)
 ]
 ---
 
@@ -371,7 +379,7 @@ template: agenda
 ### 1) V2 Cloud: In browser only, no-server! One thing to remember: FireStore User Auth
 ### 2) Mount S3, don't FTP
 ### 3) Pre-process CSS
-### 4) Recognize 4GL & 'Low code', vs 3GL
+### 4) Recognize 4GL & 'Low code', aka Template-Lang vs 3GL
 ### 5) SPA, PhoneGap first
 ### 6) Exceptions - client side is API
 ### 7) Benchmark, e.g. 3+ screens per day
@@ -389,7 +397,7 @@ template: agenda
 ### 2. Train the trainer
 Online instructor lead, ~$800
 
-#### 2. High end consulting
+#### 2. High end consulting 
 Help you define your product's Meta | Benchmark Ranking
 ---
 
@@ -425,7 +433,6 @@ class: center, middle
 ## Development productivity solutions that apply best practices from a manager's point of view.
 # Dev made 10 times faster
 ### vic@MetaBake.org
-## http://chat.MetaBake.org
 ## To get started: npm -g i mbake
 
 ---
@@ -434,5 +441,5 @@ class: center, middle
 	<div class="img" style="background-image:url(meet.png)"></div>
 </div>
 .center[
-###  Can you say a few words about some of the '10x' pillars?
+###  Can you say a few words about some of the '10x' pillars? 
 ]
