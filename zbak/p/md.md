@@ -1,18 +1,8 @@
 
-class: middle, center
-<div class="wr-vid">
-	<video autoplay loop controls muted>
-		<source src="mkd.mp4" type="video/mp4">
-	</video>
-</div>
-3rd Party Example: Markdown editing
----
 
 class: center, middle
 # Less code = 10X faster web app development.
 
-## With MetaBake's modern development, it is not about replacing your tech  stack with another tech stack.
-## It is about eliminating it!
 
 ---
 
@@ -31,17 +21,14 @@ name: agenda
 #### DEMO 
 ---
 
-## Software development is slow. 
-### Web app, website and native mobile app software takes too long and is too expensive.
+# Metabake
+### - Serverless / Cloud v2.0
+### - Minicomputers - Gone
+### - Each wave was 10X faster/cheaper
+### - New world of low code, supper agile + 8 pillars
 
-### - The managers are complaining
-### - Cost
-### - Not meeting commitments
-### - By the time software is released, the market has changed
-### - Budgets for marketing and related are reduced due to large IT budget and resources
-### - People are stressed
+## "Developing is now fun" - Dan, after adopting Metabake
 
-## Solution?
 ---
 
 <div class="wr-img">
@@ -73,7 +60,7 @@ name: agenda
 <div class="wr-img">
 	<div class="img" style="background-image:url(140congnito.png)"></div>
 .center[
-### Low Tech
+### Serverless
 ]
 </div>
 ---
@@ -204,14 +191,7 @@ template: agenda
 .center[
 ###  E.g.: JavaScript is 3GL procedural, not Less code. Recognize 4GL vs 3GL.
 ]
----
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(680pro.jpg)"></div>
-</div>
-.center[
-### You can do rapid mock ups in Pug; add data binding later (mbake -m).
-]
 <!--- 5 --->
 ---
 
