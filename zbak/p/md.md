@@ -9,7 +9,7 @@ class: middle, center
 ---
 
 class: center, middle
-# Low-code + Low-tech = 10X faster web app development.
+# Less code = 10X faster web app development.
 
 ## With MetaBake's modern development, it is not about replacing your tech  stack with another tech stack.
 ## It is about eliminating it!
@@ -18,7 +18,7 @@ class: center, middle
 
 name: agenda
 ### Pillars (show of hands?)
-### 1) V2 Cloud
+### 1) Serverless
 ### 2) Mount
 ### 3) Broken CSS
 ### 4) Recognize 4
@@ -202,7 +202,7 @@ template: agenda
 	<div class="img" style="background-image:url(670react.png)"></div>
 </div>
 .center[
-###  E.g.: JavaScript is 3GL procedural, not low code. Recognize 4GL vs 3GL.
+###  E.g.: JavaScript is 3GL procedural, not Less code. Recognize 4GL vs 3GL.
 ]
 ---
 
@@ -376,10 +376,10 @@ template: agenda
 ---
 
 ## tl;dr
-### 1) V2 Cloud: In browser only, no-server! One thing to remember: FireStore User Auth
+### 1) Serverless: In browser only, no-server! One thing to remember: FireStore User Auth
 ### 2) Mount S3, don't FTP
 ### 3) Pre-process CSS
-### 4) Recognize 4GL & 'Low code', aka Template-Lang vs 3GL
+### 4) Recognize 4GL & 'Less code', aka Template-Lang vs 3GL
 ### 5) SPA, PhoneGap first
 ### 6) Exceptions - client side is API
 ### 7) Benchmark, e.g. 3+ screens per day
@@ -388,7 +388,7 @@ template: agenda
 ### 10) Admin + AUto/build/generated ('automatic programing')
 - Cloud V2/low-tech brings focus/zone
 - Don't build the app. Build the admin app that builds the app.
-- Pre-process 'low code' via open sourced 4GL stack for historic jump.
+- Pre-process 'Less code' via open sourced 4GL stack for historic jump.
 ---
 # $?
 ## 1. Paid co-hosting of (O/S) MetaBake admin server
