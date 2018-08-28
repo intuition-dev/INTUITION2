@@ -4,7 +4,7 @@
 
 ## Examples
 
-- [Navsite](https://github.com/metabake/examples-plugins/releases/download/3.8.1/navSite.zip)
+- [Website example/starter](https://github.com/metabake/examples-plugins/releases/download/3.8.1/navSite.zip)
 - [CRUD with Auth](https://github.com/metabake/_mBake/releases/download/3.8.1/CRUDA.zip)
 - [cunhasb/metaBakeSandbox](https://github.com/cunhasb/metaBakeSandbox)
 
