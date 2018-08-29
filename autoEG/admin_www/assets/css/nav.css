@@ -27,6 +27,31 @@
 
 /*
  Nav */
+ ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   width: 193px;
+   background-color: #f1f1f1;
+}
+
+li a {
+   display: block;
+   color: #000;
+   padding: 10px 15px;
+   text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+   background-color: #555;
+   color: white;
+}
+
+.nav-item {
+   line-height: 25px;
+}
+
 .flex, .center, .top, .right, .bottom, .left{
    display: flex;
    justify-content: center;
@@ -44,7 +69,6 @@
    flex-wrap: nowrap;
 }
 
-
 #head {
    background-color: black;
    height: 60px;
@@ -53,7 +77,6 @@
 #navbarBrand {
    margin-top: 5px;
 }
-
 
 #menu{
    height: 100vh;
