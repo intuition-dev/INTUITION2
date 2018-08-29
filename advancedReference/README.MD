@@ -63,5 +63,10 @@ S = sales, I = Foundation, II = B&M, III = Vista
 - [HTML Components](https://www.youtube.com/watch?v=yCArIyY907Q)
 - [MOZ SEO](https://moz.com/link-explorer?utm_source=facebook&utm_medium=paid&utm_campaign=mp_links_18)
 
+
+## How to be a designer:
+- Please show me a website/webapp you like?
+The end, now use it as an inspiration.
+
 ## Benchmarks and Automatic programing
 - [Job Board in days](https://medium.com/@mattia_asti/creating-a-job-board-in-a-few-days-contentful-riot-js-bulma-io-293276516301)
