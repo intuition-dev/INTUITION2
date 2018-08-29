@@ -6,7 +6,7 @@ admin_port: 9082
 admin_watch: true #only one location should watch
 # admin services
 services_port: 9083
-secret: 321
+secret: 123
 
 # app - in dev mode ## don't host via node, node is not good for production
 #mount: /Users/uptim/Documents/GitHub/examples-plugins/blog
