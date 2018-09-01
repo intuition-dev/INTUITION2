@@ -62,7 +62,7 @@ S = sales, I = Foundation, II = B&M, III = Vista
 - [Improved npm: pnpm](https://pnpm.js.org/docs/en/installation.html)
 - [HTML Components](https://www.youtube.com/watch?v=yCArIyY907Q)
 - [MOZ SEO](https://moz.com/link-explorer?utm_source=facebook&utm_medium=paid&utm_campaign=mp_links_18)
-
+- [Validate.js](http://rickharrison.github.io/validate.js/)
 
 ## How to be a designer:
 - Please show me a website/webapp you like?
