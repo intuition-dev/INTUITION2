@@ -4,13 +4,13 @@
 - <a href='http://doc.metabake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
 
 
-## Less code = 10X faster web app development.
-### With Metabake's modern development approach, it is not about replacing your tech stack with another tech stack -- it is about eliminating it!
+## 10X faster web app development with less code
+### With Metabake's modern development approach, it is not about replacing your tech stack with another tech stack -- it is about eliminating most of it!
 
 
 # About Metabake
 
-Metabake.org is a development productivity suite. It should allow you to deliver 10 times faster then legacy development stacks/methodologies. We have found that - with Metabake.org; - the work of 6 developers over 6 months can be done by 3 developers in 3 weeks. We expect you to achieve the same productivity gains.
+Metabake is a development productivity suite. It should allow you to deliver 10 times faster than legacy development stacks/methodologies. We have found that - with Metabake - the work of 6 developers over 6 months can be done by 3 developers in 3 weeks. We expect you to achieve the same productivity gains.
 
 How does open source Metabake deliver 10X faster and cheaper web app development? Not enough organizations are fully leveraging the new Serverless. With Serverless services like Firestoreand S3 you get rid of **ALL** server-side and middleware development and operations. This is where up to 2/3 of your time and cost used to go. Gone!
 
