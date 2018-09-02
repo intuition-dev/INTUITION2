@@ -54,7 +54,7 @@ S = sales, I = Foundation, II = B&M, III = Vista
 - [Navbar](https://github.com/thednp/navbar.js/)
 - [Why Axios](http://jslancer.com/blog/2017/05/10/why-i-stop-using-fetch/)
 - [Spectre front end/CSS framework](https://github.com/picturepan2/spectre)
-- [Feather SVG icons](https://feathericons.com) Just copy the SVG itself per icon
+- [Feather Web icons](https://feathericons.com) Just copy the SVG itself per icon
 - [Simple Navbar](https://www.w3schools.com/css/css_navbar.asp)
 - [Documentation.js](https://documentation.js.org) - Example of use is in autoEG/www
 - [CSS Selectors](https://adam-marsden.co.uk/css-cheat-sheet)
@@ -63,8 +63,18 @@ S = sales, I = Foundation, II = B&M, III = Vista
 - [HTML Components](https://www.youtube.com/watch?v=yCArIyY907Q)
 - [MOZ SEO](https://moz.com/link-explorer?utm_source=facebook&utm_medium=paid&utm_campaign=mp_links_18)
 - [Validate.js](http://rickharrison.github.io/validate.js/)
+- [Icons for Cross Platform](http://www.iconarchive.com/show/kameleon.pics-icons-by-webalys.html)
 
-## How to be a designer:
+## Electron
+- [Tuts](https://electronjs.org/docs/tutorial)
+- [Overview](https://blog.dcpos.ch/how-to-make-your-electron-app-sexy)
+- [Install](https://github.com/electron/windows-installer)
+- [Packager](https://www.christianengvall.se/electron-packager-tutorial/)
+- [Auto Update](https://medium.com/heresy-dev/auto-updating-apps-for-windows-and-osx-using-electron-the-complete-guide-4aa7a50b904c)
+- [Certs](https://hackernoon.com/electron-on-the-appstore-pain-tears-iii-ship-it-a8c6bb141ece)
+
+
+## How to be a designer?!:
 - Please show me a website/webapp you like?
 The end, now use it as an inspiration.
 
