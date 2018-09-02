@@ -8,6 +8,7 @@ pages:
    - File Watcher: watch.md
    - What is so Meta?: meta.md
 
+   - Using a CDN: cdn.md
    - API Reference: ref.md
    - Resources: res.md
    - About: about.md
