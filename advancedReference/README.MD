@@ -65,14 +65,14 @@ S = sales, I = Foundation, II = B&M, III = Vista
 - [Validate.js](http://rickharrison.github.io/validate.js/)
 - [Icons for Cross Platform](http://www.iconarchive.com/show/kameleon.pics-icons-by-webalys.html)
 
-## Electron
+## Electron and PG
 - [Tuts](https://electronjs.org/docs/tutorial)
 - [Overview](https://blog.dcpos.ch/how-to-make-your-electron-app-sexy)
 - [Install](https://github.com/electron/windows-installer)
 - [Packager](https://www.christianengvall.se/electron-packager-tutorial/)
 - [Auto Update](https://medium.com/heresy-dev/auto-updating-apps-for-windows-and-osx-using-electron-the-complete-guide-4aa7a50b904c)
 - [Certs](https://hackernoon.com/electron-on-the-appstore-pain-tears-iii-ship-it-a8c6bb141ece)
-
+- [PhoneGap](http://docs.phonegap.com/references/phonegap-cli/create/)
 
 ## How to be a designer?!:
 - Please show me a website/webapp you like?
