@@ -27,6 +27,7 @@ S = sales, I = Foundation, II = B&M, III = Vista
 
 ## Other:
 
+-[Conversion to S3](https://www.progress.com/blogs/importing-salesforce-data-into-amazon-s3-via-jdbc-driver)
 -[StaticGen](https://www.staticgen.com/metabakeorg)
 - <a href='https://www.npmjs.com/package/mbake' target='_blank'>Check for latest version of mbake</a>
 - <a href='http://git.metabake.org' target='_blank'>git.metabake.org</a>
