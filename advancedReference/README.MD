@@ -2,13 +2,6 @@
 # Advanced Reference
 
 
-## Examples
-
-- [Website example/starter](https://github.com/metabake/examples-plugins/releases/download/3.8.1/navSite.zip)
-- [CRUD with Auth](https://github.com/metabake/_mBake/releases/download/3.8.1/CRUDA.zip)
-- [cunhasb/metaBakeSandbox](https://github.com/cunhasb/metaBakeSandbox)
-
-
 ## Videos:
 S = sales, I = Foundation, II = B&M, III = Vista
 - S <a href='https://vimeo.com/282034037' target='_blank'>Meetup Video</a>
@@ -79,5 +72,15 @@ S = sales, I = Foundation, II = B&M, III = Vista
 - Please show me a website/webapp you like?
 The end, now use it as an inspiration.
 
-## Benchmarks and Automatic programing
-- [Job Board in days](https://medium.com/@mattia_asti/creating-a-job-board-in-a-few-days-contentful-riot-js-bulma-io-293276516301)
+
+Sins to eschew:
+- js, prefer Pug
+- local IDE dev, use Cloud IDE
+
+
+## NOTES:
+
+- Cannot read property 'replace' of undefined
+    at loadFile (loadjs.js:106)
+* This happens if your CSV comma is of for your loadjs command.
+
