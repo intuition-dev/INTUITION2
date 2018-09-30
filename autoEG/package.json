@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "xx",
   "main": "index.js",
-  "license": "GPL3",
+  "license": "MIT",
   "engines": {
     "node": ">=8.11"
   },
