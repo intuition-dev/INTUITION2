@@ -7,7 +7,6 @@ Now that we can edit in cloud, without local dev environment, we can also 'watch
 1. In CA Shell:
 
    cd ~
-   npm -g i mbake
    mbake -a # it will extract the admin app.
 
 
