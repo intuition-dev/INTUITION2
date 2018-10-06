@@ -1,36 +1,149 @@
 
 
 class: center, middle
-# Deliver Web Apps 10X Faster with Less Coding
-Blue Collar vs White Collar
+# Recognize what the low code approach is 
+ Deliver Web Apps 10X Faster with Less Coding
 
 
 ---
 
 name: agenda
-### Pillars (show of hands?)
-### 1) Serverless
-### 2) Mount
-### 3) Broken CSS
-### 4) Recognize 4
-### 5) SPA
-### 6) Exceptions
-### 7) Benchmark
-### 8) Flash
-### 9) Web Dev
-### 10) Automatic
-#### DEMO 
+### Pillars
+- Who moved my cheese?  
+### 1. Agile flavor with Remote + WAH development
+### 2. Benchmarking
+### 3. Intercept / Observe
+### 4. Scripted builds, quick release
+### 5. Team player, eg: UX
+### 6. Learn quickly
+### 7. No negativity towards DRY: 
+### 8. Coming technical apocalypse
+a. eg: mount
+b. auth
+c. team player
+### 9. Security
+
 ---
 
 # Metabake
 ### - Serverless / Cloud v2.0
 ### - Minicomputers - Gone
 ### - Each wave was 10X faster/cheaper
-### - New world of Less Coding, super agile + 8 pillars
+### - New world of Less Coding, super agile + the other pillars
 
 ## "Developing is now fun" - Dan, after adopting Metabake
 
 ---
+
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(710flash.png)"></div>
+</div>
+.center[
+###  Agile is not Agile enough: Flash teams - aims to integrate remote and WAH.
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(500mac_child.png)"></div>
+</div>
+.center[
+### Benchmark vs others. Q: What is your relative rank? 
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(730inter.png)"></div>
+</div>
+.center[
+###  Engage team with users, e.g. a user video. (+Hint: discuss nice sites) Else: bits and bytes debates.
+]
+---
+
+template: agenda
+## Next: 4
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(910api.png)"></div>
+</div>
+.center[
+### Don't build the app! Build the 'automatic' app, that builds your app. Like SR-71.
+]
+---
+
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(310sass.webp)"></div>
+</div>
+.center[
+###  Don't write CSS. Build/generate it.
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(320css.png)"></div>
+</div>
+.center[
+###  'Google' for a Framework you can customize.
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(620marko.png)"></div>
+</div>
+.center[
+### E.g.: eBay's dev environment
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(630grav.png)"></div>
+</div>
+.center[
+### E.g.: CMS that uses safe Markdown called Grav
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(640pug.png)"></div>
+</div>
+.center[
+###  Node Express uses Pug template lang. Declarative you already know!
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(610lowcode.png)"></div>
+</div>
+.center[
+###  Goal: Procedural 3GL dev vs Declarative 4GL dev. vs RAILS, LAMP, MEAN, etc.
+]
+---
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(670react.png)"></div>
+</div>
+.center[
+###  E.g.: JavaScript is 3GL procedural, not Less Coding. Recognize 4GL vs 3GL.
+]
+---
+
+template: agenda
+## Next is 7
+---
+
+
+<div class="wr-img">
+	<div class="img" style="background-image:url(420app_store.jpg)"></div>
+</div>
+.center[
+###  Why SPA|Electron?
+]
+---
+
+
+
 
 <div class="wr-img">
 	<div class="img" style="background-image:url(110cloud.png)"></div>
@@ -109,21 +222,6 @@ template: agenda
 
 ---
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(310sass.webp)"></div>
-</div>
-.center[
-###  Don't write CSS. Build/generate it.
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(320css.png)"></div>
-</div>
-.center[
-###  'Google' for a Framework you can customize.
-]
----
 
 template: agenda
 ## Four
@@ -138,37 +236,8 @@ template: agenda
 ]
 ---
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(610lowcode.png)"></div>
-</div>
-.center[
-###  Goal: Procedural 3GL dev vs Declarative 4GL dev. vs RAILS, LAMP, MEAN, etc.
-]
----
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(620marko.png)"></div>
-</div>
-.center[
-### E.g.: eBay's dev environment
-]
----
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(630grav.png)"></div>
-</div>
-.center[
-### E.g.: CMS that uses safe Markdown called Grav
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(640pug.png)"></div>
-</div>
-.center[
-###  Node Express uses Pug template lang. Declarative you already know!
-]
----
 
 <div class="wr-img">
 	<div class="img" style="background-image:url(650riot.png)"></div>
@@ -178,129 +247,8 @@ template: agenda
 ]
 ---
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(660horse.jpg)"></div>
-</div>
-.center[
-### Not for everyone. Some will make horsewhips in the age of cars.
-]
----
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(670react.png)"></div>
-</div>
-.center[
-###  E.g.: JavaScript is 3GL procedural, not Less Coding. Recognize 4GL vs 3GL.
-]
 
-<!--- 5 --->
----
-
-template: agenda
-## Next is V
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(420app_store.jpg)"></div>
-</div>
-.center[
-###  Why SPA?
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(400app_shell.png)"></div>
-</div>
-.center[
-###  App shell (in Pug)
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(410ss.png)"></div>
-</div>
-.center[
-### Example: SPA lib. (Meta SPA has spa-router.js, next slide)
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(450router.png)"></div>
-</div>
-.center[
-### Single code base. No need for IOS/Android devs; it builds in the cloud.
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(430udemy.png)"></div>
-</div>
-.center[
-### Adobe PhoneGap V8. Fast enough for games. Single code base.
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(440pg.png)"></div>
-</div>
-.center[
-###  No XCode SDK. No Android SDK. It's a cloud thing.
-]
----
-template: agenda
-## XI
-<!--- 6 --->
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(jsdoc.png)"></div>
-</div>
-.center[
-### When DIY, publicize client-side API (not server-side).
-]
-<!--- 7 --->
----
-
-template: agenda
-## 7
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(500mac_child.png)"></div>
-</div>
-.center[
-### Benchmark vs others. Q: What is your relative rank? 
-]
-<!--- 8, 9 --->
----
-
-template: agenda
-## Next is 8 and 9
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(710flash.png)"></div>
-</div>
-.center[
-###  Agile is not Agile enough: Flash teams - aims to integrate remote and WAH.
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(720photo-shop.png)"></div>
-</div>
-.center[
-### Designers that mockup in code add value, vs GUI. Devs need to know a few FE Frameworks (e.g.: Spectre)
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(730inter.png)"></div>
-</div>
-.center[
-###  Engage team with users, e.g. a user video. (+Hint: discuss nice sites) Else: bits and bytes debates.
-]
----
 
 <div class="wr-img">
 	<div class="img" style="background-image:url(740org.jpg)"></div>
@@ -327,24 +275,10 @@ template: agenda
 <!--- X --->
 ---
 
-template: agenda
-## Last, X
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(910api.png)"></div>
-</div>
-.center[
-###  Admin API so you can customize.
-]
----
-
 <div class="wr-img">
 	<div class="img" style="background-image:url(920custom.png)"></div>
 </div>
-.center[
-### Don't build the app! Build the 'automatic' app, that builds your app. Like SR-71.
-]
+
 ---
 
 <div class="wr-img">
@@ -357,28 +291,31 @@ template: agenda
 ---
 
 ## tl;dr
-### 1) Serverless: In browser only, no-server! One thing to remember: Firestore User Auth
-### 2) Mount S3, don't FTP
-### 3) Pre-process CSS
-### 4) Recognize 4GL & 'Less Coding', aka Template-Lang vs 3GL
-### 5) SPA, PhoneGap first
-### 6) Exceptions - client side is API
-### 7) Benchmark, e.g. 3+ screens per day
-### 8) Stanford Flash Teams, like construction GC: book an electrician
-### 9) Web dev: move dev to cloud
-### 10) Admin + Auto/build/generated ('automatic programing')
-- Cloud V2/low-tech brings focus/zone
-- Don't build the app. Build the admin app that builds the app.
-- Pre-process 'Less Coding' via open sourced 4GL stack for historic jump.
+### Pillars
+- Who moved my cheese?  
+
+### 1. Agile flavor with Remote + WAH development: SFT
+### 2. Benchmarking: Relative
+### 3. Intercept / Observe
+### 4. Scripted builds, quick release: Automatic 
+
+### 5. Team player, eg: UX: Sass
+### 6. Learn quickly: Templating, Declarative,  4GL
+### 7. No negativity towards DRY: Hybrid
+
+
+### 8. Coming technical apocalypse | Serverless & Cloud 2.0, FireStore
+a. eg: mount
+b. auth
+c. team player
+### 9. Security: Chromebook/WebDe
+
 ---
 # $?
 ## 1. Paid co-hosting of (O/S) MetaBake admin server
-### $imple vs O/S: Jointly dual-mount admin/build ~$200/month
+### $imple vs O/S: Jointly dual-mount admin/build ~$190/month
 
-### 2. Train the trainer
-Online instructor lead, ~$800
-
-#### 2. High end consulting 
+#### 2. High end consulting $1-2K / day 
 Help you define your product's Meta | Benchmark Ranking
 ---
 
@@ -413,8 +350,6 @@ CodeAnywhere
 class: center, middle
 ## Development productivity solutions that apply best practices from a manager's point of view.
 # Deliver 10X faster with Less Coding
-### vic@metabake.org
-## To get started: npm -g i mbake
 
 ---
 
@@ -422,5 +357,5 @@ class: center, middle
 	<div class="img" style="background-image:url(meet.png)"></div>
 </div>
 .center[
-###  Can you say a few words about some of the '10x' pillars? 
+###  What 2 pillars would you want to test?
 ]
