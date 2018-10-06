@@ -4,12 +4,12 @@ class: center, middle
 # Recognize what the low code approach is 
  Deliver Web Apps 10X Faster with Less Coding
 
+Who moved my cheese?  
+
 
 ---
-
 name: agenda
-### Pillars
-- Who moved my cheese?  
+Pillars
 ### 1. Agile flavor with Remote + WAH development
 ### 2. Benchmarking
 ### 3. Intercept / Observe
@@ -20,7 +20,6 @@ name: agenda
 ### 8. Coming technical apocalypse
 a. eg: mount
 b. auth
-c. team player
 ### 9. Security
 
 ---
@@ -56,7 +55,7 @@ c. team player
 	<div class="img" style="background-image:url(730inter.png)"></div>
 </div>
 .center[
-###  Engage team with users, e.g. a user video. (+Hint: discuss nice sites) Else: bits and bytes debates.
+###  Engage team with users, e.g. a user video. Else: bits and bytes debates.
 ]
 ---
 
@@ -77,7 +76,7 @@ template: agenda
 	<div class="img" style="background-image:url(310sass.webp)"></div>
 </div>
 .center[
-###  Don't write CSS. Build/generate it.
+###  Don't use CSS and work with designers!
 ]
 ---
 
@@ -130,7 +129,7 @@ template: agenda
 ---
 
 template: agenda
-## Next is 7
+## Next is 7 and 8
 ---
 
 
@@ -138,12 +137,9 @@ template: agenda
 	<div class="img" style="background-image:url(420app_store.jpg)"></div>
 </div>
 .center[
-###  Why SPA|Electron?
+###  Why SPA|Electron? (end of 7)
 ]
 ---
-
-
-
 
 <div class="wr-img">
 	<div class="img" style="background-image:url(110cloud.png)"></div>
@@ -203,67 +199,17 @@ template: agenda
 ]
 ---
 
-template: agenda
-### Next is 2 and 3
-<!--- 2 3--->
----
-
 <div class="wr-img">
 	<div class="img" style="background-image:url(200webdrive.png)"></div>
 </div>
 .center[
-###  Don't FTP. Mount. S3. The end of second section.
+###  Don't FTP. Mount. S3. 
 ]
 ---
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(300css.gif)"></div>
-</div>
-
----
-
 
 template: agenda
-## Four
-<!--- 4 --->
----
+## Next: 9
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(600hugo.png)"></div>
-</div>
-.center[
-### *Time-Warp* development ahead. Generated. Like Sass. 
-]
----
-
-
-
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(650riot.png)"></div>
-</div>
-.center[
-### 'Bind' data in Pug (e.g.: CRUD, using RiotJS). No SSR, no REST. Thick client avoids bitrot. Obfuscated. 
-]
----
-
-
-
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(740org.jpg)"></div>
-</div>
-.center[
-###  Accounting systems were sold as savings, + capabilities (like MetaBake).
-]
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(800arm.png)"></div>
-</div>
-.center[
-### Secure servers, secure dev. Migrate from mainframe to x86, to ARM/IOS.
-]
 ---
 
 <div class="wr-img">
@@ -273,21 +219,6 @@ template: agenda
 ### CodeAnywhere. Dev for remote, team players. No local dev environment!
 ]
 <!--- X --->
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(920custom.png)"></div>
-</div>
-
----
-
-<div class="wr-img">
-	<div class="img" style="background-image:url(logo.jpg)"></div>
-</div>
-.center[
-###  Meta is for the primates that figured out to bring bespoke tools to get the banana.
-]
-<!--- the end --->
 ---
 
 ## tl;dr
@@ -351,11 +282,5 @@ class: center, middle
 ## Development productivity solutions that apply best practices from a manager's point of view.
 # Deliver 10X faster with Less Coding
 
----
+###  What 2 pillars would you want to try first?
 
-<div class="wr-img">
-	<div class="img" style="background-image:url(meet.png)"></div>
-</div>
-.center[
-###  What 2 pillars would you want to test?
-]
