@@ -1,0 +1,57 @@
+/*.badgebg {background-color: #004967}
+.menubg {background-color: #0087BE}*/
+.bg-secondary {background-color: #E9EFF3 !important}
+.bg-gray {background-color: #F3F6F8 !important}
+
+.sidebarsel {background-color: #537994}
+
+
+body > .container {
+	padding: 0 !important;
+}
+
+#head .btn-link {
+	color: white !important;
+}
+
+.nav-item {
+	width: 100%;
+}
+
+.sidebar .panel {
+	height: calc(100vh - 50px);
+}
+
+.sidebar .panel-body {
+	padding: 0;
+}
+
+.main .panel {
+	height: calc(100vh - 50px);
+}
+
+.main .panel-body {
+	padding: 0;
+}
+
+.panel-body > h6 {
+	margin-left: .7em;
+	font-size: smaller;
+}
+
+.main {
+	background-color: #F3F6F8;
+}
+
+#tabp, #statusp, #listp {
+	background-color: white;
+	width: 85%;
+	border: .5px solid #537994;
+}
+#footp {
+	width: 85%;
+}
+
+.divider[data-content]::after {
+	background: none !important;
+}

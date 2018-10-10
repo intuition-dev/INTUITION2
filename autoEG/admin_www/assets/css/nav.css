@@ -1,11 +1,10 @@
 
-
-.bblack, .bblack * {
-   background-color: black;
+.bblue {
+  background-color: #0087BE;
 }
 
-.white, .white * {
-   color: white !important;
+.white {
+  color: white !important;
 }
 
 .padL {
@@ -27,12 +26,10 @@
 
 /*
  Nav */
- ul {
+ .sidebar ul {
    list-style-type: none;
    margin: 0;
    padding: 0;
-   width: 193px;
-   background-color: #f1f1f1;
 }
 
 li a {
@@ -43,13 +40,14 @@ li a {
 }
 
 /* Change the link color on hover */
-li a:hover {
-   background-color: #555;
+.sidebar li a:hover {
+   background-color: #537994;
    color: white;
 }
 
 .nav-item {
    line-height: 25px;
+   width: 100%
 }
 
 .flex, .center, .top, .right, .bottom, .left{
@@ -69,16 +67,17 @@ li a:hover {
    flex-wrap: nowrap;
 }
 
+
 #head {
-   background-color: black;
-   height: 60px;
-   line-height: 60px;
+   background-color: #0087BE;
+   height: 50px;
+   line-height: 50px;
 }
 #navbarBrand {
    margin-top: 5px;
 }
 
-#menu{
+#menu {
    height: 100vh;
    width: 200px;
    flex-basis: 200px;
@@ -90,7 +89,7 @@ li a:hover {
 }
 
 #router {
-   width: calc( 100vw - 240px);
+   /*width: calc( 100vw - 240px);*/
    margin-top: 4px;
-   margin-left: 204px;
+   /*margin-left: 204px;*/
 }

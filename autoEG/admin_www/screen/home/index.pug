@@ -1,0 +1,22 @@
+extends /layout/layout
+
+block main
+	p
+	p
+	#tabp.container
+		ul.tab.tab-block
+			li.tab-item.active
+				a(href='#') Published
+			li.tab-item
+				a(href='#') Scheduled
+	p
+	//-#statusp.container
+		p [Title/Status Panel]
+	//-p
+	#listp.container
+		p Blog list here
+	p
+	#footp.container
+		.divider.text-center(data-content='MyMeta Admin')
+
+

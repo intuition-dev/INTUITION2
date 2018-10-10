@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <script>ROOT = '/' //- sets global pug and .js from dat.yaml
+    console.log('root','/')
+    let _start=Date.now()
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MyMeta Admin</title>
+  <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
+  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+  <style>
+    .delayShowing { opacity: 0.01; }
+    
+  </style>
+  <script src="/layout/tags/fb-tag.min.js"></script>
+  <body>
+    <div class="delayShowing flex edge bblue white pad" id="head">
+      <h5 class="left navbar-brand" id="navbarBrand">MyMeta Admin</h5>
+      <div class="right">
+        <div class="navbar">
+          <div class="navbar-section"><a class="btn" href="#"> 
+              <div class="flex edge">
+                <svg class="left feather feather-plus-square" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="12" y1="8" x2="12" y2="16"></line>
+                  <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
+                <div class="padL">New Post</div>
+              </div></a><a class="btn btn-link" href="#">Logout</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="columns col-gapless delayShowing">
+        <div class="sidebar bg-secondary column col-sm-12 col-md-5 col-lg-3 col-xl-3 col-2">
+          <div class="panel">
+            <div class="panel-body">
+              <ul class="nav">
+                <li class="nav-item"><a href="#"> 
+                    <div class="flex edge">
+                      <div class="left">
+                        <svg class="feather feather-eye" viewBox="0 0 24 24">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <div class="padL">View Site</div>
+                      </div>
+                    </div></a></li>
+              </ul>
+              <p></p>
+              <h6>Manage</h6>
+              <ul class="nav">
+                <li class="nav-item active"><a href="#">
+                    <div class="flex edge">
+                      <div class="left">
+                        <svg class="left feather feather-file-text" viewBox="0 0 24 24">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                          <polyline points="14 2 14 8 20 8"></polyline>
+                          <line x1="16" y1="13" x2="8" y2="13"></line>
+                          <line x1="16" y1="17" x2="8" y2="17"></line>
+                          <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <div class="padL">Blog Posts</div>
+                      </div>
+                      <button class="btn btn-sm right">Add</button>
+                    </div></a></li>
+                <li class="nav-item"><a href="#">
+                    <div class="flex edge">
+                      <div class="left">
+                        <svg class="feather feather-image" viewBox="0 0 24 24">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                          <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        <div class="padL">Media</div>
+                      </div>
+                      <button class="btn btn-sm right">Add</button>
+                    </div></a></li>
+              </ul>
+              <p></p>
+              <h6>Configure</h6>
+              <ul class="nav">
+                <li class="nav-item"><a href="#">
+                    <div class="flex edge">
+                      <div class="left">
+                        <svg class="feather feather-users" viewBox="0 0 24 24">
+                          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                          <circle cx="9" cy="7" r="4"></circle>
+                          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        <div class="padL">People</div>
+                      </div>
+                      <button class="btn btn-sm right">Add</button>
+                    </div></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="main bg-gray column col-md-7 col-lg-9 col-xl-9 col-10 hide-sm">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="router">
+                <p></p>
+                <p></p>
+                <div class="container" id="tabp">
+                  <ul class="tab tab-block">
+                    <li class="tab-item active"><a href="#">Published</a></li>
+                    <li class="tab-item"><a href="#">Scheduled</a></li>
+                  </ul>
+                </div>
+                <p></p>
+                <div class="container" id="listp">
+                  <p>Blog list here</p>
+                </div>
+                <p></p>
+                <div class="container" id="footp">
+                  <div class="divider text-center" data-content="MyMeta Admin"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function userSzSc() {
+      	console.log('resize|scroll')
+      }
+      
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="/assets/js/setup.js"></script>
+    <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
+    <link href="/assets/css/nav.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <div class="modal" id="loginScr">
+      <div class="modal-overlay"></div>
+      <div class="modal-container delayShowing">
+        <div class="modal-header"></div>
+        <div class="modal-body">
+          <form class="grid-form" autocomplete="off">
+            <fieldset>
+              <legend>Login</legend>
+              <div data-row-span="1">
+                <div class="field" data-field-span="1">
+                  <label>Secret Code</label>
+                  <input id="code" type="password" autofocus="">
+                </div>
+              </div>
+            </fieldset><br>
+            <div class="toast toast-warning" id="loginMsg">Unable to serve. Is the secret code correct?</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="butLog"> Login</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function loginTry(arg) {
+         console.log('try')
+      
+         const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
+      
+         isLoggedIn(baseURL).then(function() {
+               console.log('Lxxx yes')
+               $('#loginScr').removeClass('active') // show app
+               const aa = new AdminAuth()
+               console.log(aa.secret)
+               window.aSrv = new MetaAdminService(baseURL, aa.secret)
+               window.login.dispatch()
+               $('.delayShowing').removeClass('delayShowing')
+      
+            }, function() {
+                  onLogout(arg)
+                  $('.delayShowing').removeClass('delayShowing')
+      
+         })
+      }//()
+      
+      function onLogout(arg) {
+         console.log('LXXX no')
+         new AdminAuth().clear()
+         $('#loginScr').addClass('active') // hide app
+         try {
+            delete window.aSrv
+         } catch(err) { console.log(err) }
+         if(arg) $('#loginMsg').show(0)
+         else $('#loginMsg').hide(0) // no message
+      
+      }
+      
+      function setupLogin() {
+         $('#loginMsg').hide(0) // no message
+      
+         $('#butLog').click(function(){
+            let code = $('#code').val()
+            let aa = new AdminAuth()
+            aa.save(code)
+            console.log(aa.secret)
+            loginTry(true)
+         })
+          $('#butLogOut').click(function(){
+            onLogout(false)
+         })
+      
+         loginTry(false)
+      }
+      
+      loadjs.ready(['style','ma-client'], function () {
+         setupLogin()
+      })
+    </script>
+  </body>
+</html>
