@@ -7,7 +7,7 @@ html
 		let _start=Date.now()
 	meta(charset='utf-8')
 	
-	meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width')
+	meta(name='viewport', content='width=device-width, initial-scale=1')
 	title MyMeta Admin
 	link(rel='shortcut icon', href= ROOT + 'assets/favicon.png', type='image/x-icon')
 
@@ -26,47 +26,48 @@ html
 	
 
 	body
-		#head.delayShowing.flex.edge.bblue.white.pad
-			h5#navbarBrand.left.navbar-brand MyMeta Admin
-			.right
+		.c-offcanvas-content-wrap
+
+			#head.delayShowing.flex.edge.bblue.white.pad
+				h5#navbarBrand.left.navbar-brand MyMeta Admin
+				.right
+					.navbar
+						.navbar-section
+							a.btn(href='#offCanvas', id='triggerButton') 
+								.flex.edge
+									svg.left.feather.feather-plus-square(viewBox='0 0 24 24')
+										rect(x='3', y='3', width='18', height='18', rx='2', ry='2')
+										line(x1='12', y1='8', x2='12', y2='16')
+										line(x1='8', y1='12', x2='16', y2='12')
+									.padL.hide-sm New Post
+							a.btn.btn-link(href='#') Logout
+			//-.container
+			//-#head.delayShowing.flex.edge.bblue.white.pad
 				.navbar
 					.navbar-section
-						a.btn(href='#offCanvas', id='triggerButton')
-							.flex.edge
-								svg.left.feather.feather-plus-square(viewBox='0 0 24 24')
-									rect(x='3', y='3', width='18', height='18', rx='2', ry='2')
-									line(x1='12', y1='8', x2='12', y2='16')
-									line(x1='8', y1='12', x2='16', y2='12')
-								.padL.hide-sm New Post
+						a.btn.btn-link(href='#') MyMeta Admin
+						//-a.btn.btn-link(href='#') Examples
+					//-.navbar-center
+						p &nbsp;
+					.navbar-section
+						a.btn(href='#') Button
 						a.btn.btn-link(href='#') Logout
-		//-.container
-		//-#head.delayShowing.flex.edge.bblue.white.pad
-			.navbar
-				.navbar-section
-					a.btn.btn-link(href='#') MyMeta Admin
-					//-a.btn.btn-link(href='#') Examples
-				//-.navbar-center
-					p &nbsp;
-				.navbar-section
-					a.btn(href='#') Button
-					a.btn.btn-link(href='#') Logout
 
-		#allc.container
-			.columns.col-gapless.delayShowing
-				.sidebar.bg-secondary.column.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-2
-					//-.c-offcanvas-content-wrap
-					.panel
-						.panel-body
-							include sidebar
+			.container
+				.columns.col-gapless.delayShowing
+					.sidebar.bg-secondary.column.col-sm-12.col-md-5.col-lg-3.col-xl-3.col-2
+						.panel
+							.panel-body
+								include nav
 
-				.main.bg-gray.column.col.sm-6.col-md-6.col-lg-9.col-xl-9.col-10
-					//-.aside(id='offCanvas')
-					.panel
-						.panel-body
-							#router
-								block main
-							//-#router
-							//-block main
+					.main.bg-gray.column.col-md-7.col-lg-9.col-xl-9.col-10.hide-sm
+						aside(id='offCanvas')
+							.panel
+								.panel-body
+									#router
+										block main
+									//-#router
+									//-block main
 
 		script.
 			function userSzSc() {

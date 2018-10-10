@@ -17,6 +17,9 @@ $(document).ready(function() {
 
 loadjs([
     'https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
+    , 'https://cdn.jsdelivr.net/npm/js-offcanvas@1.2.6/dist/_js/js-offcanvas.pkgd.js'
+    , 'https://cdn.jsdelivr.net/npm/js-offcanvas@1.2.6/dist/_css/prefixed/js-offcanvas.css'
+
 
     , ROOT + 'assets/css/gridform.css'
     , '/assets/js/jquery.disableAutoFill.js'
@@ -42,6 +45,12 @@ loadjs.ready(['css', 'device', 'cssJs'], function() {
     //to notify of login
     let Signal = signals.Signal
     window.login = new Signal()
+
+    /*$('#offCanvas').offcanvas({
+        modifiers: 'right, push', // default options
+        triggerButton: '#triggerButton' // btn to open offcanvas
+    });*/
+    console.log('offcanvas initialized')
 
     loadjs.done('style')
 })

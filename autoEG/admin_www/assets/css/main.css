@@ -1,10 +1,5 @@
-/*.badgebg {background-color: #004967}
-.menubg {background-color: #0087BE}*/
 .bg-secondary {background-color: #E9EFF3 !important}
 .bg-gray {background-color: #F3F6F8 !important}
-
-.sidebarsel {background-color: #537994}
-
 
 body > .container {
 	padding: 0 !important;
@@ -16,6 +11,16 @@ body > .container {
 
 .nav-item {
 	width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+	#allc {
+		position: absolute;
+		top: 50px;
+		left: 0px;
+		overflow-x: hidden;
+		width: 200vw !important;
+	}
 }
 
 .sidebar .panel {
@@ -43,15 +48,67 @@ body > .container {
 	background-color: #F3F6F8;
 }
 
-#tabp, #statusp, #listp {
+#navp, #tabp, #statusp, #listp {
 	background-color: white;
-	width: 85%;
 	border: .5px solid #537994;
 }
+
+#navp, #tabp, #statusp, #listp, #footp {
+	width: 85%;
+}
+
+#navp {
+	padding-top:.8em;
+	padding-bottom: .8em;
+}
+
+@media screen and (max-width: 600px) {
+
+	#navp, #ddp, #tabp, #statusp, #listp {
+		/*width: 100% !important;*/
+		width: 99vw !important;
+	}
+
+	#router {
+		width: 99vw;
+	}
+
+	.panel-body {
+		width: 99vw;
+	}
+	.panel {
+		width: 99vw;
+	}
+
+	/*.tab {
+		width: 80vw;
+		
+	}*/
+
+	#footp {
+		width: 99vw;
+	}
+	
+}
+
+#tabp {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 #footp {
 	width: 85%;
 }
 
 .divider[data-content]::after {
 	background: none !important;
+}
+
+.tab {
+	padding-inline-start: 0px !important;
+	margin-bottom: 0 !important;
+}
+.tab-item > a > .badge {
+	margin-left: .7em !important;
+	margin-right: .4em !important;
 }

@@ -6,7 +6,7 @@
     let _start=Date.now()
   </script>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
   <title>MyMeta Admin</title>
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
@@ -24,21 +24,21 @@
       <h5 class="left navbar-brand" id="navbarBrand">MyMeta Admin</h5>
       <div class="right">
         <div class="navbar">
-          <div class="navbar-section"><a class="btn" href="#"> 
+          <div class="navbar-section"><a class="btn" href="#offCanvas" id="triggerButton">
               <div class="flex edge">
                 <svg class="left feather feather-plus-square" viewBox="0 0 24 24">
                   <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                   <line x1="12" y1="8" x2="12" y2="16"></line>
                   <line x1="8" y1="12" x2="16" y2="12"></line>
                 </svg>
-                <div class="padL">New Post</div>
+                <div class="padL hide-sm">New Post</div>
               </div></a><a class="btn btn-link" href="#">Logout</a></div>
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container" id="allc">
       <div class="columns col-gapless delayShowing">
-        <div class="sidebar bg-secondary column col-sm-12 col-md-5 col-lg-3 col-xl-3 col-2">
+        <div class="sidebar bg-secondary column col-sm-6 col-md-6 col-lg-3 col-xl-3 col-2">
           <div class="panel">
             <div class="panel-body">
               <ul class="nav">
@@ -103,16 +103,33 @@
             </div>
           </div>
         </div>
-        <div class="main bg-gray column col-md-7 col-lg-9 col-xl-9 col-10 hide-sm">
+        <div class="main bg-gray column col sm-6 col-md-6 col-lg-9 col-xl-9 col-10">
           <div class="panel">
             <div class="panel-body">
               <div id="router">
-                <p></p>
+                <div class="show-sm">
+                  <div class="container" id="navp"><a href="#">
+                      <flex class="left">
+                        <svg class="left feather feather-chevron-left" viewBox="0 0 24 24">
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <svg class="left feather feather-file-text" viewBox="0 0 24 24"> 
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                          <polyline points="14 2 14 8 20 8"></polyline>
+                          <line x1="16" y1="13" x2="8" y2="13"></line>
+                          <line x1="16" y1="17" x2="8" y2="17"></line>
+                          <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <div class="left padL">Blog Posts</div>
+                      </flex></a></div>
+                </div>
                 <p></p>
                 <div class="container" id="tabp">
-                  <ul class="tab tab-block">
-                    <li class="tab-item active"><a href="#">Published</a></li>
-                    <li class="tab-item"><a href="#">Scheduled</a></li>
+                  <ul class="tab">
+                    <li class="tab-item active"><a href="#"> 
+                        <div class="badge" data-badge="2">Published&nbsp;</div></a></li>
+                    <li class="tab-item"><a href="#">
+                        <div class="badge" data-badge="2">Scheduled&nbsp;</div></a></li>
                   </ul>
                 </div>
                 <p></p>
