@@ -31,7 +31,7 @@ html
 			.right
 				.navbar
 					.navbar-section
-						a.btn(href='#offCanvas', id='triggerButton')
+						a.btn(href='#all', id='triggerButton')
 							.flex.edge
 								svg.left.feather.feather-plus-square(viewBox='0 0 24 24')
 									rect(x='3', y='3', width='18', height='18', rx='2', ry='2')
@@ -51,22 +51,18 @@ html
 					a.btn(href='#') Button
 					a.btn.btn-link(href='#') Logout
 
-		#allc.container
+		#all.container
 			.columns.col-gapless.delayShowing
 				.sidebar.bg-secondary.column.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-2
-					//-.c-offcanvas-content-wrap
 					.panel
 						.panel-body
 							include sidebar
 
 				.main.bg-gray.column.col.sm-6.col-md-6.col-lg-9.col-xl-9.col-10
-					//-.aside(id='offCanvas')
 					.panel
 						.panel-body
 							#router
 								block main
-							//-#router
-							//-block main
 
 		script.
 			function userSzSc() {

@@ -13,16 +13,6 @@ body > .container {
 	width: 100%;
 }
 
-@media screen and (max-width: 600px) {
-	#allc {
-		position: absolute;
-		top: 50px;
-		left: 0px;
-		overflow-x: hidden;
-		width: 200vw !important;
-	}
-}
-
 .sidebar .panel {
 	height: calc(100vh - 50px);
 }
@@ -62,33 +52,34 @@ body > .container {
 	padding-bottom: .8em;
 }
 
+
 @media screen and (max-width: 600px) {
 
-	#navp, #ddp, #tabp, #statusp, #listp {
-		/*width: 100% !important;*/
-		width: 99vw !important;
-	}
-
-	#router {
-		width: 99vw;
-	}
-
-	.panel-body {
-		width: 99vw;
-	}
-	.panel {
-		width: 99vw;
-	}
-
-	/*.tab {
-		width: 80vw;
-		
-	}*/
-
-	#footp {
-		width: 99vw;
+	#all {
+		position: absolute;
+		top: 50px;
+		left: 0px;
+		overflow-x: hidden;
+		width: 200vw;
+		/*max-width: 200vw;*/
+		transition: transform .3s ease;  /*pan left, to main panel */
 	}
 	
+	#all:target { 
+		transform: translateX(-100vw); /*pan left, to main panel */
+	}
+
+	#allmenu:target { 
+		transform: translateX(-100vw); /*pan left, to main panel */
+	}
+
+	#navp, #ddp, #tabp, #statusp, #listp, #footp {
+		width: 100vw;
+	}
+
+	#router, .panel, .panel-body {
+		width: 100vw;
+	}
 }
 
 #tabp {
