@@ -107,66 +107,36 @@
           <div class="panel">
             <div class="panel-body">
               <div id="router">
-                <div id="LinkBlog"><br>
-                  <div class="grid-form" autocomplete="off">
-                    <fieldset>
-                      <legend>New Link Blog</legend>
-                      <div data-row-span="1">
-                        <div class="field" data-field-span="1">
-                          <label>External Source Url:</label>
-                          <input id="ext" type="text" autofocus="">
-                        </div>
-                      </div>
-                      <div data-row-span="2">
-                        <div class="field" data-field-span="1">
-                          <label>Clone from:</label>
-                          <input id="src" type="text">
-                        </div>
-                        <div class="field" data-field-span="1">
-                          <label>Clone to:</label>
-                          <input id="dest" type="text">
-                        </div>
-                      </div>
-                      <!--div(data-row-span="1")--><br>
-                      <legend>Comment:</legend>
-                      <div data-row-span="1">
-                        <div class="field" data-field-span="1">
-                          <textarea id="com" rows="10" cols="50"></textarea>
-                        </div>
-                      </div>
-                      <div data-row-span="1">
-                        <div class="field" data-field-span="1">
-                          <label>Tags:</label>
-                          <input id="tags" type="text">
-                        </div>
-                      </div>
-                    </fieldset><br>
-                    <div class="toast toast-warning" id="linkBlogMsg">&nbsp;</div><br>
-                    <div class="button btn" id="butLink">Create</div>
-                  </div>
-                  <!--link(href= ROOT + 'assets/css/debug.css', rel='stylesheet')-->
-                  <style></style>
-                  <script>
-                    loadjs.ready(['style','ma-client'], function () {
-                       $('#butLink').click(function(){
-                          let url = $('#ext').val()
-                          let src = $('#src').val()
-                          let dest = $('#dest').val()
-                          let com  = $('#com').val()
-                          let tags  = $('#tags').val()
-                    
-                          window.aSrv.newLinkBlog(src, dest, url, com, tags).then(newLinkRes)
-                       })// click
-                    })//ready
-                    
-                    function newLinkRes(resp) {
-                       let msg = resp.data._msg
-                       console.log(msg)
-                       console.log(msg.title)
-                    
-                       $('#linkBlogMsg').text(msg.title)
-                    }
-                  </script>
+                <div class="show-sm">
+                  <div class="container" id="navp"><a href="/screen/media/#">
+                      <flex class="left">
+                        <svg class="left feather feather-chevron-left" viewBox="0 0 24 24">
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <svg class="left feather feather-image" viewBox="0 0 24 24">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                          <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        <div class="left padL">Media</div>
+                      </flex></a></div>
+                </div>
+                <p></p>
+                <div class="container" id="tabp">
+                  <ul class="tab">
+                    <li class="tab-item active"><a href="#published"> 
+                        <div class="badge" data-badge="2">Published&nbsp;</div></a></li>
+                    <li class="tab-item"><a href="#scheduled">
+                        <div class="badge" data-badge="2">Scheduled&nbsp;</div></a></li>
+                  </ul>
+                </div>
+                <p></p>
+                <div class="container" id="listp">
+                  <p>Media list here</p>
+                </div>
+                <p></p>
+                <div class="container" id="footp">
+                  <div class="divider text-center" data-content="MyMeta Admin"></div>
                 </div>
               </div>
             </div>

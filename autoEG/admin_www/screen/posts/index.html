@@ -107,66 +107,114 @@
           <div class="panel">
             <div class="panel-body">
               <div id="router">
-                <div id="LinkBlog"><br>
-                  <div class="grid-form" autocomplete="off">
-                    <fieldset>
-                      <legend>New Link Blog</legend>
-                      <div data-row-span="1">
-                        <div class="field" data-field-span="1">
-                          <label>External Source Url:</label>
-                          <input id="ext" type="text" autofocus="">
-                        </div>
-                      </div>
-                      <div data-row-span="2">
-                        <div class="field" data-field-span="1">
-                          <label>Clone from:</label>
-                          <input id="src" type="text">
-                        </div>
-                        <div class="field" data-field-span="1">
-                          <label>Clone to:</label>
-                          <input id="dest" type="text">
-                        </div>
-                      </div>
-                      <!--div(data-row-span="1")--><br>
-                      <legend>Comment:</legend>
-                      <div data-row-span="1">
-                        <div class="field" data-field-span="1">
-                          <textarea id="com" rows="10" cols="50"></textarea>
-                        </div>
-                      </div>
-                      <div data-row-span="1">
-                        <div class="field" data-field-span="1">
-                          <label>Tags:</label>
-                          <input id="tags" type="text">
-                        </div>
-                      </div>
-                    </fieldset><br>
-                    <div class="toast toast-warning" id="linkBlogMsg">&nbsp;</div><br>
-                    <div class="button btn" id="butLink">Create</div>
-                  </div>
-                  <!--link(href= ROOT + 'assets/css/debug.css', rel='stylesheet')-->
-                  <style></style>
-                  <script>
-                    loadjs.ready(['style','ma-client'], function () {
-                       $('#butLink').click(function(){
-                          let url = $('#ext').val()
-                          let src = $('#src').val()
-                          let dest = $('#dest').val()
-                          let com  = $('#com').val()
-                          let tags  = $('#tags').val()
-                    
-                          window.aSrv.newLinkBlog(src, dest, url, com, tags).then(newLinkRes)
-                       })// click
-                    })//ready
-                    
-                    function newLinkRes(resp) {
-                       let msg = resp.data._msg
-                       console.log(msg)
-                       console.log(msg.title)
-                    
-                       $('#linkBlogMsg').text(msg.title)
-                    }
-                  </script>
+                <div class="show-sm">
+                  <div class="container" id="navp"><a href="/screen/posts/#">
+                      <flex class="left">
+                        <svg class="left feather feather-chevron-left" viewBox="0 0 24 24">
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <svg class="left feather feather-file-text" viewBox="0 0 24 24"> 
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                          <polyline points="14 2 14 8 20 8"></polyline>
+                          <line x1="16" y1="13" x2="8" y2="13"></line>
+                          <line x1="16" y1="17" x2="8" y2="17"></line>
+                          <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <div class="left padL">Blog Posts</div>
+                      </flex></a></div>
+                </div>
+                <p></p>
+                <div class="container" id="tabp">
+                  <ul class="tab">
+                    <li class="tab-item active"><a href="#published"> 
+                        <div class="badge" data-badge="2">Published&nbsp;</div></a></li>
+                    <li class="tab-item"><a href="#scheduled">
+                        <div class="badge" data-badge="2">Scheduled&nbsp;</div></a></li>
+                  </ul>
+                </div>
+                <p></p>
+                <div class="container" id="listp">
+                  <ul class="nav listbody">
+                    <li class="nav-item"><a href="/screen/posts/#">
+                        <div class="flex edge">
+                          <div class="left"> 
+                            <div class="card">
+                              <div class="card-title h5">My First Post</div>
+                              <div class="card-subtitle text-gray">6 days ago</div>
+                            </div>
+                          </div>
+                          <div class="right">
+                            <figure class="avatar avatar-xl"><img src="/assets/img/wolf.jpg" alt="Wolfgang Gehner"></figure>
+                            <div class="dropdown dropdown-right right"><a class="dropdown-toggle" href="#" tabindex="0">
+                                <svg class="feather feather-more-horizontal" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="1"></circle>
+                                  <circle cx="19" cy="12" r="1"></circle>
+                                  <circle cx="5" cy="12" r="1"></circle>
+                                </svg></a>
+                              <ul class="menu">
+                                <li class="menu-item active"><a href="/screen/posts/#">
+                                    <div class="flex edge">
+                                      <div class="left">
+                                        <svg class="feather feather-edit-2" viewBox="0 0 24 24">
+                                          <polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon>
+                                        </svg>
+                                        <div class="padL">Edit</div>
+                                      </div>
+                                    </div></a></li>
+                                <li class="menu-item active"><a href="/screen/posts/#">
+                                    <div class="flex edge">
+                                      <div class="left">
+                                        <svg class="feather feather-eye" viewBox="0 0 24 24">
+                                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                          <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <div class="padL">View</div>
+                                      </div>
+                                    </div></a></li>
+                                <li class="menu-item"><a href="/screen/posts/#"> 
+                                    <div class="flex edge">
+                                      <div class="left">
+                                        <svg class="feather feather-trash-2" viewBox="0 0 24 24">
+                                          <polyline points="3 6 5 6 21 6"></polyline>
+                                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                          <line x1="10" y1="11" x2="10" y2="17"></line>
+                                          <line x1="14" y1="11" x2="14" y2="17"></line>
+                                        </svg>
+                                        <div class="padL">Trash</div>
+                                      </div>
+                                    </div></a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div></a></li>
+                    <li class="nav-item"><a href="/screen/posts/#">
+                        <div class="flex edge">
+                          <div class="left"> 
+                            <div class="card">
+                              <div class="card-title h5">My Second Post</div>
+                              <div class="card-subtitle text-gray">6 days ago</div>
+                            </div>
+                          </div>
+                          <div class="right">
+                            <figure class="avatar avatar-xl"><img src="/assets/img/vic.jpg" alt="Vic Cekvenich"></figure>
+                            <div class="dropdown dropdown-right right"><a class="dropdown-toggle" href="#" tabindex="0">
+                                <svg class="feather feather-more-horizontal" viewBox="0 0 24 24">
+                                  <circle cx="12" cy="12" r="1"></circle>
+                                  <circle cx="19" cy="12" r="1"></circle>
+                                  <circle cx="5" cy="12" r="1"></circle>
+                                </svg></a>
+                              <ul class="menu">
+                                <li class="menu-item active"><a href="/screen/posts/#">Edit</a></li>
+                                <li class="menu-item"><a href="/screen/posts/#">Delete</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div></a></li>
+                  </ul>
+                </div>
+                <p></p>
+                <div class="container" id="footp">
+                  <div class="divider text-center" data-content="MyMeta Admin"></div>
                 </div>
               </div>
             </div>

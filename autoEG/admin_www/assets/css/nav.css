@@ -1,10 +1,35 @@
-
 .bblue {
   background-color: #0087BE;
 }
 
 .white {
   color: white !important;
+}
+
+#head {
+	background-color: #0087BE;
+	height: 50px;
+	line-height: 50px;
+ }
+
+ #navbarBrand {
+	margin-top: 5px;
+ }
+
+#head .btn-link {
+	color: white !important;
+}
+
+.nav-item {
+	width: 100%;
+}
+
+.sidebar .panel {
+	height: calc(100vh - 50px);
+}
+
+.sidebar .panel-body {
+	padding: 0;
 }
 
 .padL {
@@ -24,28 +49,25 @@
    fill: none;
  }
 
-/*
- Nav */
- .sidebar ul {
+/* Sidebar nav */
+.sidebar ul {
    list-style-type: none;
    margin: 0;
    padding: 0;
 }
 
-li a {
+.sidebar li a {
    display: block;
-   color: #000;
    padding: 10px 15px;
    text-decoration: none;
 }
 
-/* Change the link color on hover */
 .sidebar li a:hover {
    background-color: #537994;
    color: white;
 }
 
-.nav-item {
+sidebar .nav-item {
    line-height: 25px;
    width: 100%
 }
@@ -67,33 +89,7 @@ li a {
    flex-wrap: nowrap;
 }
 
-
-#head {
-   background-color: #0087BE;
-   height: 50px;
-   line-height: 50px;
-}
-#navbarBrand {
-   margin-top: 5px;
-}
-
-/*#menu {
-   height: 100vh;
-   width: 200px;
-   flex-basis: 200px;
-   flex-grow: 0;
-   flex-shrink: 0;
-   position: fixed;
-   top: 0;
-   margin-top: 60px;
-}*/
-
 #router {
-   /*width: calc( 100vw - 240px);*/
    margin-top: 0px;
-   /*margin-left: 204px;*/
 }
 
-/*.c-offcanvas {
-  width:100% !important;
-}*/

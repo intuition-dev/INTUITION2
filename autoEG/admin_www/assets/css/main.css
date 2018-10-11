@@ -5,27 +5,11 @@ body > .container {
 	padding: 0 !important;
 }
 
-#head .btn-link {
-	color: white !important;
-}
-
-.nav-item {
-	width: 100%;
-}
-
-.sidebar .panel {
+.main > .panel {
 	height: calc(100vh - 50px);
 }
 
-.sidebar .panel-body {
-	padding: 0;
-}
-
-.main .panel {
-	height: calc(100vh - 50px);
-}
-
-.main .panel-body {
+.main > .panel > .panel-body {
 	padding: 0;
 }
 
@@ -34,16 +18,14 @@ body > .container {
 	font-size: smaller;
 }
 
-.main {
-	background-color: #F3F6F8;
-}
 
 #navp, #tabp, #statusp, #listp {
 	background-color: white;
 	border: .5px solid #537994;
+	width: 85%;
 }
 
-#navp, #tabp, #statusp, #listp, #footp {
+#footp {
 	width: 85%;
 }
 
@@ -52,7 +34,7 @@ body > .container {
 	padding-bottom: .8em;
 }
 
-
+/*transition between sidebar and main/router panels */
 @media screen and (max-width: 600px) {
 
 	#all {
@@ -61,28 +43,24 @@ body > .container {
 		left: 0px;
 		overflow-x: hidden;
 		width: 200vw;
-		/*max-width: 200vw;*/
-		transition: transform .3s ease;  /*pan left, to main panel */
+		transition: transform .3s ease; 
 	}
 	
 	#all:target { 
 		transform: translateX(-100vw); /*pan left, to main panel */
 	}
 
-	#allmenu:target { 
-		transform: translateX(-100vw); /*pan left, to main panel */
+	#router, .panel, .panel-body {
+		width: 100vw;
 	}
 
 	#navp, #ddp, #tabp, #statusp, #listp, #footp {
 		width: 100vw;
 	}
 
-	#router, .panel, .panel-body {
-		width: 100vw;
-	}
 }
 
-#tabp {
+#tabp, #listp {
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -103,3 +81,41 @@ body > .container {
 	margin-left: .7em !important;
 	margin-right: .4em !important;
 }
+
+.listhead {
+	padding: 15px;
+	border-bottom: .5px solid #537994;
+}
+
+/* lists, move to component */
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+ }
+
+li a {
+	display: block;
+	padding: 0px 12px 12px 12px;
+	text-decoration: none;
+ }
+ 
+li a:hover {
+	color: #0087BE;
+}
+
+.main .listbody > .nav-item {
+	/*width: 100%;*/
+	border-bottom: .5px solid #537994;
+}
+
+.main .listbody > .nav-item:last-child {
+	border:none;
+}
+
+ .card {
+	border : 0;
+}
+/* end lists */
+
