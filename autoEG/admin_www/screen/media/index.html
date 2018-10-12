@@ -32,7 +32,7 @@
                   <line x1="8" y1="12" x2="16" y2="12"></line>
                 </svg>
                 <div class="padL hide-sm">New Post</div>
-              </div></a><a class="btn btn-link" href="#">Logout</a></div>
+              </div></a><a class="btn btn-link" nohref onclick="onLogout(true);return false">Logout</a></div>
         </div>
       </div>
     </div>
@@ -148,9 +148,12 @@
       function userSzSc() {
       	console.log('resize|scroll')
       }
+      console.log('console.log stops working ater jquery is loaded???')
       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script>console.log('console.log still works after jquery ')</script>
+    <script src="https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js"></script>
     <script src="/assets/js/setup.js"></script>
     <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
     <link href="/assets/css/nav.css" rel="stylesheet">
@@ -184,6 +187,7 @@
          console.log('try')
       
          const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
+         //-const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
       
          isLoggedIn(baseURL).then(function() {
                console.log('Lxxx yes')
@@ -191,7 +195,11 @@
                const aa = new AdminAuth()
                console.log(aa.secret)
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
+               loadjs.done('login')
                window.login.dispatch()
+      
+              console.log('loadjs done login')
+      
                $('.delayShowing').removeClass('delayShowing')
       
             }, function() {
@@ -231,7 +239,9 @@
       }
       
       loadjs.ready(['style','ma-client'], function () {
+         console.log('loadjs ready client, calling setupLogin')
          setupLogin()
+         console.log('after setupLogin done with login')
       })
     </script>
   </body>

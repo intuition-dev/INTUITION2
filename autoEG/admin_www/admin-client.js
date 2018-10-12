@@ -100,6 +100,15 @@ class MetaAdminService {
       return this.service.get('/api/last')
    }
    /**
+    * Returns a list of items in that folder (from dat_i.yaml)
+    * @returns a promise, then(resp.dat)/catch{error}
+    * @param folder folder - e.g. '/'
+    */
+   getItems(folder) {
+		let dir = '?folder='+folder
+      return this.service.get('/api/items'+dir)
+   }
+   /**
     * Does an mbake 'bake' in that folder
     * @returns a promise, then(resp.dat)/catch{error}
     * @param folder folder - e.g. '/'

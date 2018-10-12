@@ -1,6 +1,26 @@
 extends /layout/layout
 
 block main
+	script(src=ROOT+ 'screen/posts/tags/postlist-tag.js')
+	//-script(src=ROOT+ 'screen/posts/tags/postlist-tag-min.js')
+	//-script.
+		axios.get('https://dev.appthings.mymeta.host/blog/items.json').then(function(resp) {
+			feed = resp.data
+			alert('f ready')
+			loadjs.done('feed')
+		})// fetch
+	script.
+		loadjs.ready(['style','ma-client', 'login'], function() {
+			console.log('loadjs ready, user is logged in, will call itemize')
+			window.aSrv.getItems('blog').then(listRes)
+		})
+
+		function listRes(resp) {
+			items = resp.data._cmd
+			//-alert(items)
+			loadjs.done('feed')
+		}
+
 	.show-sm
 		#navp.container
 			a(href='/screen/posts/#')
@@ -19,79 +39,25 @@ block main
 		ul.tab
 			li.tab-item.active
 				a(href='#published') 
-					.badge(data-badge='2') Published&nbsp;
+					#publishedTab.badge(data-badge='2') Published&nbsp;
 			li.tab-item
 				a(href='#scheduled')
-					.badge(data-badge='2') Scheduled&nbsp;
+					#scheduleTab.badge(data-badge='0') Scheduled&nbsp;
 	p
 	#listp.container
-		ul.nav.listbody
-			li.nav-item
-				a(href='/screen/posts/#')
-					.flex.edge
-						.left 
-							.card
-								.card-title.h5 My First Post
-								.card-subtitle.text-gray 6 days ago
-						.right
-							figure.avatar.avatar-xl
-								img(src='/assets/img/wolf.jpg', alt='Wolfgang Gehner')
-							.dropdown.dropdown-right.right
-								a.dropdown-toggle(href='#', tabindex='0')
-									svg.feather.feather-more-horizontal(viewBox='0 0 24 24')
-										circle(cx='12', cy='12', r='1')
-										circle(cx='19', cy='12', r='1')
-										circle(cx='5', cy='12', r='1')
-								ul.menu
-									li.menu-item.active
-										a(href='/screen/posts/#')
-											.flex.edge
-												.left
-													svg.feather.feather-edit-2(viewBox='0 0 24 24')
-														polygon(points='16 3 21 8 8 21 3 21 3 16 16 3')
-													.padL Edit
-									li.menu-item.active
-										a(href='/screen/posts/#')
-											.flex.edge
-												.left
-													svg.feather.feather-eye(viewBox='0 0 24 24')
-														path(d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z')
-														circle(cx='12', cy='12', r='3')
-													.padL View
-									li.menu-item
-										a(href='/screen/posts/#') 
-											.flex.edge
-												.left
-													svg.feather.feather-trash-2(viewBox='0 0 24 24')
-														polyline(points='3 6 5 6 21 6')
-														path(d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2')
-														line(x1='10', y1='11', x2='10', y2='17')
-														line(x1='14', y1='11', x2='14', y2='17')
-													.padL Trash
-			li.nav-item
-				a(href='/screen/posts/#')
-					.flex.edge
-						.left 
-							.card
-								.card-title.h5 My Second Post
-								.card-subtitle.text-gray 6 days ago
-						.right
-							figure.avatar.avatar-xl
-								img(src='/assets/img/vic.jpg', alt='Vic Cekvenich')
-							.dropdown.dropdown-right.right
-								a.dropdown-toggle(href='#', tabindex='0')
-									svg.feather.feather-more-horizontal(viewBox='0 0 24 24')
-										circle(cx='12', cy='12', r='1')
-										circle(cx='19', cy='12', r='1')
-										circle(cx='5', cy='12', r='1')
-								ul.menu
-									li.menu-item.active
-										a(href='/screen/posts/#') Edit
-									li.menu-item
-										a(href='/screen/posts/#') Delete
+		postlist-tag
 
 	p
 	#footp.container
 		.divider.text-center(data-content='MyMeta Admin')
+
+	script.
+		const tag = riot.mount('postlist-tag')[0] // mount the first tag
+
+		loadjs.ready(['style','ma-client','feed'], function () {
+			$('#publishedTab').attr('data-badge', '9')
+			tag.render(items)
+		})
+
 
 

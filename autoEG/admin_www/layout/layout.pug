@@ -13,17 +13,14 @@ html
 
 	script(src='https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js')
 	script(src='https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js')
-
 	//-script(src='https://cdn.jsdelivr.net/npm/johnnydepp@0.0.2/dist/depp.min.js')
 	script(src='https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js')
 	script(src='https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js')
 	script(src='https://unpkg.com/axios@0.18.0/dist/axios.min.js')
-
 	style.
 		.delayShowing { opacity: 0.01; }
 
 	script(src='/layout/tags/fb-tag.min.js')
-	
 
 	body
 		#head.delayShowing.flex.edge.bblue.white.pad
@@ -38,19 +35,7 @@ html
 									line(x1='12', y1='8', x2='12', y2='16')
 									line(x1='8', y1='12', x2='16', y2='12')
 								.padL.hide-sm New Post
-						a.btn.btn-link(href='#') Logout
-		//-.container
-		//-#head.delayShowing.flex.edge.bblue.white.pad
-			.navbar
-				.navbar-section
-					a.btn.btn-link(href='#') MyMeta Admin
-					//-a.btn.btn-link(href='#') Examples
-				//-.navbar-center
-					p &nbsp;
-				.navbar-section
-					a.btn(href='#') Button
-					a.btn.btn-link(href='#') Logout
-
+						a.btn.btn-link(nohref, onclick='onLogout(true);return false') Logout
 		#all.container
 			.columns.col-gapless.delayShowing
 				.sidebar.bg-secondary.column.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-2
@@ -68,8 +53,13 @@ html
 			function userSzSc() {
 				console.log('resize|scroll')
 			}
+			console.log('console.log stops working ater jquery is loaded???')
 
 		script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
+		script.
+			console.log('console.log still works after jquery ')
+		//-ff move to setup
+		script(src='https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js')
 		script(src= ROOT + 'assets/js/setup.js')
 
 		link(href= ROOT + 'assets/css/spectre.css', onload='cssLoaded()', rel='stylesheet')

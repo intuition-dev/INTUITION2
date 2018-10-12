@@ -16,9 +16,7 @@ $(document).ready(function() {
 })
 
 loadjs([
-    'https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
-
-    , ROOT + 'assets/css/gridform.css'
+    ROOT + 'assets/css/gridform.css'
     , '/assets/js/jquery.disableAutoFill.js'
 
     , 'https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js'
