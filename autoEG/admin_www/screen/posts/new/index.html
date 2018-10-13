@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <script>ROOT = '/' //- sets global pug and .js from dat.yaml
+    console.log('root','/')
+    let _start=Date.now()
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <title>New Post</title>
+  <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
+  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+  <style>
+    .delayShowing { opacity: 0.01; }
+    
+  </style>
+  <script src="/layout/tags/fb-tag.min.js"></script>
+  <body>
+    <div class="delayShowing flex edge" id="edithead"> 
+      <div class="left">
+        <div class="navbar">
+          <div class="navbar-section"><a class="btn btn-link" href="/screen/posts">Close</a></div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="navbar">
+          <div class="navbar-section">
+            <script>
+              function toggleEdit(){
+              	var t = $('#toggle') 
+              	if (t.hasClass('active')){
+              		window.location.hash = '#edit'
+              		t.removeClass('active')
+              	}
+              	else
+              	{
+              		window.location.hash = '#'
+              		t.addClass('active')
+              	}
+              }
+            </script>
+            <div class="a btn active" id="toggle" nohref onclick="toggleEdit()">
+              <svg class="feather feather-settings" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div><a class="btn disabled" href="#all">Preview</a><a class="btn disabled" href="#all">Publish...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="edit">
+      <div class="columns col-gapless delayShowing">
+        <div class="main bg-white column col sm-6 col-md-6 col-lg-9 col-xl-9 col-10">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="router">
+                <script src="/screen/posts/tags/postlist-tag.js"></script>
+                <script>
+                  loadjs.ready(['style','ma-client', 'login'], function() {
+                  	console.log('loadjs ready, user is logged in, will call itemize')
+                  	//window.aSrv.getItems('blog').then(listRes)
+                  })
+                  
+                  function listRes(resp) {
+                  	items = resp.data._cmd
+                  	//-alert(items)
+                  	loadjs.done('feed')
+                  }
+                  
+                </script>
+                <p></p>
+                <div class="container" id="editp">
+                  <p>Editor here</p>
+                  <!--postlist-tag-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="props bg-secondary column col-sm-6 col-md-6 col-lg-3 col-xl-3 col-2">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="container" id="propp">
+                <p>Properties here</p>
+              </div>
+              <script>
+                const tag = riot.mount('postlist-tag')[0] // mount the first tag
+                
+                loadjs.ready(['style','ma-client','feed'], function () {
+                	$('#publishedTab').attr('data-badge', '9')
+                	tag.render(items)
+                })
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function userSzSc() {
+      	console.log('resize|scroll')
+      }
+      console.log('console.log stops working ater jquery is loaded???')
+      
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script>console.log('console.log still works after jquery ')</script>
+    <script src="https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js"></script>
+    <script src="/assets/js/setup.js"></script>
+    <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
+    <link href="/assets/css/nav.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <div class="modal" id="loginScr">
+      <div class="modal-overlay"></div>
+      <div class="modal-container delayShowing">
+        <div class="modal-header"></div>
+        <div class="modal-body">
+          <form class="grid-form" autocomplete="off">
+            <fieldset>
+              <legend>Login</legend>
+              <div data-row-span="1">
+                <div class="field" data-field-span="1">
+                  <label>Secret Code</label>
+                  <input id="code" type="password" autofocus="">
+                </div>
+              </div>
+            </fieldset><br>
+            <div class="toast toast-warning" id="loginMsg">Unable to serve. Is the secret code correct?</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="butLog"> Login</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function loginTry(arg) {
+         console.log('try')
+      
+         const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
+         //-const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
+      
+         isLoggedIn(baseURL).then(function() {
+               console.log('Lxxx yes')
+               $('#loginScr').removeClass('active') // show app
+               const aa = new AdminAuth()
+               console.log(aa.secret)
+               window.aSrv = new MetaAdminService(baseURL, aa.secret)
+               loadjs.done('login')
+               window.login.dispatch()
+      
+              console.log('loadjs done login')
+      
+               $('.delayShowing').removeClass('delayShowing')
+      
+            }, function() {
+                  onLogout(arg)
+                  $('.delayShowing').removeClass('delayShowing')
+      
+         })
+      }//()
+      
+      function onLogout(arg) {
+         console.log('LXXX no')
+         new AdminAuth().clear()
+         $('#loginScr').addClass('active') // hide app
+         try {
+            delete window.aSrv
+         } catch(err) { console.log(err) }
+         if(arg) $('#loginMsg').show(0)
+         else $('#loginMsg').hide(0) // no message
+      
+      }
+      
+      function setupLogin() {
+         $('#loginMsg').hide(0) // no message
+      
+         $('#butLog').cli
