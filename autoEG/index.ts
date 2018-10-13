@@ -13,7 +13,7 @@ const yaml = require('js-yaml')
 const fs = require('fs')
 const bodyParser = require('body-parser')
 
-import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps, Dat, Ver } from 'mbake/lib/Base'
+import { RetMsg, MetaPro2, Watch2, AdminSrv, MDevSrv2, Scrape, FileOps, Dat, Ver } from 'mbake/lib/Base'
 
 const logger = require('tracer').console()
 console.log(new Ver().ver())
@@ -31,8 +31,9 @@ server.use(basicAuth({
 server.use(bodyParser())
 server.use(bodyParser.urlencoded({ extended: false }))
 server.use(bodyParser.json())
+ 
 
-const mp = new MetaPro(config)
+const mp = new MetaPro2(config.mount)
 const sc = new Scrape()
 const fo = new FileOps(config.mount)
 
@@ -50,7 +51,7 @@ server.get('/api/bake', function (req, res) {
    console.log(' bake')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
-   let dir = qs[MetaPro.folderProp]
+   let dir = qs[MetaPro2.folderProp]
 
    let ret:RetMsg = mp.bake(dir)
    if(ret.code<0)
@@ -62,7 +63,7 @@ server.get('/api/tag', function (req, res) {
    console.log(' tag')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
-   let dir = qs[MetaPro.folderProp]
+   let dir = qs[MetaPro2.folderProp]
 
    let ret:RetMsg = mp.tag(dir)
    if(ret.code<0)
@@ -74,7 +75,7 @@ server.get('/api/itemize', function (req, res) {
    console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
-   let dir = qs[MetaPro.folderProp]
+   let dir = qs[MetaPro2.folderProp]
 
    let ret:RetMsg = mp.itemize(dir)
    if(ret.code<0)
@@ -180,9 +181,9 @@ var listener = server.listen(config.services_port, function () {
    //console.log(server._router.stack )
 })
 
-let app = new MDevSrv(config)
+let app = new MDevSrv2(config['mount'], config['mount_port'])
 let admin = new AdminSrv(config)
-let w = new Watch(mp, config)
+let w = new Watch2(mp, config['mount'])
 
 // do the first build
 setTimeout(function(){
