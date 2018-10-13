@@ -50,6 +50,19 @@ body > .container {
 		transform: translateX(-100vw); /*pan left, to main panel */
 	}
 
+	#edit {
+		position: absolute;
+		top: 50px;
+		left: -100vw;
+		overflow-x: hidden;
+		width: 200vw;
+		transition: transform .3s ease; 
+	}
+	
+	#edit:target { 
+		transform: translateX(100vw); /*pan right, to edit panel */
+	}
+
 	#router, .panel, .panel-body {
 		width: 100vw;
 	}
@@ -70,7 +83,7 @@ body > .container {
 }
 
 .divider[data-content]::after {
-	background: none !important;
+	background: #F3F6F8 !important;
 }
 
 .tab {
@@ -106,7 +119,6 @@ li a:hover {
 }
 
 .main .listbody > .nav-item {
-	/*width: 100%;*/
 	border-bottom: .5px solid #537994;
 }
 

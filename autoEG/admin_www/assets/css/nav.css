@@ -12,12 +12,32 @@
 	line-height: 50px;
  }
 
- #navbarBrand {
+#navbarBrand {
 	margin-top: 5px;
- }
+}
+
+
 
 #head .btn-link {
 	color: white !important;
+}
+
+#edithead {
+	height: 50px;
+	line-height: 50px;
+}
+
+#edithead .navbar {
+  padding: 0 20px;
+  border-right: .5px solid #537994;
+}
+
+#edithead .right a {
+  margin-left: 10px;
+}
+
+#edithead .right a:first-child {
+  margin-left: 0;
 }
 
 .nav-item {
@@ -56,13 +76,13 @@
    padding: 0;
 }
 
-.sidebar li a {
+.sidebar li > a {
    display: block;
    padding: 10px 15px;
    text-decoration: none;
 }
 
-.sidebar li a:hover {
+.sidebar li > a:hover {
    background-color: #537994;
    color: white;
 }
