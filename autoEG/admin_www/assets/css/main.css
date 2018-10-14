@@ -34,33 +34,58 @@ body > .container {
 	padding-bottom: .8em;
 }
 
-/* CSS off canvas Props panel */
+/* blog add/edit screen */
 #edit {
 	position: absolute;
-	top: 50px;
-	left: 0vw;
-	/*overflow-x: hidden;*/
+	top: 50px; left: 0vw;
 	width: 100vw;
-	padding-left: 0;
-	padding-right: 0;
+	padding-left: 0; padding-right: 0;
 }
 
 #edit .panel {
 	border: 0;
 }
 
+#edittitlep, #edittabp, {
+	width: 85%;
+}
+
+#cms1 {
+	width: 100%
+}
+
+.tile {
+	padding: 10px 10px 5px 10px;
+	margin: 0;
+	vertical-align: middle;
+	border-bottom: .5px solid #537994;
+}
+
+.accordion {
+	background-color: white;
+	padding-top: 7px; padding-bottom: 1px;
+	border-bottom: .5px solid #537994;
+}
+
+.accordion h6 {
+	vertical-align: middle;
+}
+
+.props .panel-body {
+	padding:  0;
+}
+
+/* CSS off-canvas Props panel */
 .props { 
 	position: fixed;
-	top: 50px;
-	left: calc(100vw - 250px);
-	width: 250px;
-	height: 100%;
+	top: 50px; left: calc(100vw - 250px);
+	width: 250px; height: 100%;
 	overflow: hidden;
 	transition: left .3s ease;
+	border-left: .5px solid #537994;
 }
 
 #hideprops { /* CSS trick: use left panel ID */
-	left: 0;
 	width: calc(100vw - 250px);
 	overflow: hidden;
 }
@@ -69,9 +94,9 @@ body > .container {
 	width: 100vw !important;
 }
 #hideprops:target + .props { 
-	/*width: 0 !important;*/
 	left: 100vw;
-/* end CSS off canvas Props panel */
+}
+/* end CSS off-canvas Properties panel */
 
 /*transition between sidebar and main/router panels */
 @media screen and (max-width: 600px) {
@@ -97,7 +122,21 @@ body > .container {
 	#navp, #ddp, #tabp, #statusp, #listp, #footp {
 		width: 100vw;
 	}
+	
+}
 
+/*transition between edit and properties panels */
+@media screen and (max-width: 500px) {
+	.props {
+		left: 0;
+		width: 100vw;
+	}
+
+	#hideprops { /* CSS trick: use left panel ID */
+		left: -100vw;
+		width: 100vw;
+		overflow: hidden;
+	}
 }
 
 #tabp, #listp {

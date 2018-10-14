@@ -73,9 +73,20 @@
                 
               </script>
               <p></p>
-              <div class="container" id="editp">
-                <p>Editor herel asdfasdfas dfasd fasdfa sdfa sdfas dfas dfjasd fasd fasd fasd fasd fsad fas dfasdf asdfas dfasdf asdasdffasdf</p>
-                <!--postlist-tag-->
+              <div class="container" id="edittitlep">
+                <div class="form-group">
+                  <input class="form-input" name="title" placeholder="Blog Title">
+                </div>
+              </div>
+              <p></p>
+              <div class="container" id="edittabp">
+                <ul class="tab">
+                  <li class="tab-item active"><a href="#md">Markdown&nbsp;</a></li>
+                  <li class="tab-item"><a href="#view">View&nbsp;</a></li>
+                </ul>
+              </div>
+              <div class="container" id="editorp">
+                <textarea id="cms1" rows="20" placeholder="Blog Entry here"></textarea>
               </div>
             </div>
           </div>
@@ -84,120 +95,89 @@
       <nav class="props bg-secondary delayShowing">
         <div class="panel">
           <div class="panel-body">
-            <div class="container" id="propp">
-              <p>Properties here</p>
+            <div class="tile">
+              <div class="tile-content">
+                <div class="tile-title">Post Settings</div>
+              </div>
+              <div class="tile-action"><a nohref onclick="toggleEdit()">
+                  <svg class="feather feather-x" viewBox="0 0 24 24">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg></a></div>
+            </div>
+            <div class="accordion">
+              <input id="accordion-1" type="checkbox" name="accordion-checkbox" hidden="">
+              <label class="accordion-header" for="accordion-1">
+                <div class="flex edge">
+                  <h6 class="left">Status</h6>
+                  <div class="right"></div>
+                  <svg class="feather feather-chevron-down mr-1" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </label>
+              <div class="accordion-body">
+                <p>my status content</p>
+              </div>
+            </div>
+            <div class="accordion">
+              <input id="accordion-2" type="checkbox" name="accordion-checkbox" hidden="">
+              <label class="accordion-header" for="accordion-2">
+                <div class="flex edge">
+                  <h6 class="left">Featured Image</h6>
+                  <div class="right"></div>
+                  <svg class="feather feather-chevron-down mr-1" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </label>
+              <div class="accordion-body">
+                <p>my image content</p>
+              </div>
             </div>
             <script>
-              const tag = riot.mount('postlist-tag')[0] // mount the first tag
+              loadjs.ready('site', function () {
               
-              loadjs.ready(['style','ma-client','feed'], function () {
-              	$('#publishedTab').attr('data-badge', '9')
-              	tag.render(items)
-              })
-            </script>
-          </div>
-        </div>
-      </nav>
-    </div>
-    <script>
-      function userSzSc() {
-      	console.log('resize|scroll')
-      }
-      console.log('console.log stops working ater jquery is loaded???')
-      
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script>console.log('console.log still works after jquery ')</script>
-    <script src="https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js"></script>
-    <script src="/assets/js/setup.js"></script>
-    <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
-    <link href="/assets/css/nav.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <div class="modal" id="loginScr">
-      <div class="modal-overlay"></div>
-      <div class="modal-container delayShowing">
-        <div class="modal-header"></div>
-        <div class="modal-body">
-          <form class="grid-form" autocomplete="off">
-            <fieldset>
-              <legend>Login</legend>
-              <div data-row-span="1">
-                <div class="field" data-field-span="1">
-                  <label>Secret Code</label>
-                  <input id="code" type="password" autofocus="">
-                </div>
-              </div>
-            </fieldset><br>
-            <div class="toast toast-warning" id="loginMsg">Unable to serve. Is the secret code correct?</div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn" id="butLog"> Login</button>
-        </div>
-      </div>
-    </div>
-    <script>
-      function loginTry(arg) {
-         console.log('try')
-      
-         const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
-         //-const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
-      
-         isLoggedIn(baseURL).then(function() {
-               console.log('Lxxx yes')
-               $('#loginScr').removeClass('active') // show app
-               const aa = new AdminAuth()
-               console.log(aa.secret)
-               window.aSrv = new MetaAdminService(baseURL, aa.secret)
-               loadjs.done('login')
-               window.login.dispatch()
-      
-              console.log('loadjs done login')
-      
-               $('.delayShowing').removeClass('delayShowing')
-      
-            }, function() {
-                  onLogout(arg)
-                  $('.delayShowing').removeClass('delayShowing')
-      
-         })
-      }//()
-      
-      function onLogout(arg) {
-         console.log('LXXX no')
-         new AdminAuth().clear()
-         $('#loginScr').addClass('active') // hide app
-         try {
-            delete window.aSrv
-         } catch(err) { console.log(err) }
-         if(arg) $('#loginMsg').show(0)
-         else $('#loginMsg').hide(0) // no message
-      
-      }
-      
-      function setupLogin() {
-         $('#loginMsg').hide(0) // no message
-      
-         $('#butLog').click(function(){
-            let code = $('#code').val()
-            let aa = new AdminAuth()
-            aa.save(code)
-            console.log(aa.secret)
-            loginTry(true)
-         })
-          $('#butLogOut').click(function(){
-            onLogout(false)
-         })
-      
-         loginTry(false)
-      }
-      
-      loadjs.ready(['style','ma-client'], function () {
-         console.log('loadjs ready client, calling setupLogin')
-         setupLogin()
-         console.log('after setupLogin done with login')
-      })
-    </script>
-  </body>
-</html>                                                                                   
+              	alert('init editor');
+              	/*
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
+              	*/
+              	loadjs([
+              		'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.css'
+              
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
+              
+              	], 'cmjs', { // bundle ID
+              		async: false //required due to loadjs bug with bundles
+              	})//load
+              })//ready
+              
+              loadjs.ready('cmjs', function () {
+              	_initCodeMirror()
+              
+              	/*$('#saveEdits').click(function() {
+              		console.log('save')
+              		_saveEdits()
+              	})//click */
+              
+              })//ready
+              
+              let myCodeMirror
+              function _initCodeMirror() {
+              	myCodeMirror = CodeMirror.fromTextArea(
+              		document.querySelector('#cms1') ,
+              			{
+              				mode:  'pug'
+              				, lineNumbers: true
+              				, tabSize: 3
+              				, indentWithTabs: true
+              				//, theme: 'neat'
+              				//, keyMap: 'sublime'
+              				, v1iewportMargin: 'Infinity'
+              			}
+              		)
+              	myCodeMirror.setSize('100%', 

@@ -14,45 +14,150 @@ block main
 			loadjs.done('feed')
 		}
 
-	//-p
-	//-#tabp.container
+	p
+	#edittitlep.container
+		.form-group
+			input.form-input(name='title', placeholder='Blog Title')
+	p
+	#edittabp.container
 		ul.tab
 			li.tab-item.active
-				a(href='#published') 
-					#publishedTab.badge(data-badge='2') Published&nbsp;
+				a(href='#md') Markdown&nbsp;
 			li.tab-item
-				a(href='#scheduled')
-					#scheduleTab.badge(data-badge='0') Scheduled&nbsp;
-	p
-	#editp.container
-		p Editor herel asdfasdfas dfasd fasdfa sdfa sdfas dfas dfjasd fasd fasd fasd fasd fsad fas dfasdf asdfas dfasdf asdasdffasdf
-		//postlist-tag
+				a(href='#view') View&nbsp;
+	#editorp.container
+		textarea#cms1(rows='20', placeholder='Blog Entry here')
 
 block props
-	//-p Props props here
-	//-.show-sm
-	#propp.container
-		p Properties here
-			//-a(href='/screen/posts/#')
-				flex.left
-					svg.left.feather.feather-chevron-left(viewBox='0 0 24 24')
-						polyline(points='15 18 9 12 15 6')
-					svg.left.feather.feather-file-text(viewBox='0 0 24 24') 
-						path(d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z')
-						polyline(points='14 2 14 8 20 8')
-						line(x1='16', y1='13', x2='8', y2='13')
-						line(x1='16', y1='17', x2='8', y2='17')
-						polyline(points='10 9 9 9 8 9')
-					.left.padL Blog Posts
-
+	//-#propp.container
+	.tile
+		.tile-content
+			.tile-title Post Settings
+		.tile-action
+			a(nohref onclick='toggleEdit()')
+				svg.feather.feather-x(viewBox='0 0 24 24')
+					line(x1='18', y1='6', x2='6', y2='18')
+					line(x1='6', y1='6', x2='18', y2='18')
+	.accordion
+		input#accordion-1(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='accordion-1')
+			.flex.edge
+				h6.left Status
+				.right
+				svg.feather.feather-chevron-down.mr-1(viewBox='0 0 24 24')
+					polyline(points='6 9 12 15 18 9')
+		.accordion-body
+			p my status content
+	.accordion
+		input#accordion-2(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='accordion-2')
+			.flex.edge
+				h6.left Featured Image
+				.right
+				svg.feather.feather-chevron-down.mr-1(viewBox='0 0 24 24')
+					polyline(points='6 9 12 15 18 9')
+		.accordion-body
+			p my image content
 
 	script.
-		const tag = riot.mount('postlist-tag')[0] // mount the first tag
 
-		loadjs.ready(['style','ma-client','feed'], function () {
-			$('#publishedTab').attr('data-badge', '9')
-			tag.render(items)
-		})
+		loadjs.ready('site', function () {
+
+			alert('init editor');
+			/*
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
+			*/
+			loadjs([
+				'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.css'
+
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
+
+			], 'cmjs', { // bundle ID
+				async: false //required due to loadjs bug with bundles
+			})//load
+		})//ready
+
+		loadjs.ready('cmjs', function () {
+			_initCodeMirror()
+
+			/*$('#saveEdits').click(function() {
+				console.log('save')
+				_saveEdits()
+			})//click */
+
+		})//ready
+
+		let myCodeMirror
+		function _initCodeMirror() {
+			myCodeMirror = CodeMirror.fromTextArea(
+				document.querySelector('#cms1') ,
+					{
+						mode:  'pug'
+						, lineNumbers: true
+						, tabSize: 3
+						, indentWithTabs: true
+						//, theme: 'neat'
+						//, keyMap: 'sublime'
+						, v1iewportMargin: 'Infinity'
+					}
+				)
+			myCodeMirror.setSize('100%', '100%')
+			loadjs.done('cm')
+		}// initCM()
+
+		function read( data) {
+			let fn_ = data[0]
+			let url = '/api/read?secret='
+			let folder = '&folder='
+			let fn = '&fn='
+			url = url + getSec() + folder + getPage() + fn + fn_
+			console.log(url)
+
+			fetch(url)
+				.then(function(resp) {
+					return resp.text()
+				}).then(function(ret) {
+
+					loadjs.ready('cm', function() {
+						myCodeMirror.getDoc().setValue(ret)
+					})
+
+				}).catch(function(err) {
+					console.log('error', err)
+			})//fetch
+		}//()
+
+		function _saveEdits() {
+			let txt = myCodeMirror.getDoc().getValue()
+
+			let url = '/api/write?secret='
+			let folder = '&folder='
+			let fn = '&fn='
+			url = url + getSec() + folder + getPage() + fn + getFN()
+
+			console.log(url)
+
+			let headers = new Headers()
+			headers.append('Content-Type', 'text/plain')
+			fetch(url, {
+					method: 'POST',
+					headers : headers,
+					body: txt,
+				})
+				.then(function(resp) {
+					return resp.text()
+				}).then(function(ret) {
+
+
+				}).catch(function(err) {
+					console.log('error', err)
+			})//fetch
+		}//()
+
 
 
 
