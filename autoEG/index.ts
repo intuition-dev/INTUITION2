@@ -1,3 +1,4 @@
+// All rights Metabake.org | Wolfgang Gehner, licensed under MIT
 
 declare var require: any
 //declare var process: any
