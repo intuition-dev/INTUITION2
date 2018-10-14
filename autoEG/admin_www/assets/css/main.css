@@ -34,6 +34,45 @@ body > .container {
 	padding-bottom: .8em;
 }
 
+/* CSS off canvas Props panel */
+#edit {
+	position: absolute;
+	top: 50px;
+	left: 0vw;
+	/*overflow-x: hidden;*/
+	width: 100vw;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#edit .panel {
+	border: 0;
+}
+
+.props { 
+	position: fixed;
+	top: 50px;
+	left: calc(100vw - 250px);
+	width: 250px;
+	height: 100%;
+	overflow: hidden;
+	transition: left .3s ease;
+}
+
+#hideprops { /* CSS trick: use left panel ID */
+	left: 0;
+	width: calc(100vw - 250px);
+	overflow: hidden;
+}
+
+#hideprops:target { 
+	width: 100vw !important;
+}
+#hideprops:target + .props { 
+	/*width: 0 !important;*/
+	left: 100vw;
+/* end CSS off canvas Props panel */
+
 /*transition between sidebar and main/router panels */
 @media screen and (max-width: 600px) {
 
@@ -50,18 +89,6 @@ body > .container {
 		transform: translateX(-100vw); /*pan left, to main panel */
 	}
 
-	#edit {
-		position: absolute;
-		top: 50px;
-		left: -100vw;
-		overflow-x: hidden;
-		width: 200vw;
-		transition: transform .3s ease; 
-	}
-	
-	#edit:target { 
-		transform: translateX(100vw); /*pan right, to edit panel */
-	}
 
 	#router, .panel, .panel-body {
 		width: 100vw;

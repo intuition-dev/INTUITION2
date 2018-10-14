@@ -36,7 +36,7 @@ html
 							function toggleEdit(){
 								var t = $('#toggle') 
 								if (t.hasClass('active')){
-									window.location.hash = '#edit'
+									window.location.hash = '#hideprops'
 									t.removeClass('active')
 								}
 								else
@@ -64,17 +64,16 @@ html
 									line(x1='8', y1='12', x2='16', y2='12')
 								.padL.hide-sm Publish...
 						//-a.btn.btn-link(nohref, onclick='onLogout(true);return false') Logout
-		#edit.container
-			.columns.col-gapless.delayShowing
-				.main.bg-white.column.col.sm-6.col-md-6.col-lg-9.col-xl-9.col-10
-					.panel
-						.panel-body
-							#router
-								block main
-				.props.bg-secondary.column.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-2
-					.panel
-						.panel-body
-								block props
+		#edit.container.delayShowing
+			.main#hideprops.bg-white.delayShowing
+				.panel
+					.panel-body
+						#router
+							block main
+			nav.props.bg-secondary.delayShowing
+				.panel
+					.panel-body
+							block props
 
 
 		script.

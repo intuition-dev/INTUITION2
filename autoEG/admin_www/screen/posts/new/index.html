@@ -33,7 +33,7 @@
               function toggleEdit(){
               	var t = $('#toggle') 
               	if (t.hasClass('active')){
-              		window.location.hash = '#edit'
+              		window.location.hash = '#hideprops'
               		t.removeClass('active')
               	}
               	else
@@ -53,53 +53,51 @@
         </div>
       </div>
     </div>
-    <div class="container" id="edit">
-      <div class="columns col-gapless delayShowing">
-        <div class="main bg-white column col sm-6 col-md-6 col-lg-9 col-xl-9 col-10">
-          <div class="panel">
-            <div class="panel-body">
-              <div id="router">
-                <script src="/screen/posts/tags/postlist-tag.js"></script>
-                <script>
-                  loadjs.ready(['style','ma-client', 'login'], function() {
-                  	console.log('loadjs ready, user is logged in, will call itemize')
-                  	//window.aSrv.getItems('blog').then(listRes)
-                  })
-                  
-                  function listRes(resp) {
-                  	items = resp.data._cmd
-                  	//-alert(items)
-                  	loadjs.done('feed')
-                  }
-                  
-                </script>
-                <p></p>
-                <div class="container" id="editp">
-                  <p>Editor here</p>
-                  <!--postlist-tag-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="props bg-secondary column col-sm-6 col-md-6 col-lg-3 col-xl-3 col-2">
-          <div class="panel">
-            <div class="panel-body">
-              <div class="container" id="propp">
-                <p>Properties here</p>
-              </div>
+    <div class="container delayShowing" id="edit">
+      <div class="main bg-white delayShowing" id="hideprops">
+        <div class="panel">
+          <div class="panel-body">
+            <div id="router">
+              <script src="/screen/posts/tags/postlist-tag.js"></script>
               <script>
-                const tag = riot.mount('postlist-tag')[0] // mount the first tag
-                
-                loadjs.ready(['style','ma-client','feed'], function () {
-                	$('#publishedTab').attr('data-badge', '9')
-                	tag.render(items)
+                loadjs.ready(['style','ma-client', 'login'], function() {
+                	console.log('loadjs ready, user is logged in, will call itemize')
+                	//window.aSrv.getItems('blog').then(listRes)
                 })
+                
+                function listRes(resp) {
+                	items = resp.data._cmd
+                	//-alert(items)
+                	loadjs.done('feed')
+                }
+                
               </script>
+              <p></p>
+              <div class="container" id="editp">
+                <p>Editor herel asdfasdfas dfasd fasdfa sdfa sdfas dfas dfjasd fasd fasd fasd fasd fsad fas dfasdf asdfas dfasdf asdasdffasdf</p>
+                <!--postlist-tag-->
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <nav class="props bg-secondary delayShowing">
+        <div class="panel">
+          <div class="panel-body">
+            <div class="container" id="propp">
+              <p>Properties here</p>
+            </div>
+            <script>
+              const tag = riot.mount('postlist-tag')[0] // mount the first tag
+              
+              loadjs.ready(['style','ma-client','feed'], function () {
+              	$('#publishedTab').attr('data-badge', '9')
+              	tag.render(items)
+              })
+            </script>
+          </div>
+        </div>
+      </nav>
     </div>
     <script>
       function userSzSc() {
@@ -181,4 +179,25 @@
       function setupLogin() {
          $('#loginMsg').hide(0) // no message
       
-         $('#butLog').cli
+         $('#butLog').click(function(){
+            let code = $('#code').val()
+            let aa = new AdminAuth()
+            aa.save(code)
+            console.log(aa.secret)
+            loginTry(true)
+         })
+          $('#butLogOut').click(function(){
+            onLogout(false)
+         })
+      
+         loginTry(false)
+      }
+      
+      loadjs.ready(['style','ma-client'], function () {
+         console.log('loadjs ready client, calling setupLogin')
+         setupLogin()
+         console.log('after setupLogin done with login')
+      })
+    </script>
+  </body>
+</html>                                                                                   
