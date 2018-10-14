@@ -196,7 +196,7 @@ function startW() {
    if(!config.admin_watch) return // if you mount more than one admin: only one should 'file watch'
 
    setTimeout(function(){
-      w.start()
+      w.start(true) // true for WAN, eg: mounted drive
       console.log('// READY //////////////////////////////////////////////////////')
    }, 3000)
 }
