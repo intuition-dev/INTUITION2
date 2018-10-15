@@ -1,57 +1,31 @@
-.calendar.calendar-sm
-	.calendar-nav.navbar
-		button.btn.btn-action.btn-link.btn-lg.left
-			svg.feather.feather-chevron-left(viewBox='0 0 24 24')
-				polyline(points='15 18 9 12 15 6')
-		.navbar-primary March 2018
-		button.btn.btn-action.btn-link.btn-lg.right
-			svg.feather.feather-chevron-right(viewBox='0 0 24 24')
-				polyline(points='9 18 15 12 9 6')
-	.calendar-container
-		.calendar-header
-			.calendar-date Sun
-			.calendar-date Mon
-			.calendar-date Tue
-			.calendar-date Wed
-			.calendar-date Thu
-			.calendar-date Fri
-			.calendar-date Sat
-		.calendar-body
-			// calendar previous month
-			.calendar-date.prev-month
-				button.date-item 26
-			.calendar-date.prev-month
-				button.date-item 27
-			.calendar-date.prev-month
-				button.date-item 28
-			// calendar current month
-			.calendar-date
-				button.date-item 1
-			.calendar-date
-				button.date-item 2
-			.calendar-date
-				button.date-item 3
-			// calendar date: today
-			.calendar-date
-				button.date-item.date-today 4
-			// calendar date: tooltip
-			.calendar-date.tooltip(data-tooltip='You have appointments')
-				button.date-item 5
-			// calendar date: not available
-			.calendar-date.tooltip(data-tooltip='Not available')
-				button.date-item(disabled='') 6
-			// calendar range
-			.calendar-date.calendar-range.range-start.range-end
-				button.date-item 7
-			.calendar-date
-				button.date-item 8
-			.calendar-date
-				button.date-item 9
-			.calendar-date
-				button.date-item 10
-			.calendar-date
-				button.date-item 31
-			// calendar next month
-			.calendar-date.next-month
-				button.date-item 1
+//-#cal1.pad
 
+input#date1(readonly='', placeholder='Date')
+//-br
+//-input#time(readonly='', placeholder='Time')
+
+//so it has room to open
+style.
+	#cal1 {
+		/*height: 300vh; */
+	}
+
+script.
+	console.log('pgC')
+
+	depp.require(['cssJs', 'device'], function () {
+
+		$('#date1').pickadate({
+			editable: false,
+			clear: ''
+		})
+		/*$('#time1').pickatime({
+			editable: false,
+			clear: '',
+			//min: new Date(2015,3,20,10),
+			//max: new Date(2015,7,14,20,30),
+			interval: 60
+			
+		})*/
+
+	})

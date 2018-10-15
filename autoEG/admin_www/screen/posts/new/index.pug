@@ -71,6 +71,7 @@ block props
 							p
 							.text-center Choose a date to schedule:
 							include tags/calendar
+
 	.accordion
 		input#accordion-2(type='checkbox', name='accordion-checkbox', hidden='')
 		label.accordion-header(for='accordion-2')
@@ -90,6 +91,21 @@ block props
 		label.accordion-header(for='accordion-3')
 			.flex.edge
 				h6.left Featured Image
+				.right
+				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
+					polyline(points='6 9 12 15 18 9')
+				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
+					polyline(points='18 15 12 9 6 15')
+		.accordion-body
+			#featuredimage.card
+				.card-body
+					input.form-input(type='file')
+
+	.accordion
+		input#accordion-4(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='accordion-4')
+			.flex.edge
+				h6.left Images
 				.right
 				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
 					polyline(points='6 9 12 15 18 9')

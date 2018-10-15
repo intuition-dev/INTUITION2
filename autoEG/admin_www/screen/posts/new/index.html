@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
-  <script src="https://cdn.rawgit.com/muicss/johnnydepp/donefn/test/assets/johnnydepp/depp.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
   <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
   <style>
@@ -147,86 +147,34 @@
                       <div class="accordion-body">
                         <p></p>
                         <div class="text-center">Choose a date to schedule:</div>
-                        <div class="calendar calendar-sm">
-                          <div class="calendar-nav navbar">
-                            <button class="btn btn-action btn-link btn-lg left">
-                              <svg class="feather feather-chevron-left" viewBox="0 0 24 24">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                              </svg>
-                            </button>
-                            <div class="navbar-primary">March 2018</div>
-                            <button class="btn btn-action btn-link btn-lg right">
-                              <svg class="feather feather-chevron-right" viewBox="0 0 24 24">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                              </svg>
-                            </button>
-                          </div>
-                          <div class="calendar-container">
-                            <div class="calendar-header">
-                              <div class="calendar-date">Sun</div>
-                              <div class="calendar-date">Mon</div>
-                              <div class="calendar-date">Tue</div>
-                              <div class="calendar-date">Wed</div>
-                              <div class="calendar-date">Thu</div>
-                              <div class="calendar-date">Fri</div>
-                              <div class="calendar-date">Sat</div>
-                            </div>
-                            <div class="calendar-body">
-                              <!-- calendar previous month-->
-                              <div class="calendar-date prev-month">
-                                <button class="date-item">26</button>
-                              </div>
-                              <div class="calendar-date prev-month">
-                                <button class="date-item">27</button>
-                              </div>
-                              <div class="calendar-date prev-month">
-                                <button class="date-item">28</button>
-                              </div>
-                              <!-- calendar current month-->
-                              <div class="calendar-date">
-                                <button class="date-item">1</button>
-                              </div>
-                              <div class="calendar-date">
-                                <button class="date-item">2</button>
-                              </div>
-                              <div class="calendar-date">
-                                <button class="date-item">3</button>
-                              </div>
-                              <!-- calendar date: today-->
-                              <div class="calendar-date">
-                                <button class="date-item date-today">4</button>
-                              </div>
-                              <!-- calendar date: tooltip-->
-                              <div class="calendar-date tooltip" data-tooltip="You have appointments">
-                                <button class="date-item">5</button>
-                              </div>
-                              <!-- calendar date: not available-->
-                              <div class="calendar-date tooltip" data-tooltip="Not available">
-                                <button class="date-item" disabled="">6</button>
-                              </div>
-                              <!-- calendar range-->
-                              <div class="calendar-date calendar-range range-start range-end">
-                                <button class="date-item">7</button>
-                              </div>
-                              <div class="calendar-date">
-                                <button class="date-item">8</button>
-                              </div>
-                              <div class="calendar-date">
-                                <button class="date-item">9</button>
-                              </div>
-                              <div class="calendar-date">
-                                <button class="date-item">10</button>
-                              </div>
-                              <div class="calendar-date">
-                                <button class="date-item">31</button>
-                              </div>
-                              <!-- calendar next month-->
-                              <div class="calendar-date next-month">
-                                <button class="date-item">1</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <input id="date1" readonly="" placeholder="Date">
+                        <!--so it has room to open-->
+                        <style>
+                          #cal1 {
+                          	/*height: 300vh; */
+                          }
+                          
+                        </style>
+                        <script>
+                          console.log('pgC')
+                          
+                          depp.require(['cssJs', 'device'], function () {
+                          
+                          	$('#date1').pickadate({
+                          		editable: false,
+                          		clear: ''
+                          	})
+                          	/*$('#time1').pickatime({
+                          		editable: false,
+                          		clear: '',
+                          		//min: new Date(2015,3,20,10),
+                          		//max: new Date(2015,7,14,20,30),
+                          		interval: 60
+                          		
+                          	})*/
+                          
+                          })
+                        </script>
                       </div>
                     </div>
                   </div>
@@ -283,4 +231,240 @@
                 <div class="card" id="featuredimage">
                   <div class="card-body">
                     <input class="form-input" type="file">
-           
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion">
+              <input id="accordion-4" type="checkbox" name="accordion-checkbox" hidden="">
+              <label class="accordion-header" for="accordion-4">
+                <div class="flex edge">
+                  <h6 class="left">Images</h6>
+                  <div class="right"></div>
+                  <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                  <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                  </svg>
+                </div>
+              </label>
+              <div class="accordion-body">
+                <div class="card" id="featuredimage">
+                  <div class="card-body">
+                    <input class="form-input" type="file">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+              depp.require('site', function () {
+              
+              	alert('init editor');
+              	/*
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
+              	*/
+              	depp.define({'cmjs': [
+              		'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.css'
+              
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
+              
+              	]})
+              })//ready
+              
+              depp.require('cmjs', function () {
+              	_initCodeMirror()
+              
+              	/*$('#saveEdits').click(function() {
+              		console.log('save')
+              		_saveEdits()
+              	})//click */
+              
+              })//ready
+              
+              let myCodeMirror
+              function _initCodeMirror() {
+              	myCodeMirror = CodeMirror.fromTextArea(
+              		document.querySelector('#cms1') ,
+              			{
+              				mode:  'pug'
+              				, lineNumbers: true
+              				, tabSize: 3
+              				, indentWithTabs: true
+              				//, theme: 'neat'
+              				//, keyMap: 'sublime'
+              				, v1iewportMargin: 'Infinity'
+              			}
+              		)
+              	myCodeMirror.setSize('100%', '100%')
+              	depp.done('cm')
+              }// initCM()
+              
+              function read( data) {
+              	let fn_ = data[0]
+              	let url = '/api/read?secret='
+              	let folder = '&folder='
+              	let fn = '&fn='
+              	url = url + getSec() + folder + getPage() + fn + fn_
+              	console.log(url)
+              
+              	fetch(url)
+              		.then(function(resp) {
+              			return resp.text()
+              		}).then(function(ret) {
+              
+              			loadjs.ready('cm', function() {
+              				myCodeMirror.getDoc().setValue(ret)
+              			})
+              
+              		}).catch(function(err) {
+              			console.log('error', err)
+              	})//fetch
+              }//()
+              
+              function _saveEdits() {
+              	let txt = myCodeMirror.getDoc().getValue()
+              
+              	let url = '/api/write?secret='
+              	let folder = '&folder='
+              	let fn = '&fn='
+              	url = url + getSec() + folder + getPage() + fn + getFN()
+              
+              	console.log(url)
+              
+              	let headers = new Headers()
+              	headers.append('Content-Type', 'text/plain')
+              	fetch(url, {
+              			method: 'POST',
+              			headers : headers,
+              			body: txt,
+              		})
+              		.then(function(resp) {
+              			return resp.text()
+              		}).then(function(ret) {
+              
+              
+              		}).catch(function(err) {
+              			console.log('error', err)
+              	})//fetch
+              }//()
+            </script>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <script>
+      function userSzSc() {
+      	console.log('resize|scroll')
+      }
+      console.log('console.log stops working ater jquery is loaded???')
+      
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script>console.log('console.log should still work after jquery, but it does not ')</script>
+    <script src="/assets/js/setup.js"></script>
+    <script>
+      depp.define({'css': [
+      	ROOT + 'assets/css/spectre.css'
+      	, ROOT + 'assets/css/spectre-exp.css'
+      	, ROOT + 'assets/css/pickadate/classic.css'
+      	, ROOT + 'assets/css/pickadate/classic.date.css'
+      	, ROOT + 'assets/css/pickadate/classic.time.css'
+      	, ROOT + 'assets/css/nav.css'
+      	, ROOT + 'assets/css/main.css'
+      	, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
+      ]})
+      depp.require(['css'])
+      
+    </script>
+    <div class="modal" id="loginScr">
+      <div class="modal-overlay"></div>
+      <div class="modal-container delayShowing">
+        <div class="modal-header"></div>
+        <div class="modal-body">
+          <form class="grid-form" autocomplete="off">
+            <fieldset>
+              <legend>Login</legend>
+              <div data-row-span="1">
+                <div class="field" data-field-span="1">
+                  <label>Secret Code</label>
+                  <input id="code" type="password" autofocus="">
+                </div>
+              </div>
+            </fieldset><br>
+            <div class="toast toast-warning" id="loginMsg">Unable to serve. Is the secret code correct?</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="butLog"> Login</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function loginTry(arg) {
+         console.log('try')
+      
+         const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
+         //-const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
+      
+         isLoggedIn(baseURL).then(function() {
+               console.log('Lxxx yes')
+               $('#loginScr').removeClass('active') // show app
+               const aa = new AdminAuth()
+               console.log(aa.secret)
+               window.aSrv = new MetaAdminService(baseURL, aa.secret)
+               depp.done('login')
+               window.login.dispatch()
+      
+              console.log('depp done login')
+      
+               $('.delayShowing').removeClass('delayShowing')
+      
+            }, function() {
+                  onLogout(arg)
+                  $('.delayShowing').removeClass('delayShowing')
+      
+         })
+      }//()
+      
+      function onLogout(arg) {
+         console.log('LXXX no')
+         new AdminAuth().clear()
+         $('#loginScr').addClass('active') // hide app
+         try {
+            delete window.aSrv
+         } catch(err) { console.log(err) }
+         if(arg) $('#loginMsg').show(0)
+         else $('#loginMsg').hide(0) // no message
+      
+      }
+      
+      function setupLogin() {
+         $('#loginMsg').hide(0) // no message
+      
+         $('#butLog').click(function(){
+            let code = $('#code').val()
+            let aa = new AdminAuth()
+            aa.save(code)
+            console.log(aa.secret)
+            loginTry(true)
+         })
+          $('#butLogOut').click(function(){
+            onLogout(false)
+         })
+      
+         loginTry(false)
+      }
+      
+      depp.require(['style','ma-client'], function () {
+         console.log('loadjs ready client, calling setupLogin')
+         setupLogin()
+         console.log('after setupLogin done with login')
+      })
+    </script>
+  </body>
+</html>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

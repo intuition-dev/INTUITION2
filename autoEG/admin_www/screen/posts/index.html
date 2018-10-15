@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
-  <script src="https://cdn.rawgit.com/muicss/johnnydepp/donefn/test/assets/johnnydepp/depp.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
   <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
   <style>
@@ -178,10 +178,16 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script>console.log('console.log should still work after jquery but it does not ')</script>
     <script src="/assets/js/setup.js"></script>
-    <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
-    <link href="/assets/css/nav.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="/assets/css/main.css" rel="stylesheet">
+    <script>
+      depp.define({'css': [
+      	ROOT + 'assets/css/spectre.css'
+      	, ROOT + 'assets/css/nav.css'
+      	, ROOT + 'assets/css/main.css'
+      	, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
+      ]})
+      depp.require(['css'])
+      
+    </script>
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
@@ -268,4 +274,4 @@
       })
     </script>
   </body>
-</html>
+</html>             
