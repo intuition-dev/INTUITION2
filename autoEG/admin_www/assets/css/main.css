@@ -55,15 +55,15 @@ body > .container {
 }
 
 .tile {
-	padding: 10px 10px 5px 10px;
+	padding: 10px 8px 5px 8px;
 	margin: 0;
 	vertical-align: middle;
 	border-bottom: .5px solid #537994;
 }
 
-.accordion {
+.panel-body .accordion {
 	background-color: white;
-	padding-top: 7px; padding-bottom: 1px;
+	padding-top: 7px; padding-bottom: 0px;
 	border-bottom: .5px solid #537994;
 }
 
@@ -71,8 +71,52 @@ body > .container {
 	vertical-align: middle;
 }
 
+.accordion input:checked + .accordion-header .feather-chevron-down {
+	display: none;
+}
+.accordion-header .feather-chevron-up {
+	display: none;
+}
+.accordion input:checked + .accordion-header .feather-chevron-up {
+	display: block;
+}
 .props .panel-body {
 	padding:  0;
+}
+
+.props h6 {
+	font-size: smaller;
+	margin-bottom: 0;
+}
+
+#publishdate .card-body {
+	border: .5px solid #537994;
+	margin: 16px;
+	padding: 0;
+}
+
+#publishdate .accordion {
+	border-bottom: 0;
+}
+
+#publishdate .text-bold, #publishdate .text-center {
+	font-size: smaller;
+}
+
+/* condense calendar */
+.calendar {min-width: 220px;}
+.calendar .calendar-header { padding: .2rem 0; }
+.calendar .calendar-body { padding: .2rem 0; }
+.calendar .calendar-date { padding: 0 0; }
+
+#featuredimage .card-body {
+	margin: 16px;
+	padding: 0;
+	background-color: #E9EFF3;
+	height: 130px;
+}
+#featuredimage .form-input {
+	font-size: smaller;
 }
 
 /* CSS off-canvas Props panel */
@@ -192,7 +236,7 @@ li a:hover {
 	border:none;
 }
 
- .card {
+.card {
 	border : 0;
 }
 

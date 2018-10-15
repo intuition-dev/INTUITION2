@@ -1,0 +1,20 @@
+.form-autocomplete
+	// autocomplete input container
+	.form-autocomplete-input.form-input
+		// autocomplete chips
+		.chip
+			| mytag1
+			a.btn.btn-clear(href='#', aria-label='Close', role='button')
+		.chip
+			| mytag2
+			a.btn.btn-clear(href='#', aria-label='Close', role='button')
+		// autocomplete real input box
+		input.form-input(type='text', placeholder='type here')
+	// autocomplete suggestion list
+	//-ul.menu
+		// menu list items
+		li.menu-item
+			a(href='#')
+				.tile.tile-centered
+					.tile-content
+						| tag3
