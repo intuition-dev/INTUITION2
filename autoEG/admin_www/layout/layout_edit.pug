@@ -13,8 +13,7 @@ html
 
 	script(src='https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js')
 	script(src='https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js')
-	//-script(src='https://cdn.jsdelivr.net/npm/johnnydepp@0.0.2/dist/depp.min.js')
-	script(src='https://cdn.rawgit.com/muicss/johnnydepp/donefn/test/assets/johnnydepp/depp.js')
+	script(src='https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js')
 	script(src='https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js')
 	script(src='https://unpkg.com/axios@0.18.0/dist/axios.min.js')
 	style.
@@ -72,12 +71,18 @@ html
 		script.
 			console.log('console.log should still work after jquery, but it does not ')
 		script(src= ROOT + 'assets/js/setup.js')
-
-		link(href= ROOT + 'assets/css/spectre.css', onload='cssLoaded()', rel='stylesheet')
-		link(href= ROOT + 'assets/css/spectre-exp.css', rel='stylesheet')
-		link(href= ROOT + 'assets/css/nav.css', rel='stylesheet')
-		link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet')
-		link(href= ROOT + 'assets/css/main.css', rel='stylesheet')
+		script.
+			depp.define({'css': [
+				ROOT + 'assets/css/spectre.css'
+				, ROOT + 'assets/css/spectre-exp.css'
+				, ROOT + 'assets/css/pickadate/classic.css'
+				, ROOT + 'assets/css/pickadate/classic.date.css'
+				, ROOT + 'assets/css/pickadate/classic.time.css'
+				, ROOT + 'assets/css/nav.css'
+				, ROOT + 'assets/css/main.css'
+				, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
+			]})
+			depp.require(['css'])
 
 		include modal
 

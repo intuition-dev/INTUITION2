@@ -103,11 +103,18 @@ body > .container {
 	font-size: smaller;
 }
 
-/* condense calendar */
+/* condense spectre calendar */
 .calendar {min-width: 220px;}
 .calendar .calendar-header { padding: .2rem 0; }
 .calendar .calendar-body { padding: .2rem 0; }
-.calendar .calendar-date { padding: 0 0; }
+.calendar .calendar-date { padding: 0 0; } */
+
+.picker {
+	max-width: 230px !important;
+}
+.picker__box {
+	padding: 0;
+}
 
 #featuredimage .card-body {
 	margin: 16px;
