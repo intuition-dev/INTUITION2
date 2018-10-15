@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
+  <script src="https://cdn.rawgit.com/muicss/johnnydepp/donefn/test/assets/johnnydepp/depp.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
   <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
   <style>
@@ -109,15 +109,15 @@
               <div id="router">
                 <script src="/screen/posts/tags/postlist-tag.js"></script>
                 <script>
-                  loadjs.ready(['style','ma-client', 'login'], function() {
-                  	console.log('loadjs ready, user is logged in, will call itemize')
+                  depp.require(['style','ma-client', 'login'], function() {
+                  	console.log('depp ready, user is logged in, will call itemize')
                   	window.aSrv.getItems('blog').then(listRes)
                   })
                   
                   function listRes(resp) {
                   	items = resp.data._cmd
                   	//-alert(items)
-                  	loadjs.done('feed')
+                  	depp.done('feed')
                   }
                   
                 </script>
@@ -157,7 +157,7 @@
                 <script>
                   const tag = riot.mount('postlist-tag')[0] // mount the first tag
                   
-                  loadjs.ready(['style','ma-client','feed'], function () {
+                  depp.require(['style','ma-client','feed'], function () {
                   	$('#publishedTab').attr('data-badge', '9')
                   	tag.render(items)
                   })
@@ -176,8 +176,7 @@
       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script>console.log('console.log still works after jquery ')</script>
-    <script src="https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js"></script>
+    <script>console.log('console.log should still work after jquery but it does not ')</script>
     <script src="/assets/js/setup.js"></script>
     <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
     <link href="/assets/css/nav.css" rel="stylesheet">
@@ -219,10 +218,10 @@
                const aa = new AdminAuth()
                console.log(aa.secret)
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
-               loadjs.done('login')
+               depp.done('login')
                window.login.dispatch()
       
-              console.log('loadjs done login')
+              console.log('depp done login')
       
                $('.delayShowing').removeClass('delayShowing')
       
@@ -262,11 +261,11 @@
          loginTry(false)
       }
       
-      loadjs.ready(['style','ma-client'], function () {
+      depp.require(['style','ma-client'], function () {
          console.log('loadjs ready client, calling setupLogin')
          setupLogin()
          console.log('after setupLogin done with login')
       })
     </script>
   </body>
-</html>      
+</html>                                                       

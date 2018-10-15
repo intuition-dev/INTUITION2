@@ -10,15 +10,15 @@ block main
 			loadjs.done('feed')
 		})// fetch
 	script.
-		loadjs.ready(['style','ma-client', 'login'], function() {
-			console.log('loadjs ready, user is logged in, will call itemize')
+		depp.require(['style','ma-client', 'login'], function() {
+			console.log('depp ready, user is logged in, will call itemize')
 			window.aSrv.getItems('blog').then(listRes)
 		})
 
 		function listRes(resp) {
 			items = resp.data._cmd
 			//-alert(items)
-			loadjs.done('feed')
+			depp.done('feed')
 		}
 
 	.show-sm
@@ -54,7 +54,7 @@ block main
 	script.
 		const tag = riot.mount('postlist-tag')[0] // mount the first tag
 
-		loadjs.ready(['style','ma-client','feed'], function () {
+		depp.require(['style','ma-client','feed'], function () {
 			$('#publishedTab').attr('data-badge', '9')
 			tag.render(items)
 		})
