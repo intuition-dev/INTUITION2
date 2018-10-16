@@ -139,11 +139,21 @@
                 </div>
                 <p></p>
                 <div class="container" id="tabp">
-                  <ul class="tab">
-                    <li class="tab-item active"><a href="#published"> 
-                        <div class="badge" id="publishedTab" data-badge="2">Published&nbsp;</div></a></li>
-                    <li class="tab-item"><a href="#scheduled">
-                        <div class="badge" id="scheduleTab" data-badge="0">Scheduled&nbsp;</div></a></li>
+                  <script>
+                    function published(i){
+                    	var oldIdx = $('#published li.active').index();
+                    	$('#published li:lt('+i+')').removeClass('active')
+                    	$('#published li:gt('+i+')').removeClass('active')
+                    	$('#published li:eq('+i+')').addClass('active')
+                    	if (i != oldIdx) //tab changed
+                    		tag.render(items, i, callback)
+                    }
+                  </script>
+                  <ul class="tab" id="published">
+                    <li class="tab-item active"><a nohref onclick="published(0)">
+                        <div class="badge" id="publishedTab" data-badge="0">Published&nbsp;</div></a></li>
+                    <li class="tab-item"><a nohref onclick="published(1)">
+                        <div class="badge" id="scheduledTab" data-badge="0">Scheduled&nbsp;</div></a></li>
                   </ul>
                 </div>
                 <p></p>
@@ -157,9 +167,13 @@
                 <script>
                   const tag = riot.mount('postlist-tag')[0] // mount the first tag
                   
+                  function callback(publishedCount, scheduledCount){
+                  		$('#publishedTab').attr('data-badge', publishedCount)
+                  		$('#scheduledTab').attr('data-badge', ''+scheduledCount)
+                  }
+                  
                   depp.require(['style','ma-client','feed'], function () {
-                  	$('#publishedTab').attr('data-badge', '9')
-                  	tag.render(items)
+                  	tag.render(items, 0, callback)
                   })
                 </script>
               </div>
@@ -245,33 +259,4 @@
          try {
             delete window.aSrv
          } catch(err) { console.log(err) }
-         if(arg) $('#loginMsg').show(0)
-         else $('#loginMsg').hide(0) // no message
-      
-      }
-      
-      function setupLogin() {
-         $('#loginMsg').hide(0) // no message
-      
-         $('#butLog').click(function(){
-            let code = $('#code').val()
-            let aa = new AdminAuth()
-            aa.save(code)
-            console.log(aa.secret)
-            loginTry(true)
-         })
-          $('#butLogOut').click(function(){
-            onLogout(false)
-         })
-      
-         loginTry(false)
-      }
-      
-      depp.require(['style','ma-client'], function () {
-         console.log('loadjs ready client, calling setupLogin')
-         setupLogin()
-         console.log('after setupLogin done with login')
-      })
-    </script>
-  </body>
-</html>             
+         if(arg) $('#loginM

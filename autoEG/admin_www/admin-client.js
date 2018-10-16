@@ -163,6 +163,24 @@ class MetaAdminService {
          comment: comment_, tags: tags_
       })
    }
+
+    /**
+    * Creates a new blog item
+    * @returns a promise, then(resp.dat)/catch{error}
+    * @param folder_ - e.g. '/blog/newOne'
+    * @param title_ -  e.g. 'My Title'
+    * @param summary_ # markdown 'This article is about...'
+    * @param content_ - # markdown content
+    * @param date_published_ - e.g. '2019-07-21T22:38:16.944Z'
+    * @param tags_ # CSV, eg: one, two
+    */
+    newBlog(folder_, title_, summary_, content_, date_published_, tags_, img_url_) {
+      alert(folder_)
+    return this.service.post('/api/newBlog', {
+       folder: folder_, title: title_, summary: summary_, content: content_, date_published: date_published_, tags: tags_, img_url: img_url_
+    })
+  }
+
    /**
     * Clones a folder/screen. The cloned is set to 'publish: false' in dat.yaml.
     * @returns a promise, then(resp.dat)/catch{error}

@@ -103,7 +103,7 @@ body > .container {
 	font-size: smaller;
 }
 
-/* condense spectre calendar */
+/* condense spectre calendar 
 .calendar {min-width: 220px;}
 .calendar .calendar-header { padding: .2rem 0; }
 .calendar .calendar-body { padding: .2rem 0; }
@@ -125,6 +125,7 @@ body > .container {
 #featuredimage .form-input {
 	font-size: smaller;
 }
+/* end post edit screen*/
 
 /* CSS off-canvas Props panel */
 .props { 
@@ -203,14 +204,20 @@ body > .container {
 	background: #F3F6F8 !important;
 }
 
+/* tabs */
 .tab {
 	padding-inline-start: 0px !important;
 	margin-bottom: 0 !important;
+}
+.tab-item > a {
+	padding-bottom: 0 !important;
 }
 .tab-item > a > .badge {
 	margin-left: .7em !important;
 	margin-right: .4em !important;
 }
+/* end tabs */
+
 
 .listhead {
 	padding: 15px;
