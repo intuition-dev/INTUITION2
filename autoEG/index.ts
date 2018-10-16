@@ -210,4 +210,78 @@ server.post('/api/newBlog', function (req, res) {
      d.set('image', img_url)     
      d.set('external_url', 'NA')
      d.set('date_published', body.date_published )
-     d.set('publish', true ) //if false 
+     d.set('publish', true ) //if false it's not included in items.json
+     d.write() //w2
+
+      Scrape.getImageSize(img_url).then(function(idata){
+         d.set('img_w',idata['width'])
+         d.set('img_h',idata['height'])
+         d.set('img_typ',idata['type'])
+         d.set('img_sz',idata['length'])
+         d.write() //w3
+      })
+
+      // write content
+      let md = dest+'/content.md'
+      logger.trace(md)
+      fo.write(md, content) //w4
+      console.log('Writing content done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+
+     let rex:RetMsg = mp.bake(dest)
+      console.log('Baking done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+     
+     let ret:RetMsg = mp.itemizeOnly(folder)
+     if(ret.code<0)
+        res.status(500).send(ret)
+     else
+        res.json(ret)
+      console.log('Itemize done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+       
+   } catch(err) {
+      console.log('// ERR //////////////////////////////////////////////////////')
+      console.log(err)
+   }
+})//api
+
+
+server.get('/api/clone', function (req, res) {
+   console.log(' itemize')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let src = qs['src']
+   let dest = qs['dest']
+
+   let ret:RetMsg = fo.clone(src, dest)
+   if(ret.code<0)
+      res.status(500).send(ret)
+   else
+      res.json(ret)
+})//api
+
+// /////////////////////////////////////////////////////////////////
+var listener = server.listen(config.services_port, function () {
+   var host = listener.address().address
+   var port = listener.address().port
+   console.log("admin services port at http://%s:%s", host, port)
+   //console.log(server._router.stack )
+})
+
+let app = new MDevSrv(config)
+let admin = new AdminSrv(config)
+let w = new Watch(mp, config)
+
+// do the first build
+setTimeout(function(){
+   console.log('Startup build:')
+   mp.tagRoot()
+   startW()
+}, 4000)
+
+function startW() {
+   if(!config.admin_watch) return // if you mount more than one admin: only one should 'file watch'
+
+   setTimeout(function(){
+      w.start()
+      console.log('// READY //////////////////////////////////////////////////////')
+   }, 3000)
+}
