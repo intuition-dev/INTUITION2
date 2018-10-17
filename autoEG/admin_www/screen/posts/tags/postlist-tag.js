@@ -7,7 +7,7 @@ riot.tag2('postlist-tag', '<ul class="nav listbody"><virtual each="{items}"> <li
     this.items = []
     thiz = this
 
-    this.render = function(data) {
+    this.render = function(data, scheduled, callback) {
     	if(!data ) {
     		thiz.items = []
     		thiz.update()
@@ -15,14 +15,25 @@ riot.tag2('postlist-tag', '<ul class="nav listbody"><virtual each="{items}"> <li
     	}
 
     	let cloned = JSON.parse(data)
-    	thiz.items = cloned.items
+    	thiz.published = []
+    	thiz.scheduled = []
 
-    	let sz = thiz.items.length
+    	let sz = cloned.items.length
     	for(i = 0; i < sz; i++) {
-    		var item = thiz.items[i]
+    		var item = cloned.items[i]
     		item.url = ROOT + 'blog/' + item.url
-    		item.fmt_date_published = moment(item.date_published).format("MM/DD, YYYY h:mm a")
+    		var m = moment(item.date_published)
+    		item.fmt_date_published = m.format("MM/DD, YYYY h:mm a")
+    		if (moment().isBefore(m))
+    			thiz.scheduled.push(item)
+    		else
+    			thiz.published.push(item)
     	}
+    	switch(scheduled){
+    		case 1: thiz.items = thiz.scheduled; break
+    		default: thiz.items = thiz.published
+    	}
+    	callback(thiz.published.length, thiz.scheduled.length)
     	thiz.update()
     }.bind(this)
 });

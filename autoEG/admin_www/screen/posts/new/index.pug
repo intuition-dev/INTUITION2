@@ -17,7 +17,7 @@ block main
 	p
 	#edittitlep.container
 		.form-group
-			input.form-input(name='title', placeholder='Blog Title')
+			input.form-input(name='title', id='title', value='My first blog', placeholder='Blog Title')
 	p
 	#edittabp.container
 		ul.tab
@@ -85,7 +85,8 @@ block props
 		.accordion-body
 			#tags.card
 				.card-body
-					include tags/autocomplete
+					//include tags/autocomplete
+					input.form-input(type='text', id='tags', placeholder='comma-delimited tags')
 	.accordion
 		input#accordion-3(type='checkbox', name='accordion-checkbox', hidden='')
 		label.accordion-header(for='accordion-3')
@@ -99,9 +100,12 @@ block props
 		.accordion-body
 			#featuredimage.card
 				.card-body
-					input.form-input(type='file')
+					input.form-input(type='file', id='f1', placeholder='image') 
+				.card-image
+					img.img-responsive#f1img
+					//-include tags/upload.pug
 
-	.accordion
+	//-.accordion
 		input#accordion-4(type='checkbox', name='accordion-checkbox', hidden='')
 		label.accordion-header(for='accordion-4')
 			.flex.edge
@@ -114,22 +118,58 @@ block props
 		.accordion-body
 			#featuredimage.card
 				.card-body
-					input.form-input(type='file')
+					input.form-input(type='file' id='fx', placeholder='images')
 
 	script.
 
 		depp.require(['style','ma-client'], function () {
-			$('#save').click(function(){
-				/*let url = $('#ext').val()
-				let src = $('#src').val()
-				let dest = $('#dest').val()
-				let com  = $('#com').val()
-				let tags  = $('#tags').val()*/
 
-				//window.aSrv.newLinkBlog(src, dest, url, com, tags).then(newBlogRes)
-				window.aSrv.newBlog('blog', 'My first blog', 'My summary', 'My content', '2019-07-21T22:38:16.944Z', 't1,t2', 'https://i.imgur.com/YdwRA30.jpg').then(newBlogRes)
+			$('#f1').change(function(){
+				displayImage(this)
+			})
+
+			function displayImage(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.readAsDataURL(input.files[0]);
+					reader.onload = function(e) {
+						$('#f1img').attr('src', e.target.result);
+					}
+				}
+			}
+
+			$('#save').click(function(){
+				let f1 = $('#f1')[0].files[0];
+				if (f1)
+				{
+					let reader = new FileReader();
+					reader.readAsDataURL(f1);
+					reader.onload = function(e) {
+						let b64 = e.target.result
+						fileDone(b64, f1.name)
+					}
+				}
+				else
+					fileDone()
 			})// click
 		})//ready
+
+		function fileDone(f1data, f1name) {
+			/*let url = $('#ext').val()
+			let src = $('#src').val()
+			let dest = $('#dest').val()
+			let com  = $('#com').val()*/
+			let title = $('#title').val()
+			let tags  = $('#tags').val()
+			let date_published = moment().toISOString()
+			let date1 = $('#date1').val()
+			if (date1 != '')
+				date_published = moment(date1, 'D MMMM YYYY').toISOString()
+
+			window.aSrv.newBlog('blog', 'My first blog', 'My summary', 'My content', date_published, 
+				tags, f1name, f1data
+			).then(newBlogRes)
+		}
 
 		function newBlogRes(resp) {
 			alert('save done'+resp)
