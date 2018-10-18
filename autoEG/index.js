@@ -6,7 +6,6 @@ const cors = require('cors');
 const yaml = require('js-yaml');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const slugify = require('slugify');
 const Base_1 = require("mbake/lib/Base");
 const logger = require('tracer').console();
 console.log(new Base_1.Ver().ver());
@@ -17,9 +16,9 @@ server.use(cors());
 server.use(basicAuth({
     users: { 'admin': config.secret }
 }));
-server.use(bodyParser({ limit: '10mb', extended: true }));
+server.use(bodyParser());
 server.use(bodyParser.urlencoded({ extended: false }));
-server.use(bodyParser.json({ extended: false }));
+server.use(bodyParser.json());
 const mp = new Base_1.MetaPro(config);
 const sc = new Base_1.Scrape();
 const fo = new Base_1.FileOps(config.mount);
@@ -51,17 +50,6 @@ server.get('/api/tag', function (req, res) {
     let ret = mp.tag(dir);
     if (ret.code < 0)
         res.status(500).send(ret);
-    else
-        res.json(ret);
-});
-server.get('/api/items', function (req, res) {
-    console.log(' items');
-    res.setHeader('Content-Type', 'application/json');
-    let qs = req.query;
-    let dir = qs[Base_1.MetaPro.folderProp];
-    let ret = mp.getItems(dir);
-    if (ret.code < 0)
-        res.status(500).send(ret.cmd);
     else
         res.json(ret);
 });
@@ -134,71 +122,6 @@ server.post('/api/newLinkBlog', function (req, res) {
             fo.write(md, comment);
             console.log('II scrape done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
         });
-    }
-    catch (err) {
-        console.log('// ERR //////////////////////////////////////////////////////');
-        console.log(err);
-    }
-});
-server.post('/api/newBlog', function (req, res) {
-    console.log(' newBlog');
-    res.setHeader('Content-Type', 'application/json');
-    let body = req.body;
-    let folder = body.folder;
-    let title = body.title;
-    let comment = body.summary;
-    let content = body.content;
-    let img_url = body.img_url;
-    let f1 = body.f1;
-    let f1name = body.f1name;
-    logger.trace('f1name' + f1name);
-    let dest = '/' + folder + '/' + slugify(title.toLowerCase());
-    try {
-        const p = config.mount + dest;
-        logger.trace(p);
-        let i = 1, p0 = p;
-        while (fs.existsSync(p0)) {
-            i++;
-            p0 = p + i;
-        }
-        if (i > 1)
-            dest = dest + i;
-        fo.clone('/blog/template', dest);
-        let d = new Base_1.Dat(p0);
-        let imgUrl = d.set('title', title);
-        d.set('comment', comment);
-        d.set('tags', body.tags);
-        d.set('image', img_url);
-        d.set('external_url', 'NA');
-        d.set('date_published', body.date_published);
-        d.set('publish', true);
-        d.write();
-        if (f1) {
-            var buffer = Buffer.from(f1.split(",")[1], 'base64');
-            var dimensions = Base_1.Scrape.getBufferImageSize(buffer);
-            d.set('img_w', dimensions.width);
-            d.set('img_h', dimensions.height);
-            d.set('img_typ', 'TBD');
-            d.set('img_sz', 100);
-            d.write();
-            let f1path = dest + '/' + f1name;
-            fo.write(f1path, buffer);
-            console.log('Writing image done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
-        }
-        else {
-        }
-        let md = dest + '/content.md';
-        logger.trace(md);
-        fo.write(md, content);
-        console.log('Writing content done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
-        let rex = mp.bake(dest);
-        console.log('Baking done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
-        let ret = mp.itemizeOnly(folder);
-        if (ret.code < 0)
-            res.status(500).send(ret);
-        else
-            res.json(ret);
-        console.log('Itemize done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
     }
     catch (err) {
         console.log('// ERR //////////////////////////////////////////////////////');

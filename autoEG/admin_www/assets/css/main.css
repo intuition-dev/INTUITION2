@@ -117,19 +117,10 @@ body > .container {
 }
 
 #featuredimage .card-body {
-	margin-left: 16px;
-	margin-right: 16px;
+	margin: 16px;
 	padding: 0;
-}
-#featuredimage .card-image {
 	background-color: #E9EFF3;
-	margin-left: 16px;
-	margin-right: 16px;
-	padding-top: 0;
-	min-height: 80px;
-	border-left: .5px solid #537994;
-	border-right: .5px solid #537994;
-	border-bottom: .5px solid #537994;
+	height: 130px;
 }
 #featuredimage .form-input {
 	font-size: smaller;

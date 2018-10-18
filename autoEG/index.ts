@@ -30,9 +30,9 @@ server.use(basicAuth({
 }))
 
 // routes ///////////////////////////////////////
-server.use(bodyParser({limit: '10mb', extended: true }))
-server.use(bodyParser.urlencoded({extended: false }))
-server.use(bodyParser.json({extended: false}))
+server.use(bodyParser())
+server.use(bodyParser.urlencoded({ extended: false }))
+server.use(bodyParser.json())
 
 const mp = new MetaPro(config)
 const sc = new Scrape()
@@ -181,15 +181,12 @@ server.post('/api/newBlog', function (req, res) {
    let title = body.title
    let comment = body.summary
    let content = body.content
-   //let img_url = body.img_url
-   let f1 = body.f1
-   let f1name = body.f1name
-   logger.trace('f1name'+f1name)
-   //logger.trace(f1)
+   let img_url = body.img_url
 
    //create folder name from title
    //prefix with yyy__mm__dd of publish date for sort order?
    let dest = '/' + folder + '/'+slugify(title.toLowerCase())
+   logger.trace('sanitized folder:'+dest)
    
    try {
      
@@ -210,44 +207,19 @@ server.post('/api/newBlog', function (req, res) {
      d.set('title', title)
      d.set('comment', comment)
      d.set('tags', body.tags)
-     //d.set('image', img_url)     
+     d.set('image', img_url)     
      d.set('external_url', 'NA')
      d.set('date_published', body.date_published )
      d.set('publish', true ) //if false it's not included in items.json
      d.write() //w2
 
-
-       if (f1)
-       {
-        var buffer = Buffer.from(f1.split(",")[1], 'base64')
-        
-        let f1path = dest + '/' + f1name
-        fo.write(f1path, buffer)
-         
-        //TODO:
-        /*var dimensions = Scrape.getBufferImageSize(buffer)
-         d.set('img_w',dimensions.width)
-         d.set('img_h',dimensions.height)
-         d.set('img_typ','TBD')
-         d.set('img_sz',100) //TBD
-         d.write() //w3
-         */
-        d.set('image', f1name) 
-        d.write() //w2
-         
-         
-        console.log('Writing image done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
-       }
-      else //default image
-       {
-      /*Scrape.getImageSize(img_url).then(function(idata){
+      Scrape.getImageSize(img_url).then(function(idata){
          d.set('img_w',idata['width'])
          d.set('img_h',idata['height'])
          d.set('img_typ',idata['type'])
          d.set('img_sz',idata['length'])
          d.write() //w3
-      })*/
-       }
+      })
 
       // write content
       let md = dest+'/content.md'

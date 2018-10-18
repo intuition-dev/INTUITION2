@@ -75,7 +75,7 @@
               <p></p>
               <div class="container" id="edittitlep">
                 <div class="form-group">
-                  <input class="form-input" name="title" id="title" value="My first blog" placeholder="Blog Title">
+                  <input class="form-input" name="title" placeholder="Blog Title">
                 </div>
               </div>
               <p></p>
@@ -198,8 +198,17 @@
               <div class="accordion-body">
                 <div class="card" id="tags">
                   <div class="card-body">
-                    <!--include tags/autocomplete-->
-                    <input class="form-input" type="text" id="tags" placeholder="comma-delimited tags">
+                    <div class="form-autocomplete">
+                      <!-- autocomplete input container-->
+                      <div class="form-autocomplete-input form-input">
+                        <!-- autocomplete chips-->
+                        <div class="chip">mytag1<a class="btn btn-clear" href="#" aria-label="Close" role="button"></a></div>
+                        <div class="chip">mytag2<a class="btn btn-clear" href="#" aria-label="Close" role="button"></a></div>
+                        <!-- autocomplete real input box-->
+                        <input class="form-input" type="text" placeholder="type here">
+                      </div>
+                      <!-- autocomplete suggestion list-->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -221,61 +230,46 @@
               <div class="accordion-body">
                 <div class="card" id="featuredimage">
                   <div class="card-body">
-                    <input class="form-input" type="file" id="f1" placeholder="image">
+                    <input class="form-input" type="file">
                   </div>
-                  <div class="card-image"><img class="img-responsive" id="f1img"></div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion">
+              <input id="accordion-4" type="checkbox" name="accordion-checkbox" hidden="">
+              <label class="accordion-header" for="accordion-4">
+                <div class="flex edge">
+                  <h6 class="left">Images</h6>
+                  <div class="right"></div>
+                  <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                  <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                  </svg>
+                </div>
+              </label>
+              <div class="accordion-body">
+                <div class="card" id="featuredimage">
+                  <div class="card-body">
+                    <input class="form-input" type="file">
+                  </div>
                 </div>
               </div>
             </div>
             <script>
               depp.require(['style','ma-client'], function () {
-              
-              	$('#f1').change(function(){
-              		displayImage(this)
-              	})
-              
-              	function displayImage(input) {
-              		if (input.files && input.files[0]) {
-              			var reader = new FileReader();
-              			reader.readAsDataURL(input.files[0]);
-              			reader.onload = function(e) {
-              				$('#f1img').attr('src', e.target.result);
-              			}
-              		}
-              	}
-              
               	$('#save').click(function(){
-              		let f1 = $('#f1')[0].files[0];
-              		if (f1)
-              		{
-              			let reader = new FileReader();
-              			reader.readAsDataURL(f1);
-              			reader.onload = function(e) {
-              				let b64 = e.target.result
-              				fileDone(b64, f1.name)
-              			}
-              		}
-              		else
-              			fileDone()
+              		/*let url = $('#ext').val()
+              		let src = $('#src').val()
+              		let dest = $('#dest').val()
+              		let com  = $('#com').val()
+              		let tags  = $('#tags').val()*/
+              
+              		//window.aSrv.newLinkBlog(src, dest, url, com, tags).then(newBlogRes)
+              		window.aSrv.newBlog('blog', 'My first blog', 'My summary', 'My content', '2019-07-21T22:38:16.944Z', 't1,t2', 'https://i.imgur.com/YdwRA30.jpg').then(newBlogRes)
               	})// click
               })//ready
-              
-              function fileDone(f1data, f1name) {
-              	/*let url = $('#ext').val()
-              	let src = $('#src').val()
-              	let dest = $('#dest').val()
-              	let com  = $('#com').val()*/
-              	let title = $('#title').val()
-              	let tags  = $('#tags').val()
-              	let date_published = moment().toISOString()
-              	let date1 = $('#date1').val()
-              	if (date1 != '')
-              		date_published = moment(date1, 'D MMMM YYYY').toISOString()
-              
-              	window.aSrv.newBlog('blog', 'My first blog', 'My summary', 'My content', date_published, 
-              		tags, f1name, f1data
-              	).then(newBlogRes)
-              }
               
               function newBlogRes(resp) {
               	alert('save done'+resp)
@@ -461,32 +455,4 @@
       
       function onLogout(arg) {
          console.log('LXXX no')
-         new AdminAuth().clear()
-         $('#loginScr').addClass('active') // hide app
-         try {
-            delete window.aSrv
-         } catch(err) { console.log(err) }
-         if(arg) $('#loginMsg').show(0)
-         else $('#loginMsg').hide(0) // no message
-      
-      }
-      
-      function setupLogin() {
-         $('#loginMsg').hide(0) // no message
-      
-         $('#butLog').click(function(){
-            let code = $('#code').val()
-            let aa = new AdminAuth()
-            aa.save(code)
-            console.log(aa.secret)
-            loginTry(true)
-         })
-          $('#butLogOut').click(function(){
-            onLogout(false)
-         })
-      
-         loginTry(false)
-      }
-      
-      depp.require(['style','ma-client'], function () {
-         console.log('loadjs r
+         n
