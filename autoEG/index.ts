@@ -1,3 +1,4 @@
+// All rights Metabake.org | Wolfgang Gehner, licensed under MIT
 
 declare var require: any
 //declare var process: any
@@ -12,10 +13,8 @@ const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
 const bodyParser = require('body-parser')
-const slugify = require('slugify')
 
-
-import { RetMsg, MetaPro, Watch, AdminSrv, MDevSrv, Scrape, FileOps, Dat, Ver } from 'mbake/lib/Base'
+import { RetMsg, MetaPro2, Watch2, AdminSrv, MDevSrv2, Scrape, FileOps, Dat, Ver } from 'mbake/lib/Base'
 
 const logger = require('tracer').console()
 console.log(new Ver().ver())
@@ -33,8 +32,9 @@ server.use(basicAuth({
 server.use(bodyParser())
 server.use(bodyParser.urlencoded({ extended: false }))
 server.use(bodyParser.json())
+ 
 
-const mp = new MetaPro(config)
+const mp = new MetaPro2(config.mount)
 const sc = new Scrape()
 const fo = new FileOps(config.mount)
 
@@ -52,7 +52,7 @@ server.get('/api/bake', function (req, res) {
    console.log(' bake')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
-   let dir = qs[MetaPro.folderProp]
+   let dir = qs[MetaPro2.folderProp]
 
    let ret:RetMsg = mp.bake(dir)
    if(ret.code<0)
@@ -64,7 +64,7 @@ server.get('/api/tag', function (req, res) {
    console.log(' tag')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
-   let dir = qs[MetaPro.folderProp]
+   let dir = qs[MetaPro2.folderProp]
 
    let ret:RetMsg = mp.tag(dir)
    if(ret.code<0)
@@ -72,23 +72,11 @@ server.get('/api/tag', function (req, res) {
    else
       res.json(ret)
 })//api
-server.get('/api/items', function (req, res) {
-   console.log(' items')
-   res.setHeader('Content-Type', 'application/json')
-   let qs = req.query
-   let dir = qs[MetaPro.folderProp]
-
-   let ret:RetMsg = mp.getItems(dir)
-   if(ret.code<0)
-      res.status(500).send(ret.cmd)
-   else
-      res.json(ret)
-})//api
 server.get('/api/itemize', function (req, res) {
    console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
-   let dir = qs[MetaPro.folderProp]
+   let dir = qs[MetaPro2.folderProp]
 
    let ret:RetMsg = mp.itemize(dir)
    if(ret.code<0)
@@ -172,42 +160,44 @@ server.post('/api/newLinkBlog', function (req, res) {
    }
 })//api
 
-server.post('/api/newBlog', function (req, res) {
-   console.log(' newBlog')
+server.get('/api/clone', function (req, res) {
+   console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
-   let body = req.body
-   
-   let folder = body.folder   
-   let title = body.title
-   let comment = body.summary
-   let content = body.content
-   let img_url = body.img_url
+   let qs = req.query
+   let src = qs['src']
+   let dest = qs['dest']
 
-   //create folder name from title
-   //prefix with yyy__mm__dd of publish date for sort order?
-   let dest = '/' + folder + '/'+slugify(title.toLowerCase())
-   logger.trace('sanitized folder:'+dest)
-   
-   try {
-     
-     const p = config.mount + dest
-     logger.trace(p)
-     
-     let i = 1, p0 = p;
-     while (fs.existsSync(p0)) { //avoid duplicate foldernames by adding 2, 3
-       i++ 
-       p0 = p + i
-     }
-     if (i>1) dest = dest + i
+   let ret:RetMsg = fo.clone(src, dest)
+   if(ret.code<0)
+      res.status(500).send(ret)
+   else
+      res.json(ret)
+})//api
 
-     fo.clone('/blog/template', dest)
+// /////////////////////////////////////////////////////////////////
+var listener = server.listen(config.services_port, function () {
+   var host = listener.address().address
+   var port = listener.address().port
+   console.log("admin services port at http://%s:%s", host, port)
+   //console.log(server._router.stack )
+})
 
-     let d = new Dat(p0)
-     let imgUrl = 
-     d.set('title', title)
-     d.set('comment', comment)
-     d.set('tags', body.tags)
-     d.set('image', img_url)     
-     d.set('external_url', 'NA')
-     d.set('date_published', body.date_published )
-     d.set('publish', true ) //if false 
+let app = new MDevSrv2(config['mount'], config['mount_port'])
+let admin = new AdminSrv(config)
+let w = new Watch2(mp, config['mount'])
+
+// do the first build
+setTimeout(function(){
+   console.log('Startup build:')
+   mp.tagRoot()
+   startW()
+}, 4000)
+
+function startW() {
+   if(!config.admin_watch) return // if you mount more than one admin: only one should 'file watch'
+
+   setTimeout(function(){
+      w.start(true) // true for WAN, eg: mounted drive
+      console.log('// READY //////////////////////////////////////////////////////')
+   }, 3000)
+}

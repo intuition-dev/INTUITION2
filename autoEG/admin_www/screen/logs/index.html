@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
   <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
   <style>
@@ -68,7 +68,7 @@
                         </svg>
                         <div class="padL">Blog Posts</div>
                       </div>
-                      <button class="btn btn-sm right" onclick="location.href=&quot;/screen/posts/new&quot;">Add</button>
+                      <button class="btn btn-sm right">Add</button>
                     </div></a></li>
                 <li class="nav-item"><a href="/screen/media/#all">
                     <div class="flex edge">
@@ -135,18 +135,13 @@
       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script>console.log('console.log should still work after jquery but it does not ')</script>
+    <script>console.log('console.log still works after jquery ')</script>
+    <script src="https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js"></script>
     <script src="/assets/js/setup.js"></script>
-    <script>
-      depp.define({'css': [
-      	ROOT + 'assets/css/spectre.css'
-      	, ROOT + 'assets/css/nav.css'
-      	, ROOT + 'assets/css/main.css'
-      	, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
-      ]})
-      depp.require(['css'])
-      
-    </script>
+    <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
+    <link href="/assets/css/nav.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
@@ -183,10 +178,10 @@
                const aa = new AdminAuth()
                console.log(aa.secret)
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
-               depp.done('login')
+               loadjs.done('login')
                window.login.dispatch()
       
-              console.log('depp done login')
+              console.log('loadjs done login')
       
                $('.delayShowing').removeClass('delayShowing')
       
@@ -226,7 +221,7 @@
          loginTry(false)
       }
       
-      depp.require(['style','ma-client'], function () {
+      loadjs.ready(['style','ma-client'], function () {
          console.log('loadjs ready client, calling setupLogin')
          setupLogin()
          console.log('after setupLogin done with login')

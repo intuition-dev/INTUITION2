@@ -15,34 +15,40 @@ $(document).ready(function() {
     }
 })
 
-depp.define({'cssJs': [
-        'https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
-        , '/assets/js/jquery.disableAutoFill.js'
-        , 'https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js'
-        , 'https://cdn.jsdelivr.net/npm/blueimp-load-image@2.19.0/js/load-image.all.min.js'
-        , 'https://cdn.jsdelivr.net/npm/is_js@0.9.0/is.min.js'
-        , 'https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js' //post list formatting
+loadjs([
+    ROOT + 'assets/css/gridform.css'
+    , '/assets/js/jquery.disableAutoFill.js'
 
-        , 'https://cdn.jsdelivr.net/npm/pickadate@3.5.6/lib/picker.js'
-        , 'https://cdn.jsdelivr.net/npm/pickadate@3.5.6/lib/picker.date.js'
-        , 'https://cdn.jsdelivr.net/npm/pickadate@3.5.6/lib/picker.time.js'
+    , 'https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js'
+    , 'https://cdn.jsdelivr.net/npm/blueimp-load-image@2.19.0/js/load-image.all.min.js'
+    , 'https://cdn.jsdelivr.net/npm/is_js@0.9.0/is.min.js'
+    , 'https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js' //post list
 
-    ], 'ma-client': [ROOT + 'admin-client.js']
-})
+], 'cssJs')
 
 function onDeviceReady() { // nothing will work before this
     console.log('deviceready!')
-    depp.done('device')
+    loadjs.done('device')
 }
 
-depp.require(['css', 'device', 'cssJs', 'ma-client'], function() {
-    //depp.require(['ma-client'], function() { //moved up
-    console.log('ma-client ready')
-    //to notify that we are ready for login/login check
+function cssLoaded() {// called by the style sheet in layout
+    loadjs.done('css')
+}
+
+loadjs.ready(['css', 'device', 'cssJs'], function() {
+
+    loadjs(ROOT + 'admin-client.js', 'ma-client')
+    //to notify of login
     let Signal = signals.Signal
     window.login = new Signal()
-    depp.done('style')
-    //})
+
+    /*$('#offCanvas').offcanvas({
+        modifiers: 'right, push', // default options
+        triggerButton: '#triggerButton' // btn to open offcanvas
+    });*/
+    console.log('offcanvas initialized')
+
+    loadjs.done('style')
 })
 
 let _scSz = true
@@ -62,7 +68,7 @@ setInterval(function() {
 }, 150)
 
 // usage: ////////////////////////////////////////////////////////////////////
-depp.require(['style'], function() {// 'show' page, ex: unhide
+loadjs.ready(['style'], function() {// 'show' page, ex: unhide
     setupUserSzSc()
 
     console.log('style done', Date.now() - _start)
@@ -79,5 +85,3 @@ function getUrlVars() {
     }
     return vars
 }
-
-

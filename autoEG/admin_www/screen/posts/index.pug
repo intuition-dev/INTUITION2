@@ -2,6 +2,7 @@ extends /layout/layout
 
 block main
 	script(src=ROOT+ 'screen/posts/tags/postlist-tag.js')
+	//-script(src=ROOT+ 'screen/posts/tags/postlist-tag-min.js')
 	//-script.
 		axios.get('https://dev.appthings.mymeta.host/blog/items.json').then(function(resp) {
 			feed = resp.data
@@ -9,15 +10,15 @@ block main
 			loadjs.done('feed')
 		})// fetch
 	script.
-		depp.require(['style','ma-client', 'login'], function() {
-			console.log('depp ready, user is logged in, will call itemize')
+		loadjs.ready(['style','ma-client', 'login'], function() {
+			console.log('loadjs ready, user is logged in, will call itemize')
 			window.aSrv.getItems('blog').then(listRes)
 		})
 
 		function listRes(resp) {
 			items = resp.data._cmd
 			//-alert(items)
-			depp.done('feed')
+			loadjs.done('feed')
 		}
 
 	.show-sm
@@ -35,22 +36,13 @@ block main
 					.left.padL Blog Posts
 	p
 	#tabp.container
-		script.
-			function published(i){
-				var oldIdx = $('#published li.active').index();
-				$('#published li:lt('+i+')').removeClass('active')
-				$('#published li:gt('+i+')').removeClass('active')
-				$('#published li:eq('+i+')').addClass('active')
-				if (i != oldIdx) //tab changed
-					tag.render(items, i, callback)
-			}
-		ul#published.tab
+		ul.tab
 			li.tab-item.active
-				a(nohref onclick='published(0)')
-					#publishedTab.badge(data-badge='0') Published&nbsp;
+				a(href='#published') 
+					#publishedTab.badge(data-badge='2') Published&nbsp;
 			li.tab-item
-				a(nohref onclick='published(1)')
-					#scheduledTab.badge(data-badge='0') Scheduled&nbsp;
+				a(href='#scheduled')
+					#scheduleTab.badge(data-badge='0') Scheduled&nbsp;
 	p
 	#listp.container
 		postlist-tag
@@ -62,13 +54,9 @@ block main
 	script.
 		const tag = riot.mount('postlist-tag')[0] // mount the first tag
 
-		function callback(publishedCount, scheduledCount){
-				$('#publishedTab').attr('data-badge', publishedCount)
-				$('#scheduledTab').attr('data-badge', ''+scheduledCount)
-		}
-
-		depp.require(['style','ma-client','feed'], function () {
-			tag.render(items, 0, callback)
+		loadjs.ready(['style','ma-client','feed'], function () {
+			$('#publishedTab').attr('data-badge', '9')
+			tag.render(items)
 		})
 
 

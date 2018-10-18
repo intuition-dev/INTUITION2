@@ -60,7 +60,7 @@ postlist-tag
 		this.items = []
 		thiz = this
 
-		render(data, scheduled, callback) {// public
+		render(data) {// public
 			if(!data ) {
 				thiz.items = []
 				thiz.update()
@@ -70,25 +70,13 @@ postlist-tag
 			//alert(JSON.stringify(data))
 			// clone
 			let cloned = JSON.parse(data)
-			thiz.published = []
-			thiz.scheduled = []
-			//thiz.items = cloned.items
+			thiz.items = cloned.items
 
-			let sz = cloned.items.length
+			let sz = thiz.items.length
 			for(i = 0; i < sz; i++) {
-				var item = cloned.items[i]
+				var item = thiz.items[i]
 				item.url = ROOT + 'blog/' + item.url
-				var m = moment(item.date_published)
-				item.fmt_date_published = m.format("MM/DD, YYYY h:mm a")
-				if (moment().isBefore(m))
-					thiz.scheduled.push(item)
-				else
-					thiz.published.push(item)
+				item.fmt_date_published = moment(item.date_published).format("MM/DD, YYYY h:mm a")
 			}
-			switch(scheduled){
-				case 1: thiz.items = thiz.scheduled; break
-				default: thiz.items = thiz.published
-			}
-			callback(thiz.published.length, thiz.scheduled.length)
 			thiz.update()
 		}

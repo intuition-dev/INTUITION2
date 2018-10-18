@@ -32,10 +32,10 @@ script.
             const aa = new AdminAuth()
             console.log(aa.secret)
             window.aSrv = new MetaAdminService(baseURL, aa.secret)
-            depp.done('login')
+            loadjs.done('login')
             window.login.dispatch()
 
-           console.log('depp done login')
+           console.log('loadjs done login')
 
             $('.delayShowing').removeClass('delayShowing')
 
@@ -75,7 +75,7 @@ script.
       loginTry(false)
    }
 
-   depp.require(['style','ma-client'], function () {
+   loadjs.ready(['style','ma-client'], function () {
       console.log('loadjs ready client, calling setupLogin')
       setupLogin()
       console.log('after setupLogin done with login')

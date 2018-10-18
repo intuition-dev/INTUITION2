@@ -13,7 +13,8 @@ html
 
 	script(src='https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js')
 	script(src='https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js')
-	script(src='https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js')
+	//-script(src='https://cdn.jsdelivr.net/npm/johnnydepp@0.0.2/dist/depp.min.js')
+	script(src='https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js')
 	script(src='https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js')
 	script(src='https://unpkg.com/axios@0.18.0/dist/axios.min.js')
 	style.
@@ -23,6 +24,7 @@ html
 
 	body
 		#edithead.delayShowing.flex.edge 
+			//-h5#navbarBrand.left.navbar-brand Close
 			.left
 				.navbar
 					.navbar-section
@@ -48,19 +50,6 @@ html
 								circle(cx='12', cy='12', r='3')
 								path(d='M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z')
 						a.btn.disabled(href='#all') Preview
-<<<<<<< HEAD
-						a#save.btn Save...
-		#edit.container.delayShowing
-			.main#hideprops.bg-white.delayShowing
-				.panel
-					.panel-body
-						#router
-							block main
-			nav.props.bg-secondary.delayShowing
-				.panel
-					.panel-body
-							block props
-=======
 							//-.flex.edge
 								svg.left.feather.feather-plus-square(viewBox='0 0 24 24')
 									rect(x='3', y='3', width='18', height='18', rx='2', ry='2')
@@ -86,7 +75,6 @@ html
 					.panel
 						.panel-body
 								block props
->>>>>>> parent of 3193b35... New Blog Properties Panel
 
 
 		script.
@@ -97,20 +85,16 @@ html
 
 		script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
 		script.
-			console.log('console.log should still work after jquery, but it does not ')
+			console.log('console.log still works after jquery ')
+		//-ff move to setup
+		script(src='https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js')
 		script(src= ROOT + 'assets/js/setup.js')
-		script.
-			depp.define({'css': [
-				ROOT + 'assets/css/spectre.css'
-				, ROOT + 'assets/css/spectre-exp.css'
-				, ROOT + 'assets/css/pickadate/classic.css'
-				, ROOT + 'assets/css/pickadate/classic.date.css'
-				, ROOT + 'assets/css/pickadate/classic.time.css'
-				, ROOT + 'assets/css/nav.css'
-				, ROOT + 'assets/css/main.css'
-				, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
-			]})
-			depp.require(['css'])
+
+		link(href= ROOT + 'assets/css/spectre.css', onload='cssLoaded()', rel='stylesheet')
+		link(href= ROOT + 'assets/css/nav.css', rel='stylesheet')
+
+		link(href='https://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet')
+		link(href= ROOT + 'assets/css/main.css', rel='stylesheet')
 
 		include modal
 

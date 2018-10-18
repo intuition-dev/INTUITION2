@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
   <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
   <style>
@@ -109,15 +109,15 @@
               <div id="router">
                 <script src="/screen/posts/tags/postlist-tag.js"></script>
                 <script>
-                  depp.require(['style','ma-client', 'login'], function() {
-                  	console.log('depp ready, user is logged in, will call itemize')
+                  loadjs.ready(['style','ma-client', 'login'], function() {
+                  	console.log('loadjs ready, user is logged in, will call itemize')
                   	window.aSrv.getItems('blog').then(listRes)
                   })
                   
                   function listRes(resp) {
                   	items = resp.data._cmd
                   	//-alert(items)
-                  	depp.done('feed')
+                  	loadjs.done('feed')
                   }
                   
                 </script>
@@ -139,21 +139,11 @@
                 </div>
                 <p></p>
                 <div class="container" id="tabp">
-                  <script>
-                    function published(i){
-                    	var oldIdx = $('#published li.active').index();
-                    	$('#published li:lt('+i+')').removeClass('active')
-                    	$('#published li:gt('+i+')').removeClass('active')
-                    	$('#published li:eq('+i+')').addClass('active')
-                    	if (i != oldIdx) //tab changed
-                    		tag.render(items, i, callback)
-                    }
-                  </script>
-                  <ul class="tab" id="published">
-                    <li class="tab-item active"><a nohref onclick="published(0)">
-                        <div class="badge" id="publishedTab" data-badge="0">Published&nbsp;</div></a></li>
-                    <li class="tab-item"><a nohref onclick="published(1)">
-                        <div class="badge" id="scheduledTab" data-badge="0">Scheduled&nbsp;</div></a></li>
+                  <ul class="tab">
+                    <li class="tab-item active"><a href="#published"> 
+                        <div class="badge" id="publishedTab" data-badge="2">Published&nbsp;</div></a></li>
+                    <li class="tab-item"><a href="#scheduled">
+                        <div class="badge" id="scheduleTab" data-badge="0">Scheduled&nbsp;</div></a></li>
                   </ul>
                 </div>
                 <p></p>
@@ -167,13 +157,9 @@
                 <script>
                   const tag = riot.mount('postlist-tag')[0] // mount the first tag
                   
-                  function callback(publishedCount, scheduledCount){
-                  		$('#publishedTab').attr('data-badge', publishedCount)
-                  		$('#scheduledTab').attr('data-badge', ''+scheduledCount)
-                  }
-                  
-                  depp.require(['style','ma-client','feed'], function () {
-                  	tag.render(items, 0, callback)
+                  loadjs.ready(['style','ma-client','feed'], function () {
+                  	$('#publishedTab').attr('data-badge', '9')
+                  	tag.render(items)
                   })
                 </script>
               </div>
@@ -190,18 +176,13 @@
       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script>console.log('console.log should still work after jquery but it does not ')</script>
+    <script>console.log('console.log still works after jquery ')</script>
+    <script src="https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js"></script>
     <script src="/assets/js/setup.js"></script>
-    <script>
-      depp.define({'css': [
-      	ROOT + 'assets/css/spectre.css'
-      	, ROOT + 'assets/css/nav.css'
-      	, ROOT + 'assets/css/main.css'
-      	, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
-      ]})
-      depp.require(['css'])
-      
-    </script>
+    <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
+    <link href="/assets/css/nav.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
@@ -238,10 +219,10 @@
                const aa = new AdminAuth()
                console.log(aa.secret)
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
-               depp.done('login')
+               loadjs.done('login')
                window.login.dispatch()
       
-              console.log('depp done login')
+              console.log('loadjs done login')
       
                $('.delayShowing').removeClass('delayShowing')
       
@@ -259,9 +240,6 @@
          try {
             delete window.aSrv
          } catch(err) { console.log(err) }
-<<<<<<< HEAD
-         if(arg) $('#loginM
-=======
          if(arg) $('#loginMsg').show(0)
          else $('#loginMsg').hide(0) // no message
       
@@ -292,4 +270,3 @@
     </script>
   </body>
 </html>
->>>>>>> parent of 3193b35... New Blog Properties Panel

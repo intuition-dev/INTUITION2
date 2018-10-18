@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
   <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
   <style>
@@ -48,47 +48,11 @@
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
               </svg>
-            </div><a class="btn disabled" href="#all">Preview</a><a class="btn" id="save">Save...</a>
+            </div><a class="btn disabled" href="#all">Preview</a><a class="btn disabled" href="#all">Publish...</a>
           </div>
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-    <div class="container delayShowing" id="edit">
-      <div class="main bg-white delayShowing" id="hideprops">
-        <div class="panel">
-          <div class="panel-body">
-            <div id="router">
-              <script src="/screen/posts/tags/postlist-tag.js"></script>
-              <script>
-                depp.require(['style','ma-client', 'login'], function() {
-                	console.log('loadjs ready, user is logged in, will call itemize')
-                	//window.aSrv.getItems('blog').then(listRes)
-                })
-                
-                function listRes(resp) {
-                	items = resp.data._cmd
-                	//-alert(items)
-                	depp.done('feed')
-                }
-                
-              </script>
-              <p></p>
-              <div class="container" id="edittitlep">
-                <div class="form-group">
-                  <input class="form-input" name="title" placeholder="Blog Title">
-                </div>
-              </div>
-              <p></p>
-              <div class="container" id="edittabp">
-                <ul class="tab">
-                  <li class="tab-item active"><a href="#md">Markdown&nbsp;</a></li>
-                  <li class="tab-item"><a href="#view">View&nbsp;</a></li>
-                </ul>
-              </div>
-              <div class="container" id="editorp">
-                <textarea id="cms1" rows="20" placeholder="Blog Entry here"></textarea>
-=======
     <div class="container" id="edit">
       <div class="columns col-gapless delayShowing">
         <div class="main bg-white column col sm-6 col-md-6 col-lg-9 col-xl-9 col-10">
@@ -114,297 +78,10 @@
                   <p>Editor here</p>
                   <!--postlist-tag-->
                 </div>
->>>>>>> parent of 3193b35... New Blog Properties Panel
               </div>
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-      </div>
-      <nav class="props bg-secondary delayShowing">
-        <div class="panel">
-          <div class="panel-body">
-            <div class="tile">
-              <div class="tile-content">
-                <h6 class="tile-title">Post Settings</h6>
-              </div>
-              <div class="tile-action"><a nohref onclick="toggleEdit()">
-                  <svg class="feather feather-x" viewBox="0 0 24 24">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg></a></div>
-            </div>
-            <div class="accordion">
-              <input id="accordion-1" type="checkbox" name="accordion-checkbox" hidden="">
-              <label class="accordion-header" for="accordion-1">
-                <div class="flex edge">
-                  <h6 class="left">Status</h6>
-                  <div class="right"></div>
-                  <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                  <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                  </svg>
-                </div>
-              </label>
-              <div class="accordion-body">
-                <div class="card" id="publishdate">
-                  <div class="card-body">
-                    <div class="accordion">
-                      <input id="accordion-2a" type="checkbox" name="accordion-checkbox" hidden="">
-                      <label class="accordion-header" for="accordion-2a">
-                        <div class="flex edge">
-                          <div class="left">
-                            <svg class="feather feather-calendar" viewBox="0 0 24 24">
-                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                              <line x1="16" y1="2" x2="16" y2="6"></line>
-                              <line x1="8" y1="2" x2="8" y2="6"></line>
-                              <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                          </div>
-                          <div class="left text-bold">Publish Immediately</div>
-                          <div class="right"></div>
-                          <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                          </svg>
-                          <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                            <polyline points="18 15 12 9 6 15"></polyline>
-                          </svg>
-                        </div>
-                      </label>
-                      <div class="accordion-body">
-                        <p></p>
-                        <div class="text-center">Choose a date to schedule:</div>
-                        <input id="date1" readonly="" placeholder="Date">
-                        <!--so it has room to open-->
-                        <style>
-                          #cal1 {
-                          	/*height: 300vh; */
-                          }
-                          
-                        </style>
-                        <script>
-                          console.log('pgC')
-                          
-                          depp.require(['cssJs', 'device'], function () {
-                          
-                          	$('#date1').pickadate({
-                          		editable: false,
-                          		clear: ''
-                          	})
-                          	/*$('#time1').pickatime({
-                          		editable: false,
-                          		clear: '',
-                          		//min: new Date(2015,3,20,10),
-                          		//max: new Date(2015,7,14,20,30),
-                          		interval: 60
-                          		
-                          	})*/
-                          
-                          })
-                        </script>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion">
-              <input id="accordion-2" type="checkbox" name="accordion-checkbox" hidden="">
-              <label class="accordion-header" for="accordion-2">
-                <div class="flex edge">
-                  <h6 class="left">Tags</h6>
-                  <div class="right"></div>
-                  <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                  <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                  </svg>
-                </div>
-              </label>
-              <div class="accordion-body">
-                <div class="card" id="tags">
-                  <div class="card-body">
-                    <div class="form-autocomplete">
-                      <!-- autocomplete input container-->
-                      <div class="form-autocomplete-input form-input">
-                        <!-- autocomplete chips-->
-                        <div class="chip">mytag1<a class="btn btn-clear" href="#" aria-label="Close" role="button"></a></div>
-                        <div class="chip">mytag2<a class="btn btn-clear" href="#" aria-label="Close" role="button"></a></div>
-                        <!-- autocomplete real input box-->
-                        <input class="form-input" type="text" placeholder="type here">
-                      </div>
-                      <!-- autocomplete suggestion list-->
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion">
-              <input id="accordion-3" type="checkbox" name="accordion-checkbox" hidden="">
-              <label class="accordion-header" for="accordion-3">
-                <div class="flex edge">
-                  <h6 class="left">Featured Image</h6>
-                  <div class="right"></div>
-                  <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                  <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                  </svg>
-                </div>
-              </label>
-              <div class="accordion-body">
-                <div class="card" id="featuredimage">
-                  <div class="card-body">
-                    <input class="form-input" type="file">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion">
-              <input id="accordion-4" type="checkbox" name="accordion-checkbox" hidden="">
-              <label class="accordion-header" for="accordion-4">
-                <div class="flex edge">
-                  <h6 class="left">Images</h6>
-                  <div class="right"></div>
-                  <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                  <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                  </svg>
-                </div>
-              </label>
-              <div class="accordion-body">
-                <div class="card" id="featuredimage">
-                  <div class="card-body">
-                    <input class="form-input" type="file">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <script>
-              depp.require(['style','ma-client'], function () {
-              	$('#save').click(function(){
-              		/*let url = $('#ext').val()
-              		let src = $('#src').val()
-              		let dest = $('#dest').val()
-              		let com  = $('#com').val()
-              		let tags  = $('#tags').val()*/
-              
-              		//window.aSrv.newLinkBlog(src, dest, url, com, tags).then(newBlogRes)
-              		window.aSrv.newBlog('blog', 'My first blog', 'My summary', 'My content', '2019-07-21T22:38:16.944Z', 't1,t2', 'https://i.imgur.com/YdwRA30.jpg').then(newBlogRes)
-              	})// click
-              })//ready
-              
-              function newBlogRes(resp) {
-              	alert('save done'+resp)
-              	/*let msg = resp.data._msg
-              	console.log(msg)
-              	console.log(msg.title)
-              
-              	//$('#linkBlogMsg').text(msg.title)*/
-              }
-              
-              depp.require('site', function () {
-              
-              	alert('init editor');
-              	/*
-              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
-              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
-              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
-              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
-              	*/
-              	depp.define({'cmjs': [
-              		'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.css'
-              
-              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
-              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
-              
-              	]})
-              })//ready
-              
-              depp.require('cmjs', function () {
-              	_initCodeMirror()
-              
-              	/*$('#saveEdits').click(function() {
-              		console.log('save')
-              		_saveEdits()
-              	})//click */
-              
-              })//ready
-              
-              let myCodeMirror
-              function _initCodeMirror() {
-              	myCodeMirror = CodeMirror.fromTextArea(
-              		document.querySelector('#cms1') ,
-              			{
-              				mode:  'pug'
-              				, lineNumbers: true
-              				, tabSize: 3
-              				, indentWithTabs: true
-              				//, theme: 'neat'
-              				//, keyMap: 'sublime'
-              				, v1iewportMargin: 'Infinity'
-              			}
-              		)
-              	myCodeMirror.setSize('100%', '100%')
-              	depp.done('cm')
-              }// initCM()
-              
-              function read( data) {
-              	let fn_ = data[0]
-              	let url = '/api/read?secret='
-              	let folder = '&folder='
-              	let fn = '&fn='
-              	url = url + getSec() + folder + getPage() + fn + fn_
-              	console.log(url)
-              
-              	fetch(url)
-              		.then(function(resp) {
-              			return resp.text()
-              		}).then(function(ret) {
-              
-              			loadjs.ready('cm', function() {
-              				myCodeMirror.getDoc().setValue(ret)
-              			})
-              
-              		}).catch(function(err) {
-              			console.log('error', err)
-              	})//fetch
-              }//()
-              
-              function _saveEdits() {
-              	let txt = myCodeMirror.getDoc().getValue()
-              
-              	let url = '/api/write?secret='
-              	let folder = '&folder='
-              	let fn = '&fn='
-              	url = url + getSec() + folder + getPage() + fn + getFN()
-              
-              	console.log(url)
-              
-              	let headers = new Headers()
-              	headers.append('Content-Type', 'text/plain')
-              	fetch(url, {
-              			method: 'POST',
-              			headers : headers,
-              			body: txt,
-              		})
-              		.then(function(resp) {
-              			return resp.text()
-              		}).then(function(ret) {
-              
-              
-              		}).catch(function(err) {
-              			console.log('error', err)
-              	})//fetch
-              }//()
-            </script>
-=======
         <div class="props bg-secondary column col-sm-6 col-md-6 col-lg-3 col-xl-3 col-2">
           <div class="panel">
             <div class="panel-body">
@@ -420,7 +97,6 @@
                 })
               </script>
             </div>
->>>>>>> parent of 3193b35... New Blog Properties Panel
           </div>
         </div>
       </div>
@@ -433,22 +109,13 @@
       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script>console.log('console.log should still work after jquery, but it does not ')</script>
+    <script>console.log('console.log still works after jquery ')</script>
+    <script src="https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js"></script>
     <script src="/assets/js/setup.js"></script>
-    <script>
-      depp.define({'css': [
-      	ROOT + 'assets/css/spectre.css'
-      	, ROOT + 'assets/css/spectre-exp.css'
-      	, ROOT + 'assets/css/pickadate/classic.css'
-      	, ROOT + 'assets/css/pickadate/classic.date.css'
-      	, ROOT + 'assets/css/pickadate/classic.time.css'
-      	, ROOT + 'assets/css/nav.css'
-      	, ROOT + 'assets/css/main.css'
-      	, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
-      ]})
-      depp.require(['css'])
-      
-    </script>
+    <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
+    <link href="/assets/css/nav.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
@@ -485,10 +152,10 @@
                const aa = new AdminAuth()
                console.log(aa.secret)
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
-               depp.done('login')
+               loadjs.done('login')
                window.login.dispatch()
       
-              console.log('depp done login')
+              console.log('loadjs done login')
       
                $('.delayShowing').removeClass('delayShowing')
       
@@ -501,11 +168,6 @@
       
       function onLogout(arg) {
          console.log('LXXX no')
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-         n
-=======
          new AdminAuth().clear()
          $('#loginScr').addClass('active') // hide app
          try {
@@ -520,10 +182,3 @@
          $('#loginMsg').hide(0) // no message
       
          $('#butLog').cli
->>>>>>> parent of 3193b35... New Blog Properties Panel
-=======
-         n
->>>>>>> parent of 9845d1a... Image upload
-=======
-         n
->>>>>>> parent of 9845d1a... Image upload
