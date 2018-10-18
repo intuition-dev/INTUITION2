@@ -60,7 +60,7 @@ postlist-tag
 		this.items = []
 		thiz = this
 
-		render(data, scheduled, callback) {// public
+		render(data, scheduled, prodUrl, callback) {// public
 			if(!data ) {
 				thiz.items = []
 				thiz.update()
@@ -78,6 +78,9 @@ postlist-tag
 			for(i = 0; i < sz; i++) {
 				var item = cloned.items[i]
 				item.url = ROOT + 'blog/' + item.url
+				if (item.image && item.image.indexOf('//')==-1) //relative
+					item.image = prodUrl + item.url + '/' + item.image
+				
 				var m = moment(item.date_published)
 				item.fmt_date_published = m.format("MM/DD, YYYY h:mm a")
 				if (moment().isBefore(m))

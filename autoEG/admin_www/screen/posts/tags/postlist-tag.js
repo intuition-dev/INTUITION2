@@ -7,7 +7,7 @@ riot.tag2('postlist-tag', '<ul class="nav listbody"><virtual each="{items}"> <li
     this.items = []
     thiz = this
 
-    this.render = function(data, scheduled, callback) {
+    this.render = function(data, scheduled, prodUrl, callback) {
     	if(!data ) {
     		thiz.items = []
     		thiz.update()
@@ -22,6 +22,9 @@ riot.tag2('postlist-tag', '<ul class="nav listbody"><virtual each="{items}"> <li
     	for(i = 0; i < sz; i++) {
     		var item = cloned.items[i]
     		item.url = ROOT + 'blog/' + item.url
+    		if (item.image && item.image.indexOf('//')==-1)
+    			item.image = prodUrl + item.url + '/' + item.image
+
     		var m = moment(item.date_published)
     		item.fmt_date_published = m.format("MM/DD, YYYY h:mm a")
     		if (moment().isBefore(m))

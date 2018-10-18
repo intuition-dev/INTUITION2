@@ -146,7 +146,7 @@
                     	$('#published li:gt('+i+')').removeClass('active')
                     	$('#published li:eq('+i+')').addClass('active')
                     	if (i != oldIdx) //tab changed
-                    		tag.render(items, i, callback)
+                    		tag.render(items, i, 'http://blog-c1.s3-website-us-west-1.amazonaws.com', callback)
                     }
                   </script>
                   <ul class="tab" id="published">
@@ -173,7 +173,7 @@
                   }
                   
                   depp.require(['style','ma-client','feed'], function () {
-                  	tag.render(items, 0, callback)
+                  	tag.render(items, 0, 'http://blog-c1.s3-website-us-west-1.amazonaws.com', callback)
                   })
                 </script>
               </div>

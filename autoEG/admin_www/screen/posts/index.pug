@@ -43,7 +43,7 @@ block main
 				$('#published li:gt('+i+')').removeClass('active')
 				$('#published li:eq('+i+')').addClass('active')
 				if (i != oldIdx) //tab changed
-					tag.render(items, i, callback)
+					tag.render(items, i, '#{PROD_ROOT}', callback)
 			}
 		ul#published.tab
 			li.tab-item.active
@@ -69,7 +69,7 @@ block main
 		}
 
 		depp.require(['style','ma-client','feed'], function () {
-			tag.render(items, 0, callback)
+			tag.render(items, 0, '#{PROD_ROOT}', callback)
 		})
 
 
