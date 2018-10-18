@@ -1,0 +1,31 @@
+//-#cal1.pad
+
+input#date1(readonly='', placeholder='Date')
+//-br
+//-input#time(readonly='', placeholder='Time')
+
+//so it has room to open
+style.
+	#cal1 {
+		/*height: 300vh; */
+	}
+
+script.
+	console.log('pgC')
+
+	depp.require(['cssJs', 'device'], function () {
+
+		$('#date1').pickadate({
+			editable: false,
+			clear: ''
+		})
+		/*$('#time1').pickatime({
+			editable: false,
+			clear: '',
+			//min: new Date(2015,3,20,10),
+			//max: new Date(2015,7,14,20,30),
+			interval: 60
+			
+		})*/
+
+	})

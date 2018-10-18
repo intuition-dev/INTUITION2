@@ -34,6 +34,131 @@ body > .container {
 	padding-bottom: .8em;
 }
 
+/* blog add/edit screen */
+#edit {
+	position: absolute;
+	top: 50px; left: 0vw;
+	width: 100vw;
+	padding-left: 0; padding-right: 0;
+}
+
+#edit .panel {
+	border: 0;
+}
+
+#edittitlep, #edittabp, {
+	width: 85%;
+}
+
+#cms1 {
+	width: 100%
+}
+
+.tile {
+	padding: 10px 8px 5px 8px;
+	margin: 0;
+	vertical-align: middle;
+	border-bottom: .5px solid #537994;
+}
+
+.panel-body .accordion {
+	background-color: white;
+	padding-top: 7px; padding-bottom: 0px;
+	border-bottom: .5px solid #537994;
+}
+
+.accordion h6 {
+	vertical-align: middle;
+}
+
+.accordion input:checked + .accordion-header .feather-chevron-down {
+	display: none;
+}
+.accordion-header .feather-chevron-up {
+	display: none;
+}
+.accordion input:checked + .accordion-header .feather-chevron-up {
+	display: block;
+}
+.props .panel-body {
+	padding:  0;
+}
+
+.props h6 {
+	font-size: smaller;
+	margin-bottom: 0;
+}
+
+#publishdate .card-body {
+	border: .5px solid #537994;
+	margin: 16px;
+	padding: 0;
+}
+
+#publishdate .accordion {
+	border-bottom: 0;
+}
+
+#publishdate .text-bold, #publishdate .text-center {
+	font-size: smaller;
+}
+
+/* condense spectre calendar 
+.calendar {min-width: 220px;}
+.calendar .calendar-header { padding: .2rem 0; }
+.calendar .calendar-body { padding: .2rem 0; }
+.calendar .calendar-date { padding: 0 0; } */
+
+.picker {
+	max-width: 230px !important;
+}
+.picker__box {
+	padding: 0;
+}
+
+#featuredimage .card-body {
+	margin-left: 16px;
+	margin-right: 16px;
+	padding: 0;
+}
+#featuredimage .card-image {
+	background-color: #E9EFF3;
+	margin-left: 16px;
+	margin-right: 16px;
+	padding-top: 0;
+	min-height: 80px;
+	border-left: .5px solid #537994;
+	border-right: .5px solid #537994;
+	border-bottom: .5px solid #537994;
+}
+#featuredimage .form-input {
+	font-size: smaller;
+}
+/* end post edit screen*/
+
+/* CSS off-canvas Props panel */
+.props { 
+	position: fixed;
+	top: 50px; left: calc(100vw - 250px);
+	width: 250px; height: 100%;
+	overflow: hidden;
+	transition: left .3s ease;
+	border-left: .5px solid #537994;
+}
+
+#hideprops { /* CSS trick: use left panel ID */
+	width: calc(100vw - 250px);
+	overflow: hidden;
+}
+
+#hideprops:target { 
+	width: 100vw !important;
+}
+#hideprops:target + .props { 
+	left: 100vw;
+}
+/* end CSS off-canvas Properties panel */
+
 /*transition between sidebar and main/router panels */
 @media screen and (max-width: 600px) {
 
@@ -50,18 +175,6 @@ body > .container {
 		transform: translateX(-100vw); /*pan left, to main panel */
 	}
 
-	#edit {
-		position: absolute;
-		top: 50px;
-		left: -100vw;
-		overflow-x: hidden;
-		width: 200vw;
-		transition: transform .3s ease; 
-	}
-	
-	#edit:target { 
-		transform: translateX(100vw); /*pan right, to edit panel */
-	}
 
 	#router, .panel, .panel-body {
 		width: 100vw;
@@ -70,7 +183,21 @@ body > .container {
 	#navp, #ddp, #tabp, #statusp, #listp, #footp {
 		width: 100vw;
 	}
+	
+}
 
+/*transition between edit and properties panels */
+@media screen and (max-width: 500px) {
+	.props {
+		left: 0;
+		width: 100vw;
+	}
+
+	#hideprops { /* CSS trick: use left panel ID */
+		left: -100vw;
+		width: 100vw;
+		overflow: hidden;
+	}
 }
 
 #tabp, #listp {
@@ -86,14 +213,20 @@ body > .container {
 	background: #F3F6F8 !important;
 }
 
+/* tabs */
 .tab {
 	padding-inline-start: 0px !important;
 	margin-bottom: 0 !important;
+}
+.tab-item > a {
+	padding-bottom: 0 !important;
 }
 .tab-item > a > .badge {
 	margin-left: .7em !important;
 	margin-right: .4em !important;
 }
+/* end tabs */
+
 
 .listhead {
 	padding: 15px;
@@ -126,7 +259,7 @@ li a:hover {
 	border:none;
 }
 
- .card {
+.card {
 	border : 0;
 }
 

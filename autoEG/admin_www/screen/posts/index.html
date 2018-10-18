@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
   <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
   <style>
@@ -68,7 +68,7 @@
                         </svg>
                         <div class="padL">Blog Posts</div>
                       </div>
-                      <button class="btn btn-sm right" onclick="location.href=&quot;/screen/posts/new&quot;">Add</button>
+                      <button class="btn btn-sm right" onclick="location.href='/screen/posts/new'">Add</button>
                     </div></a></li>
                 <li class="nav-item"><a href="/screen/media/#all">
                     <div class="flex edge">
@@ -107,17 +107,17 @@
           <div class="panel">
             <div class="panel-body">
               <div id="router">
-                <script src="/screen/posts/tags/postlist-tag.js"></script>
+                <script src="/screen/posts/tags/postlist-tag.js"> </script><a href="dummy3"> </a>
                 <script>
-                  loadjs.ready(['style','ma-client', 'login'], function() {
-                  	console.log('loadjs ready, user is logged in, will call itemize')
+                  depp.require(['style','ma-client', 'login'], function() {
+                  	console.log('depp ready, user is logged in, will call itemize')
                   	window.aSrv.getItems('blog').then(listRes)
                   })
                   
                   function listRes(resp) {
                   	items = resp.data._cmd
                   	//-alert(items)
-                  	loadjs.done('feed')
+                  	depp.done('feed')
                   }
                   
                 </script>
@@ -139,11 +139,21 @@
                 </div>
                 <p></p>
                 <div class="container" id="tabp">
-                  <ul class="tab">
-                    <li class="tab-item active"><a href="#published"> 
-                        <div class="badge" id="publishedTab" data-badge="2">Published&nbsp;</div></a></li>
-                    <li class="tab-item"><a href="#scheduled">
-                        <div class="badge" id="scheduleTab" data-badge="0">Scheduled&nbsp;</div></a></li>
+                  <script>
+                    function published(i){
+                    	var oldIdx = $('#published li.active').index();
+                    	$('#published li:lt('+i+')').removeClass('active')
+                    	$('#published li:gt('+i+')').removeClass('active')
+                    	$('#published li:eq('+i+')').addClass('active')
+                    	if (i != oldIdx) //tab changed
+                    		tag.render(items, i, callback)
+                    }
+                  </script>
+                  <ul class="tab" id="published">
+                    <li class="tab-item active"><a nohref onclick="published(0)">
+                        <div class="badge" id="publishedTab" data-badge="0">Published&nbsp;</div></a></li>
+                    <li class="tab-item"><a nohref onclick="published(1)">
+                        <div class="badge" id="scheduledTab" data-badge="0">Scheduled&nbsp;</div></a></li>
                   </ul>
                 </div>
                 <p></p>
@@ -157,9 +167,13 @@
                 <script>
                   const tag = riot.mount('postlist-tag')[0] // mount the first tag
                   
-                  loadjs.ready(['style','ma-client','feed'], function () {
-                  	$('#publishedTab').attr('data-badge', '9')
-                  	tag.render(items)
+                  function callback(publishedCount, scheduledCount){
+                  		$('#publishedTab').attr('data-badge', publishedCount)
+                  		$('#scheduledTab').attr('data-badge', ''+scheduledCount)
+                  }
+                  
+                  depp.require(['style','ma-client','feed'], function () {
+                  	tag.render(items, 0, callback)
                   })
                 </script>
               </div>
@@ -176,13 +190,18 @@
       
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script>console.log('console.log still works after jquery ')</script>
-    <script src="https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js"></script>
+    <script>console.log('console.log should still work after jquery but it does not ')</script>
     <script src="/assets/js/setup.js"></script>
-    <link href="/assets/css/spectre.css" onload="cssLoaded()" rel="stylesheet">
-    <link href="/assets/css/nav.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="/assets/css/main.css" rel="stylesheet">
+    <script>
+      depp.define({'css': [
+      	ROOT + 'assets/css/spectre.css'
+      	, ROOT + 'assets/css/nav.css'
+      	, ROOT + 'assets/css/main.css'
+      	, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
+      ]})
+      depp.require(['css'])
+      
+    </script>
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
@@ -219,10 +238,10 @@
                const aa = new AdminAuth()
                console.log(aa.secret)
                window.aSrv = new MetaAdminService(baseURL, aa.secret)
-               loadjs.done('login')
+               depp.done('login')
                window.login.dispatch()
       
-              console.log('loadjs done login')
+              console.log('depp done login')
       
                $('.delayShowing').removeClass('delayShowing')
       
@@ -262,7 +281,7 @@
          loginTry(false)
       }
       
-      loadjs.ready(['style','ma-client'], function () {
+      depp.require(['style','ma-client'], function () {
          console.log('loadjs ready client, calling setupLogin')
          setupLogin()
          console.log('after setupLogin done with login')

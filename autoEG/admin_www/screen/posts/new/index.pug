@@ -3,7 +3,7 @@ extends /layout/layout_edit
 block main
 	script(src=ROOT+ 'screen/posts/tags/postlist-tag.js')
 	script.
-		loadjs.ready(['style','ma-client', 'login'], function() {
+		depp.require(['style','ma-client', 'login'], function() {
 			console.log('loadjs ready, user is logged in, will call itemize')
 			//window.aSrv.getItems('blog').then(listRes)
 		})
@@ -11,48 +11,273 @@ block main
 		function listRes(resp) {
 			items = resp.data._cmd
 			//-alert(items)
-			loadjs.done('feed')
+			depp.done('feed')
 		}
 
-	//-p
-	//-#tabp.container
+	p
+	#edittitlep.container
+		.form-group
+			input.form-input(name='title', id='title', value='My first blog', placeholder='Blog Title')
+	p
+	#edittabp.container
 		ul.tab
 			li.tab-item.active
-				a(href='#published') 
-					#publishedTab.badge(data-badge='2') Published&nbsp;
+				a(href='#md') Markdown&nbsp;
 			li.tab-item
-				a(href='#scheduled')
-					#scheduleTab.badge(data-badge='0') Scheduled&nbsp;
-	p
-	#editp.container
-		p Editor here
-		//postlist-tag
+				a(href='#view') View&nbsp;
+	#editorp.container
+		textarea#cms1(rows='20', placeholder='Blog Entry here')
 
 block props
-	//-p Props props here
-	//-.show-sm
-	#propp.container
-		p Properties here
-			//-a(href='/screen/posts/#')
-				flex.left
-					svg.left.feather.feather-chevron-left(viewBox='0 0 24 24')
-						polyline(points='15 18 9 12 15 6')
-					svg.left.feather.feather-file-text(viewBox='0 0 24 24') 
-						path(d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z')
-						polyline(points='14 2 14 8 20 8')
-						line(x1='16', y1='13', x2='8', y2='13')
-						line(x1='16', y1='17', x2='8', y2='17')
-						polyline(points='10 9 9 9 8 9')
-					.left.padL Blog Posts
+	//-#propp.container
+	.tile
+		.tile-content
+			h6.tile-title Post Settings
+		.tile-action
+			a(nohref onclick='toggleEdit()')
+				svg.feather.feather-x(viewBox='0 0 24 24')
+					line(x1='18', y1='6', x2='6', y2='18')
+					line(x1='6', y1='6', x2='18', y2='18')
+	.accordion
+		input#accordion-1(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='accordion-1')
+			.flex.edge
+				h6.left Status
+				.right
+				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
+					polyline(points='6 9 12 15 18 9')
+				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
+					polyline(points='18 15 12 9 6 15')
+		.accordion-body
+			#publishdate.card
+				.card-body
+					.accordion
+						input#accordion-2a(type='checkbox', name='accordion-checkbox', hidden='')
+						label.accordion-header(for='accordion-2a')
+							.flex.edge
+								.left
+									svg.feather.feather-calendar(viewBox='0 0 24 24')
+										rect(x='3', y='4', width='18', height='18', rx='2', ry='2')
+										line(x1='16', y1='2', x2='16', y2='6')
+										line(x1='8', y1='2', x2='8', y2='6')
+										line(x1='3', y1='10', x2='21', y2='10')
+								.left.text-bold Publish Immediately
+								.right
+								svg.feather.feather-chevron-down(viewBox='0 0 24 24')
+									polyline(points='6 9 12 15 18 9')
+								svg.feather.feather-chevron-up(viewBox='0 0 24 24')
+									polyline(points='18 15 12 9 6 15')
+						.accordion-body
+							p
+							.text-center Choose a date to schedule:
+							include tags/calendar
 
+	.accordion
+		input#accordion-2(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='accordion-2')
+			.flex.edge
+				h6.left Tags
+				.right
+				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
+					polyline(points='6 9 12 15 18 9')
+				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
+					polyline(points='18 15 12 9 6 15')
+		.accordion-body
+			.card
+				.card-body
+					//include tags/autocomplete
+					input.form-input(type='text', id='tags', placeholder='comma-delimited tags')
+	.accordion
+		input#accordion-3(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='accordion-3')
+			.flex.edge
+				h6.left Featured Image
+				.right
+				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
+					polyline(points='6 9 12 15 18 9')
+				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
+					polyline(points='18 15 12 9 6 15')
+		.accordion-body
+			#featuredimage.card
+				.card-body
+					input.form-input(type='file', id='f1', placeholder='image') 
+				.card-image
+					.toast.btn-clear
+						img.img-responsive#f1img
+					//-include tags/upload.pug
+
+	//-.accordion
+		input#accordion-4(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='accordion-4')
+			.flex.edge
+				h6.left Images
+				.right
+				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
+					polyline(points='6 9 12 15 18 9')
+				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
+					polyline(points='18 15 12 9 6 15')
+		.accordion-body
+			#featuredimage.card
+				.card-body
+					input.form-input(type='file' id='fx', placeholder='images')
 
 	script.
-		const tag = riot.mount('postlist-tag')[0] // mount the first tag
 
-		loadjs.ready(['style','ma-client','feed'], function () {
-			$('#publishedTab').attr('data-badge', '9')
-			tag.render(items)
-		})
+		depp.require(['style','ma-client'], function () {
+
+			$('#f1').change(function(){
+				displayImage(this)
+			})
+
+			function displayImage(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.readAsDataURL(input.files[0]);
+					reader.onload = function(e) {
+						$('#f1img').attr('src', e.target.result);
+					}
+				}
+			}
+
+			$('#save').click(function(){
+				let f1 = $('#f1')[0].files[0];
+				if (f1)
+				{
+					let reader = new FileReader();
+					reader.readAsDataURL(f1);
+					reader.onload = function(e) {
+						let b64 = e.target.result
+						fileDone(b64, f1.name)
+					}
+				}
+				else
+					fileDone()
+			})// click
+		})//ready
+
+		function fileDone(f1data, f1name) {
+			/*let url = $('#ext').val()
+			let src = $('#src').val()
+			let dest = $('#dest').val()
+			let com  = $('#com').val()*/
+			let title = $('#title').val()
+			let tags  = $('#tags').val()
+			alert('tags:'+tags)
+			let date_published = moment().toISOString()
+			let date1 = $('#date1').val()
+			alert('date1:'+date1)
+			if (date1 != '')
+				date_published = moment(date1, 'D MMMM YYYY').toISOString()
+
+			window.aSrv.newBlog('blog', 'My first blog', 'My summary', 'My content', date_published, 
+				tags, f1name, f1data
+			).then(newBlogRes)
+		}
+
+		function newBlogRes(resp) {
+			alert('save done'+resp)
+			/*let msg = resp.data._msg
+			console.log(msg)
+			console.log(msg.title)
+
+			//$('#linkBlogMsg').text(msg.title)*/
+		}
+
+		depp.require('site', function () {
+
+			alert('init editor');
+			/*
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
+			*/
+			depp.define({'cmjs': [
+				'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.css'
+
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
+
+			]})
+		})//ready
+
+		depp.require('cmjs', function () {
+			_initCodeMirror()
+
+			/*$('#saveEdits').click(function() {
+				console.log('save')
+				_saveEdits()
+			})//click */
+
+		})//ready
+
+		let myCodeMirror
+		function _initCodeMirror() {
+			myCodeMirror = CodeMirror.fromTextArea(
+				document.querySelector('#cms1') ,
+					{
+						mode:  'pug'
+						, lineNumbers: true
+						, tabSize: 3
+						, indentWithTabs: true
+						//, theme: 'neat'
+						//, keyMap: 'sublime'
+						, v1iewportMargin: 'Infinity'
+					}
+				)
+			myCodeMirror.setSize('100%', '100%')
+			depp.done('cm')
+		}// initCM()
+
+		function read( data) {
+			let fn_ = data[0]
+			let url = '/api/read?secret='
+			let folder = '&folder='
+			let fn = '&fn='
+			url = url + getSec() + folder + getPage() + fn + fn_
+			console.log(url)
+
+			fetch(url)
+				.then(function(resp) {
+					return resp.text()
+				}).then(function(ret) {
+
+					loadjs.ready('cm', function() {
+						myCodeMirror.getDoc().setValue(ret)
+					})
+
+				}).catch(function(err) {
+					console.log('error', err)
+			})//fetch
+		}//()
+
+		function _saveEdits() {
+			let txt = myCodeMirror.getDoc().getValue()
+
+			let url = '/api/write?secret='
+			let folder = '&folder='
+			let fn = '&fn='
+			url = url + getSec() + folder + getPage() + fn + getFN()
+
+			console.log(url)
+
+			let headers = new Headers()
+			headers.append('Content-Type', 'text/plain')
+			fetch(url, {
+					method: 'POST',
+					headers : headers,
+					body: txt,
+				})
+				.then(function(resp) {
+					return resp.text()
+				}).then(function(ret) {
+
+
+				}).catch(function(err) {
+					console.log('error', err)
+			})//fetch
+		}//()
+
 
 
 
