@@ -259,4 +259,37 @@
          try {
             delete window.aSrv
          } catch(err) { console.log(err) }
+<<<<<<< HEAD
          if(arg) $('#loginM
+=======
+         if(arg) $('#loginMsg').show(0)
+         else $('#loginMsg').hide(0) // no message
+      
+      }
+      
+      function setupLogin() {
+         $('#loginMsg').hide(0) // no message
+      
+         $('#butLog').click(function(){
+            let code = $('#code').val()
+            let aa = new AdminAuth()
+            aa.save(code)
+            console.log(aa.secret)
+            loginTry(true)
+         })
+          $('#butLogOut').click(function(){
+            onLogout(false)
+         })
+      
+         loginTry(false)
+      }
+      
+      loadjs.ready(['style','ma-client'], function () {
+         console.log('loadjs ready client, calling setupLogin')
+         setupLogin()
+         console.log('after setupLogin done with login')
+      })
+    </script>
+  </body>
+</html>
+>>>>>>> parent of 3193b35... New Blog Properties Panel

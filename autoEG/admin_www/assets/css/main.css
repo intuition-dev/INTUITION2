@@ -34,6 +34,7 @@ body > .container {
 	padding-bottom: .8em;
 }
 
+<<<<<<< HEAD
 /* blog add/edit screen */
 #edit {
 	position: absolute;
@@ -150,6 +151,8 @@ body > .container {
 }
 /* end CSS off-canvas Properties panel */
 
+=======
+>>>>>>> parent of 3193b35... New Blog Properties Panel
 /*transition between sidebar and main/router panels */
 @media screen and (max-width: 600px) {
 
@@ -166,6 +169,18 @@ body > .container {
 		transform: translateX(-100vw); /*pan left, to main panel */
 	}
 
+	#edit {
+		position: absolute;
+		top: 50px;
+		left: -100vw;
+		overflow-x: hidden;
+		width: 200vw;
+		transition: transform .3s ease; 
+	}
+	
+	#edit:target { 
+		transform: translateX(100vw); /*pan right, to edit panel */
+	}
 
 	#router, .panel, .panel-body {
 		width: 100vw;

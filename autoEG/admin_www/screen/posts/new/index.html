@@ -33,7 +33,7 @@
               function toggleEdit(){
               	var t = $('#toggle') 
               	if (t.hasClass('active')){
-              		window.location.hash = '#hideprops'
+              		window.location.hash = '#edit'
               		t.removeClass('active')
               	}
               	else
@@ -53,6 +53,7 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="container delayShowing" id="edit">
       <div class="main bg-white delayShowing" id="hideprops">
         <div class="panel">
@@ -87,10 +88,38 @@
               </div>
               <div class="container" id="editorp">
                 <textarea id="cms1" rows="20" placeholder="Blog Entry here"></textarea>
+=======
+    <div class="container" id="edit">
+      <div class="columns col-gapless delayShowing">
+        <div class="main bg-white column col sm-6 col-md-6 col-lg-9 col-xl-9 col-10">
+          <div class="panel">
+            <div class="panel-body">
+              <div id="router">
+                <script src="/screen/posts/tags/postlist-tag.js"></script>
+                <script>
+                  loadjs.ready(['style','ma-client', 'login'], function() {
+                  	console.log('loadjs ready, user is logged in, will call itemize')
+                  	//window.aSrv.getItems('blog').then(listRes)
+                  })
+                  
+                  function listRes(resp) {
+                  	items = resp.data._cmd
+                  	//-alert(items)
+                  	loadjs.done('feed')
+                  }
+                  
+                </script>
+                <p></p>
+                <div class="container" id="editp">
+                  <p>Editor here</p>
+                  <!--postlist-tag-->
+                </div>
+>>>>>>> parent of 3193b35... New Blog Properties Panel
               </div>
             </div>
           </div>
         </div>
+<<<<<<< HEAD
       </div>
       <nav class="props bg-secondary delayShowing">
         <div class="panel">
@@ -375,9 +404,26 @@
               	})//fetch
               }//()
             </script>
+=======
+        <div class="props bg-secondary column col-sm-6 col-md-6 col-lg-3 col-xl-3 col-2">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="container" id="propp">
+                <p>Properties here</p>
+              </div>
+              <script>
+                const tag = riot.mount('postlist-tag')[0] // mount the first tag
+                
+                loadjs.ready(['style','ma-client','feed'], function () {
+                	$('#publishedTab').attr('data-badge', '9')
+                	tag.render(items)
+                })
+              </script>
+            </div>
+>>>>>>> parent of 3193b35... New Blog Properties Panel
           </div>
         </div>
-      </nav>
+      </div>
     </div>
     <script>
       function userSzSc() {
@@ -455,4 +501,21 @@
       
       function onLogout(arg) {
          console.log('LXXX no')
+<<<<<<< HEAD
          n
+=======
+         new AdminAuth().clear()
+         $('#loginScr').addClass('active') // hide app
+         try {
+            delete window.aSrv
+         } catch(err) { console.log(err) }
+         if(arg) $('#loginMsg').show(0)
+         else $('#loginMsg').hide(0) // no message
+      
+      }
+      
+      function setupLogin() {
+         $('#loginMsg').hide(0) // no message
+      
+         $('#butLog').cli
+>>>>>>> parent of 3193b35... New Blog Properties Panel

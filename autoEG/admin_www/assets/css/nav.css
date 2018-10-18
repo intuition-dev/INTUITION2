@@ -24,11 +24,10 @@
 
 #edithead {
 	height: 50px;
-  line-height: 50px;
-  border-bottom: .5px solid #537994;
+	line-height: 50px;
 }
 
-#edithead .left .navbar {
+#edithead .navbar {
   padding: 0 20px;
   border-right: .5px solid #537994;
 }
