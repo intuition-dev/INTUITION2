@@ -174,12 +174,12 @@ class MetaAdminService {
     * @param date_published_ - e.g. '2019-07-21T22:38:16.944Z'
     * @param tags_ # CSV, eg: one, two
     */
-    newBlog(folder_, title_, summary_, content_, date_published_, tags_, f1name_, f1_) {
+    newBlog(folder_, title_, summary_, content_, date_published_, tags_, f1name_, f1_, fx_) {
       alert(f1name_+':'+ f1_)
     return this.service.post('/api/newBlog', {
        folder: folder_, title: title_, summary: summary_, content: content_, 
        date_published: date_published_, tags: tags_, 
-       f1name: f1name_, f1: f1_
+       f1name: f1name_, f1: f1_, fx: fx_
     })
   }
 

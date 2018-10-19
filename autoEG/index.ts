@@ -184,6 +184,7 @@ server.post('/api/newBlog', function (req, res) {
    let content = body.content
    //let img_url = body.img_url
    let f1 = body.f1
+   let fx = body.fx
    let f1name = body.f1name
    logger.trace('f1name'+f1name)
    //logger.trace(f1)
@@ -235,9 +236,8 @@ server.post('/api/newBlog', function (req, res) {
          */
         d.set('image', f1name) 
         d.write() //w2
-         
-         
-        console.log('Writing image done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+
+        console.log('Writing featured image done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
        }
       else //default image
        {
@@ -249,6 +249,21 @@ server.post('/api/newBlog', function (req, res) {
          d.write() //w3
       })*/
        }
+
+       if (fx && fx != '[]')
+       {
+             let mediaitems = JSON.parse(fx)
+             let len = mediaitems.length
+             for (i = 0; i < len; i++)
+             {
+                let obj = mediaitems[i]
+                let f1path = dest + '/' + obj.filename
+                var buffer = Buffer.from(obj.src.split(",")[1], 'base64')
+                fo.write(f1path, buffer)
+             }
+       }
+       console.log('Writing media done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+
 
       // write content
       let md = dest+'/content.md'

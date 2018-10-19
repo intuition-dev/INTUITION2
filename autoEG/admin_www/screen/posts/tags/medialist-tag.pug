@@ -1,0 +1,38 @@
+medialist-tag
+	#media.card
+		.card-body
+			<virtual each={items}>
+				.tile
+					.tile-content
+						.flex.edge
+							.left
+									.card
+										.card-title.text-ellipsis {filename}
+										.card-subtitle
+											a(nohref alt='{filename}' onclick="copyToClipboard('{filename}')")
+												.chip Copy Path
+							.right
+								a(nohref alt='{filename}' onclick="deleteMedia('{filename}')")
+									figure.avatar.avatar-xl.badge(data-badge='X')
+										img(src='{src}')
+			</virtual>
+	script.
+		console.log('medialist-tag')
+		this.on('*', function(evt) {
+			console.log('riot', evt)
+		})
+		this.items = []
+		thiz = this
+		
+		render(data) {// public
+			if(!data ) {
+				thiz.items = []
+				thiz.update()
+				return
+			}
+			let cloned = $.map(data, function (obj) {
+				return $.extend(true, {}, obj);
+			});
+			thiz.items = cloned
+			thiz.update()
+		}

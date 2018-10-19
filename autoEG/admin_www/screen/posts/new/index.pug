@@ -1,7 +1,7 @@
 extends /layout/layout_edit
 
 block main
-	script(src=ROOT+ 'screen/posts/tags/postlist-tag.js')
+	script(src=ROOT+ 'screen/posts/tags/medialist-tag.js')
 	script.
 		depp.require(['style','ma-client', 'login'], function() {
 			console.log('loadjs ready, user is logged in, will call itemize')
@@ -84,7 +84,7 @@ block props
 		.accordion-body
 			.card
 				.card-body
-					//include tags/autocomplete
+					//-include tags/autocomplete
 					input.form-input(type='text', id='tags', placeholder='comma-delimited tags')
 	.accordion
 		input#accordion-3(type='checkbox', name='accordion-checkbox', hidden='')
@@ -108,22 +108,43 @@ block props
 								line(x1='18', y1='6', x2='6', y2='18')
 								line(x1='6', y1='6', x2='18', y2='18')
 
-	//-.accordion
+	.accordion
 		input#accordion-4(type='checkbox', name='accordion-checkbox', hidden='')
 		label.accordion-header(for='accordion-4')
 			.flex.edge
-				h6.left Images
+				h6.left Media
 				.right
 				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
 					polyline(points='6 9 12 15 18 9')
 				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
 					polyline(points='18 15 12 9 6 15')
 		.accordion-body
-			#featuredimage.card
+			#mediax.card
 				.card-body
-					input.form-input(type='file' id='fx', placeholder='images')
+					input.form-input(multiple type='file' id='fx', placeholder='other images')
+			medialist-tag
+
 
 	script.
+		const tag = riot.mount('medialist-tag')[0] // mount the first tag
+		var mediaitems = []
+
+		function copyToClipboard (str) {
+			// Create new element
+			var el = document.createElement('textarea');
+			// Set value (string to be copied)
+			el.value = str;
+			// Set non-editable to avoid focus and move outside of view
+			el.setAttribute('readonly', '');
+			el.style = {position: 'absolute', left: '-9999px'};
+			document.body.appendChild(el);
+			// Select text inside element
+			el.select();
+			// Copy text to clipboard
+			document.execCommand('copy');
+			// Remove temporary element
+			document.body.removeChild(el);
+		}
 
 		function deleteFeaturedImage(){
 			depp.require(['style'], function(){
@@ -134,17 +155,25 @@ block props
 				$('#featuredimage .card-body').show();
 			})
 		}
+		function deleteMedia(filename){
+			let sz = mediaitems.length
+			let clone = []
+			for(i = 0; i < sz; i++) {
+				var item = mediaitems[i]
+				if (item.filename != filename) clone.push(item)
+			}
+			mediaitems = clone
+			$('#fx').val('')
+			tag.render(mediaitems)
+		}
 
 		depp.require(['style','ma-client'], function () {
 
 			$('#f1').change(function(){
-				displayImage(this)
-			})
-
-			function displayImage(input) {
-				if (input.files && input.files[0]) {
+				//displayFeaturedImage
+				if (this.files && this.files[0]) {
 					var reader = new FileReader();
-					reader.readAsDataURL(input.files[0]);
+					reader.readAsDataURL(this.files[0]);
 					reader.onload = function(e) {
 						$('#f1img').attr('src', e.target.result);
 						$('#featuredimage .card-body').hide();
@@ -152,7 +181,32 @@ block props
 						$('#f1del').show();
 					}
 				}
-			}
+			}) //upload featured image
+
+			$('#fx').change(function(){
+				//display all images
+				if (this.files){
+					let len = this.files.length
+					for (var i = 0; i < len; i++)
+					{
+						let f = this.files[i]
+						if(!f.type.match('image.*')) continue
+						let fname = f.name
+						let dup = false, sz = mediaitems.length
+						for(j = 0; j < sz; j++) { //no duplicates
+							if(mediaitems[j].filename === fname) {dup = true; break}
+						}
+						if (dup) continue;
+						let reader = new FileReader();
+						reader.readAsDataURL(f);
+						reader.onload = function(e) {
+							mediaitems.push({filename: fname, src: e.target.result})
+							tag.render(mediaitems)
+						}
+					}
+				}
+			}) //upload media
+
 
 			$('#save').click(function(){
 				let f1 = $('#f1')[0].files[0];
@@ -169,7 +223,7 @@ block props
 				else
 					fileDone()
 			})// click
-		})//ready
+		})//require
 
 		function fileDone(f1data, f1name) {
 			let title = $('#title').val()
@@ -181,9 +235,13 @@ block props
 			let date1 = $('#date1').val()
 			if (date1 != '')
 				date_published = moment(date1, 'D MMMM YYYY').toISOString()
+			
+			let fx = JSON.stringify(mediaitems)
+
+			//TODO: validation
 
 			window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
-				tags, f1name, f1data
+				tags, f1name, f1data, fx
 			).then(newBlogRes)
 		}
 
@@ -209,17 +267,11 @@ block props
 				,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
 				,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
 			]})
-		})//ready
+		})//require
 
 		depp.require('cmjs', function () {
 			_initCodeMirror()
-
-			/*$('#saveEdits').click(function() {
-				console.log('save')
-				_saveEdits()
-			})//click */
-
-		})//ready
+		})//require
 
 		let myCodeMirror
 		function _initCodeMirror() {
@@ -236,7 +288,7 @@ block props
 			depp.done('cm')
 		}// initCM()
 
-		function read( data) {
+		/*function read( data) {
 			let fn_ = data[0]
 			let url = '/api/read?secret='
 			let folder = '&folder='
@@ -256,34 +308,8 @@ block props
 				}).catch(function(err) {
 					console.log('error', err)
 			})//fetch
-		}//()
+		}//()*/
 
-		function _saveEdits() {
-			let txt = myCodeMirror.getDoc().getValue()
-
-			let url = '/api/write?secret='
-			let folder = '&folder='
-			let fn = '&fn='
-			url = url + getSec() + folder + getPage() + fn + getFN()
-
-			console.log(url)
-
-			let headers = new Headers()
-			headers.append('Content-Type', 'text/plain')
-			fetch(url, {
-					method: 'POST',
-					headers : headers,
-					body: txt,
-				})
-				.then(function(resp) {
-					return resp.text()
-				}).then(function(ret) {
-
-
-				}).catch(function(err) {
-					console.log('error', err)
-			})//fetch
-		}//()
 
 
 

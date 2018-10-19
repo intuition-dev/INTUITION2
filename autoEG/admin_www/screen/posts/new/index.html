@@ -58,7 +58,7 @@
         <div class="panel">
           <div class="panel-body">
             <div id="router">
-              <script src="/screen/posts/tags/postlist-tag.js"></script>
+              <script src="/screen/posts/tags/medialist-tag.js"></script>
               <script>
                 depp.require(['style','ma-client', 'login'], function() {
                 	console.log('loadjs ready, user is logged in, will call itemize')
@@ -192,7 +192,6 @@
               <div class="accordion-body">
                 <div class="card">
                   <div class="card-body">
-                    <!--include tags/autocomplete-->
                     <input class="form-input" type="text" id="tags" placeholder="comma-delimited tags">
                   </div>
                 </div>
@@ -227,7 +226,50 @@
                 </div>
               </div>
             </div>
+            <div class="accordion">
+              <input id="accordion-4" type="checkbox" name="accordion-checkbox" hidden="">
+              <label class="accordion-header" for="accordion-4">
+                <div class="flex edge">
+                  <h6 class="left">Media</h6>
+                  <div class="right"></div>
+                  <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                  <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                  </svg>
+                </div>
+              </label>
+              <div class="accordion-body">
+                <div class="card" id="mediax">
+                  <div class="card-body">
+                    <input class="form-input" multiple type="file" id="fx" placeholder="other images">
+                  </div>
+                </div>
+                <medialist-tag></medialist-tag>
+              </div>
+            </div>
             <script>
+              const tag = riot.mount('medialist-tag')[0] // mount the first tag
+              var mediaitems = []
+              
+              function copyToClipboard (str) {
+              	// Create new element
+              	var el = document.createElement('textarea');
+              	// Set value (string to be copied)
+              	el.value = str;
+              	// Set non-editable to avoid focus and move outside of view
+              	el.setAttribute('readonly', '');
+              	el.style = {position: 'absolute', left: '-9999px'};
+              	document.body.appendChild(el);
+              	// Select text inside element
+              	el.select();
+              	// Copy text to clipboard
+              	document.execCommand('copy');
+              	// Remove temporary element
+              	document.body.removeChild(el);
+              }
+              
               function deleteFeaturedImage(){
               	depp.require(['style'], function(){
               		$('#f1').val('')
@@ -237,17 +279,25 @@
               		$('#featuredimage .card-body').show();
               	})
               }
+              function deleteMedia(filename){
+              	let sz = mediaitems.length
+              	let clone = []
+              	for(i = 0; i < sz; i++) {
+              		var item = mediaitems[i]
+              		if (item.filename != filename) clone.push(item)
+              	}
+              	mediaitems = clone
+              	$('#fx').val('')
+              	tag.render(mediaitems)
+              }
               
               depp.require(['style','ma-client'], function () {
               
               	$('#f1').change(function(){
-              		displayImage(this)
-              	})
-              
-              	function displayImage(input) {
-              		if (input.files && input.files[0]) {
+              		//displayFeaturedImage
+              		if (this.files && this.files[0]) {
               			var reader = new FileReader();
-              			reader.readAsDataURL(input.files[0]);
+              			reader.readAsDataURL(this.files[0]);
               			reader.onload = function(e) {
               				$('#f1img').attr('src', e.target.result);
               				$('#featuredimage .card-body').hide();
@@ -255,7 +305,32 @@
               				$('#f1del').show();
               			}
               		}
-              	}
+              	}) //upload featured image
+              
+              	$('#fx').change(function(){
+              		//display all images
+              		if (this.files){
+              			let len = this.files.length
+              			for (var i = 0; i < len; i++)
+              			{
+              				let f = this.files[i]
+              				if(!f.type.match('image.*')) continue
+              				let fname = f.name
+              				let dup = false, sz = mediaitems.length
+              				for(j = 0; j < sz; j++) { //no duplicates
+              					if(mediaitems[j].filename === fname) {dup = true; break}
+              				}
+              				if (dup) continue;
+              				let reader = new FileReader();
+              				reader.readAsDataURL(f);
+              				reader.onload = function(e) {
+              					mediaitems.push({filename: fname, src: e.target.result})
+              					tag.render(mediaitems)
+              				}
+              			}
+              		}
+              	}) //upload media
+              
               
               	$('#save').click(function(){
               		let f1 = $('#f1')[0].files[0];
@@ -272,7 +347,7 @@
               		else
               			fileDone()
               	})// click
-              })//ready
+              })//require
               
               function fileDone(f1data, f1name) {
               	let title = $('#title').val()
@@ -284,9 +359,13 @@
               	let date1 = $('#date1').val()
               	if (date1 != '')
               		date_published = moment(date1, 'D MMMM YYYY').toISOString()
+              	
+              	let fx = JSON.stringify(mediaitems)
+              
+              	//TODO: validation
               
               	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
-              		tags, f1name, f1data
+              		tags, f1name, f1data, fx
               	).then(newBlogRes)
               }
               
@@ -312,17 +391,11 @@
               		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
               		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
               	]})
-              })//ready
+              })//require
               
               depp.require('cmjs', function () {
               	_initCodeMirror()
-              
-              	/*$('#saveEdits').click(function() {
-              		console.log('save')
-              		_saveEdits()
-              	})//click */
-              
-              })//ready
+              })//require
               
               let myCodeMirror
               function _initCodeMirror() {
@@ -339,7 +412,7 @@
               	depp.done('cm')
               }// initCM()
               
-              function read( data) {
+              /*function read( data) {
               	let fn_ = data[0]
               	let url = '/api/read?secret='
               	let folder = '&folder='
@@ -359,34 +432,7 @@
               		}).catch(function(err) {
               			console.log('error', err)
               	})//fetch
-              }//()
-              
-              function _saveEdits() {
-              	let txt = myCodeMirror.getDoc().getValue()
-              
-              	let url = '/api/write?secret='
-              	let folder = '&folder='
-              	let fn = '&fn='
-              	url = url + getSec() + folder + getPage() + fn + getFN()
-              
-              	console.log(url)
-              
-              	let headers = new Headers()
-              	headers.append('Content-Type', 'text/plain')
-              	fetch(url, {
-              			method: 'POST',
-              			headers : headers,
-              			body: txt,
-              		})
-              		.then(function(resp) {
-              			return resp.text()
-              		}).then(function(ret) {
-              
-              
-              		}).catch(function(err) {
-              			console.log('error', err)
-              	})//fetch
-              }//()
+              }//()*/
             </script>
           </div>
         </div>
@@ -405,7 +451,6 @@
     <script>
       depp.define({'css': [
       	ROOT + 'assets/css/spectre.css'
-      	, ROOT + 'assets/css/spectre-exp.css'
       	, ROOT + 'assets/css/pickadate/classic.css'
       	, ROOT + 'assets/css/pickadate/classic.date.css'
       	, ROOT + 'assets/css/pickadate/classic.time.css'

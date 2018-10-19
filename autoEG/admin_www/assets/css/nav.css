@@ -31,6 +31,7 @@
 #edithead .left .navbar {
   padding: 0 20px;
   border-right: .5px solid #537994;
+  height: 50px;
 }
 
 #edithead .right a {

@@ -157,9 +157,28 @@ body > .container {
 	color: white !important;
 }
 
-#featuredimage .form-input {
+#featuredimage .form-input, #mediax .form-input {
 	font-size: smaller;
 }
+
+#media .card-body {
+	padding: 0;
+}
+
+#media .card-title {
+	font-size: .5rem;
+	max-width: 160px;
+	padding-left: 6px;
+}
+
+#media .chip {
+	font-size: .5rem;
+}
+
+#media .tile:first-child {
+	border-top: .5px solid #537994;
+}
+
 /* end post edit screen*/
 
 /* CSS off-canvas Props panel */
