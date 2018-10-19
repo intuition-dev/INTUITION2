@@ -135,10 +135,28 @@ body > .container {
 	margin-right: 16px;
 	padding-top: 0;
 	min-height: 80px;
-	border-left: .5px solid #537994;
-	border-right: .5px solid #537994;
-	border-bottom: .5px solid #537994;
+	border: .5px solid #537994;
+	position: relative;
+	z-index: 1;
 }
+
+.del-badge {
+	background-color: #537994;
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	top: 0; right: 0;
+	z-index: 3;
+}
+
+#f1del {
+	display: none;
+}
+
+.del-badge > a {
+	color: white !important;
+}
+
 #featuredimage .form-input {
 	font-size: smaller;
 }

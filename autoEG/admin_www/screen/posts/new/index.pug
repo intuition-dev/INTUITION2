@@ -101,8 +101,12 @@ block props
 				.card-body
 					input.form-input(type='file', id='f1', placeholder='image') 
 				.card-image
-					img.img-responsive#f1img
-					//-include tags/upload.pug
+					img#f1img.img-responsive
+					#f1del.del-badge
+						a(hohref onclick="deleteFeaturedImage()")
+							svg.feather.feather-x(viewBox='0 0 24 24')
+								line(x1='18', y1='6', x2='6', y2='18')
+								line(x1='6', y1='6', x2='18', y2='18')
 
 	//-.accordion
 		input#accordion-4(type='checkbox', name='accordion-checkbox', hidden='')
@@ -121,6 +125,16 @@ block props
 
 	script.
 
+		function deleteFeaturedImage(){
+			depp.require(['style'], function(){
+				$('#f1').val('')
+				$('#f1img').attr('src', '')
+				$('#f1del').hide();
+				//#('#featuredimage .card-image').attr("visibility", "hidden");
+				$('#featuredimage .card-body').show();
+			})
+		}
+
 		depp.require(['style','ma-client'], function () {
 
 			$('#f1').change(function(){
@@ -133,6 +147,9 @@ block props
 					reader.readAsDataURL(input.files[0]);
 					reader.onload = function(e) {
 						$('#f1img').attr('src', e.target.result);
+						$('#featuredimage .card-body').hide();
+						//#('#featuredimage .card-image').attr("visibility", "visible");
+						$('#f1del').show();
 					}
 				}
 			}
@@ -141,6 +158,7 @@ block props
 				let f1 = $('#f1')[0].files[0];
 				if (f1)
 				{
+					//read again to be safe 
 					let reader = new FileReader();
 					reader.readAsDataURL(f1);
 					reader.onload = function(e) {
