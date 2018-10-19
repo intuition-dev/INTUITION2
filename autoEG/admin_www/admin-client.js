@@ -173,6 +173,9 @@ class MetaAdminService {
     * @param content_ - # markdown content
     * @param date_published_ - e.g. '2019-07-21T22:38:16.944Z'
     * @param tags_ # CSV, eg: one, two
+    * @param f1name_ - Featured image filename
+    * @param f1_ - Featured image base64 encoded
+    * @param fx_ # [{filename: myfilename, url: base64img}, ...] Array of files as JSON String
     */
     newBlog(folder_, title_, summary_, content_, date_published_, tags_, f1name_, f1_, fx_) {
       alert(f1name_+':'+ f1_)
