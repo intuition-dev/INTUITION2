@@ -6,8 +6,12 @@ node_modules/
 
 package-lock.json
 
+yarn-lock
+
 site/
 
 api/
 
 adminEG/index.js
+
+admin.yaml
