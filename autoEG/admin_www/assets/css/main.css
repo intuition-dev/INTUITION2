@@ -51,8 +51,16 @@ body > .container {
 }
 
 #cms1 {
-	width: 100%
+	width: 100%;
 }
+
+.CodeMirror {border: .5px solid #537994; font-family: "Open Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+.cm-header-1 { font-size: 150%; }
+.cm-header-2 { font-size: 130%; }
+.cm-header-3 { font-size: 120%; }
+.cm-header-4 { font-size: 110%; }
+.cm-header-5 { font-size: 100%; }
+.cm-header-6 { font-size: 90%; }
 
 .tile {
 	padding: 10px 8px 5px 8px;

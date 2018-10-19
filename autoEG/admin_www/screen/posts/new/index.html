@@ -79,14 +79,8 @@
                 </div>
               </div>
               <p></p>
-              <div class="container" id="edittabp">
-                <ul class="tab">
-                  <li class="tab-item active"><a href="#md">Markdown&nbsp;</a></li>
-                  <li class="tab-item"><a href="#view">View&nbsp;</a></li>
-                </ul>
-              </div>
               <div class="container" id="editorp">
-                <textarea id="cms1" rows="20" placeholder="Blog Entry here"></textarea>
+                <textarea id="cms1"></textarea>
               </div>
             </div>
           </div>
@@ -223,9 +217,7 @@
                   <div class="card-body">
                     <input class="form-input" type="file" id="f1" placeholder="image">
                   </div>
-                  <div class="card-image">
-                    <div class="toast btn-clear"><img class="img-responsive" id="f1img"></div>
-                  </div>
+                  <div class="card-image"><img class="img-responsive" id="f1img"></div>
                 </div>
               </div>
             </div>
@@ -263,20 +255,17 @@
               })//ready
               
               function fileDone(f1data, f1name) {
-              	/*let url = $('#ext').val()
-              	let src = $('#src').val()
-              	let dest = $('#dest').val()
-              	let com  = $('#com').val()*/
               	let title = $('#title').val()
+              	if (title == '')
+              		title = 'My first blog'
+              	let content = myCodeMirror.getDoc().getValue()
               	let tags  = $('#tags').val()
-              	alert('tags:'+tags)
               	let date_published = moment().toISOString()
               	let date1 = $('#date1').val()
-              	alert('date1:'+date1)
               	if (date1 != '')
               		date_published = moment(date1, 'D MMMM YYYY').toISOString()
               
-              	window.aSrv.newBlog('blog', 'My first blog', 'My summary', 'My content', date_published, 
+              	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
               		tags, f1name, f1data
               	).then(newBlogRes)
               }
@@ -290,21 +279,18 @@
               	//$('#linkBlogMsg').text(msg.title)*/
               }
               
-              depp.require('site', function () {
-              
-              	alert('init editor');
+              depp.require('style', function () {
               	/*
               		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
               		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
               		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
               		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
               	*/
               	depp.define({'cmjs': [
-              		'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.css'
-              
-              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
-              		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
-              
+              		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
+              		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
               	]})
               })//ready
               
@@ -323,16 +309,13 @@
               	myCodeMirror = CodeMirror.fromTextArea(
               		document.querySelector('#cms1') ,
               			{
-              				mode:  'pug'
-              				, lineNumbers: true
-              				, tabSize: 3
-              				, indentWithTabs: true
-              				//, theme: 'neat'
-              				//, keyMap: 'sublime'
-              				, v1iewportMargin: 'Infinity'
+              				mode: 'markdown'
+              				, lineWrapping: true
+              				, cursorHeight: 0.85
               			}
               		)
               	myCodeMirror.setSize('100%', '100%')
+              	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
               	depp.done('cm')
               }// initCM()
               

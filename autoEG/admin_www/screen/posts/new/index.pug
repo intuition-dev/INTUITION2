@@ -19,15 +19,14 @@ block main
 		.form-group
 			input.form-input(name='title', id='title', value='My first blog', placeholder='Blog Title')
 	p
-	#edittabp.container
+	//-#edittabp.container
 		ul.tab
 			li.tab-item.active
-				a(href='#md') Markdown&nbsp;
+				a(nohref) Markdown&nbsp;
 			li.tab-item
-				a(href='#view') View&nbsp;
+				a(nohref) View&nbsp;
 	#editorp.container
-		textarea#cms1(rows='20', placeholder='Blog Entry here')
-
+		textarea#cms1
 block props
 	//-#propp.container
 	.tile
@@ -102,8 +101,7 @@ block props
 				.card-body
 					input.form-input(type='file', id='f1', placeholder='image') 
 				.card-image
-					.toast.btn-clear
-						img.img-responsive#f1img
+					img.img-responsive#f1img
 					//-include tags/upload.pug
 
 	//-.accordion
@@ -156,20 +154,17 @@ block props
 		})//ready
 
 		function fileDone(f1data, f1name) {
-			/*let url = $('#ext').val()
-			let src = $('#src').val()
-			let dest = $('#dest').val()
-			let com  = $('#com').val()*/
 			let title = $('#title').val()
+			if (title == '')
+				title = 'My first blog'
+			let content = myCodeMirror.getDoc().getValue()
 			let tags  = $('#tags').val()
-			alert('tags:'+tags)
 			let date_published = moment().toISOString()
 			let date1 = $('#date1').val()
-			alert('date1:'+date1)
 			if (date1 != '')
 				date_published = moment(date1, 'D MMMM YYYY').toISOString()
 
-			window.aSrv.newBlog('blog', 'My first blog', 'My summary', 'My content', date_published, 
+			window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
 				tags, f1name, f1data
 			).then(newBlogRes)
 		}
@@ -183,21 +178,18 @@ block props
 			//$('#linkBlogMsg').text(msg.title)*/
 		}
 
-		depp.require('site', function () {
-
-			alert('init editor');
+		depp.require('style', function () {
 			/*
 				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
 				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
 				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
 				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
 			*/
 			depp.define({'cmjs': [
-				'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.css'
-
-				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/lib/codemirror.min.js'
-				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
-
+				'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
+				,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
 			]})
 		})//ready
 
@@ -216,16 +208,13 @@ block props
 			myCodeMirror = CodeMirror.fromTextArea(
 				document.querySelector('#cms1') ,
 					{
-						mode:  'pug'
-						, lineNumbers: true
-						, tabSize: 3
-						, indentWithTabs: true
-						//, theme: 'neat'
-						//, keyMap: 'sublime'
-						, v1iewportMargin: 'Infinity'
+						mode: 'markdown'
+						, lineWrapping: true
+						, cursorHeight: 0.85
 					}
 				)
 			myCodeMirror.setSize('100%', '100%')
+			myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
 			depp.done('cm')
 		}// initCM()
 
