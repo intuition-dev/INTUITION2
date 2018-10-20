@@ -1,3 +1,25 @@
+#error.modal
+   //-a.modal-overlay(nohref onclick="closeError()", aria-label='Close')
+   .modal-container.delayShowing
+      .modal-body
+         .toast.toast-error 
+            a.float-right(nohref onclick="closeError()")
+               svg.feather.feather-x(viewBox='0 0 24 24')
+                  line(x1='18', y1='6', x2='6', y2='18')
+                  line(x1='6', y1='6', x2='18', y2='18')
+            #errorMsg
+#success.modal
+   a.modal-overlay(nohref onclick="closeSuccess()", aria-label='Close')
+   .modal-container.delayShowing
+      .modal-body
+         .toast.toast-success
+            a.float-right(nohref onclick="closeSuccess()")
+               svg.feather.feather-x(viewBox='0 0 24 24')
+                  line(x1='18', y1='6', x2='6', y2='18')
+                  line(x1='6', y1='6', x2='18', y2='18')
+            #successMsg
+
+
 #loginScr.modal
    .modal-overlay
    .modal-container.delayShowing
@@ -19,6 +41,27 @@
 
 
 script.
+
+   function showError(msg){
+      $('#errorMsg').html(msg)
+      $('#error').addClass('active')
+   }
+   function closeError(){
+      $('#error').removeClass('active')
+   }
+
+   var successCallback
+
+   function showSuccess(msg, callback){
+      $('#successMsg').html(msg)
+      $('#success').addClass('active')
+      successCallback = callback
+   }
+   function closeSuccess(){
+      
+      $('#success').removeClass('active')
+      successCallback()
+   }
 
    function loginTry(arg) {
       console.log('try')

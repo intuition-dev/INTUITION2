@@ -353,6 +353,18 @@ li .btn-sm {
 	border:none;
 }
 
+.btn.disabled2, btn:disabled2 {
+    cursor: default;
+    opacity: .5;
+    pointer-events: none;
+}
+
+#success .modal-container, #success .modal-body,
+#error .modal-container, #error .modal-body  {
+	padding: 0;
+	max-width: 400px;
+}
+
 .card {
 	border : 0;
 }

@@ -17,7 +17,7 @@ block main
 	p
 	#edittitlep.container
 		.form-group
-			input.form-input(name='title', id='title', value='My first blog', placeholder='Blog Title')
+			input.form-input(name='title', id='title', placeholder='Blog Title')
 	p
 	//-#edittabp.container
 		ul.tab
@@ -120,20 +120,14 @@ block props
 		const tag = riot.mount('medialist-tag')[0] // mount the first tag
 		var mediaitems = []
 
-		function copyToClipboard (str) {
-			// Create new element
+		function copyToClipboard(str) {
 			var el = document.createElement('textarea');
-			// Set value (string to be copied)
 			el.value = str;
-			// Set non-editable to avoid focus and move outside of view
 			el.setAttribute('readonly', '');
 			el.style = {position: 'absolute', left: '-9999px'};
 			document.body.appendChild(el);
-			// Select text inside element
 			el.select();
-			// Copy text to clipboard
 			document.execCommand('copy');
-			// Remove temporary element
 			document.body.removeChild(el);
 		}
 
@@ -160,6 +154,14 @@ block props
 
 		depp.require(['style','ma-client'], function () {
 
+			$('#title').keyup(function(){
+				if(this.value.trim()) {
+					$('.save').removeClass('disabled2')
+				} else {
+					$('.save').addClass('disabled2')
+				}
+			})
+
 			$('#f1').change(function(){
 				//displayFeaturedImage
 				if (this.files && this.files[0]) {
@@ -173,6 +175,8 @@ block props
 					}
 				}
 			}) //upload featured image
+
+
 
 			$('#fx').change(function(){
 				//display all images
@@ -199,7 +203,13 @@ block props
 			}) //upload media
 
 
-			$('#save').click(function(){
+			$('.save').click(function(){
+				if ($(this).hasClass('disabled2') //validation
+					|| myCodeMirror.getDoc().getValue().trim()=='## Blog Entry here'
+				) { 
+					showError("You haven't written anything yet!")
+					return
+				}
 				let f1 = $('#f1')[0].files[0];
 				if (f1)
 				{
@@ -218,9 +228,9 @@ block props
 
 		function fileDone(f1data, f1name) {
 			let title = $('#title').val()
-			if (title == '')
-				title = 'My first blog'
 			let content = myCodeMirror.getDoc().getValue()
+			content.replace('## Blog Entry here', '') //just in case it's left over
+
 			let tags  = $('#tags').val()
 			let date_published = moment().toISOString()
 			let date1 = $('#date1').val()
@@ -229,21 +239,17 @@ block props
 			
 			let fx = JSON.stringify(mediaitems)
 
-			//TODO: validation
-
 			window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
 				tags, f1name, f1data, fx
 			).then(newBlogRes)
 		}
 
 		function newBlogRes(resp) {
-			alert('save done'+resp)
-			/*let msg = resp.data._msg
-			console.log(msg)
-			console.log(msg.title)
-
-			//$('#linkBlogMsg').text(msg.title)*/
+			showSuccess('Blog entry saved successfully!', function(){
+				window.location.href='/screen/posts'
+			})
 		}
+
 
 		depp.require('style', function () {
 			/*

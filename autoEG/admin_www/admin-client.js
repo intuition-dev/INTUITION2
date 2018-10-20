@@ -178,7 +178,6 @@ class MetaAdminService {
     * @param fx_ # [{filename: myfilename, url: base64img}, ...] Array of files as JSON String
     */
     newBlog(folder_, title_, summary_, content_, date_published_, tags_, f1name_, f1_, fx_) {
-      alert(f1name_+':'+ f1_)
     return this.service.post('/api/newBlog', {
        folder: folder_, title: title_, summary: summary_, content: content_, 
        date_published: date_published_, tags: tags_, 
