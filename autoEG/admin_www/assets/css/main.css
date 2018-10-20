@@ -185,7 +185,7 @@
 
 /* end post edit screen*/
 
-#hidemenu {
+#all {
 	position: fixed;
 	top: 0; 
 	left: 0;
@@ -227,27 +227,34 @@
 }
 /* end CSS off-canvas Properties panel */
 
-/*transition between sidebar and main/router panels */
+/*transition between menu and main panels */
 @media screen and (max-width: 600px) {
 
 	#menuhead .navbar-section:last-child {
-		display: block;
+		visibility: visible;
 	}
 	#listhead #brand {
 		visibility: visible;
 	}
 
 	#all {
-		position: absolute;
-		top: 0;
-		left: 0;
-		overflow-x: hidden;
-		width: 200vw;
-		transition: transform .3s ease; 
+		width: 100vw;
+		/*transition: transform .3s ease;*/
 	}
-	
-	#all:target { 
-		transform: translateX(-100vw); /*pan left, to main panel */
+
+	#main {
+		width: 100vw;
+		left: 100vw;
+	}
+
+	/*#all:target { 
+		left: -100vw;
+	}*/
+
+	#all:target + #main {
+		z-index: 10;
+		left: 0; 
+		transform: left .3s ease; /*pan left, to main panel */
 	}
 
 	#router, .panel, .panel-body {
@@ -334,11 +341,15 @@ li a:hover {
 	color: #0087BE;
 }
 
-.main .listbody > .nav-item {
+li .btn-sm {
+	z-index: 5;
+}
+
+#main .listbody > .nav-item {
 	border-bottom: .5px solid #537994;
 }
 
-.main .listbody > .nav-item:last-child {
+#main .listbody > .nav-item:last-child {
 	border:none;
 }
 

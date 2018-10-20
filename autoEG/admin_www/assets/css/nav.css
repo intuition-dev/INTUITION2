@@ -50,9 +50,22 @@
   visibility: hidden;
 }
 
-#menuhead .navbar-section:last-child {
-  display: none;
+#menuhead .navbar-section {
+  height: 50px;
 }
+
+/* room for brand */
+#menuhead .navbar-section:first-child {
+  min-width: 230px;
+}
+
+/* Hide the 'right' menu in wide mode */
+#menuhead .navbar-section:last-child {
+  visibility: hidden;
+}
+
+
+
 
 #prophead .navbar-section a:first-child {
   visibility: hidden;
@@ -60,6 +73,10 @@
 
 .navbar-section a:last-child {
   margin-right: 20px;
+}
+
+#menuhead .navbar-section a:last-child {
+  margin-right: 10px;
 }
 
 .nav-item {
@@ -92,26 +109,30 @@
  }
 
 /* Sidebar nav */
-.sidebar ul {
+#menu ul {
    list-style-type: none;
    margin: 0;
    padding: 0;
 }
 
-.sidebar li > a {
+#menu li > a {
    display: block;
    padding: 10px 15px;
    text-decoration: none;
 }
 
-.sidebar li > a:hover {
+#menu li > a:hover {
    background-color: #537994;
    color: white;
 }
 
-sidebar .nav-item {
+#menu .nav-item {
    line-height: 25px;
-   width: 100%
+   width: 100%;
+}
+
+#menu .btn-sm {
+  margin: 9px;
 }
 
 .flex, .center, .top, .right, .bottom, .left{
