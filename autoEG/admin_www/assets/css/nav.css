@@ -1,26 +1,17 @@
-.bblue {
-  background-color: #0087BE;
-}
 
-.white {
-  color: white !important;
-}
-
-#head {
+#menuhead, #listhead {
 	background-color: #0087BE;
 	height: 50px;
-	line-height: 50px;
+  line-height: 50px;
+  color: white;
  }
 
-/*#navbarBrand {
-	margin-top: 5px;
-}*/
-
-.navbar {
-  padding: 0;
+#brand {
+  margin-top: 7px;
+  margin-left: 10px;
 }
 
-#head .btn-link {
+#menuhead .btn-link, #listhead .btn-link {
 	color: white !important;
 }
 
@@ -53,6 +44,14 @@
 
 .navbar-section a:first-child {
   margin-left: 0;
+}
+
+#listhead #brand {
+  visibility: hidden;
+}
+
+#menuhead .navbar-section:last-child {
+  display: none;
 }
 
 #prophead .navbar-section a:first-child {

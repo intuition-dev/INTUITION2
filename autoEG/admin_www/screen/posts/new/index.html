@@ -20,417 +20,429 @@
   </style>
   <script src="/layout/tags/fb-tag.min.js"></script>
   <body>
-    <div id="hideprops">
-      <div class="delayShowing flex edge" id="edithead">
-        <div class="left">
-          <div class="navbar">
-            <div class="navbar-section"><a class="btn btn-link" href="/screen/posts">Close</a></div>
-          </div>
-        </div>
-        <div class="left"></div>
-        <div class="right">
-          <div class="navbar">
-            <div class="navbar-section">
-              <script>
-                function toggleEdit(){
-                	var t = $('#toggle') 
-                	if (t.hasClass('active')){
-                		window.location.hash = '#hideprops'
-                		t.removeClass('active')
-                	}
-                	else
-                	{
-                		window.location.hash = '#'
-                		t.addClass('active')
-                	}
-                }
-              </script>
-              <div class="a btn active" id="toggle" nohref onclick="toggleEdit()">
-                <svg class="feather feather-settings" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
-              </div><a class="btn disabled" href="#all">Preview</a><a class="btn" id="save">Save...</a>
-            </div>
+    <div class="delayShowing" id="hideprops">
+      <div id="edithead">
+        <div class="navbar">
+          <div class="navbar-section"><a class="close btn btn-link" href="/screen/posts">Close</a></div>
+          <div class="navbar-section">
+            <script>
+              function showProps(){
+              	$('#hideprops .navbar-section:last-child').hide();
+              	window.location.hash='#'
+              }
+            </script>
+            <div class="btn" nohref onclick="showProps()">
+              <svg class="feather feather-settings" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div><a class="save btn">Save...</a>
           </div>
         </div>
       </div>
-      <div class="container delayShowing" id="edit">
-        <div class="main bg-white delayShowing">
-          <div class="panel">
-            <div class="panel-body">
-              <div id="router">
-                <script src="/screen/posts/tags/medialist-tag.js"></script>
-                <script>
-                  depp.require(['style','ma-client', 'login'], function() {
-                  	console.log('loadjs ready, user is logged in, will call itemize')
-                  	//window.aSrv.getItems('blog').then(listRes)
-                  })
-                  
-                  function listRes(resp) {
-                  	items = resp.data._cmd
-                  	//-alert(items)
-                  	depp.done('feed')
-                  }
-                  
-                </script>
-                <p></p>
-                <div class="container" id="edittitlep">
-                  <div class="form-group">
-                    <input class="form-input" name="title" id="title" value="My first blog" placeholder="Blog Title">
-                  </div>
-                </div>
-                <p></p>
-                <div class="container" id="editorp">
-                  <textarea id="cms1"></textarea>
-                </div>
+      <div class="panel bg-white" id="edit">
+        <div class="panel-body">
+          <div id="router">
+            <script src="/screen/posts/tags/medialist-tag.js"></script>
+            <script>
+              depp.require(['style','ma-client', 'login'], function() {
+              	console.log('loadjs ready, user is logged in, will call itemize')
+              	//window.aSrv.getItems('blog').then(listRes)
+              })
+              
+              function listRes(resp) {
+              	items = resp.data._cmd
+              	//-alert(items)
+              	depp.done('feed')
+              }
+              
+            </script>
+            <p></p>
+            <div class="container" id="edittitlep">
+              <div class="form-group">
+                <input class="form-input" name="title" id="title" value="My first blog" placeholder="Blog Title">
               </div>
+            </div>
+            <p></p>
+            <div class="container" id="editorp">
+              <textarea id="cms1"></textarea>
             </div>
           </div>
         </div>
-        <nav class="props bg-secondary delayShowing">
-          <div class="panel">
-            <div class="panel-body">
-              <div class="accordion">
-                <input id="accordion-1" type="checkbox" name="accordion-checkbox" hidden="">
-                <label class="accordion-header" for="accordion-1">
-                  <div class="flex edge">
-                    <h6 class="left">Status</h6>
-                    <div class="right"></div>
-                    <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                    <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                      <polyline points="18 15 12 9 6 15"></polyline>
-                    </svg>
-                  </div>
-                </label>
-                <div class="accordion-body">
-                  <div class="card" id="publishdate">
-                    <div class="card-body">
-                      <div class="accordion">
-                        <input id="accordion-2a" type="checkbox" name="accordion-checkbox" hidden="">
-                        <label class="accordion-header" for="accordion-2a">
-                          <div class="flex edge">
-                            <div class="left">
-                              <svg class="feather feather-calendar" viewBox="0 0 24 24">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                              </svg>
-                            </div>
-                            <div class="left text-bold">Publish Immediately</div>
-                            <div class="right"></div>
-                            <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                              <polyline points="6 9 12 15 18 9"></polyline>
-                            </svg>
-                            <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                              <polyline points="18 15 12 9 6 15"></polyline>
-                            </svg>
-                          </div>
-                        </label>
-                        <div class="accordion-body">
-                          <p></p>
-                          <div class="text-center">Choose a date to schedule:</div>
-                          <input id="date1" readonly="" placeholder="Date">
-                          <!--so it has room to open-->
-                          <style>
-                            #cal1 {
-                            	/*height: 300vh; */
-                            }
-                            
-                          </style>
-                          <script>
-                            console.log('pgC')
-                            
-                            depp.require(['cssJs', 'device'], function () {
-                            
-                            	$('#date1').pickadate({
-                            		editable: false,
-                            		clear: ''
-                            	})
-                            	/*$('#time1').pickatime({
-                            		editable: false,
-                            		clear: '',
-                            		//min: new Date(2015,3,20,10),
-                            		//max: new Date(2015,7,14,20,30),
-                            		interval: 60
-                            		
-                            	})*/
-                            
-                            })
-                          </script>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion">
-                <input id="accordion-2" type="checkbox" name="accordion-checkbox" hidden="">
-                <label class="accordion-header" for="accordion-2">
-                  <div class="flex edge">
-                    <h6 class="left">Tags</h6>
-                    <div class="right"></div>
-                    <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                    <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                      <polyline points="18 15 12 9 6 15"></polyline>
-                    </svg>
-                  </div>
-                </label>
-                <div class="accordion-body">
-                  <div class="card">
-                    <div class="card-body">
-                      <input class="form-input" type="text" id="tags" placeholder="comma-delimited tags">
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion">
-                <input id="accordion-3" type="checkbox" name="accordion-checkbox" hidden="">
-                <label class="accordion-header" for="accordion-3">
-                  <div class="flex edge">
-                    <h6 class="left">Featured Image</h6>
-                    <div class="right"></div>
-                    <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                    <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                      <polyline points="18 15 12 9 6 15"></polyline>
-                    </svg>
-                  </div>
-                </label>
-                <div class="accordion-body">
-                  <div class="card" id="featuredimage">
-                    <div class="card-body">
-                      <input class="form-input" type="file" id="f1" placeholder="image">
-                    </div>
-                    <div class="card-image"><img class="img-responsive" id="f1img">
-                      <div class="del-badge" id="f1del"><a hohref onclick="deleteFeaturedImage()">
-                          <svg class="feather feather-x" viewBox="0 0 24 24">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                          </svg></a></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion">
-                <input id="accordion-4" type="checkbox" name="accordion-checkbox" hidden="">
-                <label class="accordion-header" for="accordion-4">
-                  <div class="flex edge">
-                    <h6 class="left">Media</h6>
-                    <div class="right"></div>
-                    <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                    <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
-                      <polyline points="18 15 12 9 6 15"></polyline>
-                    </svg>
-                  </div>
-                </label>
-                <div class="accordion-body">
-                  <div class="card" id="mediax">
-                    <div class="card-body">
-                      <input class="form-input" multiple type="file" id="fx" placeholder="other images">
-                    </div>
-                  </div>
-                  <medialist-tag></medialist-tag>
-                </div>
-              </div>
-              <script>
-                const tag = riot.mount('medialist-tag')[0] // mount the first tag
-                var mediaitems = []
-                
-                function copyToClipboard (str) {
-                	// Create new element
-                	var el = document.createElement('textarea');
-                	// Set value (string to be copied)
-                	el.value = str;
-                	// Set non-editable to avoid focus and move outside of view
-                	el.setAttribute('readonly', '');
-                	el.style = {position: 'absolute', left: '-9999px'};
-                	document.body.appendChild(el);
-                	// Select text inside element
-                	el.select();
-                	// Copy text to clipboard
-                	document.execCommand('copy');
-                	// Remove temporary element
-                	document.body.removeChild(el);
-                }
-                
-                function deleteFeaturedImage(){
-                	depp.require(['style'], function(){
-                		$('#f1').val('')
-                		$('#f1img').attr('src', '')
-                		$('#f1del').hide();
-                		//#('#featuredimage .card-image').attr("visibility", "hidden");
-                		$('#featuredimage .card-body').show();
-                	})
-                }
-                function deleteMedia(filename){
-                	let sz = mediaitems.length
-                	let clone = []
-                	for(i = 0; i < sz; i++) {
-                		var item = mediaitems[i]
-                		if (item.filename != filename) clone.push(item)
-                	}
-                	mediaitems = clone
-                	$('#fx').val('')
-                	tag.render(mediaitems)
-                }
-                
-                depp.require(['style','ma-client'], function () {
-                
-                	$('#f1').change(function(){
-                		//displayFeaturedImage
-                		if (this.files && this.files[0]) {
-                			var reader = new FileReader();
-                			reader.readAsDataURL(this.files[0]);
-                			reader.onload = function(e) {
-                				$('#f1img').attr('src', e.target.result);
-                				$('#featuredimage .card-body').hide();
-                				//#('#featuredimage .card-image').attr("visibility", "visible");
-                				$('#f1del').show();
-                			}
-                		}
-                	}) //upload featured image
-                
-                	$('#fx').change(function(){
-                		//display all images
-                		if (this.files){
-                			let len = this.files.length
-                			for (var i = 0; i < len; i++)
-                			{
-                				let f = this.files[i]
-                				if(!f.type.match('image.*')) continue
-                				let fname = f.name
-                				let dup = false, sz = mediaitems.length
-                				for(j = 0; j < sz; j++) { //no duplicates
-                					if(mediaitems[j].filename === fname) {dup = true; break}
-                				}
-                				if (dup) continue;
-                				let reader = new FileReader();
-                				reader.readAsDataURL(f);
-                				reader.onload = function(e) {
-                					mediaitems.push({filename: fname, src: e.target.result})
-                					tag.render(mediaitems)
-                				}
-                			}
-                		}
-                	}) //upload media
-                
-                
-                	$('#save').click(function(){
-                		let f1 = $('#f1')[0].files[0];
-                		if (f1)
-                		{
-                			//read again to be safe 
-                			let reader = new FileReader();
-                			reader.readAsDataURL(f1);
-                			reader.onload = function(e) {
-                				let b64 = e.target.result
-                				fileDone(b64, f1.name)
-                			}
-                		}
-                		else
-                			fileDone()
-                	})// click
-                })//require
-                
-                function fileDone(f1data, f1name) {
-                	let title = $('#title').val()
-                	if (title == '')
-                		title = 'My first blog'
-                	let content = myCodeMirror.getDoc().getValue()
-                	let tags  = $('#tags').val()
-                	let date_published = moment().toISOString()
-                	let date1 = $('#date1').val()
-                	if (date1 != '')
-                		date_published = moment(date1, 'D MMMM YYYY').toISOString()
-                	
-                	let fx = JSON.stringify(mediaitems)
-                
-                	//TODO: validation
-                
-                	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
-                		tags, f1name, f1data, fx
-                	).then(newBlogRes)
-                }
-                
-                function newBlogRes(resp) {
-                	alert('save done'+resp)
-                	/*let msg = resp.data._msg
-                	console.log(msg)
-                	console.log(msg.title)
-                
-                	//$('#linkBlogMsg').text(msg.title)*/
-                }
-                
-                depp.require('style', function () {
-                	/*
-                		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
-                		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
-                		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
-                		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
-                		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
-                	*/
-                	depp.define({'cmjs': [
-                		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
-                		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
-                		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
-                	]})
-                })//require
-                
-                depp.require('cmjs', function () {
-                	_initCodeMirror()
-                })//require
-                
-                let myCodeMirror
-                function _initCodeMirror() {
-                	myCodeMirror = CodeMirror.fromTextArea(
-                		document.querySelector('#cms1') ,
-                			{
-                				mode: 'markdown'
-                				, lineWrapping: true
-                				, cursorHeight: 0.85
-                			}
-                		)
-                	myCodeMirror.setSize('100%', '100%')
-                	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
-                	depp.done('cm')
-                }// initCM()
-                
-                /*function read( data) {
-                	let fn_ = data[0]
-                	let url = '/api/read?secret='
-                	let folder = '&folder='
-                	let fn = '&fn='
-                	url = url + getSec() + folder + getPage() + fn + fn_
-                	console.log(url)
-                
-                	fetch(url)
-                		.then(function(resp) {
-                			return resp.text()
-                		}).then(function(ret) {
-                
-                			loadjs.ready('cm', function() {
-                				myCodeMirror.getDoc().setValue(ret)
-                			})
-                
-                		}).catch(function(err) {
-                			console.log('error', err)
-                	})//fetch
-                }//()*/
-              </script>
-            </div>
-          </div>
-        </nav>
       </div>
     </div>
+    <nav class="delayShowing" id="props">
+      <div id="prophead">
+        <div class="navbar">
+          <div class="navbar-section"><a class="close btn btn-link" href="/screen/posts">Close</a></div>
+          <div class="navbar-section">
+            <script>
+              function hideProps(){
+              	window.location.hash='#hideprops'
+              	window.setTimeout(function(){
+              		$('#hideprops .navbar-section:last-child').show()
+              	}, 300) //after transition
+              }
+            </script>
+            <div class="btn active" nohref onclick="hideProps()">
+              <svg class="feather feather-settings" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div><a class="save btn">Save...</a>
+          </div>
+        </div>
+      </div>
+      <div class="panel bg-secondary" id="prop">
+        <div class="panel-body">
+          <div class="tile">
+            <div class="tile-content">
+              <h6 class="tile-title">Post Settings</h6>
+            </div>
+            <div class="tile-action"><a nohref onclick="hideProps()">
+                <svg class="feather feather-x" viewBox="0 0 24 24">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg></a></div>
+          </div>
+          <div class="accordion">
+            <input id="accordion-1" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="accordion-1">
+              <div class="flex edge">
+                <h6 class="left">Status</h6>
+                <div class="right"></div>
+                <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </div>
+            </label>
+            <div class="accordion-body">
+              <div class="card" id="publishdate">
+                <div class="card-body">
+                  <div class="accordion">
+                    <input id="accordion-2a" type="checkbox" name="accordion-checkbox" hidden="">
+                    <label class="accordion-header" for="accordion-2a">
+                      <div class="flex edge">
+                        <div class="left">
+                          <svg class="feather feather-calendar" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                          </svg>
+                        </div>
+                        <div class="left text-bold">Publish Immediately</div>
+                        <div class="right"></div>
+                        <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                        <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                          <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                      </div>
+                    </label>
+                    <div class="accordion-body">
+                      <p></p>
+                      <div class="text-center">Choose a date to schedule:</div>
+                      <input id="date1" readonly="" placeholder="Date">
+                      <!--so it has room to open-->
+                      <style>
+                        #cal1 {
+                        	/*height: 300vh; */
+                        }
+                        
+                      </style>
+                      <script>
+                        console.log('pgC')
+                        
+                        depp.require(['cssJs', 'device'], function () {
+                        
+                        	$('#date1').pickadate({
+                        		editable: false,
+                        		clear: ''
+                        	})
+                        	/*$('#time1').pickatime({
+                        		editable: false,
+                        		clear: '',
+                        		//min: new Date(2015,3,20,10),
+                        		//max: new Date(2015,7,14,20,30),
+                        		interval: 60
+                        		
+                        	})*/
+                        
+                        })
+                      </script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <input id="accordion-2" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="accordion-2">
+              <div class="flex edge">
+                <h6 class="left">Tags</h6>
+                <div class="right"></div>
+                <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </div>
+            </label>
+            <div class="accordion-body">
+              <div class="card">
+                <div class="card-body">
+                  <input class="form-input" type="text" id="tags" placeholder="comma-delimited tags">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <input id="accordion-3" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="accordion-3">
+              <div class="flex edge">
+                <h6 class="left">Featured Image</h6>
+                <div class="right"></div>
+                <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </div>
+            </label>
+            <div class="accordion-body">
+              <div class="card" id="featuredimage">
+                <div class="card-body">
+                  <input class="form-input" type="file" id="f1" placeholder="image">
+                </div>
+                <div class="card-image"><img class="img-responsive" id="f1img">
+                  <div class="del-badge" id="f1del"><a hohref onclick="deleteFeaturedImage()">
+                      <svg class="feather feather-x" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <input id="accordion-4" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="accordion-4">
+              <div class="flex edge">
+                <h6 class="left">Media</h6>
+                <div class="right"></div>
+                <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </div>
+            </label>
+            <div class="accordion-body">
+              <div class="card" id="mediax">
+                <div class="card-body">
+                  <input class="form-input" multiple type="file" id="fx" placeholder="other images">
+                </div>
+              </div>
+              <medialist-tag></medialist-tag>
+            </div>
+          </div>
+          <script>
+            const tag = riot.mount('medialist-tag')[0] // mount the first tag
+            var mediaitems = []
+            
+            function copyToClipboard (str) {
+            	// Create new element
+            	var el = document.createElement('textarea');
+            	// Set value (string to be copied)
+            	el.value = str;
+            	// Set non-editable to avoid focus and move outside of view
+            	el.setAttribute('readonly', '');
+            	el.style = {position: 'absolute', left: '-9999px'};
+            	document.body.appendChild(el);
+            	// Select text inside element
+            	el.select();
+            	// Copy text to clipboard
+            	document.execCommand('copy');
+            	// Remove temporary element
+            	document.body.removeChild(el);
+            }
+            
+            function deleteFeaturedImage(){
+            	depp.require(['style'], function(){
+            		$('#f1').val('')
+            		$('#f1img').attr('src', '')
+            		$('#f1del').hide();
+            		//#('#featuredimage .card-image').attr("visibility", "hidden");
+            		$('#featuredimage .card-body').show();
+            	})
+            }
+            function deleteMedia(filename){
+            	let sz = mediaitems.length
+            	let clone = []
+            	for(i = 0; i < sz; i++) {
+            		var item = mediaitems[i]
+            		if (item.filename != filename) clone.push(item)
+            	}
+            	mediaitems = clone
+            	$('#fx').val('')
+            	tag.render(mediaitems)
+            }
+            
+            depp.require(['style','ma-client'], function () {
+            
+            	$('#f1').change(function(){
+            		//displayFeaturedImage
+            		if (this.files && this.files[0]) {
+            			var reader = new FileReader();
+            			reader.readAsDataURL(this.files[0]);
+            			reader.onload = function(e) {
+            				$('#f1img').attr('src', e.target.result);
+            				$('#featuredimage .card-body').hide();
+            				//#('#featuredimage .card-image').attr("visibility", "visible");
+            				$('#f1del').show();
+            			}
+            		}
+            	}) //upload featured image
+            
+            	$('#fx').change(function(){
+            		//display all images
+            		if (this.files){
+            			let len = this.files.length
+            			for (var i = 0; i < len; i++)
+            			{
+            				let f = this.files[i]
+            				if(!f.type.match('image.*')) continue
+            				let fname = f.name
+            				let dup = false, sz = mediaitems.length
+            				for(j = 0; j < sz; j++) { //no duplicates
+            					if(mediaitems[j].filename === fname) {dup = true; break}
+            				}
+            				if (dup) continue;
+            				let reader = new FileReader();
+            				reader.readAsDataURL(f);
+            				reader.onload = function(e) {
+            					mediaitems.push({filename: fname, src: e.target.result})
+            					tag.render(mediaitems)
+            				}
+            			}
+            		}
+            	}) //upload media
+            
+            
+            	$('#save').click(function(){
+            		let f1 = $('#f1')[0].files[0];
+            		if (f1)
+            		{
+            			//read again to be safe 
+            			let reader = new FileReader();
+            			reader.readAsDataURL(f1);
+            			reader.onload = function(e) {
+            				let b64 = e.target.result
+            				fileDone(b64, f1.name)
+            			}
+            		}
+            		else
+            			fileDone()
+            	})// click
+            })//require
+            
+            function fileDone(f1data, f1name) {
+            	let title = $('#title').val()
+            	if (title == '')
+            		title = 'My first blog'
+            	let content = myCodeMirror.getDoc().getValue()
+            	let tags  = $('#tags').val()
+            	let date_published = moment().toISOString()
+            	let date1 = $('#date1').val()
+            	if (date1 != '')
+            		date_published = moment(date1, 'D MMMM YYYY').toISOString()
+            	
+            	let fx = JSON.stringify(mediaitems)
+            
+            	//TODO: validation
+            
+            	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
+            		tags, f1name, f1data, fx
+            	).then(newBlogRes)
+            }
+            
+            function newBlogRes(resp) {
+            	alert('save done'+resp)
+            	/*let msg = resp.data._msg
+            	console.log(msg)
+            	console.log(msg.title)
+            
+            	//$('#linkBlogMsg').text(msg.title)*/
+            }
+            
+            depp.require('style', function () {
+            	/*
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
+            	*/
+            	depp.define({'cmjs': [
+            		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
+            	]})
+            })//require
+            
+            depp.require('cmjs', function () {
+            	_initCodeMirror()
+            })//require
+            
+            let myCodeMirror
+            function _initCodeMirror() {
+            	myCodeMirror = CodeMirror.fromTextArea(
+            		document.querySelector('#cms1') ,
+            			{
+            				mode: 'markdown'
+            				, lineWrapping: true
+            				, cursorHeight: 0.85
+            			}
+            		)
+            	myCodeMirror.setSize('100%', '100%')
+            	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
+            	depp.done('cm')
+            }// initCM()
+            
+            /*function read( data) {
+            	let fn_ = data[0]
+            	let url = '/api/read?secret='
+            	let folder = '&folder='
+            	let fn = '&fn='
+            	url = url + getSec() + folder + getPage() + fn + fn_
+            	console.log(url)
+            
+            	fetch(url)
+            		.then(function(resp) {
+            			return resp.text()
+            		}).then(function(ret) {
+            
+            			loadjs.ready('cm', function() {
+            				myCodeMirror.getDoc().setValue(ret)
+            			})
+            
+            		}).catch(function(err) {
+            			console.log('error', err)
+            	})//fetch
+            }//()*/
+          </script>
+        </div>
+      </div>
+    </nav>
     <script>
       function userSzSc() {
       	console.log('resize|scroll')
@@ -451,7 +463,10 @@
       	, ROOT + 'assets/css/main.css'
       	, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
       ]})
-      depp.require(['css'])
+      depp.require(['css','style'], function(){
+      	if (window.location.hash != '#hideprops')
+      		$('#hideprops .navbar-section:last-child').hide();
+      })
       
     </script>
     <div class="modal" id="loginScr">

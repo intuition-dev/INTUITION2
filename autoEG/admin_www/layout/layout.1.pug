@@ -22,11 +22,10 @@ html
 	script(src='/layout/tags/fb-tag.min.js')
 
 	body
-		#hidemenu.delayShowing
-			#menuhead
+		#head.delayShowing.flex.edge.bblue.white.pad
+			h5#navbarBrand.left.navbar-brand MyMeta Admin
+			.right
 				.navbar
-					.navbar-section
-						h5#brand MyMeta Admin
 					.navbar-section
 						a.btn(href='#all', id='triggerButton')
 							.flex.edge
@@ -36,29 +35,18 @@ html
 									line(x1='8', y1='12', x2='16', y2='12')
 								.padL.hide-sm New Post
 						a.btn.btn-link(nohref, onclick='onLogout(true);return false') Logout
-			#menu.panel.bg-secondary
-				.panel-body
-					p
-					include sidebar
+		#all.container
+			.columns.col-gapless.delayShowing
+				.sidebar.bg-secondary.column.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-2
+					.panel
+						.panel-body
+							include sidebar
 
-		#main.delayShowing
-			#listhead
-				.navbar
-					.navbar-section
-						h5#brand MyMeta Admin
-					.navbar-section
-						a.btn(href='#all', id='triggerButton')
-							.flex.edge
-								svg.left.feather.feather-plus-square(viewBox='0 0 24 24')
-									rect(x='3', y='3', width='18', height='18', rx='2', ry='2')
-									line(x1='12', y1='8', x2='12', y2='16')
-									line(x1='8', y1='12', x2='16', y2='12')
-								.padL.hide-sm New Post
-						a.btn.btn-link(nohref, onclick='onLogout(true);return false') Logout
-			#list.panel.bg-secondary
-				.panel-body
-					#router
-						block main
+				.main.bg-gray.column.col.sm-6.col-md-6.col-lg-9.col-xl-9.col-10
+					.panel
+						.panel-body
+							#router
+								block main
 
 		script.
 			function userSzSc() {

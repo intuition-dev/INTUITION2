@@ -1,15 +1,12 @@
 .bg-secondary {background-color: #E9EFF3 !important}
 .bg-gray {background-color: #F3F6F8 !important}
 
-/*body > .container {
-	padding: 0 !important;
-}*/
-
-#edit.panel, #prop.panel {
+#menu.panel, #list.panel, #edit.panel, #prop.panel {
 	height: calc(100vh - 51px);
 }
 
-#edit.panel > .panel-body,  #prop.panel > .panel-body{
+#menu.panel > .panel-body,  #list.panel > .panel-body,
+#edit.panel > .panel-body,  #prop.panel > .panel-body {
 	padding: 0;
 }
 
@@ -34,13 +31,17 @@
 	padding-bottom: .8em;
 }
 
-/* blog add/edit screen */
+#list {
+	padding-left: 0; padding-right: 0;
+	background: #F3F6F8 !important;
+}
+
 #edit {
 	padding-left: 0; padding-right: 0;
 	border-right: .5px solid #537994;
 }
 
-#edit .panel {
+#list .panel, #edit .panel {
 	border: 0;
 }
 
@@ -184,6 +185,24 @@
 
 /* end post edit screen*/
 
+#hidemenu {
+	position: fixed;
+	top: 0; 
+	left: 0;
+	width: 250px; height: 100%;
+	overflow: hidden;
+	transition: left .3s ease;
+}
+
+#main {
+	position: fixed;
+	width: calc(100vw - 250px);
+	top: 0;
+	left: 250px;
+	overflow: hidden;
+	transition: left .3s ease;
+}
+
 /* CSS off-canvas Props panel */
 #props { 
 	position: fixed;
@@ -211,10 +230,17 @@
 /*transition between sidebar and main/router panels */
 @media screen and (max-width: 600px) {
 
+	#menuhead .navbar-section:last-child {
+		display: block;
+	}
+	#listhead #brand {
+		visibility: visible;
+	}
+
 	#all {
 		position: absolute;
-		top: 50px;
-		left: 0px;
+		top: 0;
+		left: 0;
 		overflow-x: hidden;
 		width: 200vw;
 		transition: transform .3s ease; 
@@ -224,7 +250,6 @@
 		transform: translateX(-100vw); /*pan left, to main panel */
 	}
 
-
 	#router, .panel, .panel-body {
 		width: 100vw;
 	}
@@ -232,8 +257,9 @@
 	#navp, #ddp, #tabp, #statusp, #listp, #footp {
 		width: 100vw;
 	}
-	
 }
+
+
 
 /*transition between edit and properties panels */
 @media screen and (max-width: 600px) {
@@ -254,8 +280,7 @@
 
 	#prophead .navbar-section a:first-child {
 		visibility: visible;
-	  }
-
+	}
 }
 
 #tabp, #listp {

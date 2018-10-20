@@ -20,10 +20,12 @@
   </style>
   <script src="/layout/tags/fb-tag.min.js"></script>
   <body>
-    <div class="delayShowing flex edge bblue white pad" id="head">
-      <h5 class="left navbar-brand" id="navbarBrand">MyMeta Admin</h5>
-      <div class="right">
+    <div class="delayShowing" id="hidemenu">
+      <div id="menuhead">
         <div class="navbar">
+          <div class="navbar-section">
+            <h5 id="brand">MyMeta Admin</h5>
+          </div>
           <div class="navbar-section"><a class="btn" href="#all" id="triggerButton">
               <div class="flex edge">
                 <svg class="left feather feather-plus-square" viewBox="0 0 24 24">
@@ -35,110 +37,121 @@
               </div></a><a class="btn btn-link" nohref onclick="onLogout(true);return false">Logout</a></div>
         </div>
       </div>
+      <div class="panel bg-secondary" id="menu">
+        <div class="panel-body">
+          <p></p>
+          <ul class="nav">
+            <li class="nav-item"><a href="#"> 
+                <div class="flex edge">
+                  <div class="left">
+                    <svg class="feather feather-eye" viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <div class="padL">View Site</div>
+                  </div>
+                </div></a></li>
+          </ul>
+          <p></p>
+          <h6>Manage</h6>
+          <ul class="nav">
+            <li class="nav-item active"><a href="/screen/posts/#all">
+                <div class="flex edge">
+                  <div class="left">
+                    <svg class="left feather feather-file-text" viewBox="0 0 24 24">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <div class="padL">Blog Posts</div>
+                  </div>
+                  <button class="btn btn-sm right" onclick="location.href='/screen/posts/new'">Add</button>
+                </div></a></li>
+            <li class="nav-item"><a href="/screen/media/#all">
+                <div class="flex edge">
+                  <div class="left">
+                    <svg class="feather feather-image" viewBox="0 0 24 24">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <div class="padL">Media</div>
+                  </div>
+                  <button class="btn btn-sm right">Add</button>
+                </div></a></li>
+          </ul>
+          <p></p>
+          <h6>Configure</h6>
+          <ul class="nav">
+            <li class="nav-item"><a href="/screen/people/#all">
+                <div class="flex edge">
+                  <div class="left">
+                    <svg class="feather feather-users" viewBox="0 0 24 24">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <div class="padL">People</div>
+                  </div>
+                  <button class="btn btn-sm right">Add</button>
+                </div></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="container" id="all">
-      <div class="columns col-gapless delayShowing">
-        <div class="sidebar bg-secondary column col-sm-6 col-md-6 col-lg-3 col-xl-3 col-2">
-          <div class="panel">
-            <div class="panel-body">
-              <ul class="nav">
-                <li class="nav-item"><a href="#"> 
-                    <div class="flex edge">
-                      <div class="left">
-                        <svg class="feather feather-eye" viewBox="0 0 24 24">
-                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                          <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                        <div class="padL">View Site</div>
-                      </div>
-                    </div></a></li>
-              </ul>
-              <p></p>
-              <h6>Manage</h6>
-              <ul class="nav">
-                <li class="nav-item active"><a href="/screen/posts/#all">
-                    <div class="flex edge">
-                      <div class="left">
-                        <svg class="left feather feather-file-text" viewBox="0 0 24 24">
-                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                          <polyline points="14 2 14 8 20 8"></polyline>
-                          <line x1="16" y1="13" x2="8" y2="13"></line>
-                          <line x1="16" y1="17" x2="8" y2="17"></line>
-                          <polyline points="10 9 9 9 8 9"></polyline>
-                        </svg>
-                        <div class="padL">Blog Posts</div>
-                      </div>
-                      <button class="btn btn-sm right" onclick="location.href='/screen/posts/new'">Add</button>
-                    </div></a></li>
-                <li class="nav-item"><a href="/screen/media/#all">
-                    <div class="flex edge">
-                      <div class="left">
-                        <svg class="feather feather-image" viewBox="0 0 24 24">
-                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                          <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                          <polyline points="21 15 16 10 5 21"></polyline>
-                        </svg>
-                        <div class="padL">Media</div>
-                      </div>
-                      <button class="btn btn-sm right">Add</button>
-                    </div></a></li>
-              </ul>
-              <p></p>
-              <h6>Configure</h6>
-              <ul class="nav">
-                <li class="nav-item"><a href="/screen/people/#all">
-                    <div class="flex edge">
-                      <div class="left">
-                        <svg class="feather feather-users" viewBox="0 0 24 24">
-                          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                          <circle cx="9" cy="7" r="4"></circle>
-                          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                        <div class="padL">People</div>
-                      </div>
-                      <button class="btn btn-sm right">Add</button>
-                    </div></a></li>
+    <div class="delayShowing" id="main">
+      <div id="listhead">
+        <div class="navbar">
+          <div class="navbar-section">
+            <h5 id="brand">MyMeta Admin</h5>
+          </div>
+          <div class="navbar-section"><a class="btn" href="#all" id="triggerButton">
+              <div class="flex edge">
+                <svg class="left feather feather-plus-square" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="12" y1="8" x2="12" y2="16"></line>
+                  <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
+                <div class="padL hide-sm">New Post</div>
+              </div></a><a class="btn btn-link" nohref onclick="onLogout(true);return false">Logout</a></div>
+        </div>
+      </div>
+      <div class="panel bg-secondary" id="list">
+        <div class="panel-body">
+          <div id="router">
+            <div class="show-sm">
+              <div class="container" id="navp"><a href="/screen/media/#">
+                  <flex class="left">
+                    <svg class="left feather feather-chevron-left" viewBox="0 0 24 24">
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    <svg class="left feather feather-image" viewBox="0 0 24 24">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <div class="left padL">Media</div>
+                  </flex></a></div>
+            </div>
+            <p></p>
+            <div class="container" id="tabp">
+              <ul class="tab">
+                <li class="tab-item active"><a href="#published"> 
+                    <div class="badge" data-badge="2">Published&nbsp;</div></a></li>
+                <li class="tab-item"><a href="#scheduled">
+                    <div class="badge" data-badge="2">Scheduled&nbsp;</div></a></li>
               </ul>
             </div>
-          </div>
-        </div>
-        <div class="main bg-gray column col sm-6 col-md-6 col-lg-9 col-xl-9 col-10">
-          <div class="panel">
-            <div class="panel-body">
-              <div id="router">
-                <div class="show-sm">
-                  <div class="container" id="navp"><a href="/screen/media/#">
-                      <flex class="left">
-                        <svg class="left feather feather-chevron-left" viewBox="0 0 24 24">
-                          <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                        <svg class="left feather feather-image" viewBox="0 0 24 24">
-                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                          <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                          <polyline points="21 15 16 10 5 21"></polyline>
-                        </svg>
-                        <div class="left padL">Media</div>
-                      </flex></a></div>
-                </div>
-                <p></p>
-                <div class="container" id="tabp">
-                  <ul class="tab">
-                    <li class="tab-item active"><a href="#published"> 
-                        <div class="badge" data-badge="2">Published&nbsp;</div></a></li>
-                    <li class="tab-item"><a href="#scheduled">
-                        <div class="badge" data-badge="2">Scheduled&nbsp;</div></a></li>
-                  </ul>
-                </div>
-                <p></p>
-                <div class="container" id="listp">
-                  <p>Media list here</p>
-                </div>
-                <p></p>
-                <div class="container" id="footp">
-                  <div class="divider text-center" data-content="MyMeta Admin"></div>
-                </div>
-              </div>
+            <p></p>
+            <div class="container" id="listp">
+              <p>Media list here</p>
+            </div>
+            <p></p>
+            <div class="container" id="footp">
+              <div class="divider text-center" data-content="MyMeta Admin"></div>
             </div>
           </div>
         </div>
