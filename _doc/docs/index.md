@@ -18,7 +18,6 @@ Note that before you start with this Meta/Vista section of Metabake, you should 
 Above 2 should be something like this:
 - http://youtube.com/watch?v=WyCdSFTUIvM
 
-3. What is Meta? (Pillar 10)
 
 
 
