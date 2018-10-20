@@ -29,8 +29,8 @@ block main
 		textarea#cms1
 block props
 	.accordion
-		input#accordion-1(type='checkbox', name='accordion-checkbox', hidden='')
-		label.accordion-header(for='accordion-1')
+		input#status(type='checkbox', hidden='')
+		label.accordion-header(for='status')
 			.flex.edge
 				h6.left Status
 				.right
@@ -42,8 +42,8 @@ block props
 			#publishdate.card
 				.card-body
 					.accordion
-						input#accordion-2a(type='checkbox', name='accordion-checkbox', hidden='')
-						label.accordion-header(for='accordion-2a')
+						input#date(type='checkbox', name='accordion-checkbox', hidden='')
+						label.accordion-header(for='date')
 							.flex.edge
 								.left
 									svg.feather.feather-calendar(viewBox='0 0 24 24')
@@ -61,10 +61,9 @@ block props
 							p
 							.text-center Choose a date to schedule:
 							include tags/calendar
-
 	.accordion
-		input#accordion-2(type='checkbox', name='accordion-checkbox', hidden='')
-		label.accordion-header(for='accordion-2')
+		input#tags(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='tags')
 			.flex.edge
 				h6.left Tags
 				.right
@@ -78,8 +77,8 @@ block props
 					//-include tags/autocomplete
 					input.form-input(type='text', id='tags', placeholder='comma-delimited tags')
 	.accordion
-		input#accordion-3(type='checkbox', name='accordion-checkbox', hidden='')
-		label.accordion-header(for='accordion-3')
+		input#image(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='image')
 			.flex.edge
 				h6.left Featured Image
 				.right
@@ -98,10 +97,9 @@ block props
 							svg.feather.feather-x(viewBox='0 0 24 24')
 								line(x1='18', y1='6', x2='6', y2='18')
 								line(x1='6', y1='6', x2='18', y2='18')
-
 	.accordion
-		input#accordion-4(type='checkbox', name='accordion-checkbox', hidden='')
-		label.accordion-header(for='accordion-4')
+		input#media(type='checkbox', name='accordion-checkbox', hidden='')
+		label.accordion-header(for='media')
 			.flex.edge
 				h6.left Media
 				.right
@@ -113,10 +111,27 @@ block props
 			#mediax.card
 				.card-body
 					input.form-input(multiple type='file' id='fx', placeholder='other images')
+
 			medialist-tag
 
 
+
 	script.
+		depp.require(['style'], function(){
+			$("input:checkbox").change(function(e){
+				let id = e.target.id
+				if (id == 'date') { //exception for sub-accordeon
+					window.location.hash = '#status' 
+				}
+				else if($(this).prop('checked')) {
+					window.location.hash = '#'+ id
+				} else {
+					window.location.hash = '#'
+				}
+			})
+			$(window.location.hash).prop('checked', true) //on first load, expand
+		})
+
 		const tag = riot.mount('medialist-tag')[0] // mount the first tag
 		var mediaitems = []
 
@@ -168,7 +183,6 @@ block props
 					reader.onload = function(e) {
 						$('#f1img').attr('src', e.target.result);
 						$('#featuredimage .card-body').hide();
-						//#('#featuredimage .card-image').attr("visibility", "visible");
 						$('#f1del').show();
 					}
 				}
@@ -199,7 +213,7 @@ block props
 			}) //upload media
 
 
-			$('#save').click(function(){
+			$('.save').click(function(){
 				let f1 = $('#f1')[0].files[0];
 				if (f1)
 				{

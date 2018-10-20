@@ -22,55 +22,52 @@ html
 	script(src='/layout/tags/fb-tag.min.js')
 
 	body
-		#hideprops.delayShowing
-			#edithead
+		#edithead.delayShowing.flex.edge 
+			.left
 				.navbar
 					.navbar-section
-						a.close.btn.btn-link(href='/screen/posts') Close
+						a.btn.btn-link(href='/screen/posts') Close
+			.left
+			.right
+				.navbar
 					.navbar-section
 						script.
-							function showProps(){
-								$('#hideprops .navbar-section:last-child').hide();
-								window.location.hash='#'
+							function toggleEdit(){
+								var t = $('#toggle') 
+								if (t.hasClass('active')){
+									window.location.hash = '#hideprops'
+									t.removeClass('active')
+								}
+								else
+								{
+									window.location.hash = '#'
+									t.addClass('active')
+								}
 							}
-						.btn(nohref onclick="showProps()")
+						#toggle.a.btn.active(nohref onclick='toggleEdit()')
 							svg.feather.feather-settings(viewBox='0 0 24 24')
 								circle(cx='12', cy='12', r='3')
 								path(d='M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z')
-						a.save.btn Save...
-			#edit.panel.bg-white.delayShowing
-				.panel-body
-					#router
-						block main
-		nav#props.delayShowing
-			#prophead
-				.navbar
-					.navbar-section
-						a.close.btn.btn-link(href='/screen/posts') Close
-					.navbar-section
-						script.
-							function hideProps(){
-								window.location.hash='#hideprops'
-								window.setTimeout(function(){
-									$('#hideprops .navbar-section:last-child').show()
-								}, 300) //after transition
-							}
-						.btn.active(nohref onclick="hideProps()")
-							svg.feather.feather-settings(viewBox='0 0 24 24')
-								circle(cx='12', cy='12', r='3')
-								path(d='M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z')
-						a.save.btn Save...
-			#prop.panel.bg-secondary
-				.panel-body
-					.tile
-						.tile-content
-							h6.tile-title Post Settings
-						.tile-action
-							a(nohref onclick='hideProps()')
-								svg.feather.feather-x(viewBox='0 0 24 24')
-									line(x1='18', y1='6', x2='6', y2='18')
-									line(x1='6', y1='6', x2='18', y2='18')
-					block props
+						a.btn.disabled(href='#all') Preview
+						a#save.btn Save...
+		#edit.container.delayShowing
+			.main#hideprops.bg-white.delayShowing
+				.panel
+					.panel-body
+						#router
+							block main
+			nav.props.bg-secondary.delayShowing
+				//-.tile
+					.tile-content
+						h6.tile-title Post Settings
+					.tile-action
+						a(nohref onclick='toggleEdit()')
+							svg.feather.feather-x(viewBox='0 0 24 24')
+								line(x1='18', y1='6', x2='6', y2='18')
+								line(x1='6', y1='6', x2='18', y2='18')
+				.panel
+					.panel-body
+						block props
 
 
 		script.
@@ -93,12 +90,7 @@ html
 				, ROOT + 'assets/css/main.css'
 				, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
 			]})
-			depp.require(['css','style'], function(){
-				if (window.location.hash != '#hideprops')
-					$('#hideprops .navbar-section:last-child').hide();
-			})
-
-			
+			depp.require(['css'])
 
 		include modal
 

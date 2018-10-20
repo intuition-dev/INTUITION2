@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <script>ROOT = '/' //- sets global pug and .js from dat.yaml
+    console.log('root','/')
+    let _start=Date.now()
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <title>New Post</title>
+  <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
+  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+  <style>
+    .delayShowing { opacity: 0.01; }
+    
+  </style>
+  <script src="/layout/tags/fb-tag.min.js"></script>
+  <body>
+    <div class="delayShowing" id="hideprops">
+      <div id="edithead">
+        <div class="navbar">
+          <div class="navbar-section"><a class="close btn btn-link" href="/screen/posts">Close</a></div>
+          <div class="navbar-section">
+            <script>
+              function showProps(){
+              	$('#hideprops .navbar-section:last-child').hide();
+              	window.location.hash='#'
+              }
+            </script>
+            <div class="btn" nohref onclick="showProps()">
+              <svg class="feather feather-settings" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div><a class="save btn">Save...</a>
+          </div>
+        </div>
+      </div>
+      <div class="panel bg-white delayShowing" id="edit">
+        <div class="panel-body">
+          <div id="router">
+            <script src="/screen/posts/tags/medialist-tag.js"></script>
+            <script>
+              depp.require(['style','ma-client', 'login'], function() {
+              	console.log('loadjs ready, user is logged in, will call itemize')
+              	//window.aSrv.getItems('blog').then(listRes)
+              })
+              
+              function listRes(resp) {
+              	items = resp.data._cmd
+              	//-alert(items)
+              	depp.done('feed')
+              }
+              
+            </script>
+            <p></p>
+            <div class="container" id="edittitlep">
+              <div class="form-group">
+                <input class="form-input" name="title" id="title" value="My first blog" placeholder="Blog Title">
+              </div>
+            </div>
+            <p></p>
+            <div class="container" id="editorp">
+              <textarea id="cms1"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="delayShowing" id="props">
+      <div id="prophead">
+        <div class="navbar">
+          <div class="navbar-section"><a class="close btn btn-link" href="/screen/posts">Close</a></div>
+          <div class="navbar-section">
+            <script>
+              function hideProps(){
+              	window.location.hash='#hideprops'
+              	window.setTimeout(function(){
+              		$('#hideprops .navbar-section:last-child').show()
+              	}, 300) //after transition
+              }
+            </script>
+            <div class="btn active" nohref onclick="hideProps()">
+              <svg class="feather feather-settings" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div><a class="save btn">Save...</a>
+          </div>
+        </div>
+      </div>
+      <div class="panel bg-secondary" id="prop">
+        <div class="panel-body">
+          <div class="tile">
+            <div class="tile-content">
+              <h6 class="tile-title">Post Settings</h6>
+            </div>
+            <div class="tile-action"><a nohref onclick="hideProps()">
+                <svg class="feather feather-x" viewBox="0 0 24 24">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg></a></div>
+          </div>
+          <div class="accordion">
+            <input id="status" type="checkbox" hidden="">
+            <label class="accordion-header" for="status">
+              <div class="flex edge">
+                <h6 class="left">Status</h6>
+                <div class="right"></div>
+                <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </div>
+            </label>
+            <div class="accordion-body">
+              <div class="card" id="publishdate">
+                <div class="card-body">
+                  <div class="accordion">
+                    <input id="date" type="checkbox" name="accordion-checkbox" hidden="">
+                    <label class="accordion-header" for="date">
+                      <div class="flex edge">
+                        <div class="left">
+                          <svg class="feather feather-calendar" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                          </svg>
+                        </div>
+                        <div class="left text-bold">Publish Immediately</div>
+                        <div class="right"></div>
+                        <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                        <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                          <polyline points="18 15 12 9 6 15"></polyline>
+                        </svg>
+                      </div>
+                    </label>
+                    <div class="accordion-body">
+                      <p></p>
+                      <div class="text-center">Choose a date to schedule:</div>
+                      <input id="date1" readonly="" placeholder="Date">
+                      <!--so it has room to open-->
+                      <style>
+                        #cal1 {
+                        	/*height: 300vh; */
+                        }
+                        
+                      </style>
+                      <script>
+                        console.log('pgC')
+                        
+                        depp.require(['cssJs', 'device'], function () {
+                        
+                        	$('#date1').pickadate({
+                        		editable: false,
+                        		clear: ''
+                        	})
+                        	/*$('#time1').pickatime({
+                        		editable: false,
+                        		clear: '',
+                        		//min: new Date(2015,3,20,10),
+                        		//max: new Date(2015,7,14,20,30),
+                        		interval: 60
+                        		
+                        	})*/
+                        
+                        })
+                      </script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <input id="tags" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="tags">
+              <div class="flex edge">
+                <h6 class="left">Tags</h6>
+                <div class="right"></div>
+                <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </div>
+            </label>
+            <div class="accordion-body">
+              <div class="card">
+                <div class="card-body">
+                  <input class="form-input" type="text" id="tags" placeholder="comma-delimited tags">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <input id="image" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="image">
+              <div class="flex edge">
+                <h6 class="left">Featured Image</h6>
+                <div class="right"></div>
+                <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </div>
+            </label>
+            <div class="accordion-body">
+              <div class="card" id="featuredimage">
+                <div class="card-body">
+                  <input class="form-input" type="file" id="f1" placeholder="image">
+                </div>
+                <div class="card-image"><img class="img-responsive" id="f1img">
+                  <div class="del-badge" id="f1del"><a hohref onclick="deleteFeaturedImage()">
+                      <svg class="feather feather-x" viewBox="0 0 24 24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion">
+            <input id="media" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="media">
+              <div class="flex edge">
+                <h6 class="left">Media</h6>
+                <div class="right"></div>
+                <svg class="feather feather-chevron-down" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+                <svg class="feather feather-chevron-up" viewBox="0 0 24 24">
+                  <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+              </div>
+            </label>
+            <div class="accordion-body">
+              <div class="card" id="mediax">
+                <div class="card-body">
+                  <input class="form-input" multiple type="file" id="fx" placeholder="other images">
+                </div>
+              </div>
+              <medialist-tag></medialist-tag>
+            </div>
+          </div>
+          <script>
+            depp.require(['style'], function(){
+            	$("input:checkbox").change(function(e){
+            		let id = e.target.id
+            		if (id == 'date') { //exception for sub-accordeon
+            			window.location.hash = '#status' 
+            		}
+            		else if($(this).prop('checked')) {
+            			window.location.hash = '#'+ id
+            		} else {
+            			window.location.hash = '#'
+            		}
+            	})
+            	$(window.location.hash).prop('checked', true) //on first load, expand
+            })
+            
+            const tag = riot.mount('medialist-tag')[0] // mount the first tag
+            var mediaitems = []
+            
+            function copyToClipboard (str) {
+            	// Create new element
+            	var el = document.createElement('textarea');
+            	// Set value (string to be copied)
+            	el.value = str;
+            	// Set non-editable to avoid focus and move outside of view
+            	el.setAttribute('readonly', '');
+            	el.style = {position: 'absolute', left: '-9999px'};
+            	document.body.appendChild(el);
+            	// Select text inside element
+            	el.select();
+            	// Copy text to clipboard
+            	document.execCommand('copy');
+            	// Remove temporary element
+            	document.body.removeChild(el);
+            }
+            
+            function deleteFeaturedImage(){
+            	depp.require(['style'], function(){
+            		$('#f1').val('')
+            		$('#f1img').attr('src', '')
+            		$('#f1del').hide();
+            		//#('#featuredimage .card-image').attr("visibility", "hidden");
+            		$('#featuredimage .card-body').show();
+            	})
+            }
+            function deleteMedia(filename){
+            	let sz = mediaitems.length
+            	let clone = []
+            	for(i = 0; i < sz; i++) {
+            		var item = mediaitems[i]
+            		if (item.filename != filename) clone.push(item)
+            	}
+            	mediaitems = clone
+            	$('#fx').val('')
+            	tag.render(mediaitems)
+            }
+            
+            depp.require(['style','ma-client'], function () {
+            
+            	$('#f1').change(function(){
+            		//displayFeaturedImage
+            		if (this.files && this.files[0]) {
+            			var reader = new FileReader();
+            			reader.readAsDataURL(this.files[0]);
+            			reader.onload = function(e) {
+            				$('#f1img').attr('src', e.target.result);
+            				$('#featuredimage .card-body').hide();
+            				$('#f1del').show();
+            			}
+            		}
+            	}) //upload featured image
+            
+            	$('#fx').change(function(){
+            		//display all images
+            		if (this.files){
+            			let len = this.files.length
+            			for (var i = 0; i < len; i++)
+            			{
+            				let f = this.files[i]
+            				if(!f.type.match('image.*')) continue
+            				let fname = f.name
+            				let dup = false, sz = mediaitems.length
+            				for(j = 0; j < sz; j++) { //no duplicates
+            					if(mediaitems[j].filename === fname) {dup = true; break}
+            				}
+            				if (dup) continue;
+            				let reader = new FileReader();
+            				reader.readAsDataURL(f);
+            				reader.onload = function(e) {
+            					mediaitems.push({filename: fname, src: e.target.result})
+            					tag.render(mediaitems)
+            				}
+            			}
+            		}
+            	}) //upload media
+            
+            
+            	$('.save').click(function(){
+            		let f1 = $('#f1')[0].files[0];
+            		if (f1)
+            		{
+            			//read again to be safe 
+            			let reader = new FileReader();
+            			reader.readAsDataURL(f1);
+            			reader.onload = function(e) {
+            				let b64 = e.target.result
+            				fileDone(b64, f1.name)
+            			}
+            		}
+            		else
+            			fileDone()
+            	})// click
+            })//require
+            
+            function fileDone(f1data, f1name) {
+            	let title = $('#title').val()
+            	if (title == '')
+            		title = 'My first blog'
+            	let content = myCodeMirror.getDoc().getValue()
+            	let tags  = $('#tags').val()
+            	let date_published = moment().toISOString()
+            	let date1 = $('#date1').val()
+            	if (date1 != '')
+            		date_published = moment(date1, 'D MMMM YYYY').toISOString()
+            	
+            	let fx = JSON.stringify(mediaitems)
+            
+            	//TODO: validation
+            
+            	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
+            		tags, f1name, f1data, fx
+            	).then(newBlogRes)
+            }
+            
+            function newBlogRes(resp) {
+            	alert('save done'+resp)
+            	/*let msg = resp.data._msg
+            	console.log(msg)
+            	console.log(msg.title)
+            
+            	//$('#linkBlogMsg').text(msg.title)*/
+            }
+            
+            depp.require('style', function () {
+            	/*
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
+            	*/
+            	depp.define({'cmjs': [
+            		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
+            		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
+            	]})
+            })//require
+            
+            depp.require('cmjs', function () {
+            	_initCodeMirror()
+            })//require
+            
+            let myCodeMirror
+            function _initCodeMirror() {
+            	myCodeMirror = CodeMirror.fromTextArea(
+            		document.querySelector('#cms1') ,
+            			{
+            				mode: 'markdown'
+            				, lineWrapping: true
+            				, cursorHeight: 0.85
+            			}
+            		)
+            	myCodeMirror.setSize('100%', '100%')
+            	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
+            	depp.done('cm')
+            }// initCM()
+            
+            /*function read( data) {
+            	let fn_ = data[0]
+            	let url = '/api/read?secret='
+            	let folder = '&folder='
+            	let fn = '&fn='
+            	url = url + getSec() + folder + getPage() + fn + fn_
+            	console.log(url)
+            
+            	fetch(url)
+            		.then(function(resp) {
+            			return resp.text()
+            		}).then(function(ret) {
+            
+            			loadjs.ready('cm', function() {
+            				myCodeMirror.getDoc().setValue(ret)
+            			})
+            
+            		}).catch(function(err) {
+            			console.log('error', err)
+            	})//fetch
+            }//()*/
+          </script>
+        </div>
+      </div>
+    </nav>
+    <script>
+      function userSzSc() {
+      	console.log('resize|scroll')
+      }
+      console.log('console.log stops working ater jquery is loaded???')
+      
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script>console.log('console.log should still work after jquery, but it does not ')</script>
+    <script src="/assets/js/setup.js"></script>
+    <script>
+      depp.define({'css': [
+      	ROOT + 'assets/css/spectre.css'
+      	, ROOT + 'assets/css/pickadate/classic.css'
+      	, ROOT + 'assets/css/pickadate/classic.date.css'
+      	, ROOT + 'assets/css/pickadate/classic.time.css'
+      	, ROOT + 'assets/css/nav.css'
+      	, ROOT + 'assets/css/main.css'
+      	, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
+      ]})
+      depp.require(['css','style'], function(){
+      	if (window.location.hash != '#hideprops')
+      		$('#hideprops .navbar-section:last-child').hide();
+      })
+      
+      
+      
+    </script>
+    <div class="modal" id="loginScr">
+      <div class="modal-overlay"></div>
+      <div class="modal-container delayShowing">
+        <div class="modal-header"></div>
+        <div class="modal-body">
+          <form class="grid-form" autocomplete="off">
+            <fieldset>
+              <legend>Login</legend>
+              <div data-row-span="1">
+                <div class="field" data-field-span="1">
+                  <label>Secret Code</label>
+                  <input id="code" type="password" autofocus="">
+                </div>
+              </div>
+            </fieldset><br>
+            <div class="toast toast-warning" id="loginMsg">Unable to serve. Is the secret code correct?</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="butLog"> Login</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      function loginTry(arg) {
+         console.log('try')
+      
+         const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
+         //-const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
+      
+         isLoggedIn(baseURL).then(function() {
+               console.log('Lxxx yes')
+               $('#loginScr').removeClass('active') // show app
+               const aa = new AdminAuth()
+               console.log(aa.secret)
+               window.aSrv = new MetaAdminService(baseURL, aa.secret)
+               depp.done('login')
+               window.login.dispatch()
+      
+              console.log('depp done login')
+      
+               $('.delayShowing').removeClass('delayShowing')
+      
+            }, function() {
+                  onLogout(arg)
+                  $('.delayShowing').removeClass('delayShowing')
+      
+         })
+      }//()
+      
+      function onLogout(arg) {
+         console.log('LXXX no')
+         new AdminAuth().clear()
+         $('#loginScr').addClass('active') // hide app
+         try {
+            delete window.aSrv
+         } catch(err) { console.log(err) }
+         if(arg) $('#loginMsg').show(0)
+         else $('#loginMsg').hide(0) // no message
+      
+      }
+      
+      function setupLogin() {
+         $('#loginMsg').hide(0) // no message
+      
+         $('#butLog').click(function(){
+            let code = $('#code').val()
+            let aa = new AdminAuth()
+            aa.save(code)
+            console.log(aa.secret)
+            loginTry(true)
+         })
+          $('#butLogOut').click(function(){
+            onLogout(false)
+         })
+      
+         loginTry(false)
+      }
+      
+      depp.require(['style','ma-client'], function () {
+         console.log('loadjs ready client, calling setupLogin')
+         setupLogin()
+         console.log('after setupLogin done with login')
+      })
+    </script>
+  </body>
+</html>

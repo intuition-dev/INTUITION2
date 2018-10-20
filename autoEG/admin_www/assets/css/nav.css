@@ -12,37 +12,54 @@
 	line-height: 50px;
  }
 
-#navbarBrand {
+/*#navbarBrand {
 	margin-top: 5px;
+}*/
+
+.navbar {
+  padding: 0;
 }
-
-
 
 #head .btn-link {
 	color: white !important;
 }
 
-#edithead {
-	height: 50px;
-  line-height: 50px;
+#prophead {
+  z-index: 3;
+  background-color: white;
+}
+
+#edithead, #prophead {
+	/*height: 50px;
+  line-height: 50px;*/
   border-bottom: .5px solid #537994;
 }
 
-#edithead .left .navbar {
-  padding: 0 20px;
-  border-right: .5px solid #537994;
+.navbar {
+  padding: 0;
   height: 50px;
 }
 
-#edithead .right a {
+.close {
+  padding: 0 20px;
+  border-right: .5px solid #537994 !important;
+  height: 50px;
+  line-height: 50px;
+}
+
+.navbar-section a {
   margin-left: 10px;
 }
 
-#edithead .right a:first-child {
+.navbar-section a:first-child {
   margin-left: 0;
 }
 
-#edithead .right a:last-child {
+#prophead .navbar-section a:first-child {
+  visibility: hidden;
+}
+
+.navbar-section a:last-child {
   margin-right: 20px;
 }
 
