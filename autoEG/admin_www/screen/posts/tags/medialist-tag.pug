@@ -1,4 +1,9 @@
 medialist-tag
+	style(type='text/css').
+		#copy {
+			position: absolute;
+			left: -9999px;
+		}
 	#media.card
 		.card-body
 			<virtual each={items}>
@@ -9,18 +14,16 @@ medialist-tag
 									.card
 										.card-title.text-ellipsis {filename}
 										.card-subtitle
-											a(nohref alt='{filename}' onclick="copyToClipboard('{filename}')")
+											a(nohref alt={filename} onclick='{parent.copyToClipboard}')
 												.chip Copy Path
 							.right
-								a(nohref alt='{filename}' onclick="deleteMedia('{filename}')")
+								a(nohref alt={filename} onclick="deleteMedia('{filename}')")
 									figure.avatar.avatar-xl.badge(data-badge='X')
 										img(src='{src}')
 			</virtual>
+	textarea#copy(readonly)
 	script.
 		console.log('medialist-tag')
-		this.on('*', function(evt) {
-			console.log('riot', evt)
-		})
 		this.items = []
 		thiz = this
 		
@@ -36,3 +39,47 @@ medialist-tag
 			thiz.items = cloned
 			thiz.update()
 		}
+
+		copyToClipboard(e) {
+			let str = e.item.filename
+			$('#copy').val(str)
+			$('#copy').select()
+			document.execCommand('copy');
+		}
+
+		upload(files) {
+			//display all images
+			if (files){
+				let len = files.length
+				for (var i = 0; i < len; i++)
+				{
+					let f = files[i]
+					if(!f.type.match('image.*')) continue
+					let fname = f.name
+					let dup = false, sz = thiz.items.length
+					for(j = 0; j < sz; j++) { //no duplicates
+						if(thiz.items[j].filename === fname) {dup = true; break}
+					}
+					if (dup) continue;
+					let reader = new FileReader();
+					reader.readAsDataURL(f);
+					reader.onload = function(e) {
+						thiz.items.push({filename: fname, src: e.target.result})
+						thiz.update()
+					}
+				}
+			}
+		}
+
+		deleteItem(filename) {
+			let sz = thiz.items.length
+			let clone = []
+			for(i = 0; i < sz; i++) {
+				var item = thiz.items[i]
+				if (item.filename != filename) clone.push(item)
+			}
+			thiz.items = clone
+			thiz.update()
+		}
+
+

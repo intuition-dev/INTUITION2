@@ -43,6 +43,7 @@
       <div class="panel" id="edit">
         <div class="body panel-body">
           <div id="router">
+            <script src="/screen/posts/tags/featuredimage-tag.js"></script>
             <script src="/screen/posts/tags/medialist-tag.js"></script>
             <script>
               depp.require(['style','ma-client', 'login'], function() {
@@ -219,16 +220,7 @@
             </label>
             <div class="accordion-body">
               <div class="card" id="featuredimage">
-                <div class="card-body">
-                  <input class="form-input" type="file" id="f1" placeholder="image">
-                </div>
-                <div class="card-image"><img class="img-responsive" id="f1img">
-                  <div class="del-badge" id="f1del"><a hohref onclick="deleteFeaturedImage()">
-                      <svg class="feather feather-x" viewBox="0 0 24 24">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                      </svg></a></div>
-                </div>
+                <featuredimage-tag></featuredimage-tag>
               </div>
             </div>
           </div>
@@ -257,38 +249,11 @@
           </div>
           <script>
             const tag = riot.mount('medialist-tag')[0] // mount the first tag
-            var mediaitems = []
+            const itag = riot.mount('featuredimage-tag')[0]
             
-            function copyToClipboard(str) {
-            	var el = document.createElement('textarea');
-            	el.value = str;
-            	el.setAttribute('readonly', '');
-            	el.style = {position: 'absolute', left: '-9999px'};
-            	document.body.appendChild(el);
-            	el.select();
-            	document.execCommand('copy');
-            	document.body.removeChild(el);
-            }
-            
-            function deleteFeaturedImage(){
-            	depp.require(['style'], function(){
-            		$('#f1').val('')
-            		$('#f1img').attr('src', '')
-            		$('#f1del').hide();
-            		//#('#featuredimage .card-image').attr("visibility", "hidden");
-            		$('#featuredimage .card-body').show();
-            	})
-            }
             function deleteMedia(filename){
-            	let sz = mediaitems.length
-            	let clone = []
-            	for(i = 0; i < sz; i++) {
-            		var item = mediaitems[i]
-            		if (item.filename != filename) clone.push(item)
-            	}
-            	mediaitems = clone
             	$('#fx').val('')
-            	tag.render(mediaitems)
+            	tag.deleteItem(filename)
             }
             
             depp.require(['style','ma-client'], function () {
@@ -301,46 +266,9 @@
             		}
             	})
             
-            	$('#f1').change(function(){
-            		//displayFeaturedImage
-            		if (this.files && this.files[0]) {
-            			var reader = new FileReader();
-            			reader.readAsDataURL(this.files[0]);
-            			reader.onload = function(e) {
-            				$('#f1img').attr('src', e.target.result);
-            				$('#featuredimage .card-body').hide();
-            				//#('#featuredimage .card-image').attr("visibility", "visible");
-            				$('#f1del').show();
-            			}
-            		}
-            	}) //upload featured image
-            
-            
-            
-            	$('#fx').change(function(){
-            		//display all images
-            		if (this.files){
-            			let len = this.files.length
-            			for (var i = 0; i < len; i++)
-            			{
-            				let f = this.files[i]
-            				if(!f.type.match('image.*')) continue
-            				let fname = f.name
-            				let dup = false, sz = mediaitems.length
-            				for(j = 0; j < sz; j++) { //no duplicates
-            					if(mediaitems[j].filename === fname) {dup = true; break}
-            				}
-            				if (dup) continue;
-            				let reader = new FileReader();
-            				reader.readAsDataURL(f);
-            				reader.onload = function(e) {
-            					mediaitems.push({filename: fname, src: e.target.result})
-            					tag.render(mediaitems)
-            				}
-            			}
-            		}
-            	}) //upload media
-            
+            	$('#fx').change(function(){ //upload media
+            		tag.upload(this.files)
+            	}) 
             
             	$('.save').click(function(){
             		if ($(this).hasClass('disabled2') //validation
@@ -349,23 +277,11 @@
             			showError("You haven't written anything yet!")
             			return
             		}
-            		let f1 = $('#f1')[0].files[0];
-            		if (f1)
-            		{
-            			//read again to be safe 
-            			let reader = new FileReader();
-            			reader.readAsDataURL(f1);
-            			reader.onload = function(e) {
-            				let b64 = e.target.result
-            				fileDone(b64, f1.name)
-            			}
-            		}
-            		else
-            			fileDone()
+            		itag.read(readDone)
             	})// click
             })//require
             
-            function fileDone(f1data, f1name) {
+            function readDone(f1data, f1name) {
             	let title = $('#title').val()
             	let content = myCodeMirror.getDoc().getValue()
             	content.replace('## Blog Entry here', '') //just in case it's left over
@@ -376,7 +292,7 @@
             	if (date1 != '')
             		date_published = moment(date1, 'D MMMM YYYY').toISOString()
             	
-            	let fx = JSON.stringify(mediaitems)
+            	let fx = JSON.stringify(tag.items)
             
             	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
             		tags, f1name, f1data, fx
@@ -391,13 +307,6 @@
             
             
             depp.require('style', function () {
-            	/*
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
-            	*/
             	depp.define({'cmjs': [
             		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
             		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
