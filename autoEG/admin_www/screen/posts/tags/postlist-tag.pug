@@ -1,4 +1,5 @@
 postlist-tag
+	a(id='menucloser', tabindex='0')
 	ul.nav.listbody
 		<virtual each={items}>
 			li.nav-item
@@ -12,13 +13,13 @@ postlist-tag
 							figure.avatar.avatar-xl
 								img(src='{image}')
 							.dropdown.dropdown-right.right
-								a.dropdown-toggle(href='#', tabindex='0')
+								a.dropdown-toggle(href='#', tabindex='0', onblur='{parent.blur}')
 									svg.feather.feather-more-horizontal(viewBox='0 0 24 24')
 										circle(cx='12', cy='12', r='1')
 										circle(cx='19', cy='12', r='1')
 										circle(cx='5', cy='12', r='1')
 								ul.menu
-									li.menu-item.active
+									li.menu-item
 										a(href='/screen/posts/edit/?{url}')
 											.flex.edge
 												.left
@@ -33,8 +34,8 @@ postlist-tag
 														rect(x='9', y='9', width='13', height='13', rx='2', ry='2')
 														path(d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1')
 													.padL Clone
-									li.menu-item.active
-										a(href='{parent.prodUrl}{url}', target='_blank')
+									li.menu-item
+										a(nohref, onclick='{parent.view}')
 											.flex.edge
 												.left
 													svg.text-gray.feather.feather-eye(viewBox='0 0 24 24')
@@ -75,6 +76,8 @@ postlist-tag
 				thiz.update()
 				return
 			}
+			else
+				thiz.data = data; 
 			// clone
 			let cloned = JSON.parse(data)
 			thiz.publishedArr = []
@@ -109,5 +112,11 @@ postlist-tag
 				thiz.render(items)
 				showSuccess('Blog entry deleted successfully!')
 			})
-
 		}
+
+		view(e)
+		{
+			window.open(thiz.prodUrl+e.item.url, '_blank');
+			thiz.render(thiz.data) //refresh to remove menu item
+		}
+

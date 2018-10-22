@@ -40,14 +40,14 @@ block main
 								.card-subtitle.text-gray Editor
 						.right
 							.dropdown.dropdown-right.right
-								a.dropdown-toggle(href='#', tabindex='0')
-									svg.feather.feather-more-horizontal(viewBox='0 0 24 24')
+								a.dropdown-toggle(href='#', tabindex='0') ...
+									//-svg.feather.feather-more-horizontal(viewBox='0 0 24 24')
 										circle(cx='12', cy='12', r='1')
 										circle(cx='19', cy='12', r='1')
 										circle(cx='5', cy='12', r='1')
 								ul.menu
-									li.menu-item.active
-										a(href='/screen/people/#') Edit
+									li.menu-item
+										a(href='#' onclick="alert('bla');close()") Edit
 									li.menu-item
 										a(href='/screen/people/#') Delete
 			li.nav-item
@@ -67,12 +67,19 @@ block main
 										circle(cx='19', cy='12', r='1')
 										circle(cx='5', cy='12', r='1')
 								ul.menu
-									li.menu-item.active
+									li.menu-item
 										a(href='/screen/people/#') Edit
 									li.menu-item
 										a(href='/screen/people/#') Delete
 	p
 	#footp.container
 		.divider.text-center(data-content='MyMeta Admin')
+
+	script.
+		close(e){
+			e.stopPropagation();
+			e.cancelBubble();
+			$('a.dropdown-toggle').blur()
+		}
 
 

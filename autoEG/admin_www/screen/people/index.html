@@ -42,7 +42,7 @@
         <div class="body panel-body">
           <p></p>
           <ul class="nav">
-            <li class="nav-item"><a href="#"> 
+            <li class="nav-item"><a target="_blank">
                 <div class="flex edge">
                   <div class="left">
                     <svg class="feather feather-eye" viewBox="0 0 24 24">
@@ -157,14 +157,9 @@
                         </div>
                       </div>
                       <div class="right">
-                        <div class="dropdown dropdown-right right"><a class="dropdown-toggle" href="#" tabindex="0">
-                            <svg class="feather feather-more-horizontal" viewBox="0 0 24 24">
-                              <circle cx="12" cy="12" r="1"></circle>
-                              <circle cx="19" cy="12" r="1"></circle>
-                              <circle cx="5" cy="12" r="1"></circle>
-                            </svg></a>
+                        <div class="dropdown dropdown-right right"><a class="dropdown-toggle" href="#" tabindex="0">...</a>
                           <ul class="menu">
-                            <li class="menu-item active"><a href="/screen/people/#">Edit</a></li>
+                            <li class="menu-item"><a href="#" onclick="alert('bla');close()">Edit</a></li>
                             <li class="menu-item"><a href="/screen/people/#">Delete</a></li>
                           </ul>
                         </div>
@@ -187,7 +182,7 @@
                               <circle cx="5" cy="12" r="1"></circle>
                             </svg></a>
                           <ul class="menu">
-                            <li class="menu-item active"><a href="/screen/people/#">Edit</a></li>
+                            <li class="menu-item"><a href="/screen/people/#">Edit</a></li>
                             <li class="menu-item"><a href="/screen/people/#">Delete</a></li>
                           </ul>
                         </div>
@@ -199,6 +194,13 @@
             <div class="container" id="footp">
               <div class="divider text-center" data-content="MyMeta Admin"></div>
             </div>
+            <script>
+              close(e){
+              	e.stopPropagation();
+              	e.cancelBubble();
+              	$('a.dropdown-toggle').blur()
+              }
+            </script>
           </div>
         </div>
       </div>
