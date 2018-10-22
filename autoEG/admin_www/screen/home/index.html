@@ -38,8 +38,8 @@
               </svg></a></div>
         </div>
       </div>
-      <div class="panel bg-secondary" id="menu">
-        <div class="panel-body">
+      <div class="panel" id="menu">
+        <div class="body panel-body">
           <p></p>
           <ul class="nav">
             <li class="nav-item"><a href="#"> 
@@ -110,8 +110,8 @@
               </div></a><a class="btn btn-link" nohref onclick="onLogout(true);return false">Logout</a></div>
         </div>
       </div>
-      <div class="panel bg-secondary" id="list">
-        <div class="panel-body">
+      <div class="panel" id="list">
+        <div class="body panel-body">
           <div id="router">
             <div class="show-sm">
               <div class="container" id="navp"><a href="/screen/home/#">
@@ -170,6 +170,32 @@
       depp.require(['css'])
       
     </script>
+    <div class="modal" id="error">
+      <div class="modal-container delayShowing">
+        <div class="modal-body">
+          <div class="toast toast-error"> <a class="float-right" nohref onclick="closeError()">
+              <svg class="feather feather-x" viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg></a>
+            <div id="errorMsg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="success"><a class="modal-overlay" nohref onclick="closeSuccess()" aria-label="Close"></a>
+      <div class="modal-container delayShowing">
+        <div class="modal-body">
+          <div class="toast toast-success"><a class="float-right" nohref onclick="closeSuccess()">
+              <svg class="feather feather-x" viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg></a>
+            <div id="successMsg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
@@ -194,6 +220,27 @@
       </div>
     </div>
     <script>
+      function showError(msg){
+         $('#errorMsg').html(msg)
+         $('#error').addClass('active')
+      }
+      function closeError(){
+         $('#error').removeClass('active')
+      }
+      
+      var successCallback
+      
+      function showSuccess(msg, callback){
+         $('#successMsg').html(msg)
+         $('#success').addClass('active')
+         successCallback = callback
+      }
+      function closeSuccess(){
+         
+         $('#success').removeClass('active')
+         successCallback()
+      }
+      
       function loginTry(arg) {
          console.log('try')
       

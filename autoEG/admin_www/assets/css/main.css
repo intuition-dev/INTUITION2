@@ -1,56 +1,158 @@
-.bg-secondary {background-color: #E9EFF3 !important}
-.bg-gray {background-color: #F3F6F8 !important}
+/* For top navbars and left menu items see nav.css.
+Also see list screen #all, #main and 
+edit screen #props, #hideprops further below. */
 
-#menu.panel, #list.panel, #edit.panel, #prop.panel {
-	height: calc(100vh - 51px);
-}
-
-#menu.panel > .panel-body,  #list.panel > .panel-body,
-#edit.panel > .panel-body,  #prop.panel > .panel-body {
+#menu, #list, #edit, #prop { /* panels */
+	height: calc(100vh - 51px); /* ensure vertical auto-scrollbars on panels */
 	padding: 0;
 }
 
-.panel-body > h6 {
-	margin-left: .7em;
+#list {
+	background-color: #F3F6F8 !important; /* gray */
+	border: 0;
+}
+
+#edit {
+	border-top: 0;
+	border-right: .5px solid #537994;
+	border-left: 0;
+}
+
+#menu, #prop {
+	background-color: #E9EFF3 !important; /* secondary */
+	border: 0;
+}
+
+.panel > .body { /* main panels */
+	padding: 0;
+}
+
+/* Globals */
+.padL {
+	padding-left: 15px;
+ }
+.pad {
+	padding: 15px;
+}
+ 
+.feather {
+	width: 24px;
+	height: 24px;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+ 
+h6 { /* use for smaller font */
 	font-size: smaller;
 }
 
+#menu h6 {
+	margin-left: 7px;
+}
 
-#navp, #tabp, #statusp, #listp {
+.card {
+	border : 0;
+}
+
+.flex, .center, .top, .right, .bottom, .left{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.flex { align-content: flex-start; }
+.top    { align-items:     flex-start; }
+.right  { justify-content: flex-end;   }
+.bottom { align-items:     flex-end;   }
+.left   { justify-content: flex-start; }
+.edge  { justify-content: space-between; flex-wrap: nowrap; } /* override */
+ 
+.btn.disabled2 { /* fake disabled button */
+    cursor: default;
+    opacity: .5;
+    pointer-events: none;
+}
+/* End globals */
+
+
+/* List screen subpanels */
+#router {
+	margin-top: 0px;
+}
+
+#navp, #tabp, #listp {
 	background-color: white;
 	border: .5px solid #537994;
 	width: 85%;
+	padding: 0;
 }
 
-#footp {
-	width: 85%;
-}
-
-#navp {
+#navp { /* backlink subpanel shown on small screen */
 	padding-top:.8em;
 	padding-bottom: .8em;
 }
 
-#list {
-	padding-left: 0; padding-right: 0;
-	background: #F3F6F8 !important;
+#tabp .tab {
+	padding-inline-start: 0px !important;
+	margin-bottom: 0 !important;
+}
+#tabp .tab-item > a {
+	padding-bottom: 0 !important;
+}
+#tabp .tab-item > a > .badge {
+	margin-left: .7em !important;
+	margin-right: .4em !important;
 }
 
-#edit {
-	padding-left: 0; padding-right: 0;
-	border-right: .5px solid #537994;
-}
-
-#list .panel, #edit .panel {
-	border: 0;
-}
-
-#edittitlep, #edittabp, {
+#footp { /* subpanel with divider and brand */ 
 	width: 85%;
 }
 
-#cms1 {
-	width: 100%;
+#footp .divider[data-content]::after {
+	background: #F3F6F8 !important;
+}
+
+/* Lists (used by list tags) */
+.listhead {
+	padding: 15px;
+	border-bottom: .5px solid #537994;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+li a {
+	display: block;
+	padding: 0px 12px 12px 12px;
+	text-decoration: none;
+}
+ 
+li a:hover {
+	color: #0087BE;
+}
+
+li .btn-sm {
+	z-index: 5;
+}
+
+#main .listbody > .nav-item {
+	border-bottom: .5px solid #537994;
+}
+
+#main .listbody > .nav-item:last-child {
+	border:none;
+}
+/* End lists */
+
+
+/* Edit screen subpanels */
+#edittitlep, #edittabp, #cms1 {
+	width: 85%;
 }
 
 .CodeMirror {border: .5px solid #537994; font-family: "Open Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -61,23 +163,26 @@
 .cm-header-5 { font-size: 100%; }
 .cm-header-6 { font-size: 90%; }
 
-.tile {
+/* Properties panel */
+#prop .tile {
 	padding: 10px 8px 5px 8px;
 	margin: 0;
 	vertical-align: middle;
 	border-bottom: .5px solid #537994;
 }
 
-.panel-body .accordion {
+.accordion {
 	background-color: white;
 	padding-top: 7px; padding-bottom: 0px;
 	border-bottom: .5px solid #537994;
 }
 
-.accordion h6 {
+.accordion-header h6 {
 	vertical-align: middle;
+	margin-bottom: 0;
 }
 
+/* show/hide accordion open and close icons */ 
 .accordion input:checked + .accordion-header .feather-chevron-down {
 	display: none;
 }
@@ -87,15 +192,8 @@
 .accordion input:checked + .accordion-header .feather-chevron-up {
 	display: block;
 }
-#props .panel-body {
-	padding:  0;
-}
 
-#props h6 {
-	font-size: smaller;
-	margin-bottom: 0;
-}
-
+/* Status card */
 #publishdate .card-body {
 	border: .5px solid #537994;
 	margin: 16px;
@@ -110,19 +208,14 @@
 	font-size: smaller;
 }
 
-/* condense spectre calendar 
-.calendar {min-width: 220px;}
-.calendar .calendar-header { padding: .2rem 0; }
-.calendar .calendar-body { padding: .2rem 0; }
-.calendar .calendar-date { padding: 0 0; } */
-
-.picker {
+.picker { /* datepicker */
 	max-width: 230px !important;
 }
 .picker__box {
 	padding: 0;
 }
 
+/* Featured image card */
 #featuredimage .card-body {
 	margin-left: 16px;
 	margin-right: 16px;
@@ -139,7 +232,8 @@
 	z-index: 1;
 }
 
-.del-badge {
+#f1del {  /* overlayed image delete button */
+	display: none;
 	background-color: #537994;
 	width: 24px;
 	height: 24px;
@@ -148,23 +242,15 @@
 	z-index: 3;
 }
 
-#f1del {
-	display: none;
-}
-
-.del-badge > a {
+#f1del > a {
 	color: white !important;
 }
 
-#featuredimage .form-input, #mediax .form-input {
+#f1, #fx { /* upload fields */
 	font-size: smaller;
 }
 
-#featuredimage .card, #mediax .card {
-	height: 100% !important;
-}
-
-
+/* Media upload card */
 #media .card-body {
 	padding: 0;
 }
@@ -183,9 +269,17 @@
 	border-top: .5px solid #537994;
 }
 
-/* end post edit screen*/
+/* Modal */
+#success .modal-container, #success .modal-body,
+#error .modal-container, #error .modal-body  {
+	padding: 0;
+	max-width: 400px;
+}
 
-#all {
+
+
+/* List page (CSS off-canvas on small screen) */
+#all { /* left side container ID for header and menu */
 	position: fixed;
 	top: 0; 
 	left: 0;
@@ -194,7 +288,7 @@
 	transition: left .3s ease;
 }
 
-#main {
+#main { /* right side container for header and list */
 	position: fixed;
 	width: calc(100vw - 250px);
 	top: 0;
@@ -203,173 +297,87 @@
 	transition: left .3s ease;
 }
 
-/* CSS off-canvas Props panel */
-#props { 
+/* Editpage (CSS off-canvas on small screen below) */
+#props { /* right side container for header and properties */
 	position: fixed;
-	top: 0px; 
+	top: 0; 
 	right: 0;
 	width: 250px; height: 100%;
 	overflow: hidden;
-	transition: right .3s ease;
+	transition: right .3s ease; /* toggle transition */
 }
 
-#hideprops { /* CSS trick: use left panel ID */
+#hideprops { /* left side container for header and menu */
 	width: calc(100vw - 250px);
 	overflow: hidden;
-	transition: width .3s ease;
+	transition: width .3s ease; /* toggle transition */
 }
 
-#hideprops:target { 
+#hideprops:target { /* toggle state making left side full screen */
 	width: 100vw !important;
 }
-#hideprops:target + #props { 
+#hideprops:target + #props { /* same toggle state moving right side off screen */
 	right: -250px;
 }
-/* end CSS off-canvas Properties panel */
 
-/*transition between menu and main panels */
+/* Settings for mobile */
 @media screen and (max-width: 600px) {
 
+	/* show complete headers ('duplicate' header items are hidden on large screens */
 	#menuhead .navbar-section:last-child {
 		visibility: visible;
 	}
 	#listhead #brand {
 		visibility: visible;
 	}
+	#prophead .navbar-section a:first-child {
+		visibility: visible;
+	}
 
+	/* List screen settings for mobile */
 	#all {
-		width: 100vw;
-		/*transition: transform .3s ease;*/
+		width: 100vw; /* left side (menu) is full screen by default */
 	}
 
 	#main {
 		width: 100vw;
-		left: 100vw;
+		left: 100vw; /* on mobile, right side (list) is offscreen by default */
 	}
 
-	/*#all:target { 
-		left: -100vw;
-	}*/
-
-	#all:target + #main {
-		z-index: 10;
-		left: 0; 
-		transform: left .3s ease; /*pan left, to main panel */
-	}
-
-	#router, .panel, .panel-body {
+	#router, .panel, .panel-body {  
 		width: 100vw;
 	}
 
 	#navp, #ddp, #tabp, #statusp, #listp, #footp {
 		width: 100vw;
 	}
-}
+
+	#all:target + #main { /* toggle state moving right side (list) on screen */
+		z-index: 10;
+		left: 0; 
+		transform: left .3s ease; /* toggle transition */
+	}
 
 
-
-/*transition between edit and properties panels */
-@media screen and (max-width: 600px) {
-	#props {
+	/* Edit screen settings for mobile */
+	#props { /* right side container for header and properties, full screen by default */
 		right: 0;
 		width: 100vw;
 		z-index: 7; /* higher than codemirror */
 	}
 
-	#hideprops { /* CSS trick: use left panel ID */
+	#hideprops { /* toggle state making left side full screen */
 		width: 100vw;
 		overflow: hidden;
 	}
 
-	#hideprops:target + #props { 
+	#hideprops:target + #props { /* same toggle state moving right side off screen */
 		right: -100vw;
 	}
-
-	#prophead .navbar-section a:first-child {
-		visibility: visible;
-	}
-}
-
-#tabp, #listp {
-	padding-left: 0;
-	padding-right: 0;
-}
-
-#footp {
-	width: 85%;
-}
-
-.divider[data-content]::after {
-	background: #F3F6F8 !important;
-}
-
-/* tabs */
-.tab {
-	padding-inline-start: 0px !important;
-	margin-bottom: 0 !important;
-}
-.tab-item > a {
-	padding-bottom: 0 !important;
-}
-.tab-item > a > .badge {
-	margin-left: .7em !important;
-	margin-right: .4em !important;
-}
-/* end tabs */
-
-
-.listhead {
-	padding: 15px;
-	border-bottom: .5px solid #537994;
-}
-
-/* lists, move to component */
-
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
- }
-
-li a {
-	display: block;
-	padding: 0px 12px 12px 12px;
-	text-decoration: none;
- }
- 
-li a:hover {
-	color: #0087BE;
-}
-
-li .btn-sm {
-	z-index: 5;
-}
-
-#main .listbody > .nav-item {
-	border-bottom: .5px solid #537994;
-}
-
-#main .listbody > .nav-item:last-child {
-	border:none;
-}
-
-.btn.disabled2, btn:disabled2 {
-    cursor: default;
-    opacity: .5;
-    pointer-events: none;
-}
-
-#success .modal-container, #success .modal-body,
-#error .modal-container, #error .modal-body  {
-	padding: 0;
-	max-width: 400px;
-}
-
-.card {
-	border : 0;
 }
 
 
 
-/* end lists */
+
+
 

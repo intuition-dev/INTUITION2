@@ -36,12 +36,12 @@
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
               </svg>
-            </div><a class="save btn">Save...</a>
+            </div><a class="disabled2 save btn">Save...</a>
           </div>
         </div>
       </div>
-      <div class="panel bg-white" id="edit">
-        <div class="panel-body">
+      <div class="panel" id="edit">
+        <div class="body panel-body">
           <div id="router">
             <script src="/screen/posts/tags/medialist-tag.js"></script>
             <script>
@@ -89,12 +89,12 @@
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
               </svg>
-            </div><a class="save btn">Save...</a>
+            </div><a class="disabled2 save btn">Save...</a>
           </div>
         </div>
       </div>
-      <div class="panel bg-secondary" id="prop">
-        <div class="panel-body">
+      <div class="panel" id="prop">
+        <div class="body panel-body">
           <div class="tile">
             <div class="tile-content">
               <h6 class="tile-title">Post Settings</h6>
@@ -483,6 +483,32 @@
       })
       
     </script>
+    <div class="modal" id="error">
+      <div class="modal-container delayShowing">
+        <div class="modal-body">
+          <div class="toast toast-error"> <a class="float-right" nohref onclick="closeError()">
+              <svg class="feather feather-x" viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg></a>
+            <div id="errorMsg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="success"><a class="modal-overlay" nohref onclick="closeSuccess()" aria-label="Close"></a>
+      <div class="modal-container delayShowing">
+        <div class="modal-body">
+          <div class="toast toast-success"><a class="float-right" nohref onclick="closeSuccess()">
+              <svg class="feather feather-x" viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg></a>
+            <div id="successMsg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
@@ -507,6 +533,27 @@
       </div>
     </div>
     <script>
+      function showError(msg){
+         $('#errorMsg').html(msg)
+         $('#error').addClass('active')
+      }
+      function closeError(){
+         $('#error').removeClass('active')
+      }
+      
+      var successCallback
+      
+      function showSuccess(msg, callback){
+         $('#successMsg').html(msg)
+         $('#success').addClass('active')
+         successCallback = callback
+      }
+      function closeSuccess(){
+         
+         $('#success').removeClass('active')
+         successCallback()
+      }
+      
       function loginTry(arg) {
          console.log('try')
       
