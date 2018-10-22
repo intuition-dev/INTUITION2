@@ -192,11 +192,29 @@ class MetaAdminService {
     * @param dest - e.g. '/blog/newOne'
     */
    clone(src, dest) {
-      arg = arg + '?src=' + src
+      let arg = '?src=' + src
       arg = arg + '&dest=' + dest
       console.log(arg)
       return this.service.get('/api/clone'+arg)
    }
+
+      /**
+    * Removes an item from list, generates and returns the revised item list (items.json?).
+    * @returns a promise, then(resp.dat)/catch{error}
+    * @param listfolder - e.g. 'blog'
+    * @param item - e.g. 'my-first-post', the item to be removed
+    */
+   removeItem(listfolder, item) {
+    if (item.indexOf('/')==0) item = item.substring(1) //cleanup
+    if (item.indexOf(listfolder)==0) item = item.substring(listfolder.length-1)
+    if (item.indexOf('/')==0) item = item.substring(1)
+    let arg = '?listfolder=' + listfolder
+    arg = arg + '&item=' + item
+    console.log(arg)
+    return this.service.get('/api/removeitem'+arg)
+ }
+
+
 }//class
 
 /**

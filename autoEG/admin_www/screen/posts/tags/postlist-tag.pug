@@ -2,7 +2,7 @@ postlist-tag
 	ul.nav.listbody
 		<virtual each={items}>
 			li.nav-item
-				a(href='/screen/posts/#')
+				a(href='/screen/posts/edit/?{url}')
 					.flex.edge
 						.left 
 							.card
@@ -19,14 +19,14 @@ postlist-tag
 										circle(cx='5', cy='12', r='1')
 								ul.menu
 									li.menu-item.active
-										a(href='/screen/posts/#')
+										a(href='/screen/posts/edit/?{url}')
 											.flex.edge
 												.left
 													svg.text-gray.feather.feather-edit-2(viewBox='0 0 24 24')
 														polygon(points='16 3 21 8 8 21 3 21 3 16 16 3')
 													.padL Edit
-									li.menu-item.active
-										a(href='/screen/posts/#')
+									//-li.menu-item.active
+										a(nohref onclick='{parent.clone}')
 											.flex.edge
 												.left
 													svg.text-gray.feather.feather-copy(viewBox='0 0 24 24')
@@ -34,7 +34,7 @@ postlist-tag
 														path(d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1')
 													.padL Clone
 									li.menu-item.active
-										a(href='/screen/posts/#')
+										a(href='{parent.prodUrl}{url}', target='_blank')
 											.flex.edge
 												.left
 													svg.text-gray.feather.feather-eye(viewBox='0 0 24 24')
@@ -42,7 +42,7 @@ postlist-tag
 														circle(cx='12', cy='12', r='3')
 													.padL View
 									li.menu-item
-										a(href='/screen/posts/#') 
+										a(nohref onclick='{parent.remove}')
 											.flex.edge
 												.left
 													svg.text-gray.feather.feather-trash-2(viewBox='0 0 24 24')
@@ -50,7 +50,7 @@ postlist-tag
 														path(d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2')
 														line(x1='10', y1='11', x2='10', y2='17')
 														line(x1='14', y1='11', x2='14', y2='17')
-													.padL Trash
+													.padL Delete
 		</virtual>
 	script.
 		console.log('oh hi postlist-tag')
@@ -60,38 +60,54 @@ postlist-tag
 		this.items = []
 		thiz = this
 
-		render(data, scheduled, prodUrl, callback) {// public
+		render(data, isScheduled, prodUrl, callback) {// public
+
+			//store as defaults
+			if (isScheduled != null)
+				thiz.isScheduled = isScheduled
+			if (prodUrl)
+				thiz.prodUrl = prodUrl
+			if (callback)
+				thiz.callback = callback
+
 			if(!data ) {
 				thiz.items = []
 				thiz.update()
 				return
 			}
-			//console.log(Object.keys(data[0]))
-			//alert(JSON.stringify(data))
 			// clone
 			let cloned = JSON.parse(data)
-			thiz.published = []
-			thiz.scheduled = []
-			//thiz.items = cloned.items
+			thiz.publishedArr = []
+			thiz.scheduledArr = []
 
 			let sz = cloned.items.length
 			for(i = 0; i < sz; i++) {
 				var item = cloned.items[i]
 				item.url = ROOT + 'blog/' + item.url
 				if (item.image && item.image.indexOf('//')==-1) //relative
-					item.image = prodUrl + item.url + '/' + item.image
-				
+					item.image = thiz.prodUrl + item.url + '/' + item.image
+
 				var m = moment(item.date_published)
 				item.fmt_date_published = m.format("MM/DD, YYYY h:mm a")
 				if (moment().isBefore(m))
-					thiz.scheduled.push(item)
+					thiz.scheduledArr.push(item)
 				else
-					thiz.published.push(item)
+					thiz.publishedArr.push(item)
 			}
-			switch(scheduled){
-				case 1: thiz.items = thiz.scheduled; break
-				default: thiz.items = thiz.published
+			switch(thiz.isScheduled){
+				case 1: thiz.items = thiz.scheduledArr; break
+				default: thiz.items = thiz.publishedArr
 			}
-			callback(thiz.published.length, thiz.scheduled.length)
+			thiz.callback(thiz.publishedArr.length, thiz.scheduledArr.length)
 			thiz.update()
+		}
+
+		remove(e) {
+			let path = e.item.url //e.g. /blog/my-first-post
+			window.aSrv.removeItem('blog', path.substring(5)).then(function(resp){
+				let items = resp.data._cmd
+				thiz.render(items)
+				showSuccess('Blog entry deleted successfully!')
+			})
+
 		}

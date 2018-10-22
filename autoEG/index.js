@@ -211,6 +211,20 @@ server.post('/api/newBlog', function (req, res) {
         console.log(err);
     }
 });
+server.get('/api/removeitem', function (req, res) {
+    console.log(' removeitem');
+    res.setHeader('Content-Type', 'application/json');
+    let qs = req.query;
+    let listfolder = qs['listfolder'];
+    let item = qs['item'];
+    fo.remove('/' + listfolder + '/' + item);
+    mp.itemizeOnly(listfolder);
+    let ret = mp.getItems(listfolder);
+    if (ret.code < 0)
+        res.status(500).send(ret.cmd);
+    else
+        res.json(ret);
+});
 server.get('/api/clone', function (req, res) {
     console.log(' itemize');
     res.setHeader('Content-Type', 'application/json');

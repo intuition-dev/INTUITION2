@@ -17,12 +17,11 @@ block main
 
 		function listRes(resp) {
 			items = resp.data._cmd
-			//-alert(items)
 			depp.done('feed')
 		}
 
 	#navp.container.show-sm
-		a(href='/screen/posts/#')
+		a(href='/screen/posts/#all')
 			flex.left
 				svg.left.feather.feather-chevron-left(viewBox='0 0 24 24')
 					polyline(points='15 18 9 12 15 6')
