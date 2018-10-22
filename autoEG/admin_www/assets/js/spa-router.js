@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////////////
 // License LGPL v2.1, Copyright Metabake.org | Wolfgang | Cekvenich
 
-// requires jquery, https://unpkg.com/axios@0.18.0/dist/axios.min.js
+// requires jquery, https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js
 // and https://cdn.jsdelivr.net/npm/signals@1.0.0/dist/signals.min.js'
 
 $(window).on('popstate', function (e) {//back/forward button
