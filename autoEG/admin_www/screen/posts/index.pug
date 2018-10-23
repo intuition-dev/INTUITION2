@@ -2,13 +2,6 @@ extends /layout/layout
 
 block main
 	script(src=ROOT+ 'screen/posts/tags/postlist-tag.js') 
-	//-a(href='dummy3') 
-	//-script.
-		axios.get('https://dev.appthings.mymeta.host/blog/items.json').then(function(resp) {
-			feed = resp.data
-			alert('f ready')
-			loadjs.done('feed')
-		})// fetch
 	script.
 		depp.require(['style','ma-client', 'login'], function() {
 			console.log('depp ready, user is logged in, will call itemize')
@@ -34,15 +27,6 @@ block main
 				.left.padL Blog Posts
 	p
 	#tabp.container
-		script.
-			function published(i){
-				var oldIdx = $('#published li.active').index();
-				$('#published li:lt('+i+')').removeClass('active')
-				$('#published li:gt('+i+')').removeClass('active')
-				$('#published li:eq('+i+')').addClass('active')
-				if (i != oldIdx) //tab changed
-					tag.render(items, i, '#{PROD_ROOT}', callback)
-			}
 		ul#published.tab
 			li.tab-item.active
 				a(nohref onclick='published(0)')
@@ -61,14 +45,25 @@ block main
 	script.
 		const tag = riot.mount('postlist-tag')[0] // mount the first tag
 
-		function callback(publishedCount, scheduledCount){
-				$('#publishedTab').attr('data-badge', publishedCount)
-				$('#scheduledTab').attr('data-badge', ''+scheduledCount)
-		}
-
 		depp.require(['style','ma-client','feed'], function () {
 			tag.render(items, 0, '#{PROD_ROOT}', callback)
 		})
+
+		function callback(publishedCount, scheduledCount){
+			$('#publishedTab').attr('data-badge', publishedCount)
+			$('#scheduledTab').attr('data-badge', ''+scheduledCount)
+		}
+
+		function published(i){
+			var oldIdx = $('#published li.active').index();
+			$('#published li:lt('+i+')').removeClass('active')
+			$('#published li:gt('+i+')').removeClass('active')
+			$('#published li:eq('+i+')').addClass('active')
+			if (i != oldIdx) //tab changed
+				tag.render(items, i, '#{PROD_ROOT}', callback)
+		}
+
+
 
 
 

@@ -9,16 +9,18 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
   <title>New Post</title>
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
-  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
-  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/riot@3.13.0/riot.min.js"></script>
+  <script src="https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js"></script>
   <style>
     .delayShowing { opacity: 0.01; }
     
   </style>
   <script src="/layout/tags/fb-tag.min.js"></script>
+  <script src="/screen/posts/tags/featuredimage-tag.js"></script>
+  <script src="/screen/posts/tags/medialist-tag.js"></script>
   <body>
     <div class="delayShowing" id="hideprops">
       <div id="edithead">
@@ -43,24 +45,21 @@
       <div class="panel" id="edit">
         <div class="body panel-body">
           <div id="router">
-            <script src="/screen/posts/tags/medialist-tag.js"></script>
             <script>
+              //TODO in edit only: query for item 
               depp.require(['style','ma-client', 'login'], function() {
-              	console.log('loadjs ready, user is logged in, will call itemize')
-              	//window.aSrv.getItems('blog').then(listRes)
+              	console.log('style ready, user is logged in, will get data')
+              	/*window.aSrv.getItem('my-file').then(function detailRes(resp) {
+              		data = resp.data._cmd
+              		depp.done('data')
+              	})*/
               })
-              
-              function listRes(resp) {
-              	items = resp.data._cmd
-              	//-alert(items)
-              	depp.done('feed')
-              }
               
             </script>
             <p></p>
             <div class="container" id="edittitlep">
               <div class="form-group">
-                <input class="form-input" name="title" id="title" value="My first blog" placeholder="Blog Title">
+                <input class="form-input" name="title" id="title" placeholder="Blog Title">
               </div>
             </div>
             <p></p>
@@ -106,8 +105,8 @@
                 </svg></a></div>
           </div>
           <div class="accordion">
-            <input id="status" type="checkbox" hidden="">
-            <label class="accordion-header" for="status">
+            <input id="accordion-1" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="accordion-1">
               <div class="flex edge">
                 <h6 class="left">Status</h6>
                 <div class="right"></div>
@@ -123,8 +122,8 @@
               <div class="card" id="publishdate">
                 <div class="card-body">
                   <div class="accordion">
-                    <input id="date" type="checkbox" name="accordion-checkbox" hidden="">
-                    <label class="accordion-header" for="date">
+                    <input id="accordion-2a" type="checkbox" name="accordion-checkbox" hidden="">
+                    <label class="accordion-header" for="accordion-2a">
                       <div class="flex edge">
                         <div class="left">
                           <svg class="feather feather-calendar" viewBox="0 0 24 24">
@@ -182,8 +181,8 @@
             </div>
           </div>
           <div class="accordion">
-            <input id="tags" type="checkbox" name="accordion-checkbox" hidden="">
-            <label class="accordion-header" for="tags">
+            <input id="accordion-2" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="accordion-2">
               <div class="flex edge">
                 <h6 class="left">Tags</h6>
                 <div class="right"></div>
@@ -204,8 +203,8 @@
             </div>
           </div>
           <div class="accordion">
-            <input id="image" type="checkbox" name="accordion-checkbox" hidden="">
-            <label class="accordion-header" for="image">
+            <input id="accordion-3" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="accordion-3">
               <div class="flex edge">
                 <h6 class="left">Featured Image</h6>
                 <div class="right"></div>
@@ -219,22 +218,13 @@
             </label>
             <div class="accordion-body">
               <div class="card" id="featuredimage">
-                <div class="card-body">
-                  <input class="form-input" type="file" id="f1" placeholder="image">
-                </div>
-                <div class="card-image"><img class="img-responsive" id="f1img">
-                  <div class="del-badge" id="f1del"><a hohref onclick="deleteFeaturedImage()">
-                      <svg class="feather feather-x" viewBox="0 0 24 24">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                      </svg></a></div>
-                </div>
+                <featuredimage-tag></featuredimage-tag>
               </div>
             </div>
           </div>
           <div class="accordion">
-            <input id="media" type="checkbox" name="accordion-checkbox" hidden="">
-            <label class="accordion-header" for="media">
+            <input id="accordion-4" type="checkbox" name="accordion-checkbox" hidden="">
+            <label class="accordion-header" for="accordion-4">
               <div class="flex edge">
                 <h6 class="left">Media</h6>
                 <div class="right"></div>
@@ -255,208 +245,99 @@
               <medialist-tag></medialist-tag>
             </div>
           </div>
-          <script>
-            depp.require(['style'], function(){
-            	$("input:checkbox").change(function(e){
-            		let id = e.target.id
-            		if (id == 'date') { //exception for sub-accordeon
-            			window.location.hash = '#status' 
-            		}
-            		else if($(this).prop('checked')) {
-            			window.location.hash = '#'+ id
-            		} else {
-            			window.location.hash = '#'
-            		}
-            	})
-            	$(window.location.hash).prop('checked', true) //on first load, expand
-            })
-            
-            const tag = riot.mount('medialist-tag')[0] // mount the first tag
-            var mediaitems = []
-            
-            function copyToClipboard (str) {
-            	// Create new element
-            	var el = document.createElement('textarea');
-            	// Set value (string to be copied)
-            	el.value = str;
-            	// Set non-editable to avoid focus and move outside of view
-            	el.setAttribute('readonly', '');
-            	el.style = {position: 'absolute', left: '-9999px'};
-            	document.body.appendChild(el);
-            	// Select text inside element
-            	el.select();
-            	// Copy text to clipboard
-            	document.execCommand('copy');
-            	// Remove temporary element
-            	document.body.removeChild(el);
-            }
-            
-            function deleteFeaturedImage(){
-            	depp.require(['style'], function(){
-            		$('#f1').val('')
-            		$('#f1img').attr('src', '')
-            		$('#f1del').hide();
-            		//#('#featuredimage .card-image').attr("visibility", "hidden");
-            		$('#featuredimage .card-body').show();
-            	})
-            }
-            function deleteMedia(filename){
-            	let sz = mediaitems.length
-            	let clone = []
-            	for(i = 0; i < sz; i++) {
-            		var item = mediaitems[i]
-            		if (item.filename != filename) clone.push(item)
-            	}
-            	mediaitems = clone
-            	$('#fx').val('')
-            	tag.render(mediaitems)
-            }
-            
-            depp.require(['style','ma-client'], function () {
-            
-            	$('#f1').change(function(){
-            		//displayFeaturedImage
-            		if (this.files && this.files[0]) {
-            			var reader = new FileReader();
-            			reader.readAsDataURL(this.files[0]);
-            			reader.onload = function(e) {
-            				$('#f1img').attr('src', e.target.result);
-            				$('#featuredimage .card-body').hide();
-            				$('#f1del').show();
-            			}
-            		}
-            	}) //upload featured image
-            
-            	$('#fx').change(function(){
-            		//display all images
-            		if (this.files){
-            			let len = this.files.length
-            			for (var i = 0; i < len; i++)
-            			{
-            				let f = this.files[i]
-            				if(!f.type.match('image.*')) continue
-            				let fname = f.name
-            				let dup = false, sz = mediaitems.length
-            				for(j = 0; j < sz; j++) { //no duplicates
-            					if(mediaitems[j].filename === fname) {dup = true; break}
-            				}
-            				if (dup) continue;
-            				let reader = new FileReader();
-            				reader.readAsDataURL(f);
-            				reader.onload = function(e) {
-            					mediaitems.push({filename: fname, src: e.target.result})
-            					tag.render(mediaitems)
-            				}
-            			}
-            		}
-            	}) //upload media
-            
-            
-            	$('.save').click(function(){
-            		let f1 = $('#f1')[0].files[0];
-            		if (f1)
-            		{
-            			//read again to be safe 
-            			let reader = new FileReader();
-            			reader.readAsDataURL(f1);
-            			reader.onload = function(e) {
-            				let b64 = e.target.result
-            				fileDone(b64, f1.name)
-            			}
-            		}
-            		else
-            			fileDone()
-            	})// click
-            })//require
-            
-            function fileDone(f1data, f1name) {
-            	let title = $('#title').val()
-            	if (title == '')
-            		title = 'My first blog'
-            	let content = myCodeMirror.getDoc().getValue()
-            	let tags  = $('#tags').val()
-            	let date_published = moment().toISOString()
-            	let date1 = $('#date1').val()
-            	if (date1 != '')
-            		date_published = moment(date1, 'D MMMM YYYY').toISOString()
-            	
-            	let fx = JSON.stringify(mediaitems)
-            
-            	//TODO: validation
-            
-            	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
-            		tags, f1name, f1data, fx
-            	).then(newBlogRes)
-            }
-            
-            function newBlogRes(resp) {
-            	alert('save done'+resp)
-            	/*let msg = resp.data._msg
-            	console.log(msg)
-            	console.log(msg.title)
-            
-            	//$('#linkBlogMsg').text(msg.title)*/
-            }
-            
-            depp.require('style', function () {
-            	/*
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
-            	*/
-            	depp.define({'cmjs': [
-            		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
-            	]})
-            })//require
-            
-            depp.require('cmjs', function () {
-            	_initCodeMirror()
-            })//require
-            
-            let myCodeMirror
-            function _initCodeMirror() {
-            	myCodeMirror = CodeMirror.fromTextArea(
-            		document.querySelector('#cms1') ,
-            			{
-            				mode: 'markdown'
-            				, lineWrapping: true
-            				, cursorHeight: 0.85
-            			}
-            		)
-            	myCodeMirror.setSize('100%', '100%')
-            	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
-            	depp.done('cm')
-            }// initCM()
-            
-            /*function read( data) {
-            	let fn_ = data[0]
-            	let url = '/api/read?secret='
-            	let folder = '&folder='
-            	let fn = '&fn='
-            	url = url + getSec() + folder + getPage() + fn + fn_
-            	console.log(url)
-            
-            	fetch(url)
-            		.then(function(resp) {
-            			return resp.text()
-            		}).then(function(ret) {
-            
-            			loadjs.ready('cm', function() {
-            				myCodeMirror.getDoc().setValue(ret)
-            			})
-            
-            		}).catch(function(err) {
-            			console.log('error', err)
-            	})//fetch
-            }//()*/
-          </script>
         </div>
       </div>
     </nav>
+    <script>
+      const tag = riot.mount('medialist-tag')[0] // mount the first tag
+      const itag = riot.mount('featuredimage-tag')[0]
+      
+      function deleteMedia(filename){
+      	$('#fx').val('')
+      	tag.deleteItem(filename)
+      }
+      
+      depp.require(['style','ma-client'], function () {
+      
+      	$('#title').keyup(function(){
+      		if(this.value.trim()) {
+      			$('.save').removeClass('disabled2')
+      		} else {
+      			$('.save').addClass('disabled2')
+      		}
+      	})
+      
+      	$('#fx').change(function(){ //upload media
+      		tag.upload(this.files)
+      	}) 
+      
+      	$('.save').click(function(){
+      		if ($(this).hasClass('disabled2') //validation
+      			|| myCodeMirror.getDoc().getValue().trim()=='## Blog Entry here'
+      		) { 
+      			showError("You haven't written anything yet!")
+      			return
+      		}
+      		itag.read(readDone)
+      	})// click
+      })//require
+      
+      function readDone(f1data, f1name) {
+      	let title = $('#title').val()
+      	let content = myCodeMirror.getDoc().getValue()
+      	content.replace('## Blog Entry here', '') //just in case it's left over
+      
+      	let tags  = $('#tags').val()
+      	let date_published = moment().toISOString()
+      	let date1 = $('#date1').val()
+      	if (date1 != '')
+      		date_published = moment(date1, 'D MMMM YYYY').toISOString()
+      	
+      	let fx = JSON.stringify(tag.items)
+      
+      	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
+      		tags, f1name, f1data, fx
+      	).then(newBlogRes)
+      }
+      
+      function newBlogRes(resp) {
+      	showSuccess('Blog entry saved successfully!', function(){
+      		window.location.href='/screen/posts'
+      	})
+      }
+      
+      depp.require('style', function () {
+      	depp.define({'cmjs': [
+      		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
+      		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
+      		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
+      	]})
+      })//require
+      
+      depp.require('cmjs', function () {
+      	_initCodeMirror()
+      })//require
+      
+      /*TODO: in edit only
+      depp.require('cm','data', function () {
+      	myCodeMirror.getDoc().setValue(data)
+      })//require */
+      
+      let myCodeMirror
+      function _initCodeMirror() {
+      	myCodeMirror = CodeMirror.fromTextArea(
+      		document.querySelector('#cms1') ,
+      			{
+      				mode: 'markdown'
+      				, lineWrapping: true
+      				, cursorHeight: 0.85
+      			}
+      		)
+      	myCodeMirror.setSize('100%', '100%')
+      	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
+      	depp.done('cm')
+      }// initCM()
+    </script>
     <script>
       function userSzSc() {
       	console.log('resize|scroll')

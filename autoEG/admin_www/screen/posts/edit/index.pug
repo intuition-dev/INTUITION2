@@ -1,249 +1,73 @@
 extends /layout/layout_edit
 
 block main
-	script(src=ROOT+ 'screen/posts/tags/medialist-tag.js')
 	script.
+		//TODO in edit only: query for item 
 		depp.require(['style','ma-client', 'login'], function() {
-			console.log('loadjs ready, user is logged in, will call itemize')
-			//window.aSrv.getItems('blog').then(listRes)
+			console.log('style ready, user is logged in, will get data')
+			/*window.aSrv.getItem('my-file').then(function detailRes(resp) {
+				data = resp.data._cmd
+				depp.done('data')
+			})*/
 		})
-
-		function listRes(resp) {
-			items = resp.data._cmd
-			//-alert(items)
-			depp.done('feed')
-		}
 
 	p
 	#edittitlep.container
 		.form-group
-			input.form-input(name='title', id='title', value='My first blog', placeholder='Blog Title')
+			input.form-input(name='title', id='title', placeholder='Blog Title')
 	p
-	//-#edittabp.container
-		ul.tab
-			li.tab-item.active
-				a(nohref) Markdown&nbsp;
-			li.tab-item
-				a(nohref) View&nbsp;
 	#editorp.container
 		textarea#cms1
-block props
-	.accordion
-		input#status(type='checkbox', hidden='')
-		label.accordion-header(for='status')
-			.flex.edge
-				h6.left Status
-				.right
-				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
-					polyline(points='6 9 12 15 18 9')
-				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
-					polyline(points='18 15 12 9 6 15')
-		.accordion-body
-			#publishdate.card
-				.card-body
-					.accordion
-						input#date(type='checkbox', name='accordion-checkbox', hidden='')
-						label.accordion-header(for='date')
-							.flex.edge
-								.left
-									svg.feather.feather-calendar(viewBox='0 0 24 24')
-										rect(x='3', y='4', width='18', height='18', rx='2', ry='2')
-										line(x1='16', y1='2', x2='16', y2='6')
-										line(x1='8', y1='2', x2='8', y2='6')
-										line(x1='3', y1='10', x2='21', y2='10')
-								.left.text-bold Publish Immediately
-								.right
-								svg.feather.feather-chevron-down(viewBox='0 0 24 24')
-									polyline(points='6 9 12 15 18 9')
-								svg.feather.feather-chevron-up(viewBox='0 0 24 24')
-									polyline(points='18 15 12 9 6 15')
-						.accordion-body
-							p
-							.text-center Choose a date to schedule:
-							include tags/calendar
-	.accordion
-		input#tags(type='checkbox', name='accordion-checkbox', hidden='')
-		label.accordion-header(for='tags')
-			.flex.edge
-				h6.left Tags
-				.right
-				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
-					polyline(points='6 9 12 15 18 9')
-				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
-					polyline(points='18 15 12 9 6 15')
-		.accordion-body
-			.card
-				.card-body
-					//-include tags/autocomplete
-					input.form-input(type='text', id='tags', placeholder='comma-delimited tags')
-	.accordion
-		input#image(type='checkbox', name='accordion-checkbox', hidden='')
-		label.accordion-header(for='image')
-			.flex.edge
-				h6.left Featured Image
-				.right
-				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
-					polyline(points='6 9 12 15 18 9')
-				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
-					polyline(points='18 15 12 9 6 15')
-		.accordion-body
-			#featuredimage.card
-				.card-body
-					input.form-input(type='file', id='f1', placeholder='image') 
-				.card-image
-					img#f1img.img-responsive
-					#f1del.del-badge
-						a(hohref onclick="deleteFeaturedImage()")
-							svg.feather.feather-x(viewBox='0 0 24 24')
-								line(x1='18', y1='6', x2='6', y2='18')
-								line(x1='6', y1='6', x2='18', y2='18')
-	.accordion
-		input#media(type='checkbox', name='accordion-checkbox', hidden='')
-		label.accordion-header(for='media')
-			.flex.edge
-				h6.left Media
-				.right
-				svg.feather.feather-chevron-down(viewBox='0 0 24 24')
-					polyline(points='6 9 12 15 18 9')
-				svg.feather.feather-chevron-up(viewBox='0 0 24 24')
-					polyline(points='18 15 12 9 6 15')
-		.accordion-body
-			#mediax.card
-				.card-body
-					input.form-input(multiple type='file' id='fx', placeholder='other images')
 
-			medialist-tag
+//- properties panel is in /layout/layout_edit.pug
 
-
-
+block script
 	script.
-		depp.require(['style'], function(){
-			$("input:checkbox").change(function(e){
-				let id = e.target.id
-				if (id == 'date') { //exception for sub-accordeon
-					window.location.hash = '#status' 
-				}
-				else if($(this).prop('checked')) {
-					window.location.hash = '#'+ id
-				} else {
-					window.location.hash = '#'
-				}
-			})
-			$(window.location.hash).prop('checked', true) //on first load, expand
-		})
-
 		const tag = riot.mount('medialist-tag')[0] // mount the first tag
-		var mediaitems = []
+		const itag = riot.mount('featuredimage-tag')[0]
 
-		function copyToClipboard (str) {
-			// Create new element
-			var el = document.createElement('textarea');
-			// Set value (string to be copied)
-			el.value = str;
-			// Set non-editable to avoid focus and move outside of view
-			el.setAttribute('readonly', '');
-			el.style = {position: 'absolute', left: '-9999px'};
-			document.body.appendChild(el);
-			// Select text inside element
-			el.select();
-			// Copy text to clipboard
-			document.execCommand('copy');
-			// Remove temporary element
-			document.body.removeChild(el);
-		}
-
-		function deleteFeaturedImage(){
-			depp.require(['style'], function(){
-				$('#f1').val('')
-				$('#f1img').attr('src', '')
-				$('#f1del').hide();
-				//#('#featuredimage .card-image').attr("visibility", "hidden");
-				$('#featuredimage .card-body').show();
-			})
-		}
 		function deleteMedia(filename){
-			let sz = mediaitems.length
-			let clone = []
-			for(i = 0; i < sz; i++) {
-				var item = mediaitems[i]
-				if (item.filename != filename) clone.push(item)
-			}
-			mediaitems = clone
 			$('#fx').val('')
-			tag.render(mediaitems)
+			tag.deleteItem(filename)
 		}
 
 		depp.require(['style','ma-client'], function () {
 
-			$('#f1').change(function(){
-				//displayFeaturedImage
-				if (this.files && this.files[0]) {
-					var reader = new FileReader();
-					reader.readAsDataURL(this.files[0]);
-					reader.onload = function(e) {
-						$('#f1img').attr('src', e.target.result);
-						$('#featuredimage .card-body').hide();
-						$('#f1del').show();
-					}
+			$('#title').keyup(function(){
+				if(this.value.trim()) {
+					$('.save').removeClass('disabled2')
+				} else {
+					$('.save').addClass('disabled2')
 				}
-			}) //upload featured image
+			})
 
-			$('#fx').change(function(){
-				//display all images
-				if (this.files){
-					let len = this.files.length
-					for (var i = 0; i < len; i++)
-					{
-						let f = this.files[i]
-						if(!f.type.match('image.*')) continue
-						let fname = f.name
-						let dup = false, sz = mediaitems.length
-						for(j = 0; j < sz; j++) { //no duplicates
-							if(mediaitems[j].filename === fname) {dup = true; break}
-						}
-						if (dup) continue;
-						let reader = new FileReader();
-						reader.readAsDataURL(f);
-						reader.onload = function(e) {
-							mediaitems.push({filename: fname, src: e.target.result})
-							tag.render(mediaitems)
-						}
-					}
-				}
-			}) //upload media
-
+			$('#fx').change(function(){ //upload media
+				tag.upload(this.files)
+			}) 
 
 			$('.save').click(function(){
-				let f1 = $('#f1')[0].files[0];
-				if (f1)
-				{
-					//read again to be safe 
-					let reader = new FileReader();
-					reader.readAsDataURL(f1);
-					reader.onload = function(e) {
-						let b64 = e.target.result
-						fileDone(b64, f1.name)
-					}
+				if ($(this).hasClass('disabled2') //validation
+					|| myCodeMirror.getDoc().getValue().trim()=='## Blog Entry here'
+				) { 
+					showError("You haven't written anything yet!")
+					return
 				}
-				else
-					fileDone()
+				itag.read(readDone)
 			})// click
 		})//require
 
-		function fileDone(f1data, f1name) {
+		function readDone(f1data, f1name) {
 			let title = $('#title').val()
-			if (title == '')
-				title = 'My first blog'
 			let content = myCodeMirror.getDoc().getValue()
+			content.replace('## Blog Entry here', '') //just in case it's left over
+
 			let tags  = $('#tags').val()
 			let date_published = moment().toISOString()
 			let date1 = $('#date1').val()
 			if (date1 != '')
 				date_published = moment(date1, 'D MMMM YYYY').toISOString()
 			
-			let fx = JSON.stringify(mediaitems)
-
-			//TODO: validation
+			let fx = JSON.stringify(tag.items)
 
 			window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
 				tags, f1name, f1data, fx
@@ -251,22 +75,12 @@ block props
 		}
 
 		function newBlogRes(resp) {
-			alert('save done'+resp)
-			/*let msg = resp.data._msg
-			console.log(msg)
-			console.log(msg.title)
-
-			//$('#linkBlogMsg').text(msg.title)*/
+			showSuccess('Blog entry saved successfully!', function(){
+				window.location.href='/screen/posts'
+			})
 		}
 
 		depp.require('style', function () {
-			/*
-				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/theme/solarized.css'
-				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/markdown/markdown.js'
-				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/pug/pug.js'
-				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/mode/yaml/yaml.js'
-				,'//cdn.jsdelivr.net/npm/codemirror@5.37.0/keymap/sublime.js'
-			*/
 			depp.define({'cmjs': [
 				'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
 				,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
@@ -277,6 +91,11 @@ block props
 		depp.require('cmjs', function () {
 			_initCodeMirror()
 		})//require
+
+		/*TODO: in edit only
+		depp.require('cm','data', function () {
+			myCodeMirror.getDoc().setValue(data)
+		})//require */
 
 		let myCodeMirror
 		function _initCodeMirror() {
@@ -293,27 +112,7 @@ block props
 			depp.done('cm')
 		}// initCM()
 
-		/*function read( data) {
-			let fn_ = data[0]
-			let url = '/api/read?secret='
-			let folder = '&folder='
-			let fn = '&fn='
-			url = url + getSec() + folder + getPage() + fn + fn_
-			console.log(url)
 
-			fetch(url)
-				.then(function(resp) {
-					return resp.text()
-				}).then(function(ret) {
-
-					loadjs.ready('cm', function() {
-						myCodeMirror.getDoc().setValue(ret)
-					})
-
-				}).catch(function(err) {
-					console.log('error', err)
-			})//fetch
-		}//()*/
 
 
 

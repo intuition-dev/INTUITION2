@@ -9,11 +9,11 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
   <title>MyMeta Admin</title>
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
-  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
-  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/riot@3.13.0/riot.min.js"></script>
+  <script src="https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js"></script>
   <style>
     .delayShowing { opacity: 0.01; }
     
@@ -142,16 +142,6 @@
                 </flex></a></div>
             <p></p>
             <div class="container" id="tabp">
-              <script>
-                function published(i){
-                	var oldIdx = $('#published li.active').index();
-                	$('#published li:lt('+i+')').removeClass('active')
-                	$('#published li:gt('+i+')').removeClass('active')
-                	$('#published li:eq('+i+')').addClass('active')
-                	if (i != oldIdx) //tab changed
-                		tag.render(items, i, 'http://blog-c1.s3-website-us-west-1.amazonaws.com', callback)
-                }
-              </script>
               <ul class="tab" id="published">
                 <li class="tab-item active"><a nohref onclick="published(0)">
                     <div class="badge" id="publishedTab" data-badge="0">Published&nbsp;</div></a></li>
@@ -170,14 +160,23 @@
             <script>
               const tag = riot.mount('postlist-tag')[0] // mount the first tag
               
-              function callback(publishedCount, scheduledCount){
-              		$('#publishedTab').attr('data-badge', publishedCount)
-              		$('#scheduledTab').attr('data-badge', ''+scheduledCount)
-              }
-              
               depp.require(['style','ma-client','feed'], function () {
               	tag.render(items, 0, 'http://blog-c1.s3-website-us-west-1.amazonaws.com', callback)
               })
+              
+              function callback(publishedCount, scheduledCount){
+              	$('#publishedTab').attr('data-badge', publishedCount)
+              	$('#scheduledTab').attr('data-badge', ''+scheduledCount)
+              }
+              
+              function published(i){
+              	var oldIdx = $('#published li.active').index();
+              	$('#published li:lt('+i+')').removeClass('active')
+              	$('#published li:gt('+i+')').removeClass('active')
+              	$('#published li:eq('+i+')').addClass('active')
+              	if (i != oldIdx) //tab changed
+              		tag.render(items, i, 'http://blog-c1.s3-website-us-west-1.amazonaws.com', callback)
+              }
             </script>
           </div>
         </div>

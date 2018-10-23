@@ -9,16 +9,18 @@
   <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
   <title>New Post</title>
   <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
-  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/riot@3.12.0/riot.min.js"></script>
-  <script src="https://unpkg.com/axios@0.18.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/riot@3.13.0/riot.min.js"></script>
+  <script src="https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js"></script>
   <style>
     .delayShowing { opacity: 0.01; }
     
   </style>
   <script src="/layout/tags/fb-tag.min.js"></script>
+  <script src="/screen/posts/tags/featuredimage-tag.js"></script>
+  <script src="/screen/posts/tags/medialist-tag.js"></script>
   <body>
     <div class="delayShowing" id="hideprops">
       <div id="edithead">
@@ -43,19 +45,15 @@
       <div class="panel" id="edit">
         <div class="body panel-body">
           <div id="router">
-            <script src="/screen/posts/tags/featuredimage-tag.js"></script>
-            <script src="/screen/posts/tags/medialist-tag.js"></script>
             <script>
+              //TODO in edit only: query for item 
               depp.require(['style','ma-client', 'login'], function() {
-              	console.log('loadjs ready, user is logged in, will call itemize')
-              	//window.aSrv.getItems('blog').then(listRes)
+              	console.log('style ready, user is logged in, will get data')
+              	/*window.aSrv.getItem('my-file').then(function detailRes(resp) {
+              		data = resp.data._cmd
+              		depp.done('data')
+              	})*/
               })
-              
-              function listRes(resp) {
-              	items = resp.data._cmd
-              	//-alert(items)
-              	depp.done('feed')
-              }
               
             </script>
             <p></p>
@@ -247,116 +245,99 @@
               <medialist-tag></medialist-tag>
             </div>
           </div>
-          <script>
-            const tag = riot.mount('medialist-tag')[0] // mount the first tag
-            const itag = riot.mount('featuredimage-tag')[0]
-            
-            function deleteMedia(filename){
-            	$('#fx').val('')
-            	tag.deleteItem(filename)
-            }
-            
-            depp.require(['style','ma-client'], function () {
-            
-            	$('#title').keyup(function(){
-            		if(this.value.trim()) {
-            			$('.save').removeClass('disabled2')
-            		} else {
-            			$('.save').addClass('disabled2')
-            		}
-            	})
-            
-            	$('#fx').change(function(){ //upload media
-            		tag.upload(this.files)
-            	}) 
-            
-            	$('.save').click(function(){
-            		if ($(this).hasClass('disabled2') //validation
-            			|| myCodeMirror.getDoc().getValue().trim()=='## Blog Entry here'
-            		) { 
-            			showError("You haven't written anything yet!")
-            			return
-            		}
-            		itag.read(readDone)
-            	})// click
-            })//require
-            
-            function readDone(f1data, f1name) {
-            	let title = $('#title').val()
-            	let content = myCodeMirror.getDoc().getValue()
-            	content.replace('## Blog Entry here', '') //just in case it's left over
-            
-            	let tags  = $('#tags').val()
-            	let date_published = moment().toISOString()
-            	let date1 = $('#date1').val()
-            	if (date1 != '')
-            		date_published = moment(date1, 'D MMMM YYYY').toISOString()
-            	
-            	let fx = JSON.stringify(tag.items)
-            
-            	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
-            		tags, f1name, f1data, fx
-            	).then(newBlogRes)
-            }
-            
-            function newBlogRes(resp) {
-            	showSuccess('Blog entry saved successfully!', function(){
-            		window.location.href='/screen/posts'
-            	})
-            }
-            
-            depp.require('style', function () {
-            	depp.define({'cmjs': [
-            		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
-            		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
-            	]})
-            })//require
-            
-            depp.require('cmjs', function () {
-            	_initCodeMirror()
-            })//require
-            
-            let myCodeMirror
-            function _initCodeMirror() {
-            	myCodeMirror = CodeMirror.fromTextArea(
-            		document.querySelector('#cms1') ,
-            			{
-            				mode: 'markdown'
-            				, lineWrapping: true
-            				, cursorHeight: 0.85
-            			}
-            		)
-            	myCodeMirror.setSize('100%', '100%')
-            	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
-            	depp.done('cm')
-            }// initCM()
-            
-            /*function read( data) {
-            	let fn_ = data[0]
-            	let url = '/api/read?secret='
-            	let folder = '&folder='
-            	let fn = '&fn='
-            	url = url + getSec() + folder + getPage() + fn + fn_
-            	console.log(url)
-            
-            	fetch(url)
-            		.then(function(resp) {
-            			return resp.text()
-            		}).then(function(ret) {
-            
-            			loadjs.ready('cm', function() {
-            				myCodeMirror.getDoc().setValue(ret)
-            			})
-            
-            		}).catch(function(err) {
-            			console.log('error', err)
-            	})//fetch
-            }//()*/
-          </script>
         </div>
       </div>
     </nav>
+    <script>
+      const tag = riot.mount('medialist-tag')[0] // mount the first tag
+      const itag = riot.mount('featuredimage-tag')[0]
+      
+      function deleteMedia(filename){
+      	$('#fx').val('')
+      	tag.deleteItem(filename)
+      }
+      
+      depp.require(['style','ma-client'], function () {
+      
+      	$('#title').keyup(function(){
+      		if(this.value.trim()) {
+      			$('.save').removeClass('disabled2')
+      		} else {
+      			$('.save').addClass('disabled2')
+      		}
+      	})
+      
+      	$('#fx').change(function(){ //upload media
+      		tag.upload(this.files)
+      	}) 
+      
+      	$('.save').click(function(){
+      		if ($(this).hasClass('disabled2') //validation
+      			|| myCodeMirror.getDoc().getValue().trim()=='## Blog Entry here'
+      		) { 
+      			showError("You haven't written anything yet!")
+      			return
+      		}
+      		itag.read(readDone)
+      	})// click
+      })//require
+      
+      function readDone(f1data, f1name) {
+      	let title = $('#title').val()
+      	let content = myCodeMirror.getDoc().getValue()
+      	content.replace('## Blog Entry here', '') //just in case it's left over
+      
+      	let tags  = $('#tags').val()
+      	let date_published = moment().toISOString()
+      	let date1 = $('#date1').val()
+      	if (date1 != '')
+      		date_published = moment(date1, 'D MMMM YYYY').toISOString()
+      	
+      	let fx = JSON.stringify(tag.items)
+      
+      	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
+      		tags, f1name, f1data, fx
+      	).then(newBlogRes)
+      }
+      
+      function newBlogRes(resp) {
+      	showSuccess('Blog entry saved successfully!', function(){
+      		window.location.href='/screen/posts'
+      	})
+      }
+      
+      depp.require('style', function () {
+      	depp.define({'cmjs': [
+      		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
+      		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
+      		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
+      	]})
+      })//require
+      
+      depp.require('cmjs', function () {
+      	_initCodeMirror()
+      })//require
+      
+      /*TODO: in edit only
+      depp.require('cm','data', function () {
+      	myCodeMirror.getDoc().setValue(data)
+      })//require */
+      
+      let myCodeMirror
+      function _initCodeMirror() {
+      	myCodeMirror = CodeMirror.fromTextArea(
+      		document.querySelector('#cms1') ,
+      			{
+      				mode: 'markdown'
+      				, lineWrapping: true
+      				, cursorHeight: 0.85
+      			}
+      		)
+      	myCodeMirror.setSize('100%', '100%')
+      	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
+      	depp.done('cm')
+      }// initCM()
+    </script>
     <script>
       function userSzSc() {
       	console.log('resize|scroll')
