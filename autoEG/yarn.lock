@@ -2239,9 +2239,9 @@ markdown-it@^8.0.0, markdown-it@^8.4.2:
     uc.micro "^1.0.5"
 
 mbake@>=4.11.15:
-  version "4.11.15"
-  resolved "https://registry.yarnpkg.com/mbake/-/mbake-4.11.15.tgz#295784c03985efb651c409181d83db2d051a8bb9"
-  integrity sha512-IPw53toGXT5CJDNFTMD7eWjsSJuvfyMT/jrd/yMrjoCpLVcXYRLlMWTtd6+L0Cq79uv6fCx94h5uogoFHRmJqw==
+  version "4.11.17"
+  resolved "https://registry.yarnpkg.com/mbake/-/mbake-4.11.17.tgz#a1cbaac2bd41409d5d5b5833472b69975c444307"
+  integrity sha512-hJC/WTu9ySe2j4JeOBmtj2eesDhWvwFtFsUnaZZqDyLSUao+n1dkn89RHGoI9KDCVYSSvYI0zfMJ3y/9AnMImA==
   dependencies:
     adm-zip "^0.4.11"
     axios "^0.18.0"

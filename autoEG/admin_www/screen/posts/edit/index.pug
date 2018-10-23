@@ -2,13 +2,19 @@ extends /layout/layout_edit
 
 block main
 	script.
-		//TODO in edit only: query for item 
-		depp.require(['style','ma-client', 'login'], function() {
-			console.log('style ready, user is logged in, will get data')
-			/*window.aSrv.getItem('my-file').then(function detailRes(resp) {
-				data = resp.data._cmd
-				depp.done('data')
-			})*/
+		//Edit only: query for item 
+		depp.require(['ma-client', 'login'], function() {
+			console.log('user is logged in, will get data')
+			let qs = window.location.search
+			if (qs && qs.indexOf('?')==0)
+			{
+				parts = qs.split('/')
+				window.aSrv.getItem(part[0], part[1]).then(function(resp) {
+					data = resp.data._cmd
+					depp.done('data')
+				})
+			}
+			else alert('Query string missing')
 		})
 
 	p
@@ -17,13 +23,14 @@ block main
 			input.form-input(name='title', id='title', placeholder='Blog Title')
 	p
 	#editorp.container
-		textarea#cms1
+		editor-tag
 
 //- properties panel is in /layout/layout_edit.pug
 
 block script
 	script.
-		const tag = riot.mount('medialist-tag')[0] // mount the first tag
+		const editor = riot.mount('editor-tag')[0] // mount the first tag
+		const tag = riot.mount('medialist-tag')[0] 
 		const itag = riot.mount('featuredimage-tag')[0]
 
 		function deleteMedia(filename){
@@ -32,6 +39,9 @@ block script
 		}
 
 		depp.require(['style','ma-client'], function () {
+
+			//tag.render() //empty list
+			editor.render('## Blog Entry here\n\n\n\n') //default
 
 			$('#title').keyup(function(){
 				if(this.value.trim()) {
@@ -47,7 +57,7 @@ block script
 
 			$('.save').click(function(){
 				if ($(this).hasClass('disabled2') //validation
-					|| myCodeMirror.getDoc().getValue().trim()=='## Blog Entry here'
+					|| editor.text()=='## Blog Entry here'
 				) { 
 					showError("You haven't written anything yet!")
 					return
@@ -58,7 +68,7 @@ block script
 
 		function readDone(f1data, f1name) {
 			let title = $('#title').val()
-			let content = myCodeMirror.getDoc().getValue()
+			let content = editor.text()
 			content.replace('## Blog Entry here', '') //just in case it's left over
 
 			let tags  = $('#tags').val()
@@ -72,6 +82,7 @@ block script
 			window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
 				tags, f1name, f1data, fx
 			).then(newBlogRes)
+			.catch(errorRes)
 		}
 
 		function newBlogRes(resp) {
@@ -79,8 +90,20 @@ block script
 				window.location.href='/screen/posts'
 			})
 		}
+		function errorRes(resp) {
+			showError('Error'+resp.message)
+		}
 
-		depp.require('style', function () {
+		/*TODO: in edit only
+		depp.require('cm','data', function () {
+			editor.text(data)
+		})//require */
+
+		depp.require('editor', function() {
+			editor.text('## Blog Entry here\n\n\n\n') //default
+		})
+
+		/*depp.require('style', function () {
 			depp.define({'cmjs': [
 				'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
 				,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
@@ -92,10 +115,6 @@ block script
 			_initCodeMirror()
 		})//require
 
-		/*TODO: in edit only
-		depp.require('cm','data', function () {
-			myCodeMirror.getDoc().setValue(data)
-		})//require */
 
 		let myCodeMirror
 		function _initCodeMirror() {
@@ -110,7 +129,7 @@ block script
 			myCodeMirror.setSize('100%', '100%')
 			myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
 			depp.done('cm')
-		}// initCM()
+		}// initCM() */
 
 
 

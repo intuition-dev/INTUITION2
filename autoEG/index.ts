@@ -85,7 +85,20 @@ server.get('/api/items', function (req, res) {
    else
       res.json(ret)
 })//api
-server.get('/api/itemize', function (req, res) {
+server.get('/api/item', function (req, res) {
+      console.log(' item')
+      res.setHeader('Content-Type', 'application/json')
+      let qs = req.query
+      let listfolder = qs['listfolder']
+      let item = qs['item']
+      let ret:RetMsg = mp.getItem(listfolder, item)
+      if(ret.code<0)
+         res.status(500).send(ret.cmd)
+      else
+         res.json(ret)
+   })//api
+   
+   server.get('/api/itemize', function (req, res) {
    console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
