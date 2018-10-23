@@ -221,14 +221,8 @@ class MetaAdminService {
 	* @param listfolder - e.g. 'blog'
 	* @param item - e.g. 'my-first-post', the item to be removed
 	*/
-	getItem(listfolder, item) {
-		if (item.indexOf('/')==0) item = item.substring(1) //cleanup
-		if (item.indexOf(listfolder)==0) item = item.substring(listfolder.length-1)
-		if (item.indexOf('/')==0) item = item.substring(1)
-		let arg = '?listfolder=' + listfolder
-		arg = arg + '&item=' + item
-		console.log(arg)
-		return this.service.get('/api/item'+arg)
+	getItem(path) {
+		return this.service.get('/api/item?path='+path)
 	}
 
 }//class

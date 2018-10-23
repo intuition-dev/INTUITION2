@@ -8,9 +8,9 @@ block main
 			let qs = window.location.search
 			if (qs && qs.indexOf('?')==0)
 			{
-				parts = qs.split('/')
-				window.aSrv.getItem(part[0], part[1]).then(function(resp) {
+				window.aSrv.getItem(qs).then(function(resp) {
 					data = resp.data._cmd
+					alert(JSON.stringify(data))
 					depp.done('data')
 				})
 			}
@@ -102,34 +102,6 @@ block script
 		depp.require('editor', function() {
 			editor.text('## Blog Entry here\n\n\n\n') //default
 		})
-
-		/*depp.require('style', function () {
-			depp.define({'cmjs': [
-				'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
-				,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
-				,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
-			]})
-		})//require
-
-		depp.require('cmjs', function () {
-			_initCodeMirror()
-		})//require
-
-
-		let myCodeMirror
-		function _initCodeMirror() {
-			myCodeMirror = CodeMirror.fromTextArea(
-				document.querySelector('#cms1') ,
-					{
-						mode: 'markdown'
-						, lineWrapping: true
-						, cursorHeight: 0.85
-					}
-				)
-			myCodeMirror.setSize('100%', '100%')
-			myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
-			depp.done('cm')
-		}// initCM() */
 
 
 

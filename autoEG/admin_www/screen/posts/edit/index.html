@@ -48,13 +48,18 @@
           <div id="router">
             <script>
               //Edit only: query for item 
-              depp.require(['style','ma-client', 'login'], function() {
-              	console.log('style ready, user is logged in, will get data')
-              	alert(window.location.search)
-              	/*window.aSrv.getItem('my-file').then(function detailRes(resp) {
-              		data = resp.data._cmd
-              		depp.done('data')
-              	})*/
+              depp.require(['ma-client', 'login'], function() {
+              	console.log('user is logged in, will get data')
+              	let qs = window.location.search
+              	if (qs && qs.indexOf('?')==0)
+              	{
+              		window.aSrv.getItem(qs).then(function(resp) {
+              			data = resp.data._cmd
+              			alert(JSON.stringify(data))
+              			depp.done('data')
+              		})
+              	}
+              	else alert('Query string missing')
               })
               
             </script>

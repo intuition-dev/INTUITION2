@@ -89,15 +89,26 @@ server.get('/api/item', function (req, res) {
       console.log(' item')
       res.setHeader('Content-Type', 'application/json')
       let qs = req.query
-      let listfolder = qs['listfolder']
-      let item = qs['item']
+      let path = qs['path']
+       if (path.indexOf('?')==0) path = path.substring(1)
+      if (path.indexOf('/')==0) path = path.substring(1)
+      let parts = path.split('/')
+       if (parts.length==0) {
+            console.log('invalid path')
+            return //TODO proper MSG
+      }
+      let item = parts[parts.length-1]
+      parts.pop()
+      let listfolder = parts.join('/')
+      console.log('listfolder'+listfolder)
+      
       let ret:RetMsg = mp.getItem(listfolder, item)
       if(ret.code<0)
          res.status(500).send(ret.cmd)
       else
          res.json(ret)
    })//api
-   
+
    server.get('/api/itemize', function (req, res) {
    console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
