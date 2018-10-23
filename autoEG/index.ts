@@ -86,30 +86,30 @@ server.get('/api/items', function (req, res) {
       res.json(ret)
 })//api
 server.get('/api/item', function (req, res) {
-      console.log(' item')
-      res.setHeader('Content-Type', 'application/json')
-      let qs = req.query
-      let path = qs['path']
-       if (path.indexOf('?')==0) path = path.substring(1)
-      if (path.indexOf('/')==0) path = path.substring(1)
-      let parts = path.split('/')
-       if (parts.length==0) {
-            console.log('invalid path')
-            return //TODO proper MSG
-      }
-      let item = parts[parts.length-1]
-      parts.pop()
-      let listfolder = parts.join('/')
-      console.log('listfolder'+listfolder)
-      
-      let ret:RetMsg = mp.getItem(listfolder, item)
-      if(ret.code<0)
-         res.status(500).send(ret.cmd)
-      else
-         res.json(ret)
-   })//api
+   console.log(' item')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let path = qs['path']
+         if (path.indexOf('?')==0) path = path.substring(1)
+   if (path.indexOf('/')==0) path = path.substring(1)
+   let parts = path.split('/')
+      if (parts.length==0) {
+      console.log('invalid path')
+      return //TODO proper MSG
+   }
+   let item = parts[parts.length-1]
+   parts.pop()
+   let listfolder = parts.join('/')
+   console.log('listfolder'+listfolder)
 
-   server.get('/api/itemize', function (req, res) {
+   let ret:RetMsg = mp.getItem(listfolder, item)
+   if(ret.code<0)
+      res.status(500).send(ret.cmd)
+   else
+      res.json(ret)
+})//api
+
+server.get('/api/itemize', function (req, res) {
    console.log(' itemize')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
@@ -197,97 +197,110 @@ server.post('/api/newLinkBlog', function (req, res) {
    }
 })//api
 
-server.post('/api/newBlog', function (req, res) {
-   console.log(' newBlog')
+server.post('/api/item', function (req, res) {
+   console.log(' add or update item')
    res.setHeader('Content-Type', 'application/json')
    let body = req.body
-   
+   let action = body.action
    let folder = body.folder   
    let title = body.title
    let comment = body.summary
    let content = body.content
-   //let img_url = body.img_url
    let f1 = body.f1
    let fx = body.fx
    let f1name = body.f1name
    logger.trace('f1name'+f1name)
-   //logger.trace(f1)
 
-   //create folder name from title
-   //prefix with yyy__mm__dd of publish date for sort order?
-   let dest = '/' + folder + '/'+slugify(title.toLowerCase())
-   
+   let isNew = ('insert'===action)
+   logger.trace("isNew"+isNew)
+
+   let dest = '/' + folder
+   if (isNew) //create folder name from title
+      dest = '/' + folder + '/'+slugify(title.toLowerCase())
+
+   const p = config.mount + dest
+   logger.trace(p)
+ 
    try {
-     
-     const p = config.mount + dest
-     logger.trace(p)
-     
-     let i = 1, p0 = p;
-     while (fs.existsSync(p0)) { //avoid duplicate foldernames by adding 2, 3
-       i++ 
-       p0 = p + i
-     }
-     if (i>1) dest = dest + i
+     let p0 = p;
+     if (isNew) {
+         let i = 1 
+         while (fs.existsSync(p0)) { //avoid duplicate foldernames by adding 2, 3
+            i++ 
+            p0 = p + i
+         }
+         if (i>1) dest = dest + i
 
-     fo.clone('/blog/template', dest)
+         fo.clone('/blog/template', dest) //insert template
+     }
 
      let d = new Dat(p0)
-     let imgUrl = 
      d.set('title', title)
      d.set('comment', comment)
      d.set('tags', body.tags)
-     //d.set('image', img_url)     
      d.set('external_url', 'NA')
      d.set('date_published', body.date_published )
      d.set('publish', true ) //if false it's not included in items.json
-     d.write() //w2
+     d.write() //add or update items in dat.yaml
 
+     //in case of update, we want to clean out removed images. So we build a list of pre-update
+     //images so we can do the diff.
+     let oldmedia = [], newmedia = []
+     if (!isNew) {
+        oldmedia = fo.getMediaFilenames(folder)
+        console.log('oldmedia'+oldmedia)
+     }
 
-       if (f1)
-       {
-        var buffer = Buffer.from(f1.split(",")[1], 'base64')
-        
-        let f1path = dest + '/' + f1name
-        fo.write(f1path, buffer)
-         
-        //TODO:
-        /*var dimensions = Scrape.getBufferImageSize(buffer)
-         d.set('img_w',dimensions.width)
-         d.set('img_h',dimensions.height)
-         d.set('img_typ','TBD')
-         d.set('img_sz',100) //TBD
-         d.write() //w3
-         */
-        d.set('image', f1name) 
-        d.write() //w2
+     //handle Featured Image
+      if (f1)
+      {
+            newmedia.push(f1name)
+            if (f1.indexOf('data:')==0) //newly uploaded image
+            {
+               var buffer = Buffer.from(f1.split(",")[1], 'base64')
+               let f1path = dest + '/' + f1name
+               fo.write(f1path, buffer)
+               d.set('image', f1name) 
+               d.write()
+            }
+            //else its existing media, do nothing
+      }
+      else //image was removed
+      {
+         d.set('image', '')
+         d.write()
+      }
 
-        console.log('Writing featured image done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
-       }
-      else //default image
-       {
-      /*Scrape.getImageSize(img_url).then(function(idata){
-         d.set('img_w',idata['width'])
-         d.set('img_h',idata['height'])
-         d.set('img_typ',idata['type'])
-         d.set('img_sz',idata['length'])
-         d.write() //w3
-      })*/
-       }
+      //handle Media items
+      if (fx && fx != '[]')
+      {
+         let mediaitems = JSON.parse(fx)
+         let j, len = mediaitems.length
+         for (j = 0; j < len; j++)
+         {
+            let obj = mediaitems[j]
+            let f1path = dest + '/' + obj.filename
+            newmedia.push(obj.filename)
+            if (obj.src.indexOf('data:')==0) //newly uploaded image
+            {
+               var buffer = Buffer.from(obj.src.split(",")[1], 'base64')
+               fo.write(f1path, buffer)
+            }
+            //else its existing media, do nothing
+         }
+      }
+      console.log('Writing media done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
 
-       if (fx && fx != '[]')
-       {
-             let mediaitems = JSON.parse(fx)
-             let len = mediaitems.length
-             for (i = 0; i < len; i++)
-             {
-                let obj = mediaitems[i]
-                let f1path = dest + '/' + obj.filename
-                var buffer = Buffer.from(obj.src.split(",")[1], 'base64')
-                fo.write(f1path, buffer)
-             }
-       }
-       console.log('Writing media done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
-
+      if (!isNew) {  //remove images that are in old but not in new
+         let k = 0, klen = oldmedia.length
+         for (k; k < klen; k++)
+         {
+            if (newmedia.indexOf(oldmedia[k])==-1)
+            {
+               fo.removeFile(dest+'/'+oldmedia[k])
+            }
+         }
+      }
 
       // write content
       let md = dest+'/content.md'

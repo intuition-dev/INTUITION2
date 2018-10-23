@@ -29,9 +29,9 @@ riot.tag2('editor-tag', '<textarea id="cms1"></textarea>', '', '', function(opts
 
     this.text = function(text) {
     	if (text) {
-    		thiz.cm.getDoc().setValue(text)
+    		this.cm.getDoc().setValue(text)
     		return text
     	}
-    	return thiz.cm.getDoc().getValue().trim()
+    	return this.cm.getDoc().getValue().trim()
     }.bind(this)
 });

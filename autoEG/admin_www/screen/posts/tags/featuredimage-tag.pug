@@ -53,19 +53,25 @@ featuredimage-tag
 		}
 
 		read(callback) {
-			let f1 = $('#f1')[0].files[0];
-			if (f1)
+			//alert('itag.read.src'+this.src)
+			
+			if (this.src.indexOf('data:')>-1) //new upload
 			{
-				//read again to be safe 
-				let reader = new FileReader();
-				reader.readAsDataURL(f1);
-				reader.onload = function(e) {
-					let b64 = e.target.result
-					callback(b64, f1.name)
+				let f1 = $('#f1')[0].files[0];
+				if (f1)
+				{
+					//read again to get the filename
+					let reader = new FileReader();
+					reader.readAsDataURL(f1);
+					reader.onload = function(e) {
+						let b64 = e.target.result
+						callback(b64, f1.name)
+					}
+				}
+				else
+					callback() 
 				}
 			}
-			else
-				callback()
 		}
 
 

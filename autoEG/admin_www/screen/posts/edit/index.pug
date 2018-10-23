@@ -20,6 +20,7 @@ block main
 	#edittitlep.container
 		.form-group
 			input.form-input(name='title', id='title', placeholder='Blog Title')
+			input(name='url', id='url', type='hidden')
 	p
 	#editorp.container
 		editor-tag
@@ -68,10 +69,13 @@ block script
 
 		function readDone(f1data, f1name) {
 			let title = $('#title').val()
+			let url = $('#url').val()
 			let content = editor.text()
 			content.replace('## Blog Entry here', '') //just in case it's left over
 
 			let tags  = $('#tags').val()
+
+			//TODO: handle
 			let date_published = moment().toISOString()
 			let date1 = $('#date1').val()
 			if (date1 != '')
@@ -79,7 +83,7 @@ block script
 			
 			let fx = JSON.stringify(tag.items)
 
-			window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
+			window.aSrv.updateItem('blog/'+url, title, 'No summary', content, date_published, 
 				tags, f1name, f1data, fx
 			).then(newBlogRes)
 			.catch(errorRes)
@@ -97,6 +101,7 @@ block script
 		depp.require(['style','data'], function () {
 			alert(JSON.stringify(data))
 			$('#title').val(data.title)
+			$('#url').val(data.url) //the folder for the item
 			$('#tags').val(data.tags)
 			//TODO: enhance date published
 			let d = moment(data.date_published, 'YYYY-MM-DDTHH:mm:ss.sssZ').format('D MMMM YYYY') 

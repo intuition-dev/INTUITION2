@@ -168,7 +168,7 @@ class MetaAdminService {
 	/**
 	* Creates a new blog item
 	* @returns a promise, then(resp.dat)/catch{error}
-	* @param folder_ - e.g. '/blog/newOne'
+	* @param folder_ - e.g. '/blog - new item only uses parent folder
 	* @param title_ -  e.g. 'My Title'
 	* @param summary_ # markdown 'This article is about...'
 	* @param content_ - # markdown content
@@ -178,13 +178,35 @@ class MetaAdminService {
 	* @param f1_ - Featured image base64 encoded
 	* @param fx_ # [{filename: myfilename, url: base64img}, ...] Array of files as JSON String
 	*/
-	newBlog(folder_, title_, summary_, content_, date_published_, tags_, f1name_, f1_, fx_) {
-		return this.service.post('/api/newBlog', {
+	newItem(folder_, title_, summary_, content_, date_published_, tags_, f1name_, f1_, fx_) {
+		return this.service.post('/api/item', {
+			 action: 'insert', folder: folder_, title: title_, summary: summary_, content: content_, 
+			 date_published: date_published_, tags: tags_, 
+			 f1name: f1name_, f1: f1_, fx: fx_
+		})
+	}
+
+	/**
+	* Updates an existing blog item
+	* @returns a promise, then(resp.dat)/catch{error}
+	* @param folder_ - e.g. '/blog/my-first-blog'
+	* @param title_ -  e.g. 'My Title'
+	* @param summary_ # markdown 'This article is about...'
+	* @param content_ - # markdown content
+	* @param date_published_ - e.g. '2019-07-21T22:38:16.944Z'
+	* @param tags_ # CSV, eg: one, two
+	* @param f1name_ - Featured image filename
+	* @param f1_ - Featured image base64 encoded or existing URL
+	* @param fx_ # [{filename: myfilename, url: base64img or abs URL}, ...] Array of files as JSON String
+	*/
+	updateItem(folder_, title_, summary_, content_, date_published_, tags_, f1name_, f1_, fx_) {
+		return this.service.post('/api/item', {
 			 folder: folder_, title: title_, summary: summary_, content: content_, 
 			 date_published: date_published_, tags: tags_, 
 			 f1name: f1name_, f1: f1_, fx: fx_
 		})
 	}
+
 
 	/**
 	* Clones a folder/screen. The cloned is set to 'publish: false' in dat.yaml.

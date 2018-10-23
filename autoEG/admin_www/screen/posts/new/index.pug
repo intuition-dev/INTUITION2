@@ -73,13 +73,13 @@ block script
 			
 			let fx = JSON.stringify(tag.items)
 
-			window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
+			window.aSrv.newItem('blog', title, 'No summary', content, date_published, 
 				tags, f1name, f1data, fx
-			).then(newBlogRes)
+			).then(newItemRes)
 			.catch(errorRes)
 		}
 
-		function newBlogRes(resp) {
+		function newItemRes(resp) {
 			showSuccess('Blog entry saved successfully!', function(){
 				window.location.href='/screen/posts'
 			})

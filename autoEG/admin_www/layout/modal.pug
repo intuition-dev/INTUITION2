@@ -55,7 +55,10 @@ script.
    function showSuccess(msg, callback){
       $('#successMsg').html(msg)
       $('#success').addClass('active')
-      successCallback = callback
+      if (callback)
+            successCallback = callback
+      else 
+            successCallback = function(){}
    }
    function closeSuccess(){
       
