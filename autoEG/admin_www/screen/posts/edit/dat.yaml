@@ -2,4 +2,6 @@ basedir: ../../..
 ROOT: '/'
 pretty: true
 
+PROD_ROOT: 'http://blog-c1.s3-website-us-west-1.amazonaws.com'
+
 

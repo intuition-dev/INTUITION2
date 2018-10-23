@@ -10,7 +10,6 @@ block main
 			{
 				window.aSrv.getItem(qs).then(function(resp) {
 					data = resp.data._cmd
-					alert(JSON.stringify(data))
 					depp.done('data')
 				})
 			}
@@ -30,8 +29,8 @@ block main
 block script
 	script.
 		const editor = riot.mount('editor-tag')[0] // mount the first tag
-		const tag = riot.mount('medialist-tag')[0] 
 		const itag = riot.mount('featuredimage-tag')[0]
+		const tag = riot.mount('medialist-tag')[0] 
 
 		function deleteMedia(filename){
 			$('#fx').val('')
@@ -41,7 +40,8 @@ block script
 		depp.require(['style','ma-client'], function () {
 
 			//tag.render() //empty list
-			editor.render('## Blog Entry here\n\n\n\n') //default
+			//editor.render('## Blog Entry here\n\n\n\n') //default
+			editor.render()
 
 			$('#title').keyup(function(){
 				if(this.value.trim()) {
@@ -94,14 +94,34 @@ block script
 			showError('Error'+resp.message)
 		}
 
-		/*TODO: in edit only
-		depp.require('cm','data', function () {
-			editor.text(data)
-		})//require */
+		depp.require(['style','data'], function () {
+			alert(JSON.stringify(data))
+			$('#title').val(data.title)
+			$('#tags').val(data.tags)
+			//TODO: enhance date published
+			let d = moment(data.date_published, 'YYYY-MM-DDTHH:mm:ss.sssZ').format('D MMMM YYYY') 
+			if (data.date_published)
+				picker.pickadate('set').set('select', d, { format: 'D MMMM YYYY' })
 
-		depp.require('editor', function() {
-			editor.text('## Blog Entry here\n\n\n\n') //default
-		})
+			let abs_path = '#{PROD_ROOT}/blog/'+data.url
+			// Featured image
+			if (data.image) //src
+			{
+				if (data.image.indexOf('//')>-1) //external URL
+					itag.setSrc(data.image)
+				else
+					itag.setSrc(abs_path+'/'+data.image)
+			}
+			//Media
+			tag.render(data.media, abs_path)
+			//Editor
+			editor.text(data.content)
+		})//require 
+
+
+		
+
+		
 
 
 

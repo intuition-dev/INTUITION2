@@ -23,6 +23,26 @@ riot.tag2('featuredimage-tag', '<div class="card-body"> <input class="form-input
     	}
     }.bind(this)
 
+    this.deleteFeaturedImage = function(){
+    	this.setSrc('')
+    }.bind(this)
+
+    this.setSrc = function(src){
+    	this.src = src||''
+    	this.update()
+    	if (src)
+    	{
+    		$('#featuredimage .card-body').hide();
+    		$('#f1del').show();
+    	}
+    	else
+    	{
+    		$('#f1').val('')
+    		$('#featuredimage .card-body').show();
+    		$('#f1del').hide();
+    	}
+    }.bind(this)
+
     this.read = function(callback) {
     	let f1 = $('#f1')[0].files[0];
     	if (f1)
@@ -37,15 +57,5 @@ riot.tag2('featuredimage-tag', '<div class="card-body"> <input class="form-input
     	}
     	else
     		callback()
-    }.bind(this)
-
-    this.deleteFeaturedImage = function() {
-    	depp.require(['style'], function(){
-    		$('#f1').val('')
-    		thiz.src = ''
-    		thiz.update()
-    		$('#f1del').hide();
-    		$('#featuredimage .card-body').show();
-    	})
     }.bind(this)
 });

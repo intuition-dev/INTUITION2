@@ -157,13 +157,16 @@
                       </style>
                       <script>
                         console.log('pgC')
+                        picker = null
                         
                         depp.require(['cssJs', 'device'], function () {
                         
-                        	$('#date1').pickadate({
+                        	picker = $('#date1').pickadate({
                         		editable: false,
                         		clear: ''
                         	})
+                        	depp.done('picker')
+                        	
                         	/*$('#time1').pickatime({
                         		editable: false,
                         		clear: '',

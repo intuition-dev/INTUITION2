@@ -3,16 +3,23 @@ riot.tag2('medialist-tag', '<div class="card" id="media"> <div class="card-body"
     console.log('medialist-tag')
     this.items = []
 
-    this.render = function(data) {
+    this.render = function(data, abs_url) {
     	if(!data ) {
     		this.items = []
     		this.update()
     		return
     	}
-    	let cloned = $.map(data, function (obj) {
-    		return $.extend(true, {}, obj);
-    	});
-    	this.items = cloned
+
+    	if (abs_url)
+    	{
+    		let len = data.length
+    		for (var i = 0; i < len; i++)
+    		{
+    			if (!data[i].src)
+    				data[i].src = abs_url + '/' + data[i].filename
+    		}
+    	}
+    	this.items = data
     	this.update()
     }.bind(this)
 
