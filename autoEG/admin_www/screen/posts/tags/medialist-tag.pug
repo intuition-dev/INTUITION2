@@ -14,10 +14,10 @@ medialist-tag
 									.card
 										.card-title.text-ellipsis {filename}
 										.card-subtitle
-											a(nohref alt={filename} onclick='{parent.copyToClipboard}')
+											a(nohref alt='{filename}' onclick='{parent.copyToClipboard}')
 												.chip Copy Path
 							.right
-								a(nohref alt={filename} onclick="deleteMedia('{filename}')")
+								a(nohref alt='{filename}' onclick="deleteMedia('{filename}')")
 									figure.avatar.avatar-xl.badge(data-badge='X')
 										img(src='{src}')
 			</virtual>
@@ -25,19 +25,18 @@ medialist-tag
 	script.
 		console.log('medialist-tag')
 		this.items = []
-		thiz = this
 		
 		render(data) {// public
 			if(!data ) {
-				thiz.items = []
-				thiz.update()
+				this.items = []
+				this.update()
 				return
 			}
 			let cloned = $.map(data, function (obj) {
 				return $.extend(true, {}, obj);
 			});
-			thiz.items = cloned
-			thiz.update()
+			this.items = cloned
+			this.update()
 		}
 
 		copyToClipboard(e) {
@@ -50,15 +49,16 @@ medialist-tag
 		upload(files) {
 			//display all images
 			if (files){
+				thiz = this
 				let len = files.length
 				for (var i = 0; i < len; i++)
 				{
 					let f = files[i]
 					if(!f.type.match('image.*')) continue
 					let fname = f.name
-					let dup = false, sz = thiz.items.length
-					for(j = 0; j < sz; j++) { //no duplicates
-						if(thiz.items[j].filename === fname) {dup = true; break}
+					let dup = false, sz = this.items.length
+					for(j = 0; j < sz; j++) { //don't upload duplicates
+						if(this.items[j].filename === fname) {dup = true; break}
 					}
 					if (dup) continue;
 					let reader = new FileReader();
@@ -72,14 +72,14 @@ medialist-tag
 		}
 
 		deleteItem(filename) {
-			let sz = thiz.items.length
+			let sz = this.items.length
 			let clone = []
 			for(i = 0; i < sz; i++) {
-				var item = thiz.items[i]
+				var item = this.items[i]
 				if (item.filename != filename) clone.push(item)
 			}
-			thiz.items = clone
-			thiz.update()
+			this.items = clone
+			this.update()
 		}
 
 

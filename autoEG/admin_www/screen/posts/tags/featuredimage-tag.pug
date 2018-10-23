@@ -11,21 +11,21 @@ featuredimage-tag
 	script.
 		console.log('featuredimage-tag')
 		thiz = this
-		
+
 		render() {// public
-			thiz.src = ''
-			thiz.update()
+			this.src = ''
+			this.update()
 		}
 
 		upload(e) {
 			let files = e.target.files;
 			if (files && files[0]) {
+				thiz = this
 				var reader = new FileReader();
 				reader.readAsDataURL(files[0]);
 				reader.onload = function(e) {
 					thiz.src = e.target.result
 					thiz.update()
-
 					$('#featuredimage .card-body').hide();
 					$('#f1del').show();
 				}
@@ -33,9 +33,11 @@ featuredimage-tag
 		}
 
 		read(callback) {
+			alert('read')
 			let f1 = $('#f1')[0].files[0];
 			if (f1)
 			{
+				alert('found file')
 				//read again to be safe 
 				let reader = new FileReader();
 				reader.readAsDataURL(f1);

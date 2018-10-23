@@ -1,20 +1,19 @@
 
-riot.tag2('medialist-tag', '<div class="card" id="media"> <div class="card-body"><virtual each="{items}"> <div class="tile"> <div class="tile-content"> <div class="flex edge"> <div class="left"> <div class="card"> <div class="card-title text-ellipsis">{filename}</div> <div class="card-subtitle"><a nohref alt="{&quot;filename&quot;:&quot;/home/admin/Metabake-Admin/autoEG/admin_www/screen/posts/.&quot;}" onclick="{parent.copyToClipboard}"> <div class="chip">Copy Path</div></a></div> </div> </div> <div class="right"><a nohref alt="{&quot;filename&quot;:&quot;/home/admin/Metabake-Admin/autoEG/admin_www/screen/posts/.&quot;}" onclick="deleteMedia(\'{filename}\')"> <figure class="avatar avatar-xl badge" data-badge="X"><img riot-src="{src}"></figure></a></div> </div> </div> </div></virtual> </div> </div> <textarea id="copy" readonly></textarea>', 'medialist-tag #copy,[data-is="medialist-tag"] #copy{ position: absolute; left: -9999px; }', '', function(opts) {
+riot.tag2('medialist-tag', '<div class="card" id="media"> <div class="card-body"><virtual each="{items}"> <div class="tile"> <div class="tile-content"> <div class="flex edge"> <div class="left"> <div class="card"> <div class="card-title text-ellipsis">{filename}</div> <div class="card-subtitle"><a nohref alt="{filename}" onclick="{parent.copyToClipboard}"> <div class="chip">Copy Path</div></a></div> </div> </div> <div class="right"><a nohref alt="{filename}" onclick="deleteMedia(\'{filename}\')"> <figure class="avatar avatar-xl badge" data-badge="X"><img riot-src="{src}"></figure></a></div> </div> </div> </div></virtual> </div> </div> <textarea id="copy" readonly></textarea>', 'medialist-tag #copy,[data-is="medialist-tag"] #copy{ position: absolute; left: -9999px; }', '', function(opts) {
     console.log('medialist-tag')
     this.items = []
-    thiz = this
 
     this.render = function(data) {
     	if(!data ) {
-    		thiz.items = []
-    		thiz.update()
+    		this.items = []
+    		this.update()
     		return
     	}
     	let cloned = $.map(data, function (obj) {
     		return $.extend(true, {}, obj);
     	});
-    	thiz.items = cloned
-    	thiz.update()
+    	this.items = cloned
+    	this.update()
     }.bind(this)
 
     this.copyToClipboard = function(e) {
@@ -27,15 +26,16 @@ riot.tag2('medialist-tag', '<div class="card" id="media"> <div class="card-body"
     this.upload = function(files) {
 
     	if (files){
+    		thiz = this
     		let len = files.length
     		for (var i = 0; i < len; i++)
     		{
     			let f = files[i]
     			if(!f.type.match('image.*')) continue
     			let fname = f.name
-    			let dup = false, sz = thiz.items.length
+    			let dup = false, sz = this.items.length
     			for(j = 0; j < sz; j++) {
-    				if(thiz.items[j].filename === fname) {dup = true; break}
+    				if(this.items[j].filename === fname) {dup = true; break}
     			}
     			if (dup) continue;
     			let reader = new FileReader();
@@ -49,13 +49,13 @@ riot.tag2('medialist-tag', '<div class="card" id="media"> <div class="card-body"
     }.bind(this)
 
     this.deleteItem = function(filename) {
-    	let sz = thiz.items.length
+    	let sz = this.items.length
     	let clone = []
     	for(i = 0; i < sz; i++) {
-    		var item = thiz.items[i]
+    		var item = this.items[i]
     		if (item.filename != filename) clone.push(item)
     	}
-    	thiz.items = clone
-    	thiz.update()
+    	this.items = clone
+    	this.update()
     }.bind(this)
 });

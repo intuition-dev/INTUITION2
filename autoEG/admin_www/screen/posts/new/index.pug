@@ -33,6 +33,8 @@ block script
 
 		depp.require(['style','ma-client'], function () {
 
+			//tag.render() //empty list
+
 			$('#title').keyup(function(){
 				if(this.value.trim()) {
 					$('.save').removeClass('disabled2')
@@ -72,12 +74,16 @@ block script
 			window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
 				tags, f1name, f1data, fx
 			).then(newBlogRes)
+			.catch(errorRes)
 		}
 
 		function newBlogRes(resp) {
 			showSuccess('Blog entry saved successfully!', function(){
 				window.location.href='/screen/posts'
 			})
+		}
+		function errorRes(resp) {
+			showError('Error'+resp.message))
 		}
 
 		depp.require('style', function () {

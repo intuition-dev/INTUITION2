@@ -4,19 +4,19 @@ riot.tag2('featuredimage-tag', '<div class="card-body"> <input class="form-input
     thiz = this
 
     this.render = function() {
-    	thiz.src = ''
-    	thiz.update()
+    	this.src = ''
+    	this.update()
     }.bind(this)
 
     this.upload = function(e) {
     	let files = e.target.files;
     	if (files && files[0]) {
+    		thiz = this
     		var reader = new FileReader();
     		reader.readAsDataURL(files[0]);
     		reader.onload = function(e) {
     			thiz.src = e.target.result
     			thiz.update()
-
     			$('#featuredimage .card-body').hide();
     			$('#f1del').show();
     		}
@@ -24,9 +24,11 @@ riot.tag2('featuredimage-tag', '<div class="card-body"> <input class="form-input
     }.bind(this)
 
     this.read = function(callback) {
+    	alert('read')
     	let f1 = $('#f1')[0].files[0];
     	if (f1)
     	{
+    		alert('found file')
 
     		let reader = new FileReader();
     		reader.readAsDataURL(f1);
