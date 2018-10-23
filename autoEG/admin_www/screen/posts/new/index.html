@@ -19,6 +19,7 @@
     
   </style>
   <script src="/layout/tags/fb-tag.min.js"></script>
+  <script src="/screen/posts/tags/editor-tag.js"></script>
   <script src="/screen/posts/tags/featuredimage-tag.js"></script>
   <script src="/screen/posts/tags/medialist-tag.js"></script>
   <body>
@@ -64,7 +65,7 @@
             </div>
             <p></p>
             <div class="container" id="editorp">
-              <textarea id="cms1"></textarea>
+              <editor-tag></editor-tag>
             </div>
           </div>
         </div>
@@ -249,7 +250,8 @@
       </div>
     </nav>
     <script>
-      const tag = riot.mount('medialist-tag')[0] // mount the first tag
+      const editor = riot.mount('editor-tag')[0] // mount the first tag
+      const tag = riot.mount('medialist-tag')[0] 
       const itag = riot.mount('featuredimage-tag')[0]
       
       function deleteMedia(filename){
@@ -260,6 +262,7 @@
       depp.require(['style','ma-client'], function () {
       
       	//tag.render() //empty list
+      	editor.render('## Blog Entry here\n\n\n\n') //default
       
       	$('#title').keyup(function(){
       		if(this.value.trim()) {
@@ -275,7 +278,7 @@
       
       	$('.save').click(function(){
       		if ($(this).hasClass('disabled2') //validation
-      			|| myCodeMirror.getDoc().getValue().trim()=='## Blog Entry here'
+      			|| editor.text()=='## Blog Entry here'
       		) { 
       			showError("You haven't written anything yet!")
       			return
@@ -286,7 +289,7 @@
       
       function readDone(f1data, f1name) {
       	let title = $('#title').val()
-      	let content = myCodeMirror.getDoc().getValue()
+      	let content = editor.text()
       	content.replace('## Blog Entry here', '') //just in case it's left over
       
       	let tags  = $('#tags').val()
@@ -300,6 +303,7 @@
       	window.aSrv.newBlog('blog', title, 'No summary', content, date_published, 
       		tags, f1name, f1data, fx
       	).then(newBlogRes)
+      	.catch(errorRes)
       }
       
       function newBlogRes(resp) {
@@ -307,8 +311,20 @@
       		window.location.href='/screen/posts'
       	})
       }
+      function errorRes(resp) {
+      	showError('Error'+resp.message)
+      }
       
-      depp.require('style', function () {
+      /*TODO: in edit only
+      depp.require('cm','data', function () {
+      	editor.text(data)
+      })//require */
+      
+      depp.require('editor', function() {
+      	editor.text('## Blog Entry here\n\n\n\n') //default
+      })
+      
+      /*depp.require('style', function () {
       	depp.define({'cmjs': [
       		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
       		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
@@ -320,10 +336,6 @@
       	_initCodeMirror()
       })//require
       
-      /*TODO: in edit only
-      depp.require('cm','data', function () {
-      	myCodeMirror.getDoc().setValue(data)
-      })//require */
       
       let myCodeMirror
       function _initCodeMirror() {
@@ -338,7 +350,7 @@
       	myCodeMirror.setSize('100%', '100%')
       	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
       	depp.done('cm')
-      }// initCM()
+      }// initCM() */
     </script>
     <script>
       function userSzSc() {

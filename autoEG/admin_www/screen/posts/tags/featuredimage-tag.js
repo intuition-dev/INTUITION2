@@ -24,11 +24,9 @@ riot.tag2('featuredimage-tag', '<div class="card-body"> <input class="form-input
     }.bind(this)
 
     this.read = function(callback) {
-    	alert('read')
     	let f1 = $('#f1')[0].files[0];
     	if (f1)
     	{
-    		alert('found file')
 
     		let reader = new FileReader();
     		reader.readAsDataURL(f1);
