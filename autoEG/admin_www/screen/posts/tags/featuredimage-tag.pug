@@ -2,7 +2,7 @@ featuredimage-tag
 	.card-body
 		input.form-input(type='file', id='f1', placeholder='image', onchange="{upload}") 
 	.card-image
-		img#f1img.img-responsive(src='{src}')
+		img#f1img.img-responsive(src='{src}', alt='{filename}')
 		#f1del
 			a(hohref onclick="{deleteFeaturedImage}")
 				svg.feather.feather-x(viewBox='0 0 24 24')
@@ -14,6 +14,7 @@ featuredimage-tag
 
 		render() {// public
 			this.src = ''
+			this.filename = ''
 			this.update()
 		}
 
@@ -24,19 +25,17 @@ featuredimage-tag
 				var reader = new FileReader();
 				reader.readAsDataURL(files[0]);
 				reader.onload = function(e) {
-					thiz.src = e.target.result
-					thiz.update()
-					$('#featuredimage .card-body').hide();
-					$('#f1del').show();
+					thiz.setImg(files[0].name, e.target.result)
 				}
 			}
 		}
 
 		deleteFeaturedImage(){
-			this.setSrc('')
+			this.setImg()
 		}
 
-		setSrc(src){
+		setImg(filename, src){
+			this.filename = filename||(src?src.substring(src.lastIndexOf('/')+1):'')
 			this.src = src||''
 			this.update()
 			if (src)
@@ -51,27 +50,4 @@ featuredimage-tag
 				$('#f1del').hide();
 			}
 		}
-
-		read(callback) {
-			//alert('itag.read.src'+this.src)
-			
-			if (this.src.indexOf('data:')>-1) //new upload
-			{
-				let f1 = $('#f1')[0].files[0];
-				if (f1)
-				{
-					//read again to get the filename
-					let reader = new FileReader();
-					reader.readAsDataURL(f1);
-					reader.onload = function(e) {
-						let b64 = e.target.result
-						callback(b64, f1.name)
-					}
-				}
-				else
-					callback() 
-				}
-			}
-		}
-
 

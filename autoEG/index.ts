@@ -252,10 +252,10 @@ server.post('/api/item', function (req, res) {
      }
 
      //handle Featured Image
-      if (f1)
+      if (f1name)
       {
             newmedia.push(f1name)
-            if (f1.indexOf('data:')==0) //newly uploaded image
+            if (f1 && f1.indexOf('data:')==0) //newly uploaded image
             {
                var buffer = Buffer.from(f1.split(",")[1], 'base64')
                let f1path = dest + '/' + f1name

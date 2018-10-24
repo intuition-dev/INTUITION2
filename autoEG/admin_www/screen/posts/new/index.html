@@ -39,7 +39,7 @@
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
               </svg>
-            </div><a class="disabled2 save btn">Save...</a>
+            </div><a class="save btn btn-primary">Save...</a>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
               </svg>
-            </div><a class="disabled2 save btn">Save...</a>
+            </div><a class="primary save btn btn-primary">Save...</a>
           </div>
         </div>
       </div>
@@ -254,43 +254,54 @@
     </nav>
     <script>
       const editor = riot.mount('editor-tag')[0] // mount the first tag
-      const tag = riot.mount('medialist-tag')[0] 
+      const mtag = riot.mount('medialist-tag')[0] 
       const itag = riot.mount('featuredimage-tag')[0]
       
       function deleteMedia(filename){
       	$('#fx').val('')
-      	tag.deleteItem(filename)
+      	mtag.deleteItem(filename)
       }
       
       depp.require(['style','ma-client'], function () {
       
-      	//tag.render() //empty list
+      	//defaults
       	editor.render('## Blog Entry here\n\n\n\n') //default
+      	$('.save').addClass('disabled2')
+      	$('.save').removeClass('btn-primary')
       
       	$('#title').keyup(function(){
       		if(this.value.trim()) {
       			$('.save').removeClass('disabled2')
+      			$('.save').addClass('btn-primary')
       		} else {
       			$('.save').addClass('disabled2')
+      			$('.save').removeClass('btn-primary')
       		}
       	})
       
       	$('#fx').change(function(){ //upload media
-      		tag.upload(this.files)
+      		mtag.upload(this.files)
       	}) 
       
       	$('.save').click(function(){
-      		if ($(this).hasClass('disabled2') //validation
-      			|| editor.text()=='## Blog Entry here'
-      		) { 
-      			showError("You haven't written anything yet!")
-      			return
-      		}
-      		itag.read(readDone)
+      		if (validate(this))
+      			save()
       	})// click
+      
       })//require
       
-      function readDone(f1data, f1name) {
+      function validate(el) {
+      	if ($(el).hasClass('disabled2')
+      			|| editor.text()=='## Blog Entry here'
+      	) { 
+      		showError("You haven't written anything yet!")
+      		return false
+      	}
+      	return true
+      }
+      
+      function save() {
+      
       	let title = $('#title').val()
       	let content = editor.text()
       	content.replace('## Blog Entry here', '') //just in case it's left over
@@ -300,8 +311,11 @@
       	let date1 = $('#date1').val()
       	if (date1 != '')
       		date_published = moment(date1, 'D MMMM YYYY').toISOString()
+      
+      	let f1name = itag.filename
+      	let f1data = itag.src
       	
-      	let fx = JSON.stringify(tag.items)
+      	let fx = JSON.stringify(mtag.items)
       
       	window.aSrv.newItem('blog', title, 'No summary', content, date_published, 
       		tags, f1name, f1data, fx
@@ -318,42 +332,9 @@
       	showError('Error'+resp.message)
       }
       
-      /*TODO: in edit only
-      depp.require('cm','data', function () {
-      	editor.text(data)
-      })//require */
-      
       depp.require('editor', function() {
       	editor.text('## Blog Entry here\n\n\n\n') //default
       })
-      
-      /*depp.require('style', function () {
-      	depp.define({'cmjs': [
-      		'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
-      		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
-      		,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
-      	]})
-      })//require
-      
-      depp.require('cmjs', function () {
-      	_initCodeMirror()
-      })//require
-      
-      
-      let myCodeMirror
-      function _initCodeMirror() {
-      	myCodeMirror = CodeMirror.fromTextArea(
-      		document.querySelector('#cms1') ,
-      			{
-      				mode: 'markdown'
-      				, lineWrapping: true
-      				, cursorHeight: 0.85
-      			}
-      		)
-      	myCodeMirror.setSize('100%', '100%')
-      	myCodeMirror.setValue('## Blog Entry here\n\n\n\n')
-      	depp.done('cm')
-      }// initCM() */
     </script>
     <script>
       function userSzSc() {

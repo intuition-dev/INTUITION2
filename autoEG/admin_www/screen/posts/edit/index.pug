@@ -31,43 +31,51 @@ block script
 	script.
 		const editor = riot.mount('editor-tag')[0] // mount the first tag
 		const itag = riot.mount('featuredimage-tag')[0]
-		const tag = riot.mount('medialist-tag')[0] 
+		const mtag = riot.mount('medialist-tag')[0] 
 
 		function deleteMedia(filename){
 			$('#fx').val('')
-			tag.deleteItem(filename)
+			mtag.deleteItem(filename)
 		}
 
 		depp.require(['style','ma-client'], function () {
 
-			//tag.render() //empty list
-			//editor.render('## Blog Entry here\n\n\n\n') //default
 			editor.render()
 
 			$('#title').keyup(function(){
 				if(this.value.trim()) {
 					$('.save').removeClass('disabled2')
+					$('.save').addClass('btn-primary')
 				} else {
 					$('.save').addClass('disabled2')
+					$('.save').removeClass('btn-primary')
 				}
 			})
 
 			$('#fx').change(function(){ //upload media
-				tag.upload(this.files)
+				mtag.upload(this.files)
 			}) 
 
 			$('.save').click(function(){
-				if ($(this).hasClass('disabled2') //validation
-					|| editor.text()=='## Blog Entry here'
-				) { 
-					showError("You haven't written anything yet!")
-					return
-				}
-				itag.read(readDone)
+				if (validate(this))
+					save()
 			})// click
+
 		})//require
 
-		function readDone(f1data, f1name) {
+		function validate(el) {
+			if ($(el).hasClass('disabled2')
+					|| editor.text()=='## Blog Entry here'
+			) { 
+				showError("You haven't written anything yet!")
+				return false
+			}
+			return true
+		}
+
+
+		function save() {
+
 			let title = $('#title').val()
 			let url = $('#url').val()
 			let content = editor.text()
@@ -80,8 +88,11 @@ block script
 			let date1 = $('#date1').val()
 			if (date1 != '')
 				date_published = moment(date1, 'D MMMM YYYY').toISOString()
-			
-			let fx = JSON.stringify(tag.items)
+
+			let f1name = itag.filename
+			let f1data = itag.src
+
+			let fx = JSON.stringify(mtag.items)
 
 			window.aSrv.updateItem('blog/'+url, title, 'No summary', content, date_published, 
 				tags, f1name, f1data, fx
@@ -113,12 +124,12 @@ block script
 			if (data.image) //src
 			{
 				if (data.image.indexOf('//')>-1) //external URL
-					itag.setSrc(data.image)
+					itag.setImg(data.image, data.image)
 				else
-					itag.setSrc(abs_path+'/'+data.image)
+					itag.setImg(data.image, abs_path+'/'+data.image)
 			}
 			//Media
-			tag.render(data.media, abs_path)
+			mtag.render(data.media, abs_path)
 			//Editor
 			editor.text(data.content)
 		})//require 
