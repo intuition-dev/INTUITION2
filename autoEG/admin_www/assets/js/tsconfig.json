@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "ES2016",
+        "lib": [
+            "es2016", "es2015", "es6", "dom"
+           ],
+        "allowJs": false,
+        "noImplicitAny": false,
+		  "sourceMap": false,
+		  "removeComments": true,
+        "outDir": ".",
+        "baseUrl": ".",
+        "paths": {
+            "*": ["node_modules/*"]
+        }
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+       ]
+}
