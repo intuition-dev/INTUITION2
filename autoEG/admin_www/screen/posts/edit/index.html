@@ -20,7 +20,7 @@
   </style>
   <script src="/layout/tags/fb-tag.min.js"></script>
   <script src="/screen/posts/tags/editor-tag.js"></script>
-  <script src="/screen/posts/tags/featuredimage-tag.js"></script>
+  <script src="/screen/posts/tags/featuredimage-tag.min.js"></script>
   <script src="/screen/posts/tags/medialist-tag.js"></script>
   <body>
     <div class="delayShowing" id="hideprops">
@@ -263,14 +263,14 @@
       const itag = riot.mount('featuredimage-tag')[0]
       const mtag = riot.mount('medialist-tag')[0] 
       
+      editor.render()
+      
       function deleteMedia(filename){
       	$('#fx').val('')
       	mtag.deleteItem(filename)
       }
       
       depp.require(['style','ma-client'], function () {
-      
-      	editor.render()
       
       	$('#title').keyup(function(){
       		if(this.value.trim()) {
@@ -307,9 +307,9 @@
       	return true
       }
       
-      
       function save() {
       
+      	$('.save').addClass('loading')
       	let title = $('#title').val()
       	let url = $('#url').val()
       	let content = editor.text()
@@ -330,23 +330,27 @@
       
       	window.aSrv.updateItem('blog/'+url, title, 'No summary', content, date_published, 
       		tags, f1name, f1data, fx
-      	).then(newBlogRes)
+      	).then(successRes)
       	.catch(errorRes)
       }
       
-      function newBlogRes(resp) {
+      function successRes(resp) {
+      	$('.save').removeClass('loading')
       	showSuccess('Blog entry saved successfully!', function(){
       		window.location.href='/screen/posts'
       	})
       }
       function errorRes(resp) {
+      	$('.save').removeClass('loading')
       	showError('Error'+resp.message)
       }
       
-      depp.require(['style','data'], function () {
+      depp.require(['style','data','editor'], function () {
       	//alert(JSON.stringify(data))
       	$('#title').val(data.title)
       	$('#url').val(data.url) //the folder for the item
+      	//Editor
+      	editor.text(data.content)
       	$('#tags').val(data.tags)
       	//TODO: enhance date published
       	if (data.date_published) {
@@ -366,8 +370,7 @@
       	}
       	//Media
       	mtag.render(data.media, abs_path)
-      	//Editor
-      	editor.text(data.content)
+      
       })//require 
     </script>
     <script>

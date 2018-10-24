@@ -12,7 +12,7 @@ editor-tag
 			]})
 		})//require
 
-		render() {// public
+		render(text) {// public
 			thiz = this
 			depp.require('editorjs', function () {
 				thiz.cm = CodeMirror.fromTextArea(
@@ -24,6 +24,9 @@ editor-tag
 					}
 				)
 				thiz.cm.setSize('100%', '100%')
+				if (text) {
+					thiz.cm.getDoc().setValue(text)
+				}
 				//thiz.update()
 				depp.done('editor')
 			})
@@ -31,10 +34,10 @@ editor-tag
 
 		text(text) {
 			if (text) {
-				this.cm.getDoc().setValue(text)
+				thiz.cm.getDoc().setValue(text)
 				return text
 			}
-			return this.cm.getDoc().getValue().trim()
+			return thiz.cm.getDoc().getValue()
 		}
 
 

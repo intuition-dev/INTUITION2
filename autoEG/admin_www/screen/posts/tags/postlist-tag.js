@@ -36,6 +36,7 @@ riot.tag2('postlist-tag', '<a id="menucloser" tabindex="0"></a> <ul class="nav l
     			item.image = thiz.prodUrl + item.url + '/' + item.image
 
     		var m = moment(item.date_published)
+    		item.m_date_published = m
     		item.fmt_date_published = m.format("MM/DD, YYYY h:mm a")
     		if (moment().isBefore(m))
     			thiz.scheduledArr.push(item)
@@ -43,8 +44,8 @@ riot.tag2('postlist-tag', '<a id="menucloser" tabindex="0"></a> <ul class="nav l
     			thiz.publishedArr.push(item)
     	}
     	switch(thiz.isScheduled){
-    		case 1: thiz.items = thiz.scheduledArr; break
-    		default: thiz.items = thiz.publishedArr
+    		case 1: thiz.items = thiz.scheduledArr.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)})
+    		default: thiz.items = thiz.publishedArr.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)})
     	}
     	thiz.callback(thiz.publishedArr.length, thiz.scheduledArr.length)
     	thiz.update()

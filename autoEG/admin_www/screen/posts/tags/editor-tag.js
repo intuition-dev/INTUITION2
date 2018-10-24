@@ -10,7 +10,7 @@ riot.tag2('editor-tag', '<textarea id="cms1"></textarea>', '', '', function(opts
     	]})
     })
 
-    this.render = function() {
+    this.render = function(text) {
     	thiz = this
     	depp.require('editorjs', function () {
     		thiz.cm = CodeMirror.fromTextArea(
@@ -22,6 +22,9 @@ riot.tag2('editor-tag', '<textarea id="cms1"></textarea>', '', '', function(opts
     			}
     		)
     		thiz.cm.setSize('100%', '100%')
+    		if (text) {
+    			thiz.cm.getDoc().setValue(text)
+    		}
 
     		depp.done('editor')
     	})
@@ -29,9 +32,9 @@ riot.tag2('editor-tag', '<textarea id="cms1"></textarea>', '', '', function(opts
 
     this.text = function(text) {
     	if (text) {
-    		this.cm.getDoc().setValue(text)
+    		thiz.cm.getDoc().setValue(text)
     		return text
     	}
-    	return this.cm.getDoc().getValue().trim()
+    	return thiz.cm.getDoc().getValue()
     }.bind(this)
 });

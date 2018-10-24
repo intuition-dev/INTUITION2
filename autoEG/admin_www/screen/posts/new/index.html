@@ -20,7 +20,7 @@
   </style>
   <script src="/layout/tags/fb-tag.min.js"></script>
   <script src="/screen/posts/tags/editor-tag.js"></script>
-  <script src="/screen/posts/tags/featuredimage-tag.js"></script>
+  <script src="/screen/posts/tags/featuredimage-tag.min.js"></script>
   <script src="/screen/posts/tags/medialist-tag.js"></script>
   <body>
     <div class="delayShowing" id="hideprops">
@@ -257,6 +257,8 @@
       const mtag = riot.mount('medialist-tag')[0] 
       const itag = riot.mount('featuredimage-tag')[0]
       
+      editor.render('## Blog Entry here\n\n\n\n') //default
+      
       function deleteMedia(filename){
       	$('#fx').val('')
       	mtag.deleteItem(filename)
@@ -265,7 +267,7 @@
       depp.require(['style','ma-client'], function () {
       
       	//defaults
-      	editor.render('## Blog Entry here\n\n\n\n') //default
+      	
       	$('.save').addClass('disabled2')
       	$('.save').removeClass('btn-primary')
       
@@ -302,6 +304,7 @@
       
       function save() {
       
+      	$('.save').addClass('loading')
       	let title = $('#title').val()
       	let content = editor.text()
       	content.replace('## Blog Entry here', '') //just in case it's left over
@@ -319,22 +322,20 @@
       
       	window.aSrv.newItem('blog', title, 'No summary', content, date_published, 
       		tags, f1name, f1data, fx
-      	).then(newItemRes)
+      	).then(successRes)
       	.catch(errorRes)
       }
       
-      function newItemRes(resp) {
+      function successRes(resp) {
+      	$('.save').removeClass('loading')
       	showSuccess('Blog entry saved successfully!', function(){
       		window.location.href='/screen/posts'
       	})
       }
       function errorRes(resp) {
+      	$('.save').removeClass('loading')
       	showError('Error'+resp.message)
       }
-      
-      depp.require('editor', function() {
-      	editor.text('## Blog Entry here\n\n\n\n') //default
-      })
     </script>
     <script>
       function userSzSc() {
