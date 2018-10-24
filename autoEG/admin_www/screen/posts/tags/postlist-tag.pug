@@ -61,11 +61,12 @@ postlist-tag
 		this.items = []
 		thiz = this
 
-		render(data, isScheduled, prodUrl, callback) {// public
+		render(data, scheduledFlag, prodUrl, callback) {// public
 
+			thiz = this //?
 			//store as defaults
-			if (isScheduled != null)
-				thiz.isScheduled = isScheduled
+			if (scheduledFlag != null)
+				thiz.scheduledFlag = scheduledFlag
 			if (prodUrl)
 				thiz.prodUrl = prodUrl
 			if (callback)
@@ -98,12 +99,12 @@ postlist-tag
 				else
 					thiz.publishedArr.push(item)
 			}
-			switch(thiz.isScheduled){
-				case 1: thiz.items = thiz.scheduledArr.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)})
+			switch(thiz.scheduledFlag){
+				case 1: thiz.items = thiz.scheduledArr.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)}); break
 				default: thiz.items = thiz.publishedArr.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)})
 			}
-			thiz.callback(thiz.publishedArr.length, thiz.scheduledArr.length)
 			thiz.update()
+			thiz.callback(thiz.publishedArr.length, thiz.scheduledArr.length)
 		}
 
 		remove(e) {

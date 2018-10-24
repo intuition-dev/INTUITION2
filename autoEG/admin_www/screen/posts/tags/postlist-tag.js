@@ -7,10 +7,12 @@ riot.tag2('postlist-tag', '<a id="menucloser" tabindex="0"></a> <ul class="nav l
     this.items = []
     thiz = this
 
-    this.render = function(data, isScheduled, prodUrl, callback) {
+    this.render = function(data, scheduledFlag, prodUrl, callback) {
 
-    	if (isScheduled != null)
-    		thiz.isScheduled = isScheduled
+    	thiz = this
+
+    	if (scheduledFlag != null)
+    		thiz.scheduledFlag = scheduledFlag
     	if (prodUrl)
     		thiz.prodUrl = prodUrl
     	if (callback)
@@ -43,12 +45,12 @@ riot.tag2('postlist-tag', '<a id="menucloser" tabindex="0"></a> <ul class="nav l
     		else
     			thiz.publishedArr.push(item)
     	}
-    	switch(thiz.isScheduled){
-    		case 1: thiz.items = thiz.scheduledArr.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)})
+    	switch(thiz.scheduledFlag){
+    		case 1: thiz.items = thiz.scheduledArr.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)}); break
     		default: thiz.items = thiz.publishedArr.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)})
     	}
-    	thiz.callback(thiz.publishedArr.length, thiz.scheduledArr.length)
     	thiz.update()
+    	thiz.callback(thiz.publishedArr.length, thiz.scheduledArr.length)
     }.bind(this)
 
     this.remove = function(e) {
