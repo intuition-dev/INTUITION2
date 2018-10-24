@@ -53,7 +53,6 @@ S = sales, I = Foundation, II = B&M, III = Vista
 - [Documentation.js](https://documentation.js.org) - Example of use is in autoEG/www
 - [CSS Selectors](https://adam-marsden.co.uk/css-cheat-sheet)
 - [CSS reference](https://tympanus.net/codrops/css_reference/)
-- [Improved npm: pnpm](https://pnpm.js.org/docs/en/installation.html)
 - [HTML Components](https://www.youtube.com/watch?v=yCArIyY907Q)
 - [MOZ SEO](https://moz.com/link-explorer?utm_source=facebook&utm_medium=paid&utm_campaign=mp_links_18)
 - [Validate.js](http://rickharrison.github.io/validate.js/)
