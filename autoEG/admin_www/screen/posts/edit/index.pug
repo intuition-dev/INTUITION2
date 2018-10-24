@@ -52,6 +52,10 @@ block script
 				}
 			})
 
+			$('#date1').change(function(){
+				$('#pdate').text(this.value)
+			})
+
 			$('#fx').change(function(){ //upload media
 				mtag.upload(this.files)
 			}) 
@@ -115,9 +119,11 @@ block script
 			$('#url').val(data.url) //the folder for the item
 			$('#tags').val(data.tags)
 			//TODO: enhance date published
-			let d = moment(data.date_published, 'YYYY-MM-DDTHH:mm:ss.sssZ').format('D MMMM YYYY') 
-			if (data.date_published)
+			if (data.date_published) {
+				let d = moment(data.date_published, 'YYYY-MM-DDTHH:mm:ss.sssZ').format('D MMMM YYYY') 
+				$('#pdate').text(d)
 				picker.pickadate('set').set('select', d, { format: 'D MMMM YYYY' })
+			}
 
 			let abs_path = '#{PROD_ROOT}/blog/'+data.url
 			// Featured image

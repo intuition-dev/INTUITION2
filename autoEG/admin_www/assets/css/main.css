@@ -204,6 +204,14 @@ li .btn-sm {
 	border-bottom: 0;
 }
 
+#publishdate .accordion-header {
+	padding-bottom: 10px;
+}
+
+#publishdate .accordion-body {
+	margin-bottom: 0;
+}
+
 #publishdate .text-bold, #publishdate .text-center {
 	font-size: smaller;
 }
@@ -213,6 +221,12 @@ li .btn-sm {
 }
 .picker__box {
 	padding: 0;
+}
+.picker__input {
+	padding: 5px;
+	margin: 5px;
+	margin-left:7px;
+
 }
 
 /* Featured image card */
