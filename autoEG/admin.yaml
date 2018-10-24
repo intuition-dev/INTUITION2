@@ -1,0 +1,14 @@
+#
+# where the admin is
+#admin_www: /Users/uptim/Documents/GitHub/Meta/adminEG/admin_www
+admin_www: /home/admin/Metabake-Admin/autoEG/admin_www
+admin_port: 9082
+admin_watch: false #when runing admin, use API
+# admin services
+services_port: 9083
+secret: 123
+
+# app - in dev mode ## don't host via node, node is not for production
+#mount: /Users/uptim/Documents/GitHub/examples-plugins/blog
+mount: /home/admin/prod
+mount_port: 9081
