@@ -82,11 +82,15 @@ h6 { /* use for smaller font */
 	margin-top: 0px;
 }
 
-#navp, #tabp, #listp {
+#navp, #tabp, #listp, #detailp .container {
 	background-color: white;
 	border: .5px solid #537994;
 	width: 85%;
 	padding: 0;
+}
+
+#detailp {
+	margin: auto;
 }
 
 #navp { /* backlink subpanel shown on small screen */
@@ -112,6 +116,23 @@ h6 { /* use for smaller font */
 
 #footp .divider[data-content]::after {
 	background: #F3F6F8 !important;
+}
+
+#detailp .container {
+	padding: 0;
+}
+
+#detailp .card-header {
+	border-bottom: .5px solid #537994;
+	padding-top: 0;
+}
+
+#detailp h6 {
+	margin-top: .5em;
+}
+
+#detailp .tooltip {
+	padding: 0;
 }
 
 /* Lists (used by list tags) */
@@ -290,6 +311,10 @@ li .btn-sm {
 	max-width: 400px;
 }
 
+#loginScr .warn {
+	height: 100px; /* room for warning */
+}
+
 
 
 /* List page (CSS off-canvas on small screen) */
@@ -362,7 +387,7 @@ li .btn-sm {
 		width: 100vw;
 	}
 
-	#navp, #ddp, #tabp, #statusp, #listp, #footp {
+	#navp, #ddp, #tabp, #statusp, #listp, #footp, #detailp {
 		width: 100vw;
 	}
 

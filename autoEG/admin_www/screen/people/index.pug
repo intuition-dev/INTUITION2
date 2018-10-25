@@ -1,6 +1,8 @@
 extends /layout/layout
 
 block main
+
+
 	.show-sm
 		#navp.container
 			a(href='/screen/people/#')
@@ -13,13 +15,25 @@ block main
 						path(d='M23 21v-2a4 4 0 0 0-3-3.87')
 						path(d='M16 3.13a4 4 0 0 1 0 7.75')
 					.left.padL People
+	#detailp.d-none
+		include detail
 	p
+	#tabp.container
+		ul#team.tab
+			li.tab-item.active
+				a(nohref onclick='invites(0)')
+					#teamTab.badge(data-badge='0') Team&nbsp;
+			li.tab-item
+				a(nohref onclick='invites(1)')
+					#invitesTab.badge(data-badge='0') Invites&nbsp;
+	p
+
 	#listp.container
 		ul.nav.listhead
 			li.nav-item
 				.flex.edge
 					.left.badge(data-badge='2') Editors
-					a.btn.right(href='#invite')
+					a.btn.right(nohref onclick='openInvite();return false')
 						.flex.edge
 							svg.feather.feather-user-plus(viewBox='0 0 24 24')
 								path(d='M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2')
@@ -75,11 +89,20 @@ block main
 	#footp.container
 		.divider.text-center(data-content='MyMeta Admin')
 
+
 	script.
-		close(e){
-			e.stopPropagation();
-			e.cancelBubble();
-			$('a.dropdown-toggle').blur()
+
+		function invites(i){
+			var oldIdx = $('#team li.active').index();
+			$('#team li:lt('+i+')').removeClass('active')
+			$('#team li:gt('+i+')').removeClass('active')
+			$('#team li:eq('+i+')').addClass('active')
+			if (i != oldIdx) //tab changed
+				tag.render(items, i, '#{PROD_ROOT}', callback)
 		}
+
+		
+
+
 
 

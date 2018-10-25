@@ -1,0 +1,30 @@
+#registerScr.modal
+	.modal-overlay
+	.modal-container.delayShowing
+		.modal-header
+		.modal-body
+			form#registerform.form-group
+				label.form-label(for='remail') Email
+				input#remail.form-input(type='email', placeholder='Email')
+				label.form-label(for='rpw') Create a password
+				input#rpw.form-input(type='password', placeholder='Password')
+				label.form-label(for='rfirst') First Name
+				input#rfirst.form-input(type='text', placeholder='First Name')
+				label.form-label(for='rfirst') Last Name
+				input#rlast.form-input(type='text', placeholder='Last Name')
+			br
+			#registerMsg.toast.toast-warning Unable to serve. Is the secret code correct?
+		.modal-footer
+			#regb.float-right.btn(onclick='register()') Register
+
+script.
+	function setupRegister(){
+		 $('#registerScr').addClass('active')
+	}
+
+	function register(){
+		alert('register')
+	}
+
+
+

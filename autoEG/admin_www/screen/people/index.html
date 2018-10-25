@@ -18,7 +18,7 @@
     .delayShowing { opacity: 0.01; }
     
   </style>
-  <script src="/layout/tags/fb-tag.min.js"></script>
+  <script src="/layout/tags/fb-tag.js"></script>
   <body>
     <div class="delayShowing" id="all">
       <div id="menuhead">
@@ -31,7 +31,7 @@
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="12" y1="8" x2="12" y2="16"></line>
                 <line x1="8" y1="12" x2="16" y2="12"></line>
-              </svg></a><a class="btn btn-link" nohref onclick="onLogout(true);return false"> 
+              </svg></a><a class="btn btn-link" nohref onclick="onLogout(false)"> 
               <svg class="feather feather-power" viewBox="0 0 24 24">
                 <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
                 <line x1="12" y1="2" x2="12" y2="12"></line>
@@ -76,7 +76,7 @@
           <h6>Configure</h6>
           <ul class="nav">
             <li class="nav-item">
-              <button class="btn btn-sm float-right" onclick="location.href='/screen/people/#all'">Add</button><a href="/screen/people/#all">
+              <button class="btn btn-sm float-right" onclick="location.href='/screen/people/?invite#all'">Add</button><a href="/screen/people/#all">
                 <div class="flex edge">
                   <div class="left">
                     <svg class="feather feather-users" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@
                   <line x1="8" y1="12" x2="16" y2="12"></line>
                 </svg>
                 <div class="padL hide-sm">New Post</div>
-              </div></a><a class="btn btn-link" nohref onclick="onLogout(true);return false">Logout</a></div>
+              </div></a><a class="btn btn-link" nohref onclick="onLogout(false)">Logout</a></div>
         </div>
       </div>
       <div class="panel" id="list">
@@ -128,12 +128,120 @@
                     <div class="left padL">People</div>
                   </flex></a></div>
             </div>
+            <div class="d-none" id="detailp">
+              <p></p>
+              <div class="container">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="navbar">
+                      <div class="navbar-section"><a nohref onclick="closeInvite()">
+                          <div class="flex edge">
+                            <svg class="feather feather-arrow-left" viewBox="0 0 24 24">
+                              <line x1="19" y1="12" x2="5" y2="12"></line>
+                              <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                            <h6 class="back">Back</h6>
+                          </div></a></div>
+                      <div class="navbar-section"><span>Invite an Editor</span></div>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <form class="form-group" id="inviteform">
+                      <label class="form-label" for="invitees">
+                         Email</label>
+                      <input class="form-input" id="invitees" type="email" placeholder="Email">
+                      <p></p>
+                      <label class="form-label" for="cmessage">Custom Message</label>
+                      <textarea class="form-input" id="cmessage" type="textarea" rows="4" placeholder=""></textarea>
+                    </form>
+                  </div>
+                  <div class="card-footer">
+                    <div class="disabled float-right btn" id="send" onclick="send()">Send Invitation</div>
+                  </div>
+                </div>
+              </div>
+              <p></p>
+              <script>
+                depp.require(['style','ma-client'], function () {
+                
+                		$('#invitees').keyup(function(){
+                			if ($(this).is(":valid")) {
+                				$('#send').removeClass('disabled')
+                				$('#send').addClass('btn-primary')
+                			} else {
+                				$('#send').addClass('disabled')
+                				$('#send').removeClass('btn-primary')
+                			}
+                		})
+                
+                		if ('?invite'==window.location.search) //on first entry
+                			openInvite()
+                })
+                
+                function openInvite() {
+                	$('#inviteform')[0].reset()
+                	$('#detailp').removeClass('d-none')
+                	$('#invitees').focus()
+                }
+                
+                function closeInvite() {
+                	$('#inviteform')[0].reset()
+                	$('#detailp').addClass('d-none')
+                }
+                
+                var actionCodeSettings = {
+                	// Domain must be whitelisted in the Firebase Console.
+                	url: 'https://appthings.mymeta.host/screen/posts/?register',
+                	// This must be true.
+                	handleCodeInApp: true
+                }
+                
+                function send() {
+                	let emails = $('#invitees').val().split(',').join().split(' ');
+                	let i, len = emails.length
+                	let pw = '!Te456'
+                	for (i=0; i < len; i++) {
+                		email = emails[i]
+                		window.auth.createUserWithEmailAndPassword(email, pw)
+                		.then(function(user) {
+                			auth.signInWithEmailAndPassword(email, pw)
+                		})
+                		.then(function() {
+                			auth.signOut()
+                		})
+                		.then(function() {
+                			auth.sendSignInLinkToEmail(email, actionCodeSettings)
+                		})
+                		.then(function() {
+                			showSuccess('Invite sent successfully')
+                		})
+                		.catch(function(error){
+                			console.log(error) //show error in .message
+                			let msg = error
+                			if (msg=='Error: The email address is already in use by another account.')
+                				msg = 'This person has already been invited'
+                			showError(msg) 
+                		})
+                	}
+                	//when done #('#detailp').addClass('d-none')
+                }
+              </script>
+            </div>
+            <p></p>
+            <div class="container" id="tabp">
+              <ul class="tab" id="team">
+                <li class="tab-item active"><a nohref onclick="invites(0)">
+                    <div class="badge" id="teamTab" data-badge="0">Team&nbsp;</div></a></li>
+                <li class="tab-item"><a nohref onclick="invites(1)">
+                    <div class="badge" id="invitesTab" data-badge="0">Invites&nbsp;</div></a></li>
+              </ul>
+            </div>
             <p></p>
             <div class="container" id="listp">
               <ul class="nav listhead">
                 <li class="nav-item">
                   <div class="flex edge">
-                    <div class="left badge" data-badge="2">Editors</div><a class="btn right" href="#invite">
+                    <div class="left badge" data-badge="2">Editors</div><a class="btn right" nohref onclick="openInvite();return false">
                       <div class="flex edge">
                         <svg class="feather feather-user-plus" viewBox="0 0 24 24">
                           <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -195,10 +303,13 @@
               <div class="divider text-center" data-content="MyMeta Admin"></div>
             </div>
             <script>
-              close(e){
-              	e.stopPropagation();
-              	e.cancelBubble();
-              	$('a.dropdown-toggle').blur()
+              function invites(i){
+              	var oldIdx = $('#team li.active').index();
+              	$('#team li:lt('+i+')').removeClass('active')
+              	$('#team li:gt('+i+')').removeClass('active')
+              	$('#team li:eq('+i+')').addClass('active')
+              	if (i != oldIdx) //tab changed
+              		tag.render(items, i, '', callback)
               }
             </script>
           </div>
@@ -251,114 +362,126 @@
         </div>
       </div>
     </div>
+    <fb-tag></fb-tag>
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
-        <div class="modal-header"></div>
+        <div class="modal-header"> 
+          <h4 class="center">Log in to your account.</h4>
+        </div>
         <div class="modal-body">
-          <form class="grid-form" autocomplete="off">
-            <fieldset>
-              <legend>Login</legend>
-              <div data-row-span="1">
-                <div class="field" data-field-span="1">
-                  <label>Secret Code</label>
-                  <input id="code" type="password" autofocus="">
-                </div>
-              </div>
-            </fieldset><br>
+          <form class="form-group" id="loginform">
+            <label class="form-label" for="lemail">Email Address or Username</label>
+            <input class="form-input" id="lemail" type="email" placeholder="Email or Username" autocomplete="email">
+            <label class="form-label" for="lpw">Password</label>
+            <input class="form-input" id="lpw" type="password" placeholder="Password" autocomplete="current-password">
+          </form><br>
+          <div class="warn">
             <div class="toast toast-warning" id="loginMsg">Unable to serve. Is the secret code correct?</div>
-          </form>
+          </div>
         </div>
         <div class="modal-footer">
-          <button class="btn" id="butLog"> Login</button>
+          <div class="float-right btn" id="loginb">Login</div>
         </div>
       </div>
     </div>
     <script>
+      window.fb = riot.mount('fb-tag')[0] // bring in access to auth
+      
+      
+      function loginTry(arg) {
+      	console.log('try')
+      
+      	//const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
+      	const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
+      
+      	isLoggedIn(baseURL).then(function() {
+      			console.log('Lxxx yes')
+      			$('#loginScr').removeClass('active') // show app
+      			const aa = new AdminAuth()
+      			console.log(aa.secret)
+      			window.aSrv = new MetaAdminService(baseURL, aa.secret)
+      			depp.done('login')
+      			window.login.dispatch()
+      
+      			console.log('depp done login')
+      
+      			$('.delayShowing').removeClass('delayShowing')
+      
+      		}, function() {
+      				onLogout(arg)
+      				$('.delayShowing').removeClass('delayShowing')
+      
+      	})
+      }//()
+      
+      function onLogout(arg) {
+      	
+      	console.log('LXXX no')
+      	new AdminAuth().clear()
+      	$('#loginScr').addClass('active') // hide app
+      	try {
+      		delete window.aSrv
+      	} catch(err) { console.log(err) }
+      	if(arg) 
+      		$('#loginMsg').show(0)
+      	else 
+      		$('#loginMsg').hide(0) // no message
+      }
+      
+      function setupLogin() {
+      	$('#loginMsg').hide(0) // no message
+      
+      	$('#loginb').click(function(){
+      		let code = $('#lpw').val()
+      		let aa = new AdminAuth()
+      		aa.save(code)
+      		console.log(aa.secret)
+      		loginTry(true)
+      	})
+      	
+      	loginTry(false)
+      }
+      
+      depp.require(['style','ma-client'], function () {
+      	console.log('loadjs ready client, calling setupLogin')
+      	/*alert('location.search'+window.location.search)
+      	if ('?register'==window.location.search) {
+      			alert('going to register')
+      			setupRegister()
+      	}
+      	else */
+      	 {
+      		setupLogin()
+      	}
+      			
+      	console.log('after setupLogin done with login')
+      })
+      
+      // other modals
       function showError(msg){
-         $('#errorMsg').html(msg)
-         $('#error').addClass('active')
+      	$('#errorMsg').html(msg)
+      	$('#error').addClass('active')
       }
       function closeError(){
-         $('#error').removeClass('active')
+      	$('#error').removeClass('active')
       }
       
       var successCallback
       
       function showSuccess(msg, callback){
-         $('#successMsg').html(msg)
-         $('#success').addClass('active')
-         if (callback)
-               successCallback = callback
-         else 
-               successCallback = function(){}
+      	$('#successMsg').html(msg)
+      	$('#success').addClass('active')
+      	if (callback)
+      			successCallback = callback
+      	else 
+      			successCallback = function(){}
       }
       function closeSuccess(){
-         
-         $('#success').removeClass('active')
-         successCallback()
+      	
+      	$('#success').removeClass('active')
+      	successCallback()
       }
-      
-      function loginTry(arg) {
-         console.log('try')
-      
-         const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
-         //-const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
-      
-         isLoggedIn(baseURL).then(function() {
-               console.log('Lxxx yes')
-               $('#loginScr').removeClass('active') // show app
-               const aa = new AdminAuth()
-               console.log(aa.secret)
-               window.aSrv = new MetaAdminService(baseURL, aa.secret)
-               depp.done('login')
-               window.login.dispatch()
-      
-              console.log('depp done login')
-      
-               $('.delayShowing').removeClass('delayShowing')
-      
-            }, function() {
-                  onLogout(arg)
-                  $('.delayShowing').removeClass('delayShowing')
-      
-         })
-      }//()
-      
-      function onLogout(arg) {
-         console.log('LXXX no')
-         new AdminAuth().clear()
-         $('#loginScr').addClass('active') // hide app
-         try {
-            delete window.aSrv
-         } catch(err) { console.log(err) }
-         if(arg) $('#loginMsg').show(0)
-         else $('#loginMsg').hide(0) // no message
-      
-      }
-      
-      function setupLogin() {
-         $('#loginMsg').hide(0) // no message
-      
-         $('#butLog').click(function(){
-            let code = $('#code').val()
-            let aa = new AdminAuth()
-            aa.save(code)
-            console.log(aa.secret)
-            loginTry(true)
-         })
-          $('#butLogOut').click(function(){
-            onLogout(false)
-         })
-      
-         loginTry(false)
-      }
-      
-      depp.require(['style','ma-client'], function () {
-         console.log('loadjs ready client, calling setupLogin')
-         setupLogin()
-         console.log('after setupLogin done with login')
-      })
     </script>
   </body>
 </html>

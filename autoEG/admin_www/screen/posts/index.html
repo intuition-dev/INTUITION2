@@ -18,7 +18,7 @@
     .delayShowing { opacity: 0.01; }
     
   </style>
-  <script src="/layout/tags/fb-tag.min.js"></script>
+  <script src="/layout/tags/fb-tag.js"></script>
   <body>
     <div class="delayShowing" id="all">
       <div id="menuhead">
@@ -31,7 +31,7 @@
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="12" y1="8" x2="12" y2="16"></line>
                 <line x1="8" y1="12" x2="16" y2="12"></line>
-              </svg></a><a class="btn btn-link" nohref onclick="onLogout(true);return false"> 
+              </svg></a><a class="btn btn-link" nohref onclick="onLogout(false)"> 
               <svg class="feather feather-power" viewBox="0 0 24 24">
                 <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
                 <line x1="12" y1="2" x2="12" y2="12"></line>
@@ -42,7 +42,7 @@
         <div class="body panel-body">
           <p></p>
           <ul class="nav">
-            <li class="nav-item"><a href="http://blog-c1.s3-website-us-west-1.amazonaws.com" target="_blank">
+            <li class="nav-item"><a href="https://blog.appthings.io" target="_blank">
                 <div class="flex edge">
                   <div class="left">
                     <svg class="feather feather-eye" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@
           <h6>Configure</h6>
           <ul class="nav">
             <li class="nav-item">
-              <button class="btn btn-sm float-right" onclick="location.href='/screen/people/#all'">Add</button><a href="/screen/people/#all">
+              <button class="btn btn-sm float-right" onclick="location.href='/screen/people/?invite#all'">Add</button><a href="/screen/people/#all">
                 <div class="flex edge">
                   <div class="left">
                     <svg class="feather feather-users" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@
                   <line x1="8" y1="12" x2="16" y2="12"></line>
                 </svg>
                 <div class="padL hide-sm">New Post</div>
-              </div></a><a class="btn btn-link" nohref onclick="onLogout(true);return false">Logout</a></div>
+              </div></a><a class="btn btn-link" nohref onclick="onLogout(false)">Logout</a></div>
         </div>
       </div>
       <div class="panel" id="list">
@@ -161,7 +161,7 @@
               const tag = riot.mount('postlist-tag')[0] // mount the first tag
               
               depp.require(['style','ma-client','feed'], function () {
-              	tag.render(items, 0, 'http://blog-c1.s3-website-us-west-1.amazonaws.com', callback)
+              	tag.render(items, 0, 'https://blog.appthings.io', callback)
               })
               
               function callback(publishedCount, scheduledCount){
@@ -175,7 +175,7 @@
               	$('#published li:gt('+i+')').removeClass('active')
               	$('#published li:eq('+i+')').addClass('active')
               	if (i != oldIdx) //tab changed
-              		tag.render(items, i, 'http://blog-c1.s3-website-us-west-1.amazonaws.com', callback)
+              		tag.render(items, i, 'https://blog.appthings.io', callback)
               }
             </script>
           </div>
@@ -228,114 +228,126 @@
         </div>
       </div>
     </div>
+    <fb-tag></fb-tag>
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
-        <div class="modal-header"></div>
+        <div class="modal-header"> 
+          <h4 class="center">Log in to your account.</h4>
+        </div>
         <div class="modal-body">
-          <form class="grid-form" autocomplete="off">
-            <fieldset>
-              <legend>Login</legend>
-              <div data-row-span="1">
-                <div class="field" data-field-span="1">
-                  <label>Secret Code</label>
-                  <input id="code" type="password" autofocus="">
-                </div>
-              </div>
-            </fieldset><br>
+          <form class="form-group" id="loginform">
+            <label class="form-label" for="lemail">Email Address or Username</label>
+            <input class="form-input" id="lemail" type="email" placeholder="Email or Username" autocomplete="email">
+            <label class="form-label" for="lpw">Password</label>
+            <input class="form-input" id="lpw" type="password" placeholder="Password" autocomplete="current-password">
+          </form><br>
+          <div class="warn">
             <div class="toast toast-warning" id="loginMsg">Unable to serve. Is the secret code correct?</div>
-          </form>
+          </div>
         </div>
         <div class="modal-footer">
-          <button class="btn" id="butLog"> Login</button>
+          <div class="float-right btn" id="loginb">Login</div>
         </div>
       </div>
     </div>
     <script>
+      window.fb = riot.mount('fb-tag')[0] // bring in access to auth
+      
+      
+      function loginTry(arg) {
+      	console.log('try')
+      
+      	//const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
+      	const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
+      
+      	isLoggedIn(baseURL).then(function() {
+      			console.log('Lxxx yes')
+      			$('#loginScr').removeClass('active') // show app
+      			const aa = new AdminAuth()
+      			console.log(aa.secret)
+      			window.aSrv = new MetaAdminService(baseURL, aa.secret)
+      			depp.done('login')
+      			window.login.dispatch()
+      
+      			console.log('depp done login')
+      
+      			$('.delayShowing').removeClass('delayShowing')
+      
+      		}, function() {
+      				onLogout(arg)
+      				$('.delayShowing').removeClass('delayShowing')
+      
+      	})
+      }//()
+      
+      function onLogout(arg) {
+      	
+      	console.log('LXXX no')
+      	new AdminAuth().clear()
+      	$('#loginScr').addClass('active') // hide app
+      	try {
+      		delete window.aSrv
+      	} catch(err) { console.log(err) }
+      	if(arg) 
+      		$('#loginMsg').show(0)
+      	else 
+      		$('#loginMsg').hide(0) // no message
+      }
+      
+      function setupLogin() {
+      	$('#loginMsg').hide(0) // no message
+      
+      	$('#loginb').click(function(){
+      		let code = $('#lpw').val()
+      		let aa = new AdminAuth()
+      		aa.save(code)
+      		console.log(aa.secret)
+      		loginTry(true)
+      	})
+      	
+      	loginTry(false)
+      }
+      
+      depp.require(['style','ma-client'], function () {
+      	console.log('loadjs ready client, calling setupLogin')
+      	/*alert('location.search'+window.location.search)
+      	if ('?register'==window.location.search) {
+      			alert('going to register')
+      			setupRegister()
+      	}
+      	else */
+      	 {
+      		setupLogin()
+      	}
+      			
+      	console.log('after setupLogin done with login')
+      })
+      
+      // other modals
       function showError(msg){
-         $('#errorMsg').html(msg)
-         $('#error').addClass('active')
+      	$('#errorMsg').html(msg)
+      	$('#error').addClass('active')
       }
       function closeError(){
-         $('#error').removeClass('active')
+      	$('#error').removeClass('active')
       }
       
       var successCallback
       
       function showSuccess(msg, callback){
-         $('#successMsg').html(msg)
-         $('#success').addClass('active')
-         if (callback)
-               successCallback = callback
-         else 
-               successCallback = function(){}
+      	$('#successMsg').html(msg)
+      	$('#success').addClass('active')
+      	if (callback)
+      			successCallback = callback
+      	else 
+      			successCallback = function(){}
       }
       function closeSuccess(){
-         
-         $('#success').removeClass('active')
-         successCallback()
+      	
+      	$('#success').removeClass('active')
+      	successCallback()
       }
-      
-      function loginTry(arg) {
-         console.log('try')
-      
-         const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
-         //-const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
-      
-         isLoggedIn(baseURL).then(function() {
-               console.log('Lxxx yes')
-               $('#loginScr').removeClass('active') // show app
-               const aa = new AdminAuth()
-               console.log(aa.secret)
-               window.aSrv = new MetaAdminService(baseURL, aa.secret)
-               depp.done('login')
-               window.login.dispatch()
-      
-              console.log('depp done login')
-      
-               $('.delayShowing').removeClass('delayShowing')
-      
-            }, function() {
-                  onLogout(arg)
-                  $('.delayShowing').removeClass('delayShowing')
-      
-         })
-      }//()
-      
-      function onLogout(arg) {
-         console.log('LXXX no')
-         new AdminAuth().clear()
-         $('#loginScr').addClass('active') // hide app
-         try {
-            delete window.aSrv
-         } catch(err) { console.log(err) }
-         if(arg) $('#loginMsg').show(0)
-         else $('#loginMsg').hide(0) // no message
-      
-      }
-      
-      function setupLogin() {
-         $('#loginMsg').hide(0) // no message
-      
-         $('#butLog').click(function(){
-            let code = $('#code').val()
-            let aa = new AdminAuth()
-            aa.save(code)
-            console.log(aa.secret)
-            loginTry(true)
-         })
-          $('#butLogOut').click(function(){
-            onLogout(false)
-         })
-      
-         loginTry(false)
-      }
-      
-      depp.require(['style','ma-client'], function () {
-         console.log('loadjs ready client, calling setupLogin')
-         setupLogin()
-         console.log('after setupLogin done with login')
-      })
     </script>
   </body>
 </html>
