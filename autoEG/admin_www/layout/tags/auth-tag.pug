@@ -1,0 +1,89 @@
+auth-tag
+	script.
+		// Firebase config
+		const fconfig = {
+			apiKey: 'AIzaSyCU3yQSeCsQ'+'-'+'uIDAl3ooT8LqaVWQAutHMI', // + is to help obfuscate
+			authDomain: 'mymeta-host.firebaseapp.com',
+			projectId: 'mymeta-host'
+		}
+
+		// Meta build server API endpoint
+		const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
+
+
+		//window.db1  = window.firebase.firestore()
+		//const dsettings = {/* your settings... */ timestampsInSnapshots: true}
+		//db1.settings(dsettings)
+
+		// example use ///////////////////////////////////////////////////////////
+		/* put in header or better yet in a RIOT tag
+		*/
+		// in FireBase set:
+		// allow read, write: if request.auth.token.email_verified == true ;
+
+		// you should setup your Firestore so only auth user can access:
+		// console.log('auth', isUserIn()) // if not, you can gray out the page with a modal
+
+		// RW generic ///////////////////////////////////////////////////////////////////
+		window.firebase.initializeApp(fconfig)
+		this.impl = firebase.auth()
+		this.impl.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
+		isLoggedIn(){
+			return AdminAuth.isLoggedIn()
+		}
+
+		ensureService(){
+			if (!window.aSrv && this.isLoggedIn())
+				window.aSrv = new MetaAdminService(baseURL)
+				//get last?
+			depp.done('login')
+			console.log('ensure servicd depp.done login')
+		} 
+
+		signInWithEmailAndPassword(email, pw) {
+			return this.impl.signInWithEmailAndPassword(email, pw)
+		}
+
+		logout() {
+			AdminAuth.clear() //also deletes window.aSrv
+			return this.impl.signOut()
+		}
+
+		connectToService(username, code){
+			AdminAuth.save(username, code) //set sessionStorage (still used as flag)
+			//window.aSrv = new MetaAdminService(baseURL) //No need to send credentials, Firebase uses request/cookie header
+			window.aSrv = connect(baseURL) //No need to send credentials, Firebase uses request/cookie header
+			.then(function(user) {
+				depp.done('login')
+				console.log('connectToService depp.done login')
+			})
+		}
+
+		// AUTH //////////////////////////////////////////////////
+		function isUserIn() { // use this to check if user is auth and valid
+			if(!this.impl || !this.impl.currentUser) return false
+			//return this.impl.currentUser.emailVerified
+			return true
+		}
+
+		this.impl.onAuthStateChanged(function(user_) {
+			if (isUserIn()) {
+				console.log('CRUDauth', true)
+			}
+			else {
+				console.log('CRUDauth','bye')
+			}
+		})//auth
+
+		sendEmailVerification() {
+			if(!isUserIn()) {
+				alert('sending', this.impl.currentUser)
+				console.log('sending', this.impl.currentUser)
+				this.impl.currentUser.sendEmailVerification()
+			}
+			else {
+				alert('no currentUser')
+				console.log('no currentUser')
+			}
+		}

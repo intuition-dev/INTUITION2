@@ -12,29 +12,46 @@ console.log('ma-client-services', 'v4.11.23')
 /**
 * Login and logout to Meta Admin Service
 * @example
-	const aa = new AdminAuth()
-	aa.save('123')
-	console.log(aa.secret)
-
+	//const aa = new AdminAuth()
+	AdminAuth.save('admin', '123')
+	
 	const  baseURL = 'http://localhost:9083'
-	const aSrv = new MetaAdminService(baseURL, aa.secret)
+	const aSrv = new MetaAdminService(baseURL, AdminAuth.username, AdminAuth.secret)
 */
 class AdminAuth {
 	/**
+	* @param username that you get from admin.yaml on server
 	* @param secret that you get from admin.yaml on server
 	*/
-	save(secret) {
-		sessionStorage.setItem('maAuth', secret)
+	static save(username, secret) {
+		if (username)
+			sessionStorage.setItem('maUsername', username)
+		if (secret)
+			sessionStorage.setItem('maAuth', secret)
 	}
+
 	/**
-	* @returns secret used for MetaAdminService
+	* @returns whether 
 	*/
-	get secret() {
+	static isLoggedIn() {
+		return sessionStorage.hasOwnProperty('maAuth') && sessionStorage.hasOwnProperty('maUsername')
+	}
+
+	/**
+	* @returns password used for MetaAdminService
+	*/
+	static secret() {
 		return sessionStorage.getItem('maAuth')
 	}
 	/**
-	@returns true if secret exists
+	* @returns username used for MetaAdminService
 	*/
+	static username() {
+		return sessionStorage.getItem('maUsername')
+	}
+	
+	/**
+	@returns true if secret exists
 	exists() {
 		if (!this.secret)
 			return false
@@ -42,11 +59,17 @@ class AdminAuth {
 			return false
 		return true
 	}
+	*/
+	
 	/**
 	* Clear, for logout
 	*/
-	clear() {
+	static clear() {
 		sessionStorage.removeItem('maAuth')
+		sessionStorage.removeItem('maUsername')
+		try {
+			delete window.aSrv
+		} catch(err) { console.log(err) }
 	}
 }//()
 
@@ -55,12 +78,13 @@ class AdminAuth {
 * Needs Axios js loaded before).
 * @returns MetaAdminService instance
 * @param baseUrl - e.g. 'http://localhost:9083'
+* @param username - e.g. 'admin'
 * @param secret - e.g. '123'
 * @example
-*   loadjs('/ma-client-services.js','ma-client')
-*   loadjs.ready(['ma-client'], function () {
+*   depp.define('ma-client', '/admin-client.js')
+*   depp.require(['ma-client'], function () {
 *   const  baseURL = 'http://localhost:9083'
-*   const aSrv = new MetaAdminService(baseURL, '123')
+*   const aSrv = new MetaAdminService(baseURL, 'admin', 123')
 *    aSrv.getLast().then(function(resp) {
 *        console.log(resp.data)
 *    }).catch(function (error) {
@@ -69,15 +93,16 @@ class AdminAuth {
 *    })//ready
 */
 class MetaAdminService {
-	constructor(baseURL_, secret) {
+	constructor(baseURL_, username, secret) {
 		console.log(secret)
 		this.service = axios.create({
 			baseURL: baseURL_
 			, auth: {
-				username: 'admin',
+				username: username,
 				password: secret
 			}
 		})
+
 	}//cons
 
 	/**
@@ -250,22 +275,21 @@ class MetaAdminService {
 }//class
 
 /**
-* Is the user logged in, based on saved cookie
+* Connect the user, based on saved cookie
 @param URL of service
 @returns a promise
 @example
-	 isLoggedIn(baseURL).then(function() {//ok
+	 connect(baseURL).then(function() {//ok
 			console.log('Lxxx yes')
 	 }, function() {//rejected
 			console.log('LXXX no')
 	 })
 */
-function isLoggedIn(url) {
-	const aa = new AdminAuth()
+function connect(url) {
 	return new Promise(function(resolve, reject) {
-		if (aa.exists()) {
+		if (AdminAuth.isLoggedIn()) {
 				const  baseURL = url
-				let maSrv = new MetaAdminService(baseURL, aa.secret)
+				let maSrv = new MetaAdminService(baseURL, AdminAuth.username, AdminAuth.secret) //only needed with basic auth
 				maSrv.getLast().then(function(resp) {
 					console.log(resp.data)
 					resolve()

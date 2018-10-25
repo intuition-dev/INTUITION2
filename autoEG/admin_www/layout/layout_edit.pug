@@ -19,7 +19,7 @@ html
 	style.
 		.delayShowing { opacity: 0.01; }
 
-	script(src='/layout/tags/fb-tag.min.js')
+	script(src='/layout/tags/auth-tag.js')
 	script(src='/screen/posts/tags/editor-tag.js')
 	script(src='/screen/posts/tags/featuredimage-tag.min.js')
 	script(src='/screen/posts/tags/medialist-tag.js')
@@ -160,11 +160,8 @@ html
 			function userSzSc() {
 				console.log('resize|scroll')
 			}
-			console.log('console.log stops working ater jquery is loaded???')
 
 		script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
-		script.
-			console.log('console.log should still work after jquery, but it does not ')
 		script(src= ROOT + 'assets/js/setup.js')
 		script.
 			depp.define({'css': [

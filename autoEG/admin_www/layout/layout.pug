@@ -19,7 +19,7 @@ html
 	style.
 		.delayShowing { opacity: 0.01; }
 
-	script(src='/layout/tags/fb-tag.js')
+	script(src='/layout/tags/auth-tag.js')
 
 	body
 		#all.delayShowing
@@ -57,7 +57,7 @@ html
 									line(x1='12', y1='8', x2='12', y2='16')
 									line(x1='8', y1='12', x2='16', y2='12')
 								.padL.hide-sm New Post
-						a.btn.btn-link(nohref, onclick='onLogout(false)') Logout
+						a.btn.btn-link(nohref, onclick='onLogout()') Logout
 			#list.panel
 				.body.panel-body
 					#router
@@ -67,11 +67,8 @@ html
 			function userSzSc() {
 				console.log('resize|scroll')
 			}
-			console.log('console.log stops working ater jquery is loaded???')
 
 		script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
-		script.
-			console.log('console.log should still work after jquery but it does not ')
 		script(src= ROOT + 'assets/js/setup.js')
 
 		script.

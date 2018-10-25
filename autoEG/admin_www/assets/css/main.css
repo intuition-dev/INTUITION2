@@ -311,11 +311,11 @@ li .btn-sm {
 	max-width: 400px;
 }
 
-#loginScr .warn {
-	height: 100px; /* room for warning */
+#loginMsg {
+	font-size: smaller;
+	text-align: left;
+	margin-right: 15px;
 }
-
-
 
 /* List page (CSS off-canvas on small screen) */
 #all { /* left side container ID for header and menu */
