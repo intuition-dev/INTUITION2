@@ -9,11 +9,10 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "buffer-image-size": "^0.6.4",
     "cors": "^2.8.4",
     "express": "^4.16.4",
     "express-basic-auth": "^1.1.5",
-    "mbake": ">=4.11.19",
+    "mbake": ">=4.11.23",
     "slugify": "^1.3.1"
   }
 }
