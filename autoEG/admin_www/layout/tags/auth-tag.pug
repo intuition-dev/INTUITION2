@@ -51,13 +51,30 @@ auth-tag
 		}
 
 		connectToService(username, code){
+
 			AdminAuth.save(username, code) //set sessionStorage (still used as flag)
+			
+			this.impl.currentUser.getIdToken(false) ///* forceRefresh */ true)
+			.then(function(idToken) {
+				//console.log(idToken)
+				AdminAuth.saveJwt(idToken)
+				window.aSrv = connect(baseURL) //No need to send credentials, Firebase uses request/cookie header
+				.then(function(user) {
+					depp.done('login')
+					console.log('connectToService depp.done login')
+				})
+
+			}).catch(function(error) {
+			 alert(error)
+			});
+
+			/*AdminAuth.save(username, code) //set sessionStorage (still used as flag)
 			//window.aSrv = new MetaAdminService(baseURL) //No need to send credentials, Firebase uses request/cookie header
 			window.aSrv = connect(baseURL) //No need to send credentials, Firebase uses request/cookie header
 			.then(function(user) {
 				depp.done('login')
 				console.log('connectToService depp.done login')
-			})
+			})*/
 		}
 
 		// AUTH //////////////////////////////////////////////////

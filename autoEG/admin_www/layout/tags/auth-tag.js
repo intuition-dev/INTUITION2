@@ -35,13 +35,23 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     }.bind(this)
 
     this.connectToService = function(username, code){
+
     	AdminAuth.save(username, code)
 
-    	window.aSrv = connect(baseURL)
-    	.then(function(user) {
-    		depp.done('login')
-    		console.log('connectToService depp.done login')
-    	})
+    	this.impl.currentUser.getIdToken(false)
+    	.then(function(idToken) {
+
+    		AdminAuth.saveJwt(idToken)
+    		window.aSrv = connect(baseURL)
+    		.then(function(user) {
+    			depp.done('login')
+    			console.log('connectToService depp.done login')
+    		})
+
+    	}).catch(function(error) {
+    	 alert(error)
+    	});
+
     }.bind(this)
 
     function isUserIn() {

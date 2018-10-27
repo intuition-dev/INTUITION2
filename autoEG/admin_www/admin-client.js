@@ -30,6 +30,21 @@ class AdminAuth {
 			sessionStorage.setItem('maAuth', secret)
 	}
 
+	static saveJwt(token) {
+		if (token) 
+			sessionStorage.setItem('jwtToken', token)
+		else
+			sessionStorage.removeItem('jwtToken')
+
+	}
+
+	static headers() {
+		if (this.jwt())
+			return { headers: { 'Authorization': `Bearer `+ this.jwt() }}
+		else 
+			return {}
+	}
+
 	/**
 	* @returns whether 
 	*/
@@ -48,6 +63,13 @@ class AdminAuth {
 	*/
 	static username() {
 		return sessionStorage.getItem('maUsername')
+	}
+
+	/**
+	* @returns JWT token used for MetaAdminService
+	*/
+	static jwt() {
+		return sessionStorage.getItem('jwtToken')
 	}
 	
 	/**
@@ -95,13 +117,23 @@ class AdminAuth {
 class MetaAdminService {
 	constructor(baseURL_, username, secret) {
 		console.log(secret)
-		this.service = axios.create({
-			baseURL: baseURL_
-			, auth: {
-				username: username,
-				password: secret
-			}
-		})
+		if (AdminAuth.jwt())
+		{
+			this.service = axios.create({
+				baseURL: baseURL_
+				, headers: AdminAuth.headers() 
+			})
+		}
+		else
+		{
+			this.service = axios.create({
+				baseURL: baseURL_
+				, auth: {
+					username: username,
+					password: secret
+				}
+			})
+		}
 
 	}//cons
 
@@ -122,7 +154,7 @@ class MetaAdminService {
 	* @param folder folder - e.g. '/'
 	*/
 	getLast() {
-		return this.service.get('/api/last')
+		return this.service.get('/api/last', AdminAuth.headers())
 	}
 	/**
 	* Returns a list of items in that folder (from dat_i.yaml)
@@ -131,7 +163,7 @@ class MetaAdminService {
 	*/
 	getItems(folder) {
 		let dir = '?folder='+folder
-		return this.service.get('/api/items'+dir)
+		return this.service.get('/api/items'+dir, AdminAuth.headers())
 	}
 	/**
 	* Does an mbake 'bake' in that folder
@@ -140,7 +172,7 @@ class MetaAdminService {
 	*/
 	bake(folder) {
 		let dir = '?folder='+folder
-		return this.service.get('/api/bake'+dir)
+		return this.service.get('/api/bake'+dir, AdminAuth.headers())
 	}
 	/**
 	* Does an mbake -t 'tag process' in that folder
@@ -149,16 +181,16 @@ class MetaAdminService {
 	*/
 	tag(folder) {
 		let dir = '?folder='+folder
-		return this.service.get('/api/tag'+dir)
+		return this.service.get('/api/tag'+dir, AdminAuth.headers())
 	}
 	/**
 	* Does an mbake -i 'itemize' from the mount
 	* @returns a promise, then(resp.dat)/catch{error}
 	* @param folder folder - e.g. '/blog'
 	*/
-	 temize(folder) {
+	itemize(folder) {
 		let dir = '?folder='+folder
-		return this.service.get('/api/itemize'+dir)
+		return this.service.get('/api/itemize'+dir, AdminAuth.headers() )
 	}
 	/**
 	* Try to get title, image and desc of an url. Can be used for linkblog.
@@ -167,7 +199,7 @@ class MetaAdminService {
 	*/
 	scrape(url) {
 		let arg = '?url='+btoa(url)
-		return this.service.get('/api/scrape'+arg)
+		return this.service.get('/api/scrape'+arg, AdminAuth.headers())
 	}
 	/**
 	* Creates a new link blog item
@@ -187,7 +219,7 @@ class MetaAdminService {
 
 		return this.service.post('/api/newLinkBlog'+arg, {
 				comment: comment_, tags: tags_
-		})
+		}, AdminAuth.headers())
 	}
 
 	/**
@@ -208,7 +240,7 @@ class MetaAdminService {
 			 action: 'insert', folder: folder_, title: title_, summary: summary_, content: content_, 
 			 date_published: date_published_, tags: tags_, 
 			 f1name: f1name_, f1: f1_, fx: fx_
-		})
+		}, AdminAuth.headers())
 	}
 
 	/**
@@ -229,7 +261,7 @@ class MetaAdminService {
 			 folder: folder_, title: title_, summary: summary_, content: content_, 
 			 date_published: date_published_, tags: tags_, 
 			 f1name: f1name_, f1: f1_, fx: fx_
-		})
+		}, AdminAuth.headers())
 	}
 
 
@@ -243,7 +275,7 @@ class MetaAdminService {
 		let arg = '?src=' + src
 		arg = arg + '&dest=' + dest
 		console.log(arg)
-		return this.service.get('/api/clone'+arg)
+		return this.service.get('/api/clone'+arg, AdminAuth.headers())
 	}
 
 	/**
@@ -259,7 +291,7 @@ class MetaAdminService {
 		let arg = '?listfolder=' + listfolder
 		arg = arg + '&item=' + item
 		console.log(arg)
-		return this.service.get('/api/removeitem'+arg)
+		return this.service.get('/api/removeitem'+arg, AdminAuth.headers())
 	}
 
 	/**
@@ -269,7 +301,7 @@ class MetaAdminService {
 	* @param item - e.g. 'my-first-post', the item to be removed
 	*/
 	getItem(path) {
-		return this.service.get('/api/item?path='+path)
+		return this.service.get('/api/item?path='+path, AdminAuth.headers())
 	}
 
 }//class

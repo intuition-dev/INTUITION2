@@ -339,11 +339,13 @@
       		//loginTry(true)
       		auth.signInWithEmailAndPassword(username, code) // tag
       		.then(function(user) {
+      			console.log(JSON.stringify(user))
       			$('#loginMsg').text('')
       			$('#loginMsg').hide()
       			//alert(JSON.stringify(user));
       			auth.connectToService(username, code)
       			$('#loginScr').removeClass('active') //hide the login popup
+      			return
       		})
       		.catch(function(error){
       			$('#loginMsg').text(error.message)
