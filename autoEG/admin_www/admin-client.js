@@ -16,7 +16,7 @@ console.log('ma-client-services', 'v4.11.23')
 	AdminAuth.save('admin', '123')
 	
 	const  baseURL = 'http://localhost:9083'
-	const aSrv = new MetaAdminService(baseURL, AdminAuth.username, AdminAuth.secret)
+	const aSrv = new MetaAdminService(baseURL, AdminAuth.username(), AdminAuth.secret())
 */
 class AdminAuth {
 	/**
@@ -39,8 +39,9 @@ class AdminAuth {
 	}
 
 	static headers() {
-		if (this.jwt())
+		if (this.jwt()) {
 			return { headers: { 'Authorization': `Bearer `+ this.jwt() }}
+		}
 		else 
 			return {}
 	}
@@ -49,7 +50,8 @@ class AdminAuth {
 	* @returns whether 
 	*/
 	static isLoggedIn() {
-		return sessionStorage.hasOwnProperty('maAuth') && sessionStorage.hasOwnProperty('maUsername')
+		return (sessionStorage.hasOwnProperty('maAuth') && sessionStorage.hasOwnProperty('maUsername'))
+		|| sessionStorage.hasOwnProperty('jwtToken')
 	}
 
 	/**
@@ -71,24 +73,14 @@ class AdminAuth {
 	static jwt() {
 		return sessionStorage.getItem('jwtToken')
 	}
-	
-	/**
-	@returns true if secret exists
-	exists() {
-		if (!this.secret)
-			return false
-		if (this.secret.length<2)
-			return false
-		return true
-	}
-	*/
-	
+		
 	/**
 	* Clear, for logout
 	*/
 	static clear() {
 		sessionStorage.removeItem('maAuth')
 		sessionStorage.removeItem('maUsername')
+		sessionStorage.removeItem('jwtToken')
 		try {
 			delete window.aSrv
 		} catch(err) { console.log(err) }
@@ -116,7 +108,7 @@ class AdminAuth {
 */
 class MetaAdminService {
 	constructor(baseURL_, username, secret) {
-		console.log(secret)
+		//console.log(secret) //function?
 		if (AdminAuth.jwt())
 		{
 			this.service = axios.create({
@@ -126,6 +118,9 @@ class MetaAdminService {
 		}
 		else
 		{
+			if (username && secret)
+				AdminAuth.save(username, secret)
+			
 			this.service = axios.create({
 				baseURL: baseURL_
 				, auth: {
@@ -319,15 +314,20 @@ class MetaAdminService {
 */
 function connect(url) {
 	return new Promise(function(resolve, reject) {
+		console.log('connect')
 		if (AdminAuth.isLoggedIn()) {
+				console.log('is logged in. window.aSrv')
 				const  baseURL = url
-				let maSrv = new MetaAdminService(baseURL, AdminAuth.username, AdminAuth.secret) //only needed with basic auth
-				maSrv.getLast().then(function(resp) {
+				window.aSrv = new MetaAdminService(baseURL, AdminAuth.username(), AdminAuth.secret()) //only needed with basic auth
+				
+
+
+				window.aSrv.getLast().then(function(resp) {
 					console.log(resp.data)
 					resolve()
 				}).catch(function (error) {
 					console.log(error)
-					console.log(maSrv.getError(error))
+					console.log(window.aSrv.getError(error))
 					reject()
 				})
 		} else //if no cookie

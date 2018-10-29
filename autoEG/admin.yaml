@@ -9,8 +9,8 @@ services_port: 9083
 
 # auth options: basic, firebase (+future: cognito)
 auth: firebase
-basic_users: {'admin': 123 }  #username and password when using basic auth
-firebase_config: firebase-config.json # when using firebase auth, see install notes
+#basic_users: {'admin': 123 }  #username and password when using basic auth
+firebase_config: /home/admin/.firebase/firebase-config.json # when using firebase auth, see install notes
 
 # app - in dev mode ## don't host via node, node is not for production
 #mount: /Users/code/Documents/GitHub/examples/examples/blog

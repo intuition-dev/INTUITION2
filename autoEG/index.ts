@@ -19,6 +19,7 @@ const yaml = require('js-yaml')
 const fs = require('fs')
 const bodyParser = require('body-parser')
 const slugify = require('slugify')
+const nocache = require('nocache');
 
 import { RetMsg, MetaPro2, Watch2, AdminSrv, MDevSrv2, Scrape, FileOps, Dat, Ver } from 'mbake/lib/Base'
 
@@ -62,6 +63,7 @@ else //basic
 server.use(bodyParser({limit: '10mb', extended: true }))
 server.use(bodyParser.urlencoded({ extended: false }))
 server.use(bodyParser.json())
+server.use(nocache())
  
 
 const mp = new MetaPro2(config.mount)

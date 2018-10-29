@@ -484,17 +484,12 @@
       	$('#loginb').click(function(){
       		let username = $('#lemail').val()
       		let code = $('#lpw').val()
-      		//let aa = new AdminAuth()
-      		//aa.save(username, code)
-      		//console.log(aa.secret)
-      		//loginTry(true)
-      		auth.signInWithEmailAndPassword(username, code) // tag
-      		.then(function(user) {
-      			console.log(JSON.stringify(user))
+      
+      		auth.login(username, code) // tag
+      		.then(function() {
+      			depp.done('login')
       			$('#loginMsg').text('')
       			$('#loginMsg').hide()
-      			//alert(JSON.stringify(user));
-      			auth.connectToService(username, code)
       			$('#loginScr').removeClass('active') //hide the login popup
       			return
       		})
@@ -502,13 +497,13 @@
       			$('#loginMsg').text(error.message)
       			$('#loginMsg').show()
       		})
-      		
       	})
       
-      	if (!auth.isLoggedIn()) // tag
-      		$('#loginScr').addClass('active') // show login
+      	if (auth.isLoggedIn()) // tag
+      		auth.ensureService() //recreates MetaAdminService after page nav and sets depp.done('login')
       	else
-      		auth.ensureService()
+      		$('#loginScr').addClass('active') // show login popup
+      
       	$('.delayShowing').removeClass('delayShowing')
       
       	/*alert('location.search'+window.location.search)

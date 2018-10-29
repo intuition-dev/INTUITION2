@@ -18,15 +18,37 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     }.bind(this)
 
     this.ensureService = function(){
-    	if (!window.aSrv && this.isLoggedIn())
+    	if (!window.aSrv && this.isLoggedIn()) {
     		window.aSrv = new MetaAdminService(baseURL)
-
-    	depp.done('login')
-    	console.log('ensure servicd depp.done login')
+    		depp.done('login')
+    	}
     }.bind(this)
 
-    this.signInWithEmailAndPassword = function(email, pw) {
-    	return this.impl.signInWithEmailAndPassword(email, pw)
+    this.login = function(email, pw) {
+
+    	AdminAuth.save(email, pw)
+    	const impl = this.impl
+
+    	return new Promise(function(resolve, reject) {
+
+    		impl.signInWithEmailAndPassword(email, pw).then(function(user) {
+
+    			return impl.currentUser.getIdToken(false)
+    		})
+    		.then(function(idToken) {
+    			AdminAuth.saveJwt(idToken)
+    			window.aSrv = new MetaAdminService(baseURL)
+    			return window.aSrv.getLast()
+    		})
+    		.then(function() {
+    			resolve()
+    		}).catch(function (error) {
+    			console.log(error)
+    			console.log(window.aSrv.getError(error))
+    			reject(error)
+    		})
+
+    	})
     }.bind(this)
 
     this.logout = function() {
@@ -40,7 +62,7 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
 
     	this.impl.currentUser.getIdToken(false)
     	.then(function(idToken) {
-
+    		console.log(idToken)
     		AdminAuth.saveJwt(idToken)
     		window.aSrv = connect(baseURL)
     		.then(function(user) {
