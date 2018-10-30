@@ -9,6 +9,13 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
 
     const baseURL = 'https://appthingsapi.mymeta.host'
 
+    const actionCodeSettings = {
+
+    	url: 'https://appthings.mymeta.host/screen/posts/?register',
+
+    	handleCodeInApp: true
+    }
+
     window.firebase.initializeApp(fconfig)
     this.impl = firebase.auth()
     this.impl.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -25,7 +32,6 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     }.bind(this)
 
     this.login = function(email, pw) {
-
     	AdminAuth.save(email, pw)
     	const impl = this.impl
 
@@ -47,7 +53,38 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     			console.log(window.aSrv.getError(error))
     			reject(error)
     		})
+    	})
+    }.bind(this)
 
+    this.invite = function(email) {
+    	const impl = this.impl
+    	let pw = '!Te456'
+
+    	return new Promise(function(resolve, reject) {
+
+    		impl.createUserWithEmailAndPassword(email, pw)
+    		.then(function(user) {
+    			impl.signInWithEmailAndPassword(email, pw)
+    		})
+    		.then(function() {
+    			impl.signOut()
+    		})
+    		.then(function() {
+    			impl.sendSignInLinkToEmail(email, actionCodeSettings)
+    		})
+    		.then(function() {
+    			impl.signInWithEmailAndPassword(AdminAuth.username(), AdminAuth.secret())
+    		})
+    		.then(function() {
+    			resolve()
+    		})
+    		.catch(function(error){
+    			console.log(error)
+    			let msg = error
+    			if (msg=='Error: The email address is already in use by another account.')
+    				msg = 'This person has already been invited'
+    			reject(msg)
+    		})
     	})
     }.bind(this)
 

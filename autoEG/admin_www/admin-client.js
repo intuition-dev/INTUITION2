@@ -160,6 +160,15 @@ class MetaAdminService {
 		let dir = '?folder='+folder
 		return this.service.get('/api/items'+dir, AdminAuth.headers())
 	}
+
+	/**
+	* Returns a list of users from the selected authorization (basic, firebase, future AWS Cognito)
+	* @returns a promise, then(resp.dat)/catch{error}
+	*/
+	getUsers() {
+		let arg = '?folder=team'
+		return this.service.get('/api/users'+arg, AdminAuth.headers())
+	}
 	/**
 	* Does an mbake 'bake' in that folder
 	* @returns a promise, then(resp.dat)/catch{error}
@@ -235,6 +244,12 @@ class MetaAdminService {
 			 action: 'insert', folder: folder_, title: title_, summary: summary_, content: content_, 
 			 date_published: date_published_, tags: tags_, 
 			 f1name: f1name_, f1: f1_, fx: fx_
+		}, AdminAuth.headers())
+	}
+
+	newUser(folder_, role, f1name_, f1_) {
+		return this.service.post('/api/user', {
+			action: 'insert', folder: folder_, role: role_, f1name: f1name_, f1: f1_
 		}, AdminAuth.headers())
 	}
 

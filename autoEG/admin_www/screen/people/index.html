@@ -113,6 +113,22 @@
       <div class="panel" id="list">
         <div class="body panel-body">
           <div id="router">
+            <script src="/screen/people/tags/userlist-tag.js"> </script>
+            <script>
+              depp.require(['style','ma-client', 'login'], function() {
+              	console.log('depp ready, user is logged in, will call getUsers')
+              	window.aSrv.getUsers('').then(listRes)
+              })
+              
+              function listRes(resp) {
+              	items = resp.data._cmd
+              	console.log(items)
+              	alert(items)
+              	depp.done('items')
+              }
+              
+              
+            </script>
             <div class="show-sm">
               <div class="container" id="navp"><a href="/screen/people/#">
                   <flex class="left">
@@ -150,9 +166,6 @@
                       <label class="form-label" for="invitees">
                          Email</label>
                       <input class="form-input" id="invitees" type="email" placeholder="Email">
-                      <p></p>
-                      <label class="form-label" for="cmessage">Custom Message</label>
-                      <textarea class="form-input" id="cmessage" type="textarea" rows="4" placeholder=""></textarea>
                     </form>
                   </div>
                   <div class="card-footer">
@@ -164,19 +177,19 @@
               <script>
                 depp.require(['style','ma-client'], function () {
                 
-                		$('#invitees').keyup(function(){
-                			if ($(this).is(":valid")) {
-                				$('#send').removeClass('disabled')
-                				$('#send').addClass('btn-primary')
-                			} else {
-                				$('#send').addClass('disabled')
-                				$('#send').removeClass('btn-primary')
-                			}
-                		})
-                
-                		if ('?invite'==window.location.search) //on first entry
-                			openInvite()
+                	$('#invitees').keyup(function(){
+                		if ($(this).is(":valid")) {
+                			$('#send').removeClass('disabled')
+                			$('#send').addClass('btn-primary')
+                		} else {
+                			$('#send').addClass('disabled')
+                			$('#send').removeClass('btn-primary')
+                		}
+                	})
                 })
+                
+                if ('?invite'==window.location.search) //on first entry
+                	openInvite()
                 
                 function openInvite() {
                 	$('#inviteform')[0].reset()
@@ -189,29 +202,12 @@
                 	$('#detailp').addClass('d-none')
                 }
                 
-                var actionCodeSettings = {
-                	// Domain must be whitelisted in the Firebase Console.
-                	url: 'https://appthings.mymeta.host/screen/posts/?register',
-                	// This must be true.
-                	handleCodeInApp: true
-                }
-                
                 function send() {
                 	let emails = $('#invitees').val().split(',').join().split(' ');
                 	let i, len = emails.length
                 	let pw = '!Te456'
                 	for (i=0; i < len; i++) {
-                		email = emails[i]
-                		window.auth.createUserWithEmailAndPassword(email, pw)
-                		.then(function(user) {
-                			auth.signInWithEmailAndPassword(email, pw)
-                		})
-                		.then(function() {
-                			auth.signOut()
-                		})
-                		.then(function() {
-                			auth.sendSignInLinkToEmail(email, actionCodeSettings)
-                		})
+                		auth.invite(emails[i])
                 		.then(function() {
                 			showSuccess('Invite sent successfully')
                 		})
@@ -233,7 +229,7 @@
                 <li class="tab-item active"><a nohref onclick="invites(0)">
                     <div class="badge" id="teamTab" data-badge="0">Team&nbsp;</div></a></li>
                 <li class="tab-item"><a nohref onclick="invites(1)">
-                    <div class="badge" id="invitesTab" data-badge="0">Invites&nbsp;</div></a></li>
+                    <div class="badge" id="invitedTab" data-badge="0">Invites&nbsp;</div></a></li>
               </ul>
             </div>
             <p></p>
@@ -241,7 +237,7 @@
               <ul class="nav listhead">
                 <li class="nav-item">
                   <div class="flex edge">
-                    <div class="left badge" data-badge="2">Editors</div><a class="btn right" nohref onclick="openInvite();return false">
+                    <div class="left badge" id="members" data-badge="0">Members</div><a class="btn right" nohref onclick="openInvite();return false">
                       <div class="flex edge">
                         <svg class="feather feather-user-plus" viewBox="0 0 24 24">
                           <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -254,55 +250,27 @@
                   </div>
                 </li>
               </ul>
-              <ul class="nav listbody">
-                <li class="nav-item"><a href="/screen/people/#">
-                    <div class="flex edge">
-                      <div class="left"> 
-                        <figure class="avatar avatar-xl"><img src="/assets/img/wolf.jpg" alt="Wolfgang Gehner"></figure>
-                        <div class="card padL">
-                          <div class="card-title h6">Wolfgang Gehner</div>
-                          <div class="card-subtitle text-gray">Editor</div>
-                        </div>
-                      </div>
-                      <div class="right">
-                        <div class="dropdown dropdown-right right"><a class="dropdown-toggle" href="#" tabindex="0">...</a>
-                          <ul class="menu">
-                            <li class="menu-item"><a href="#" onclick="alert('bla');close()">Edit</a></li>
-                            <li class="menu-item"><a href="/screen/people/#">Delete</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div></a></li>
-                <li class="nav-item"><a href="/screen/people/#">
-                    <div class="flex edge">
-                      <div class="left"> 
-                        <figure class="avatar avatar-xl"><img src="/assets/img/vic.jpg" alt="Vic Cekvenich"></figure>
-                        <div class="card padL">
-                          <div class="card-title h6">Vic Cekvenich</div>
-                          <div class="card-subtitle text-gray">Editor</div>
-                        </div>
-                      </div>
-                      <div class="right">
-                        <div class="dropdown dropdown-right right"><a class="dropdown-toggle" href="#" tabindex="0">
-                            <svg class="feather feather-more-horizontal" viewBox="0 0 24 24">
-                              <circle cx="12" cy="12" r="1"></circle>
-                              <circle cx="19" cy="12" r="1"></circle>
-                              <circle cx="5" cy="12" r="1"></circle>
-                            </svg></a>
-                          <ul class="menu">
-                            <li class="menu-item"><a href="/screen/people/#">Edit</a></li>
-                            <li class="menu-item"><a href="/screen/people/#">Delete</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div></a></li>
-              </ul>
+              <userlist-tag></userlist-tag>
             </div>
             <p></p>
             <div class="container" id="footp">
               <div class="divider text-center" data-content="MyMeta Admin"></div>
             </div>
+            <script></script>
             <script>
+              const tag = riot.mount('userlist-tag')[0] // mount the first tag
+              
+              depp.require(['style','ma-client','items'], function () {
+              	tag.render(items, 0, 'https://blog.appthings.io', callback)
+              })
+              
+              function callback(teamCount, invitedCount){
+              	$('#teamTab').attr('data-badge', teamCount)
+              	$('#members').attr('data-badge', teamCount)
+              	$('#invitedTab').attr('data-badge', ''+invitedCount)
+              }
+              
+              
               function invites(i){
               	var oldIdx = $('#team li.active').index();
               	$('#team li:lt('+i+')').removeClass('active')

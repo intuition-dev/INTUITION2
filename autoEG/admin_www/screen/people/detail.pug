@@ -23,28 +23,28 @@ p
 							line(x1='12', y1='17', x2='12', y2='17')
 				//-input#invitees.form-input(type='email', multiple, placeholder='Email')
 				input#invitees.form-input(type='email', placeholder='Email')
-				p
-				label.form-label(for='cmessage') Custom Message
-				textarea#cmessage.form-input(type='textarea', rows='4', placeholder='')
+				//-p
+				//-label.form-label(for='cmessage') Custom Message
+				//-textarea#cmessage.form-input(type='textarea', rows='4', placeholder='')
 		.card-footer
 			#send.disabled.float-right.btn(onclick='send()') Send Invitation
 p
 script.
 	depp.require(['style','ma-client'], function () {
 
-			$('#invitees').keyup(function(){
-				if ($(this).is(":valid")) {
-					$('#send').removeClass('disabled')
-					$('#send').addClass('btn-primary')
-				} else {
-					$('#send').addClass('disabled')
-					$('#send').removeClass('btn-primary')
-				}
-			})
-
-			if ('?invite'==window.location.search) //on first entry
-				openInvite()
+		$('#invitees').keyup(function(){
+			if ($(this).is(":valid")) {
+				$('#send').removeClass('disabled')
+				$('#send').addClass('btn-primary')
+			} else {
+				$('#send').addClass('disabled')
+				$('#send').removeClass('btn-primary')
+			}
+		})
 	})
+
+	if ('?invite'==window.location.search) //on first entry
+		openInvite()
 
 	function openInvite() {
 		$('#inviteform')[0].reset()
@@ -57,29 +57,12 @@ script.
 		$('#detailp').addClass('d-none')
 	}
 
-	var actionCodeSettings = {
-		// Domain must be whitelisted in the Firebase Console.
-		url: 'https://appthings.mymeta.host/screen/posts/?register',
-		// This must be true.
-		handleCodeInApp: true
-	}
-
 	function send() {
 		let emails = $('#invitees').val().split(',').join().split(' ');
 		let i, len = emails.length
 		let pw = '!Te456'
 		for (i=0; i < len; i++) {
-			email = emails[i]
-			window.auth.createUserWithEmailAndPassword(email, pw)
-			.then(function(user) {
-				auth.signInWithEmailAndPassword(email, pw)
-			})
-			.then(function() {
-				auth.signOut()
-			})
-			.then(function() {
-				auth.sendSignInLinkToEmail(email, actionCodeSettings)
-			})
+			auth.invite(emails[i])
 			.then(function() {
 				showSuccess('Invite sent successfully')
 			})

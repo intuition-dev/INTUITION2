@@ -10,6 +10,12 @@ auth-tag
 		// Meta build server API endpoint
 		const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
 
+		const actionCodeSettings = {
+			// Domain must be whitelisted in the Firebase Console.
+			url: 'https://appthings.mymeta.host/screen/posts/?register', //next step after invite
+			// This must be true.
+			handleCodeInApp: true
+		}
 
 		//window.db1  = window.firebase.firestore()
 		//const dsettings = {/* your settings... */ timestampsInSnapshots: true}
@@ -41,7 +47,6 @@ auth-tag
 		} 
 
 		login(email, pw) {
-			//return this.impl.signInWithEmailAndPassword(email, pw)
 			AdminAuth.save(email, pw) //used as flag
 			const impl = this.impl
 			
@@ -63,7 +68,38 @@ auth-tag
 					console.log(window.aSrv.getError(error))
 					reject(error)
 				})
-			
+			}) // pro
+		}
+		
+		invite(email) {
+			const impl = this.impl
+			let pw = '!Te456'
+
+			return new Promise(function(resolve, reject) {
+				
+				impl.createUserWithEmailAndPassword(email, pw)
+				.then(function(user) {
+					impl.signInWithEmailAndPassword(email, pw) //need to do this once so that signin link is allowed
+				})
+				.then(function() {
+					impl.signOut()
+				})
+				.then(function() {
+					impl.sendSignInLinkToEmail(email, actionCodeSettings)
+				})
+				.then(function() { //reset scope with admin credentials
+					impl.signInWithEmailAndPassword(AdminAuth.username(), AdminAuth.secret())
+				})
+				.then(function() {
+					resolve()
+				})
+				.catch(function(error){
+					console.log(error) //show error in .message
+					let msg = error
+					if (msg=='Error: The email address is already in use by another account.')
+						msg = 'This person has already been invited'
+					reject(msg)
+				})
 			}) // pro
 		}
 
