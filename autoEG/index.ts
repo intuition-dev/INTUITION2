@@ -387,8 +387,8 @@ server.post('/api/user', function (req, res) {
    res.setHeader('Content-Type', 'application/json')
    let body = req.body
    let action = body.action
-   let folder = body.folder
-   let role = body.role
+   let folder = body.folder //for the item
+   let currentRole = body.role
    let f1 = body.f1
    let f1name = body.f1name
    logger.trace('f1name'+f1name)
@@ -399,23 +399,15 @@ server.post('/api/user', function (req, res) {
    let dest = '/team/' + folder
 
    const p = config.mount + dest
-   logger.trace(p)
+   logger.trace('creating item at'+p)
    
    try {
-      let p0 = p;
-      if (isNew) {
-         let i = 1 
-         while (fs.existsSync(p0)) { //avoid duplicate foldernames by adding 2, 3
-            i++ 
-            p0 = p + i
-         }
-         if (i>1) dest = dest + i
+      
+      if (isNew)
+      fo.clone('/team/template', dest) //insert template
 
-         fo.clone('/team/template', dest) //insert template
-      }
-
-      let d = new Dat(p0)
-      d.set('external_url', 'NA')
+      let d = new Dat(p)
+      d.set('currentRole', currentRole)
       //d.set('date_created', body.date_created )
       d.set('publish', true ) //if false it's not included in items.json
       d.write() //add or update items in dat.yaml
@@ -447,7 +439,6 @@ server.post('/api/user', function (req, res) {
          d.set('image', '')
          d.write()
       }
-
 
       if (!isNew) {  //remove images that are in old but not in new
          let k = 0, klen = oldmedia.length
@@ -481,8 +472,20 @@ server.post('/api/user', function (req, res) {
       console.log(err)
    }
 })//api
-   
-   
+
+server.get('/api/removeuser', function (req, res) {
+   console.log(' removeitem')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let listfolder = qs['listfolder']
+   let item = qs['item']
+   fo.remove('/'+listfolder+'/'+item)
+   mp.itemizeOnly(listfolder)
+   mp.deleteAuthUser(item)
+  .then(function() {
+      mp.getUsers(req, res, listfolder)
+  })
+})//api
 
 server.get('/api/clone', function (req, res) {
    console.log(' itemize')

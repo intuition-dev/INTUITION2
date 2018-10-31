@@ -64,6 +64,8 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
 
     		impl.createUserWithEmailAndPassword(email, pw)
     		.then(function(user) {
+    			window.aSrv.newUser(user.uid, 'Editor');
+
     			impl.signInWithEmailAndPassword(email, pw)
     		})
     		.then(function() {

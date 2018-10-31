@@ -247,7 +247,7 @@ class MetaAdminService {
 		}, AdminAuth.headers())
 	}
 
-	newUser(folder_, role, f1name_, f1_) {
+	newUser(folder_, role_, f1name_, f1_) {
 		return this.service.post('/api/user', {
 			action: 'insert', folder: folder_, role: role_, f1name: f1name_, f1: f1_
 		}, AdminAuth.headers())
@@ -302,6 +302,19 @@ class MetaAdminService {
 		arg = arg + '&item=' + item
 		console.log(arg)
 		return this.service.get('/api/removeitem'+arg, AdminAuth.headers())
+	}
+
+	/**
+	* Removes a user from list, generates and returns the revised item list (items.json?).
+	* @returns a promise, then(resp.dat)/catch{error}
+	* @param listfolder - e.g. 'team'
+	* @param item - e.g. 'myuid', the item to be removed
+	*/
+	removeUser(listfolder, item) {
+		let arg = '?listfolder=' + listfolder
+		arg = arg + '&item=' + item
+		console.log(arg)
+		return this.service.get('/api/removeuser'+arg, AdminAuth.headers())
 	}
 
 	/**

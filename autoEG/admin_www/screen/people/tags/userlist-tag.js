@@ -56,8 +56,12 @@ riot.tag2('userlist-tag', '<a id="menucloser" tabindex="0"></a> <ul class="nav l
     }.bind(this)
 
     this.remove = function(e) {
-    	let path = e.item.url
-
+    	let path = e.item.uid
+    	window.aSrv.removeUser('team', path).then(function(resp){
+    		let items = resp.data._cmd
+    		thiz.render(items)
+    		showSuccess('User deleted successfully!')
+    	})
     }.bind(this)
 
     this.view = function(e)
