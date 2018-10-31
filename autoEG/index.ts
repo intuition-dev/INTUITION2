@@ -142,12 +142,24 @@ server.get('/api/item', function (req, res) {
       res.json(ret)
 })//api
 server.get('/api/users', function (req, res) {
-      console.log(' users')
-      res.setHeader('Content-Type', 'application/json')
-      let qs = req.query
-      let folder = qs['folder']
-      mp.getUsers(req, res, folder) //async
-   })//api
+   console.log(' users')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let folder = qs['folder']
+   mp.getUsers(req, res, folder) //async
+})//api
+
+server.get('/api/user', function (req, res) {
+   console.log(' user')
+   res.setHeader('Content-Type', 'application/json')
+   let qs = req.query
+   let uid = qs['uid']
+   let ret:RetMsg = mp.getUser('team', uid) //sync
+   if(ret.code<0)
+      res.status(500).send(ret.cmd)
+   else
+      res.json(ret)
+})//api
 
 
 server.get('/api/itemize', function (req, res) {
@@ -475,11 +487,14 @@ server.post('/api/user', function (req, res) {
 })//api
 
 server.get('/api/removeuser', function (req, res) {
-   console.log(' removeitem')
+   console.log(' removeuser')
    res.setHeader('Content-Type', 'application/json')
    let qs = req.query
    let listfolder = qs['listfolder']
    let item = qs['item']
+
+   
+
    fo.remove('/'+listfolder+'/'+item)
    mp.itemizeOnly(listfolder)
    mp.deleteAuthUser(item)

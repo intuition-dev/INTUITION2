@@ -38,6 +38,14 @@ class AdminAuth {
 
 	}
 
+	static saveCurrentRole(currentRole) {
+		if (currentRole) 
+			sessionStorage.setItem('currentRole', currentRole)
+		else
+			sessionStorage.removeItem('currentRole')
+
+	}
+
 	static headers() {
 		if (this.jwt()) {
 			return { headers: { 'Authorization': `Bearer `+ this.jwt() }}
@@ -73,6 +81,12 @@ class AdminAuth {
 	static jwt() {
 		return sessionStorage.getItem('jwtToken')
 	}
+	/**
+	* @returns JWT token used for MetaAdminService
+	*/
+	static currentRole() {
+		return sessionStorage.getItem('currentRole')
+	}
 		
 	/**
 	* Clear, for logout
@@ -81,6 +95,7 @@ class AdminAuth {
 		sessionStorage.removeItem('maAuth')
 		sessionStorage.removeItem('maUsername')
 		sessionStorage.removeItem('jwtToken')
+		sessionStorage.removeItem('currentRole')
 		try {
 			delete window.aSrv
 		} catch(err) { console.log(err) }
@@ -169,6 +184,16 @@ class MetaAdminService {
 		let arg = '?folder=team'
 		return this.service.get('/api/users'+arg, AdminAuth.headers())
 	}
+
+	/**
+	* Returns user info (from user uid folder)
+	* @returns a promise, then(resp.dat)/catch{error}
+	*/
+	getUser(uid) {
+		let arg = '?uid='+uid
+		return this.service.get('/api/user'+arg, AdminAuth.headers())
+	}
+
 	/**
 	* Does an mbake 'bake' in that folder
 	* @returns a promise, then(resp.dat)/catch{error}

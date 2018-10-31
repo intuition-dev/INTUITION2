@@ -83,5 +83,19 @@ html
 		//-include register
 		include modal
 
+		script.
+			function showHideByRole(){ //called from modal after login/verification
+				if (AdminAuth.currentRole()=='Admin')
+				{
+					$('#configure').show()
+					$('#people').show()
+				}
+				else
+				{
+					$('#configure').hide()
+					$('#people').hide()
+				}
+			}
+
 		//-link(href= ROOT + 'assets/css/debug.css', rel='stylesheet')
 

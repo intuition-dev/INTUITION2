@@ -77,9 +77,15 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     		.then(function(idToken) {
     			AdminAuth.saveJwt(idToken)
     			window.aSrv = new MetaAdminService(baseURL)
-    			return window.aSrv.getLast()
+
+    			return window.aSrv.getUser(impl.currentUser.uid)
     		})
-    		.then(function() {
+    		.then(function(resp) {
+    			let user = JSON.parse(resp.data._cmd)
+    			console.log(user)
+    			console.log(user['currentRole'])
+    			AdminAuth.saveCurrentRole(user['currentRole'])
+    			console.log('currentRole'+user['currentRole'])
     			resolve()
     		}).catch(function (error) {
     			console.log(error)

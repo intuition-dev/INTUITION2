@@ -93,9 +93,15 @@ auth-tag
 				.then(function(idToken) {
 					AdminAuth.saveJwt(idToken)
 					window.aSrv = new MetaAdminService(baseURL)
-					return window.aSrv.getLast() //make a call to verify baseURL works with auth
+					//return window.aSrv.getLast() //make a call to verify baseURL works with auth
+					return window.aSrv.getUser(impl.currentUser.uid)
 				})
-				.then(function() {
+				.then(function(resp) {
+					let user = JSON.parse(resp.data._cmd)
+					console.log(user)
+					console.log(user['currentRole'])
+					AdminAuth.saveCurrentRole(user['currentRole'])
+					console.log('currentRole'+user['currentRole'])
 					resolve()
 				}).catch(function (error) {
 					console.log(error)

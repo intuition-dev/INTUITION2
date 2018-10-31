@@ -5,7 +5,10 @@ block main
 	script.
 		depp.require(['style','ma-client', 'login'], function() {
 			console.log('depp ready, user is logged in, will call getUsers')
-			window.aSrv.getUsers().then(listRes)
+			if (AdminAuth.currentRole()!='Admin')
+				window.location.href='/screen/posts'
+			else	
+				window.aSrv.getUsers().then(listRes)
 		})
 
 		function listRes(resp) {

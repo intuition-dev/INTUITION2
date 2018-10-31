@@ -74,8 +74,8 @@
             </li>
           </ul>
           <p></p>
-          <h6>Configure</h6>
-          <ul class="nav">
+          <h6 id="configure">Configure</h6>
+          <ul class="nav" id="people">
             <li class="nav-item">
               <button class="btn btn-sm float-right" onclick="location.href='/screen/people/?invite#all'">Add</button><a href="/screen/people/#all">
                 <div class="flex edge">
@@ -118,7 +118,10 @@
             <script>
               depp.require(['style','ma-client', 'login'], function() {
               	console.log('depp ready, user is logged in, will call getUsers')
-              	window.aSrv.getUsers().then(listRes)
+              	if (AdminAuth.currentRole()!='Admin')
+              		window.location.href='/screen/posts'
+              	else	
+              		window.aSrv.getUsers().then(listRes)
               })
               
               function listRes(resp) {
@@ -460,6 +463,9 @@
       			$('#loginMsg').text('')
       			$('#loginMsg').hide()
       			$('#loginScr').removeClass('active') //hide the login popup
+      
+      			showHideByRole()
+      
       			return
       		})
       		.catch(function(error){
@@ -468,13 +474,17 @@
       		})
       	})
       
-      	if (auth.isLoggedIn()) // tag
+      	if (auth.isLoggedIn()) {// tag
       		auth.ensureService() //recreates MetaAdminService after page nav and sets depp.done('login')
+      		showHideByRole()
+      	}
       	else if (window.location.search.indexOf('?register')==-1) //not registration process
       		$('#loginScr').addClass('active') // show login popup
       
       	$('.delayShowing').removeClass('delayShowing')
       })
+      
+      function showHideByRole() {} //may be overridden by page-specific
       
       // other modals
       function showError(msg){
@@ -500,6 +510,21 @@
       	$('#success').removeClass('active')
       	successCallback()
       }
+    </script>
+    <script>
+      function showHideByRole(){ //called from modal after login/verification
+      	if (AdminAuth.currentRole()=='Admin')
+      	{
+      		$('#configure').show()
+      		$('#people').show()
+      	}
+      	else
+      	{
+      		$('#configure').hide()
+      		$('#people').hide()
+      	}
+      }
+      
     </script>
   </body>
 </html>

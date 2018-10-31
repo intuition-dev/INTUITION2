@@ -72,6 +72,9 @@ script.
 				$('#loginMsg').text('')
 				$('#loginMsg').hide()
 				$('#loginScr').removeClass('active') //hide the login popup
+
+				showHideByRole()
+
 				return
 			})
 			.catch(function(error){
@@ -80,13 +83,17 @@ script.
 			})
 		})
 
-		if (auth.isLoggedIn()) // tag
+		if (auth.isLoggedIn()) {// tag
 			auth.ensureService() //recreates MetaAdminService after page nav and sets depp.done('login')
+			showHideByRole()
+		}
 		else if (window.location.search.indexOf('?register')==-1) //not registration process
 			$('#loginScr').addClass('active') // show login popup
 
 		$('.delayShowing').removeClass('delayShowing')
 	})
+
+	function showHideByRole() {} //may be overridden by page-specific
 
 	// other modals
 	function showError(msg){
