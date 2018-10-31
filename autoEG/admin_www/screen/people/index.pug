@@ -5,16 +5,13 @@ block main
 	script.
 		depp.require(['style','ma-client', 'login'], function() {
 			console.log('depp ready, user is logged in, will call getUsers')
-			window.aSrv.getUsers('').then(listRes)
+			window.aSrv.getUsers().then(listRes)
 		})
 
 		function listRes(resp) {
 			items = resp.data._cmd
-			console.log(items)
-			alert(items)
 			depp.done('items')
 		}
-
 
 	.show-sm
 		#navp.container
@@ -29,7 +26,7 @@ block main
 						path(d='M16 3.13a4 4 0 0 1 0 7.75')
 					.left.padL People
 	#detailp.d-none
-		include detail
+		include invite
 	p
 	#tabp.container
 		ul#team.tab
@@ -69,8 +66,8 @@ block main
 
 		function callback(teamCount, invitedCount){
 			$('#teamTab').attr('data-badge', teamCount)
-			$('#members').attr('data-badge', teamCount)
 			$('#invitedTab').attr('data-badge', ''+invitedCount)
+			$('#members').attr('data-badge', $('#team li.active').index()==0?teamCount:invitedCount)
 		}
 
 
@@ -79,8 +76,10 @@ block main
 			$('#team li:lt('+i+')').removeClass('active')
 			$('#team li:gt('+i+')').removeClass('active')
 			$('#team li:eq('+i+')').addClass('active')
-			if (i != oldIdx) //tab changed
+			if (i != oldIdx) {//tab changed 
 				tag.render(items, i, '#{PROD_ROOT}', callback)
+				$('#members').text(i==0?'Team':'Invites')
+			}
 		}
 
 

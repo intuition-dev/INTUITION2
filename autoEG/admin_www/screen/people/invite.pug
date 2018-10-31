@@ -41,10 +41,10 @@ script.
 				$('#send').removeClass('btn-primary')
 			}
 		})
-	})
 
-	if ('?invite'==window.location.search) //on first entry
-		openInvite()
+		if ('?invite'==window.location.search) //on first entry
+			openInvite()
+	})
 
 	function openInvite() {
 		$('#inviteform')[0].reset()

@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-  <script>ROOT = '/' //- sets global pug and .js from dat.yaml
-    console.log('root','/')
-    let _start=Date.now()
-  </script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-  <title>MyMeta Admin</title>
-  <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
-  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/riot@3.13.0/riot.min.js"></script>
-  <script src="https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js"></script>
-  <style>
-    .delayShowing { opacity: 0.01; }
-    
-  </style>
-  <script src="/layout/tags/auth-tag.js"></script>
+  <head>
+    <script>ROOT = '/' //- sets global pug and .js from dat.yaml
+      console.log('root','/')
+      let _start=Date.now()
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>MyMeta Admin</title>
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/riot@3.13.0/riot.min.js"></script>
+    <script src="https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js"></script>
+    <style>
+      .delayShowing { opacity: 0.01; }
+      
+    </style>
+    <script src="/layout/tags/auth-tag.js"></script>
+  </head>
   <body>
     <div class="delayShowing" id="all">
       <div id="menuhead">
@@ -176,6 +177,80 @@
       </div>
     </div>
     <auth-tag></auth-tag>
+    <div class="modal" id="registerScr">
+      <div class="modal-overlay"></div>
+      <div class="modal-container delayShowing">
+        <div class="modal-header">
+          <h4 class="center">Register for an account.</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-group" id="registerform">
+            <label class="form-label" for="remail">Email Address (the one you've been invited on)</label>
+            <input class="form-input" id="remail" type="email" placeholder="Email">
+            <label class="form-label" for="rpw">Create a password</label>
+            <input class="form-input" id="rpw" type="password" placeholder="Password">
+            <label class="form-label" for="rfirst">First Name(s)</label>
+            <input class="form-input" id="rfirst" type="text" placeholder="First Name(s)">
+            <label class="form-label" for="rfirst">Last Name</label>
+            <input class="form-input" id="rlast" type="text" placeholder="Last Name">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div class="flex edge">
+            <div class="left">
+              <div class="toast toast-error" id="registerMsg"></div>
+            </div>
+            <div class="right">
+              <div class="float-right btn" id="regb">Register</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function openRegister(){
+      	$('#registerMsg').hide() // no message
+      	$('#registerScr').addClass('active')
+      }
+      
+      depp.require(['style','ma-client'], function () {
+      
+      	$('#regb').click(function(){
+      		auth.register($('#remail').val(), $('#rpw').val(), $('#rfirst').val(), $('#rlast').val())
+      		.then(function() {
+      			depp.done('login')
+      			$('#registerMsg').text('')
+      			$('#registerMsg').hide()
+      			$('#registerScr').removeClass('active') //hide the registration popup
+      			return
+      		})
+      		.catch(function(error){
+      			$('#registerMsg').text(error.message)
+      			$('#registerMsg').show()
+      		})
+      	})
+      
+      	$('#regb').addClass('disabled') //by default
+      	$('#regb').removeClass('btn-primary')
+      
+      	$('#remail, #rpw, #rfirst, #rlast').on('keyup change', function(){ //validation
+      		if ($('#remail').is(":valid")
+      			&& $('#rpw').val().trim().length>5
+      			&& $('#rfirst').val().trim().length>0
+      			&& $('#rlast').val().trim().length>0
+      		) {
+      			$('#regb').removeClass('disabled')
+      			$('#rebg').addClass('btn-primary')
+      		} else {
+      			$('#regb').addClass('disabled')
+      			$('#regb').removeClass('btn-primary')
+      		}
+      	})
+      
+      	if (window.location.search.indexOf('?register')==0) //has it
+      		openRegister()
+      })
+    </script>
     <div class="modal" id="loginScr">
       <div class="modal-overlay"></div>
       <div class="modal-container delayShowing">
@@ -206,32 +281,8 @@
       window.auth = riot.mount('auth-tag')[0] // bring in access to auth
       
       //const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
-      const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
+      //const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake, moved to auth-tag
       
-      
-      /*function loginTry(arg) {
-      	console.log('try')
-      
-      
-      	isLoggedIn(baseURL).then(function() {
-      			console.log('Lxxx yes')
-      			$('#loginScr').removeClass('active') // show app
-      			const aa = new AdminAuth()
-      			console.log(aa.secret)
-      			window.aSrv = new MetaAdminService(baseURL, aa.secret)
-      			depp.done('login')
-      			window.login.dispatch()
-      
-      			console.log('depp done login')
-      
-      			$('.delayShowing').removeClass('delayShowing')
-      
-      		}, function() {
-      				onLogout(arg)
-      				$('.delayShowing').removeClass('delayShowing')
-      
-      	})
-      }//()*/
       
       function onLogout(){
       	auth.logout()
@@ -242,37 +293,6 @@
       		showError(error.message)
       	})
       }
-      
-      /*function onLogout(arg) {
-      	
-      	console.log('LXXX no')
-      	new AdminAuth().clear()
-      	$('#loginScr').addClass('active') // hide app
-      	try {
-      		delete window.aSrv
-      	} catch(err) { console.log(err) }
-      	if(arg) 
-      		$('#loginMsg').show(0)
-      	else 
-      		$('#loginMsg').hide(0) // no message
-      }*/
-      
-      /*function setupLogin() {
-      	
-      
-      	$('#loginb').click(function(){
-      		let username = $('#lemail').val()
-      		let code = $('#lpw').val()
-      		let aa = new AdminAuth()
-      		aa.save(username, code)
-      		console.log(aa.secret)
-      		//loginTry(true)
-      
-      		auth.signInWithEmailAndPassword(username, code) //tag
-      	})
-      	
-      	loginTry(false)
-      }*/
       
       depp.require(['style','ma-client'], function () {
       	console.log('depp require client')
@@ -299,17 +319,10 @@
       
       	if (auth.isLoggedIn()) // tag
       		auth.ensureService() //recreates MetaAdminService after page nav and sets depp.done('login')
-      	else
+      	else if (window.location.search.indexOf('?register')==-1) //not registration process
       		$('#loginScr').addClass('active') // show login popup
       
       	$('.delayShowing').removeClass('delayShowing')
-      
-      	/*alert('location.search'+window.location.search)
-      	if ('?register'==window.location.search) {
-      			alert('going to register')
-      			setupRegister()
-      	}*/
-      
       })
       
       // other modals

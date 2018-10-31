@@ -2,29 +2,66 @@
 	.modal-overlay
 	.modal-container.delayShowing
 		.modal-header
+			h4.center Register for an account.
 		.modal-body
 			form#registerform.form-group
-				label.form-label(for='remail') Email
+				label.form-label(for='remail') Email Address (the one you've been invited on)
 				input#remail.form-input(type='email', placeholder='Email')
 				label.form-label(for='rpw') Create a password
 				input#rpw.form-input(type='password', placeholder='Password')
-				label.form-label(for='rfirst') First Name
-				input#rfirst.form-input(type='text', placeholder='First Name')
+				label.form-label(for='rfirst') First Name(s)
+				input#rfirst.form-input(type='text', placeholder='First Name(s)')
 				label.form-label(for='rfirst') Last Name
 				input#rlast.form-input(type='text', placeholder='Last Name')
-			br
-			#registerMsg.toast.toast-warning Unable to serve. Is the secret code correct?
 		.modal-footer
-			#regb.float-right.btn(onclick='register()') Register
-
+			.flex.edge
+				.left
+					#registerMsg.toast.toast-error
+				.right
+					#regb.float-right.btn Register
 script.
-	function setupRegister(){
-		 $('#registerScr').addClass('active')
+	function openRegister(){
+		$('#registerMsg').hide() // no message
+		$('#registerScr').addClass('active')
 	}
 
-	function register(){
-		alert('register')
-	}
+	depp.require(['style','ma-client'], function () {
+
+		$('#regb').click(function(){
+			auth.register($('#remail').val(), $('#rpw').val(), $('#rfirst').val(), $('#rlast').val())
+			.then(function() {
+				depp.done('login')
+				$('#registerMsg').text('')
+				$('#registerMsg').hide()
+				$('#registerScr').removeClass('active') //hide the registration popup
+				return
+			})
+			.catch(function(error){
+				$('#registerMsg').text(error.message)
+				$('#registerMsg').show()
+			})
+		})
+
+		$('#regb').addClass('disabled') //by default
+		$('#regb').removeClass('btn-primary')
+
+		$('#remail, #rpw, #rfirst, #rlast').on('keyup change', function(){ //validation
+			if ($('#remail').is(":valid")
+				&& $('#rpw').val().trim().length>5
+				&& $('#rfirst').val().trim().length>0
+				&& $('#rlast').val().trim().length>0
+			) {
+				$('#regb').removeClass('disabled')
+				$('#rebg').addClass('btn-primary')
+			} else {
+				$('#regb').addClass('disabled')
+				$('#regb').removeClass('btn-primary')
+			}
+		})
+
+		if (window.location.search.indexOf('?register')==0) //has it
+			openRegister()
+	})
 
 
 

@@ -247,6 +247,14 @@ class MetaAdminService {
 		}, AdminAuth.headers())
 	}
 
+	/**
+	* Creates a new user on the file system, to track user currentRole
+	* @returns a promise, then(resp.dat)/catch{error}
+	* @param folder_ - useruid, used as folder
+	* @param role_ -  e.g. 'Admin', 'Editor'
+	* @param f1name_ - avatar filename
+	* @param f1_ - avatar image base64 encoded
+	*/
 	newUser(folder_, role_, f1name_, f1_) {
 		return this.service.post('/api/user', {
 			action: 'insert', folder: folder_, role: role_, f1name: f1name_, f1: f1_

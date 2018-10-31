@@ -6,8 +6,9 @@ userlist-tag
 				a(href='/screen/people/edit/?{url}')
 					.flex.edge
 						.left 
-							figure.avatar.avatar-xl
-								img(src='{image}', alt='{displayName}')
+							figure.avatar.avatar-xl(data-initial="{initials}")
+								if image
+									img(src='{image}', alt='{initials}')
 							.card.padL
 								.card-title.h6 {displayName}
 								.card-subtitle.text-gray {currentRole}
@@ -71,8 +72,10 @@ userlist-tag
 			let sz = cloned.items.length
 			for(i = 0; i < sz; i++) {
 				var item = cloned.items[i]
-				item.image = thiz.prodUrl + '/team/'+item.url + '/' + item.image
-				console.log()
+				if (item.image)
+					item.image = thiz.prodUrl + '/team/'+item.url + '/' + item.image
+				else
+					item.image = ''
 
 				var v = item.emailVerified
 				if (v) {

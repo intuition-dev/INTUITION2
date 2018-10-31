@@ -20,6 +20,7 @@
 				#successMsg
 
 auth-tag
+include register
 #loginScr.modal
 	.modal-overlay
 	.modal-container.delayShowing
@@ -43,32 +44,8 @@ script.
 	window.auth = riot.mount('auth-tag')[0] // bring in access to auth
 
 	//const baseURL = 'http://165.227.12.163:9083' // TODO: EDIT this and mbake
-	const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake
+	//const baseURL = 'https://appthingsapi.mymeta.host' // TODO: EDIT this and mbake, moved to auth-tag
 
-
-	/*function loginTry(arg) {
-		console.log('try')
-
-
-		isLoggedIn(baseURL).then(function() {
-				console.log('Lxxx yes')
-				$('#loginScr').removeClass('active') // show app
-				const aa = new AdminAuth()
-				console.log(aa.secret)
-				window.aSrv = new MetaAdminService(baseURL, aa.secret)
-				depp.done('login')
-				window.login.dispatch()
-
-				console.log('depp done login')
-
-				$('.delayShowing').removeClass('delayShowing')
-
-			}, function() {
-					onLogout(arg)
-					$('.delayShowing').removeClass('delayShowing')
-
-		})
-	}//()*/
 
 	function onLogout(){
 		auth.logout()
@@ -79,37 +56,6 @@ script.
 			showError(error.message)
 		})
 	}
-
-	/*function onLogout(arg) {
-		
-		console.log('LXXX no')
-		new AdminAuth().clear()
-		$('#loginScr').addClass('active') // hide app
-		try {
-			delete window.aSrv
-		} catch(err) { console.log(err) }
-		if(arg) 
-			$('#loginMsg').show(0)
-		else 
-			$('#loginMsg').hide(0) // no message
-	}*/
-
-	/*function setupLogin() {
-		
-
-		$('#loginb').click(function(){
-			let username = $('#lemail').val()
-			let code = $('#lpw').val()
-			let aa = new AdminAuth()
-			aa.save(username, code)
-			console.log(aa.secret)
-			//loginTry(true)
-
-			auth.signInWithEmailAndPassword(username, code) //tag
-		})
-		
-		loginTry(false)
-	}*/
 
 	depp.require(['style','ma-client'], function () {
 		console.log('depp require client')
@@ -136,17 +82,10 @@ script.
 
 		if (auth.isLoggedIn()) // tag
 			auth.ensureService() //recreates MetaAdminService after page nav and sets depp.done('login')
-		else
+		else if (window.location.search.indexOf('?register')==-1) //not registration process
 			$('#loginScr').addClass('active') // show login popup
 
 		$('.delayShowing').removeClass('delayShowing')
-
-		/*alert('location.search'+window.location.search)
-		if ('?register'==window.location.search) {
-				alert('going to register')
-				setupRegister()
-		}*/
-
 	})
 
 	// other modals

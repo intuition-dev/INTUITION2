@@ -397,6 +397,7 @@ server.post('/api/user', function (req, res) {
    logger.trace("isNew"+isNew)
 
    let dest = '/team/' + folder
+   console.log('new user dest'+dest)
 
    const p = config.mount + dest
    logger.trace('creating item at'+p)

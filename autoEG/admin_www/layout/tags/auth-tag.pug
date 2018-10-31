@@ -46,6 +46,40 @@ auth-tag
 			}
 		} 
 
+		register(email, pw, fname, lname) {
+			AdminAuth.save(email, pw) //used as flag
+			const impl = this.impl
+			
+			return new Promise(function(resolve, reject) {
+
+				if (!impl.isSignInWithEmailLink(window.location.href)) {
+					reject('Not a valid invitation')
+				}
+				
+				//sign-in from registration uses no-password signin (one-time)
+				impl.signInWithEmailLink(email, window.location.href)
+				.then(function(user) {
+					return impl.currentUser.updatePassword(pw)
+				}).then(function() {
+					return impl.currentUser.updateProfile({displayName: fname + ' ' + lname})
+				}).then(function() {
+					return impl.currentUser.getIdToken(true) ///* forceRefresh */ true)
+				})
+				.then(function(idToken) {
+					AdminAuth.saveJwt(idToken)
+					window.aSrv = new MetaAdminService(baseURL)
+					return window.aSrv.getLast() //make a call to verify baseURL works with auth
+				})
+				.then(function() {
+					resolve()
+				}).catch(function (error) {
+					console.log(error)
+					console.log(window.aSrv.getError(error))
+					reject(error)
+				})
+			}) // pro
+		}
+
 		login(email, pw) {
 			AdminAuth.save(email, pw) //used as flag
 			const impl = this.impl
@@ -78,9 +112,8 @@ auth-tag
 			return new Promise(function(resolve, reject) {
 				
 				impl.createUserWithEmailAndPassword(email, pw)
-				.then(function(user) {
-					window.aSrv.newUser(user.uid, 'Editor');
-
+				.then(function(res) {
+					window.aSrv.newUser(res.user.uid, 'Editor');
 					impl.signInWithEmailAndPassword(email, pw) //need to do this once so that signin link is allowed
 				})
 				.then(function() {

@@ -31,6 +31,39 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     	}
     }.bind(this)
 
+    this.register = function(email, pw, fname, lname) {
+    	AdminAuth.save(email, pw)
+    	const impl = this.impl
+
+    	return new Promise(function(resolve, reject) {
+
+    		if (!impl.isSignInWithEmailLink(window.location.href)) {
+    			reject('Not a valid invitation')
+    		}
+
+    		impl.signInWithEmailLink(email, window.location.href)
+    		.then(function(user) {
+    			return impl.currentUser.updatePassword(pw)
+    		}).then(function() {
+    			return impl.currentUser.updateProfile({displayName: fname + ' ' + lname})
+    		}).then(function() {
+    			return impl.currentUser.getIdToken(true)
+    		})
+    		.then(function(idToken) {
+    			AdminAuth.saveJwt(idToken)
+    			window.aSrv = new MetaAdminService(baseURL)
+    			return window.aSrv.getLast()
+    		})
+    		.then(function() {
+    			resolve()
+    		}).catch(function (error) {
+    			console.log(error)
+    			console.log(window.aSrv.getError(error))
+    			reject(error)
+    		})
+    	})
+    }.bind(this)
+
     this.login = function(email, pw) {
     	AdminAuth.save(email, pw)
     	const impl = this.impl
@@ -63,9 +96,8 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     	return new Promise(function(resolve, reject) {
 
     		impl.createUserWithEmailAndPassword(email, pw)
-    		.then(function(user) {
-    			window.aSrv.newUser(user.uid, 'Editor');
-
+    		.then(function(res) {
+    			window.aSrv.newUser(res.user.uid, 'Editor');
     			impl.signInWithEmailAndPassword(email, pw)
     		})
     		.then(function() {
