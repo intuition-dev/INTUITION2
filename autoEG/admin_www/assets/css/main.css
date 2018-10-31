@@ -152,6 +152,10 @@ li a {
 	padding: 0px 12px 12px 12px;
 	text-decoration: none;
 }
+
+li #noa {
+	padding: 12px;
+}
  
 li a:hover {
 	color: #0087BE;

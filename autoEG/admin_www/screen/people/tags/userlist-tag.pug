@@ -3,7 +3,8 @@ userlist-tag
 	ul.nav.listbody
 		<virtual each={items}>
 			li.nav-item
-				a(href='/screen/people/edit/?{url}')
+				//-a(href='/screen/people/edit/?{url}')
+				#noa
 					.flex.edge
 						.left 
 							figure.avatar.avatar-xl(data-initial="{initials}")
@@ -13,33 +14,41 @@ userlist-tag
 								.card-title.h6 {displayName}
 								.card-subtitle.text-gray {currentRole}
 						.right
-							.dropdown.dropdown-right.right
-								a.dropdown-toggle(href='#', tabindex='0')
-									svg.feather.feather-more-horizontal(viewBox='0 0 24 24')
-										circle(cx='12', cy='12', r='1')
-										circle(cx='19', cy='12', r='1')
-										circle(cx='5', cy='12', r='1')
-								ul.menu
-									li.menu-item
-										a(href='#' onclick="alert('bla');close()")
-											.flex.edge
-												.left
-													svg.text-gray.feather.feather-edit-2(viewBox='0 0 24 24')
-														polygon(points='16 3 21 8 8 21 3 21 3 16 16 3')
-													.padL Edit
-									li.menu-item
-										a(nohref onclick='{parent.remove}')
-											.flex.edge
-												.left
-													svg.text-gray.feather.feather-trash-2(viewBox='0 0 24 24')
-														polyline(points='3 6 5 6 21 6')
-														path(d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2')
-														line(x1='10', y1='11', x2='10', y2='17')
-														line(x1='14', y1='11', x2='14', y2='17')
-													.padL Delete
+							//-if allowDelete =='true'
+							a(nohref onclick='{parent.remove}')
+								svg.text-gray.feather.feather-trash-2(viewBox='0 0 24 24')
+									polyline(points='3 6 5 6 21 6')
+									path(d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2')
+									line(x1='10', y1='11', x2='10', y2='17')
+									line(x1='14', y1='11', x2='14', y2='17')
+												
+						//-.dropdown.dropdown-right.right
+							a.dropdown-toggle(href='#', tabindex='0')
+								svg.feather.feather-more-horizontal(viewBox='0 0 24 24')
+									circle(cx='12', cy='12', r='1')
+									circle(cx='19', cy='12', r='1')
+									circle(cx='5', cy='12', r='1')
+							ul.menu
+								li.menu-item
+									a(href='#' onclick="alert('bla');close()")
+										.flex.edge
+											.left
+												svg.text-gray.feather.feather-edit-2(viewBox='0 0 24 24')
+													polygon(points='16 3 21 8 8 21 3 21 3 16 16 3')
+												.padL Edit
+								li.menu-item
+									a(nohref onclick='{parent.remove}')
+										.flex.edge
+											.left
+												svg.text-gray.feather.feather-trash-2(viewBox='0 0 24 24')
+													polyline(points='3 6 5 6 21 6')
+													path(d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2')
+													line(x1='10', y1='11', x2='10', y2='17')
+													line(x1='14', y1='11', x2='14', y2='17')
+												.padL Delete
 		</virtual>
 	script.
-		console.log('oh hi postlist-tag')
+		console.log('oh hi userlist-tag')
 		this.on('*', function(evt) {
 			console.log('riot', evt)
 		})
@@ -79,18 +88,21 @@ userlist-tag
 
 				var v = item.emailVerified
 				if (v) {
+					//console.log('allowDelete'+item.currentRole+'|'+(item.currentRole!='Admin'))
+					item.allowDelete = (item.currentRole!='Admin')
 					thiz.teamArr.push(item)
 				}
 				else {
 					item.displayName = item.email
 					item.currentRole = ''
+					item.allowDelete = true
 					thiz.invitedArr.push(item)
 				}
 					
 			}
 			switch(thiz.invitedFlag){
-				case 1: thiz.items = thiz.invitedArr; break; //.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)}); break
-				default: thiz.items = thiz.teamArr //.sort(function(a,b){return a.m_date_published.isBefore(b.m_date_published)})
+				case 1: thiz.items = thiz.invitedArr; break; 
+				default: thiz.items = thiz.teamArr
 			}
 			thiz.update()
 			thiz.callback(thiz.teamArr.length, thiz.invitedArr.length)
@@ -98,11 +110,16 @@ userlist-tag
 
 		remove(e) {
 			let path = e.item.uid 
-			window.aSrv.removeUser('team', path).then(function(resp){
-				let items = resp.data._cmd
-				thiz.render(items)
-				showSuccess('User deleted successfully!')
-			})
+			if (e.item.allowDelete)
+			{
+				window.aSrv.removeUser('team', path).then(function(resp){
+					let items = resp.data._cmd
+					thiz.render(items)
+					showSuccess('User deleted successfully!')
+				})
+			} else
+				showError('Admin should not be deleted.')
+
 		}
 
 		view(e)
