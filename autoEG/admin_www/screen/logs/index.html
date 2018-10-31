@@ -261,7 +261,12 @@
           <form class="form-group" id="loginform">
             <label class="form-label" for="lemail">Email Address or Username</label>
             <input class="form-input" id="lemail" type="email" placeholder="Email or Username" autocomplete="email">
-            <label class="form-label" for="lpw">Password</label>
+            <div class="flex edge">
+              <div class="left"> 
+                <label class="form-label" for="lpw">Password&nbsp;</label>
+              </div>
+              <div class="right"><a id="resetpw" noref>Forgot Password?</a></div>
+            </div>
             <input class="form-input" id="lpw" type="password" placeholder="Password" autocomplete="current-password">
           </form>
         </div>
@@ -318,6 +323,24 @@
       			$('#loginMsg').text(error.message)
       			$('#loginMsg').show()
       		})
+      	})
+      
+      	$('#resetpw').click(function(){
+      		if ($('#lemail').is(":valid")) {
+      			let emailAddress = $('#lemail').val()
+      			auth.sendPasswordResetEmail(emailAddress)
+      			.then(function() {
+      				$('#loginMsg').text('Please check your email for '+emailAddress+'.')
+      				$('#loginMsg').show()
+      			})
+      			.catch(function(error){
+      				$('#loginMsg').text(error.message)
+      				$('#loginMsg').show()
+      			})
+      		} else {
+      			$('#loginMsg').text('Please enter your valid email.')
+      			$('#loginMsg').show()
+      		}
       	})
       
       	if (auth.isLoggedIn()) {// tag

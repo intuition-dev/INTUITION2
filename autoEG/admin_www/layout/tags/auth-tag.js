@@ -128,6 +128,10 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     	})
     }.bind(this)
 
+    this.sendPasswordResetEmail = function(email) {
+    	return this.impl.sendPasswordResetEmail(email)
+    }.bind(this)
+
     this.logout = function() {
     	AdminAuth.clear()
     	return this.impl.signOut()

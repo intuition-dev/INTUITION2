@@ -144,6 +144,11 @@ auth-tag
 			}) // pro
 		}
 
+		sendPasswordResetEmail(email) {
+			return this.impl.sendPasswordResetEmail(email)
+		}
+		
+
 		logout() {
 			AdminAuth.clear() //also deletes window.aSrv
 			return this.impl.signOut()

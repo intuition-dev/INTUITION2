@@ -30,7 +30,11 @@ include register
 			form#loginform.form-group
 				label.form-label(for='lemail') Email Address or Username
 				input#lemail.form-input(type='email', placeholder='Email or Username' autocomplete='email')
-				label.form-label(for='lpw') Password
+				.flex.edge
+					.left 
+						label.form-label(for='lpw') Password&nbsp;
+					.right
+						a#resetpw(noref) Forgot Password?
 				input#lpw.form-input(type='password', placeholder='Password', autocomplete='current-password')
 		.modal-footer
 			.flex.edge
@@ -81,6 +85,24 @@ script.
 				$('#loginMsg').text(error.message)
 				$('#loginMsg').show()
 			})
+		})
+
+		$('#resetpw').click(function(){
+			if ($('#lemail').is(":valid")) {
+				let emailAddress = $('#lemail').val()
+				auth.sendPasswordResetEmail(emailAddress)
+				.then(function() {
+					$('#loginMsg').text('Please check your email for '+emailAddress+'.')
+					$('#loginMsg').show()
+				})
+				.catch(function(error){
+					$('#loginMsg').text(error.message)
+					$('#loginMsg').show()
+				})
+			} else {
+				$('#loginMsg').text('Please enter your valid email.')
+				$('#loginMsg').show()
+			}
 		})
 
 		if (auth.isLoggedIn()) {// tag
