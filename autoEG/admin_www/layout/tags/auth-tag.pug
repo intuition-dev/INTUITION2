@@ -17,6 +17,8 @@ auth-tag
 			handleCodeInApp: true
 		}
 
+		const secret = '123'
+
 		//window.db1  = window.firebase.firestore()
 		//const dsettings = {/* your settings... */ timestampsInSnapshots: true}
 		//db1.settings(dsettings)
@@ -63,11 +65,14 @@ auth-tag
 				}).then(function() {
 					return impl.currentUser.updateProfile({displayName: fname + ' ' + lname})
 				}).then(function() {
-					return impl.currentUser.getIdToken(true) ///* forceRefresh */ true)
+					//return impl.currentUser.getIdToken(true) ///* forceRefresh */ true)
+					//return window.aSrv.getIdToken()
+					return Promise.resolve(secret)
 				})
 				.then(function(idToken) {
-					AdminAuth.saveJwt(idToken)
-					window.aSrv = new MetaAdminService(baseURL)
+					//AdminAuth.saveJwt(idToken)
+					//AdminAuth.save('admin', idToken)
+					window.aSrv = new MetaAdminService(baseURL, 'admin', idToken)
 					return window.aSrv.getLast() //make a call to verify baseURL works with auth
 				})
 				.then(function() {
@@ -81,18 +86,20 @@ auth-tag
 		}
 
 		login(email, pw) {
-			AdminAuth.save(email, pw) //used as flag
+			//AdminAuth.save(email,pw) //used as flag
 			const impl = this.impl
 			
 			return new Promise(function(resolve, reject) {
 				
 				impl.signInWithEmailAndPassword(email, pw).then(function(user) {
 					//console.log(user) //could take some info here, but its also in auth.impl.currentUser
-					return impl.currentUser.getIdToken(false) ///* forceRefresh */ true)
+					//return impl.currentUser.getIdToken(false) ///* forceRefresh */ true)
+					return Promise.resolve(secret)
 				})
 				.then(function(idToken) {
-					AdminAuth.saveJwt(idToken)
-					window.aSrv = new MetaAdminService(baseURL)
+					//AdminAuth.saveJwt(idToken)
+					//AdminAuth.save('admin', idToken)
+					window.aSrv = new MetaAdminService(baseURL, 'admin', idToken)
 					//return window.aSrv.getLast() //make a call to verify baseURL works with auth
 					return window.aSrv.getUser(impl.currentUser.uid)
 				})

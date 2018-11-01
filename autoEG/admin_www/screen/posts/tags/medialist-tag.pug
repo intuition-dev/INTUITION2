@@ -15,7 +15,7 @@ medialist-tag
 										.card-title.text-ellipsis {filename}
 										.card-subtitle
 											a(nohref alt='{filename}' onclick='{parent.copyToClipboard}')
-												.chip Copy Path
+												.chip.c-hand Copy to Clipboard
 							.right
 								a(nohref alt='{filename}' onclick="deleteMedia('{filename}')")
 									figure.avatar.avatar-xl.badge(data-badge='X')
@@ -50,7 +50,7 @@ medialist-tag
 		}
 
 		copyToClipboard(e) {
-			let str = e.item.filename
+			let str =  '![]('+e.item.filename+')'
 			$('#copy').val(str)
 			$('#copy').select()
 			document.execCommand('copy');

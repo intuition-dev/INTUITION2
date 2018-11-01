@@ -187,7 +187,7 @@
           <form class="form-group" id="registerform">
             <label class="form-label" for="remail">Email Address (the one you've been invited on)</label>
             <input class="form-input" id="remail" type="email" placeholder="Email">
-            <label class="form-label" for="rpw">Create a password</label>
+            <label class="form-label" for="rpw">Create a password (6 characters min.)</label>
             <input class="form-input" id="rpw" type="password" placeholder="Password">
             <label class="form-label" for="rfirst">First Name(s)</label>
             <input class="form-input" id="rfirst" type="text" placeholder="First Name(s)">
@@ -221,6 +221,8 @@
       			depp.done('login')
       			$('#registerMsg').text('')
       			$('#registerMsg').hide()
+      			window.location.search=''
+      			showHideByRole()
       			$('#registerScr').removeClass('active') //hide the registration popup
       			return
       		})
@@ -302,7 +304,23 @@
       depp.require(['style','ma-client'], function () {
       	console.log('depp require client')
       
+      	
+      	$('#lemail, #lpw').on('keyup change', function(){ //validation
+      		if ($('#lemail').is(":valid")
+      			&& $('#lpw').val().trim().length>5
+      		) {
+      			$('#loginb').removeClass('disabled')
+      			$('#loging').addClass('btn-primary')
+      		} else {
+      			$('#loginb').addClass('disabled')
+      			$('#loginb').removeClass('btn-primary')
+      		}
+      	})
+      
       	$('#loginMsg').hide() // no message
+      	$('#loginb').addClass('disabled') //by default, need to enter stuff first
+      	$('#loginb').removeClass('btn-primary')
+      
       
       	$('#loginb').click(function(){
       		let username = $('#lemail').val()

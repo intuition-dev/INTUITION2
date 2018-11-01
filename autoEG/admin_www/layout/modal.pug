@@ -64,7 +64,23 @@ script.
 	depp.require(['style','ma-client'], function () {
 		console.log('depp require client')
 
+		
+		$('#lemail, #lpw').on('keyup change', function(){ //validation
+			if ($('#lemail').is(":valid")
+				&& $('#lpw').val().trim().length>5
+			) {
+				$('#loginb').removeClass('disabled')
+				$('#loging').addClass('btn-primary')
+			} else {
+				$('#loginb').addClass('disabled')
+				$('#loginb').removeClass('btn-primary')
+			}
+		})
+
 		$('#loginMsg').hide() // no message
+		$('#loginb').addClass('disabled') //by default, need to enter stuff first
+		$('#loginb').removeClass('btn-primary')
+
 
 		$('#loginb').click(function(){
 			let username = $('#lemail').val()

@@ -9,11 +9,6 @@ declare var __dirname: any
 
 const express = require('express')
 const basicAuth = require('express-basic-auth')
-
-//when using firebase auth
-const fbAuth = require('express-firebase-auth')
-const fbAdmin = require('firebase-admin')
-
 const cors = require('cors')
 const yaml = require('js-yaml')
 const fs = require('fs')
@@ -32,34 +27,9 @@ console.log(config)
 const server = express()
 server.use(cors())
 
-import { createFirebaseAuth } from 'express-firebase-auth';
-
 let admin = new AdminSrv(config)
 
-if (config.auth=='firebase'){ //firebase
-   /*var fbApp = fbAdmin.initializeApp({
-      credential: fbAdmin.credential.cert(fbServiceAccount)
-      //databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
-   });*/
-   //var fbServiceAccount = require('express-firebase-auth/firebase-config.json')
-   let fbServiceAccount = new Object(JSON.parse(fs.readFileSync(config.firebase_config)))
-   const firebaseAuth = createFirebaseAuth({
-      /*serviceAccount: fbServiceAccount,*/
-      firebase: admin.fbApp, 
-      ignoredUrls: [
-         '/ignore'
-      ]
-   })
-   server.use(firebaseAuth);
-}
-else //basic
-{
-   if (config.basic_users)
-      server.use(basicAuth({users: config.basic_users}))
-   else
-      server.use(basicAuth({users: {'admin': config.secret}})) //legacy
-}
-
+server.use(basicAuth({users: {'admin': config.secret}})) 
 
 // routes ///////////////////////////////////////
 server.use(bodyParser({limit: '10mb', extended: true }))
@@ -141,6 +111,19 @@ server.get('/api/item', function (req, res) {
    else
       res.json(ret)
 })//api
+
+server.get('/api/idtoken', function (req, res) {
+   console.log(' tag')
+   res.setHeader('Content-Type', 'application/json')
+
+   res.text(config.secret)
+   /*let ret:RetMsg = mp.tag(dir)
+   if(ret.code<0)
+      res.status(500).send(ret)
+   else
+      res.json(ret)*/
+})//api
+
 server.get('/api/users', function (req, res) {
    console.log(' users')
    res.setHeader('Content-Type', 'application/json')

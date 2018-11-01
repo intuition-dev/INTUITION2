@@ -7,7 +7,7 @@
 			form#registerform.form-group
 				label.form-label(for='remail') Email Address (the one you've been invited on)
 				input#remail.form-input(type='email', placeholder='Email')
-				label.form-label(for='rpw') Create a password
+				label.form-label(for='rpw') Create a password (6 characters min.)
 				input#rpw.form-input(type='password', placeholder='Password')
 				label.form-label(for='rfirst') First Name(s)
 				input#rfirst.form-input(type='text', placeholder='First Name(s)')
@@ -33,6 +33,8 @@ script.
 				depp.done('login')
 				$('#registerMsg').text('')
 				$('#registerMsg').hide()
+				window.location.search=''
+				showHideByRole()
 				$('#registerScr').removeClass('active') //hide the registration popup
 				return
 			})

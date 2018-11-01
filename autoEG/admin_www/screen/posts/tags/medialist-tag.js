@@ -1,5 +1,5 @@
 
-riot.tag2('medialist-tag', '<div class="card" id="media"> <div class="card-body"><virtual each="{items}"> <div class="tile"> <div class="tile-content"> <div class="flex edge"> <div class="left"> <div class="card"> <div class="card-title text-ellipsis">{filename}</div> <div class="card-subtitle"><a nohref alt="{filename}" onclick="{parent.copyToClipboard}"> <div class="chip">Copy Path</div></a></div> </div> </div> <div class="right"><a nohref alt="{filename}" onclick="deleteMedia(\'{filename}\')"> <figure class="avatar avatar-xl badge" data-badge="X"><img riot-src="{src}"></figure></a></div> </div> </div> </div></virtual> </div> </div> <textarea id="copy" readonly></textarea>', 'medialist-tag #copy,[data-is="medialist-tag"] #copy{ position: absolute; left: -9999px; }', '', function(opts) {
+riot.tag2('medialist-tag', '<div class="card" id="media"> <div class="card-body"><virtual each="{items}"> <div class="tile"> <div class="tile-content"> <div class="flex edge"> <div class="left"> <div class="card"> <div class="card-title text-ellipsis">{filename}</div> <div class="card-subtitle"><a nohref alt="{filename}" onclick="{parent.copyToClipboard}"> <div class="chip c-hand">Copy to Clipboard</div></a></div> </div> </div> <div class="right"><a nohref alt="{filename}" onclick="deleteMedia(\'{filename}\')"> <figure class="avatar avatar-xl badge" data-badge="X"><img riot-src="{src}"></figure></a></div> </div> </div> </div></virtual> </div> </div> <textarea id="copy" readonly></textarea>', 'medialist-tag #copy,[data-is="medialist-tag"] #copy{ position: absolute; left: -9999px; }', '', function(opts) {
     console.log('medialist-tag')
     this.items = []
 
@@ -24,7 +24,7 @@ riot.tag2('medialist-tag', '<div class="card" id="media"> <div class="card-body"
     }.bind(this)
 
     this.copyToClipboard = function(e) {
-    	let str = e.item.filename
+    	let str =  '![]('+e.item.filename+')'
     	$('#copy').val(str)
     	$('#copy').select()
     	document.execCommand('copy');

@@ -228,9 +228,9 @@
             <div class="container" id="tabp">
               <ul class="tab" id="team">
                 <li class="tab-item active"><a nohref onclick="invites(0)">
-                    <div class="badge" id="teamTab" data-badge="0">Team&nbsp;</div></a></li>
+                    <div class="badge c-hand" id="teamTab" data-badge="0">Team&nbsp;</div></a></li>
                 <li class="tab-item"><a nohref onclick="invites(1)">
-                    <div class="badge" id="invitedTab" data-badge="0">Invites&nbsp;</div></a></li>
+                    <div class="badge c-hand" id="invitedTab" data-badge="0">Invites&nbsp;</div></a></li>
               </ul>
             </div>
             <p></p>
@@ -341,7 +341,7 @@
           <form class="form-group" id="registerform">
             <label class="form-label" for="remail">Email Address (the one you've been invited on)</label>
             <input class="form-input" id="remail" type="email" placeholder="Email">
-            <label class="form-label" for="rpw">Create a password</label>
+            <label class="form-label" for="rpw">Create a password (6 characters min.)</label>
             <input class="form-input" id="rpw" type="password" placeholder="Password">
             <label class="form-label" for="rfirst">First Name(s)</label>
             <input class="form-input" id="rfirst" type="text" placeholder="First Name(s)">
@@ -375,6 +375,8 @@
       			depp.done('login')
       			$('#registerMsg').text('')
       			$('#registerMsg').hide()
+      			window.location.search=''
+      			showHideByRole()
       			$('#registerScr').removeClass('active') //hide the registration popup
       			return
       		})
@@ -456,7 +458,23 @@
       depp.require(['style','ma-client'], function () {
       	console.log('depp require client')
       
+      	
+      	$('#lemail, #lpw').on('keyup change', function(){ //validation
+      		if ($('#lemail').is(":valid")
+      			&& $('#lpw').val().trim().length>5
+      		) {
+      			$('#loginb').removeClass('disabled')
+      			$('#loging').addClass('btn-primary')
+      		} else {
+      			$('#loginb').addClass('disabled')
+      			$('#loginb').removeClass('btn-primary')
+      		}
+      	})
+      
       	$('#loginMsg').hide() // no message
+      	$('#loginb').addClass('disabled') //by default, need to enter stuff first
+      	$('#loginb').removeClass('btn-primary')
+      
       
       	$('#loginb').click(function(){
       		let username = $('#lemail').val()

@@ -16,6 +16,8 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     	handleCodeInApp: true
     }
 
+    const secret = '123'
+
     window.firebase.initializeApp(fconfig)
     this.impl = firebase.auth()
     this.impl.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
@@ -47,11 +49,12 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     		}).then(function() {
     			return impl.currentUser.updateProfile({displayName: fname + ' ' + lname})
     		}).then(function() {
-    			return impl.currentUser.getIdToken(true)
+
+    			return Promise.resolve(secret)
     		})
     		.then(function(idToken) {
-    			AdminAuth.saveJwt(idToken)
-    			window.aSrv = new MetaAdminService(baseURL)
+
+    			window.aSrv = new MetaAdminService(baseURL, 'admin', idToken)
     			return window.aSrv.getLast()
     		})
     		.then(function() {
@@ -65,18 +68,18 @@ riot.tag2('auth-tag', '', '', '', function(opts) {
     }.bind(this)
 
     this.login = function(email, pw) {
-    	AdminAuth.save(email, pw)
+
     	const impl = this.impl
 
     	return new Promise(function(resolve, reject) {
 
     		impl.signInWithEmailAndPassword(email, pw).then(function(user) {
 
-    			return impl.currentUser.getIdToken(false)
+    			return Promise.resolve(secret)
     		})
     		.then(function(idToken) {
-    			AdminAuth.saveJwt(idToken)
-    			window.aSrv = new MetaAdminService(baseURL)
+
+    			window.aSrv = new MetaAdminService(baseURL, 'admin', idToken)
 
     			return window.aSrv.getUser(impl.currentUser.uid)
     		})
