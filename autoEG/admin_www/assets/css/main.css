@@ -188,6 +188,16 @@ li .btn-sm {
 .cm-header-5 { font-size: 100%; }
 .cm-header-6 { font-size: 90%; }
 
+#router {
+	height: calc(100vh - 81px);
+	margin: 0;
+	padding: 0;
+}
+
+#editorp {
+	height: calc(100vh - 143px);
+}
+
 /* Properties panel */
 #prop .tile {
 	padding: 10px 8px 5px 8px;
