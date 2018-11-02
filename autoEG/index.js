@@ -7,6 +7,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const slugify = require('slugify');
+const nocache = require('nocache');
 const Base_1 = require("mbake/lib/Base");
 const logger = require('tracer').console();
 console.log(new Base_1.Ver().ver());
@@ -14,12 +15,12 @@ let config = yaml.load(fs.readFileSync(__dirname + '/admin.yaml'));
 console.log(config);
 const server = express();
 server.use(cors());
-server.use(basicAuth({
-    users: { 'admin': config.secret }
-}));
+let admin = new Base_1.AdminSrv(config);
+server.use(basicAuth({ users: { 'admin': config.secret } }));
 server.use(bodyParser({ limit: '10mb', extended: true }));
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
+server.use(nocache());
 const mp = new Base_1.MetaPro2(config.mount);
 const sc = new Base_1.Scrape();
 const fo = new Base_1.FileOps(config.mount);
@@ -69,9 +70,44 @@ server.get('/api/item', function (req, res) {
     console.log(' item');
     res.setHeader('Content-Type', 'application/json');
     let qs = req.query;
-    let listfolder = qs['listfolder'];
-    let item = qs['item'];
-    let ret = mp.getItems(listfolder);
+    let path = qs['path'];
+    if (path.indexOf('?') == 0)
+        path = path.substring(1);
+    if (path.indexOf('/') == 0)
+        path = path.substring(1);
+    let parts = path.split('/');
+    if (parts.length == 0) {
+        console.log('invalid path');
+        return;
+    }
+    let item = parts[parts.length - 1];
+    parts.pop();
+    let listfolder = parts.join('/');
+    console.log('listfolder' + listfolder);
+    let ret = mp.getItem(listfolder, item);
+    if (ret.code < 0)
+        res.status(500).send(ret.cmd);
+    else
+        res.json(ret);
+});
+server.get('/api/idtoken', function (req, res) {
+    console.log(' tag');
+    res.setHeader('Content-Type', 'application/json');
+    res.text(config.secret);
+});
+server.get('/api/users', function (req, res) {
+    console.log(' users');
+    res.setHeader('Content-Type', 'application/json');
+    let qs = req.query;
+    let folder = qs['folder'];
+    mp.getUsers(req, res, folder);
+});
+server.get('/api/user', function (req, res) {
+    console.log(' user');
+    res.setHeader('Content-Type', 'application/json');
+    let qs = req.query;
+    let uid = qs['uid'];
+    let ret = mp.getUser('team', uid);
     if (ret.code < 0)
         res.status(500).send(ret.cmd);
     else
@@ -152,10 +188,11 @@ server.post('/api/newLinkBlog', function (req, res) {
         console.log(err);
     }
 });
-server.post('/api/newBlog', function (req, res) {
-    console.log(' newBlog');
+server.post('/api/item', function (req, res) {
+    console.log(' add or update item');
     res.setHeader('Content-Type', 'application/json');
     let body = req.body;
+    let action = body.action;
     let folder = body.folder;
     let title = body.title;
     let comment = body.summary;
@@ -164,47 +201,74 @@ server.post('/api/newBlog', function (req, res) {
     let fx = body.fx;
     let f1name = body.f1name;
     logger.trace('f1name' + f1name);
-    let dest = '/' + folder + '/' + slugify(title.toLowerCase());
+    let isNew = ('insert' === action);
+    logger.trace("isNew" + isNew);
+    let dest = '/' + folder;
+    if (isNew)
+        dest = '/' + folder + '/' + slugify(title.toLowerCase());
+    const p = config.mount + dest;
+    logger.trace(p);
     try {
-        const p = config.mount + dest;
-        logger.trace(p);
-        let i = 1, p0 = p;
-        while (fs.existsSync(p0)) {
-            i++;
-            p0 = p + i;
+        let p0 = p;
+        if (isNew) {
+            let i = 1;
+            while (fs.existsSync(p0)) {
+                i++;
+                p0 = p + i;
+            }
+            if (i > 1)
+                dest = dest + i;
+            fo.clone('/blog/template', dest);
         }
-        if (i > 1)
-            dest = dest + i;
-        fo.clone('/blog/template', dest);
         let d = new Base_1.Dat(p0);
-        let imgUrl = d.set('title', title);
+        d.set('title', title);
         d.set('comment', comment);
         d.set('tags', body.tags);
         d.set('external_url', 'NA');
         d.set('date_published', body.date_published);
         d.set('publish', true);
         d.write();
-        if (f1) {
-            var buffer = Buffer.from(f1.split(",")[1], 'base64');
-            let f1path = dest + '/' + f1name;
-            fo.write(f1path, buffer);
-            d.set('image', f1name);
-            d.write();
-            console.log('Writing featured image done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
+        let oldmedia = [], newmedia = [];
+        if (!isNew) {
+            oldmedia = fo.getMediaFilenames(folder);
+            console.log('oldmedia' + oldmedia);
+        }
+        if (f1name) {
+            newmedia.push(f1name);
+            if (f1 && f1.indexOf('data:') == 0) {
+                var buffer = Buffer.from(f1.split(",")[1], 'base64');
+                let f1path = dest + '/' + f1name;
+                fo.write(f1path, buffer);
+                d.set('image', f1name);
+                d.write();
+            }
         }
         else {
+            d.set('image', '');
+            d.write();
         }
         if (fx && fx != '[]') {
             let mediaitems = JSON.parse(fx);
-            let len = mediaitems.length;
-            for (i = 0; i < len; i++) {
-                let obj = mediaitems[i];
+            let j, len = mediaitems.length;
+            for (j = 0; j < len; j++) {
+                let obj = mediaitems[j];
                 let f1path = dest + '/' + obj.filename;
-                var buffer = Buffer.from(obj.src.split(",")[1], 'base64');
-                fo.write(f1path, buffer);
+                newmedia.push(obj.filename);
+                if (obj.src.indexOf('data:') == 0) {
+                    var buffer = Buffer.from(obj.src.split(",")[1], 'base64');
+                    fo.write(f1path, buffer);
+                }
             }
         }
         console.log('Writing media done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
+        if (!isNew) {
+            let k = 0, klen = oldmedia.length;
+            for (k; k < klen; k++) {
+                if (newmedia.indexOf(oldmedia[k]) == -1) {
+                    fo.removeFile(dest + '/' + oldmedia[k]);
+                }
+            }
+        }
         let md = dest + '/content.md';
         logger.trace(md);
         fo.write(md, content);
@@ -237,6 +301,81 @@ server.get('/api/removeitem', function (req, res) {
     else
         res.json(ret);
 });
+server.post('/api/user', function (req, res) {
+    console.log(' add or update user');
+    res.setHeader('Content-Type', 'application/json');
+    let body = req.body;
+    let action = body.action;
+    let folder = body.folder;
+    let currentRole = body.role;
+    let f1 = body.f1;
+    let f1name = body.f1name;
+    logger.trace('f1name' + f1name);
+    let isNew = ('insert' === action);
+    logger.trace("isNew" + isNew);
+    let dest = '/team/' + folder;
+    console.log('new user dest' + dest);
+    const p = config.mount + dest;
+    logger.trace('creating item at' + p);
+    try {
+        if (isNew)
+            fo.clone('/team/template', dest);
+        let d = new Base_1.Dat(p);
+        d.set('currentRole', currentRole);
+        d.set('publish', true);
+        d.write();
+        let oldmedia = [], newmedia = [];
+        if (!isNew) {
+            oldmedia = fo.getMediaFilenames(folder);
+            console.log('oldmedia' + oldmedia);
+        }
+        if (f1name) {
+            newmedia.push(f1name);
+            if (f1 && f1.indexOf('data:') == 0) {
+                var buffer = Buffer.from(f1.split(",")[1], 'base64');
+                let f1path = dest + '/' + f1name;
+                fo.write(f1path, buffer);
+                d.set('image', f1name);
+                d.write();
+            }
+        }
+        else {
+            d.set('image', '');
+            d.write();
+        }
+        if (!isNew) {
+            let k = 0, klen = oldmedia.length;
+            for (k; k < klen; k++) {
+                if (newmedia.indexOf(oldmedia[k]) == -1) {
+                    fo.removeFile(dest + '/' + oldmedia[k]);
+                }
+            }
+        }
+        let ret = mp.itemizeOnly('team');
+        if (ret.code < 0)
+            res.status(500).send(ret);
+        else
+            res.json(ret);
+        console.log('Itemize done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
+    }
+    catch (err) {
+        console.log('// ERR //////////////////////////////////////////////////////');
+        console.log(err);
+    }
+});
+server.get('/api/removeuser', function (req, res) {
+    console.log(' removeuser');
+    res.setHeader('Content-Type', 'application/json');
+    let qs = req.query;
+    let listfolder = qs['listfolder'];
+    let item = qs['item'];
+    fo.remove('/' + listfolder + '/' + item);
+    mp.itemizeOnly(listfolder);
+    mp.deleteAuthUser(item)
+        .then(function () {
+        mp.getUsers(req, res, listfolder);
+    });
+});
 server.get('/api/clone', function (req, res) {
     console.log(' itemize');
     res.setHeader('Content-Type', 'application/json');
@@ -255,7 +394,6 @@ var listener = server.listen(config.services_port, function () {
     console.log("admin services port at http://%s:%s", host, port);
 });
 let app = new Base_1.MDevSrv2(config['mount'], config['mount_port'], true);
-let admin = new Base_1.AdminSrv(config);
 let w = new Base_1.Watch2(mp, config['mount']);
 setTimeout(function () {
     console.log('Startup build:');
