@@ -15,5 +15,10 @@
     "mbake": ">=4.11.34",
     "nocache": "^2.0.0",
     "slugify": "^1.3.1"
+  }  ,
+  "devDependencies": {
+    "ts-node": "^7.0.1",
+    "@types/node": "^10.12.2",
+    "typescript": "^3.1.3"
   }
 }
