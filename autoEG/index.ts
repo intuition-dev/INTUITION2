@@ -176,6 +176,7 @@ server.get('/api/scrape', function (req, res) {
    })
 })//api
 
+/* deprecated, post to /api/item instead */
 server.post('/api/newLinkBlog', function (req, res) {
    console.log(' newLinkBlog')
    res.setHeader('Content-Type', 'application/json')
@@ -349,6 +350,9 @@ server.post('/api/item', function (req, res) {
      let rex:RetMsg = mp.bake(dest)
       console.log('Baking done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
      
+      rex = mp.map()
+      console.log('Building sitemap done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+
      let ret:RetMsg = mp.itemizeOnly(folder) //return array of items
      if(ret.code<0)
         res.status(500).send(ret)
@@ -370,6 +374,7 @@ server.get('/api/removeitem', function (req, res) {
    let item = qs['item']
 
    fo.remove('/'+listfolder+'/'+item)
+   mp.map() //rebuild sitemap
    mp.itemizeOnly(listfolder)
 
    let ret:RetMsg = mp.getItems(listfolder)
