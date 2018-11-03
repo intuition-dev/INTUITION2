@@ -1,9 +1,0 @@
-toc:
-  - name: log
-    description: version
-  - name: isLoggedIn
-    description: isLoggedIn
-  - name: AdminAuth
-    description: Login and logout
-  - name: MetaAdminService
-    description: Calls Admin services
