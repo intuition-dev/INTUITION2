@@ -1,7 +1,7 @@
 
 Best to think of it as 2 apps( 2 apps and 2 api servers on 4 ports). They will be combined into 1 later, towards v2
 
-user admin web app and user separate admin api
+user admin web app and user admin api
 ----------------------------------------------
 for 1 admin user only using admin.yaml only - basic auth. username is admin, no email.
 it has admin api(/admin/...), that uses basic auth only 
