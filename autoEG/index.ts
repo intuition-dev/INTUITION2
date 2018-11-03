@@ -1,14 +1,5 @@
 // All rights Metabake.org | Wolfgang Gehner, licensed under MIT
 
-/*
-declare var require: any
-//declare var process: any
-declare var console: any
-declare var Buffer: any
-
-declare var __dirname: any
-*/
-
 const express = require('express')
 const basicAuth = require('express-basic-auth')
 const cors = require('cors')

@@ -275,6 +275,8 @@ server.post('/api/item', function (req, res) {
         console.log('Writing content done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
         let rex = mp.bake(dest);
         console.log('Baking done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
+        rex = mp.map();
+        console.log('Building sitemap done IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII');
         let ret = mp.itemizeOnly(folder);
         if (ret.code < 0)
             res.status(500).send(ret);
@@ -294,6 +296,7 @@ server.get('/api/removeitem', function (req, res) {
     let listfolder = qs['listfolder'];
     let item = qs['item'];
     fo.remove('/' + listfolder + '/' + item);
+    mp.map();
     mp.itemizeOnly(listfolder);
     let ret = mp.getItems(listfolder);
     if (ret.code < 0)
