@@ -8,4 +8,5 @@ site/
 
 api/
 
-adminEG/index.js
+
+auth-*.json
