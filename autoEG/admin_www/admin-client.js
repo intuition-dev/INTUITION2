@@ -1,6 +1,6 @@
 
 // npm -g i documentation
-// # documentation build --config documentation.yml admin-client.js -f html -o api
+// $ documentation build --config documentation.yml admin-client.js -f html -o api
 // Note: don't upload CSS, else fix in S3
 // Version should sync w/ mbake version due to -a
 
@@ -355,8 +355,6 @@ function connect(url) {
 				console.log('is logged in. window.aSrv')
 				const  baseURL = url
 				window.aSrv = new MetaAdminService(baseURL, AdminAuth.username(), AdminAuth.secret()) //only needed with basic auth
-				
-
 
 				window.aSrv.getLast().then(function(resp) {
 					console.log(resp.data)
