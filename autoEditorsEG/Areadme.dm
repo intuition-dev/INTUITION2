@@ -24,7 +24,7 @@ it has 'view' see next
 
 ports & view page
 ---------------
-each web app will host ports.json, it does not need to be edited if you don't change ports in admin.yaml,
+each web app will host config.js with config json inside, it does not need to be edited if you don't change ports in config.yaml,
 with these fields:
    admin_api_port: XX
    editor_api_port: XX

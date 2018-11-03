@@ -1,11 +1,15 @@
 {
-  "name": "autoadmineg",
+  "name": "adminEG",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "firebase-admin": "^6.1.0",
+    "mbake": "^4.11.34"
+  } ,
+  "devDependencies": {
+    "ts-node": "^7.0.1",
+    "@types/node": "^10.12.2",
+    "typescript": "^3.1.3"
+  }
 }

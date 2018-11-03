@@ -8,5 +8,6 @@ site/
 
 api/
 
-
 auth-*.json
+
+yarn.lock

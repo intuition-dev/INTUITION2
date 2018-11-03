@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES2017",
+   
+        "allowJs": false,
+        "moduleResolution": "node",
+        "sourceMap": false,
+        "removeComments": true,
+        "outDir": ".",
+        "baseUrl": ".",
+        "paths": {
+            "*": ["node_modules/*"]
+        }
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+       ]
+}
