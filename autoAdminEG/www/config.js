@@ -1,3 +1,3 @@
 config = {
-   "adminAPIport": "9091"
+   "adminAPIport": "9081"
 }

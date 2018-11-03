@@ -1,3 +1,5 @@
 config = {
-   "editorAPIport": "9081"
+   "editorAPIport": 9081
+   ,'appPort': 9082
+
 }
