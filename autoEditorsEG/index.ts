@@ -1,3 +1,13 @@
+const express = require('express')
+const app1 = express()
+
+app1.get('/one', function (req, res) {
+   res.json({"foo": "bar"})
+})
+var server1 = app1.listen(8080, function() {
+   console.log('Ready on port %d', server1.address().port);
+})
+ ///////////////////////////
 
 var admin = require("firebase-admin");
 const fs = require('fs')

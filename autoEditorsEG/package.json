@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.16.4",
     "firebase-admin": "^6.1.0",
     "mbake": "^4.11.34"
-  } ,
+  },
   "devDependencies": {
-    "ts-node": "^7.0.1",
     "@types/node": "^10.12.2",
+    "ts-node": "^7.0.1",
     "typescript": "^3.1.3"
   }
 }
