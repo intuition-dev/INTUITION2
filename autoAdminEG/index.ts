@@ -1,4 +1,6 @@
 
+declare var require: any
+
 var admin = require("firebase-admin");
 const fs = require('fs')
 

@@ -1,7 +1,0 @@
-basedir: ../..
-ROOT: '/'
-pretty: true
-
-PROD_ROOT: 'https://blog.appthings.io'
-
-
