@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "firebase-admin":">=6.1.0",
-    "mbake":">=4.11.34"
-  } ,
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-basic-auth": "^1.1.6",
+    "firebase-admin": ">=6.1.0",
+    "js-yaml": "^3.12.0",
+    "mbake": ">=4.11.34"
+  },
   "devDependencies": {
-   "ts-node":">=7.0.1",
-   "@types/node":">=10.12.2",
-   "typescript":">=3.1.6",
-   "mbake": "^4.11.38"
-
+    "@types/node": ">=10.12.2",
+    "mbake": "^4.11.38",
+    "ts-node": ">=7.0.1",
+    "typescript": ">=3.1.6"
   }
 }
