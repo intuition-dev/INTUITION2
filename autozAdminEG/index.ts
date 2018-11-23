@@ -11,9 +11,9 @@ const fs = require('fs')
 let config = yaml.load(fs.readFileSync(__dirname +'/config.yaml'))
 console.log(config)
 
-const server = express()
-server.use(cors())
-server.use(basicAuth({
+const appA = express()
+appA.use(cors())
+appA.use(basicAuth({
    users: { 'admin': config.secret }
 }))
 
