@@ -6,7 +6,7 @@
   "dependencies": {
     "express":">=4.16.4",
     "firebase-admin":">=6.1.0",
-    "mbake": ">=4.11.36"
+    "mbake": ">=4.11.39"
   },
   "devDependencies": {
     "@types/node": ">=10.12.9",
