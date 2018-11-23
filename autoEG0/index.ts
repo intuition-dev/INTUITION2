@@ -1,4 +1,4 @@
-// All rights Metabake.org | Wolfgang Gehner, licensed under MIT
+// All rights Metabake.net  licensed under MIT
 
 const express = require('express')
 const basicAuth = require('express-basic-auth')

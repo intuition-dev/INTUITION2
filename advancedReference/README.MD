@@ -5,13 +5,13 @@
 ## Videos:
 S = sales, I = Foundation, II = B&M, III = Vista
 - S <a href='https://vimeo.com/282034037' target='_blank'>Meetup Video</a>
-- S [Metabake Full Slides](http://prez.metabake.org/p)
+- S [Metabake Full Slides](http://prez.metabake.net/p)
 - S [Metabake Sales Summary](https://www.youtube.com/watch?v=OK-cJNSkQII)
 
 - I [Metabake Quick Demo](https://youtu.be/WyCdSFTUIvM)
 - I [mbake CLI](https://youtu.be/-KkPfAnEXyk)
 - I [Pug on Youtube](http://youtube.com/watch?v=wzAWI9h3q18)
-- I [Mount S3 to local drive](http://wgehnerlab1.metabake.org.s3-website-us-east-1.amazonaws.com/lab1v0.html)
+- I [Mount S3 to local drive](http://wgehnerlab1.metabake.net.s3-website-us-east-1.amazonaws.com/lab1v0.html)
 
 - II [Blog search](https://www.youtube.com/watch?v=-4i9_SYyTOo)
 - II [SPA](https://youtu.be/LHFjjDPlU3A)
@@ -23,8 +23,8 @@ S = sales, I = Foundation, II = B&M, III = Vista
 -[Conversion to S3](https://www.progress.com/blogs/importing-salesforce-data-into-amazon-s3-via-jdbc-driver)
 -[StaticGen](https://www.staticgen.com/metabakeorg)
 - <a href='https://www.npmjs.com/package/mbake' target='_blank'>Check for latest version of mbake</a>
-- <a href='http://git.metabake.org' target='_blank'>git.metabake.org</a>
-- [Pug](https://pug.metabake.org)
+- <a href='http://git.metabake.net' target='_blank'>git.metabake.net</a>
+- [Pug](https://pug.metabake.net)
 - [RIOTjs](https://riot.js.org/)
 - [Grid Forms](http://kumailht.com/gridforms)
 - [Loader: loadjs](https://github.com/muicss/loadjs)

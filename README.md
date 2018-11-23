@@ -1,7 +1,7 @@
 
 
 - <a href='https://youtu.be/CMUiPC0YtYA' target='_blank'>WebIDE video</a>
-- <a href='http://doc.metabake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
+- <a href='http://doc.metabake.net/meta/' target='_blank'>Click for 'THE' Meta docs</a>
 
 
 ## 10X faster web app development with less code
@@ -18,7 +18,7 @@ On the client side (browser apps and mobile apps) Metabake does something simila
 
 The Metabake approach has 10 pillars that are the foundation for achieving mind-blowing development productivity gains. I'll just mention one more pillar here: automatic programming. You've probably heard of 'static site generators' like Hugo or Jekyll that people use to generate their web site or a blog. Automatic programming means using a similar generator to write your web app! This can get you to yet another level of productivity.
 
-To learn more about the Metabake approach, including all 10 pillars and full examples, go to metabake.org. Or, to dive in right away, use the 'mbake CLI' from github.com/metabake as the first step into 10X faster web app development.
+To learn more about the Metabake approach, including all 10 pillars and full examples, go to metabake.net. Or, to dive in right away, use the 'mbake CLI' from github.com/metabake as the first step into 10X faster web app development.
 
 #### Metabake productivity is based on three modules:
 
