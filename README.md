@@ -1,7 +1,7 @@
 
 
 - <a href='https://youtu.be/CMUiPC0YtYA' target='_blank'>WebIDE video</a>
-- <a href='http://doc.metabake.net/meta/' target='_blank'>Click for 'THE' Meta docs</a>
+- <a href='http://doc.metabake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
 
 
 ## 10X faster web app development with less code

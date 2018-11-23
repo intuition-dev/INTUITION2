@@ -1,0 +1,101 @@
+doctype html
+html
+	head
+		script.
+			ROOT = '#{ROOT}' //- sets global pug and .js from dat.yaml
+			console.log('root','#{ROOT}')
+			let _start=Date.now()
+		meta(charset='utf-8')
+		
+		meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width')
+		title MyMeta Admin
+		link(rel='shortcut icon', href= ROOT + 'assets/favicon.png', type='image/x-icon')
+
+		script(src='https://www.gstatic.com/firebasejs/5.5.8/firebase-app.js')
+		script(src='https://www.gstatic.com/firebasejs/5.5.8/firebase-auth.js')
+		script(src='https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js')
+		script(src='https://cdn.jsdelivr.net/npm/riot@3.13.0/riot.min.js')
+		script(src='https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js')
+		style.
+			.delayShowing { opacity: 0.01; }
+
+		script(src='/layout/tags/auth-tag.min.js')
+
+	body
+		#all.delayShowing
+			//- left version, less text
+			#menuhead
+				.navbar
+					.navbar-section
+						h5#brand MyMeta Admin
+					.navbar-section
+						a.btn(href='/screen/posts/new/#')
+							svg.feather.feather-plus-square(viewBox='0 0 24 24')
+								rect(x='3', y='3', width='18', height='18', rx='2', ry='2')
+								line(x1='12', y1='8', x2='12', y2='16')
+								line(x1='8', y1='12', x2='16', y2='12')
+						a.btn.btn-link(nohref, onclick='onLogout(false)') 
+							svg.feather.feather-power(viewBox='0 0 24 24')
+								path(d='M18.36 6.64a9 9 0 1 1-12.73 0')
+								line(x1='12', y1='2', x2='12', y2='12')
+			#menu.panel
+				.body.panel-body
+					p
+					include sidebar
+
+		#main.delayShowing
+			//- right version, more text
+			#listhead
+				.navbar
+					.navbar-section
+						h5#brand MyMeta Admin
+					.navbar-section
+						a.btn(href='/screen/posts/new/#')
+							.flex.edge
+								svg.left.feather.feather-plus-square(viewBox='0 0 24 24')
+									rect(x='3', y='3', width='18', height='18', rx='2', ry='2')
+									line(x1='12', y1='8', x2='12', y2='16')
+									line(x1='8', y1='12', x2='16', y2='12')
+								.padL.hide-sm New Post
+						a.btn.btn-link(nohref, onclick='onLogout()') Logout
+			#list.panel
+				.body.panel-body
+					#router
+						block main
+
+		script.
+			function userSzSc() {
+				console.log('resize|scroll')
+			}
+
+		script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
+		script(src= ROOT + 'assets/js/setup.js')
+
+		script.
+			depp.define({'css': [
+				ROOT + 'assets/css/spectre.css'
+				, ROOT + 'assets/css/nav.css'
+				, ROOT + 'assets/css/main.css'
+				, 'css!https://fonts.googleapis.com/css?family=Open+Sans'
+			]})
+			depp.require(['css'])
+
+		//-include register
+		include modal
+
+		script.
+			function showHideByRole(){ //called from modal after login/verification
+				if (AdminAuth.currentRole()=='Admin')
+				{
+					$('#configure').show()
+					$('#people').show()
+				}
+				else
+				{
+					$('#configure').hide()
+					$('#people').hide()
+				}
+			}
+
+		//-link(href= ROOT + 'assets/css/debug.css', rel='stylesheet')
+

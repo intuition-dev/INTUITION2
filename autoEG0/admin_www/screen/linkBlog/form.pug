@@ -1,0 +1,57 @@
+
+div#LinkBlog
+   br
+   .grid-form(autocomplete="off")
+      fieldset
+         legend New Link Blog
+         div(data-row-span="1")
+            .field(data-field-span="1")
+               label External Source Url:
+               input#ext(type="text", autofocus="")
+
+         div(data-row-span="2")
+            .field(data-field-span="1")
+               label Clone from:
+               input#src(type="text")
+            .field(data-field-span="1")
+               label Clone to:
+               input#dest(type="text")
+         //div(data-row-span="1")
+         br
+         legend Comment:
+         div(data-row-span="1")
+            .field(data-field-span="1")
+               textarea#com(rows="10" cols="50")
+         div(data-row-span="1")
+            .field(data-field-span="1")
+               label Tags:
+               input#tags(type="text")
+
+      br
+      #linkBlogMsg.toast.toast-warning &nbsp;
+      br
+      #butLink.button.btn Create
+
+   //link(href= ROOT + 'assets/css/debug.css', rel='stylesheet')
+   style.
+
+   script.
+      loadjs.ready(['style','ma-client'], function () {
+         $('#butLink').click(function(){
+            let url = $('#ext').val()
+            let src = $('#src').val()
+            let dest = $('#dest').val()
+            let com  = $('#com').val()
+            let tags  = $('#tags').val()
+
+            window.aSrv.newLinkBlog(src, dest, url, com, tags).then(newLinkRes)
+         })// click
+      })//ready
+
+      function newLinkRes(resp) {
+         let msg = resp.data._msg
+         console.log(msg)
+         console.log(msg.title)
+
+         $('#linkBlogMsg').text(msg.title)
+      }

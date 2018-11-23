@@ -1,0 +1,132 @@
+/* Globals */
+.navbar {
+  padding: 0;
+  height: 50px;
+}
+
+.navbar-section a {
+  margin-left: 10px;
+}
+
+.navbar-section a:first-child {
+  margin-left: 0;
+}
+
+.nav-item {
+	width: 100%;
+}
+
+.close { /* close buttons */
+  padding: 0 20px;
+  border-right: .5px solid #537994 !important;
+  height: 50px;
+  line-height: 50px;
+}
+/* End globals */
+
+/* This app uses CSS-only off-canvas behavior (see also main.css). For this to work,
+left and right screen parts are under separate divs. When the div ID is added to the 
+URL as hash, the CSS rules that slide a screen part in or out are activated (e.g. 
+rules that begin with #all:target or #hideprops:target). For this method to work,
+the div that is moved must have a fixed top position of 0 (and include any top navbar).
+As a result, both divs have their own complete navbar that appear as one on a large screen.
+When both navbars are on the canvas the left navbar hides its right section, and the 
+right navbar hides its left section, so that there are no duplicates shown. When only 
+one navbar is on the canvas, the visible navbar shows both sections. */
+
+/* List screen navbars */
+#menuhead, #listhead {
+	background-color: #0087BE;
+	height: 50px;
+  line-height: 50px;
+  color: white;
+}
+
+#menuhead .btn-link, #listhead .btn-link {
+	color: white !important;
+}
+
+#brand {
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+#listhead #brand {
+  visibility: hidden;
+}
+
+#menuhead .navbar-section {
+  height: 50px;
+}
+
+/* room for brand */
+#menuhead .navbar-section:first-child {
+  min-width: 230px;
+}
+
+/* Hide the 'right' side in wide mode, because #listhead shows it  */
+#menuhead .navbar-section:last-child {
+  visibility: hidden;
+}
+
+
+
+/* Edit screen navbars */
+#edithead, #prophead {
+  border-bottom: .5px solid #537994;
+}
+
+#prophead {
+  z-index: 3;
+  background-color: white;
+}
+
+#prophead .navbar-section a:first-child {
+  visibility: hidden;
+}
+
+.navbar-section a:last-child {
+  margin-right: 20px;
+}
+
+#menuhead .navbar-section a:last-child {
+  margin-right: 10px;
+}
+
+/* Left Menu on list screen */
+.sidebar .panel {
+	height: calc(100vh - 50px);
+}
+
+.sidebar .panel-body {
+	padding: 0;
+}
+
+#menu ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+#menu li > a {
+   display: block;
+   padding: 10px 15px;
+   text-decoration: none;
+}
+
+#menu li > a:hover {
+   background-color: #537994;
+   color: white;
+}
+
+#menu .nav-item {
+   line-height: 25px;
+   width: 100%;
+}
+
+#menu .btn-sm {
+  margin: 9px;
+}
+
+
+

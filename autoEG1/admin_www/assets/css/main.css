@@ -1,0 +1,436 @@
+/* For top navbars and left menu items see nav.css.
+Also see list screen #all, #main and 
+edit screen #props, #hideprops further below. */
+
+#menu, #list, #edit, #prop { /* panels */
+	height: calc(100vh - 51px); /* ensure vertical auto-scrollbars on panels */
+	padding: 0;
+}
+
+#list {
+	background-color: #F3F6F8 !important; /* gray */
+	border: 0;
+}
+
+#edit {
+	border-top: 0;
+	border-right: .5px solid #537994;
+	border-left: 0;
+}
+
+#menu, #prop {
+	background-color: #E9EFF3 !important; /* secondary */
+	border: 0;
+}
+
+.panel > .body { /* main panels */
+	padding: 0;
+}
+
+/* Globals */
+.padL {
+	padding-left: 15px;
+ }
+.pad {
+	padding: 15px;
+}
+ 
+.feather {
+	width: 24px;
+	height: 24px;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+ 
+h6 { /* use for smaller font */
+	font-size: smaller;
+}
+
+#menu h6 {
+	margin-left: 7px;
+}
+
+.card {
+	border : 0;
+}
+
+.flex, .center, .top, .right, .bottom, .left{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.flex { align-content: flex-start; }
+.top    { align-items:     flex-start; }
+.right  { justify-content: flex-end;   }
+.bottom { align-items:     flex-end;   }
+.left   { justify-content: flex-start; }
+.edge  { justify-content: space-between; flex-wrap: nowrap; } /* override */
+ 
+.btn.disabled2 { /* fake disabled button */
+    cursor: default;
+    opacity: .5;
+    pointer-events: none;
+}
+/* End globals */
+
+
+/* List screen subpanels */
+#router {
+	margin-top: 0px;
+}
+
+#navp, #tabp, #listp, #detailp .container {
+	background-color: white;
+	border: .5px solid #537994;
+	width: 85%;
+	padding: 0;
+}
+
+#detailp {
+	margin: auto;
+}
+
+#navp { /* backlink subpanel shown on small screen */
+	padding-top:.8em;
+	padding-bottom: .8em;
+}
+
+#tabp .tab {
+	padding-inline-start: 0px !important;
+	margin-bottom: 0 !important;
+}
+#tabp .tab-item > a {
+	padding-bottom: 0 !important;
+}
+#tabp .tab-item > a > .badge {
+	margin-left: .7em !important;
+	margin-right: .4em !important;
+}
+
+#footp { /* subpanel with divider and brand */ 
+	width: 85%;
+}
+
+#footp .divider[data-content]::after {
+	background: #F3F6F8 !important;
+}
+
+#detailp .container {
+	padding: 0;
+}
+
+#detailp .card-header {
+	border-bottom: .5px solid #537994;
+	padding-top: 0;
+}
+
+#detailp h6 {
+	margin-top: .5em;
+}
+
+#detailp .tooltip {
+	padding: 0;
+}
+
+/* Lists (used by list tags) */
+.listhead {
+	padding: 15px;
+	border-bottom: .5px solid #537994;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+li a {
+	display: block;
+	padding: 0px 12px 12px 12px;
+	text-decoration: none;
+}
+
+li #noa {
+	padding: 12px;
+}
+ 
+li a:hover {
+	color: #0087BE;
+}
+
+li .btn-sm {
+	z-index: 5;
+}
+
+#main .listbody > .nav-item {
+	border-bottom: .5px solid #537994;
+}
+
+#main .listbody > .nav-item:last-child {
+	border:none;
+}
+/* End lists */
+
+
+/* Edit screen subpanels */
+#edittitlep, #edittabp, #cms1 {
+	width: 85%;
+}
+
+.CodeMirror {border: .5px solid #537994; font-family: "Open Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+.cm-header-1 { font-size: 150%; }
+.cm-header-2 { font-size: 130%; }
+.cm-header-3 { font-size: 120%; }
+.cm-header-4 { font-size: 110%; }
+.cm-header-5 { font-size: 100%; }
+.cm-header-6 { font-size: 90%; }
+
+#router {
+	height: calc(100vh - 81px);
+	margin: 0;
+	padding: 0;
+}
+
+#editorp {
+	height: calc(100vh - 143px);
+}
+
+/* Properties panel */
+#prop .tile {
+	padding: 10px 8px 5px 8px;
+	margin: 0;
+	vertical-align: middle;
+	border-bottom: .5px solid #537994;
+}
+
+.accordion {
+	background-color: white;
+	padding-top: 7px; padding-bottom: 0px;
+	border-bottom: .5px solid #537994;
+}
+
+.accordion-header h6 {
+	vertical-align: middle;
+	margin-bottom: 0;
+}
+
+/* show/hide accordion open and close icons */ 
+.accordion input:checked + .accordion-header .feather-chevron-down {
+	display: none;
+}
+.accordion-header .feather-chevron-up {
+	display: none;
+}
+.accordion input:checked + .accordion-header .feather-chevron-up {
+	display: block;
+}
+
+/* Status card */
+#publishdate .card-body {
+	border: .5px solid #537994;
+	margin: 16px;
+	padding: 0;
+}
+
+#publishdate .accordion {
+	border-bottom: 0;
+}
+
+#publishdate .accordion-header {
+	padding-bottom: 10px;
+}
+
+#publishdate .accordion-body {
+	margin-bottom: 0;
+}
+
+#publishdate .text-bold, #publishdate .text-center {
+	font-size: smaller;
+}
+
+.picker { /* datepicker */
+	max-width: 230px !important;
+}
+.picker__box {
+	padding: 0;
+}
+.picker__input {
+	padding: 5px;
+	margin: 5px;
+	margin-left:7px;
+
+}
+
+/* Featured image card */
+#featuredimage .card-body {
+	margin-left: 16px;
+	margin-right: 16px;
+	padding: 0;
+}
+#featuredimage .card-image {
+	background-color: #E9EFF3;
+	margin-left: 16px;
+	margin-right: 16px;
+	padding-top: 0;
+	min-height: 80px;
+	border: .5px solid #537994;
+	position: relative;
+	z-index: 1;
+}
+
+#f1del {  /* overlayed image delete button */
+	display: none;
+	background-color: #537994;
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	top: 0; right: 0;
+	z-index: 3;
+}
+
+#f1del > a {
+	color: white !important;
+}
+
+#f1, #fx { /* upload fields */
+	font-size: smaller;
+}
+
+/* Media upload card */
+#media .card-body {
+	padding: 0;
+}
+
+#media .card-title {
+	font-size: .5rem;
+	max-width: 160px;
+	padding-left: 6px;
+}
+
+#media .chip {
+	font-size: .5rem;
+}
+
+#media .tile:first-child {
+	border-top: .5px solid #537994;
+}
+
+/* Modal */
+#success .modal-container, #success .modal-body,
+#error .modal-container, #error .modal-body  {
+	padding: 0;
+	max-width: 400px;
+}
+
+#loginMsg {
+	font-size: smaller;
+	text-align: left;
+	margin-right: 15px;
+}
+
+/* List page (CSS off-canvas on small screen) */
+#all { /* left side container ID for header and menu */
+	position: fixed;
+	top: 0; 
+	left: 0;
+	width: 250px; height: 100%;
+	overflow: hidden;
+	transition: left .3s ease;
+}
+
+#main { /* right side container for header and list */
+	position: fixed;
+	width: calc(100vw - 250px);
+	top: 0;
+	left: 250px;
+	overflow: hidden;
+	transition: left .3s ease;
+}
+
+/* Editpage (CSS off-canvas on small screen below) */
+#props { /* right side container for header and properties */
+	position: fixed;
+	top: 0; 
+	right: 0;
+	width: 250px; height: 100%;
+	overflow: hidden;
+	transition: right .3s ease; /* toggle transition */
+}
+
+#hideprops { /* left side container for header and menu */
+	width: calc(100vw - 250px);
+	overflow: hidden;
+	transition: width .3s ease; /* toggle transition */
+}
+
+#hideprops:target { /* toggle state making left side full screen */
+	width: 100vw !important;
+}
+#hideprops:target + #props { /* same toggle state moving right side off screen */
+	right: -250px;
+}
+
+/* Settings for mobile */
+@media screen and (max-width: 600px) {
+
+	/* show complete headers ('duplicate' header items are hidden on large screens */
+	#menuhead .navbar-section:last-child {
+		visibility: visible;
+	}
+	#listhead #brand {
+		visibility: visible;
+	}
+	#prophead .navbar-section a:first-child {
+		visibility: visible;
+	}
+
+	/* List screen settings for mobile */
+	#all {
+		width: 100vw; /* left side (menu) is full screen by default */
+	}
+
+	#main {
+		width: 100vw;
+		left: 100vw; /* on mobile, right side (list) is offscreen by default */
+	}
+
+	#router, .panel, .panel-body {  
+		width: 100vw;
+	}
+
+	#navp, #ddp, #tabp, #statusp, #listp, #footp, #detailp {
+		width: 100vw;
+	}
+
+	#all:target + #main { /* toggle state moving right side (list) on screen */
+		z-index: 10;
+		left: 0; 
+		transform: left .3s ease; /* toggle transition */
+	}
+
+
+	/* Edit screen settings for mobile */
+	#props { /* right side container for header and properties, full screen by default */
+		right: 0;
+		width: 100vw;
+		z-index: 7; /* higher than codemirror */
+	}
+
+	#hideprops { /* toggle state making left side full screen */
+		width: 100vw;
+		overflow: hidden;
+	}
+
+	#hideprops:target + #props { /* same toggle state moving right side off screen */
+		right: -100vw;
+	}
+}
+
+
+
+
+
+
