@@ -11,3 +11,5 @@ api/
 auth-*.json
 
 yarn.lock
+
+index.js

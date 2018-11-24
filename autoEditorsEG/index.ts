@@ -2,12 +2,19 @@ const express = require('express')
 const appE = express()
 
 appE.get('/one', function (req, res) {
+   let dirs = new Dirs('')
+   
+   dirs.getShort()
+
    res.json({"foo": "bar"})
 })
-var server1 = appE.listen(8080, function() {
-   console.log('Ready on port %d', server1.address().port);
-})
- ///////////////////////////
+
+
+import { Ver, Dirs } from 'mbake/lib/Base'
+
+console.log(new Ver().ver())
+
+
 
 var admin = require("firebase-admin");
 const fs = require('fs')
@@ -19,3 +26,8 @@ admin.initializeApp({
   credential: admin.credential.cert(fbServiceAccount)
 })
 
+
+///////////////////////////
+var serverA = appE.listen(8080, function() {
+   console.log('Ready on port %d', serverA.address().port);
+})
