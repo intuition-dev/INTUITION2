@@ -287,7 +287,7 @@ server.post('/api/item', function (req, res) {
             newmedia.push(f1name)
             if (f1 && f1.indexOf('data:')==0) //newly uploaded image
             {
-               var buffer = Buffer.from(f1.split(",")[1], 'base64')
+               let buffer = Buffer.from(f1.split(",")[1], 'base64')
                let f1path = dest + '/' + f1name
                fo.write(f1path, buffer)
                d.set('image', f1name) 
@@ -313,7 +313,7 @@ server.post('/api/item', function (req, res) {
             newmedia.push(obj.filename)
             if (obj.src.indexOf('data:')==0) //newly uploaded image
             {
-               var buffer = Buffer.from(obj.src.split(",")[1], 'base64')
+               let buffer = Buffer.from(obj.src.split(",")[1], 'base64')
                fo.write(f1path, buffer)
             }
             //else its existing media, do nothing
@@ -420,7 +420,7 @@ server.post('/api/user', function (req, res) {
             newmedia.push(f1name)
             if (f1 && f1.indexOf('data:')==0) //newly uploaded image
             {
-               var buffer = Buffer.from(f1.split(",")[1], 'base64')
+               let buffer = Buffer.from(f1.split(",")[1], 'base64')
                let f1path = dest + '/' + f1name
                fo.write(f1path, buffer)
                d.set('image', f1name) 
@@ -499,9 +499,9 @@ server.get('/api/clone', function (req, res) {
 })//api
 
 // /////////////////////////////////////////////////////////////////
-var listener = server.listen(config.services_port, function () {
-   var host = listener.address().address
-   var port = listener.address().port
+let listener = server.listen(config.services_port, function () {
+   let host = listener.address().address
+   let port = listener.address().port
    console.log("admin services port at http://%s:%s", host, port)
    //console.log(server._router.stack )
 })

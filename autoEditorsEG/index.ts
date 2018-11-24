@@ -28,6 +28,6 @@ admin.initializeApp({
 
 
 ///////////////////////////
-var serverA = appE.listen(8080, function() {
+let serverA = appE.listen(8080, function() {
    console.log('Ready on port %d', serverA.address().port);
 })
