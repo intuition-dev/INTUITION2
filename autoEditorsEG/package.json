@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+   "node": ">=10.13",
+   "yarn": ">=1.12.3"
+},
   "dependencies": {
     "express":">=4.16.4",
-    "firebase-admin":">=6.1.0",
-    "mbake": ">=4.11.50"
+    "firebase-admin": ">=6.2.0",
+    "mbake": ">=4.12.10"
   },
   "devDependencies": {
-    "@types/node": ">=10.12.9",
+    "@types/node": ">=10.12.10",
     "ts-node":">=7.0.1",
     "typescript":">=3.1.6"
   }
