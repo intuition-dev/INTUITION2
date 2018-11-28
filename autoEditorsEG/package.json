@@ -9,8 +9,8 @@
 },
   "dependencies": {
     "express":">=4.16.4",
-    "firebase-admin": ">=6.2.0",
-    "mbake": ">=4.12.10"
+    "firebase-admin": ">=6.3.0",
+    "mbake": ">=4.12.12"
   },
   "devDependencies": {
     "@types/node": ">=10.12.10",
