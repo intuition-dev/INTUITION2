@@ -8,15 +8,42 @@ head
    script(src='https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js')
 
 body
-   script(src='/EditorsService.js')
- 
-   link(rel='stylesheet', href='https://unpkg.com/spectre.css/dist/spectre.min.css')
+   script(src='/EditorsService.js') 
 
-   textarea(rows='4' cols='50')
+   textarea#cms1(rows='400' )
 
    script. 
-      depp.define({'code': [
-         '//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
-         ,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
-         ,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
+      depp.define({'codeEdit': [
+         '//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.css'
+         ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/theme/solarized.css'
+
+         ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.min.js'
+         ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/markdown/markdown.js'
+         ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/yaml/yaml.js'
+         ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/keymap/sublime.js'
+
       ]})
+      depp.require('codeEdit', pgInit)
+      function pgInit() {
+         console.log('ready')
+         _initCodeMirror()
+      }
+      let myCodeMirror
+      function _initCodeMirror() {
+         myCodeMirror = CodeMirror.fromTextArea(
+            document.querySelector('#cms1') ,
+               {
+                  mode:  'markdown'
+                  , lineNumbers: true
+                  , tabSize: 3
+                  , indentWithTabs: false
+                  //, theme: 'neat'
+                  //, keyMap: 'sublime'
+                  , v11iewportMargin: 'Infinity'
+               }
+            )
+         myCodeMirror.setSize('100%', '100%')
+         //loadjs.done('cm')
+      }// initCM()
+
+   link(rel='stylesheet', href='https://unpkg.com/spectre.css/dist/spectre.min.css')

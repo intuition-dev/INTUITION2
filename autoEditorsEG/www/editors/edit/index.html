@@ -7,7 +7,42 @@
   <script src="https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js"></script>
 </head>
 <body>
-  <script src="/EditorsService.js"></script>
+  <script src="/EditorsService.js"> </script>
+  <textarea id="cms1" rows="400"></textarea>
+  <script>
+    depp.define({'codeEdit': [
+       '//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.css'
+       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/theme/solarized.css'
+    
+       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.min.js'
+       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/markdown/markdown.js'
+       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/yaml/yaml.js'
+       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/keymap/sublime.js'
+    
+    ]})
+    depp.require('codeEdit', pgInit)
+    function pgInit() {
+       console.log('ready')
+       _initCodeMirror()
+    }
+    let myCodeMirror
+    function _initCodeMirror() {
+       myCodeMirror = CodeMirror.fromTextArea(
+          document.querySelector('#cms1') ,
+             {
+                mode:  'markdown'
+                , lineNumbers: true
+                , tabSize: 3
+                , indentWithTabs: false
+                //, theme: 'neat'
+                //, keyMap: 'sublime'
+                , v11iewportMargin: 'Infinity'
+             }
+          )
+       myCodeMirror.setSize('100%', '100%')
+       //loadjs.done('cm')
+    }// initCM()
+    
+  </script>
   <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css"/>
-  <textarea rows="4" cols="50"></textarea>
-<!-- mB v4.12.12 on 2018-11-29T00:12:51.692Z --></body>
+<!-- mB v4.12.12 on 2018-11-29T23:08:51.347Z --></body>
