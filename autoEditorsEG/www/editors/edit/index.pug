@@ -9,5 +9,14 @@ head
 
 body
    script(src='/EditorsService.js')
-
+ 
    link(rel='stylesheet', href='https://unpkg.com/spectre.css/dist/spectre.min.css')
+
+   textarea(rows='4' cols='50')
+
+   script. 
+      depp.define({'code': [
+         '//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.css'
+         ,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/lib/codemirror.min.js'
+         ,'//cdn.jsdelivr.net/npm/codemirror@5.40.2/mode/markdown/markdown.js'
+      ]})
