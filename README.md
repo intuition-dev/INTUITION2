@@ -4,8 +4,7 @@
 - <a href='http://doc.metabake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
 
 
-## 10X faster web app development with less code
-### With Metabake's modern development approach, it is not about replacing your tech stack with another tech stack -- it is about eliminating most of it!
+## Low-code productivity for programmers via generators for Pug, Markdown and much more; including dynamic data binding.
 
 
 # About Metabake
