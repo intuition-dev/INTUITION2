@@ -1,4 +1,5 @@
-import { Ver, Dirs, FileOps } from 'mbake/lib/Base'
+import { Ver, Dirs } from 'mbake/lib/Base'
+import {  FileOps } from 'mbake/lib/Wa'
 
 import express = require('express');
 const appE = express()

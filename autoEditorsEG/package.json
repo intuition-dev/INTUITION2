@@ -10,11 +10,11 @@
   "dependencies": {
     "express":">=4.16.4",
     "firebase-admin": ">=6.3.0",
-    "mbake": ">=4.12.12"
+    "mbake": ">=4.12.14"
   },
   "devDependencies": {
-    "@types/node": ">=10.12.10",
+    "@types/node": ">=10.12.11",
     "ts-node":">=7.0.1",
-    "typescript":">=3.1.6"
+    "typescript": ">=3.2.1"
   }
 }
