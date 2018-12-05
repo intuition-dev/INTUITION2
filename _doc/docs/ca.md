@@ -35,8 +35,16 @@
 			aws_access_key_id = KEY2
 			aws_secret_access_key = SECRET2
 
-		// mount your S3 bucket there, use your BUCKET-NAME
-		~/goofys --profile default -o allow_other --use-content-type BUCKET-NAME ~/root/adminEG/prod
+		// make a directory in which you'll mount s3 bucket
+
+		$ mkdir folder_name
+
+		// check if folder was created
+
+		$ ls -la
+
+		// mount your S3 bucket into it, use your BUCKET-NAME and folder_name
+		~/goofys --profile default -o allow_other --use-content-type BUCKET-NAME ~/folder_name
 
 		// check to see your S3 webapp files
 		ls -la
