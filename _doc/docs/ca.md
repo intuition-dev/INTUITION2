@@ -13,44 +13,50 @@
 ### Cloud Mount S3
 
 1. Setup S3 mounting software.
+	```js
+	$ cd ~
 
-      cd ~
-		sudo wget http://bit.ly/goofys-latest
-		mv goofys-latest goofys
-		sudo chmod +x goofys
+	$ sudo wget http://bit.ly/goofys-latest
+	mv goofys-latest goofys
+	sudo chmod +x goofys
 
-		//just in case you need it
-		ln -s /var/log ~
+	//just in case you need it
+	$ ln -s /var/log ~
+	```
 
-2. In mbake, you should be comfortable mounting to the local PC. Now we mount in the cloud.
+1. In mbake, you should be comfortable mounting to the local PC. Now we mount in the cloud.
 
+	```js
+	//edit your credentials, [other2] part is very optional, if you need 2 mounts.
+	$ mkdir ~/.aws
+	```
+1. In CA edit ~/.aws/credentials
+	```conf
+	[default]
+	aws_access_key_id = KEY
+	aws_secret_access_key = SECRET
+	[other2]
+	aws_access_key_id = KEY2
+	aws_secret_access_key = SECRET2
+	```
 
-		//edit your credentials, [other2] part is very optional, if you need 2 mounts.
-		mkdir ~/.aws
-		In CA edit ~/.aws/credentials
-			[default]
-			aws_access_key_id = KEY
-			aws_secret_access_key = SECRET
-			[other2]
-			aws_access_key_id = KEY2
-			aws_secret_access_key = SECRET2
+1. Make a directory in which you'll mount s3 bucket
+	```js
+	$ mkdir folder_name
+	// check if folder was created
+	$ ls -la
+	```
 
-		// make a directory in which you'll mount s3 bucket
+1. Mount your S3 bucket into it, use your BUCKET-NAME and folder_name
+	```js
+	~/goofys --profile default -o allow_other --use-content-type BUCKET-NAME ~/folder_name
 
-		$ mkdir folder_name
+	// check to see your S3 webapp files
+	ls -la
 
-		// check if folder was created
+	// if errors, check /var/log/syslog for direction
+	```
 
-		$ ls -la
-
-		// mount your S3 bucket into it, use your BUCKET-NAME and folder_name
-		~/goofys --profile default -o allow_other --use-content-type BUCKET-NAME ~/folder_name
-
-		// check to see your S3 webapp files
-		ls -la
-      
-      // if errors, check /var/log/syslog for direction
-
-3. Now you can edit and ... from CodeAnywhere ssh: mbake -a
+1. Now you can edit and ... from CodeAnywhere ssh: mbake -a
 
 
