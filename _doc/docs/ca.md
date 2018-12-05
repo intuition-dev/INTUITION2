@@ -17,8 +17,8 @@
 	$ cd ~
 
 	$ sudo wget http://bit.ly/goofys-latest
-	mv goofys-latest goofys
-	sudo chmod +x goofys
+	$ mv goofys-latest goofys
+	$ sudo chmod +x goofys
 
 	//just in case you need it
 	$ ln -s /var/log ~
