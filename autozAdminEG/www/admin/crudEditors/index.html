@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>window.ROOT = ''
+      console.log('root','')
+      
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="undefinedassets/css/screen.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;amp;subset=latin-ext">
+    <script src="undefinedconfig.js"></script>
+    <script>
+      window.url_string = window.location.href.split('http://')[1].slice(0,6);
+      window.env = window.url_string == 'al-adm' ? 'isProd' :'isLocal';
+      console.log('window.env: ', window.env);
+      
+      window.LOCAL_API = [config.LOCAL_API,config.LOCAL_API_PASS];
+      window.DEV_API = [config.DEV_API,config.DEV_API_PASS];
+      
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <script src="/AdminService.js"></script>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="undefinedassets/js/app.js"></script>
+    <div class="login-bg">
+      <div class="login-wrapper">
+        <div class="login-form">
+          <form class="grid-form" id="login-form" action="#">
+            <fieldset>
+              <legend>Login to admin panel</legend>
+              <div class="input-wrap">
+                <label>Login</label>
+                <input type="text" name="login" required="required">
+              </div>
+              <div class="input-wrap">
+                <label>Password</label>
+                <input type="password" name="password" required="required">
+              </div>
+            </fieldset>
+          </form>
+          <div class="d-hide isError" id="error"></div>
+          <button class="btn btn-primary btn-center" id="btn-login">Login</button>
+        </div>
+      </div>
+    </div>
+  <!-- mB v4.12.17 on 2018-12-06T16:59:03.116Z --></body>
+</html>

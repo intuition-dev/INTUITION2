@@ -1,0 +1,140 @@
+.login-wrapper {
+   padding: 2rem 0;
+   width: 70%;
+   min-height: 100vh;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: $text-color-dark;
+
+   &.login {
+      min-height: 100vh;
+      padding: 0;
+   }
+
+   .login-form {
+      border-radius: 3px;
+      width: 340px;
+      max-width: 98%;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 20px 0 rgba(black, 0.2), 0 5px 5px 0 rgba(black, 0.24);
+      background: $text-color-dark;
+
+      fieldset legend {
+         text-align: center;
+         text-transform: uppercase;
+         border: 0;
+         padding-bottom: 0;
+         margin-bottom: 1.5rem;
+      }
+
+      label {
+         position: absolute;
+         bottom: 6px;
+         left: 0;
+         display: block;
+         transition: all .3s ease-in-out;
+         font-size: $font-size-global;
+         z-index: 0;
+         &.focus {
+            bottom: 37px;
+            text-align: left;
+            display: block;
+            font-size: 10px;
+            color: rgba($text-color-dark, .74);
+         }
+      }
+
+      .input-wrap {
+         position: relative;
+         margin: 0 0 1.2rem 0;
+         z-index: 2;
+
+         &:last-of-type {
+            margin: 0;
+         }
+      }
+
+      input,
+      label {
+         color: $text-color-dark;
+      }
+
+      input {
+         font-family: inherit;
+         border: 0;
+         border-radius: 0;
+         border-bottom: 2px solid rgba($text-color-dark, .4);
+         width: 100%;
+         height: 40px;
+         display: block;
+         line-height: normal;
+         margin: 0;
+         padding: 6px 0;
+         font-size: $font-size-global;
+         color: $text-color-dark;
+         transition: all .3s ease-in-out;
+         z-index: 1;
+         position: relative;
+
+         &::-webkit-input-placeholder {
+            font-size: $font-size-global;
+            color: $text-color-dark;
+         }
+
+         &::-moz-placeholder {
+            font-size: $font-size-global;
+            color: $text-color-dark;
+         }
+
+         &::-ms-input-placeholder {
+            font-size: $font-size-global;
+            color: $text-color-dark;
+         }
+
+         &:focus {
+            border-color: $text-color-dark;
+         }
+
+         &,
+         &:-webkit-autofill {
+            background: 0;
+         }
+      }
+   }
+
+   p {
+      font-size: 12px;
+      text-align: center;
+      color: rgba($text-color-dark, .5);
+
+      a {
+         color: $text-color-dark;
+         font-weight: 600;
+
+         &:hover {
+            color: rgba($text-color-dark, 1);
+         }
+      }
+
+      span {
+         display: block;
+      }
+   }
+   & .isError {
+      color: #f70e0e;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+   }
+}
+
+.login-bg {
+   background: $text-color-dark;
+   background: -webkit-linear-gradient(-135deg, $background-light, $background-dark);
+   background: -o-linear-gradient(-135deg, $background-light, $background-dark);
+   background: -moz-linear-gradient(-135deg, $background-light, $background-dark);
+   background: linear-gradient(-135deg, $background-light, $background-dark);
+}

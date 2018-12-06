@@ -13,3 +13,6 @@ auth-*.json
 yarn.lock
 
 index.js
+
+config.rb
+.sass-cache
