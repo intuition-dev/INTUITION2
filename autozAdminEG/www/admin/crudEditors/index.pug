@@ -1,65 +1,66 @@
 extends ../../layout/layout.pug
 block content
-    h1.table-header Editors
-    #editors-table.table-custom
+    .page-content.container
+        h1.table-header Editors
+        #editors-table.table-custom
 
-    .space-2v
+        .space-2v
 
-    form#editor-form.grid-form
-        fieldset
-            legend Select row to edit/remove editor, to add editor type in new editor's login credentials
-            div(data-row-span='3')
-                div(data-field-span='1')
-                    label Email
-                    input(type='text', name='email', required='required')
-                div(data-field-span='1')
-                    label Name
-                    input(type='text', name='name')
-                div(data-field-span='1')
-                    label Password
-                    input(type='password', name='password', required='required')
-    .notification.d-hide
-    .btn-row.space-2v
-        a(href='#')#add-editor.btn-custom.btn-primary Add
-        a(href='#')#edit-editor.btn-custom.btn-primary Edit
-        a(href='#')#delete-editor.btn-custom.btn-secondary Delete
+        form#editor-form.grid-form
+            fieldset
+                legend Select row to edit/remove editor, to add editor type in new editor's login credentials
+                div(data-row-span='3')
+                    div(data-field-span='1')
+                        label Email
+                        input(type='text', name='email', required='required')
+                    div(data-field-span='1')
+                        label Name
+                        input(type='text', name='name')
+                    div(data-field-span='1')
+                        label Password
+                        input(type='password', name='password', required='required')
+        .notification.d-hide
+        .btn-row.space-2v
+            a(href='#')#add-editor.btn-custom.btn-primary Add
+            a(href='#')#edit-editor.btn-custom.btn-primary Edit
+            a(href='#')#delete-editor.btn-custom.btn-secondary Delete
 
-    script.
+        script.
 
-        depp.require(['general'], function() {
-            let editors = new Editors(getApiService());
+            depp.require(['general'], function() {
+                let editors = new Editors(getApiService());
 
-            editors.drawTable();
+                editors.drawTable();
 
-            $(window).on('resize', function () {
-                $(".tabulator").tabulator("redraw");
+                $(window).on('resize', function () {
+                    $(".tabulator").tabulator("redraw");
+                });
+
+                // add editor
+                $(document).on('click', '#add-editor', function (e) {
+                    e.preventDefault();
+                    $(this).attr("disabled", "disabled");
+                    editors
+                        .save()
+                        .then(() => $(this).removeAttr("disabled"));
+                });
+                //edit editor
+                $(document).find('#edit-editor').on('click', function (e) {
+                    e.preventDefault();
+                    //- let uid = $('[tabulator-field="id"]').text();
+                    $(this).attr("disabled", "disabled");
+                    editors
+                        .save(rowUid)
+                        .then(() => $(this).removeAttr("disabled"));
+                });
+                // delete editor
+                $(document).on('click', '#delete-editor', function (e) {
+                     e.preventDefault();
+                     //- let uid = $('[tabulator-field="id"]').text();
+                     $(this).attr("disabled", "disabled");
+                     editors
+                         .remove(rowUid)
+                         .then(() => $(this).removeAttr("disabled"));
+                });
+
             });
-
-            // add editor
-            $(document).on('click', '#add-editor', function (e) {
-                e.preventDefault();
-                $(this).attr("disabled", "disabled");
-                editors
-                    .save()
-                    .then(() => $(this).removeAttr("disabled"));
-            });
-            //edit editor
-            $(document).find('#edit-editor').on('click', function (e) {
-                e.preventDefault();
-                //- let uid = $('[tabulator-field="id"]').text();
-                $(this).attr("disabled", "disabled");
-                editors
-                    .save(rowUid)
-                    .then(() => $(this).removeAttr("disabled"));
-            });
-            // delete editor
-            $(document).on('click', '#delete-editor', function (e) {
-                 e.preventDefault();
-                 //- let uid = $('[tabulator-field="id"]').text();
-                 $(this).attr("disabled", "disabled");
-                 editors
-                     .remove(rowUid)
-                     .then(() => $(this).removeAttr("disabled"));
-            });
-
-        });

@@ -5,6 +5,7 @@ class Editors {
         this.remove = this.remove.bind(this);
         this.apiService = apiService;
         this.table = null;
+        this.activeRow = null;
     }
     drawTable() {
         // render editors table
@@ -18,7 +19,8 @@ class Editors {
                         {title:"Email", field:"email", align:"left"},
                         {title:"Name", field:"name", align:"left"}
                     ],
-                    rowClick:function(e, row){ // fill the form fields
+                    rowClick:(e, row) => { // fill the form fields
+                        this.activeRow = row;
                         var row = row.getData();
                         window.rowUid = row.id;
                         $('input[name="name"]').val(row.name);
@@ -46,7 +48,10 @@ class Editors {
                     $('.notification').removeClass('d-hide').text('user was successfully updated');
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
-                    }, 10000);
+                    }, 4000);
+                    $('html, body').animate({ // scroll to form
+                        scrollTop: $("#editor-form").offset().top
+                    }, 500);
                     // table refresh
                     this.table
                         .updateOrAddData([{id:documentRef.data.id ,email: email, name: name}])
@@ -64,7 +69,10 @@ class Editors {
                     $('.notification').removeClass('d-hide').text('new user was created');
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
-                    }, 10000);
+                    }, 4000);
+                    $('html, body').animate({ // scroll to form
+                        scrollTop: $("#editor-form").offset().top
+                    }, 500);
                     // table refresh
                     this.table
                         .updateOrAddData([{id:documentRef.data.id ,email: email, name: name}])
@@ -83,18 +91,30 @@ class Editors {
                     $('.notification').removeClass('d-hide').addClass('error-msg').text('an error occured, user wasn\'t created', err);
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').removeClass('error-msg').text('');
-                    }, 10000);
+                    }, 4000);
                 });
         }
     }
 
     remove(id) {
-        return this.apiService.deleteEmployee(id)
-            .then(function () {
-                console.log('deleted...')
-            })
-            .then(function () {
-                window.location.reload();
+        return this.apiService.deleteEditor(id)
+            .then(() => {
+                console.log('deleted...');
+                $('.notification').removeClass('d-hide').text(' The user was successfully deleted');
+                setTimeout(function() {
+                    $('.notification').addClass('d-hide').text('');
+                }, 4000);
+                $('html, body').animate({ // scroll to form
+                    scrollTop: $("#editor-form").offset().top
+                }, 500);
+                // table refresh
+                this.activeRow.delete()
+                    .then(function(){
+                        console.log('table updated');
+                    })
+                    .catch(function(error){
+                        console.log('unable update table', error);
+                    });
             })
             .catch(function (e) {
                 alert('Unable to delete user: ' + e);
