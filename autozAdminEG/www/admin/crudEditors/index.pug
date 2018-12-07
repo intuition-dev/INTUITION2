@@ -3,74 +3,68 @@ block content
     h1.table-header Editors
     #editors-table.table-custom
 
+    .space-2v
+
     form#editor-form.grid-form
         fieldset
             legend Select row to edit/remove editor, to add editor type in new editor's login credentials
             div(data-row-span='3')
                 div(data-field-span='1')
                     label Email
-                    input(type='text', name='name')
+                    input(type='text', name='email', required='required')
                 div(data-field-span='1')
                     label Name
-                    input(type='text', name='email', required='required')
+                    input(type='text', name='name')
                 div(data-field-span='1')
                     label Password
                     input(type='text', name='password', required='required')
           
     .btn-row.space-2v
-        a(href='#')#add-editor-link.btn-custom.btn-primary Add
-        a(href='#')#add-editor-link.btn-custom.btn-primary Edit
-        a(href='#')#add-editor-link.btn-custom.btn-secondary Delete
+        a(href='#')#add-editor.btn-custom.btn-primary Add
+        a(href='#')#edit-editor.btn-custom.btn-primary Edit
+        a(href='#')#delete-editor.btn-custom.btn-secondary Delete
 
     script.
 
         depp.require(['general'], function() {
-            //let editors = new Editors(getApiService());
+            let editors = new Editors(getApiService());
 
-            let tabledata = [{id:'1', email: 'dffef',name: 'dffef'}];
+            editors.drawTable();
 
-            let table = new Tabulator("#editors-table", {
-                data:tabledata,         // assign data to table
-                layout:"fitColumns",    // fit columns to width of table
-                columns:[               // Define Table Columns
-                    {title:"id", field:"id", visible:false},
-                    {title:"Email (login)", field:"email", align:"left"},
-                    {title:"Name", field:"name", align:"left"}
-                ],
-                rowClick:function(e, row){
-                    // fill the form fields on table row click
-                    var row = row.getData();
-                    $('input[name="name"]').val(row.name);
-                    $('input[name="email"]').val(row.email);
-                    //disE('row', row);
-                },
-            });
-
-
-            window.onData = function(rows) {
-                console.log(rows);
-                table.clearData(rows);
-                table.addData(rows);
-                table.setData(rows);
-            }//onData
-
-            window.onErr = function(err) {
-                console.log(err);
-            }
-              
-            //read(onData, onErr);
+            //- window.onData = function(rows) {
+            //-    console.log(rows);
+            //-    table.clearData(rows);
+            //-    table.addData(rows);
+            //-    table.setData(rows);
+            //- }
 
             $(window).on('resize', function () {
                 $(".tabulator").tabulator("redraw");
             });
 
-            // form scripts
-            $(document).on('click', '#btn-add', function (e) {
+            // add editor
+            $(document).on('click', '#add-editor', function (e) {
                 e.preventDefault();
                 $(this).attr("disabled", "disabled");
-                employees
-                    .save(employeeId, companyId, companyName)
+                editors
+                    .save()
                     .then(() => $(this).removeAttr("disabled"));
+            });
+            // delete editor
+            $(document).on('click', '#delete-editor', function (e) {
+                 e.preventDefault();
+                 $(this).attr("disabled", "disabled");
+                 editors
+                     .remove(data.id) //update project with active flag
+                     .then(() => $(this).removeAttr("disabled"));
+            });
+            //edit editor
+            $(document).find('#edit-editor').on('click', function (e) {
+                 e.preventDefault();
+                 $(this).attr("disabled", "disabled");
+                 editors
+                     .edit(data.id) //update project with active flag
+                     .then(() => $(this).removeAttr("disabled"));
             });
 
         });

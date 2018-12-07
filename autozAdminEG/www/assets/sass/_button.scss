@@ -46,7 +46,7 @@
 
     &-primary {
         background: linear-gradient(to right, $button-primary-hover 50%,$button-primary 50%) no-repeat scroll right bottom / 210% 100% $button-primary;
-        &, &:hover, &:active, &:focus {
+        &, &:hover, &:active, &:focus, &:visited {
             &, svg {
                 color: $button-primary-color;
                 fill: $button-primary-color;
@@ -57,10 +57,10 @@
     &-secondary {
         background: linear-gradient(to right, white 50%,$button-secondary-hover 50%) no-repeat scroll right bottom / 210% 100% $button-secondary-hover;
 
-            &, svg {
-                color: $button-secondary-color;
-                fill: $button-secondary-color;
-            }
+        &, svg, &:visited {
+            color: $button-secondary-color;
+            fill: $button-secondary-color;
+        }
 
         &:hover, &:active, &:focus {
             &, svg {
@@ -86,13 +86,13 @@
 .link {
     &-primary {
         color: $color-secondary;
-        &:hover, &:active, &:focus {
+        &:hover, &:active, &:focus, &:visited {
             color: $color;
         }
     }
     &-secondary {
         color: $color;
-        &:hover, &:active, &:focus {
+        &:hover, &:active, &:focus, &:visited {
             color: $color-secondary;
         }
     }

@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
         window.sessionStorage.setItem('username', formLogin);
         window.sessionStorage.setItem('password', formPassw);
 
-        window.location = '/auth/companies';
+        window.location = '/admin/crudEditors';
 
     });
 

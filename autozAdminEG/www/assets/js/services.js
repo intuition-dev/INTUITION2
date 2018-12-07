@@ -26,48 +26,14 @@ class ApiService {
         });
     }
 
-    // get data for companies collection from node
-    getCompaniesList() {
-        return this.service.get('/auth/companies');
-    }
-
-    // add company to collection through node to FS
-    saveCompany(name) {
-        return this.service.post('/auth/companies', {
-            name: name
-        }).then(resp => resp.data);
-    }
-
-    // remove company from the collection through node from FS
-    removeCompany(id) {
-        return this.service.delete('/auth/companies', {
-            params: {
-                id: id
-            }
-        });
-    }
-
-    // edit company in the collection through node in FS
-    editCompany(id, name) {
-        return this.service.put('/auth/companies', {
-            id: id,
-            name: name
-        }).then(resp => resp.data);
-    }
-
-    // get data for employees collection throught node in FS
-    getEmployeesList(companyId, companyName) {
-        return this.service.get('/auth/employees', {
-            params: {
-                company: companyId
-            }
-        });
+    // get data for editors table
+    getEditorsList() {
+        return this.service.get('/auth/editors');
     }
 
     // add user to collection throught node to FS
-    addEmployee(companyId, name, email, password) {
-        return this.service.post('/auth/employees', {
-            company: companyId,
+    addEditor(name, email, password) {
+        return this.service.post('/auth/editors', {
             name: name,
             email: email,
             password: password
@@ -75,16 +41,16 @@ class ApiService {
     }
 
     // edit user to collection throught node to FS
-    editEmployee(uid, name, companyName) {
-        return this.service.put('/auth/employees', {
+    editEditor(uid, name) {
+        return this.service.put('/auth/editors', {
             name: name,
             uid: uid
         });
     }
 
     // delete user to collection throught node to FS
-    deleteEmployee(uid, companyName) {
-        return this.service.delete('/auth/employees', {
+    deleteEditor(uid) {
+        return this.service.delete('/auth/editors', {
             params: {
                 uid: uid
             }

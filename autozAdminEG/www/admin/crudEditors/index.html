@@ -16,7 +16,7 @@
     <script src="/config.js"></script>
     <script>
       window.url_string = window.location.href.split('http://')[1].slice(0,6);
-      window.env = window.url_string == 'al-adm' ? 'isProd' :'isLocal';
+      window.env = window.url_string == 'blog-p' ? 'isProd' :'isLocal';
       console.log('window.env: ', window.env);
       
       window.LOCAL_API = [config.LOCAL_API,config.LOCAL_API_PASS];
@@ -43,17 +43,18 @@
     <div class="page-content container">
       <h1 class="table-header">Editors</h1>
       <div class="table-custom" id="editors-table"></div>
+      <div class="space-2v"></div>
       <form class="grid-form" id="editor-form">
         <fieldset>
           <legend>Select row to edit/remove editor, to add editor type in new editor's login credentials</legend>
           <div data-row-span="3">
             <div data-field-span="1">
               <label>Email</label>
-              <input type="text" name="name">
+              <input type="text" name="email" required="required">
             </div>
             <div data-field-span="1">
               <label>Name</label>
-              <input type="text" name="email" required="required">
+              <input type="text" name="name">
             </div>
             <div data-field-span="1">
               <label>Password</label>
@@ -62,59 +63,51 @@
           </div>
         </fieldset>
       </form>
-      <div class="btn-row space-2v"><a class="btn-custom btn-primary" href="#" id="add-editor-link">Add</a><a class="btn-custom btn-primary" href="#" id="add-editor-link">Edit</a><a class="btn-custom btn-secondary" href="#" id="add-editor-link">Delete</a></div>
+      <div class="btn-row space-2v"><a class="btn-custom btn-primary" href="#" id="add-editor">Add</a><a class="btn-custom btn-primary" href="#" id="edit-editor">Edit</a><a class="btn-custom btn-secondary" href="#" id="delete-editor">Delete</a></div>
       <script>
         depp.require(['general'], function() {
-            //let editors = new Editors(getApiService());
+            let editors = new Editors(getApiService());
         
-            let tabledata = [{id:'1', email: 'dffef',name: 'dffef'}];
+            editors.drawTable();
         
-            let table = new Tabulator("#editors-table", {
-                data:tabledata,         // assign data to table
-                layout:"fitColumns",    // fit columns to width of table
-                columns:[               // Define Table Columns
-                    {title:"id", field:"id", visible:false},
-                    {title:"Email (login)", field:"email", align:"left"},
-                    {title:"Name", field:"name", align:"left"}
-                ],
-                rowClick:function(e, row){
-                    // fill the form fields on table row click
-                    var row = row.getData();
-                    $('input[name="name"]').val(row.name);
-                    $('input[name="email"]').val(row.email);
-                    //disE('row', row);
-                },
-            });
-        
-        
-            window.onData = function(rows) {
-                console.log(rows);
-                table.clearData(rows);
-                table.addData(rows);
-                table.setData(rows);
-            }//onData
-        
-            window.onErr = function(err) {
-                console.log(err);
-            }
-              
-            //read(onData, onErr);
+            //- window.onData = function(rows) {
+            //-    console.log(rows);
+            //-    table.clearData(rows);
+            //-    table.addData(rows);
+            //-    table.setData(rows);
+            //- }
         
             $(window).on('resize', function () {
                 $(".tabulator").tabulator("redraw");
             });
         
-            // form scripts
-            $(document).on('click', '#btn-add', function (e) {
+            // add editor
+            $(document).on('click', '#add-editor', function (e) {
                 e.preventDefault();
                 $(this).attr("disabled", "disabled");
-                employees
-                    .save(employeeId, companyId, companyName)
+                editors
+                    .save()
                     .then(() => $(this).removeAttr("disabled"));
+            });
+            // delete editor
+            $(document).on('click', '#delete-editor', function (e) {
+                 e.preventDefault();
+                 $(this).attr("disabled", "disabled");
+                 editors
+                     .remove(data.id) //update project with active flag
+                     .then(() => $(this).removeAttr("disabled"));
+            });
+            //edit editor
+            $(document).find('#edit-editor').on('click', function (e) {
+                 e.preventDefault();
+                 $(this).attr("disabled", "disabled");
+                 editors
+                     .edit(data.id) //update project with active flag
+                     .then(() => $(this).removeAttr("disabled"));
             });
         
         });
       </script>
     </div>
-  <!-- mB v4.12.17 on 2018-12-07T10:21:41.590Z --></body>
+  <!-- mB v4.12.17 on 2018-12-07T13:22:37.001Z --></body>
 </html>

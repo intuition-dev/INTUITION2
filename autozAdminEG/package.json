@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "engines": {
-   "node": ">=10.13",
-   "yarn": ">=1.12.3"
-},
+    "node": ">=10.13",
+    "yarn": ">=1.12.3"
+  },
   "dependencies": {
+    "basic-auth": "^2.0.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-basic-auth": "^1.1.6",
-    "firebase-admin": ">=6.3.0",
+    "file-system": "^2.2.2",
+    "firebase": "^5.7.0",
+    "firebase-admin": "^6.3.0",
     "js-yaml": "^3.12.0",
     "mbake": ">=4.11.34"
   },

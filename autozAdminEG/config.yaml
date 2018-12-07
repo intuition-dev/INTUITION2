@@ -1,7 +1,3 @@
-
-firebase_auth_json: auth-f959b-96034aadd9c1.json
-
 # uses basic auth
-secret: 123
-adminAPIport: 9091
-
+secret: 123456
+adminAPIport: 3030
