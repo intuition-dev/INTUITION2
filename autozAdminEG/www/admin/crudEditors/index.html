@@ -41,26 +41,48 @@
       </div>
     </header>
     <div class="page-content container">
-      <h1 class="table-header">Editors
-        <div class="table-custom" id="editors-table"></div>
-        <div class="btn-row space-2v"><a class="btn-custom btn-primary" href="#" id="add-editor-link">Add Editor</a><a class="btn-custom btn-primary" href="#" id="add-editor-link">Edit Editor</a><a class="btn-custom btn-secondary" href="#" id="add-editor-link">Delete Editor</a></div>
-      </h1>
+      <h1 class="table-header">Editors</h1>
+      <div class="table-custom" id="editors-table"></div>
+      <form class="grid-form" id="editor-form">
+        <fieldset>
+          <legend>Select row to edit/remove editor, to add editor type in new editor's login credentials</legend>
+          <div data-row-span="3">
+            <div data-field-span="1">
+              <label>Email</label>
+              <input type="text" name="name">
+            </div>
+            <div data-field-span="1">
+              <label>Name</label>
+              <input type="text" name="email" required="required">
+            </div>
+            <div data-field-span="1">
+              <label>Password</label>
+              <input type="text" name="password" required="required">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div class="btn-row space-2v"><a class="btn-custom btn-primary" href="#" id="add-editor-link">Add</a><a class="btn-custom btn-primary" href="#" id="add-editor-link">Edit</a><a class="btn-custom btn-secondary" href="#" id="add-editor-link">Delete</a></div>
       <script>
         depp.require(['general'], function() {
             //let editors = new Editors(getApiService());
         
-            let tabledata = [];
+            let tabledata = [{id:'1', email: 'dffef',name: 'dffef'}];
         
             let table = new Tabulator("#editors-table", {
                 data:tabledata,         // assign data to table
                 layout:"fitColumns",    // fit columns to width of table
                 columns:[               // Define Table Columns
                     {title:"id", field:"id", visible:false},
-                    {title:"Login", field:"login", align:"left", width:'50%'}
+                    {title:"Email (login)", field:"email", align:"left"},
+                    {title:"Name", field:"name", align:"left"}
                 ],
                 rowClick:function(e, row){
+                    // fill the form fields on table row click
                     var row = row.getData();
-                    disE('row', row);
+                    $('input[name="name"]').val(row.name);
+                    $('input[name="email"]').val(row.email);
+                    //disE('row', row);
                 },
             });
         
@@ -76,14 +98,23 @@
                 console.log(err);
             }
               
-            read(onData, onErr);
+            //read(onData, onErr);
         
             $(window).on('resize', function () {
                 $(".tabulator").tabulator("redraw");
             });
         
+            // form scripts
+            $(document).on('click', '#btn-add', function (e) {
+                e.preventDefault();
+                $(this).attr("disabled", "disabled");
+                employees
+                    .save(employeeId, companyId, companyName)
+                    .then(() => $(this).removeAttr("disabled"));
+            });
+        
         });
       </script>
     </div>
-  <!-- mB v4.12.17 on 2018-12-07T09:53:50.131Z --></body>
+  <!-- mB v4.12.17 on 2018-12-07T10:21:41.590Z --></body>
 </html>

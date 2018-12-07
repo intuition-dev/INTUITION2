@@ -1,6 +1,7 @@
 .btn {
     &-custom {
         text-transform: uppercase;
+        text-align: center;
         border-radius: 0;
         border: 0;
         font-size: 12px;
@@ -65,6 +66,7 @@
             &, svg {
                 color: $button-secondary-hover;
                 fill: $button-secondary-hover;
+                font-weight: 600;
             }
         }
 
