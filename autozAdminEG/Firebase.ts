@@ -3,9 +3,9 @@ module.exports = (() => {
 
     if (!firebase.apps.length) {
         firebase.initializeApp({
-            apiKey: 'AIzaSyANgUiulqhb4AweQ26cng9jdo_mz_LJhYg',
-            authDomain: 'alan-project-dev-5da15.firebaseapp.com',
-            projectId: 'alan-project-dev-5da15'
+            apiKey: 'AIzaSyD7P7FfaeH3EShfyEtJuxeNYUHdI-u1Mvk',
+            authDomain: 'blog-editors.firebaseapp.com',
+            projectId: 'blog-editors'
         });
     }
     
