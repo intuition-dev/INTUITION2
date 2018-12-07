@@ -55,4 +55,3 @@ class AdminAuth {
       sessionStorage.removeItem('maAuth')
    }
 }//()
-

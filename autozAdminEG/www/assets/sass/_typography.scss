@@ -4,8 +4,8 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-    font-weight: 400;
-    color: $text-color-dark;
+    font-weight: 200;
+    color: $text-color-dark-2;
     &.light {
         color: $text-color-light;
         
@@ -47,7 +47,7 @@ a {
 }
 
 p, ul, .grid-form fieldset legend {
-    color: $text-color-dark;
+    color: $text-color-dark-2;
     font-size: $font-size-global;
     line-height: 1.45;
 }

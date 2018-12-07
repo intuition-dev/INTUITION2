@@ -1,0 +1,97 @@
+.btn {
+    &-custom {
+        text-transform: uppercase;
+        border-radius: 0;
+        border: 0;
+        font-size: 12px;
+        min-width: 100px;
+        padding: 12px 20px;
+        transition: all .2s ease-in-out;
+        display: table;
+
+        &:hover, &:active, &:focus {
+            outline: none;
+            text-decoration: none;
+            box-shadow: none;
+        }
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+                margin-left: 1rem;
+                width: 30px;
+                flex-shrink: 0;
+            }
+        }
+    }
+
+    &-center {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    &-row {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+        .btn-custom {
+            margin: 0 1rem 0 0;
+            &:last-of-type {
+                margin: 0;
+            }
+        }
+    }
+
+    &-primary {
+        background: linear-gradient(to right, $button-primary-hover 50%,$button-primary 50%) no-repeat scroll right bottom / 210% 100% $button-primary;
+        &, &:hover, &:active, &:focus {
+            &, svg {
+                color: $button-primary-color;
+                fill: $button-primary-color;
+            }
+        }
+    }
+
+    &-secondary {
+        background: linear-gradient(to right, white 50%,$button-secondary-hover 50%) no-repeat scroll right bottom / 210% 100% $button-secondary-hover;
+
+            &, svg {
+                color: $button-secondary-color;
+                fill: $button-secondary-color;
+            }
+
+        &:hover, &:active, &:focus {
+            &, svg {
+                color: $button-secondary-hover;
+                fill: $button-secondary-hover;
+            }
+        }
+
+        &.invert {
+            background: linear-gradient(to right, $button-secondary 50%,$button-secondary-hover 50%) no-repeat scroll right bottom / 210% 100% $button-secondary-hover;
+        }
+    }
+    &-primary, &-secondary {
+        -webkit-transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0 linear 0.3s; 
+        -ms-transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0 linear 0.3s; 
+        transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0 linear 0.3s; 
+        &:hover, &:active, &:focus {
+            background-position: left bottom;
+        }
+    }
+}
+.link {
+    &-primary {
+        color: $color-secondary;
+        &:hover, &:active, &:focus {
+            color: $color;
+        }
+    }
+    &-secondary {
+        color: $color;
+        &:hover, &:active, &:focus {
+            color: $color-secondary;
+        }
+    }
+}

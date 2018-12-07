@@ -29,8 +29,10 @@ depp.require(['services'], function() {
 depp.require(['general'], function() {
   depp.define({
     'rw': [
-      '/assets/js/login.js',
-      '/assets/js/ui.js'
+      '/assets/js/login.js'
+      , '/assets/js/ui.js'
     ]
   });
 });
+
+depp.require(['rw']);

@@ -1,17 +1,48 @@
 extends ../../layout/layout.pug
-block header
 block content
-   .login-bg
-      .login-wrapper
-         .login-form
-            form#login-form.grid-form(action="#")
-               fieldset
-                  legend Login to admin panel
-                  .input-wrap
-                     label Login
-                     input(type='text', name='login', required='required')
-                  .input-wrap
-                     label Password
-                     input(type='password', name='password', required='required')
-            #error.d-hide.isError
-            button#btn-login.btn.btn-primary.btn-center Login
+    h1.table-header Editors
+        #editors-table.table-custom
+        .btn-row.space-2v
+            a(href='#')#add-editor-link.btn-custom.btn-primary Add Editor
+            a(href='#')#add-editor-link.btn-custom.btn-primary Edit Editor
+            a(href='#')#add-editor-link.btn-custom.btn-secondary Delete Editor
+
+    script.
+
+        depp.require(['general'], function() {
+            //let editors = new Editors(getApiService());
+
+            let tabledata = [];
+
+            let table = new Tabulator("#editors-table", {
+                data:tabledata,         // assign data to table
+                layout:"fitColumns",    // fit columns to width of table
+                columns:[               // Define Table Columns
+                    {title:"id", field:"id", visible:false},
+                    {title:"Login", field:"login", align:"left", width:'50%'}
+                ],
+                rowClick:function(e, row){
+                    var row = row.getData();
+                    disE('row', row);
+                },
+            });
+
+
+            window.onData = function(rows) {
+                console.log(rows);
+                table.clearData(rows);
+                table.addData(rows);
+                table.setData(rows);
+            }//onData
+
+            window.onErr = function(err) {
+                console.log(err);
+            }
+              
+            read(onData, onErr);
+
+            $(window).on('resize', function () {
+                $(".tabulator").tabulator("redraw");
+            });
+
+        });

@@ -1,0 +1,25 @@
+.page-content {
+	font-family: $font-family;
+	padding-top: 1rem;
+	padding-bottom: 1rem
+}
+
+// spaces
+.space {
+	&-1v {
+	    margin-top: 1rem;
+	    margin-bottom: 1rem;
+	}
+	&-2v {
+	    margin-top: 2rem;
+	    margin-bottom: 2rem;
+	}
+	&-12v {
+		margin-top: 1rem;
+	    margin-bottom: 2rem;
+	}
+	&-21v {
+		margin-top: 2rem;
+	    margin-bottom: 1rem;
+	}
+}
