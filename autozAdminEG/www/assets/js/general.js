@@ -43,7 +43,7 @@ class Editors {
         let name = $("#editor-form input[name='name']").val();
         if (id) { // edit user
             return this.apiService.editEditor(id, name)
-                .then(() => {
+                .then((documentRef) => {
                     console.log('user was successfully updated');
                     $('.notification').removeClass('d-hide').text('user was successfully updated');
                     setTimeout(function() {
