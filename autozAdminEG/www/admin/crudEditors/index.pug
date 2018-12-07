@@ -32,10 +32,6 @@ block content
 
                 editors.drawTable();
 
-                $(window).on('resize', function () {
-                    $(".tabulator").tabulator("redraw");
-                });
-
                 // add editor
                 $(document).on('click', '#add-editor', function (e) {
                     e.preventDefault();
