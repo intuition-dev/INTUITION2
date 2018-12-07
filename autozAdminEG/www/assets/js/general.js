@@ -4,25 +4,28 @@ class Editors {
         this.save = this.save.bind(this);
         this.remove = this.remove.bind(this);
         this.apiService = apiService;
+        this.table = null;
     }
     drawTable() {
         // render editors table
         this.apiService.getEditorsList()
-            .then(function (editors) {
-                let table = new Tabulator("#editors-table", {
-                    data:editors.data,        // assign data to table
+            .then(editors => {
+                this.table = new Tabulator("#editors-table", {
+                    data:editors.data,      // assign data to table
                     layout:"fitColumns",    // fit columns to width of table
                     columns:[               // Define Table Columns
                         {title:"id", field:"id", visible:false},
                         {title:"Email", field:"email", align:"left"},
                         {title:"Name", field:"name", align:"left"}
                     ],
-                    rowClick:function(e, row){
-                        // fill the form fields on table row click
+                    rowClick:function(e, row){ // fill the form fields
                         var row = row.getData();
                         $('input[name="name"]').val(row.name);
                         $('input[name="email"]').val(row.email);
-                        //disE('row', row);
+
+                        $('html, body').animate({ // scroll to form
+                            scrollTop: $("#editor-form").offset().top
+                        }, 500);
                     },
                 });
 
@@ -74,28 +77,38 @@ class Editors {
     }
 
     // add & edit user
-    save(id, companyId, companyName) {
-        let _this = this
-        let password = $("#add-employee-form input[name='password']").val();
-        let email = $("#add-employee-form input[name='email']").val();
-        let name = $("#add-employee-form input[name='name']").val();
+    save(id) {
+        let password = $("#editor-form input[name='password']").val();
+        let email = $("#editor-form input[name='email']").val();
+        let name = $("#editor-form input[name='name']").val();
         if (id) { // edit user
-            return this.apiService.editEmployee(id, name, companyName)
-                .then(function () {
+            return this.apiService.editEditor(id)
+                .then(() => {
                     console.log('user was successfully updated');
-                    window.location = '/auth/employees/?company=' + companyId + '&companyname=' + companyName;
+                    alert('user was successfully updated'); // TODO add notification msg instead
+                    // TODO add table refresh
                 });
         } else { // add user
-            return this.apiService.addEmployee(companyId, name, email, password, companyName)
-                .then(function () {
-                    console.log('new employee was created');
-                    window.location = '/auth/employees/?company=' + companyId + '&companyname=' + companyName;
+            return this.apiService.addEditor(name, email, password)
+                .then((documentRef) => {
+                    console.log('new user was created', documentRef.data.id);
+                    alert('new user was created'); // TODO add notification msg instead
+                    // TODO add table refresh
+                    this.table
+                        .updateOrAddData([{id:documentRef.data.id ,email: email, name: name}])
+                        .then(function(){
+                            console.log('table updated');
+                        })
+                        .catch(function(error){
+                            console.log('unable update table', error);
+                        });
                 })
                 .catch(err => {
                     if (typeof err.response.data.error !== 'undefined') {
                         alert("Unable to create user: " + err.response.data.error);
                     }
-                    console.log('err: ', err)
+                    console.log('err: ', err);
+                    alert('an error occured, user wasn\'t created', err); // TODO add notification msg instead
                 });
         }
     }
@@ -109,7 +122,7 @@ class Editors {
                 window.location.reload();
             })
             .catch(function (e) {
-                alert('Unable to delete employee: ' + e);
+                alert('Unable to delete user: ' + e);
             });
     }
 }

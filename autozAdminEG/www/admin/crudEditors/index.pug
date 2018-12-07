@@ -17,7 +17,7 @@ block content
                     input(type='text', name='name')
                 div(data-field-span='1')
                     label Password
-                    input(type='text', name='password', required='required')
+                    input(type='password', name='password', required='required')
           
     .btn-row.space-2v
         a(href='#')#add-editor.btn-custom.btn-primary Add
@@ -50,20 +50,22 @@ block content
                     .save()
                     .then(() => $(this).removeAttr("disabled"));
             });
+            //edit editor
+            $(document).find('#edit-editor').on('click', function (e) {
+                e.preventDefault();
+                let uid = $('[tabulator-field="id"]').text();
+                $(this).attr("disabled", "disabled");
+                editors
+                    .save(uid)
+                    .then(() => $(this).removeAttr("disabled"));
+            });
             // delete editor
             $(document).on('click', '#delete-editor', function (e) {
                  e.preventDefault();
+                 let uid = $('[tabulator-field="id"]').text();
                  $(this).attr("disabled", "disabled");
                  editors
-                     .remove(data.id) //update project with active flag
-                     .then(() => $(this).removeAttr("disabled"));
-            });
-            //edit editor
-            $(document).find('#edit-editor').on('click', function (e) {
-                 e.preventDefault();
-                 $(this).attr("disabled", "disabled");
-                 editors
-                     .edit(data.id) //update project with active flag
+                     .remove(uid)
                      .then(() => $(this).removeAttr("disabled"));
             });
 
