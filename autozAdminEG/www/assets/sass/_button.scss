@@ -15,6 +15,11 @@
             text-decoration: none;
             box-shadow: none;
         }
+
+        &[disabled="disabled"] {
+            background: rgba(0,0,0,.5);
+        }
+
         .icon {
             display: flex;
             align-items: center;
