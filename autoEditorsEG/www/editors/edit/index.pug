@@ -1,7 +1,26 @@
 extends ../../layout/layout.pug
 block content
-   .page-content.container
-      textarea#cms1(rows='400' )
+   .page-content.container.edit-blog-page
+      .columns
+         .col-3
+            .blog-list
+               .blog-item 
+                  include ../../assets/img/svg/post-i.svg
+                  span Lorem ipsum dollor sit amet
+               .blog-item 
+                  include ../../assets/img/svg/post-i.svg
+                  span Lorem ipsum dollor sit amet
+               .blog-item 
+                  include ../../assets/img/svg/post-i.svg
+                  span Lorem ipsum dollor sit amet
+               .blog-item 
+                  include ../../assets/img/svg/post-i.svg
+                  span Lorem ipsum dollor sit amet
+               .blog-item 
+                  include ../../assets/img/svg/post-i.svg
+                  span Lorem ipsum dollor sit amet
+         .col-9
+            textarea#cms1(rows='400' )
 
       script. 
          depp.define({'codeEdit': [

@@ -27,3 +27,62 @@
 .upper {
 	text-transform: uppercase;
 }
+
+.columns {
+	margin: 0 .4rem;
+}
+
+.blog {
+	&-list {
+		border-right: 4px solid black;
+		background: #a7f076;
+	 	font-weight: 600;
+	   padding: 1rem;
+	   font-size: 13px;
+	}
+	&-item {
+		margin-bottom: .4rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		span {
+			transition: color 0.1s linear, border 0.1s linear;
+			display: table;
+			border-bottom: 1px solid transparent;
+		}
+		svg {
+			margin: 0 1rem 0 0;
+			.hover {
+				transform: fill .1s linear;
+			}
+		}
+		&:hover {
+			span {
+				border-color: black;
+			}
+			svg {
+				.hover {
+					fill: #000!important;
+				}
+			}
+		}
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.edit-blog-page {
+	padding-top: 0;
+	height: 100vh;
+	.columns, .blog-list, [class^='col'] {
+		height: 100%;
+	}
+}
+
+svg {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+}
