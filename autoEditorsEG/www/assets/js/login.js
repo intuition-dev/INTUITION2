@@ -11,10 +11,13 @@ class Login {
                      this.auth();
                   }
                })
-               .catch(error => {
-                  console.log('login error', error);
-                  alert(error); // replace with pretty popup
-               })
+            .then(() => {
+               window.location.replace('/editors/edit/');
+            })
+            .catch(error => {
+               console.log('login error', error);
+               alert(error);
+            });
          } else {
             alert("All fields must be filled out");
             return false;
@@ -41,3 +44,16 @@ class Login {
          });
    }
 }
+
+$(document).on('click', '#sign-out', function(e) {
+    e.preventDefault();
+    auth
+      .signOut()
+      .then(function() {})
+      .then(function() {
+         window.location = ('/');
+      }).catch(function(error) {
+         alert('An error happened.');
+         console.log('Something went wrong:', error);
+      });
+});

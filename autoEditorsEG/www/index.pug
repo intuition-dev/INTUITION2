@@ -17,26 +17,24 @@ block content
                   #error.d-hide.isError
                   button#btn-login.btn-custom.btn-primary.btn-center.space-21v Login
 
-               p 
-                  span Not registered?
-                  a.upper(href='#') Contact us 
-                     |to create an account
-               p
-                  a#reset-password-link(href='#') Forgot password?
+                  p 
+                     span Not registered?
+                     a.upper(href='#') Contact us 
+                        |to create an account
+                  p
+                     a#reset-password-link(href='#') Forgot password?
 
-               form#reset-password-form.grid-form.login-form.d-hide(action="#")
-                   fieldset
-                       legend Reset Password
-                       div.input-wrap
-                           label Enter your email address
-                           input(type='email', name='email', required='required')
+               form#reset-password-form.grid-form.d-hide(action="#")
+                  fieldset
+                     legend Reset Password
+                     div.input-wrap
+                        label Enter your email address
+                        input(type='email', name='email', required='required')
 
-                   .message.message-info.d-hide
-                   .message.message-warning.d-hide
+                  .message.message-info.d-hide
+                  .message.message-warning.d-hide
 
-                   .btn-group.btn-group-block
-                       .buts
-                           button.btn.btn-login Reset
+                  button.btn-custom.btn-primary.btn-center.space-21v Reset
 
    script.
       depp.require(['rw'], function() {
@@ -64,7 +62,7 @@ block content
              auth.sendPasswordResetEmail(email)
                  .then(() => {
                      console.log('email has been sent to user');
-                     $(this).find('fieldset, .btn-group').addClass('d-hide');
+                     $(this).find('fieldset, button').addClass('d-hide');
                      $(this).find('.message-info').removeClass('d-hide').text('An email with the password reset link has been sent to your email address');
                      setTimeout(function () {
                          $('#reset-password-form fieldset, #reset-password-form .btn-group, #login-form').removeClass('d-hide');
