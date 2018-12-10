@@ -1,48 +1,81 @@
-
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-firestore.js"></script>
-  <script src="https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js"></script>
-</head>
-<body>
-  <script src="/EditorsService.js"> </script>
-  <textarea id="cms1" rows="400"></textarea>
-  <script>
-    depp.define({'codeEdit': [
-       '//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.css'
-       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/theme/solarized.css'
-    
-       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.min.js'
-       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/markdown/markdown.js'
-       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/yaml/yaml.js'
-       ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/keymap/sublime.js'
-    
-    ]})
-    depp.require('codeEdit', pgInit)
-    function pgInit() {
-       console.log('ready')
-       _initCodeMirror()
-    }
-    let myCodeMirror
-    function _initCodeMirror() {
-       myCodeMirror = CodeMirror.fromTextArea(
-          document.querySelector('#cms1') ,
-             {
-                mode:  'markdown'
-                , lineNumbers: true
-                , tabSize: 3
-                , indentWithTabs: false
-                //, theme: 'neat'
-                //, keyMap: 'sublime'
-                , v11iewportMargin: 'Infinity'
-             }
-          )
-       myCodeMirror.setSize('100%', '100%')
-       //loadjs.done('cm')
-    }// initCM()
-    
-  </script>
-  <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css"/>
-<!-- mB v4.12.12 on 2018-11-29T23:08:51.347Z --></body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>window.ROOT = '/';
+      console.log('root','/');
+      
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="/assets/css/screen.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <script src="/config.js"></script>
+    <script>
+      window.url_string = window.location.href.split('http://')[1].slice(0,6);
+      window.env = window.url_string == 'blog-p' ? 'isProd' :'isLocal';
+      console.log('window.env: ', window.env);
+      
+      window.LOCAL_API = [config.LOCAL_API,config.LOCAL_API_PASS];
+      window.DEV_API = [config.DEV_API,config.DEV_API_PASS];
+      
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="/assets/js/app.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="layout-wrap container">
+        <div class="header-col header-col-left">
+          <div class="logo"><a href="/">
+              <div class="logo-text"></div></a></div>
+        </div>
+        <div class="header-col header-col-right">
+          <div class="user-area"><a class="sign-out" href="#" id="sign-out">Sign out</a></div>
+        </div>
+      </div>
+    </header>
+    <div class="page-content container">
+      <textarea id="cms1" rows="400"></textarea>
+      <script>
+        depp.define({'codeEdit': [
+           '//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.css'
+           ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/theme/solarized.css'
+        
+           ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.min.js'
+           ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/markdown/markdown.js'
+           ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/yaml/yaml.js'
+           ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/keymap/sublime.js'
+        
+        ]})
+        depp.require('codeEdit', pgInit)
+        function pgInit() {
+           console.log('ready')
+           _initCodeMirror()
+        }
+        let myCodeMirror
+        function _initCodeMirror() {
+           myCodeMirror = CodeMirror.fromTextArea(
+              document.querySelector('#cms1') ,
+                 {
+                    mode:  'markdown'
+                    , lineNumbers: true
+                    , tabSize: 3
+                    , indentWithTabs: false
+                    //, theme: 'neat'
+                    //, keyMap: 'sublime'
+                    , v11iewportMargin: 'Infinity'
+                 }
+              )
+           myCodeMirror.setSize('100%', '100%')
+           //loadjs.done('cm')
+        }// initCM()
+      </script>
+    </div>
+  <!-- mB v4.12.19 on 2018-12-10T14:29:18.151Z --></body>
+</html>

@@ -1,0 +1,44 @@
+doctype html
+html
+	head
+		script.
+			window.ROOT = '#{ROOT}';
+			console.log('root','#{ROOT}');
+
+		meta(charset='utf-8')
+
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		title #{title}
+		link(rel='stylesheet', href='https://unpkg.com/spectre.css/dist/spectre.min.css')
+		link(rel='stylesheet', href='https://unpkg.com/spectre.css/dist/spectre-exp.min.css')
+		link(rel='stylesheet', href='https://unpkg.com/spectre.css/dist/spectre-icons.min.css')
+		link(rel='stylesheet', href= ROOT +'assets/css/screen.css')
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i')
+
+		script(src=ROOT +'config.js')
+		script.
+			window.url_string = window.location.href.split('http://')[1].slice(0,6);
+			window.env = window.url_string == 'blog-p' ? 'isProd' :'isLocal';
+			console.log('window.env: ', window.env);
+
+			window.LOCAL_API = [config.LOCAL_API,config.LOCAL_API_PASS];
+			window.DEV_API = [config.DEV_API,config.DEV_API_PASS];
+
+		script(src='https://cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js')
+		script(src='https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js')
+		script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js')
+		script(src=ROOT +'assets/js/app.js')
+
+	body
+		block header
+			header.header
+				.layout-wrap.container
+					.header-col.header-col-left
+						.logo
+							a(href="/")
+								.logo-text #{logotext}
+					.header-col.header-col-right
+						.user-area
+							a(href='#').sign-out#sign-out Sign out
+		
+		block content

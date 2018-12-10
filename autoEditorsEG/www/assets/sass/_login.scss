@@ -1,0 +1,160 @@
+.login-wrapper {
+   padding: 2rem 0;
+   width: 70%;
+   min-height: 100vh;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: $text-color-dark-2;
+
+   &.login {
+      min-height: 100vh;
+      padding: 0;
+   }
+
+   .login-form {
+      width: 340px;
+      padding: 30px;
+      text-align: center;
+      background: $background-light2;
+      position: relative;
+      z-index: 1;
+
+      &-wrap {
+         max-width: 98%;
+         position: relative;
+
+         &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: 0;
+            bottom: -30px;
+            right: -30px;
+            background: $button-primary-hover;
+            width: 250px;
+            height: 250px;
+         }
+      }
+
+      fieldset legend, label {
+         font-weight: 200;
+      }
+
+      fieldset legend {
+         text-align: center;
+         text-transform: uppercase;
+         border: 0;
+         padding-bottom: 0;
+         margin-bottom: 1.5rem;
+      }
+
+      label {
+         position: absolute;
+         bottom: 6px;
+         left: 0;
+         display: block;
+         transition: all .3s ease-in-out;
+         font-size: $font-size-global;
+         z-index: 0;
+         &.focus {
+            bottom: 37px;
+            text-align: left;
+            display: block;
+            font-size: 10px;
+            color: rgba($text-color-dark-2, .74);
+         }
+      }
+
+      .input-wrap {
+         position: relative;
+         margin: 0 0 1.2rem 0;
+         z-index: 2;
+
+         &:last-of-type {
+            margin: 0;
+         }
+      }
+
+      input,
+      label {
+         color: $text-color-dark-2;
+      }
+
+      input {
+         font-family: inherit;
+         border: 0;
+         border-radius: 0;
+         border-bottom: .5px solid rgba($button-primary, 1);
+         width: 100%;
+         height: 40px;
+         display: block;
+         line-height: normal;
+         margin: 0;
+         padding: 6px 0;
+         font-size: $font-size-global;
+         color: $text-color-dark-2;
+         transition: all .3s ease-in-out;
+         z-index: 1;
+         position: relative;
+
+         &::-webkit-input-placeholder {
+            font-size: $font-size-global;
+            color: $text-color-dark-2;
+         }
+
+         &::-moz-placeholder {
+            font-size: $font-size-global;
+            color: $text-color-dark-2;
+         }
+
+         &::-ms-input-placeholder {
+            font-size: $font-size-global;
+            color: $text-color-dark-2;
+         }
+
+         &:focus {
+            border-color: $text-color-dark-2;
+         }
+
+         &,
+         &:-webkit-autofill {
+            background: 0;
+         }
+      }
+   }
+
+   p {
+      font-size: 14px;
+      text-align: center;
+      color: rgba($color-secondary, 1);
+      font-weight: 400;
+
+      a {
+         font-size: 8px;
+         color: $text-color-dark-2;
+         display: block;
+         font-weight: 300;
+
+         &:hover {
+            color: rgba($text-color-dark-2, 1);
+         }
+      }
+
+      span {
+         display: block;
+         margin: 0 0 3px 0;
+      }
+   }
+   & .isError {
+      color: #f70e0e;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+   }
+}
+
+.login-bg {
+   @include gradient($background-light, $background-dark); 
+}

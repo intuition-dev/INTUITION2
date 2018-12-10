@@ -16,5 +16,7 @@ index.js
 
 config.rb
 .sass-cache
+prepros-6.config
 
 autozAdminEG/www/config.js
+serviceAccountKey.json
