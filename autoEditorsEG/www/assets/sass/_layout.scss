@@ -69,7 +69,7 @@
 				transition: fill .1s linear;
 			}
 		}
-		&:hover {
+		&:hover, &.active {
 			span {
 				border-color: black;
 			}

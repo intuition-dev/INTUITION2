@@ -13,6 +13,7 @@ module.exports = (config) => {
    appE.use(customCors);
    appE.use(editorAuth);
    appE.use(bodyParser.json());
+   appE.use(bodyParser.text());
    appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
    // appE.get("/", (req, res) => {
@@ -46,11 +47,19 @@ module.exports = (config) => {
       }
    });
 
-   appE.get('/one', function (req, res) {
-      let fo = new  FileOps('');
-      fo.read('');
-
-      res.json({"foo": "bar"});
+   // update .md file
+   appE.put("/post", (req, res) => {
+      let post_id = req.query.post_id;
+      if (typeof post_id !== 'undefined') {
+         let md = '/' + post_id + '/text.md';
+         let fileOps = new FileOps(config.appMount);
+         fileOps.write(md, req.body);
+        
+         res.send('OK');
+      } else {
+         res.status(400);
+         res.send({ error: 'no post_id' });
+      }
    });
 
    return appE;

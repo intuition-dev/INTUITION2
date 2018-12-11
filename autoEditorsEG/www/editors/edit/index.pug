@@ -36,6 +36,7 @@ block content
                      , tabSize: 3
                      , indentWithTabs: false
                      , v11iewportMargin: 'Infinity'
+                     , lineWrapping: true
                   }
                )
             myCodeMirror.setSize('100%', '100%');
@@ -48,8 +49,20 @@ block content
 
             $(document).on('click', '.blog-item', function(e) {
                e.preventDefault();
+
+               $('.blog-item').removeClass('active');
+               $(this).addClass('active');
+
                let postId = $(this).find('span').text();
                posts.showMd(postId);
+            });
+
+            $(document).on('click', '.save', function(e) {
+               e.preventDefault();
+
+               let postId = $('.blog-item.active').text();
+               let md = myCodeMirror.getValue();
+               posts.saveMd(postId, md);
             });
 
          });

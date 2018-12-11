@@ -12,6 +12,7 @@ module.exports = (config) => {
     appE.use(customCors);
     appE.use(editorAuth);
     appE.use(bodyParser.json());
+    appE.use(bodyParser.text());
     appE.use(bodyParser.urlencoded({ extended: true }));
     appE.get("/posts", (req, res) => {
         let dirs = new Base_1.Dirs(config.appMount);
@@ -36,10 +37,18 @@ module.exports = (config) => {
             res.send({ error: 'no post_id' });
         }
     });
-    appE.get('/one', function (req, res) {
-        let fo = new Wa_1.FileOps('');
-        fo.read('');
-        res.json({ "foo": "bar" });
+    appE.put("/post", (req, res) => {
+        let post_id = req.query.post_id;
+        if (typeof post_id !== 'undefined') {
+            let md = '/' + post_id + '/text.md';
+            let fileOps = new Wa_1.FileOps(config.appMount);
+            fileOps.write(md, req.body);
+            res.send('OK');
+        }
+        else {
+            res.status(400);
+            res.send({ error: 'no post_id' });
+        }
     });
     return appE;
 };

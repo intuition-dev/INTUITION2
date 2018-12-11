@@ -409,9 +409,9 @@
       -webkit-transition: fill .1s linear;
       -o-transition: fill .1s linear;
       transition: fill .1s linear; }
-  .blog-item:hover span {
+  .blog-item:hover span, .blog-item.active span {
     border-color: black; }
-  .blog-item:hover svg .hover {
+  .blog-item:hover svg .hover, .blog-item.active svg .hover {
     fill: #000 !important; }
   .blog-item:last-of-type {
     margin-bottom: 0; }

@@ -71,6 +71,7 @@
                     , tabSize: 3
                     , indentWithTabs: false
                     , v11iewportMargin: 'Infinity'
+                    , lineWrapping: true
                  }
               )
            myCodeMirror.setSize('100%', '100%');
@@ -83,12 +84,24 @@
         
            $(document).on('click', '.blog-item', function(e) {
               e.preventDefault();
+        
+              $('.blog-item').removeClass('active');
+              $(this).addClass('active');
+        
               let postId = $(this).find('span').text();
               posts.showMd(postId);
+           });
+        
+           $(document).on('click', '.save', function(e) {
+              e.preventDefault();
+        
+              let postId = $('.blog-item.active').text();
+              let md = myCodeMirror.getValue();
+              posts.saveMd(postId, md);
            });
         
         });
       </script>
     </div>
-  <!-- mB v4.12.19 on 2018-12-11T13:49:19.852Z --></body>
+  <!-- mB v4.12.19 on 2018-12-11T14:45:51.448Z --></body>
 </html>

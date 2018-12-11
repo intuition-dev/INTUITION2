@@ -53,4 +53,13 @@ class ApiService {
       });
    }
 
+   savePostMd(id, md) {
+      return this.service.get('/editors/post', {
+         md,
+         params: {
+            post_id: id
+         }
+      });
+   }
+
 }
