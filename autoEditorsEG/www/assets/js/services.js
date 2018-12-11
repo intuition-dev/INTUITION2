@@ -5,7 +5,9 @@ class ApiService {
          auth
             .signOut()
             .then(function() {
-               window.location = ('/');
+               if (window.location.pathname !== '/' && window.location.pathname !== '') {
+                  window.location = ('/');
+               }
             }).catch(function(error) {
                alert('An error happened.');
                console.log('Something went wrong:', error);
