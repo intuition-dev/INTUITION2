@@ -30,10 +30,6 @@ class Posts {
 
    saveMd(id, md) {
    	// render .md file content in textarea
-   	apiService.savePostMd(id, md)
-   		.then(post => {
-   			console.log('data', post.data);
-   			myCodeMirror.setValue(post.data);
-   		});
+   	apiService.savePostMd(id, md);
    }
 }

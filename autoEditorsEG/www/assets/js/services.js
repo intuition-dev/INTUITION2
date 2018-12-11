@@ -54,8 +54,8 @@ class ApiService {
    }
 
    savePostMd(id, md) {
-      return this.service.get('/editors/post', {
-         md,
+      return this.service.put('/editors/post', md, {
+         headers: { 'Content-Type': 'text/plain' },
          params: {
             post_id: id
          }
