@@ -17,7 +17,7 @@ depp.require(['scripts'], function() {
   depp.define({
     'services': [
       '/assets/js/db.js'
-      //, '/assets/js/services.js'
+      , '/assets/js/services.js'
     ]
   });
 });

@@ -4,7 +4,6 @@ class ApiService {
       if (token === null) {
          auth
             .signOut()
-            .then(function() {})
             .then(function() {
                window.location = ('/');
             }).catch(function(error) {
@@ -18,8 +17,8 @@ class ApiService {
             'fb-auth-token': token
          },
          responseType: 'json'
-      })
-      this.isLoading = this.isLoading.bind(this);
+      });
+      //this.isLoading = this.isLoading.bind(this);
 
       this.service.interceptors.response.use(function(response) {
          // Do something with response data
@@ -31,7 +30,6 @@ class ApiService {
             // wrong token -- access denied
             auth
                .signOut()
-               .then(function() {})
                .then(function() {
                   window.location = ('/');
                }).catch(function(error) {
@@ -43,8 +41,8 @@ class ApiService {
      });
    }
 
-    // getEditorsList() {
-    //     return this.service.get('/auth/editors');
-    // }
+   getDirsList() {
+      return this.service.get('/editors/posts');
+   }
 
 }

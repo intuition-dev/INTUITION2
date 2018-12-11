@@ -14,16 +14,22 @@ module.exports = (config) => {
    appE.use(bodyParser.json());
    appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
-   appE.get("/", (req, res) => {
-      //res.send('If you see this then token is valid');
-      res.send(config);
+   // appE.get("/", (req, res) => {
+   //    //res.send('If you see this then token is valid');
+   //    res.send(config);
+   // });
+
+   // get dirs list
+   appE.get("/posts", (req, res) => {
+      let dirs = new Dirs(config.appMount);
+      let dirsToIgnore = ['', '.', '..', 'template'];
+      res.send(dirs.getShort()
+         .map(el => el.replace(/^\/+/g, ''))
+         .filter(el => !dirsToIgnore.includes(el))
+      );
    });
 
    appE.get('/one', function (req, res) {
-   
-      let dirs = new Dirs('');
-      dirs.getShort();
-
       let fo = new  FileOps('');
       fo.read('');
 

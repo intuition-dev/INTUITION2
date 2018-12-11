@@ -5,23 +5,10 @@ block content
          .col-3
             .blog-list
                .blog-list-wrap
-                  .blog-item 
-                     include ../../assets/img/svg/post-i.svg
-                     span Lorem ipsum dollor sit amet
-                  .blog-item 
-                     include ../../assets/img/svg/post-i.svg
-                     span Lorem ipsum dollor sit amet
-                  .blog-item 
-                     include ../../assets/img/svg/post-i.svg
-                     span Lorem ipsum dollor sit amet
-                  .blog-item 
-                     include ../../assets/img/svg/post-i.svg
-                     span Lorem ipsum dollor sit amet
-                  .blog-item 
-                     include ../../assets/img/svg/post-i.svg
-                     span Lorem ipsum dollor sit amet
+                  
          .col-9
             textarea#cms1(rows='400' )
+         a(href='#').save.btn-custom.btn-primary save
 
       script. 
          depp.define({'codeEdit': [
@@ -33,11 +20,11 @@ block content
             ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/yaml/yaml.js'
             ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/keymap/sublime.js'
 
-         ]})
-         depp.require('codeEdit', pgInit)
+         ]});
+         depp.require('codeEdit', pgInit);
          function pgInit() {
-            console.log('ready')
-            _initCodeMirror()
+            console.log('ready');
+            _initCodeMirror();
          }
          let myCodeMirror
          function _initCodeMirror() {
@@ -53,6 +40,13 @@ block content
                      , v11iewportMargin: 'Infinity'
                   }
                )
-            myCodeMirror.setSize('100%', '100%')
+            myCodeMirror.setSize('100%', '100%');
             //loadjs.done('cm')
-         }// initCM()
+         }// initCM();
+
+         depp.require(['general'], function() {
+
+            let posts = new Posts();
+            posts.showDirs();
+
+         });

@@ -428,6 +428,19 @@ svg {
   -ms-flex-negative: 0;
   flex-shrink: 0; }
 
+.columns {
+  position: relative; }
+  .columns .save {
+    opacity: .5;
+    position: absolute;
+    right: 3rem;
+    bottom: 1rem;
+    z-index: 9; }
+    .columns .save, .columns .save:hover {
+      background-position: left bottom; }
+    .columns .save:hover {
+      opacity: 1; }
+
 h1, .h1,
 h2, .h2,
 h3, .h3,

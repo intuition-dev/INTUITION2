@@ -98,3 +98,20 @@ svg {
 	height: 20px;
 	flex-shrink: 0;
 }
+
+.columns {
+	position: relative;
+	.save {
+		opacity: .5;
+		position: absolute;
+		right: 3rem;
+		bottom: 1rem;
+		z-index: 9;
+		&, &:hover {
+			background-position: left bottom;
+		}
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
