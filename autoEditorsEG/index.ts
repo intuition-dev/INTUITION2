@@ -1,37 +1,20 @@
-import { Ver, Dirs } from 'mbake/lib/Base'
-import {  FileOps } from 'mbake/lib/Wa'
+const express = require('express');
+const appE = express();
+const editorsPort = 9090;
 
-import express = require('express');
-const appE = express()
+//express app for editors
+const appE2 = require('./editor');
+appE.use('/editor', appE2());
 
-appE.get('/one', function (req, res) {
-   
-   let dirs = new Dirs('')
-   dirs.getShort()
+const wwwPort = 9000;
+const wwwApp = express();
 
-   let fo = new  FileOps('')
-   fo.read('')
+wwwApp.use(express.static('www'));
 
-   res.json({"foo": "bar"})
-})
+wwwApp.listen(wwwPort, () => {
+    console.log(`wwwApp listening on port ${wwwPort}!`);
+});
 
-
-console.log(new Ver().ver())
-
-
-
-var admin = require("firebase-admin");
-import fs = require('fs');
-
-let fbServiceAccount = new Object(JSON.parse(fs.readFileSync("auth-f959b-96034aadd9c1.json").toString()))
-//console.log(fbServiceAccount)
-
-admin.initializeApp({
-  credential: admin.credential.cert(fbServiceAccount)
-})
-
-
-///////////////////////////
-let serverA = appE.listen(8080, function() {
-   console.log('Ready on port %d', serverA.address().port);
-})
+appE.listen(editorsPort, () => {
+    console.log(`appE listening on port ${editorsPort}!`);
+});

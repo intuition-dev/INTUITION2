@@ -1,47 +1,6 @@
 .header {
 	background: white;
-	&-col-right {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		padding: 0 25px;
-		position: relative;
-		a {
-			color: $text-color-dark;
-			transition: all 0.2s ease-in-out;
-			&:hover, &:active, &:focus, &:visited {
-				color: $text-color-dark;
-				
-			}
-		}
-		&:after {
-			content: '';
-			display: block;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			height: 2px;
-			box-shadow: 0px 1px 1px rgba(black, 0.15);
-		}
-	}
-}
-.logo {
-	display: flex;
-	align-items: center;
-	> a {
-		display: flex;
-		&, &:hover, &:active, &:focus {
-			outline: none;
-			box-shadow: none;
-		}
-		* {
-		  	flex-shrink: 0;
-		}
-		&:hover, &:active, &:focus {
-		  	text-decoration: none;
-		}
-	}
+	box-shadow: 0px 1px 1px rgba(black, 0.15);
 }
 .user {
 	&-area {
