@@ -22,3 +22,5 @@ autozAdminEG/www/config.js
 serviceAccountKey.json
 
 nohup.out
+
+/autoEditorsEG/config.yaml

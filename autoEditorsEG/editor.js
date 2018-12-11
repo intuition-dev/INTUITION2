@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Base_1 = require("mbake/lib/Base");
 const Wa_1 = require("mbake/lib/Wa");
-module.exports = () => {
+module.exports = (config) => {
     const express = require("express");
     const bodyParser = require("body-parser");
     const customCors = require('./custom-cors');
@@ -13,7 +13,7 @@ module.exports = () => {
     appE.use(bodyParser.json());
     appE.use(bodyParser.urlencoded({ extended: true }));
     appE.get("/", (req, res) => {
-        res.send('If you see this then token is valid');
+        res.send(config);
     });
     appE.get('/one', function (req, res) {
         let dirs = new Base_1.Dirs('');

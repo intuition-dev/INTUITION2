@@ -1,7 +1,5 @@
 .page-content, .login-wrapper {
 	font-family: $font-family;
-	padding-top: 1rem;
-	padding-bottom: 1rem
 }
 
 // spaces
@@ -28,17 +26,31 @@
 	text-transform: uppercase;
 }
 
-.columns {
-	margin: 0 .4rem;
-}
-
 .blog {
 	&-list {
-		border-right: 4px solid black;
-		background: #a7f076;
-	 	font-weight: 600;
-	   padding: 1rem;
-	   font-size: 13px;
+	   position: relative;
+	   margin: 0 0 1rem 1rem;
+	   &:before {
+	   	content: '';
+	      display: block;
+	      position: absolute;
+	      z-index: 0;
+	      bottom: -30px;
+	      left: -30px;
+	      background: $button-primary-hover;
+	      width: 250px;
+	      height: 250px;
+	   }
+		&-wrap {
+			border-right: 4px solid black;
+			background: #a7f076;
+		 	font-weight: 600;
+		   padding: 1rem;
+		   font-size: 13px;
+		   position: relative;
+		   z-index: 1;
+		}
+
 	}
 	&-item {
 		margin-bottom: .4rem;
@@ -75,8 +87,8 @@
 
 .edit-blog-page {
 	padding-top: 0;
-	height: 100vh;
-	.columns, .blog-list, [class^='col'] {
+	height: calc(100vh - 28px - 1rem);
+	.columns, .blog-list, .blog-list-wrap, [class^='col'] {
 		height: 100%;
 	}
 }

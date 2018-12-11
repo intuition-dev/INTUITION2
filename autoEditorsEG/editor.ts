@@ -1,7 +1,7 @@
 import { Dirs } from 'mbake/lib/Base';
 import { FileOps } from 'mbake/lib/Wa';
 
-module.exports = () => {
+module.exports = (config) => {
    const express = require("express");
    const bodyParser = require("body-parser");
    const customCors = require('./custom-cors');
@@ -15,7 +15,8 @@ module.exports = () => {
    appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
    appE.get("/", (req, res) => {
-      res.send('If you see this then token is valid');
+      //res.send('If you see this then token is valid');
+      res.send(config);
    });
 
    appE.get('/one', function (req, res) {

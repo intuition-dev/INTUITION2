@@ -1,12 +1,16 @@
 const express = require('express');
 const appE = express();
-const editorsPort = 9090;
+const yaml = require('js-yaml');
+const fs = require('fs');
+let config = yaml.load(fs.readFileSync(__dirname + '/config.yaml'));
+console.log(config);
+const editorsPort = config.editorAPIport;
 
 //express app for editors
 const appE2 = require('./editor');
-appE.use('/editor', appE2());
+appE.use('/posts', appE2(config));
 
-const wwwPort = 9000;
+const wwwPort = config.editorsWwwPort;
 const wwwApp = express();
 
 wwwApp.use(express.static('www'));

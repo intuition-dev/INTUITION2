@@ -1,17 +1,17 @@
 class ApiService {
    constructor(baseURL_) {
       let token = sessionStorage.getItem('idToken');
-      // if (token === null) {
-      //    auth
-      //       .signOut()
-      //       .then(function() {})
-      //       .then(function() {
-      //          window.location = ('/');
-      //       }).catch(function(error) {
-      //          alert('An error happened.');
-      //          console.log('Something went wrong:', error);
-      //       });
-      // }
+      if (token === null) {
+         auth
+            .signOut()
+            .then(function() {})
+            .then(function() {
+               window.location = ('/');
+            }).catch(function(error) {
+               alert('An error happened.');
+               console.log('Something went wrong:', error);
+            });
+      }
       this.service = axios.create({
          baseURL: baseURL_,
          headers: {

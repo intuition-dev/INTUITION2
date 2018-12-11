@@ -34,7 +34,7 @@ class Login {
                   .getIdToken()
                   .then(idToken => {
                      sessionStorage.setItem('idToken', idToken);
-                     localStorage.setItem('user_name', auth.currentUser.email);
+                     window.sessionStorage.setItem('user_name', auth.currentUser.email);
                   });
             } else {
                if (window.location.pathname !== '/') {
@@ -46,8 +46,9 @@ class Login {
 }
 
 $(document).on('click', '#sign-out', function(e) {
-    e.preventDefault();
-    auth
+   e.preventDefault();
+   sessionStorage.clear();
+   auth
       .signOut()
       .then(function() {})
       .then(function() {
