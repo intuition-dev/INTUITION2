@@ -26,7 +26,7 @@ block content
             console.log('ready');
             _initCodeMirror();
          }
-         let myCodeMirror
+         let myCodeMirror;
          function _initCodeMirror() {
             myCodeMirror = CodeMirror.fromTextArea(
                document.querySelector('#cms1') ,
@@ -35,18 +35,21 @@ block content
                      , lineNumbers: true
                      , tabSize: 3
                      , indentWithTabs: false
-                     //, theme: 'neat'
-                     //, keyMap: 'sublime'
                      , v11iewportMargin: 'Infinity'
                   }
                )
             myCodeMirror.setSize('100%', '100%');
-            //loadjs.done('cm')
          }// initCM();
 
          depp.require(['general'], function() {
 
             let posts = new Posts();
             posts.showDirs();
+
+            $(document).on('click', '.blog-item', function(e) {
+               e.preventDefault();
+               let postId = $(this).find('span').text();
+               posts.showMd(postId);
+            });
 
          });

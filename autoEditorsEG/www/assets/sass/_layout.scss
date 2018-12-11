@@ -66,7 +66,7 @@
 		svg {
 			margin: 0 1rem 0 0;
 			.hover {
-				transform: fill .1s linear;
+				transition: fill .1s linear;
 			}
 		}
 		&:hover {
@@ -87,7 +87,7 @@
 
 .edit-blog-page {
 	padding-top: 0;
-	height: calc(100vh - 28px - 1rem);
+	height: calc(100vh - 70px);
 	.columns, .blog-list, .blog-list-wrap, [class^='col'] {
 		height: 100%;
 	}
@@ -97,21 +97,4 @@ svg {
 	width: 20px;
 	height: 20px;
 	flex-shrink: 0;
-}
-
-.columns {
-	position: relative;
-	.save {
-		opacity: .5;
-		position: absolute;
-		right: 3rem;
-		bottom: 1rem;
-		z-index: 9;
-		&, &:hover {
-			background-position: left bottom;
-		}
-		&:hover {
-			opacity: 1;
-		}
-	}
 }

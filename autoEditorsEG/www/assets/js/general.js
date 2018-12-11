@@ -5,6 +5,7 @@ let apiService = new ApiService(window.env == 'isProd' ? window.DEV_API[0] : win
 class Posts {
 	constructor(apiService) {
       this.showDirs = this.showDirs.bind(this);
+      this.showMd = this.showMd.bind(this);
    }
    showDirs() {
       // render posts list
@@ -16,5 +17,14 @@ class Posts {
             });
       		$('.blog-list-wrap').append(listTemp);
       	});
+   }
+
+   showMd(id) {
+   	// render .md file content in textarea
+   	apiService.getPostMd(id)
+   		.then(post => {
+   			console.log('data', post.data);
+   			myCodeMirror.setValue(post.data);
+   		});
    }
 }

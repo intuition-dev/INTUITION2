@@ -406,9 +406,9 @@
   .blog-item svg {
     margin: 0 1rem 0 0; }
     .blog-item svg .hover {
-      -webkit-transform: fill .1s linear;
-      -ms-transform: fill .1s linear;
-      transform: fill .1s linear; }
+      -webkit-transition: fill .1s linear;
+      -o-transition: fill .1s linear;
+      transition: fill .1s linear; }
   .blog-item:hover span {
     border-color: black; }
   .blog-item:hover svg .hover {
@@ -418,7 +418,7 @@
 
 .edit-blog-page {
   padding-top: 0;
-  height: calc(100vh - 28px - 1rem); }
+  height: calc(100vh - 70px); }
   .edit-blog-page .columns, .edit-blog-page .blog-list, .edit-blog-page .blog-list-wrap, .edit-blog-page [class^='col'] {
     height: 100%; }
 
@@ -427,19 +427,6 @@ svg {
   height: 20px;
   -ms-flex-negative: 0;
   flex-shrink: 0; }
-
-.columns {
-  position: relative; }
-  .columns .save {
-    opacity: .5;
-    position: absolute;
-    right: 3rem;
-    bottom: 1rem;
-    z-index: 9; }
-    .columns .save, .columns .save:hover {
-      background-position: left bottom; }
-    .columns .save:hover {
-      opacity: 1; }
 
 h1, .h1,
 h2, .h2,
@@ -589,6 +576,16 @@ button {
       width: 30px;
       -ms-flex-negative: 0;
       flex-shrink: 0; }
+  .btn-custom.save {
+    opacity: .5;
+    position: fixed;
+    right: 3rem;
+    bottom: 1rem;
+    z-index: 9; }
+    .btn-custom.save, .btn-custom.save:hover {
+      background-position: left bottom; }
+    .btn-custom.save:hover {
+      opacity: 1; }
 
 .btn-center {
   margin-right: auto;

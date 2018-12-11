@@ -7,6 +7,7 @@ module.exports = (config) => {
     const bodyParser = require("body-parser");
     const customCors = require('./custom-cors');
     const editorAuth = require('./editor-auth');
+    const fs = require('fs');
     const appE = express();
     appE.use(customCors);
     appE.use(editorAuth);
@@ -18,6 +19,22 @@ module.exports = (config) => {
         res.send(dirs.getShort()
             .map(el => el.replace(/^\/+/g, ''))
             .filter(el => !dirsToIgnore.includes(el)));
+    });
+    appE.get("/post", (req, res) => {
+        let post_id = req.query.post_id;
+        if (typeof post_id !== 'undefined') {
+            let md = config.appMount + '/' + post_id + '/text.md';
+            fs.readFile(md, 'utf8', function (err, data) {
+                if (err)
+                    throw err;
+                console.log(data);
+                res.json(data);
+            });
+        }
+        else {
+            res.status(400);
+            res.send({ error: 'no post_id' });
+        }
     });
     appE.get('/one', function (req, res) {
         let fo = new Wa_1.FileOps('');

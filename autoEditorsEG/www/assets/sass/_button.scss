@@ -30,6 +30,21 @@
                 flex-shrink: 0;
             }
         }
+
+        &.save {
+            opacity: .5;
+            position: fixed;
+            right: 3rem;
+            bottom: 1rem;
+            z-index: 9;
+            &, &:hover {
+                background-position: left bottom;
+            }
+            &:hover {
+                opacity: 1;
+            }
+        }
+        
     }
 
     &-center {

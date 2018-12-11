@@ -45,4 +45,12 @@ class ApiService {
       return this.service.get('/editors/posts');
    }
 
+   getPostMd(id) {
+      return this.service.get('/editors/post', {
+         params: {
+            post_id: id
+         }
+      });
+   }
+
 }

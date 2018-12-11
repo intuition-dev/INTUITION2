@@ -61,7 +61,7 @@
            console.log('ready');
            _initCodeMirror();
         }
-        let myCodeMirror
+        let myCodeMirror;
         function _initCodeMirror() {
            myCodeMirror = CodeMirror.fromTextArea(
               document.querySelector('#cms1') ,
@@ -70,13 +70,10 @@
                     , lineNumbers: true
                     , tabSize: 3
                     , indentWithTabs: false
-                    //, theme: 'neat'
-                    //, keyMap: 'sublime'
                     , v11iewportMargin: 'Infinity'
                  }
               )
            myCodeMirror.setSize('100%', '100%');
-           //loadjs.done('cm')
         }// initCM();
         
         depp.require(['general'], function() {
@@ -84,8 +81,14 @@
            let posts = new Posts();
            posts.showDirs();
         
+           $(document).on('click', '.blog-item', function(e) {
+              e.preventDefault();
+              let postId = $(this).find('span').text();
+              posts.showMd(postId);
+           });
+        
         });
       </script>
     </div>
-  <!-- mB v4.12.19 on 2018-12-11T12:11:55.733Z --></body>
+  <!-- mB v4.12.19 on 2018-12-11T13:49:19.852Z --></body>
 </html>
