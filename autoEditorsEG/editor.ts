@@ -65,7 +65,7 @@ module.exports = (config) => {
       console.log('post id ----------->', post_id);
       if (typeof post_id !== 'undefined') {
          // create new post folder
-         let temp = '/template';
+         let temp = '/blog-post-template';
          let newPost = '/blog/' + post_id;
          let fileOps = new FileOps(config.appMount);
          fileOps.clone(temp, newPost);

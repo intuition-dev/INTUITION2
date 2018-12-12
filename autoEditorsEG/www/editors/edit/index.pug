@@ -70,8 +70,12 @@ block content
                e.preventDefault();
 
                let postId = $('.blog-item.active').text();
+               function getSecondPart(str) {
+                  return str.split('/')[1];
+               }
+               let newPostId = getSecondPart(postId);
                let md = myCodeMirror.getValue();
-               posts.saveMd(postId, md);
+               posts.saveMd(newPostId, md);
             });
 
             // create new post

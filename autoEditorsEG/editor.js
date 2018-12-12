@@ -56,7 +56,7 @@ module.exports = (config) => {
         let post_id = req.query.post_id;
         console.log('post id ----------->', post_id);
         if (typeof post_id !== 'undefined') {
-            let temp = '/template';
+            let temp = '/blog-post-template';
             let newPost = '/blog/' + post_id;
             let fileOps = new Wa_1.FileOps(config.appMount);
             fileOps.clone(temp, newPost);
