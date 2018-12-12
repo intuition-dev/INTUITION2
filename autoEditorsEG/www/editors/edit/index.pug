@@ -8,7 +8,9 @@ block content
                   
          .col-9
             textarea#cms1(rows='400' )
-         a(href='#').save.btn-custom.btn-primary save
+         .btns-wrap
+            a(href='#').save.btn-custom.btn-primary save
+            a(href='#', target='_blank').view-page.btn-custom.btn-secondary view page
 
       script. 
          depp.define({'codeEdit': [
@@ -55,6 +57,7 @@ block content
                $(this).addClass('active');
 
                let postId = $(this).find('span').text();
+               $('.view-page').attr('href', 'http://blog-app-project.s3-website-us-east-1.amazonaws.com/' + postId);
                function getSecondPart(str) {
                   return str.split('/')[1];
                }

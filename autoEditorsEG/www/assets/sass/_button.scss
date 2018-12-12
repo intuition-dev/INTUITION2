@@ -31,19 +31,6 @@
             }
         }
 
-        &.save {
-            opacity: .5;
-            position: fixed;
-            right: 3rem;
-            bottom: 1rem;
-            z-index: 9;
-            &, &:hover {
-                background-position: left bottom;
-            }
-            &:hover {
-                opacity: 1;
-            }
-        }
         
     }
 
@@ -103,6 +90,34 @@
         }
     }
 }
+
+.btns-wrap {
+    position: fixed;
+    right: 3rem;
+    bottom: 1rem;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .btn-custom {
+        opacity: .5;
+        flex-shrink: 0;
+        &, &:hover {
+            background-position: left bottom;
+            font-weight: 400;
+        }
+        &:hover {
+            opacity: 1;
+        }
+    }
+    .save {
+        margin: 0 1rem 0;
+    }
+    .view-page {
+        background: #4b3f3f;
+    }
+}
+
 .link {
     &-primary {
         color: $color-secondary;

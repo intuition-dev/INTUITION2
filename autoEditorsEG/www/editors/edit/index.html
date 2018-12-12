@@ -43,7 +43,8 @@
         </div>
         <div class="col-9">
           <textarea id="cms1" rows="400"></textarea>
-        </div><a class="save btn-custom btn-primary" href="#">save</a>
+        </div>
+        <div class="btns-wrap"><a class="save btn-custom btn-primary" href="#">save</a><a class="view-page btn-custom btn-secondary" href="#" target="_blank">view page</a></div>
       </div>
       <script>
         depp.define({'codeEdit': [
@@ -90,6 +91,7 @@
               $(this).addClass('active');
         
               let postId = $(this).find('span').text();
+              $('.view-page').attr('href', 'http://blog-app-project.s3-website-us-east-1.amazonaws.com/' + postId);
               function getSecondPart(str) {
                  return str.split('/')[1];
               }
@@ -121,5 +123,5 @@
         });
       </script>
     </div>
-  <!-- mB v4.12.19 on 2018-12-12T16:44:30.792Z --></body>
+  <!-- mB v4.12.19 on 2018-12-12T17:11:20.507Z --></body>
 </html>

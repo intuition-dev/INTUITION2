@@ -582,16 +582,6 @@ button {
       width: 30px;
       -ms-flex-negative: 0;
       flex-shrink: 0; }
-  .btn-custom.save {
-    opacity: .5;
-    position: fixed;
-    right: 3rem;
-    bottom: 1rem;
-    z-index: 9; }
-    .btn-custom.save, .btn-custom.save:hover {
-      background-position: left bottom; }
-    .btn-custom.save:hover {
-      opacity: 1; }
 
 .btn-center {
   margin-right: auto;
@@ -646,6 +636,34 @@ button {
   transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0 linear 0.3s; }
   .btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus {
     background-position: left bottom; }
+
+.btns-wrap {
+  position: fixed;
+  right: 3rem;
+  bottom: 1rem;
+  z-index: 9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end; }
+  .btns-wrap .btn-custom {
+    opacity: .5;
+    -ms-flex-negative: 0;
+    flex-shrink: 0; }
+    .btns-wrap .btn-custom, .btns-wrap .btn-custom:hover {
+      background-position: left bottom;
+      font-weight: 400; }
+    .btns-wrap .btn-custom:hover {
+      opacity: 1; }
+  .btns-wrap .save {
+    margin: 0 1rem 0; }
+  .btns-wrap .view-page {
+    background: #4b3f3f; }
 
 .link-primary {
   color: #e65740; }
