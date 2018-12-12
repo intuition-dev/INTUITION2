@@ -383,7 +383,8 @@
     padding: 1rem;
     font-size: 13px;
     position: relative;
-    z-index: 1; }
+    z-index: 1;
+    overflow-y: auto; }
 
 .blog-item {
   margin-bottom: .4rem;
@@ -516,7 +517,9 @@ ul {
 
 .header {
   background: rgba(0, 0, 0, 0.7);
-  padding: 5px 0; }
+  padding: 5px 0;
+  position: relative;
+  z-index: 9; }
 
 .user-area {
   font-size: 12px;

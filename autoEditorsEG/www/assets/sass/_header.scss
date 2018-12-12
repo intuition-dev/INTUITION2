@@ -1,6 +1,8 @@
 .header {
 	background: rgba(black, .7);
 	padding: 5px 0;
+	position: relative;
+	z-index: 9;
 }
 .user {
 	&-area {

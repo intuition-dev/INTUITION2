@@ -75,6 +75,8 @@ block content
                  return 'post-' + Math.random().toString(36).substr(2, 3);
                };
                posts.addPost(newPostId());
+               $('.blog-list-wrap').html('');
+               posts.showDirs();
             });
 
          });

@@ -69,7 +69,8 @@ class ApiService {
 
    // create new post
    createPost(id) {
-      return this.service.post('/editors/new-post', {
+      console.log('post_id', id);
+      return this.service.post('/editors/new-post', {}, {
          params: {
             post_id: id
          }

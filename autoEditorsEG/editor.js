@@ -54,11 +54,18 @@ module.exports = (config) => {
     });
     appE.post("/new-post", (req, res) => {
         let post_id = req.query.post_id;
-        let temp = '/template';
-        let newPost = '/' + post_id;
-        let fileOps = new Wa_1.FileOps(config.appMount);
-        fileOps.clone(temp, newPost);
-        res.send('OK');
+        console.log('post id ----------->', post_id);
+        if (typeof post_id !== 'undefined') {
+            let temp = '/template';
+            let newPost = '/' + post_id;
+            let fileOps = new Wa_1.FileOps(config.appMount);
+            fileOps.clone(temp, newPost);
+            res.send('OK');
+        }
+        else {
+            res.status(400);
+            res.send({ error: 'no post_id' });
+        }
     });
     return appE;
 };
