@@ -43,6 +43,22 @@ module.exports = (config) => {
             let md = '/' + post_id + '/text.md';
             let fileOps = new Wa_1.FileOps(config.appMount);
             fileOps.write(md, req.body);
+            let runMbake = new Base_1.MBake();
+            let path = '/';
+            runMbake.itemizeNBake(config.appMount);
+            res.send('OK');
+        }
+        else {
+            res.status(400);
+            res.send({ error: 'no post_id' });
+        }
+    });
+    appE.post("/post", (req, res) => {
+        let post_id = req.query.post_id;
+        if (typeof post_id !== 'undefined') {
+            let md = '/' + post_id + '/text.md';
+            let fileOps = new Wa_1.FileOps(config.appMount);
+            fileOps.write(md, req.body);
             res.send('OK');
         }
         else {

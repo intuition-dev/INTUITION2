@@ -13,7 +13,7 @@ class Posts {
       apiService.getDirsList()
       	.then(posts => {
       		posts.data.forEach(el => {
-                listTemp += '<div class="blog-item"><svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><g transform="translate(0 -1028.4)"><path d="m2 4v13.531 2.469c0 1.105 0.8954 2 2 2h4 8l6-6v-12h-20z" transform="translate(0 1028.4)" fill="#fff"/><path d="m22 1044.4-6 6v-4c0-1.1 0.895-2 2-2h4z" fill="#a7f076" class="hover"/><path d="m4 2c-1.1046 0-2 0.8954-2 2v1 1h20v-1-1c0-1.1046-0.895-2-2-2h-4-8-4z" transform="translate(0 1028.4)" fill="#fff"/><g fill="#a7f076" class="hover"><rect height="2" width="14" y="1034.4" x="5"/><rect height="2" width="14" y="1038.4" x="5"/><rect height="2" width="9" y="1042.4" x="5"/></g></g></svg><span>'+el+'</span></div>';
+                listTemp += '<div class="blog-item"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26 26" version="1.1" width="20px" height="20px"><g id="surface1"><path style=" " d="M 3 2 C 1.34375 2 0 3.34375 0 5 L 0 22 C 0 23.65625 1.34375 25 3 25 L 23 25 C 24.65625 25 26 23.65625 26 22 L 26 8 C 26 6.34375 24.65625 5 23 5 L 11 5 C 11 3.34375 9.65625 2 8 2 Z M 3 7 L 23 7 C 23.550781 7 24 7.449219 24 8 L 24 22 C 24 22.550781 23.550781 23 23 23 L 3 23 C 2.449219 23 2 22.550781 2 22 L 2 8 C 2 7.449219 2.449219 7 3 7 Z "/></g></svg><span>'+el+'</span></div>';
             });
       		$('.blog-list-wrap').append(listTemp);
       	});
