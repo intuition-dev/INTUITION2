@@ -50,7 +50,7 @@ module.exports = (config) => {
          let fileOps = new FileOps(config.appMount);
          fileOps.write(md, req.body);
          let runMbake = new MBake();
-         runMbake.itemizeNBake(config.appMount);
+         runMbake.itemizeNBake(config.appMount + '/blog');
         
          res.send('OK');
       } else {
