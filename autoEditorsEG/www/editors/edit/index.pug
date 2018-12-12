@@ -55,7 +55,11 @@ block content
                $(this).addClass('active');
 
                let postId = $(this).find('span').text();
-               posts.showMd(postId);
+               function getSecondPart(str) {
+                  return str.split('/')[1];
+               }
+               let newPostId = getSecondPart(postId);
+               posts.showMd(newPostId);
             });
 
             // save .md

@@ -16,15 +16,10 @@ module.exports = (config) => {
    appE.use(bodyParser.text());
    appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
-   // appE.get("/", (req, res) => {
-   //    //res.send('If you see this then token is valid');
-   //    res.send(config);
-   // });
-
    // get dirs list
    appE.get("/posts", (req, res) => {
       let dirs = new Dirs(config.appMount);
-      let dirsToIgnore = ['', '.', '..', 'template'];
+      let dirsToIgnore = ['', '.', '..'];
       res.send(dirs.getShort()
          .map(el => el.replace(/^\/+/g, ''))
          .filter(el => !dirsToIgnore.includes(el))
@@ -35,7 +30,7 @@ module.exports = (config) => {
    appE.get("/post", (req, res) => {
       let post_id = req.query.post_id;
       if (typeof post_id !== 'undefined') {
-         let md = config.appMount + '/' + post_id + '/text.md';
+         let md = config.appMount + '/blog/' + post_id + '/text.md';
          fs.readFile(md, 'utf8', function(err, data) {  
             if (err) throw err;
             console.log(data);
@@ -51,7 +46,7 @@ module.exports = (config) => {
    appE.put("/post", (req, res) => {
       let post_id = req.query.post_id;
       if (typeof post_id !== 'undefined') {
-         let md = '/' + post_id + '/text.md';
+         let md = '/blog/' + post_id + '/text.md';
          let fileOps = new FileOps(config.appMount);
          fileOps.write(md, req.body);
          let runMbake = new MBake();
@@ -71,7 +66,7 @@ module.exports = (config) => {
       if (typeof post_id !== 'undefined') {
          // create new post folder
          let temp = '/template';
-         let newPost = '/' + post_id;
+         let newPost = '/blog/' + post_id;
          let fileOps = new FileOps(config.appMount);
          fileOps.clone(temp, newPost);
          

@@ -16,7 +16,7 @@ module.exports = (config) => {
     appE.use(bodyParser.urlencoded({ extended: true }));
     appE.get("/posts", (req, res) => {
         let dirs = new Base_1.Dirs(config.appMount);
-        let dirsToIgnore = ['', '.', '..', 'template'];
+        let dirsToIgnore = ['', '.', '..'];
         res.send(dirs.getShort()
             .map(el => el.replace(/^\/+/g, ''))
             .filter(el => !dirsToIgnore.includes(el)));
@@ -24,7 +24,7 @@ module.exports = (config) => {
     appE.get("/post", (req, res) => {
         let post_id = req.query.post_id;
         if (typeof post_id !== 'undefined') {
-            let md = config.appMount + '/' + post_id + '/text.md';
+            let md = config.appMount + '/blog/' + post_id + '/text.md';
             fs.readFile(md, 'utf8', function (err, data) {
                 if (err)
                     throw err;
@@ -40,7 +40,7 @@ module.exports = (config) => {
     appE.put("/post", (req, res) => {
         let post_id = req.query.post_id;
         if (typeof post_id !== 'undefined') {
-            let md = '/' + post_id + '/text.md';
+            let md = '/blog/' + post_id + '/text.md';
             let fileOps = new Wa_1.FileOps(config.appMount);
             fileOps.write(md, req.body);
             let runMbake = new Base_1.MBake();
@@ -57,7 +57,7 @@ module.exports = (config) => {
         console.log('post id ----------->', post_id);
         if (typeof post_id !== 'undefined') {
             let temp = '/template';
-            let newPost = '/' + post_id;
+            let newPost = '/blog/' + post_id;
             let fileOps = new Wa_1.FileOps(config.appMount);
             fileOps.clone(temp, newPost);
             res.send('OK');
