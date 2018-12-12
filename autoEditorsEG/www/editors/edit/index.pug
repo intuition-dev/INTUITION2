@@ -47,6 +47,7 @@ block content
             let posts = new Posts();
             posts.showDirs();
 
+            // show .md for chosen post
             $(document).on('click', '.blog-item', function(e) {
                e.preventDefault();
 
@@ -57,12 +58,23 @@ block content
                posts.showMd(postId);
             });
 
+            // save .md
             $(document).on('click', '.save', function(e) {
                e.preventDefault();
 
                let postId = $('.blog-item.active').text();
                let md = myCodeMirror.getValue();
                posts.saveMd(postId, md);
+            });
+
+            // create new post
+            $(document).on('click', '.create-post', function(e) {
+               e.preventDefault();
+
+               let newPostId = function () {
+                 return 'post-' + Math.random().toString(36).substr(2, 3);
+               };
+               posts.addPost(newPostId());
             });
 
          });

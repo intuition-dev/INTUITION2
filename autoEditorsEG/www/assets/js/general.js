@@ -32,4 +32,9 @@ class Posts {
    	// render .md file content in textarea
    	apiService.savePostMd(id, md);
    }
+
+   addPost(id, md) {
+      // render .md file content in textarea
+      apiService.createPost(id, md);
+   }
 }

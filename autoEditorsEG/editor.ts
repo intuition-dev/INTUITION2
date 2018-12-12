@@ -55,7 +55,6 @@ module.exports = (config) => {
          let fileOps = new FileOps(config.appMount);
          fileOps.write(md, req.body);
          let runMbake = new MBake();
-         let path = '/';
          runMbake.itemizeNBake(config.appMount);
         
          res.send('OK');
@@ -66,18 +65,21 @@ module.exports = (config) => {
    });
 
    // create new blog from the template
-   appE.post("/post", (req, res) => {
-      let post_id = req.query.post_id;
-      if (typeof post_id !== 'undefined') {
-         let md = '/' + post_id + '/text.md';
+   appE.post("/new-post", (req, res) => {
+         let post_id = req.query.post_id;
+         // create new post folder
+         let temp = '/template';
+         let newPost = '/' + post_id;
          let fileOps = new FileOps(config.appMount);
-         fileOps.write(md, req.body);
+         fileOps.clone(temp, newPost);
+
+         // save .md
+         // let md = '/' + newPost + '/text.md';
+         // fileOps.write(md, req.body);
+         // let runMbake = new MBake();
+         // runMbake.itemizeNBake(config.appMount);
         
          res.send('OK');
-      } else {
-         res.status(400);
-         res.send({ error: 'no post_id' });
-      }
    });
 
    return appE;

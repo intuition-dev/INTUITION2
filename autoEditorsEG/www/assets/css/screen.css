@@ -529,6 +529,9 @@ ul {
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end; }
+  .user-area .btn-custom {
+    padding: 0;
+    margin-right: 1rem; }
 
 .user-name {
   font-size: inherit;

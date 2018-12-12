@@ -8,6 +8,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
+		.btn-custom {
+			padding: 0;
+    		margin-right: 1rem;
+		}
 	}
 	&-name {
 		font-size: inherit;

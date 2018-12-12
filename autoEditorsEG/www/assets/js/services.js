@@ -43,10 +43,12 @@ class ApiService {
      });
    }
 
+   // get list of directories on the left
    getDirsList() {
       return this.service.get('/editors/posts');
    }
 
+   // get .md file of the chosen directory
    getPostMd(id) {
       return this.service.get('/editors/post', {
          params: {
@@ -55,9 +57,19 @@ class ApiService {
       });
    }
 
+   // save .md and mbake after edit
    savePostMd(id, md) {
       return this.service.put('/editors/post', md, {
          headers: { 'Content-Type': 'text/plain' },
+         params: {
+            post_id: id
+         }
+      });
+   }
+
+   // create new post
+   createPost(id) {
+      return this.service.post('/editors/new-post', {
          params: {
             post_id: id
          }

@@ -29,7 +29,7 @@
   <body>
     <header class="header">
       <div class="layout-wrap container">
-        <div class="user-area">
+        <div class="user-area"><a class="btn-custom create-post" href="#">Create new post</a>
           <div class="user-name"></div><a class="sign-out" href="#" id="sign-out">Sign out</a>
         </div>
       </div>
@@ -82,6 +82,7 @@
            let posts = new Posts();
            posts.showDirs();
         
+           // show .md for chosen post
            $(document).on('click', '.blog-item', function(e) {
               e.preventDefault();
         
@@ -92,6 +93,7 @@
               posts.showMd(postId);
            });
         
+           // save .md
            $(document).on('click', '.save', function(e) {
               e.preventDefault();
         
@@ -100,8 +102,18 @@
               posts.saveMd(postId, md);
            });
         
+           // create new post
+           $(document).on('click', '.create-post', function(e) {
+              e.preventDefault();
+        
+              let newPostId = function () {
+                return 'post-' + Math.random().toString(36).substr(2, 3);
+              };
+              posts.addPost(newPostId());
+           });
+        
         });
       </script>
     </div>
-  <!-- mB v4.12.19 on 2018-12-12T07:29:46.367Z --></body>
+  <!-- mB v4.12.19 on 2018-12-12T11:12:20.367Z --></body>
 </html>
