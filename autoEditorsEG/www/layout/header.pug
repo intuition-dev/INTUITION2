@@ -16,7 +16,7 @@ html
       script(src=ROOT +'config.js')
       script.
          window.url_string = window.location.href.split('http://')[1].slice(0,6);
-         window.env = window.url_string == 'blog-p' ? 'isProd' :'isLocal';
+         window.env = window.url_string == '178.62' ? 'isProd' :'isLocal';
          console.log('window.env: ', window.env);
 
          window.LOCAL_API = [config.LOCAL_API,config.LOCAL_API_PASS];
