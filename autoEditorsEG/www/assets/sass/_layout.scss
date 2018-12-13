@@ -66,18 +66,16 @@
 		}
 		svg {
 			margin: 0 1rem 0 0;
-			.hover {
-				transition: fill .1s linear;
-			}
+			transition: fill .1s linear;
+			fill: #000;
 		}
 		&:hover, &.active {
 			span {
-				border-color: black;
+				border-color: $color;
+				color: $color;
 			}
 			svg {
-				.hover {
-					fill: #000!important;
-				}
+				fill: $color;
 			}
 		}
 		&:last-of-type {

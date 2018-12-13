@@ -45,6 +45,7 @@
           <textarea id="cms1" rows="400"></textarea>
         </div>
         <div class="btns-wrap"><a class="save btn-custom btn-primary" href="#">save</a><a class="view-page btn-custom btn-secondary" href="#" target="_blank">view page</a></div>
+        <div class="notification d-hide"></div>
       </div>
       <script>
         depp.define({'codeEdit': [
@@ -109,7 +110,18 @@
               }
               let newPostId = getSecondPart(postId);
               let md = myCodeMirror.getValue();
-              posts.saveMd(newPostId, md);
+              $(this).attr("disabled", "disabled");
+              posts
+                 .saveMd(newPostId, md)
+                 .then(() => {
+                    $(this).removeAttr("disabled");
+                    // show notification
+                    $('.notification').removeClass('d-hide').text('The post content was successfully updated');
+                    setTimeout(function() {
+                       $('.notification').addClass('d-hide').text('');
+                    }, 4000);
+                 });
+        
            });
         
            // create new post
@@ -120,7 +132,17 @@
                 return 'post-' + Math.random().toString(36).substr(2, 3);
               };
               let postId = newPostId();
-              posts.addPost(postId);
+              $(this).attr("disabled", "disabled");
+              posts
+                 .addPost(postId)
+                 .then(() => {
+                    $(this).removeAttr("disabled");
+                    // show notification
+                    $('.notification').removeClass('d-hide').text('New post was added, now you can edit the content');
+                    setTimeout(function() {
+                       $('.notification').addClass('d-hide').text('');
+                    }, 4000);
+                 });
               $('.blog-list-wrap').html('');
               posts
                  .showDirs()
@@ -132,5 +154,5 @@
         });
       </script>
     </div>
-  <!-- mB v4.12.19 on 2018-12-13T09:41:46.733Z --></body>
+  <!-- mB v4.12.19 on 2018-12-13T10:04:42.816Z --></body>
 </html>

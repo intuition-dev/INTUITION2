@@ -89,16 +89,20 @@ ul {
 }
 
 .notification {
-    font-weight: 500;
-    margin-top: 1rem;
-    background: rgba(118,248,52,.2);
-    display: table;
-    padding: 5px 15px;
-    font-size: $font-size-global;
-    &::first-letter { 
-        text-transform: uppercase;
-    }
-    &.error-msg {
-        background: rgba($color,.2);
-    }
+   font-weight: 500;
+   margin-top: 1rem;
+   background: rgba(118,248,52,.2);
+   display: table;
+   padding: 5px 15px;
+   font-size: $font-size-global;
+   position: absolute;
+   z-index: 999;
+   top: 50%;
+   left: 40%;
+   &::first-letter { 
+      text-transform: uppercase;
+   }
+   &.error-msg {
+      background: rgba($color,.2);
+   }
 }
