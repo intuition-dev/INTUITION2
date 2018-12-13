@@ -7,6 +7,7 @@ module.exports = (config) => {
    const customCors = require('./custom-cors');
    const editorAuth = require('./editor-auth');
    const fs = require('fs');
+   const unzipper = require('unzipper');
 
    const appE = express();
 
@@ -30,7 +31,7 @@ module.exports = (config) => {
    appE.get("/post", (req, res) => {
       let post_id = req.query.post_id;
       if (typeof post_id !== 'undefined') {
-         let md = config.appMount + '/blog/' + post_id + '/text.md';
+         let md = config.appMount + '/' + post_id + '/text.md';
          fs.readFile(md, 'utf8', function(err, data) {  
             if (err) throw err;
             console.log(data);
@@ -46,11 +47,12 @@ module.exports = (config) => {
    appE.put("/post", (req, res) => {
       let post_id = req.query.post_id;
       if (typeof post_id !== 'undefined') {
-         let md = '/blog/' + post_id + '/text.md';
+         let md = '/' + post_id + '/text.md';
          let fileOps = new FileOps(config.appMount);
          fileOps.write(md, req.body);
          let runMbake = new MBake();
          runMbake.itemizeNBake(config.appMount + '/blog');
+         runMbake.tag(config.appMount);
         
          res.send('OK');
       } else {
@@ -65,9 +67,12 @@ module.exports = (config) => {
       console.log('post id ----------->', post_id);
       if (typeof post_id !== 'undefined') {
          // create new post folder
-         let temp = '/blog-post-template';
-         let newPost = '/blog/' + post_id;
-         let fileOps = new FileOps(config.appMount);
+         fs.createReadStream(config.appMount + '/blog-post-template.zip')
+         .pipe(unzipper.Extract({ path: '/tmp' }));
+         let temp = '/tmp/blog-post-template';
+
+         let newPost = config.appMount+ '/blog/' + post_id;
+         let fileOps = new FileOps('/');
          fileOps.clone(temp, newPost);
          
          res.send('OK');

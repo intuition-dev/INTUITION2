@@ -93,11 +93,12 @@
         
               let postId = $(this).find('span').text();
               $('.view-page').attr('href', 'http://blog-app-project.s3-website-us-east-1.amazonaws.com/' + postId);
-              function getSecondPart(str) {
-                 return str.split('/')[1];
-              }
-              let newPostId = getSecondPart(postId);
-              posts.showMd(newPostId);
+              //- function getSecondPart(str) {
+              //-    return str.split('/')[1];
+              //- }
+              //- let newPostId = getSecondPart(postId);
+              //- posts.showMd(newPostId);
+              posts.showMd(postId);
            });
         
            // save .md
@@ -105,14 +106,14 @@
               e.preventDefault();
         
               let postId = $('.blog-item.active').text();
-              function getSecondPart(str) {
-                 return str.split('/')[1];
-              }
-              let newPostId = getSecondPart(postId);
+              //- function getSecondPart(str) {
+              //-    return str.split('/')[1];
+              //- }
+              //- let newPostId = getSecondPart(postId);
               let md = myCodeMirror.getValue();
               $(this).attr("disabled", "disabled");
               posts
-                 .saveMd(newPostId, md)
+                 .saveMd(postId, md)
                  .then(() => {
                     $(this).removeAttr("disabled");
                     // show notification
@@ -154,5 +155,5 @@
         });
       </script>
     </div>
-  <!-- mB v4.12.19 on 2018-12-13T10:04:42.816Z --></body>
+  <!-- mB v4.12.19 on 2018-12-13T12:11:16.992Z --></body>
 </html>

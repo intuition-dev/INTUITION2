@@ -507,7 +507,7 @@ ul {
 .notification {
   font-weight: 500;
   margin-top: 1rem;
-  background: rgba(118, 248, 52, 0.2);
+  background: rgba(118, 248, 52, 0.75);
   display: table;
   padding: 5px 15px;
   font-size: 14px;

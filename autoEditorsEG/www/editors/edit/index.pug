@@ -59,11 +59,7 @@ block content
 
                let postId = $(this).find('span').text();
                $('.view-page').attr('href', 'http://blog-app-project.s3-website-us-east-1.amazonaws.com/' + postId);
-               function getSecondPart(str) {
-                  return str.split('/')[1];
-               }
-               let newPostId = getSecondPart(postId);
-               posts.showMd(newPostId);
+               posts.showMd(postId);
             });
 
             // save .md
@@ -71,17 +67,12 @@ block content
                e.preventDefault();
 
                let postId = $('.blog-item.active').text();
-               function getSecondPart(str) {
-                  return str.split('/')[1];
-               }
-               let newPostId = getSecondPart(postId);
                let md = myCodeMirror.getValue();
                $(this).attr("disabled", "disabled");
                posts
-                  .saveMd(newPostId, md)
+                  .saveMd(postId, md)
                   .then(() => {
                      $(this).removeAttr("disabled");
-                     // show notification
                      $('.notification').removeClass('d-hide').text('The post content was successfully updated');
                      setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
@@ -103,7 +94,6 @@ block content
                   .addPost(postId)
                   .then(() => {
                      $(this).removeAttr("disabled");
-                     // show notification
                      $('.notification').removeClass('d-hide').text('New post was added, now you can edit the content');
                      setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
