@@ -9,6 +9,7 @@ module.exports = (config) => {
     const editorAuth = require('./editor-auth');
     const fs = require('fs');
     const unzipper = require('unzipper');
+    const path = require('path');
     const appE = express();
     appE.use(customCors);
     appE.use(editorAuth);
@@ -22,23 +23,31 @@ module.exports = (config) => {
             .map(el => el.replace(/^\/+/g, ''))
             .filter(el => !dirsToIgnore.includes(el)));
     });
-    appE.get("/dirs", (req, res) => {
-        let dirs = new Base_1.Dirs(config.appMount);
-        let dirsToIgnore = ['', '.', '..'];
-        res.send(dirs.getShort()
-            .map(el => el.replace(/^\/+/g, ''))
-            .filter(el => !dirsToIgnore.includes(el)));
+    appE.get("/files", (req, res) => {
+        let post_id = '/' + req.query.post_id;
+        if (typeof post_id !== 'undefined') {
+            let dirs = new Base_1.Dirs(config.appMount);
+            res.send(dirs.getInDir(post_id));
+        }
+        else {
+            res.status(400);
+            res.send({ error: 'no post_id' });
+        }
     });
     appE.get("/post", (req, res) => {
         let post_id = req.query.post_id;
+        let pathPrefix = req.query.pathPrefix;
         if (typeof post_id !== 'undefined') {
-            let md = config.appMount + '/' + post_id + '/text.md';
-            fs.readFile(md, 'utf8', function (err, data) {
-                if (err)
-                    throw err;
-                console.log(data);
-                res.json(data);
-            });
+            let md = config.appMount + '/' + pathPrefix + post_id;
+            let fileExt = path.extname(post_id);
+            if (fs.existsSync(md) && fileExt === '.md') {
+                fs.readFile(md, 'utf8', function (err, data) {
+                    if (err)
+                        throw err;
+                    console.log(data);
+                    res.json(data);
+                });
+            }
         }
         else {
             res.status(400);
@@ -47,8 +56,9 @@ module.exports = (config) => {
     });
     appE.put("/post", (req, res) => {
         let post_id = req.query.post_id;
+        let pathPrefix = req.query.pathPrefix;
         if (typeof post_id !== 'undefined') {
-            let md = '/' + post_id + '/text.md';
+            let md = '/' + pathPrefix + post_id;
             let fileOps = new Wa_1.FileOps(config.appMount);
             fileOps.write(md, req.body);
             let runMbake = new Base_1.MBake();
@@ -70,8 +80,6 @@ module.exports = (config) => {
             let temp = '/tmp/blog-post-template';
             let newPost = config.appMount + '/blog/' + post_id;
             let fileOps = new Wa_1.FileOps('/');
-            console.log('temp ---------------->', temp);
-            console.log('newPost ---------------->', newPost);
             fileOps.clone(temp, newPost);
             res.send('OK');
         }

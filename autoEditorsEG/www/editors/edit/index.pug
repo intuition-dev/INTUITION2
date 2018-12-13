@@ -50,30 +50,50 @@ block content
             let posts = new Posts();
             posts.showDirs();
 
-            // show .md for chosen post
-            $(document).on('click', '.blog-item', function(e) {
+            // show sub directories
+            $(document).off().on('click', '.blog-item', function(e) {
                e.preventDefault();
+               $('.blog-item ul').remove();
 
                $('.blog-item').removeClass('active');
                $(this).addClass('active');
 
                let postId = $(this).find('span').text();
                $('.view-page').attr('href', 'http://blog-app-project.s3-website-us-east-1.amazonaws.com/' + postId);
-               posts.showMd(postId);
+               if ($(this).find('ul').length === 0) {
+                  posts.showSubDirs(postId);
+               } else {
+                  $(this).find('ul').remove();
+               }
             });
+
+            // show .md for chosen post
+            $(document).on('click', '.blog-item li', function(e) {
+               e.preventDefault();
+               e.stopPropagation(); // prevent child trigger click on parent
+
+               $('.blog-item li').removeClass('active');
+               $(this).addClass('active');
+
+               let postId = $(this).text();
+               let pathPrefix = $(this).parents('.blog-item').find('span').text();
+               posts.showMd(postId, pathPrefix);
+            });
+
 
             // save .md
             $(document).on('click', '.save', function(e) {
                e.preventDefault();
 
-               let postId = $('.blog-item.active').text();
+               let postId = $('.blog-item.active').find('li.active').text();
+               let pathPrefix = $('.blog-item.active').find('span').text();
                let md = myCodeMirror.getValue();
                $(this).attr("disabled", "disabled");
                posts
-                  .saveMd(postId, md)
+                  .saveMd(postId, md, pathPrefix)
                   .then(() => {
                      $(this).removeAttr("disabled");
-                     $('.notification').removeClass('d-hide').text('The post content was successfully updated');
+                     $('.notification').removeClass('d-hide').text('The content was successfully updated');
                      setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
                      }, 4000);
@@ -103,7 +123,10 @@ block content
                posts
                   .showDirs()
                   .then(() => {
-                     $('.blog-list-wrap').find('.blog-item span:contains('+ postId +')').parents('.blog-item').addClass('active').click();
+                     $('.blog-list-wrap').find('.blog-item span:contains('+ postId +')').parents('.blog-item').addClass('active').click().find('ul li:contains(\'.md\')').addClass('active').click();
+                     setTimeout(function() {
+                        $('.blog-item.active ul li:contains(\'.md\')').addClass('active').click();
+                     }, 1000);
                   });
                });
 

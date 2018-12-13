@@ -48,21 +48,32 @@ class ApiService {
       return this.service.get('/editors/posts');
    }
 
-   // get .md file of the chosen directory
-   getPostMd(id) {
-      return this.service.get('/editors/post', {
+   // get sub list of directories on the left
+   getSubDirsList(id) {
+      return this.service.get('/editors/files', {
          params: {
             post_id: id
          }
       });
    }
 
+   // get .md file
+   getPostMd(id, pathPrefix) {
+      return this.service.get('/editors/post', {
+         params: {
+            post_id: id,
+            pathPrefix: pathPrefix
+         }
+      });
+   }
+
    // save .md and mbake after edit
-   savePostMd(id, md) {
+   savePostMd(id, md, pathPrefix) {
       return this.service.put('/editors/post', md, {
          headers: { 'Content-Type': 'text/plain' },
          params: {
-            post_id: id
+            post_id: id,
+            pathPrefix: pathPrefix
          }
       });
    }

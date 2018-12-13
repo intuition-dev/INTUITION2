@@ -56,9 +56,6 @@
 	&-item {
 		margin-bottom: .4rem;
 		cursor: pointer;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
 		span {
 			transition: color 0.1s linear, border 0.1s linear;
 			display: table;
@@ -80,6 +77,21 @@
 		}
 		&:last-of-type {
 			margin-bottom: 0;
+		}
+		.d-flex {
+			align-items: center;
+			justify-content: flex-start;
+		}
+		li {
+			padding-left: 20px;
+		   font-size: 13px;
+		   transition: color .1s linear;
+			&:before {
+				display: none;
+			}
+			&:hover, &.active {
+				color: $color;
+			}
 		}
 	}
 }

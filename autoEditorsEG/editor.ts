@@ -8,6 +8,7 @@ module.exports = (config) => {
    const editorAuth = require('./editor-auth');
    const fs = require('fs');
    const unzipper = require('unzipper');
+   const path = require('path');
 
    const appE = express();
 
@@ -27,16 +28,32 @@ module.exports = (config) => {
       );
    });
 
-   // get dir .md file
+   // get sub files in directory
+   appE.get("/files", (req, res) => {
+      let post_id = '/' + req.query.post_id;
+      if (typeof post_id !== 'undefined') {
+         let dirs = new Dirs(config.appMount);
+         res.send(dirs.getInDir(post_id));
+      } else {
+         res.status(400);
+         res.send({ error: 'no post_id' });
+      }
+   });
+
+   // get .md file
    appE.get("/post", (req, res) => {
       let post_id = req.query.post_id;
+      let pathPrefix = req.query.pathPrefix;
       if (typeof post_id !== 'undefined') {
-         let md = config.appMount + '/' + post_id + '/text.md';
-         fs.readFile(md, 'utf8', function(err, data) {  
-            if (err) throw err;
-            console.log(data);
-            res.json(data);
-         });
+         let md = config.appMount + '/' + pathPrefix + post_id;
+         let fileExt = path.extname(post_id);
+         if (fs.existsSync(md) && fileExt === '.md') {
+            fs.readFile(md, 'utf8', function(err, data) {  
+               if (err) throw err;
+               console.log(data);
+               res.json(data);
+            });
+         }
       } else {
          res.status(400);
          res.send({ error: 'no post_id' });
@@ -46,8 +63,10 @@ module.exports = (config) => {
    // update .md file
    appE.put("/post", (req, res) => {
       let post_id = req.query.post_id;
+      let pathPrefix = req.query.pathPrefix;
       if (typeof post_id !== 'undefined') {
-         let md = '/' + post_id + '/text.md';
+         // let md = '/' + post_id + '/text.md';
+         let md = '/' + pathPrefix + post_id;
          let fileOps = new FileOps(config.appMount);
          fileOps.write(md, req.body);
          let runMbake = new MBake();

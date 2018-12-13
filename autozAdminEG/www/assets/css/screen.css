@@ -457,6 +457,8 @@ ul {
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end; }
+  .user-area .sign-out {
+    color: #F76263; }
 
 button {
   cursor: pointer; }
