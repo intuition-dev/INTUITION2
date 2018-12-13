@@ -44,7 +44,7 @@ module.exports = (config) => {
             let fileOps = new Wa_1.FileOps(config.appMount);
             fileOps.write(md, req.body);
             let runMbake = new Base_1.MBake();
-            runMbake.itemizeNBake(config.appMount);
+            runMbake.itemizeNBake(config.appMount + '/blog');
             res.send('OK');
         }
         else {

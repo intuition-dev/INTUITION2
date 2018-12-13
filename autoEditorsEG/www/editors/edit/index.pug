@@ -85,9 +85,14 @@ block content
                let newPostId = function () {
                  return 'post-' + Math.random().toString(36).substr(2, 3);
                };
-               posts.addPost(newPostId());
+               let postId = newPostId();
+               posts.addPost(postId);
                $('.blog-list-wrap').html('');
-               posts.showDirs();
-            });
+               posts
+                  .showDirs()
+                  .then(() => {
+                     $('.blog-list-wrap').find('.blog-item span:contains('+ postId +')').parents('.blog-item').addClass('active').click();
+                  });
+               });
 
          });
