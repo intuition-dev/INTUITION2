@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=10.13",
-    "yarn": ">=1.12.3"
+   "node": ">=10.14.2",
+   "yarn": ">=1.12.3"
   },
   "dependencies": {
     "express": ">=4.16.4",
