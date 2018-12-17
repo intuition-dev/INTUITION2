@@ -2186,7 +2186,7 @@ body {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
 
-.blog .name, .blog .title, .blog .category, .blog .date {
+.blog .name, .blog .title, .blog .title p, .blog .category, .blog .date {
   color: #1c393d; }
 
 .blog .category, .blog .name, .blog .date {
@@ -2238,10 +2238,11 @@ body {
   .blog-single .img__inside {
     height: 100%; }
 
-.blog-single .title {
+.blog-single .title, .blog-single .title p {
   font-size: 28px;
   font-family: "Old Standard TT", serif;
-  font-weight: 400; }
+  font-weight: 400;
+  line-height: 1.2; }
 
 .blog-single .date {
   color: #3AAFA9; }

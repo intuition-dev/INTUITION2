@@ -355,7 +355,7 @@
         flex-wrap: wrap;
     }
 
-    .name, .title, .category, .date {
+    .name, .title, .title p, .category, .date {
         color: $text-color-dark-2-theme1;
     }
 
@@ -413,9 +413,12 @@
         }
 
         .title {
-            font-size: 28px;
-            font-family: $font-family2-theme1;
-            font-weight: 400;
+            &, p {
+                font-size: 28px;
+                font-family: $font-family2-theme1;
+                font-weight: 400;
+                line-height: 1.2;
+            }
         }
 
         .date {

@@ -1,23 +1,7 @@
-extends /layout/layout-m
-//- App Shell
+extends layout-single-m
 
-block main
-   .container.narrow.blog.blog-single
-      .columns.d-flex
-         .column.col-9.col-lg-12
-            .img
-               amp-img.img__inside(alt='...', src='who.jpg', width='300', height='300')
-         .column.col-3.col-lg-12.post-title
-            .post-body
-               h6.title #{title}
-            .post-footer.d-flex
-               time.date #{date}
-      .columns.post-content
-         .column.col-9.col-lg-12.col-post-content
-            .post-content__inside
-               include:metaMD text.md
-         .column.col-3.col-lg-12.col-post-author
-            .author
-               .author__desc
-                  a.link-primary.name(href='#') #{name}
-                  p #{authorDesc}
+block blog-title
+   h6.title 
+      include:metaMD title.md
+block blog-content
+   include:metaMD text.md
