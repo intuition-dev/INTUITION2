@@ -8,7 +8,7 @@ module.exports = () => {
     const firebaseAdmin = require('./firebaseAdmin');
     const firebase = require('./Firebase');
     const dbAdminFs = firebaseAdmin.firestore();
-    let config = yaml.load(fs.readFileSync(__dirname + '/config.yaml'));
+    let config = yaml.load(fs.readFileSync(__dirname + '/../config.yaml'));
     console.log(config);
     const adminApp = express();
     adminApp.use(customCors);

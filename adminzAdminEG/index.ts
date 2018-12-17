@@ -10,7 +10,7 @@ const blogApp = express();
 blogApp.use(express.static('www'));
 
 // express app for admin
-const adminApp2 = require('./admin');
+const adminApp2 = require('./lib/admin');
 adminApp.use('/auth', adminApp2());
 
 adminApp.listen(adminPort, () => {

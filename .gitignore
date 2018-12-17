@@ -18,7 +18,7 @@ config.rb
 .sass-cache
 prepros-6.config
 
-autozAdminEG/www/config.js
+adminzAdminEG/www/config.js
 serviceAccountKey.json
 
 nohup.out

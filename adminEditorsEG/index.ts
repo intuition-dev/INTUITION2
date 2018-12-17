@@ -7,7 +7,7 @@ console.log(config);
 const editorsPort = config.editorAPIport;
 
 //express app for editors
-const appE2 = require('./editor');
+const appE2 = require('./lib/editor');
 appE.use('/editors', appE2(config));
 
 const wwwPort = config.editorsWwwPort;
