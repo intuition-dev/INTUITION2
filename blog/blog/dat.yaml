@@ -2,7 +2,7 @@ basedir: ../
 
 ROOT: '/'
 
-pretty: true
+pretty: false
 
 publish: false
 
