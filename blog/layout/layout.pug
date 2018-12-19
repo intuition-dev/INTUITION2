@@ -9,11 +9,14 @@ html(lang='en_US')
       meta(charset='utf-8')
       meta(name='viewport', content='width=device-width, initial-scale=1')
       link(rel='shortcut icon', href= ROOT + 'assets/favicon.png', type='image/x-icon')
-      link(href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400,700|Roboto:300,400,500,700', rel='stylesheet')
+      link(href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400,700', rel='stylesheet')
 
       script(src='https://cdn.jsdelivr.net/npm/johnnydepp@0.0.3/dist/depp.min.js')
       script(src='https://cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js')
       script(src='https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js')
+
+      script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js')
+      script(src= ROOT + 'assets/js/setup.js')
 
       style.
          .delayShowing { opacity: 0; }
@@ -47,12 +50,6 @@ html(lang='en_US')
       meta(property='og:image', content=image)
       meta(property='og:description', content=comment)
 
-      script(src='https://cdn.jsdelivr.net/npm/loadjs@3.5.4/dist/loadjs.js')
-      script(src='https://cdn.jsdelivr.net/npm/riot@3.11.2/riot.min.js')
-      script(src='https://unpkg.com/axios@0.18.0/dist/axios.min.js')
-      script(src='https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js')
-      script(src='https://cdn.jsdelivr.net/npm/blueimp-load-image@2.19.0/js/load-image.all.min.js')
-      script(src= ROOT + 'assets/js/setup.js')
       block head2
 
    body
