@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "express": ">=4.16.4",
-    "firebase": "^5.7.0",
+    "firebase": ">=5.7.1",
     "firebase-admin": ">=6.4.0",
-    "mbake": ">=4.12.20",
-    "unzipper": "^0.9.4"
+    "mbake": ">=4.14.3",
+    "unzipper": ">=0.9.7"
   },
   "devDependencies": {
-    "@types/node": ">=10.12.15",
+    "@types/node": ">=10.12.18",
     "ts-node": ">=7.0.1",
     "typescript": ">=3.2.2"
   }
