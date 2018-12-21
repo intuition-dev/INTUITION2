@@ -4,43 +4,51 @@
 - <a href='http://doc.metabake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
 
 
-## Low-code productivity for programmers via generators for Pug, Markdown and much more; including dynamic data binding.
 
+## Low-code productivity for programmers via static generation; for Pug, Markdown and more; including dynamic data binding.
 
-# About Metabake
+Metabake mbake CLI lets you generate websites and dynamic webapps in Pug by leveraging low code pillars for high development productivity.
 
-Metabake is a development productivity suite. It should allow you to deliver 10 times faster than legacy development stacks/methodologies. We have found that - with Metabake - the work of 6 developers over 6 months can be done by 3 developers in 3 weeks. We expect you to achieve the same productivity gains.
+## Install
 
-How does open source Metabake deliver 10X faster and cheaper web app development? Not enough organizations are fully leveraging the new Serverless. With Serverless services like Firestore and S3 you get rid of **ALL** server-side and middleware development and operations. This is where up to 2/3 of your time and cost used to go. Gone!
+Easy to install
 
-On the client side (browser apps and mobile apps) Metabake does something similar: it eliminates much of the tech stack and reduces the amount of coding and complexity. How? In school textbooks you learned about 1st generation languages, 2nd generation languages and our current 3rd generation languages, such as JavaScript, PHP and Ruby. With each new generation we achieved huge productivity improvements. We consider 'Pug'--also used by Node/Express--a 4th generation language that helps gain an equally big jump in productivity. With Metabake we show you how to build complete applications in Pug. With this Less code approach we demonstrate much faster and cheaper web app and mobile app development.
+```sh
+yarn global add mbake
+mbake
+```
 
-The Metabake approach has 10 pillars that are the foundation for achieving mind-blowing development productivity gains. I'll just mention one more pillar here: automatic programming. You've probably heard of 'static site generators' like Hugo or Jekyll that people use to generate their web site or a blog. Automatic programming means using a similar generator to write your web app! This can get you to yet another level of productivity.
+## First Page
 
-To learn more about the Metabake approach, including all 10 pillars and full examples, go to metabake.net. Or, to dive in right away, use the 'mbake CLI' from github.com/metabake as the first step into 10X faster web app development.
+Create file index.pug
+```pug
+header
+body
+    p Hello #{key1}
+```
+and create file dat.yaml
+```yaml
+key1: World
+```
 
-#### Metabake productivity is based on three modules:
+### Now make with mbake
 
-- mbake, a static site generation tool that runs locally;
-- B-M-SPA, curated technologies and techniques that help you build dynamic apps and mobile apps faster;
-- Meta, a bespoke cloud-based build and admin app infrastructure that helps deliver functionality to your clients more quickly.
+```sh
+mbake .
+```
 
-We benchmark against _LAMP_, _RAILS_, _MEAN_ and such. For example, LAMP is the technology WordPress was built on. Every 10 years or so technology gets 10 times better, which *forces* everyone to upgrade. Assembly was 10 times better than machine language. C/.js is 10 times better than Assembly. We believe that we found the answer on how to have a more productive team.
+This will create index.html. 
 
-So far, somehow, server-side rendered LAMP has dominated web deployments, with WordPress having some 30% of the World Wide Web. It is time to start displacing that.
+Of course you can use regular Pug syntax to include other Pug files; or Markdown. Metabake Markdown flavor includes CSS support:
+```pug
+    include:metaMD comment.md
+```
 
-You can reinvest the time saved by using Metabake into a more interactive user experience (UX). Better UX is proven to lead into higher user engagement and better user retention.
+## Home Page
 
-# About Meta
+Examples include an admin module, a watcher module, SPA, Blog, Website, Slides, Dashboard, CRUD, PWA, Electron, Hybrid mobile apps, Cloud v2.0 via AWS|FireStore, RIOTjs and more. 
+Primary focus is high development productivity (via "low code") and being easy to learn. But it is also fully flexible to build any WebApp in any directory tree structure you like an use any CSS/SASS framework you like.
+Metabake supports CSS classes in Markdown, plus, because it uses Pug - it can also do any HTML layout. But Metabake is not static only - it fully supports and has examples and docs for dynamic apps.
 
-This section is about _Meta_, your bespoke cloud-based admin and build infrastructure; used on your web app. You need to know _mbake_ first, but once you learn it, instead of using _mbake_ CLI, you use _Meta_. (if you are not comfortable with mbake, go learn that first. Here we just wrap API around it.) In _mbake_ you mounted your web app in the cloud, and with _Meta_, you admin|build is also in the cloud; both the web app and build are! That is what makes it Meta.
+[Metabake.net](http://www.metabake.net)
 
-For a developer, _Meta_ is akin to a build server like Jenkins. For others, _Meta_ is akin to a custom WordPress or Shopify admin console.
-
-When using _Meta_ in the cloud, you no longer have to mount to S3 buckets locally. You would use the _Meta_ admin UI to 'edit' code. For examples your users could use the bespoke Meta admin UI. These features should allow you to achieve additional productivity gains for your development team.
-
-Developers would use CodeAnywhere or a similar IDE; no need for local development environment. Instead you use CodeAnywhere and Meta admin/build as a group; all in the cloud.
-
-_Meta_ in the cloud needs to mount to your S3 bucket so it can admin/build it. You install _Meta_ on a Linux VM in a cloud; such as hosted by Digital Ocean.
-
- _Meta_ is meant to be bespoke/customized.
