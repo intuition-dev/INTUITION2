@@ -4,7 +4,7 @@
 - <a href='http://doc.metabake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
 
 
-## Metabake.org is a low-code productivity for application developers via static generation; with Pug, Markdown and more; including dynamic data binding. *Some developers implement applications faster than others.*
+#### Metabake.org is a low-code productivity for application developers via static generation; with Pug, Markdown and more; including dynamic data binding. *Some developers implement applications faster than others.*
 
 
 Metabake mbake CLI lets you generate websites and dynamic webapps in Pug by leveraging low-code pillars for high development productivity.
