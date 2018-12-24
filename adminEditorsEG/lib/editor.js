@@ -1,17 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Base_1 = require("mbake/lib/Base");
+const custom_cors_1 = require("./custom-cors");
 const Wa_1 = require("mbake/lib/Wa");
 module.exports = (config) => {
     const express = require("express");
     const bodyParser = require("body-parser");
-    const customCors = require('./custom-cors');
     const editorAuth = require('./editor-auth');
     const fs = require('fs');
     const unzipper = require('unzipper');
     const path = require('path');
     const appE = express();
-    appE.use(customCors);
+    const customCors = new custom_cors_1.CustomCors();
+    appE.use(customCors.cors());
     appE.use(editorAuth);
     appE.use(bodyParser.json());
     appE.use(bodyParser.text());

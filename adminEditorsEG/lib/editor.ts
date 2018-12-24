@@ -1,18 +1,19 @@
 import { Dirs, BakeWrk, MBake } from 'mbake/lib/Base';
+import { CustomCors } from './custom-cors';
 import { FileOps } from 'mbake/lib/Wa';
 
 module.exports = (config) => {
    const express = require("express");
    const bodyParser = require("body-parser");
-   const customCors = require('./custom-cors');
    const editorAuth = require('./editor-auth');
    const fs = require('fs');
    const unzipper = require('unzipper');
    const path = require('path');
 
    const appE = express();
+   const customCors = new CustomCors();
 
-   appE.use(customCors);
+   appE.use(customCors.cors());
    appE.use(editorAuth);
    appE.use(bodyParser.json());
    appE.use(bodyParser.text());
