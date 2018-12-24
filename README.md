@@ -44,6 +44,10 @@ Of course you can use regular Pug syntax to include other Pug files; or Markdown
     include:metaMD comment.md
 ```
 
+## Example projects
+
+* [Blog App](blog/README.md)
+
 ## Home Page
 
 Examples include an admin module, a watcher module, SPA, Blog, Website, Slides, Dashboard, CRUD, PWA, Electron, Hybrid mobile apps, Cloud v2.0 via AWS|FireStore, RIOTjs and more. 
