@@ -23,3 +23,5 @@ serviceAccountKey.json
 nohup.out
 
 /adminEditorsEG/config.yaml
+
+blog-s3/
