@@ -53,7 +53,6 @@ class SignOut {
       sessionStorage.clear();
       auth
          .signOut()
-         .then(function() {})
          .then(function() {
             window.location = ('/');
          }).catch(function(error) {

@@ -1,11 +1,12 @@
 import { Dirs, BakeWrk, MBake } from 'mbake/lib/Base';
 import { CustomCors } from './custom-cors';
 import { FileOps } from 'mbake/lib/Wa';
+import { EditorAuth } from './editor-auth';
 
 module.exports = (config) => {
    const express = require("express");
    const bodyParser = require("body-parser");
-   const editorAuth = require('./editor-auth');
+   const editorAuth = new EditorAuth();
    const fs = require('fs');
    const unzipper = require('unzipper');
    const path = require('path');
@@ -14,7 +15,7 @@ module.exports = (config) => {
    const customCors = new CustomCors();
 
    appE.use(customCors.cors());
-   appE.use(editorAuth);
+   appE.use(editorAuth.auth());
    appE.use(bodyParser.json());
    appE.use(bodyParser.text());
    appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
