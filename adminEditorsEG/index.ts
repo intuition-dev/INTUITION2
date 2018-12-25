@@ -17,9 +17,9 @@ const wwwApp = express();
 wwwApp.use(express.static('www'));
 
 wwwApp.listen(wwwPort, () => {
-    console.log(`wwwApp listening on port ${wwwPort}!`);
+   console.log(`wwwApp listening on port ${wwwPort}!`);
 });
 
 appE.listen(editorsPort, () => {
-    console.log(`appE listening on port ${editorsPort}!`);
+   console.log(`appE listening on port ${editorsPort}!`);
 });

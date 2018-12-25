@@ -1,5 +1,6 @@
 declare var console: Console;
 
+import { AdminRoutes } from './lib/admin';
 const express = require("express");
 const adminPort = 3030;
 const adminApp = express();
@@ -10,8 +11,8 @@ const blogApp = express();
 blogApp.use(express.static('www'));
 
 // express app for admin
-const adminApp2 = require('./lib/admin');
-adminApp.use('/auth', adminApp2());
+const adminRoutes = new AdminRoutes();
+adminApp.use('/auth', adminRoutes.routes());
 
 adminApp.listen(adminPort, () => {
     console.log(`adminApp listening on port ${adminPort}!`);
