@@ -1,0 +1,24 @@
+{
+   "manifest_version": 2,
+
+   "name": "Map & Admin url checker",
+   "description": "This extension will check if map.yaml exists and id admin url exist",
+   "version": "1.0",
+
+   "browser_action": {
+      "default_icon": "icon.png",
+      "default_popup": "index.html"
+   },
+   "commands": {
+      "_execute_browser_action": {
+         "suggested_key": {
+            "default": "Ctrl+Shift+F",
+            "mac": "MacCtrl+Shift+F"
+         },
+         "description": "Opens index.html"
+      }
+   },
+   "permissions": [
+      "activeTab"
+   ]
+}
