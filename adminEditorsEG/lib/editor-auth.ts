@@ -1,14 +1,15 @@
 export class EditorAuth {
+   firebaseAdmin = require('./firebaseAdmin') // so it's done once
+
    auth() {
       return (request, response, next) => {
-         const firebaseAdmin = require('./firebaseAdmin');
          
          // interceptor check token
          let idToken = request.get('fb-auth-token');
          if (typeof idToken === 'undefined') {
             return response.status(401).send();
          }
-         return firebaseAdmin.auth().verifyIdToken(idToken)
+         return this.firebaseAdmin.auth().verifyIdToken(idToken)
             .then(function() {
                return next();
             }).catch(function(error) {
