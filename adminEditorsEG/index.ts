@@ -1,3 +1,4 @@
+import { EditorRoutes } from './lib/editor';
 const express = require('express');
 const appE = express();
 const yaml = require('js-yaml');
@@ -7,8 +8,8 @@ console.log(config);
 const editorsPort = config.editorAPIport;
 
 //express app for editors
-const appE2 = require('./lib/editor');
-appE.use('/editors', appE2(config));
+const editorRoutes = new EditorRoutes();
+appE.use('/editors', editorRoutes.routes(config));
 
 const wwwPort = config.editorsWwwPort;
 const wwwApp = express();
