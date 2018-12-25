@@ -45,16 +45,26 @@ class Login {
    }
 }
 
-$(document).on('click', '#sign-out', function(e) {
+class SignOut {
+   constructor() {
+      this.signOut = this.signOut.bind(this);
+   }
+   signOut() {
+      sessionStorage.clear();
+      auth
+         .signOut()
+         .then(function() {})
+         .then(function() {
+            window.location = ('/');
+         }).catch(function(error) {
+            alert('An error happened.');
+            console.log('Something went wrong:', error);
+         });
+   }
+}
+
+let logOut = new SignOut();
+$('.sign-out').on('click', function(e) {
    e.preventDefault();
-   sessionStorage.clear();
-   auth
-      .signOut()
-      .then(function() {})
-      .then(function() {
-         window.location = ('/');
-      }).catch(function(error) {
-         alert('An error happened.');
-         console.log('Something went wrong:', error);
-      });
+   logOut.signOut();
 });

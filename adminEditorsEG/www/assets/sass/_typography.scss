@@ -13,8 +13,10 @@ h6, .h6 {
 }
 
 a {
-    color: $color;
     transition: all .2s ease-in-out;
+    &, &:visited {
+        color: $color;
+    }
 
     &,
     &:hover,
@@ -30,10 +32,6 @@ a {
     &:focus {
         text-decoration: none;
         color: rgba($color, .8);
-    }
-
-    &:visited {
-        color: inherit;
     }
 
     &.inactive {
