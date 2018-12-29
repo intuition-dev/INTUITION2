@@ -8,20 +8,11 @@ site/
 
 api/
 
-auth-*.json
-
 
 index.js
 
-config.rb
-.sass-cache
-prepros-6.config
-
-adminzAdminEG/www/config.js
 serviceAccountKey.json
 
 nohup.out
 
-/adminEditorsEG/config.yaml
 
-blog-s3/
