@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "express": ">=4.16.4",
-    "firebase": ">=5.7.1",
+    "firebase": ">=5.7.2",
     "firebase-admin": ">=6.4.0",
-    "mbake": ">=4.14.4",
+    "mbake": ">=4.14.8",
     "unzipper": ">=0.9.7"
   },
   "devDependencies": {
