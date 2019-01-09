@@ -10,7 +10,7 @@ class ApiService {
                }
             }).catch(function(error) {
                alert('An error happened.');
-               console.log('Something went wrong:', error);
+               console.info('Something went wrong:', error);
             });
       }
       this.service = axios.create({
@@ -24,7 +24,7 @@ class ApiService {
 
       this.service.interceptors.response.use(function(response) {
          // Do something with response data
-         console.log('response', response);
+         console.info('response', response);
          return response;
       }, function(error) {
          // With response error redirect
@@ -36,7 +36,7 @@ class ApiService {
                   window.location = ('/');
                }).catch(function(error) {
                   alert('An error happened.');
-                  console.log('Something went wrong:', error);
+                  console.info('Something went wrong:', error);
                });
          }
          return Promise.reject(error);
@@ -80,7 +80,7 @@ class ApiService {
 
    // create new post
    createPost(id) {
-      console.log('post_id', id);
+      console.info('post_id', id);
       return this.service.post('/editors/new-post', {}, {
          params: {
             post_id: id

@@ -44,7 +44,7 @@ class Editors {
         if (id) { // edit user
             return this.apiService.editEditor(id, name)
                 .then((documentRef) => {
-                    console.log('user was successfully updated');
+                    console.info('user was successfully updated');
                     $('.notification').removeClass('d-hide').text('user was successfully updated');
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
@@ -56,16 +56,16 @@ class Editors {
                     this.table
                         .updateOrAddData([{id:documentRef.data.id ,email: email, name: name}])
                         .then(function(){
-                            console.log('table updated');
+                            console.info('table updated');
                         })
                         .catch(function(error){
-                            console.log('unable update table', error);
+                            console.info('unable update table', error);
                         });
                 });
         } else { // add user
             return this.apiService.addEditor(name, email, password)
                 .then((documentRef) => {
-                    console.log('new user was created', documentRef.data.id);
+                    console.info('new user was created', documentRef.data.id);
                     $('.notification').removeClass('d-hide').text('new user was created');
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
@@ -77,17 +77,17 @@ class Editors {
                     this.table
                         .updateOrAddData([{id:documentRef.data.id ,email: email, name: name}])
                         .then(function(){
-                            console.log('table updated');
+                            console.info('table updated');
                         })
                         .catch(function(error){
-                            console.log('unable update table', error);
+                            console.info('unable update table', error);
                         });
                 })
                 .catch(err => {
                     if (typeof err.response.data.error !== 'undefined') {
                         alert("Unable to create user: " + err.response.data.error);
                     }
-                    console.log('err: ', err);
+                    console.info('err: ', err);
                     $('.notification').removeClass('d-hide').addClass('error-msg').text('an error occured, user wasn\'t created', err);
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').removeClass('error-msg').text('');
@@ -99,7 +99,7 @@ class Editors {
     remove(id) {
         return this.apiService.deleteEditor(id)
             .then(() => {
-                console.log('deleted...');
+                console.info('deleted...');
                 $('.notification').removeClass('d-hide').text(' The user was successfully deleted');
                 setTimeout(function() {
                     $('.notification').addClass('d-hide').text('');
@@ -110,10 +110,10 @@ class Editors {
                 // table refresh
                 this.activeRow.delete()
                     .then(function(){
-                        console.log('table updated');
+                        console.info('table updated');
                     })
                     .catch(function(error){
-                        console.log('unable update table', error);
+                        console.info('unable update table', error);
                     });
             })
             .catch(function (e) {
@@ -129,7 +129,7 @@ function getApiService() {
     if ((username === null || password === null) &&
         window.location.pathname !== '/'
     ) {
-        console.log('unauthorized, redirecting to login page');
+        console.info('unauthorized, redirecting to login page');
         window.location = '/';
     } else {
         return new ApiService(username, password);

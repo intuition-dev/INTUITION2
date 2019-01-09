@@ -53,7 +53,7 @@ export class EditorRoutes {
             if (fs.existsSync(md) && fileExt === '.md') {
                fs.readFile(md, 'utf8', function(err, data) {  
                   if (err) throw err;
-                  console.log(data);
+                  console.info(data);
                   res.json(data);
                });
             }

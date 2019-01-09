@@ -15,7 +15,7 @@ class Login {
                window.location.replace('/editors/edit/');
             })
             .catch(error => {
-               console.log('login error', error);
+               console.info('login error', error);
                alert(error);
             });
          } else {
@@ -57,7 +57,7 @@ class SignOut {
             window.location = ('/');
          }).catch(function(error) {
             alert('An error happened.');
-            console.log('Something went wrong:', error);
+            console.info('Something went wrong:', error);
          });
    }
 }

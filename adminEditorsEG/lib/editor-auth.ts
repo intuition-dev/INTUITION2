@@ -13,7 +13,7 @@ export class EditorAuth {
             .then(function() {
                return next();
             }).catch(function(error) {
-               console.log('error', error);
+               console.info('error', error);
                return response.status(401).send();
             });
       }

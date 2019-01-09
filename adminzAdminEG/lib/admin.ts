@@ -15,7 +15,7 @@ export class AdminRoutes {
       const dbAdminFs = firebaseAdmin.firestore();
       
       let config = yaml.load(fs.readFileSync(__dirname + '/../config.yaml'));
-      console.log(config);
+      console.info(config);
       
       const adminApp = express();
       adminApp.use(customCors.cors());
@@ -47,7 +47,7 @@ export class AdminRoutes {
                            name: userRef.displayName
                         });
                      }).catch(e => {
-                        console.log("no users found");
+                        console.info("no users found");
                      })
                }))
                   .then(() => res.send(data));
@@ -84,26 +84,26 @@ export class AdminRoutes {
                })
                .then(userRecord => {
                   let firebaseAuth = firebase.get().auth();
-                  console.log('sending reset and verification email to user');
+                  console.info('sending reset and verification email to user');
                   firebaseAuth.sendPasswordResetEmail(email)
                      .then(() => {
-                        console.log('email has been sent to user');
+                        console.info('email has been sent to user');
                      })
                      .catch(function (error) {
-                        console.log('email hasn\'t been sent to user', error);
+                        console.info('email hasn\'t been sent to user', error);
                      });
                   return userRecord;
                })
                .then(function (userRecord) { // send response to client
                   // See the UserRecord reference doc for the contents of userRecord.
-                  console.log("Successfully created new user:", userRecord.uid);
+                  console.info("Successfully created new user:", userRecord.uid);
                   let response = {
                      id: userRecord.uid
                   }
                   res.json(response);
                })
                .catch(function (error) {
-                  console.log("Error creating new user:", error);
+                  console.info("Error creating new user:", error);
                   res.status(400);
                   res.send({ error: error.message });
                });
@@ -124,13 +124,13 @@ export class AdminRoutes {
                displayName: name
             }).then(function (userRecord) { // send response to client
                // See the UserRecord reference doc for the contents of userRecord.
-               console.log("Successfully updated user", userRecord.toJSON());
+               console.info("Successfully updated user", userRecord.toJSON());
                let response = {
                   id: userRecord.uid
                }
                res.json(response);
             }).catch(function (error) {
-               console.log("Error updating user:", error);
+               console.info("Error updating user:", error);
                res.status(400);
                res.send({ error: error.message });
             });
@@ -153,10 +153,10 @@ export class AdminRoutes {
                         res.send();
                      })
                      .catch(e => console.error(e.stack));
-                  console.log("Successfully deleted user");
+                  console.info("Successfully deleted user");
                })
                .catch(function (error) {
-                  console.log("Error deleting user:", error);
+                  console.info("Error deleting user:", error);
                   res.status(400);
                   res.send({ error: error.message });
                });

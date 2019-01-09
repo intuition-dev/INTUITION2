@@ -45,7 +45,7 @@ module.exports = (config) => {
                 fs.readFile(md, 'utf8', function (err, data) {
                     if (err)
                         throw err;
-                    console.log(data);
+                    console.info(data);
                     res.json(data);
                 });
             }
@@ -74,7 +74,7 @@ module.exports = (config) => {
     });
     appE.post("/new-post", (req, res) => {
         let post_id = req.query.post_id;
-        console.log('post id ----------->', post_id);
+        console.info('post id ----------->', post_id);
         if (typeof post_id !== 'undefined') {
             fs.createReadStream(config.appMount + '/blog-post-template.zip')
                 .pipe(unzipper.Extract({ path: '/tmp' }));

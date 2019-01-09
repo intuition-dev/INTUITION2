@@ -11,7 +11,7 @@ class ApiService {
 
         this.service.interceptors.response.use(function(response) {
             // Do something with response data
-            console.log('response', response);
+            console.info('response', response);
             return response;
         }, function(error) {
             // With response error redirect

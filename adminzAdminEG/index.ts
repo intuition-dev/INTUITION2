@@ -15,9 +15,9 @@ const adminRoutes = new AdminRoutes();
 adminApp.use('/auth', adminRoutes.routes());
 
 adminApp.listen(adminPort, () => {
-    console.log(`adminApp listening on port ${adminPort}!`);
+    console.info(`adminApp listening on port ${adminPort}!`);
 });
 
 blogApp.listen(blogPort, () => {
-    console.log(`blogApp listening on port ${blogPort}!`);
+    console.info(`blogApp listening on port ${blogPort}!`);
 });

@@ -61,7 +61,7 @@ block content
              let email = $(this).find('input[type="email"]').val();
              auth.sendPasswordResetEmail(email)
                  .then(() => {
-                     console.log('email has been sent to user');
+                     console.info('email has been sent to user');
                      $(this).find('fieldset, button').addClass('d-hide');
                      $(this).find('.message-info').removeClass('d-hide').text('An email with the password reset link has been sent to your email address');
                      setTimeout(function () {
@@ -70,7 +70,7 @@ block content
                      }, 5000);
                  })
                  .catch(function (error) {
-                     console.log('email hasn\'t been sent to user', error);
+                     console.info('email hasn\'t been sent to user', error);
                      $('.message-warning').removeClass('d-hide').text('No user exists with such email');
                  });
          });

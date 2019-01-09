@@ -6,7 +6,7 @@
 /**
  * Version v4.11.23
  */
-console.log('EditorsService', 'v4.11.23')
+console.info('EditorsService', 'v4.11.23')
 
 /**
 * @example
@@ -39,7 +39,7 @@ firebase.auth().signInWithEmailAndPassword('user2@example.com', 'secretPassword'
    // Handle Errors here.
    var errorCode = error.code;
    var errorMessage = error.message;
-   console.log()
+   console.info()
    // ...
  })
 

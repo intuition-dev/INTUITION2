@@ -21,19 +21,19 @@ function isUserIn() {
 
 function sendEmailVerification() {
    if(!isUserIn()) {
-      console.log('sending', auth.currentUser);
+      console.info('sending', auth.currentUser);
       auth.currentUser.sendEmailVerification();
    } else {
-      console.log('no currentUser');
+      console.info('no currentUser');
    }
 
    auth
       .onAuthStateChanged(user_ => {
          if (isUserIn()) {
-            console.log('CRUDauth', isUserIn());
+            console.info('CRUDauth', isUserIn());
          }
          else {
-            console.log('CRUDauth','bye')
+            console.info('CRUDauth','bye')
          }
       });
 }
