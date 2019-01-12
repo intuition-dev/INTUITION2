@@ -45,7 +45,7 @@ in v2
 
 
 This makes it easy to extend for any use.
-Base.ts will have AdminFireUtil helper functions.
+Base*.js will have AdminFireUtil helper functions.
 
 
 

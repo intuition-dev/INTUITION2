@@ -1,7 +1,7 @@
 
 # Setup
 
-1. On a linux install node, typescript, ts-node, yarn and mbake
+1. On a linux install node, typescript, node, yarn and mbake
 You should use CodeAnywhere to SSH in.
 
 2. mbake -a in a folder you want the admin in
@@ -20,6 +20,6 @@ You should use CodeAnywhere to SSH in.
 
 ### Run
 
-1. run via nohup ts-node index.ts &
+1. run via nohup node index*.js &
 
 2. Open browser at host and port for admin, eg: host:9080
