@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "engines": {
-   "node": "~10.15.0",
+   "node": ">=10.15.0",
    "yarn": ">=1.13.0",
-   "mbake": ">=4.15.10"
+   "mbake": ">=4.15.15"
 },
   "dependencies": {
     "basic-auth": ">=2.0.1",
@@ -17,7 +17,7 @@
     "firebase": ">=5.7.3",
     "firebase-admin": ">=6.5.0",
     "js-yaml": ">=3.12.1",
-    "mbake": ">=4.15.10"
+    "mbake": ">=4.15.15"
   },
   "devDependencies": {
     "@types/node": ">=10.12.18",
