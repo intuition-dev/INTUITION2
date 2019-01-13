@@ -4,19 +4,22 @@
   "description": "",
   "main": "index.js",
   "engines": {
-   "node": ">=10.14.2",
-   "yarn": ">=1.12.3"
-  },
+   "node": "~10.15.0",
+   "yarn": ">=1.13.0",
+   "mbake": ">=4.15.10"
+},
   "dependencies": {
     "express": ">=4.16.4",
-    "firebase": ">=5.7.2",
-    "firebase-admin": ">=6.4.0",
-    "mbake": ">=4.15.17",
+    "firebase": ">=5.7.3",
+    "firebase-admin": ">=6.5.0",
+    "mbake": ">=4.15.10",
     "unzipper": ">=0.9.7"
   },
   "devDependencies": {
     "@types/node": ">=10.12.18",
     "ts-node": ">=7.0.1",
-    "typescript": ">=3.2.2"
+    "typescript": ">=3.2.2",
+    "mbake": ">=4.15.10"
+
   }
 }
