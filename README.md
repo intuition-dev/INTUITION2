@@ -4,8 +4,9 @@
 - <a href='http://doc.mBake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
 
 
-#### mBake.org is a low-code productivity for application developers via static generation; with Pug, Markdown and more; including dynamic data binding. *Some developers implement applications faster than others.*
+## MetaBake is the extensible open source low-code productivity tool for programmers; including dynamic apps and data binding.
 
+#### MetaBake is the extensible open source low-code productivity tool for programmers, via static generation; with Pug, Markdown and more; including dynamic apps and data binding. *Some developers implement applications faster than others.*
 
 MetaBake mbake CLI lets you generate websites and dynamic webapps in Pug by leveraging low-code pillars for high development productivity.
 
@@ -17,6 +18,10 @@ Easy to install
 yarn global add mbake
 mbake
 ```
+
+Install note:
+- If you get an error like 'Node Sass could not find a binding for your current environment' 
+run$: ``` yarn global upgrade ```
 
 ## First Page
 
@@ -39,20 +44,16 @@ mbake .
 
 This will create index.html. 
 
-Of course you can use regular Pug syntax to include other Pug files; or Markdown. MetaBake Markdown flavor includes CSS support:
+Of course you can use regular Pug syntax to include other Pug files; or Markdown. MetaBake markdown flavor includes CSS support:
 ```pug
     include:metaMD comment.md
 ```
 
-## Example projects
-
-* [Blog App](blog/README.md)
-
 ## Home Page
 
-Examples include an admin module, a watcher module, SPA, Blog, Website, Slides, Dashboard, CRUD, PWA, Electron, Hybrid mobile apps, Cloud v2.0 via AWS|FireStore, RIOTjs and more. 
-Primary focus is high development productivity (via "low-code") and being easy to learn. But it is also fully flexible to build any WebApp in any directory tree structure you like an use any CSS/SASS framework you like.
-MetaBake supports CSS classes in Markdown, plus, because it uses Pug - it can also do any HTML layout. But MetaBake is not static only - it fully supports and has examples and docs for dynamic apps.
+There are many example apps, and shipped templates include include an CMS module, a watcher module, SPA, Blog, Website, Slides, Dashboard, CRUD, PWA, Electron, Hybrid mobile apps, Cloud v2.0 via AWS|FireStore, RIOTjs, Ads and more. 
+Primary focus is high development productivity (via "low-code") and being easy to learn. It is also fully flexible to build any WebApp in any directory tree structure you like an use any CSS/SASS framework you like.
+MetaBake supports CSS classes in Markdown, plus, because it uses Pug - it can also do any HTML layout. But MetaBake is not static only - it fully supports and has examples, shipped apps, and docs for dynamic apps.
 
 [mBake.org](http://www.mBake.org)
 
