@@ -2,9 +2,9 @@ var responces = [];
 
 depp.define({
   'scripts': [
-    'https://www.gstatic.com/firebasejs/5.7.3/firebase-app.js'
-    ,'https://www.gstatic.com/firebasejs/5.7.3/firebase-auth.js'
-    ,'https://www.gstatic.com/firebasejs/5.7.3/firebase-firestore.js'
+    'https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js'
+    ,'https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js'
+    ,'https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js'
     ,'https://cdn.jsdelivr.net/npm/tabulator-tables@4.1.3/dist/js/tabulator.min.js'
     , 'https://cdn.jsdelivr.net/npm/tabulator-tables@4.1.3/dist/css/tabulator.min.css'
     , 'https://cdn.jsdelivr.net/npm/tabulator-tables@4.1.3/dist/css/tabulator_simple.min.css'
