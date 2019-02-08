@@ -16,3 +16,5 @@ serviceAccountKey.json
 nohup.out
 
 /adminEditorsEG/config.yaml
+/adminzAdminEG/www/config.js
+/adminzEditorsEG/www/config.js
