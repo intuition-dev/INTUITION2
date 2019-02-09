@@ -1,0 +1,17 @@
+body
+	form(action='/api/charge', method='post', autocomplete="off")
+		article
+			label Amount: $5.00
+		script(
+			src='//checkout.stripe.com/checkout.js',
+			class='stripe-button',
+			data-key='pk_test_tFiZLc9OMK8u3CkPVMNcCR42'
+			data-locale='auto',
+			data-description='Sample Charge',
+			data-amount='500')
+
+
+//
+	data-name='truckerstars.com',
+	data-zip-code="true",
+	data-image='https://stripe.com/img/documentation/checkout/marketplace.png',
