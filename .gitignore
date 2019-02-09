@@ -6,6 +6,6 @@ node_modules/
 
 nohup.out
 
-/aadminEditorsEG/config.yaml
-/aadminzAdminEG/www/config.js
-/aadminzEditorsEG/www/config.js
+/adminEditorsEG/config.yaml
+/adminzAdminEG/www/config.js
+/adminzEditorsEG/www/config.js
