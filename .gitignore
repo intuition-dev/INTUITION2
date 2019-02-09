@@ -4,17 +4,8 @@
 
 node_modules/
 
-
-
-api/
-
-
-index.js
-
-serviceAccountKey.json
-
 nohup.out
 
-/adminEditorsEG/config.yaml
-/adminzAdminEG/www/config.js
-/adminzEditorsEG/www/config.js
+/aadminEditorsEG/config.yaml
+/aadminzAdminEG/www/config.js
+/aadminzEditorsEG/www/config.js
