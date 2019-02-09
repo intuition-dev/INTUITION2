@@ -32,7 +32,10 @@ exp.post('/post/charge', (req, res) => {
 			currency: 'usd',
 			customer: customer.id
 	 }))
-  .then(charge => res.send('/chargedPg'))
+  .then(charge => {
+     console.log(charge)
+     res.send('/chargedPg')
+  })
 })
 
 // ////////////////////////////////////////////////

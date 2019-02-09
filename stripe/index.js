@@ -6,7 +6,7 @@ let keys = yaml.load(fs.readFileSync('keys.yaml'));
 const stripe = require('stripe')(keys.keySecret);
 const PORT = 8444;
 exp.use(require('body-parser').urlencoded({ extended: false }));
-exp.post('/api/charge', (req, res) => {
+exp.post('/post/charge', (req, res) => {
     let amount = 500;
     stripe.customers.create({
         email: req.body.stripeEmail,
