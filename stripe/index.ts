@@ -18,7 +18,7 @@ const PORT = 8444
 exp.use(require('body-parser').urlencoded({extended: false}))
 
 // ////////////////////////////////////////////////
-exp.post('/api/charge', (req, res) => {
+exp.post('/post/charge', (req, res) => {
   let amount = 500;
 
   stripe.customers.create({
@@ -36,7 +36,7 @@ exp.post('/api/charge', (req, res) => {
 })
 
 // ////////////////////////////////////////////////
-exp.use(express.static('public'))
+exp.use(express.static('www'))
 exp.listen(PORT)
 console.info(PORT)
 
