@@ -8,4 +8,7 @@ nohup.out
 
 /adminEditorsEG/config.yaml
 /adminzAdminEG/www/config.js
-/adminzEditorsEG/www/config.js
+/adminEditorsEG/www/config.js
+
+/adminEditorsEG/serviceAccountKey.json
+/adminzAdminEG/serviceAccountKey.json

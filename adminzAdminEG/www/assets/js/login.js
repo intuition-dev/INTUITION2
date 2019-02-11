@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
         sessionStorage.removeItem('errorMessage');
     }
 
-    //admin login hardcoded
+    //admin login
     $(document).on('click', '#btn-login', function() {
 
         let formLogin = $("#login-form input[name='login']").val();
