@@ -6,9 +6,9 @@ node_modules/
 
 nohup.out
 
+index.js
+serviceAccountKey.json
+
 /adminEditorsEG/config.yaml
 /adminzAdminEG/www/config.js
 /adminEditorsEG/www/config.js
-
-/adminEditorsEG/serviceAccountKey.json
-/adminzAdminEG/serviceAccountKey.json
