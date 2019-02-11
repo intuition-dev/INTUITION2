@@ -12,3 +12,5 @@ serviceAccountKey.json
 /adminEditorsEG/config.yaml
 /adminzAdminEG/www/config.js
 /adminEditorsEG/www/config.js
+
+/hello-stripe/keys.yaml
