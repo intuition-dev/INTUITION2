@@ -7,4 +7,4 @@ node_modules/
 nohup.out
 
 
-/hello-stripe/keys.yaml
+/stripe/keys.yaml

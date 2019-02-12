@@ -4,18 +4,18 @@ declare var console: Console
 declare var __dirname: any
 */
 
-const express = require('express')
-const exp = new express()
-const fs = require('fs')
-const yaml = require('js-yaml')
+const express = require('express');
+const exp = new express();
+const fs = require('fs');
+const yaml = require('js-yaml');
 
 // ////////////////////////////////////////////////
-let keys = yaml.load(fs.readFileSync('keys.yaml'))
+let keys = yaml.load(fs.readFileSync('keys.yaml'));
 
-const stripe = require('stripe')(keys.keySecret) // from keys.yaml
+const stripe = require('stripe')(keys.keySecret); // from keys.yaml
 
-const PORT = 8444
-exp.use(require('body-parser').urlencoded({extended: false}))
+const PORT = 8444;
+exp.use(require('body-parser').urlencoded({extended: false}));
 
 // ////////////////////////////////////////////////
 // https://stripe.com/docs/api/cards/create?lang=curl
@@ -27,27 +27,32 @@ exp.use(require('body-parser').urlencoded({extended: false}))
 // stripe capture
 // 
 exp.post('/post/charge', (req, res) => {
-  let amount = 500;
+    console.info('req.body ------> ', req.body);
+    let amount = 500;
 
-  stripe.customers.create({
-     email: req.body.stripeEmail,
-    source: req.body.stripeToken
-  })
-  .then(customer =>
-    stripe.charges.create({
-      amount,
-      description: 'Sample Charge',
-         currency: 'usd',
-         customer: customer.id
-    }))
-  .then(charge => { // or just return a message
-     console.log(charge)
-     res.send('/chargedPg')
-  })
-})
+    let result = stripe.customers.create({
+            email: req.body.stripeEmail,
+            source: req.body.stripeToken
+        })
+        .then(customer => {
+            console.info('customer', customer);
+            stripe.charges.create({
+                amount,
+                description: 'Sample Charge',
+                    currency: 'usd',
+                    customer: customer.id
+                }
+            )
+        })
+        .then(charge => { // or just return a message
+            console.info('charge ----> ',charge);
+            return res.redirect('/chargedPg');
+        });
+    console.info('result ---->', result);
+});
 
 // ////////////////////////////////////////////////
-exp.use(express.static('www'))
-exp.listen(PORT)
-console.info(PORT)
+exp.use(express.static('www'));
+exp.listen(PORT);
+console.info(PORT);
 
