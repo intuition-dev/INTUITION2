@@ -1,20 +1,27 @@
+var bglog = function(obj) {
+	if(chrome && chrome.runtime) {
+		chrome.runtime.sendMessage({type: "bglog", obj: obj});
+	}
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-   var checkPageButton = document.getElementById('check');
-   checkPageButton.addEventListener('click', function() {
 
-      chrome.tabs.getSelected(null, function(tab) {
-         d = document;
-
-         var f = d.createElement('form');
-         f.action = 'http://gtmetrix.com/analyze.html?bm';
-         f.method = 'post';
-         var i = d.createElement('input');
-         i.type = 'hidden';
-         i.name = 'url';
-         i.value = tab.url;
-         f.appendChild(i);
-         d.body.appendChild(f);
-         f.submit();
+   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
+         tabs.forEach(element => {       
+            var url = new URL(element.url);
+            var domain = url.hostname;
+            var map = 'http://' + domain + '/map.yaml';
+            chrome.extension.getBackgroundPage().console.log('map ------>', map);
+            $.get(map, function(data) {
+               alert(data);
+               chrome.extension.getBackgroundPage().console.log('data ------>', data);
+            },function(data) {
+               alert(data);
+               chrome.extension.getBackgroundPage().console.log('error ------>', data);
+            });
+         });
       });
-   }, false);
+   });
+
 }, false);
