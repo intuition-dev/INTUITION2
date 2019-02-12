@@ -7,8 +7,8 @@ node_modules/
 nohup.out
 
 index.js
-lib/*.js
-www/*.html
+**/lib/*.js
+**/www/**/*.html
 
 serviceAccountKey.json
 /adminEditorsEG/config.yaml
