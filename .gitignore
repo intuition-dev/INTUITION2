@@ -6,5 +6,12 @@ node_modules/
 
 nohup.out
 
+index.js
+lib/*.js
+www/*.html
 
+serviceAccountKey.json
+/adminEditorsEG/config.yaml
+/adminzAdminEG/www/config.js
+/adminEditorsEG/www/config.js
 /stripe/keys.yaml

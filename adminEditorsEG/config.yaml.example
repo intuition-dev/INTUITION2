@@ -1,0 +1,11 @@
+
+# LIZxxx
+
+# editors www app
+editorsWwwPort: 9080
+
+# app url (blog www)- the one you are maintaining
+appMount: /home/admin/prod
+
+# uses firebase auth
+editorAPIport: 9081
