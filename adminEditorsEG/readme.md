@@ -3,7 +3,7 @@ LIZxxx
 
 # Setup
 
-1. On a linux install node, typescript, node, yarn and mbake
+1. On a linux install node, typescript, yarn and mbake
 You should use CodeAnywhere to SSH in.
 
 2. mbake -a in a folder you want the admin in

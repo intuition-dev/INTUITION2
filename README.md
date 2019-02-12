@@ -60,3 +60,41 @@ MetaBake supports CSS classes in Markdown, plus, because it uses Pug - it can al
 
 [mBake.org](http://mBake.org)
 
+
+
+Deploy apps on linux, eg: CA:
+
+1. Create app for blog, mount s3 bucket with blog in this folder: http://blog-website.s3-website-us-east-1.amazonaws.com
+
+2. Install node, typescript and mbake
+
+3. Create folder for blog CMS, git clone repository to that folder:
+
+    $ git clone https://github.com/metabake/baseCMS.git
+
+4. Add files next to *.example files (see files above)
+5. in adminEditorsEG/config.yaml change this line to path to your mounted s3 bucket:
+
+    # app url (blog www)- the one you are maintaining
+    appMount: /home/admin/prod
+
+6. in folders adminEditorsEG and adminzAdminEG accordingly run command to instal node_modules:
+    $ yarn
+    $ tsc
+    $ ts-node index.ts // (or $ nohup ts-node index.ts& if you will close the terminal)
+
+7. in folders adminEditorsEG/www and adminzAdminEG/www accordingly run command to compile pug:
+    $ mbake .
+8. in folders adminEditorsEG/www/assets and adminzAdminEG/www/assets accordingly run command to compile sass:
+    $ mbakeW -s .
+
+9. open in browser:
+    /*Blog admin:*/
+    [your-ip]:8080
+
+    /*editors*/
+    [your-ip]:9080
+
+10. login for admin: 'admin', password see in adminzAdminEG/config.yaml file ('secret' field)
+
+11. to login to editors you need to login to admin first and create new user.
