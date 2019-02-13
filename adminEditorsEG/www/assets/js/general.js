@@ -1,6 +1,6 @@
 'use strict';
 
-let apiService = new ApiService(window.env == 'isProd' ? window.DEV_API[0] : window.LOCAL_API[0]);
+let apiService = new ApiService(window.api[0]);
 
 class Posts {
 	constructor(apiService) {

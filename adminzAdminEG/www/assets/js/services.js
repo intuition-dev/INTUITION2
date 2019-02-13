@@ -1,7 +1,7 @@
 class ApiService {
     constructor(username, password) {
         this.service = axios.create({
-            baseURL: window.env == 'isProd' ? window.DEV_API[0] : window.LOCAL_API[0],
+            baseURL: window.api[0],
             auth: {
                 username: username,
                 password: password
