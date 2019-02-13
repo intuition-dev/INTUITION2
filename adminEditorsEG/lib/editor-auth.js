@@ -1,16 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const firebaseAdmin_1 = require("./firebaseAdmin");
 class EditorAuth {
-    constructor() {
-        this.firebaseAdmin = require('./firebaseAdmin');
-    }
     auth() {
         return (request, response, next) => {
+            const firebaseAdmin = new firebaseAdmin_1.FirebaseAdmin();
             let idToken = request.get('fb-auth-token');
             if (typeof idToken === 'undefined') {
                 return response.status(401).send();
             }
-            return this.firebaseAdmin.auth().verifyIdToken(idToken)
+            return firebaseAdmin.get().auth().verifyIdToken(idToken)
                 .then(function () {
                 return next();
             }).catch(function (error) {

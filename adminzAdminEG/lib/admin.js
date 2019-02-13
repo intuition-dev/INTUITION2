@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Firebase_1 = require("./Firebase");
+const firebaseAdmin_1 = require("./firebaseAdmin");
 const custom_cors_1 = require("./custom-cors");
 class AdminRoutes {
     routes() {
@@ -10,9 +11,9 @@ class AdminRoutes {
         const customCors = new custom_cors_1.CustomCors();
         const yaml = require('js-yaml');
         const fs = require('fs');
-        const firebaseAdmin = require('./firebaseAdmin');
+        const firebaseAdmin = new firebaseAdmin_1.FirebaseAdmin();
         const firebase = new Firebase_1.Firebase();
-        const dbAdminFs = firebaseAdmin.firestore();
+        const dbAdminFs = firebaseAdmin.get().firestore();
         let config = yaml.load(fs.readFileSync(__dirname + '/../config.yaml'));
         console.info(config);
         const adminApp = express();
@@ -27,7 +28,7 @@ class AdminRoutes {
         });
         adminApp.get("/editors", (req, res) => {
             let editorsCollection = dbAdminFs.collection('editors');
-            let adminAuth = firebaseAdmin.auth();
+            let adminAuth = firebaseAdmin.get().auth();
             editorsCollection
                 .get()
                 .then(editors => {
@@ -57,6 +58,7 @@ class AdminRoutes {
                 typeof password !== 'undefined') {
                 let editorRef = dbAdminFs.collection('editors').doc();
                 firebaseAdmin
+                    .get()
                     .auth()
                     .createUser({
                     email: email,
@@ -108,7 +110,7 @@ class AdminRoutes {
             let userId = req.body.uid;
             if (typeof name !== 'undefined' &&
                 typeof userId !== 'undefined') {
-                firebaseAdmin.auth().updateUser(userId, {
+                firebaseAdmin.get().auth().updateUser(userId, {
                     displayName: name
                 }).then(function (userRecord) {
                     console.info("Successfully updated user", userRecord.toJSON());
@@ -130,7 +132,7 @@ class AdminRoutes {
         adminApp.delete("/editors", (req, res) => {
             let userId = req.query.uid;
             if (typeof userId !== 'undefined') {
-                firebaseAdmin.auth().deleteUser(userId)
+                firebaseAdmin.get().auth().deleteUser(userId)
                     .then(function () {
                     dbAdminFs.collection('editors')
                         .doc(userId)

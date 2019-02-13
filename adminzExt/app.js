@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
             var map = 'http://' + domain + '/map.yaml';
             chrome.extension.getBackgroundPage().console.log('map ------>', map);
 
-            $.get(map, function(data) {
-               alert(data);
-               chrome.extension.getBackgroundPage().console.log('data ------>', data);
-            },function(data) {
-               alert(data);
-               chrome.extension.getBackgroundPage().console.log('error ------>', data);
-            });
+            // $.get(map, function(data) {
+            //    alert(data);
+            //    chrome.extension.getBackgroundPage().console.log('data ------>', data);
+            // },function(data) {
+            //    alert(data);
+            //    chrome.extension.getBackgroundPage().console.log('error ------>', data);
+            // });
 
             var xhr = new XMLHttpRequest();
             xhr.open("GET", chrome.extension.getURL('/map.yaml'), true);
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             var checkPageButton = document.getElementById('check');
             checkPageButton.addEventListener('click', function() {
-               
+               // TODO redirect to admin CMS
             });
 
          });

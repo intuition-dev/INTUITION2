@@ -1,5 +1,6 @@
 //declare let __dirname: string;
 import { Firebase } from './Firebase';
+import { FirebaseAdmin } from "./firebaseAdmin";
 import { CustomCors } from './custom-cors';
 
 export class AdminRoutes {
@@ -10,9 +11,9 @@ export class AdminRoutes {
       const customCors = new CustomCors();
       const yaml = require('js-yaml');
       const fs = require('fs');
-      const firebaseAdmin = require('./firebaseAdmin');
+      const firebaseAdmin = new FirebaseAdmin();
       const firebase = new Firebase();
-      const dbAdminFs = firebaseAdmin.firestore();
+      const dbAdminFs = firebaseAdmin.get().firestore();
       
       let config = yaml.load(fs.readFileSync(__dirname + '/../config.yaml'));
       console.info(config);
@@ -32,7 +33,7 @@ export class AdminRoutes {
       // get user
       adminApp.get("/editors", (req, res) => {
          let editorsCollection = dbAdminFs.collection('editors');
-         let adminAuth = firebaseAdmin.auth();
+         let adminAuth = firebaseAdmin.get().auth();
          editorsCollection
             .get()
             .then(editors => {
@@ -66,6 +67,7 @@ export class AdminRoutes {
          ) {
             let editorRef = dbAdminFs.collection('editors').doc(); // get editor id reference
             firebaseAdmin
+               .get()
                .auth()
                .createUser({ // create user
                   email: email,
@@ -120,7 +122,7 @@ export class AdminRoutes {
          if (typeof name !== 'undefined' &&
             typeof userId !== 'undefined'
          ) {
-            firebaseAdmin.auth().updateUser(userId, {
+            firebaseAdmin.get().auth().updateUser(userId, {
                displayName: name
             }).then(function (userRecord) { // send response to client
                // See the UserRecord reference doc for the contents of userRecord.
@@ -144,7 +146,7 @@ export class AdminRoutes {
       adminApp.delete("/editors", (req, res) => {
          let userId = req.query.uid;
          if (typeof userId !== 'undefined') {
-            firebaseAdmin.auth().deleteUser(userId)
+            firebaseAdmin.get().auth().deleteUser(userId)
                .then(function () {
                   dbAdminFs.collection('editors')
                      .doc(userId)

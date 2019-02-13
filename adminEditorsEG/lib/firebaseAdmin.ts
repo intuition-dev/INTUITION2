@@ -1,10 +1,18 @@
-module.exports = (() => {
-   const firebaseAdmin = require("firebase-admin");
-   const serviceAccount = require('../serviceAccountKey.json');
+let firebaseAdmin = null;
 
-   firebaseAdmin.initializeApp({
-       credential: firebaseAdmin.credential.cert(serviceAccount)
-   });
-
-   return firebaseAdmin;
-})();
+export class FirebaseAdmin {
+    get() {
+        if(!firebaseAdmin){
+            firebaseAdmin = require("firebase-admin");
+            const serviceAccount = require('../serviceAccountKey.json');
+            
+            firebaseAdmin.initializeApp({
+                credential: firebaseAdmin.credential.cert(serviceAccount)
+            });
+        }
+        return firebaseAdmin;
+    }
+}
+module.exports = {
+    FirebaseAdmin
+}
