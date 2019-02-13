@@ -1,15 +1,93 @@
 body
-    //- https://stripe.com/docs/quickstart
-    form(action='/post/charge', method='post', autocomplete="off")
-        article
-            label Amount: $5.00
-        script(
-            src='//checkout.stripe.com/checkout.js',
-            class='stripe-button',
-            data-key='pk_test_p1V4wvgaB2ldHqyWH5mYLwLI'
-            data-locale='auto',
-            data-description='Sample Charge',
-            data-amount='500')
 
+    style.
+        .d-hide {
+            display: none;
+        }
+        .d-flex {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .wrap {
+            margin: 2rem;
+        }
+        form {
+            margin: 1rem;
+        }
+        label {
+            display: inline-block;
+            padding-right: 10px;
+        }
 
+    .wrap(data-js="ach")
+        .d-flex
+            label ACH
+            input(type="radio" name="p-method" value="ach" checked="checked")
+        //- https://stripe.com/docs/quickstart
+        form(action='/post/charge', method='post', autocomplete="off")
+            article
+                label Amount: $5.00
+            script(
+                src='//checkout.stripe.com/checkout.js',
+                class='stripe-button',
+                data-key='pk_test_p1V4wvgaB2ldHqyWH5mYLwLI'
+                data-locale='auto',
+                data-description='Sample Charge',
+                data-amount='500')
 
+    .wrap(data-js="card")
+        .d-flex
+            label CreditCard
+            input(type="radio" name="p-method" value="card")
+        form.d-hide(action='/post/charge', method='post', autocomplete="off")
+            article
+                label Amount: $5.00
+            script(
+                src='//checkout.stripe.com/checkout.js',
+                class='stripe-button',
+                data-key='pk_test_p1V4wvgaB2ldHqyWH5mYLwLI'
+                data-locale='auto',
+                data-description='Sample Charge',
+                data-amount='500')
+
+    .wrap(data-js="ali")
+        .d-flex
+            label AliPay
+            input(type="radio" name="p-method" value="alipay")
+        form.d-hide(action='/post/charge', method='post', autocomplete="off")
+            article
+                label Amount: $5.00
+            script(
+                src='//checkout.stripe.com/checkout.js',
+                class='stripe-button',
+                data-key='pk_test_p1V4wvgaB2ldHqyWH5mYLwLI'
+                data-locale='auto',
+                data-description='Sample Charge',
+                data-amount='500')
+
+    .wrap(data-js="wechat")
+        .d-flex
+            label WeChat Pay
+            input(type="radio" name="p-method" value="wechat")
+        form.d-hide(action='/post/charge', method='post', autocomplete="off" )
+            article
+                label Amount: $5.00
+            script(
+                src='//checkout.stripe.com/checkout.js',
+                class='stripe-button',
+                data-key='pk_test_p1V4wvgaB2ldHqyWH5mYLwLI'
+                data-locale='auto',
+                data-description='Sample Charge',
+                data-amount='500')
+
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js")
+    script.
+        (function($){
+            $('input[type="radio"]').click(function() {
+                var method = $(this).parents('.wrap').attr('data-js');
+                $('form').addClass('d-hide');
+                $(this).parents('.wrap').find('form').removeClass('d-hide');
+                console.log('method', method);
+            });
+        })(jQuery); 

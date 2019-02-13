@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var domain = url.hostname;
             var map = 'http://' + domain + '/map.yaml';
             chrome.extension.getBackgroundPage().console.log('map ------>', map);
+
             $.get(map, function(data) {
                alert(data);
                chrome.extension.getBackgroundPage().console.log('data ------>', data);
@@ -20,6 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
                alert(data);
                chrome.extension.getBackgroundPage().console.log('error ------>', data);
             });
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", chrome.extension.getURL('/map.yaml'), true);
+            xhr.onreadystatechange = function() {
+               chrome.extension.getBackgroundPage().console.log('xhr ------>', xhr);
+               alert('onreadeStateChange', xhr.responseText);
+            }
+            xhr.onload = function() {
+               chrome.extension.getBackgroundPage().console.log('xhr load ------>', xhr);
+               alert('load', xhr.responseText);
+            }
+            xhr.onerror = function(error) {
+               alert('error', error);
+            }
+            xhr.send();
+
+            var checkPageButton = document.getElementById('check');
+            checkPageButton.addEventListener('click', function() {
+               
+            });
+
          });
       });
    });
