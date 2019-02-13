@@ -1,4 +1,3 @@
 config = {
-    "LOCAL_API": "url:port",
-    "DEV_API": "url:port",
+   "api": "[url]:3030",
 }

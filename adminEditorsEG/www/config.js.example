@@ -1,8 +1,5 @@
 config = {
-   "editorAPIport": xxxx
-   ,'appPort': xxxx
-   ,"LOCAL_API": "url"
-   ,"LOCAL_API_PASS": "xxxx"
-   ,"DEV_API": "url"
-   ,"DEV_API_PASS": "xxxx"
+   "editorAPIport": 9081
+   ,'appPort': 9082
+   ,"api": "[url]:9081"
 }
