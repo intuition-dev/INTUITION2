@@ -26,12 +26,12 @@ wwwApp.listen(wwwPort, () => {
 
 
 // www mounted production port
-const blogPort = config.appPort;
-const blogApp = express();
-console.info('config.blogPath', config);
-blogApp.use(express.static(config.appMount));
-blogApp.listen(blogPort, () => {
-   console.info(`blogApp listening on port ${blogPort}!`);
-});
+// const blogPort = config.appPort;
+// const blogApp = express();
+// console.info('config.blogPath', config);
+// blogApp.use(express.static(config.appMount));
+// blogApp.listen(blogPort, () => {
+//    console.info(`blogApp listening on port ${blogPort}!`);
+// });
 
 Wa.watch(config.appMount);
