@@ -1,12 +1,11 @@
 
-# LIZxxx
-
 # editors www app
 editorsWwwPort: 9080
 
-# app url (blog www)- the one you are maintaining
+# app port (blog www)- the one you are maintaining
 appPort: 9082
-appMount: /home/admin/prod
+# app url (blog www)- the one you are maintaining
+appMount: /Users/liza/work/MetaBake/examples/blog
 
 # uses firebase auth
 editorAPIport: 9081
