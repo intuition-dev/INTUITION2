@@ -31,7 +31,7 @@ class ApiService {
         return this.service.get('/auth/editors');
     }
 
-    // add user to collection throught node to FS
+    // add user to collection through node to FS
     addEditor(name, email, password) {
         return this.service.post('/auth/editors', {
             name: name,
@@ -40,7 +40,7 @@ class ApiService {
         });
     }
 
-    // edit user to collection throught node to FS
+    // edit user to collection through node to FS
     editEditor(uid, name) {
         return this.service.put('/auth/editors', {
             name: name,
@@ -48,7 +48,7 @@ class ApiService {
         });
     }
 
-    // delete user to collection throught node to FS
+    // delete user to collection through node to FS
     deleteEditor(uid) {
         return this.service.delete('/auth/editors', {
             params: {

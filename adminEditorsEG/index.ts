@@ -10,18 +10,16 @@ const editorsPort = config.editorAPIport;
 //express app for editors
 const editorRoutes = new EditorRoutes();
 appE.use('/editors', editorRoutes.routes(config));
-
-const wwwPort = config.editorsWwwPort;
-const wwwApp = express();
-
-wwwApp.use(express.static('www'));
-
-wwwApp.listen(wwwPort, () => {
-   console.log(`wwwApp listening on port ${wwwPort}!`);
-});
-
 appE.listen(editorsPort, () => {
    console.log(`appE listening on port ${editorsPort}!`);
+});
+
+// html
+const wwwPort = config.editorsWwwPort;
+const wwwApp = express();
+wwwApp.use(express.static('www'));
+wwwApp.listen(wwwPort, () => {
+   console.log(`wwwApp listening on port ${wwwPort}!`);
 });
 
 // LIZxxx : where is production port
