@@ -50,6 +50,9 @@ block content
             let posts = new Posts();
             posts.showDirs();
 
+            let appMount = window.appMount[0];
+            $('.view-page').attr('href', appMount);
+
             // show sub directories
             $(document).off().on('click', '.blog-item', function(e) {
                e.preventDefault();
@@ -59,7 +62,7 @@ block content
                $(this).addClass('active');
 
                let postId = $(this).find('span').text();
-               $('.view-page').attr('href', 'http://blog-app-project.s3-website-us-east-1.amazonaws.com/' + postId);
+               $('.view-page').attr('href', appMount+ '/' + postId);
                if ($(this).find('ul').length === 0) {
                   posts.showSubDirs(postId);
                } else {
