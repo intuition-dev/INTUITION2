@@ -10,6 +10,7 @@ index.js
 **/lib/*.js
 **/www/**/*.html
 **/www/*.html
+**/**/assets/css/*.css
 
 serviceAccountKey.json
 /adminEditorsEG/config.yaml
