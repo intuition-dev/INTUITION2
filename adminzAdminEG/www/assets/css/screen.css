@@ -130,7 +130,7 @@ ul > li:before{content:'';display:block;width:4px;height:4px;line-height:4px;tex
 button{cursor:pointer;}
 .grid-form fieldset legend{font-weight:300;}
 .table-custom.tabulator{border:0;}
-.btn-custom{text-transform:uppercase;text-align:center;border-radius:0;border:0;font-size:12px;min-width:100px;padding:12px 20px;transition:all .2s ease-in-out;display:table;}
+.btn-custom{text-transform:uppercase;text-align:center;border-radius:0;border:0;font-size:12px;font-weight:300;min-width:100px;padding:12px 20px;transition:all .2s ease-in-out;display:table;}
 .btn-custom:hover,.btn-custom:active,.btn-custom:focus{outline:none;text-decoration:none;box-shadow:none;}
 .btn-custom[disabled="disabled"]{background:rgba(0,0,0,0.5);}
 .btn-custom .icon{display:flex;align-items:center;justify-content:center;}
@@ -143,7 +143,7 @@ button{cursor:pointer;}
 .btn-primary,.btn-primary svg,.btn-primary:hover,.btn-primary:hover svg,.btn-primary:active,.btn-primary:active svg,.btn-primary:focus,.btn-primary:focus svg,.btn-primary:visited,.btn-primary:visited svg{color:#fff;fill:#fff;}
 .btn-secondary{background:linear-gradient(to right,white 50%,#F76263 50%) no-repeat scroll right bottom/210% 100% #F76263;}
 .btn-secondary,.btn-secondary svg,.btn-secondary:visited{color:#fff;fill:#fff;}
-.btn-secondary:hover,.btn-secondary:hover svg,.btn-secondary:active,.btn-secondary:active svg,.btn-secondary:focus,.btn-secondary:focus svg{color:#F76263;fill:#F76263;font-weight:600;}
+.btn-secondary:hover,.btn-secondary:hover svg,.btn-secondary:active,.btn-secondary:active svg,.btn-secondary:focus,.btn-secondary:focus svg{color:#F76263;fill:#F76263;}
 .btn-secondary.invert{background:linear-gradient(to right,#1ab7ea 50%,#F76263 50%) no-repeat scroll right bottom/210% 100% #F76263;}
 .btn-primary,.btn-secondary{transition:color 0.3s ease,border-color 0.3s ease,background-position 0.3s ease,background-color 0 linear 0.3s;}
 .btn-primary:hover,.btn-primary:active,.btn-primary:focus,.btn-secondary:hover,.btn-secondary:active,.btn-secondary:focus{background-position:left bottom;}
@@ -174,4 +174,4 @@ button{cursor:pointer;}
 .login-wrapper p a:hover{color:#1c393d;}
 .login-wrapper p span{display:block;}
 .login-wrapper .isError{color:#f70e0e;text-align:center;margin-top:10px;font-size:13px;}
-.login-bg{background:#79ffff;background:linear-gradient(-135deg,#79ffff,#1e231c);} /* mB v4.16.06 on 2019-02-14T12:42:08.713Z */
+.login-bg{background:#79ffff;background:linear-gradient(-135deg,#79ffff,#1e231c);} /* mB v4.16.06 on 2019-02-14T12:44:32.957Z */

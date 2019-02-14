@@ -24,7 +24,6 @@ class Editors {
                         var row = row.getData();
                         window.rowUid = row.id;
                         $('input[name="name"]').val(row.name);
-                        $('input[name="email"]').val(row.email);
 
                         $('html, body').animate({ // scroll to form
                             scrollTop: $("#editor-form").offset().top

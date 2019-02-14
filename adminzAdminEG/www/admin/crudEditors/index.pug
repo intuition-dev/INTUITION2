@@ -51,12 +51,12 @@ block content
                 });
                 // delete editor
                 $(document).on('click', '#delete-editor', function (e) {
-                     e.preventDefault();
-                     //- let uid = $('[tabulator-field="id"]').text();
-                     $(this).attr("disabled", "disabled");
-                     editors
-                         .remove(rowUid)
-                         .then(() => $(this).removeAttr("disabled"));
+                    e.preventDefault();
+                    //- let uid = $('[tabulator-field="id"]').text();
+                    $(this).attr("disabled", "disabled");
+                    editors
+                        .remove(rowUid)
+                        .then(() => $(this).removeAttr("disabled"));
                 });
 
             });
