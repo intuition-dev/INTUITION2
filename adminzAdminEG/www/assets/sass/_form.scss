@@ -4,3 +4,12 @@ button {
 .grid-form fieldset legend {
 	font-weight: 300;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    background: transparent !important;
+}
+
+

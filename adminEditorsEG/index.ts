@@ -34,4 +34,4 @@ wwwApp.listen(wwwPort, () => {
 //    console.info(`blogApp listening on port ${blogPort}!`);
 // });
 
-Wa.watch(config.appMount);
+Wa.watch(config.appMount, config.appPort);

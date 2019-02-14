@@ -155,6 +155,7 @@ ul > li:before{content:'';display:block;width:4px;height:4px;line-height:4px;tex
 .user-name{font-size:inherit;font-weight:300;margin:0 1rem 0 0;color:white;}
 button{cursor:pointer;}
 .grid-form fieldset legend{font-weight:300;}
+input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,input:-webkit-autofill:active{background:transparent !important;}
 .btn-custom{text-transform:uppercase;text-align:center;border-radius:0;border:0;font-size:12px;font-weight:300;min-width:100px;padding:12px 20px;transition:all .2s ease-in-out;display:table;}
 .btn-custom:hover,.btn-custom:active,.btn-custom:focus{outline:none;text-decoration:none;box-shadow:none;}
 .btn-custom[disabled="disabled"]{background:rgba(0,0,0,0.5);}
@@ -206,4 +207,4 @@ button{cursor:pointer;}
 .login-wrapper p a:hover{color:#1c393d;}
 .login-wrapper p span{display:block;margin:0 0 3px 0;}
 .login-wrapper .isError{color:#f70e0e;text-align:center;margin-top:10px;font-size:13px;}
-.login-bg{background:#79ffff;background:linear-gradient(-135deg,#79ffff,#1e231c);} /* mB v4.16.06 on 2019-02-14T12:28:08.933Z */
+.login-bg{background:#79ffff;background:linear-gradient(-135deg,#79ffff,#1e231c);} /* mB v4.16.08 on 2019-02-14T16:21:02.800Z */
