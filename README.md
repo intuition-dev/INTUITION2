@@ -1,100 +1,144 @@
+# Deploy on linux, eg: CA:
 
-LIZxxx
+1. Setup up a Linux droplet in the cloud, e.g. [Digital Ocean](www.digitalocean.com).
 
-- <a href='https://youtu.be/CMUiPC0YtYA' target='_blank'>WebIDE video</a>
-- <a href='http://doc.mBake.org/meta/' target='_blank'>Click for 'THE' Meta docs</a>
+1. Change the root password for DO linux droplet. Connect by ssh in terminal. It will ask to enter existing password and then new password:
+    ```sh
+    $ ssh root@[IP-Address]
+    ```
 
+1. Setup a Web IDE account, e.g. [CodeAnywhere](https://codeanywhere.com) online text editor (hereafter CA)
 
-## MetaBake is the extensible open source low-code productivity tool for programmers; including dynamic apps and data binding.
+1. In CA, connect to the Linux droplet.
 
-#### MetaBake is the extensible open source low-code productivity tool for programmers, via static generation; with Pug, Markdown and more; including dynamic apps and data binding. *Some developers implement applications faster than others.*
+1. In CA, open SSH to the Linux droplet.
 
-MetaBake mbake CLI lets you generate websites and dynamic webapps in Pug by leveraging low-code pillars for high development productivity.
+1. Setup S3 mounting software:
+    ```sh
+    $ cd ~
+    $ sudo wget http://bit.ly/goofys-latest
+    $ mv goofys-latest goofys
+    $ sudo chmod +x goofys
 
-## Install
+    //just in case you need logs
+    $ ln -s /var/log ~
+    ```
+1. Make a directory for credentials file and create a file 'credentials' in it:
+    ```sh
+	$ mkdir ~/.aws
+    ```
+1. In CA edit ~/.aws/credentials ([other2] part is very optional, if you need 2 mounts):
+    ```sh
+    [default]
+    aws_access_key_id = KEY
+    aws_secret_access_key = SECRET
+    [other2]
+    aws_access_key_id = KEY2
+    aws_secret_access_key = SECRET2
+    ```
 
-Easy to install
+1. Make a directory in which you'll mount s3 bucket:
+    ```sh
+    $ mkdir folder_name
+    // check if folder was created
+    $ ls -la
+    ```
+1. Mount your S3 bucket into it, use your 'BUCKET-NAME' (name before the domain) and 'folder_name':
+    ```sh
+    ~/goofys --profile default -o allow_other --use-content-type BUCKET-NAME ~/folder_name
 
-```sh
-yarn global add mbake
-mbake
-```
+    // check to see your S3 webapp files
+    ls -la
 
-Install note:
-- If you get an error like 'Node Sass could not find a binding for your current environment' 
-run$: ``` yarn global upgrade ```
+    // if errors, check /var/log/syslog for direction
+    ```
+1. In 'folder_name' in which you've mounted s3 bucket download blog example:
+    ```sh
+    $ mbake -b
+    ```
+    move all files from '/blog' folder to 'folder_name' and run in 'folder_name':
+    ```sh
+    $ mbake -t .
+    $ cd assets
+    $ mbakeW -s .
+    ```
+1. In DO droplet install node, yarn, typescript and mbake:
+    ```sh
+    $ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
-## First Page
+    //restart terminal, next is one line command:
 
-Create file index.pug
-```pug
-header
-body
-    p Hello #{key1}
-```
-and create file dat.yaml
-```yaml
-key1: World
-```
+    $ export NVM_DIR="$HOME/.nvm" 
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-### Now make with mbake
+    $ nvm --version
 
-```sh
-mbake .
-```
+    //(must be 0.33)
 
-This will create index.html. 
+    $ nvm install 10
 
-Of course you can use regular Pug syntax to include other Pug files; or Markdown. MetaBake markdown flavor includes CSS support:
-```pug
-    include:metaMD comment.md
-```
+    $ nvm use 10.15
 
-## Home Page
+    $ nvm alias default 10.15
+    ```
+    install yarn:
+    ```sh
+    $ npm install -g yarn
 
-There are many example apps, and shipped templates include include an CMS module, a watcher module, SPA, Blog, Website, Slides, Dashboard, CRUD, PWA, Electron, Hybrid mobile apps, Cloud v2.0 via AWS|FireStore, RIOTjs, Ads and more. 
+    Note: Due to the use of nodejs instead of node name in some distros, yarn might complain about node not being installed. A workaround for this is to add an alias in your .bashrc file, like so: alias node=nodejs. This will point yarn to whatever version of node you decide to use.
 
-Primary focus is high development productivity (via "low-code") and being easy to learn. It is also fully flexible to build any WebApp in any directory tree structure you like an use any CSS/SASS framework you like.
+    $ vim .bashrc
+    //add alias: alias node=nodejs --> 'escape' --> :wq --> 'enter'
+    ```
+    install mbake:
+    ```sh
+    $ yarn global add mbake 
+    ```
+    install typescript 
+    ```sh
+    $ npm install -g typescript
+    $ npm install -g ts-node
+    ```
 
-MetaBake supports CSS classes in Markdown, plus, because it uses Pug - it can also do any HTML layout. But MetaBake is not static only - it fully supports and has examples, shipped apps, and docs for dynamic and even mobile apps.
+3. Create folder for blog CMS editor app and in this folder download Blog CMS app, change 'blog-cms-folder-name' with your own name:
+    ```sh
+    $ mkdir blog-cms-folder-name
+    $ cd blog-cms-folder-name
+    $ mbakeW -c
+    ```
 
-[mBake.org](http://mBake.org)
+4. Download the config files by link under header: 'Add and edit config files to blog CMS project:') and add them next to according *.example file:
 
+    https://slimwiki.com/metabake/blob
 
-
-Deploy apps on linux, eg: CA:
-
-1. Create app for blog, mount s3 bucket with blog in this folder: http://blog-website.s3-website-us-east-1.amazonaws.com
-
-2. Install node, typescript and mbake
-
-3. Create folder for blog CMS, git clone repository to that folder:
-
-    $ git clone https://github.com/metabake/baseCMS.git
-
-4. Add files next to *.example files (see files above)
 5. in adminEditorsEG/config.yaml change this line to path to your mounted s3 bucket:
-
+    ```sh
     # app url (blog www)- the one you are maintaining
     appMount: /home/admin/prod
-
+    ```
 6. in folders adminEditorsEG and adminzAdminEG accordingly run command to instal node_modules:
+    ```sh
     $ yarn
     $ tsc
     $ ts-node index.ts // (or $ nohup ts-node index.ts& if you will close the terminal)
-
+    ```
 7. in folders adminEditorsEG/www and adminzAdminEG/www accordingly run command to compile pug:
+    ```sh
     $ mbake .
+    ```
 8. in folders adminEditorsEG/www/assets and adminzAdminEG/www/assets accordingly run command to compile sass:
+    ```sh
     $ mbakeW -s .
-
+    ```
 9. open in browser:
+    ```sh
     /*Blog admin:*/
     [your-ip]:8080
 
     /*editors*/
     [your-ip]:9080
-
-10. login for admin: 'admin', password see in adminzAdminEG/config.yaml file ('secret' field)
+    ```
+10. login for admin: 'admin', password: '123456' (you can check password in adminzAdminEG/config.yaml file ('secret' field)).
 
 11. to login to editors you need to login to admin first and create new user.
