@@ -104,7 +104,7 @@
 .grid-form [data-row-span="12"] > [data-field-span="10"]{width:83.33333%;}
 .grid-form [data-row-span="12"] > [data-field-span="11"]{width:91.66667%;}
 .grid-form [data-row-span="12"] > [data-field-span="12"]{width:100%;}
-.page-content,.login-wrapper{font-family:"Montserrat",sans-serif;padding-top:1rem;padding-bottom:1rem;}
+.page-content,.login-wrapper{font-family:"Open Sans",sans-serif;padding-top:1rem;padding-bottom:1rem;}
 .space-1v{margin-top:1rem;margin-bottom:1rem;}
 .space-2v{margin-top:2rem;margin-bottom:2rem;}
 .space-12v{margin-top:1rem;margin-bottom:2rem;}
@@ -129,6 +129,7 @@ ul > li:before{content:'';display:block;width:4px;height:4px;line-height:4px;tex
 .user-area .sign-out{color:#F76263;}
 button{cursor:pointer;}
 .grid-form fieldset legend{font-weight:300;}
+.table-custom.tabulator{border:0;}
 .btn-custom{text-transform:uppercase;text-align:center;border-radius:0;border:0;font-size:12px;min-width:100px;padding:12px 20px;transition:all .2s ease-in-out;display:table;}
 .btn-custom:hover,.btn-custom:active,.btn-custom:focus{outline:none;text-decoration:none;box-shadow:none;}
 .btn-custom[disabled="disabled"]{background:rgba(0,0,0,0.5);}
@@ -173,4 +174,4 @@ button{cursor:pointer;}
 .login-wrapper p a:hover{color:#1c393d;}
 .login-wrapper p span{display:block;}
 .login-wrapper .isError{color:#f70e0e;text-align:center;margin-top:10px;font-size:13px;}
-.login-bg{background:#79ffff;background:linear-gradient(-135deg,#79ffff,#1e231c);} /* mB v4.16.06 on 2019-02-08T16:43:20.159Z */
+.login-bg{background:#79ffff;background:linear-gradient(-135deg,#79ffff,#1e231c);} /* mB v4.16.06 on 2019-02-14T12:42:08.713Z */
