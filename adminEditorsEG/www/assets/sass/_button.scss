@@ -5,6 +5,7 @@
         border-radius: 0;
         border: 0;
         font-size: 12px;
+        font-weight: 300;
         min-width: 100px;
         padding: 12px 20px;
         transition: all .2s ease-in-out;
@@ -73,7 +74,6 @@
             &, svg {
                 color: $button-secondary-hover;
                 fill: $button-secondary-hover;
-                font-weight: 600;
             }
         }
 
@@ -104,7 +104,6 @@
         flex-shrink: 0;
         &, &:hover {
             background-position: left bottom;
-            font-weight: 400;
         }
         &:hover {
             opacity: 1;
@@ -129,6 +128,14 @@
         color: $color;
         &:hover, &:active, &:focus, &:visited {
             color: $color-secondary;
+        }
+    }
+}
+
+.page-content {
+    .btn {
+        &-primary {
+            @include gradient($background-light, $background-dark); 
         }
     }
 }

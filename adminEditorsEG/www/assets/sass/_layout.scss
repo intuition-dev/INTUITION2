@@ -37,9 +37,9 @@
 	      z-index: 0;
 	      bottom: -30px;
 	      left: -30px;
-	      background: $button-primary-hover;
 	      width: 250px;
-	      height: 250px;
+		  height: 250px;
+		  @include gradient($background-light, $background-dark); 
 	   }
 		&-wrap {
 			border-right: 4px solid black;
@@ -56,6 +56,9 @@
 	&-item {
 		margin-bottom: .4rem;
 		cursor: pointer;
+		span, li {
+			font-weight: 300;
+		}
 		span {
 			transition: color 0.1s linear, border 0.1s linear;
 			display: table;
@@ -83,9 +86,9 @@
 			justify-content: flex-start;
 		}
 		li {
-			padding-left: 20px;
-		   font-size: 13px;
-		   transition: color .1s linear;
+			padding-left: 35px;
+		   	font-size: 13px;
+		   	transition: color .1s linear;
 			&:before {
 				display: none;
 			}
@@ -108,4 +111,13 @@ svg {
 	width: 20px;
 	height: 20px;
 	flex-shrink: 0;
+}
+
+.CodeMirror-wrap {
+	div, span {
+		font-weight: 300;
+	}
+	.CodeMirror-scroll {
+		padding: 1rem 0;
+	}
 }
