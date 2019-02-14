@@ -100,6 +100,7 @@ ul {
     align-items: center;
     justify-content: center;
     text-align: center;
+    border: 1px solid $button-secondary-hover;
     &::first-letter { 
         text-transform: uppercase;
     }
