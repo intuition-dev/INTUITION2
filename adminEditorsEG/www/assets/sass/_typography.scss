@@ -87,20 +87,23 @@ ul {
 }
 
 .notification {
-   font-weight: 500;
-   margin-top: 1rem;
-   background: rgba(118,248,52,.75);
-   display: table;
-   padding: 5px 15px;
-   font-size: $font-size-global;
-   position: absolute;
-   z-index: 999;
-   top: 50%;
-   left: 40%;
-   &::first-letter { 
-      text-transform: uppercase;
-   }
-   &.error-msg {
-      background: rgba($color,.2);
-   }
+    font-weight: 500;
+    background: #fff;
+    padding: 5px 35px;
+    font-size: $font-size-global;
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    left: 40%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    &::first-letter { 
+        text-transform: uppercase;
+    }
+    &.error-msg {
+        background: rgba($color,.2);
+    }
 }
