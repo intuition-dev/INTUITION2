@@ -5,8 +5,7 @@
   "main": "index.js",
   "engines": {
    "node": ">=10.15.1",
-   "yarn": ">=1.13.0",
-   "mbake": ">=4.16.6"
+   "yarn": ">=1.13.0"
 },
   "dependencies": {
     "basic-auth": ">=2.0.1",
@@ -22,6 +21,7 @@
   "devDependencies": {
     "@types/node": ">=10.12.24",
     "ts-node": ">=8.0.2",
-    "typescript": ">=3.3.3"
+    "typescript": ">=3.3.3",
+    "mbake": ">=4.16.6"
   }
 }
