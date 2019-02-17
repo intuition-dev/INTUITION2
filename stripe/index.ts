@@ -27,6 +27,7 @@ webHookApp.all('/webHooks', (req, res) => {
 webHookApp.listen(8080)
 
 // ////////////////////////////////////////////////
+// 0 deploy to a DO instance so webhooks work as line 10
 // 1 fix css so radio is aligned
 // 2 use elements for credit card https://stripe.com/docs/stripe-js/elements/quickstart
 // 3 create source f type cc https://stripe.com/docs/sources/cards
