@@ -7,6 +7,7 @@
     $ ssh root@[IP-Address]
     ```
 
+
 1. Setup a Web IDE account, e.g. [CodeAnywhere](https://codeanywhere.com) online text editor (hereafter CA)
 
 1. In CA, connect to the Linux droplet.
