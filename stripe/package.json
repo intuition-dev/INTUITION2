@@ -3,7 +3,8 @@
  "version": "1.0.0",
  "description": "",
  "engines": {
-   "node": ">=10.15.1"
+   "node": ">=10.15.1",
+   "yarn": ">=1.13.0"
 },
  "main": "index.js",
  "scripts": {
@@ -20,6 +21,7 @@
  "devDependencies": {
    "ts-node": ">=8.0.2",
    "@types/node": ">=10.12.24",
-   "typescript": ">=3.3.3"
+   "typescript": ">=3.3.3",
+    "mbake": ">=4.16.6"
  }
 }
