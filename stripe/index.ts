@@ -1,13 +1,16 @@
-/*
-declare var process: any
-declare var console: Console
-declare var __dirname: any
-*/
+
 
 const express = require('express');
-const exp = new express();
+const expApp = new express();
 const fs = require('fs');
 const yaml = require('js-yaml');
+// ////////////////////////////////////////////////
+const webHookApp = new express();
+webHookApp.all('/webHooks', (req, res) => {
+   console.info('req.body ------> ', req.body)
+
+});
+webHookApp.listen(8080)
 
 // ////////////////////////////////////////////////
 let keys = yaml.load(fs.readFileSync('keys.yaml'));
@@ -15,18 +18,12 @@ let keys = yaml.load(fs.readFileSync('keys.yaml'));
 const stripe = require('stripe')(keys.keySecret); // from keys.yaml
 
 const PORT = 8444;
-exp.use(require('body-parser').urlencoded({extended: false}));
+expApp.use(require('body-parser').urlencoded({extended: false}));
 
 // ////////////////////////////////////////////////
-// https://stripe.com/docs/api/cards/create?lang=curl
-// https://stripe.com/docs/charges
-// https://stripe.com/docs/api/charges/create
-// https://stripe.com/docs/payments/payment-intents/usage
-// https://stackoverflow.com/questions/18374282/stripe-payment-save-token-and-customer-and-make-payment-later-from-token
-// https://stripe.com/docs/saving-cards
-// stripe capture
+
 // 
-exp.post('/post/charge', (req, res) => {
+expApp.post('/post/charge', (req, res) => {
     console.info('req.body ------> ', req.body);
     let amount = 500;
 
@@ -52,7 +49,7 @@ exp.post('/post/charge', (req, res) => {
 });
 
 // ////////////////////////////////////////////////
-exp.use(express.static('www'));
-exp.listen(PORT);
+expApp.use(express.static('www'));
+expApp.listen(PORT);
 console.info(PORT);
 

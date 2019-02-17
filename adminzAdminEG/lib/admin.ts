@@ -1,4 +1,4 @@
-//declare let __dirname: string;
+////declare let __dirname: string;
 import { Firebase } from './Firebase';
 import { FirebaseAdmin } from "./firebaseAdmin";
 import { CustomCors } from './custom-cors';

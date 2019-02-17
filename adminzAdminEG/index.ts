@@ -1,4 +1,4 @@
-declare var console: Console;
+//declare var console: Console;
 
 import { AdminRoutes } from './lib/admin';
 const express = require("express");
