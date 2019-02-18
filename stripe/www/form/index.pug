@@ -2,9 +2,11 @@
 head
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
     script(src='https://js.stripe.com/v3/')
-    script(src='../assets/js/stripe-register.js')
+    script.
+        ROOT = '#{ROOT}' //- sets global pug and .js from dat.yaml
+    script(src=ROOT + '../assets/js/stripe-register.js')
     link(href='https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css', rel='stylesheet', type='text/css')
-    link(href='../assets/css/base.css', rel='stylesheet', type='text/css')
+    link(href=ROOT + '../assets/css/base.css', rel='stylesheet', type='text/css')
 
 
 body
