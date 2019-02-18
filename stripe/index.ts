@@ -13,16 +13,16 @@ const webHookApp = new express()
 const endpointSecret = 'whsec_9Fxt45z6Q4QtgL57E5JwtSrzq3jLqgDm' // should be in yaml
 
 webHookApp.all('/webHooks', (req, res) => {
-   let sig = req.headers["stripe-signature"]
+    let sig = req.headers["stripe-signature"]
 
-   try {
-      let event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
-      console.log(event) // just print events for now: but should be managed in FireBase - including brodcast to browser to notify user
-   }
-   catch (err) {
-     res.status(400).end()
-   }
-   res.json({received: true})
+    try {
+        let event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
+        console.log(event) // just print events for now: but should be managed in FireBase - including brodcast to browser to notify user
+    }
+    catch (err) {
+        res.status(400).end()
+    }
+    res.json({received: true})
 })
 webHookApp.listen(8080)
 
@@ -50,10 +50,12 @@ expApp.post('/post/charge', (req, res) => {
         .then(customer => {
             console.info('customer', customer);
             stripe.charges.create({
-                amount,
+                amount: amount,
                 description: 'Sample Charge',
                     currency: 'usd',
                     customer: customer.id
+                }, function(err, charge) {
+                   console.info('error', err, 'charge -->', charge);
                 }
             )
         })
