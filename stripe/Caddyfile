@@ -1,7 +1,6 @@
 
-:8443 {
-   gzip
-   proxy / localhost:8443
+guara.cekvenich.com {
+   proxy / :8444
 
 }
 
