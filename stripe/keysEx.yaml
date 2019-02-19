@@ -2,3 +2,5 @@
 #stripe
 
 keySecret: [secret-stripe-key]
+
+endpointSecret: [endpointSecret]

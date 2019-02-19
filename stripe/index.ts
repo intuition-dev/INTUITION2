@@ -17,7 +17,7 @@ const webHookApp = new express();
 
 webHookApp.use(require('body-parser').raw({type: '*/*'}));
 
-const endpointSecret = 'whsec_OTl4uIs3JwBMLXfoH5U1lTU7RAS0kXib'; // should be in yaml
+const endpointSecret = keys.endpointSecret
 
 webHookApp.all('/webHooks', (req, res) => {
     console.info('req.headers ------------------------>', req.headers);
