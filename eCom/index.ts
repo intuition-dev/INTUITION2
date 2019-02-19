@@ -1,19 +1,15 @@
-import { CustomCors } from './lib/custom-cors';
 
 const express = require('express');
 const expApp = new express();
-const customCors = new CustomCors();      
-expApp.use(customCors.cors());
+
 const fs = require('fs');
 const yaml = require('js-yaml');
 
 let keys = yaml.load(fs.readFileSync('keys.yaml'));
 const stripe = require('stripe')(keys.keySecret); // from keys.yaml
 
-
 // ////////////////////////////////////////////////
 const webHookApp = new express();
-//webHookApp.use(customCors.cors());
 
 webHookApp.use(require('body-parser').raw({type: '*/*'}));
 
@@ -45,7 +41,7 @@ webHookApp.listen(8080);
 
 // ////////////////////////////////////////////////
 // 1 use elements for credit card https://stripe.com/docs/stripe-js/elements/quickstart
-// 2 create source f type cc https://stripe.com/docs/sources/cards
+// 2 create source https://stripe.com/docs/sources/cards
 // 3 some sources need to listen to connect to webhook event
 
 const PORT = 8444;
