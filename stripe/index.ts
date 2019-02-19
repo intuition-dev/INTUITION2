@@ -21,21 +21,17 @@ webHookApp.use(require('body-parser').raw({type: '*/*'}));
 const endpointSecret = 'whsec_OTl4uIs3JwBMLXfoH5U1lTU7RAS0kXib'; // should be in yaml
 
 webHookApp.all('/webHooks', (req, res) => {
-    
-    stripe.events.list(
-        { limit: 3 },
-        function(err, events) {
-            console.info('event -----------------------------> ', events);
-            console.info('error -----------------------------> ', err);
-            // asynchronously called
-        }
-    );
+    console.info('req.headers ------------------------>', req.headers);
 
     let sig = req.headers["stripe-signature"];
 
     try {
         let event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-        console.info(event); // just print events for now: but should be managed in FireBase - including brodcast to browser to notify user
+        console.info('stripe.webhooks.constructEvent ------------------------', event); // just print events for now: but should be managed in FireBase - including brodcast to browser to notify user
+        if (event.type === 'charge.succeeded') {
+            console.info('***************************************************************************')
+            console.info('Customer with the id: ' + event.data.object.customer + ' was successfully charged');
+        }
     }
     catch (err) {
         console.info('error -------------->', err);
