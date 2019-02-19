@@ -1,6 +1,9 @@
+import { CustomCors } from './lib/custom-cors';
 
 const express = require('express');
 const expApp = new express();
+const customCors = new CustomCors();      
+expApp.use(customCors.cors());
 const fs = require('fs');
 const yaml = require('js-yaml')
 
