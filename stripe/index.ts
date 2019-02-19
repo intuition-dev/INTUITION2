@@ -15,8 +15,10 @@ const stripe = require('stripe')(keys.keySecret); // from keys.yaml
 // point the webhook to a public eg: run node on D.O. http://45.55.61.163:8080/webHooks
 const webHookApp = new express();
 webHookApp.use(customCors.cors());
+// Retrieve the raw body as a buffer and match all content types
+webHookApp.use(require('body-parser').raw({type: '*/*'}));
 
-// const endpointSecret = 'whsec_9Fxt45z6Q4QtgL57E5JwtSrzq3jLqgDm'; // should be in yaml
+const endpointSecret = 'whsec_OTl4uIs3JwBMLXfoH5U1lTU7RAS0kXib'; // should be in yaml
 
 webHookApp.all('/webHooks', (req, res) => {
     
@@ -29,16 +31,17 @@ webHookApp.all('/webHooks', (req, res) => {
         }
     );
 
-    // let sig = req.headers["stripe-signature"];
+    let sig = req.headers["stripe-signature"];
 
-    // try {
-    //     let event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-    //     console.info(event); // just print events for now: but should be managed in FireBase - including brodcast to browser to notify user
-    // }
-    // catch (err) {
-    //     res.status(400).end();
-    // }
-    // res.json({received: true});
+    try {
+        let event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+        console.info(event); // just print events for now: but should be managed in FireBase - including brodcast to browser to notify user
+    }
+    catch (err) {
+        console.info('error -------------->', err);
+        res.status(400).end();
+    }
+    res.json({received: true});
 })
 webHookApp.listen(8080);
 
