@@ -31,6 +31,9 @@ webHookApp.all('/webHooks', (req, res) => {
         if (event.type === 'charge.succeeded') {
             console.info('***************************************************************************')
             console.info('Customer with the id: ' + event.data.object.customer + ' was successfully charged');
+        } else if (event.type === 'charge.failed') {
+            console.info('***************************************************************************')
+            console.info('Customer with the id: ' + event.data.object.customer + ' was failed to charge');
         }
     }
     catch (err) {
