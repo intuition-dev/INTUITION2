@@ -1,14 +1,14 @@
-.table-custom .tabulator-row .tabulator-cell {
-    // padding: 5px 15px;
-}
-
 .table-custom {
+    max-height: 300px;
+    overflow-y: auto;
     &.tabulator {
         border: 0;
     }
-    .tabulator-col-title {
-        // padding-top: 5px;
-        // padding-bottom: 5px;
-        // padding-left: 10px;
+    .tabulator-cell {
+        font-weight: 300;
     }
+}
+
+.table-header {
+    color: white;
 }

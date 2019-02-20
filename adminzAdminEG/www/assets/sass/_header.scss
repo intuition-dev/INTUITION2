@@ -1,6 +1,12 @@
 .header {
-	background: rgba(black, .7);
-	padding: 5px 0;
+	background: linear-gradient(-135deg,$background-dark,$background-light);
+	padding: 15px 0;
+	position: relative;
+	z-index: 9;
+	.container {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 }
 .user {
 	&-area {
@@ -8,8 +14,22 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
-		.sign-out {
-			color: $color;
+		.btn-custom, a, div {
+			font-weight: 300;
 		}
+		.btn-custom {
+			padding: 0;
+			margin-right: 1rem;
+			&.create-post {
+				border: .5px solid rgba(255,255,255,.6);
+				padding: 5px 20px;
+			}
+		}
+	}
+	&-name {
+		font-size: inherit;
+    	font-weight: 300;
+    	margin: 0 1rem 0 0;
+    	color: white;
 	}
 }

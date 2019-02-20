@@ -1,29 +1,33 @@
 extends ../../layout/layout
 block content
+    #parallax
     .page-content.container
         h1.table-header Editors
-        #editors-table.table-custom
 
-        .space-2v
+        .table-wrap
+            #editors-table.table-custom
 
-        form#editor-form.grid-form
-            fieldset
-                legend Select row to edit/remove editor, to add editor type in new editor's login credentials
-                div(data-row-span='3')
-                    div(data-field-span='1')
-                        label Email
-                        input(type='text', name='email', required='required')
-                    div(data-field-span='1')
-                        label Name
-                        input(type='text', name='name')
-                    div(data-field-span='1')
-                        label Password
-                        input(type='password', name='password', required='required')
-        .notification.d-hide
-        .btn-row.space-2v
-            a(href='#')#add-editor.btn-custom.btn-primary Add
-            a(href='#')#edit-editor.btn-custom.btn-primary Edit
-            a(href='#')#delete-editor.btn-custom.btn-secondary Delete
+            .space-2v
+
+            form#editor-form.grid-form
+                fieldset
+                    legend Select row to edit/remove editor, to add editor type in new editor's login credentials
+                    div(data-row-span='3')
+                        div(data-field-span='1')
+                            label Email
+                            input(type='text', name='email', required='required')
+                        div(data-field-span='1')
+                            label Name
+                            input(type='text', name='name')
+                        div(data-field-span='1')
+                            label Password
+                            input(type='password', name='password', required='required')
+            .notification.d-hide
+            .btn-row.space-2v
+                a(href='#')#add-editor.btn-custom.btn-primary Add
+                a(href='#')#edit-editor.btn-custom.btn-primary Edit
+                a(href='#')#delete-editor.btn-custom.btn-secondary
+                    span Delete
 
         script.
 

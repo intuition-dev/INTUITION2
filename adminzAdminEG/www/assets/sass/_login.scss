@@ -32,9 +32,9 @@
             z-index: 0;
             bottom: -30px;
             right: -30px;
-            background: $button-primary-hover;
             width: 250px;
             height: 250px;
+            background: linear-gradient(-135deg,$background-dark,$background-light);
          }
       }
 
@@ -84,6 +84,7 @@
 
       input {
          font-family: inherit;
+         font-weight: 300;
          border: 0;
          border-radius: 0;
          border-bottom: .5px solid rgba($button-primary, 1);
@@ -94,28 +95,28 @@
          margin: 0;
          padding: 6px 0;
          font-size: $font-size-global;
-         color: $text-color-dark-2;
+         color: $text-color-dark;
          transition: all .3s ease-in-out;
          z-index: 1;
          position: relative;
 
          &::-webkit-input-placeholder {
             font-size: $font-size-global;
-            color: $text-color-dark-2;
+            color: $text-color-dark;
          }
 
          &::-moz-placeholder {
             font-size: $font-size-global;
-            color: $text-color-dark-2;
+            color: $text-color-dark;
          }
 
          &::-ms-input-placeholder {
             font-size: $font-size-global;
-            color: $text-color-dark-2;
+            color: $text-color-dark;
          }
 
          &:focus {
-            border-color: $text-color-dark-2;
+            border-color: $text-color-dark;
          }
 
          &,

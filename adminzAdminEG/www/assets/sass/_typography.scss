@@ -13,7 +13,7 @@ h6, .h6 {
 }
 
 a {
-    color: $color;
+    color: $text-color-light;
     transition: all .2s ease-in-out;
 
     &,
@@ -29,7 +29,7 @@ a {
     &:active,
     &:focus {
         text-decoration: none;
-        color: rgba($color, .8);
+        color: rgba($text-color-light, .8);
     }
 
     &:visited {
