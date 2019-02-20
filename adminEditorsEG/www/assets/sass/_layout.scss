@@ -127,3 +127,15 @@ svg {
 		padding: 1rem 0;
 	}
 }
+
+#parallax {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: -100;
+	background-image: url('../../assets/img/main-bg.png');
+	background-size: 140% auto;
+    background-repeat: no-repeat;
+}
