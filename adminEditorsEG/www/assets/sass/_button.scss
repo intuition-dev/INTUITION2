@@ -53,7 +53,6 @@
     }
 
     &-primary {
-        background: linear-gradient(to right, $button-primary-hover 50%,$button-primary 50%) no-repeat scroll right bottom / 210% 100% $button-primary;
         &, &:hover, &:active, &:focus, &:visited {
             &, svg {
                 color: $button-primary-color;
@@ -63,28 +62,33 @@
     }
 
     &-secondary {
-        background: linear-gradient(to right, white 50%,$button-secondary-hover 50%) no-repeat scroll right bottom / 210% 100% $button-secondary-hover;
-
+        padding: 1px;
         &, svg, &:visited {
-            color: $button-secondary-color;
-            fill: $button-secondary-color;
+            color: $text-color-dark-2;
+            fill: $text-color-dark-2;
         }
 
         &:hover, &:active, &:focus {
             &, svg {
-                color: $button-secondary-hover;
-                fill: $button-secondary-hover;
+                color: $text-color-dark-2;
+                fill: $text-color-dark-2;
             }
         }
 
-        &.invert {
-            background: linear-gradient(to right, $button-secondary 50%,$button-secondary-hover 50%) no-repeat scroll right bottom / 210% 100% $button-secondary-hover;
+        span {
+            background: white;
+            width: 100%;
+            height: 100%;
+            padding: 10px 18px;
+            display: block;
+            transition: all .3s ease-in-out;
         }
     }
     &-primary, &-secondary {
-        -webkit-transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0 linear 0.3s; 
-        -ms-transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0 linear 0.3s; 
-        transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0 linear 0.3s; 
+        background: linear-gradient(to right, $background-dark 50%, $background-light 50%) no-repeat scroll right bottom / 210% 100% $background-dark;
+        -webkit-transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0.3s linear; 
+        -ms-transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0.3s linear; 
+        transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0.3s linear; 
         &:hover, &:active, &:focus {
             background-position: left bottom;
         }
@@ -100,20 +104,13 @@
     align-items: center;
     justify-content: flex-end;
     .btn-custom {
-        opacity: .7;
         flex-shrink: 0;
         &, &:hover {
             background-position: left bottom;
         }
-        &:hover {
-            opacity: 1;
-        }
     }
     .save {
         margin: 0 1rem 0;
-    }
-    .view-page {
-        background: #4b3f3f;
     }
 }
 
@@ -134,8 +131,19 @@
 
 .page-content {
     .btn {
-        &-primary {
+        &-primary, &-secondary {
             @include gradient($background-light, $background-dark); 
+        }
+        &-secondary:hover {
+            background: $background-dark;
+            span {
+                background: $background-dark;
+                color: $text-color-light;
+            }
+        }
+        &-primary:hover {
+            background: linear-gradient(to right, $background-dark 50%, $background-light 50%) no-repeat scroll right bottom / 210% 100% $background-dark;
+            background-position: left bottom;
         }
     }
 }
