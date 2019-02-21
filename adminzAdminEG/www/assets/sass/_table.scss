@@ -3,6 +3,7 @@
     overflow-y: auto;
     &.tabulator {
         border: 0;
+        overflow-y: auto;
     }
     .tabulator-cell {
         font-weight: 300;
