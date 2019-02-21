@@ -1,5 +1,6 @@
 .header {
-	background: linear-gradient(-135deg,$background-dark,$background-light);
+	background: rgba($background-dark,.5);
+	// background: linear-gradient(-135deg,$background-dark,$background-light);
 	padding: 15px 0;
 	position: relative;
 	z-index: 9;
@@ -30,6 +31,6 @@
 		font-size: inherit;
     	font-weight: 300;
     	margin: 0 1rem 0 0;
-    	color: white;
+    	color: #aaa;
 	}
 }

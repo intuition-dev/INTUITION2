@@ -21,6 +21,8 @@
 		padding: 1rem 1rem 122px 1rem;
 		margin-bottom: 3rem;
 		position: relative;
+		display: flex;
+    	flex-direction: column;
 		.btn-row {
 			position: absolute;
 			bottom: 0;

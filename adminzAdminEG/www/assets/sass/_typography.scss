@@ -33,7 +33,7 @@ a {
     }
 
     &:visited {
-        color: inherit;
+        color: $text-color-light;
     }
 
     &.inactive {
@@ -81,16 +81,25 @@ ul {
 }
 
 .notification {
-   font-weight: 500;
-   margin-top: 1rem;
-   background: rgba(118,248,52,.2);
-   display: table;
-   padding: 5px 15px;
-   font-size: $font-size-global;
-   &::first-letter { 
-      text-transform: uppercase;
-   }
-   &.error-msg {
-      background: rgba($color,.2);
-   }
+    font-weight: 500;
+    background: rgba(0,0,0,.8);
+    padding: 20px 35px;
+    font-size: $font-size-global;
+    position: absolute;
+    z-index: 999;
+    top: 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    align-self: center;
+    &::first-letter { 
+        text-transform: uppercase;
+    }
+    &.error-msg {
+        background: rgba($color,.2);
+    }
 }
