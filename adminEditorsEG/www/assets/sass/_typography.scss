@@ -88,19 +88,20 @@ ul {
 
 .notification {
     font-weight: 500;
-    background: #fff;
-    padding: 5px 35px;
+    background: rgba(0,0,0,.8);
+    padding: 20px 35px;
     font-size: $font-size-global;
     position: absolute;
     z-index: 999;
     top: 38%;
     left: 40%;
-    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 1px solid $button-secondary-hover;
+    color: #fff;
+    letter-spacing: 1px;
+    word-spacing: 3px;
     &::first-letter { 
         text-transform: uppercase;
     }

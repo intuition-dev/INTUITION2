@@ -56,6 +56,12 @@ export class EditorRoutes {
                   console.info(data);
                   res.json(data);
                });
+            } else if (fs.existsSync(md) && fileExt === '.yaml') {
+               fs.readFile(md, 'utf8', function(err, data) {  
+                  if (err) throw err;
+                  console.info(data);
+                  res.json(data);
+               });
             }
          } else {
             res.status(400);

@@ -136,6 +136,8 @@ svg {
 	height: 100%;
 	z-index: -100;
 	background-image: url('../../assets/img/main-bg.png');
-	background-size: 140% 100%;
+	background-color: $background-light;
+    background-blend-mode: multiply;
+	background-size: cover;
     background-repeat: no-repeat;
 }
