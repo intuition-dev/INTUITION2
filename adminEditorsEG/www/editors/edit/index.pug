@@ -114,9 +114,10 @@ block content
                  return 'post-' + Math.random().toString(36).substr(2, 3);
                };
                let postId = newPostId();
+               let pathPrefix = $('.blog-item.active').find('span').text();
                $(this).attr("disabled", "disabled");
                posts
-                  .addPost(postId)
+                  .addPost(postId, pathPrefix)
                   .then(() => {
                      $(this).removeAttr("disabled");
                      $('.notification').removeClass('d-hide').text('New post was added, now you can edit the content');

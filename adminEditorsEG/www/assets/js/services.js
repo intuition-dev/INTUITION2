@@ -105,12 +105,14 @@ class ApiService {
     /**
     * create new post
     * @param id new post folder name, eg: 'post-cpv'
+    * @param pathPrefix path to .md file, eg: 'blog/post-4'
     */
-    createPost(id) {
+    createPost(id, pathPrefix) {
         console.info('post_id', id);
         return this.service.post('/editors/new-post', {}, {
             params: {
-                post_id: id
+                post_id: id,
+                pathPrefix: pathPrefix
             }
         });
     }

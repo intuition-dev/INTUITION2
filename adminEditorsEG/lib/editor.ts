@@ -91,11 +91,17 @@ export class EditorRoutes {
       // create new blog from the template
       appE.post("/new-post", (req, res) => {
          let post_id = req.query.post_id;
-         if (typeof post_id !== 'undefined') {
+         let pathPrefix = req.query.pathPrefix;
+
+         console.info('[add post]: pathprefix ------------------> ', pathPrefix);
+
+         if (typeof post_id !== 'undefined'
+            && typeof pathPrefix !== 'undefined'
+         ) {
             // create new post folder
             fs.createReadStream(config.appMount + '/blog-post-template.zip')
             .pipe(unzipper.Extract({ path: '/tmp' }));
-            let temp = '/tmp/blog-post-template';
+            let temp = '/tmp/blog-post-template'; // here pathPrefix instead
       
             let newPost = config.appMount+ '/blog/' + post_id;
             let fileOps = new FileOps('/');
@@ -104,8 +110,9 @@ export class EditorRoutes {
             res.send('OK');
          } else {
             res.status(400);
-            res.send({ error: 'no post_id' });
+            res.send({ error: 'error creating a post' });
          }
+
       });
       
       return appE;

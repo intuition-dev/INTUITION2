@@ -45,8 +45,8 @@ class Posts {
    	return apiService.savePostMd(id, md, pathPrefix);
    }
 
-   addPost(id) {
+   addPost(id, pathPrefix) {
       // render .md file content in textarea
-      return apiService.createPost(id);
+      return apiService.createPost(id, pathPrefix);
    }
 }
