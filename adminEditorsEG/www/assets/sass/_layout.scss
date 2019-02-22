@@ -27,8 +27,8 @@
 }
 
 .container {
-	padding-right: 4rem;
-	padding-left: 4rem;
+	padding-right: 5.5%;
+	padding-left: 5.5%;
 	font-family: $font-family;
 }
 
@@ -67,7 +67,6 @@
 		span {
 			transition: color 0.1s linear, border 0.1s linear;
 			display: table;
-			border-bottom: 1px solid transparent;
 		}
 		svg {
 			margin: 0 1rem 0 0;
@@ -76,7 +75,6 @@
 		}
 		&:hover, &.active {
 			span {
-				border-color: $color;
 				color: $color;
 			}
 			svg {
@@ -87,7 +85,7 @@
 			margin-bottom: 0;
 		}
 		.d-flex {
-			align-items: center;
+			align-items: flex-start;
 			justify-content: flex-start;
 		}
 		li {
@@ -108,6 +106,8 @@
 	padding-top: 0;
 	padding-bottom: 2rem;
 	height: calc(100vh - 70px);
+	display: flex;
+    flex-direction: column;
 	.columns, .blog-list, .blog-list-wrap, [class^='col'] {
 		height: 100%;
 	}

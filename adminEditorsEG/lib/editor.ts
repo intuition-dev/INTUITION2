@@ -9,7 +9,6 @@ export class EditorRoutes {
       const bodyParser = require("body-parser");
       const editorAuth = new EditorAuth();
       const fs = require('fs');
-      const unzipper = require('unzipper');
       const path = require('path');
       
       const appE = express();
@@ -92,20 +91,19 @@ export class EditorRoutes {
       appE.post("/new-post", (req, res) => {
          let post_id = req.query.post_id;
          let pathPrefix = req.query.pathPrefix;
-
+         
+         console.info('[add post]: post_id ------------------> ', post_id);
          console.info('[add post]: pathprefix ------------------> ', pathPrefix);
 
          if (typeof post_id !== 'undefined'
             && typeof pathPrefix !== 'undefined'
          ) {
             // create new post folder
-            fs.createReadStream(config.appMount + '/blog-post-template.zip')
-            .pipe(unzipper.Extract({ path: '/tmp' }));
-            let temp = '/tmp/blog-post-template'; // here pathPrefix instead
-      
+            let postPath = config.appMount + '/' + pathPrefix;
+            console.info('[add post]: postPath ------------------> ', postPath);
             let newPost = config.appMount+ '/blog/' + post_id;
             let fileOps = new FileOps('/');
-            fileOps.clone(temp, newPost);
+            fileOps.clone(postPath, newPost);
             
             res.send('OK');
          } else {

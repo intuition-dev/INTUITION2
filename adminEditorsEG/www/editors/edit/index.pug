@@ -1,139 +1,199 @@
 extends ../../layout/layout
 block content
-   div#parallax
-   .page-content.container.edit-blog-page
-      .columns
-         .col-3
-            .blog-list
-               .blog-list-wrap
-                  
-         .col-9
-            textarea#cms1(rows='400' )
-         .btns-wrap
-            a(href='#').save.btn-custom.btn-primary save
-            a(href='#', target='_blank').view-page.btn-custom.btn-secondary
-               span view page
-         .notification.d-hide
+    #parallax
+    .page-content.container.edit-blog-page
+        .columns
+            .col-3
+                .blog-list
+                    .blog-list-wrap
+                        
+            .col-9
+                textarea#cms1(rows='400' )
+            .btns-wrap
+                a(href='#').save.btn-custom.btn-primary save
+                a(href='#', target='_blank').view-page.btn-custom.btn-secondary
+                    span view page
+        .notification.d-hide
+        form.post-name-wrap.d-hide
+            label Enter new post name:
+            .input-wrap
+                input(name='post-name', type='text', required)
+                button(type='submit')
+                    i.icono-checkCircle
 
-      script. 
-         depp.define({'codeEdit': [
-            '//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.css'
-            ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/theme/solarized.css'
+        script. 
 
-            ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.min.js'
-            ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/markdown/markdown.js'
-            ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/yaml/yaml.js'
-            ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/keymap/sublime.js'
+            depp.define({'codeEdit': [
+                '//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.css'
+                ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/theme/solarized.css'
 
-         ]});
-         depp.require('codeEdit', pgInit);
-         function pgInit() {
-            console.info('ready');
-            _initCodeMirror();
-         }
-         let myCodeMirror;
-         function _initCodeMirror() {
-            myCodeMirror = CodeMirror.fromTextArea(
-               document.querySelector('#cms1') ,
-                  {
-                     mode:  'markdown'
-                     , lineNumbers: true
-                     , tabSize: 3
-                     , indentWithTabs: false
-                     , v11iewportMargin: 'Infinity'
-                     , lineWrapping: true
-                  }
-               )
-            myCodeMirror.setSize('100%', '100%');
-         }// initCM();
+                ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/lib/codemirror.min.js'
+                ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/markdown/markdown.js'
+                ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/mode/yaml/yaml.js'
+                ,'//cdn.jsdelivr.net/npm/codemirror@5.42.0/keymap/sublime.js'
 
-         depp.require(['general'], function() {
+            ]});
+            depp.require('codeEdit', pgInit);
+            function pgInit() {
+                console.info('ready');
+                _initCodeMirror();
+            };
+            let myCodeMirror;
+            function _initCodeMirror() {
+                myCodeMirror = CodeMirror.fromTextArea(
+                    document.querySelector('#cms1') ,
+                        {
+                            mode:  'markdown'
+                            , lineNumbers: true
+                            , tabSize: 3
+                            , indentWithTabs: false
+                            , v11iewportMargin: 'Infinity'
+                            , lineWrapping: true
+                        }
+                    )
+                myCodeMirror.setSize('100%', '100%');
+            }// initCM();
+            
 
-            let posts = new Posts();
-            posts.showDirs();
+            depp.require(['general'], function() {
 
-            let appMount = window.appMount[0];
-            $('.view-page').attr('href', appMount);
+                let posts = new Posts();
+                posts.showDirs();
 
-            // show sub directories
-            $(document).off().on('click', '.blog-item', function(e) {
-               e.preventDefault();
-               $('.blog-item ul').remove();
+                let appMount = window.appMount[0];
+                $('.view-page').attr('href', appMount);
 
-               $('.blog-item').removeClass('active');
-               $(this).addClass('active');
+                /*
+                * show sub directories
+                */
+                $(document).off().on('click', '.blog-item', function(e) {
+                    e.preventDefault();
+                    $('.blog-item ul').remove();
 
-               let postId = $(this).find('span').text();
-               $('.view-page').attr('href', appMount+ '/' + postId);
-               if ($(this).find('ul').length === 0) {
-                  posts.showSubDirs(postId);
-               } else {
-                  $(this).find('ul').remove();
-               }
+                    $('.blog-item').removeClass('active');
+                    $(this).addClass('active');
+
+                    let postId = $(this).find('span').text();
+                    $('.view-page').attr('href', appMount+ '/' + postId);
+                    if ($(this).find('ul').length === 0) {
+                        posts.showSubDirs(postId);
+                    } else {
+                        $(this).find('ul').remove();
+                    }
+                });
+
+                /*
+                * show .md for chosen post
+                */
+                $(document).on('click', '.blog-item li', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // prevent child trigger click on parent
+
+                    $('.blog-item li').removeClass('active');
+                    $(this).addClass('active');
+
+                    let postId = $(this).text();
+                    let pathPrefix = $(this).parents('.blog-item').find('span').text();
+                    posts.showMd(postId, pathPrefix);
+                });
+
+
+                /*
+                * save .md
+                */
+                $(document).on('click', '.save', function(e) {
+                    e.preventDefault();
+
+                    let postId = $('.blog-item.active').find('li.active').text();
+                    let pathPrefix = $('.blog-item.active').find('span').text();
+                    let md = myCodeMirror.getValue();
+                    $(this).attr("disabled", "disabled");
+                    posts
+                        .saveMd(postId, md, pathPrefix)
+                        .then(() => {
+                            $(this).removeAttr("disabled");
+                            $('.notification').removeClass('d-hide').text('The content was successfully updated');
+                            setTimeout(function() {
+                                $('.notification').addClass('d-hide').text('');
+                            }, 4000);
+                        });
+
+                });
+
+                /*
+                * create new post
+                */
+                // show/hide post name form
+                $(document).on('click', '.create-post', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    $('.post-name-wrap').removeClass('d-hide');
+                });
+
+                $(window).click(function() {
+                    $('.post-name-wrap').addClass('d-hide');
+                });
+
+                $('.post-name-wrap').click(function(event){
+                    event.stopPropagation();
+                });
+
+                // add post form submit
+                $('.post-name-wrap').on('submit', function(e) {
+
+                    e.preventDefault();
+
+                    let postId = $(this).find('input').val();
+                    console.info('post name: ', postId);
+
+                    let pathPrefix = $('.blog-item.active').find('span').text();
+
+
+                    if (pathPrefix === '') {
+
+                        $('.notification').removeClass('d-hide').addClass('error-msg').text('Please select post on the left to copy');
+                        setTimeout(function() {
+                            $('.notification').addClass('d-hide').removeClass('error-msg').text('');
+                        }, 4000);
+
+                    } else if (postId === '') {
+
+                        $('.notification').removeClass('d-hide').addClass('error-msg').text('Post name can\'t be blank');
+                        setTimeout(function() {
+                            $('.notification').addClass('d-hide').removeClass('error-msg').text('');
+                        }, 4000);
+
+                    } else {
+
+                        $(this).attr("disabled", "disabled");
+
+                        // add post
+                        posts
+                            .addPost(postId, pathPrefix)
+                            .then(() => {
+                                $(this).removeAttr("disabled");
+                                $('.notification').removeClass('d-hide').text('New post was added, now you can edit the content');
+                                setTimeout(function() {
+                                    $('.notification').addClass('d-hide').text('');
+                                }, 4000);
+                                $('.post-name-wrap').find('input').val('');
+                            });
+
+
+                        // re-render dirs
+                        $('.blog-list-wrap').html('');
+                        posts
+                            .showDirs()
+                            .then(() => {
+                                $('.blog-list-wrap').find('.blog-item span:contains('+ postId +')').parents('.blog-item').addClass('active').click().find('ul li:contains(\'.md\')').addClass('active').click();
+                                setTimeout(function() {
+                                    $('.blog-item.active ul li:contains(\'.md\')').addClass('active').click();
+                                }, 1000);
+                            });
+                    }
+
+
+                });
+
             });
-
-            // show .md for chosen post
-            $(document).on('click', '.blog-item li', function(e) {
-               e.preventDefault();
-               e.stopPropagation(); // prevent child trigger click on parent
-
-               $('.blog-item li').removeClass('active');
-               $(this).addClass('active');
-
-               let postId = $(this).text();
-               let pathPrefix = $(this).parents('.blog-item').find('span').text();
-               posts.showMd(postId, pathPrefix);
-            });
-
-
-            // save .md
-            $(document).on('click', '.save', function(e) {
-               e.preventDefault();
-
-               let postId = $('.blog-item.active').find('li.active').text();
-               let pathPrefix = $('.blog-item.active').find('span').text();
-               let md = myCodeMirror.getValue();
-               $(this).attr("disabled", "disabled");
-               posts
-                  .saveMd(postId, md, pathPrefix)
-                  .then(() => {
-                     $(this).removeAttr("disabled");
-                     $('.notification').removeClass('d-hide').text('The content was successfully updated');
-                     setTimeout(function() {
-                        $('.notification').addClass('d-hide').text('');
-                     }, 4000);
-                  });
-
-            });
-
-            // create new post
-            $(document).on('click', '.create-post', function(e) {
-               e.preventDefault();
-
-               let newPostId = function () {
-                 return 'post-' + Math.random().toString(36).substr(2, 3);
-               };
-               let postId = newPostId();
-               let pathPrefix = $('.blog-item.active').find('span').text();
-               $(this).attr("disabled", "disabled");
-               posts
-                  .addPost(postId, pathPrefix)
-                  .then(() => {
-                     $(this).removeAttr("disabled");
-                     $('.notification').removeClass('d-hide').text('New post was added, now you can edit the content');
-                     setTimeout(function() {
-                        $('.notification').addClass('d-hide').text('');
-                     }, 4000);
-                  });
-               $('.blog-list-wrap').html('');
-               posts
-                  .showDirs()
-                  .then(() => {
-                     $('.blog-list-wrap').find('.blog-item span:contains('+ postId +')').parents('.blog-item').addClass('active').click().find('ul li:contains(\'.md\')').addClass('active').click();
-                     setTimeout(function() {
-                        $('.blog-item.active ul li:contains(\'.md\')').addClass('active').click();
-                     }, 1000);
-                  });
-               });
-
-         });

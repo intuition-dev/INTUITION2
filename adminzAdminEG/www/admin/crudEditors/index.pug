@@ -36,7 +36,9 @@ block content
 
                 editors.drawTable();
 
-                // add editor
+                /*
+                * add editor
+                */
                 $(document).on('click', '#add-editor', function (e) {
                     e.preventDefault();
                     $(this).attr("disabled", "disabled");
@@ -44,19 +46,21 @@ block content
                         .save()
                         .then(() => $(this).removeAttr("disabled"));
                 });
-                //edit editor
+                /* 
+                * edit editor
+                */
                 $(document).find('#edit-editor').on('click', function (e) {
                     e.preventDefault();
-                    //- let uid = $('[tabulator-field="id"]').text();
                     $(this).attr("disabled", "disabled");
                     editors
                         .save(rowUid)
                         .then(() => $(this).removeAttr("disabled"));
                 });
-                // delete editor
+                /* 
+                * delete editor
+                */
                 $(document).on('click', '#delete-editor', function (e) {
                     e.preventDefault();
-                    //- let uid = $('[tabulator-field="id"]').text();
                     $(this).attr("disabled", "disabled");
                     editors
                         .remove(rowUid)
