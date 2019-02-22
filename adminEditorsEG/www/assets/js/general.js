@@ -35,7 +35,6 @@ class Posts {
    	// render .md file content in textarea
    	apiService.getPostMd(id, pathPrefix)
    		.then(post => {
-   			console.info('data', post.data);
    			myCodeMirror.setValue(post.data);
    		});
    }

@@ -16,10 +16,9 @@ class Login {
             })
             .catch(error => {
                console.info('login error', error);
-               alert(error);
             });
          } else {
-            alert("All fields must be filled out");
+            console.info("All fields must be filled out");
             return false;
          }
    }
@@ -56,7 +55,6 @@ class SignOut {
          .then(function() {
             window.location = ('/');
          }).catch(function(error) {
-            alert('An error happened.');
             console.info('Something went wrong:', error);
          });
    }

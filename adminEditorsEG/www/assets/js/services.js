@@ -20,7 +20,6 @@ class ApiService {
                         window.location = ('/');
                     }
                 }).catch(function(error) {
-                    alert('An error happened.');
                     console.info('Something went wrong:', error);
                 });
         }
@@ -45,7 +44,6 @@ class ApiService {
                 .then(function() {
                     window.location = ('/');
                 }).catch(function(error) {
-                    alert('An error happened.');
                     console.info('Something went wrong:', error);
                 });
             }

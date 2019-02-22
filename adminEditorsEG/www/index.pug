@@ -61,7 +61,6 @@ block content
 				 let email = $(this).find('input[type="email"]').val();
 				 auth.sendPasswordResetEmail(email)
 					  .then(() => {
-							console.info('email has been sent to user');
 							$(this).find('fieldset, button').addClass('d-hide');
 							$(this).find('.message-info').removeClass('d-hide').text('An email with the password reset link has been sent to your email address');
 							setTimeout(function () {

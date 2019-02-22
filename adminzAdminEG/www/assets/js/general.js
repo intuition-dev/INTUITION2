@@ -43,7 +43,6 @@ class Editors {
         if (id) { // edit user
             return this.apiService.editEditor(id, name)
                 .then((documentRef) => {
-                    console.info('user was successfully updated');
                     $('.notification').removeClass('d-hide').text('user was successfully updated');
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
@@ -64,7 +63,6 @@ class Editors {
         } else { // add user
             return this.apiService.addEditor(name, email, password)
                 .then((documentRef) => {
-                    console.info('new user was created', documentRef.data.id);
                     $('.notification').removeClass('d-hide').text('new user was created');
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').text('');
@@ -98,7 +96,6 @@ class Editors {
     remove(id) {
         return this.apiService.deleteEditor(id)
             .then(() => {
-                console.info('deleted...');
                 $('.notification').removeClass('d-hide').text(' The user was successfully deleted');
                 setTimeout(function() {
                     $('.notification').addClass('d-hide').text('');

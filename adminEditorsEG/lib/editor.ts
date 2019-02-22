@@ -92,15 +92,11 @@ export class EditorRoutes {
          let post_id = req.query.post_id;
          let pathPrefix = req.query.pathPrefix;
          
-         console.info('[add post]: post_id ------------------> ', post_id);
-         console.info('[add post]: pathprefix ------------------> ', pathPrefix);
-
          if (typeof post_id !== 'undefined'
             && typeof pathPrefix !== 'undefined'
          ) {
             // create new post folder
             let postPath = config.appMount + '/' + pathPrefix;
-            console.info('[add post]: postPath ------------------> ', postPath);
             let newPost = config.appMount+ '/blog/' + post_id;
             let fileOps = new FileOps('/');
             fileOps.clone(postPath, newPost);

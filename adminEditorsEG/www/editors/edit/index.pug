@@ -35,7 +35,6 @@ block content
             ]});
             depp.require('codeEdit', pgInit);
             function pgInit() {
-                console.info('ready');
                 _initCodeMirror();
             };
             let myCodeMirror;
@@ -145,7 +144,6 @@ block content
                     e.preventDefault();
 
                     let postId = $(this).find('input').val();
-                    console.info('post name: ', postId);
 
                     let pathPrefix = $('.blog-item.active').find('span').text();
 
