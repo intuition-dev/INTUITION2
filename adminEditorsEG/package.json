@@ -9,16 +9,16 @@
   },
   "dependencies": {
     "express": ">=4.16.4",
-    "firebase": ">=5.8.2",
+    "firebase": ">=5.8.4",
     "firebase-admin": ">=7.0.0",
-    "mbake": ">=4.16.6",
-    "unzipper": ">=0.9.10"
+    "mbake": ">=4.16.14",
+    "unzipper": ">=0.9.11"
   },
   "devDependencies": {
-    "@types/node": ">=10.12.24",
-    "mbake": ">=4.16.6",
+    "@types/node": ">=11.9.5",
+    "mbake": ">=4.16.14",
     "ts-node": ">=8.0.2",
-    "typescript": ">=3.3.3",
-    "mbake": ">=4.16.6"
+    "typescript": ">=3.3.3333",
+    "mbake": ">=4.16.14"
   }
 }
