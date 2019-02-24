@@ -3,10 +3,10 @@
         "module": "commonjs",
         "target": "ES2017",
    
-        "allowJs": false,
+        
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
-        "sourceMap": false,
+        
         "removeComments": true,
         "outDir": ".",
         "baseUrl": ".",
