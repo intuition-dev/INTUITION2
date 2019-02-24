@@ -1,5 +1,8 @@
 /**
- * Version v1.0
+ * Version v4.2
+ * 
+ * All rights reserved by MetaBake(mBake.org), licensed under LGPL 3.0
+ *
 */
 
 /**
