@@ -24,14 +24,4 @@ wwwApp.listen(wwwPort, () => {
    console.info(`wwwApp listening on port ${wwwPort}!`);
 });
 
-
-// www mounted production port
-// const blogPort = config.appPort;
-// const blogApp = express();
-// console.info('config.blogPath', config);
-// blogApp.use(express.static(config.appMount));
-// blogApp.listen(blogPort, () => {
-//    console.info(`blogApp listening on port ${blogPort}!`);
-// });
-
 Wa.watch(config.appMount, config.appPort);

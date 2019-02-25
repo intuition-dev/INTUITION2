@@ -20,6 +20,10 @@ block content
                 input(name='post-name', type='text', required)
                 button(type='submit')
                     i.icono-checkCircle
+        form(action='upload', method="post", encType="multipart/form-data").file-upload.dropzone.d-hide#file-upload
+            | Select file:
+            input#file-upload-input.file-upload-input(type='file', name='sampleFile', multiple='')
+            input(type='submit')
 
         script. 
 
@@ -193,5 +197,31 @@ block content
 
 
                 });
+
+                /*
+                * Upload file
+                */
+                $(document).on('click', '.upload', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    $('.file-upload').removeClass('d-hide');
+                    window.pathPrefixUpload = $(this).parents('.blog-item').find('span').text();
+                });
+
+                $(window).click(function() {
+                    $('.file-upload').addClass('d-hide');
+                });
+
+                $('.file-upload').click(function(event){
+                    event.stopPropagation();
+                });
+
+                $('#file-upload').on('submit', function(e){
+                    e.preventDefault();
+
+                    let input = $('#file-upload-input')[0].files[0];
+                    posts.uploadFile(input, pathPrefixUpload);
+                })
 
             });

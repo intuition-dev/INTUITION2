@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "express": ">=4.16.4",
+    "express-fileupload": "^1.1.1-alpha.3",
     "firebase": ">=5.8.4",
     "firebase-admin": ">=7.0.0",
     "mbake": ">=4.16.14",
@@ -18,7 +19,6 @@
     "@types/node": ">=11.9.5",
     "mbake": ">=4.16.14",
     "ts-node": ">=8.0.2",
-    "typescript": ">=3.3.3333",
-    "mbake": ">=4.16.14"
+    "typescript": ">=3.3.3333"
   }
 }

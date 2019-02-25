@@ -92,3 +92,89 @@ input:-webkit-autofill {
         }
     }
 }
+
+.file-upload {
+    position: absolute;
+    background: rgba(0,0,0,.8);
+    padding: 20px 35px;
+    font-size: $font-size-global;
+    position: absolute;
+    z-index: 999;
+    top: 38%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    align-self: center;
+    input[type='submit'] {
+        cursor: pointer;
+    }
+}
+.upload {
+    border: 2px solid;
+    width: 24px;
+    height: 22px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 4px 2px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-style: normal;
+    color: currentColor;
+    text-align: left;
+    text-indent: -9999px;
+    direction: ltr;
+    box-sizing: border-box;
+    transition: all .2s;
+    
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: -6px;
+    z-index: 999;
+
+    &, &:hover, &:active, &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+
+    &:before, &:after {
+        content: '';
+        pointer-events: none;
+    }
+
+    &:before {
+        -webkit-transform: rotate(45deg);
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        left: 0;
+        top: 11px;
+        transform: rotate(45deg);
+        box-shadow: inset 0 0 0 32px, 10px -6px 0 0;
+    }
+
+    &:after {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 32px;
+        top: 5px;
+        right: 5px;
+    }
+
+    &:hover {
+        color: $color;
+    }
+}
+
+.file-upload-input {
+    margin-left: 7px;
+    display: inline-block;
+}

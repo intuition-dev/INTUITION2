@@ -118,4 +118,23 @@ class ApiService {
         });
     }
 
+    /**
+    * file upload
+    * @param data FormData
+    * @param pathPrefix path to .md file, eg: 'blog/post-4'
+    */
+    upload(data, pathPrefix) {
+        return this.service.post('/editors/upload', data, {
+                params: {
+                    pathPrefix: pathPrefix
+                }
+            })
+            .then(function (response) {
+                console.info(response);
+            })
+            .catch(function (error) {
+                console.info(error);
+            });
+    }
+
 }

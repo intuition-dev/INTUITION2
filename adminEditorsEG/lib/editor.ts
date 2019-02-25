@@ -10,10 +10,12 @@ export class EditorRoutes {
       const editorAuth = new EditorAuth();
       const fs = require('fs');
       const path = require('path');
+      const fileUpload = require('express-fileupload');
       
       const appE = express();
       const customCors = new CustomCors();
       
+      appE.use(fileUpload());
       appE.use(customCors.cors());
       appE.use(editorAuth.auth());
       appE.use(bodyParser.json());
@@ -78,7 +80,7 @@ export class EditorRoutes {
             fileOps.write(md, req.body);
             let runMbake = new MBake();
             runMbake.itemizeNBake(config.appMount + '/blog');
-            runMbake.tag(config.appMount);
+            runMbake.comps(config.appMount);
             
             res.send('OK');
          } else {
@@ -106,6 +108,30 @@ export class EditorRoutes {
             res.status(400);
             res.send({ error: 'error creating a post' });
          }
+
+      });
+
+      // upload file
+      appE.post("/upload", (req, res) => {
+         let uploadPath;
+         let pathPrefix = req.query.pathPrefix;
+
+         if (Object.keys(req.files).length == 0) {
+            return res.status(400).send('No files were uploaded.');
+         }
+
+         // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+         let sampleFile = req.files.sampleFile;
+         uploadPath = config.appMount + '/' + pathPrefix + '/' + sampleFile.name;
+
+         // Use the mv() method to place the file somewhere on your server
+         sampleFile.mv(uploadPath, function (err) {
+            if (err) {
+               return res.status(500).send(err);
+            }
+
+            res.send('File uploaded!');
+         });
 
       });
       
