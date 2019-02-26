@@ -78,11 +78,13 @@ block content
 
                     let postId = $(this).find('span').text();
                     $('.view-page').attr('href', appMount+ '/' + postId);
+
                     if ($(this).find('ul').length === 0) {
                         posts.showSubDirs(postId);
                     } else {
                         $(this).find('ul').remove();
                     }
+
                 });
 
                 /*
@@ -97,7 +99,9 @@ block content
 
                     let postId = $(this).text();
                     let pathPrefix = $(this).parents('.blog-item').find('span').text();
+
                     posts.showMd(postId, pathPrefix);
+
                 });
 
 
@@ -111,14 +115,19 @@ block content
                     let pathPrefix = $('.blog-item.active').find('span').text();
                     let md = myCodeMirror.getValue();
                     $(this).attr("disabled", "disabled");
+
                     posts
                         .saveMd(postId, md, pathPrefix)
                         .then(() => {
+
                             $(this).removeAttr("disabled");
+
                             $('.notification').removeClass('d-hide').text('The content was successfully updated');
+
                             setTimeout(function() {
                                 $('.notification').addClass('d-hide').text('');
                             }, 4000);
+
                         });
 
                 });
@@ -155,6 +164,7 @@ block content
                     if (pathPrefix === '') {
 
                         $('.notification').removeClass('d-hide').addClass('error-msg').text('Please select post on the left to copy');
+
                         setTimeout(function() {
                             $('.notification').addClass('d-hide').removeClass('error-msg').text('');
                         }, 4000);
@@ -162,6 +172,7 @@ block content
                     } else if (postId === '') {
 
                         $('.notification').removeClass('d-hide').addClass('error-msg').text('Post name can\'t be blank');
+
                         setTimeout(function() {
                             $('.notification').addClass('d-hide').removeClass('error-msg').text('');
                         }, 4000);
@@ -174,12 +185,17 @@ block content
                         posts
                             .addPost(postId, pathPrefix)
                             .then(() => {
+
                                 $(this).removeAttr("disabled");
+
                                 $('.notification').removeClass('d-hide').text('New post was added, now you can edit the content');
+
                                 setTimeout(function() {
                                     $('.notification').addClass('d-hide').text('');
                                 }, 4000);
+
                                 $('.post-name-wrap').find('input').val('');
+
                             });
 
 
@@ -188,10 +204,13 @@ block content
                         posts
                             .showDirs()
                             .then(() => {
+
                                 $('.blog-list-wrap').find('.blog-item span:contains('+ postId +')').parents('.blog-item').addClass('active').click().find('ul li:contains(\'.md\')').addClass('active').click();
+
                                 setTimeout(function() {
                                     $('.blog-item.active ul li:contains(\'.md\')').addClass('active').click();
                                 }, 1000);
+
                             });
                     }
 
@@ -218,10 +237,28 @@ block content
                 });
 
                 $('#file-upload').on('submit', function(e){
+
                     e.preventDefault();
 
+                    $(this).attr("disabled", "disabled");
+
                     let input = $('#file-upload-input')[0].files[0];
-                    posts.uploadFile(input, pathPrefixUpload);
+
+                    posts.uploadFile(input, pathPrefixUpload)
+                        .then(() => {
+
+                            $(this).removeAttr("disabled");
+
+                            $('.file-upload').addClass('d-hide');
+
+                            $('.notification').removeClass('d-hide').text('The file was successfully uploaded to the folder ' + pathPrefixUpload);
+
+                            setTimeout(function() {
+                                $('.notification').addClass('d-hide').text('');
+                                $('.file-upload input[type="file"]').val('');
+                            }, 4000);
+
+                        });
                 })
 
             });

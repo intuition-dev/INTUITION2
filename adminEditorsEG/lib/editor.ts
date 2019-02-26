@@ -1,13 +1,13 @@
 import { Dirs, BakeWrk, MBake } from 'mbake/lib/Base';
 import { CustomCors } from './custom-cors';
 import { FileOps } from 'mbake/lib/Wa';
-import { EditorAuth } from './editor-auth';
+import { AppAuth } from './app-auth';
 
 export class EditorRoutes {
    routes(config) {
       const express = require("express");
       const bodyParser = require("body-parser");
-      const editorAuth = new EditorAuth();
+      const editorAuth = new AppAuth();
       const fs = require('fs');
       const path = require('path');
       const fileUpload = require('express-fileupload');

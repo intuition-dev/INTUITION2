@@ -1,6 +1,6 @@
 import { FirebaseAdmin } from "./firebaseAdmin";
 
-export class EditorAuth {
+export class AppAuth {
    auth() {
       return (request, response, next) => {
          const firebaseAdmin = new FirebaseAdmin();
@@ -22,5 +22,5 @@ export class EditorAuth {
 }
 
 module.exports = {
-   EditorAuth
+   AppAuth
 }
