@@ -1,6 +1,6 @@
 config = {
    "editorAPIport": 9081
    ,'appPort': 9082
-   ,"api": "[url]:9081"
-   ,"appMount": "[url]:8090"
+   ,"api": "http://0.0.0.0:9081"
+   ,"appMount": "http://0.0.0.0:9082"
 }
