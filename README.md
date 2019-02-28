@@ -48,13 +48,16 @@
     ```
 1. Open in browser:
     ```sh
-    /*Blog Admin App, here you can add editors users:*/
-    [your-ip]:8080
+    // Blog Admin App:
     // eg: http://0.0.0.0:8080
 
-    /*Blog Editors App, here you can login under user created in Blog Admin App and edit `.md` and `.yaml` files and upload images and video on mounted folder with site */
-    [your-ip]:9080
+    [your-ip]:8080
+
+    // Blog Editors App:
     // eg: http://0.0.0.0:9080
+
+    [your-ip]:9080
+
     ```
 1. Login to Admin App is: 'admin', password is: '123456' (you can change password in `adminzAdminEG/config.yaml` file, by editing `secret` field value).
 
