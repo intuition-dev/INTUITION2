@@ -1,5 +1,7 @@
 //declare var console: Console;
 
+require('dotenv/config');
+
 import { AdminRoutes } from './lib/admin';
 const express = require("express");
 

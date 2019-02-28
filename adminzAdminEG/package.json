@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "engines": {
-   "node": ">=10.15.1",
-   "yarn": ">=1.13.0"
-},
+    "node": ">=10.15.1",
+    "yarn": ">=1.13.0"
+  },
   "dependencies": {
     "basic-auth": ">=2.0.1",
     "cors": ">=2.8.5",
+    "dotenv": "^6.2.0",
     "express": ">=4.16.4",
     "express-basic-auth": ">=1.1.6",
     "file-system": ">=2.2.2",
@@ -20,8 +21,8 @@
   },
   "devDependencies": {
     "@types/node": ">=11.9.5",
+    "mbake": ">=4.16.14",
     "ts-node": ">=8.0.2",
-    "typescript": ">=3.3.3333",
-    "mbake": ">=4.16.14"
+    "typescript": ">=3.3.3333"
   }
 }

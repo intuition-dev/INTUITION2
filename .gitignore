@@ -18,3 +18,5 @@ serviceAccountKey.json
 /adminzAdminEG/www/config.js
 /adminEditorsEG/www/config.js
 keys.yaml
+
+.env

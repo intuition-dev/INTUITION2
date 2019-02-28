@@ -13,6 +13,6 @@ block content
                         input(type='text', name='login', required='required', autocomplete="new-password")
                      .input-wrap
                         label Password
-                        input(type='password', name='password', required='required', autocomplete="new-password")
+                        input(type='password', name='password', minlength="6", required='required', autocomplete="new-password")
                #error.d-hide.isError
                button#btn-login.btn-custom.btn-primary.btn-center.space-21v Login
