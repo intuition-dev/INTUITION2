@@ -12,7 +12,13 @@
 
 1. To CMS App folder add the following files next to example files that lies to the following folders:
 
-    - folder: `/blog-cms/adminzAdminEG` file: `serviceAccountKey.json` (the file that you've downloaded in the previous steps)
+    - folder: `/blog-cms/adminzAdminEG` file: `serviceAccountKey.json` (the file that you've downloaded in the previous steps) and file `.env` (in the Firebase console go to `Project Overview` tab, on the next screen click `</>` icon, a popup `Add Firebase to your web app` will appear. Fill the `.env` file fields values with according values of your project:
+
+        FB_API_KEY='[the value of `apiKey` field from your DB]'
+        FB_AUTH_DOMAIN='[the value of `authDomain` field from your DB]'
+        FB_PROJECT_ID='[the value of `projectId` field from your DB]'
+    
+    )
 
     - folder: `/blog-cms/adminzAdminEG/www/` file: `config.js` (don't forget to change ip url to your server or local ip address)
 
