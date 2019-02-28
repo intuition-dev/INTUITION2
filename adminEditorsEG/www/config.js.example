@@ -3,4 +3,7 @@ config = {
    ,'appPort': 9082
    ,"api": "http://0.0.0.0:9081"
    ,"appMount": "http://0.0.0.0:9082"
+   ,'apiKey': 'apiKey-u1Mvk'
+   ,'authDomain': 'authDomain'
+   ,'projectId': 'projectId'
 }

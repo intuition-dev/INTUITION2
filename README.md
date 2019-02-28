@@ -8,11 +8,11 @@
     $ cd blog-cms
     $ mbakeW -c
     ```
-1. Create an account (if you haven't already) and database in [Firebase](https://console.firebase.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the Firebase Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded.
+1. Create an account (if you haven't already) and database in [Firebase](https://console.firebase.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the Firebase Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
 
 1. To CMS App folder add the following files next to example files that lies to the following folders:
 
-    - folder: `/blog-cms/adminzAdminEG` file: `serviceAccountKey.json` (the file that you've downloaded in the previous steps) and file `.env` (in the Firebase console go to `Project Overview` tab, on the next screen click `</>` icon, a popup `Add Firebase to your web app` will appear. Fill the `.env` file fields values with according values of your project:
+    1.1 folder: `/blog-cms/adminzAdminEG` file: `serviceAccountKey.json` (the file that you've downloaded in the previous steps) and file `.env` (in the Firebase console go to `Project Overview` tab, on the next screen click `</>` icon, a popup `Add Firebase to your web app` will appear. Fill the `.env` file fields values with according values of your project:
 
         FB_API_KEY='[the value of `apiKey` field from your DB]'
         FB_AUTH_DOMAIN='[the value of `authDomain` field from your DB]'
@@ -20,11 +20,17 @@
     
     )
 
-    - folder: `/blog-cms/adminzAdminEG/www/` file: `config.js` (don't forget to change ip url to your server or local ip address)
+    1.2 folder: `/blog-cms/adminzAdminEG/www/` file: `config.js` (change ip url to your server or local ip address)
 
-    - folder: `/blog-cms/adminEditorsEG` file: `serviceAccountKey.json` (the file that you've downloaded in the previous steps) and file: `config.yaml` (in the field `appMount` you need to write full path for your mounted folder with the site)
+    1.3 folder: `/blog-cms/adminEditorsEG` file: `serviceAccountKey.json` (the file that you've downloaded in the previous steps) and file: `config.yaml` (in the field `appMount` you need to write full path for your mounted folder with the site)
 
-    - folder: `/blog-cms/adminEditorsEG/www/` file: `config.js` (don't forget to change ip url to your server or local ip address)
+    1.4 folder: `/blog-cms/adminEditorsEG/www/` file: `config.js` (change ip url to your server or local ip address and change the values of fields `apiKey, authDomain, projectId` to according values of your project that you've already retrieved in step 1.1:
+
+        apiKey='[the value of `apiKey` field from your DB]'
+        authDomain='[the value of `authDomain` field from your DB]'
+        projectId='[the value of `projectId` field from your DB]'
+    
+    )
 
     You can copy config files contents from the example files, eg: for `config.yaml` in the `/blog-cms/adminEditorsEG` folder you'll find `config.yaml.example` file which has the example of fields and values that should be in this file.
 

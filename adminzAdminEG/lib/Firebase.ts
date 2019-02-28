@@ -1,4 +1,3 @@
-console.info(process.env.FB_API_KEY);
 export class Firebase {
    get() {
       const firebase = require("firebase");
