@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/node": ">=11.9.5",
     "mbake": ">=4.16.14",
-    "ts-node": ">=8.0.2",
+    
     "typescript": ">=3.3.3333"
   }
 }

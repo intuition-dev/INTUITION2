@@ -19,7 +19,7 @@
   "stripe": ">=6.23.1"
  } ,
  "devDependencies": {
-   "ts-node": ">=8.0.2",
+   
    "@types/node": ">=10.12.24",
    "typescript": ">=3.3.3",
     "mbake": ">=4.16.6"

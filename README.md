@@ -45,9 +45,9 @@
     $ yarn
     $ tsc
 
-    $ ts-node index.ts 
+    $ node index.js 
     // or: 
-    // $ nohup ts-node index.ts & 
+    // $ nohup node index.js & 
     // if you want node running after the terminal will be closed
     ```
 1. In folders `/blog-cms/adminEditorsEG/www` and `/blog-cms/adminzAdminEG/www` accordingly run command to compile pug:
