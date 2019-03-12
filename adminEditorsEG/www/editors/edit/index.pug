@@ -259,6 +259,24 @@ block content
                             }, 4000);
 
                         });
+
+                    // re-render dirs
+                    let postId = $('.blog-item.active').find('span').text();
+                    $('.blog-list-wrap').html('');
+                    posts
+                        .showDirs()
+                        .then(() => {
+
+                            $('.blog-list-wrap').find('.blog-item span:contains('+ postId +')').parents('.blog-item').addClass('active').click().find('ul li:contains(\'.md\')').addClass('active').click();
+
+                            setTimeout(function() {
+                                $('.blog-item.active ul li:contains(\'.md\')').addClass('active').click();
+                            }, 1000);
+
+                            myCodeMirror.setValue('');
+
+                        });
+                            
                 })
 
             });
