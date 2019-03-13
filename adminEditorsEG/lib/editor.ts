@@ -89,7 +89,7 @@ export class EditorRoutes {
          }
       });
       
-      // create new blog from the template
+      // create new post
       appE.post("/new-post", (req, res) => {
          let post_id = req.query.post_id;
          let pathPrefix = req.query.pathPrefix;
@@ -99,7 +99,11 @@ export class EditorRoutes {
          ) {
             // create new post folder
             let postPath = config.appMount + '/' + pathPrefix;
-            let newPost = config.appMount+ '/blog/' + post_id;
+            let substring = '/';
+            if (pathPrefix.includes(substring)) {
+               pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
+            }
+            let newPost = config.appMount+ '/' + pathPrefix + '(copy)/' + post_id;
             let fileOps = new FileOps('/');
             fileOps.clone(postPath, newPost);
             

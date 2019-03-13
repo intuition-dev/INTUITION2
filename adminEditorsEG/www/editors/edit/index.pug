@@ -194,6 +194,7 @@ block content
                     } else {
 
                         $(this).attr("disabled", "disabled");
+                        $('.loader').addClass('active');
 
                         // add post
                         posts
@@ -201,6 +202,7 @@ block content
                             .then(() => {
 
                                 $(this).removeAttr("disabled");
+                                $('.loader').removeClass('active');
 
                                 $('.notification').removeClass('d-hide').text('New post was added, now you can edit the content');
 
@@ -255,6 +257,7 @@ block content
                     e.preventDefault();
 
                     $(this).attr("disabled", "disabled");
+                    $('.loader').addClass('active');
 
                     let input = $('#file-upload-input')[0].files[0];
 
@@ -262,6 +265,7 @@ block content
                         .then(() => {
 
                             $(this).removeAttr("disabled");
+                            $('.loader').removeClass('active');
 
                             $('.file-upload').addClass('d-hide');
 
