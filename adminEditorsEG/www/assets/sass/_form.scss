@@ -93,7 +93,7 @@ input:-webkit-autofill {
     }
 }
 
-.file-upload {
+.file-upload, .publish-date-form {
     position: absolute;
     background: rgba(0,0,0,.8);
     padding: 20px 35px;
@@ -177,4 +177,20 @@ input:-webkit-autofill {
 .file-upload-input {
     margin-left: 7px;
     display: inline-block;
+}
+
+.publish-date-form {
+    .Zebra_DatePicker_Icon_Wrapper {
+        margin-left: 10px;
+    }
+    input, button {
+        &, &:hover, &:active, &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    button {
+        top: 5px!important;
+        right: 5px!important;
+    }
 }

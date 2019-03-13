@@ -10,6 +10,8 @@ depp.define({
     , 'https://cdn.jsdelivr.net/npm/tabulator-tables@4.1.3/dist/css/tabulator_simple.min.css'
     , '/assets/js/gridforms.js'
     , 'https://unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js'
+    , 'https://cdn.jsdelivr.net/npm/zebra_datepicker@latest/dist/css/bootstrap/zebra_datepicker.min.css'
+    , 'https://cdn.jsdelivr.net/npm/zebra_datepicker@1.9.6/dist/zebra_datepicker.min.js'
   ]
 });
 

@@ -25,4 +25,6 @@ jQuery(document).ready(function($) {
 
    $('header .user-name').text(sessionStorage.getItem('user_name'));
 
+   $('.datepicker').Zebra_DatePicker();
+
 });

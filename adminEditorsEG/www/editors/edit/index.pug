@@ -37,6 +37,9 @@ block content
             | Select file:
             input#file-upload-input.file-upload-input(type='file', name='sampleFile', multiple='')
             input(type='submit')
+        form.publish-date-form.d-hide
+            | Select date:
+            input.publish-date-input.datepicker(type='text')
 
         script. 
 
@@ -294,6 +297,77 @@ block content
                             myCodeMirror.setValue('');
 
                         });
+                            
+                });
+
+                /*
+                * Set publish date
+                */
+                $(document).on('click', '.publish-date', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    $('.publish-date-form').removeClass('d-hide');
+                    window.pathPrefixPdate = $(this).parents('.blog-item').find('span').text();
+                });
+
+                $(window).click(function() {
+                    $('.publish-date-form').addClass('d-hide');
+                });
+
+                $('.publish-date-form, .Zebra_DatePicker dp_visible').click(function(event){
+                    event.stopPropagation();
+                });
+
+                $('#file-upload').on('submit', function(e) {
+
+                    e.preventDefault();
+
+                    $(this).attr("disabled", "disabled");
+                    $('.loader').addClass('active');
+
+                    if (pathPrefixPdate === '') {
+
+                        $('.notification').removeClass('d-hide').addClass('error-msg').text('Please select post on the left to set publish date');
+                    } 
+
+                    // TODO
+
+                    //- let input = $('#file-upload-input')[0].files[0];
+
+                    //- posts.uploadFile(input, pathPrefixPdate)
+                    //-     .then(() => {
+
+                    //-         $(this).removeAttr("disabled");
+                    //-         $('.loader').removeClass('active');
+
+                    //-         $('.file-upload').addClass('d-hide');
+
+                    //-         $('.notification').removeClass('d-hide').text('The file was successfully uploaded to the folder ' + pathPrefixPdate);
+
+                    //-         setTimeout(function() {
+                    //-             $('.notification').addClass('d-hide').text('');
+                    //-             $('.file-upload input[type="file"]').val('');
+                    //-         }, 4000);
+
+                    //-     });
+
+                    //- // re-render dirs
+                    //- let postId = $('.blog-item.active').find('span').text();
+                    //- $('.blog-list-wrap').html('');
+                    //- posts
+                    //-     .showDirs()
+                    //-     .then(() => {
+
+                    //-         $('.blog-list-wrap').find('.blog-item span:contains('+ postId +')').parents('.blog-item').addClass('active').click().find('ul li:contains(\'.md\')').addClass('active').click();
+
+                    //-         setTimeout(function() {
+                    //-             $('.blog-item.active ul li:contains(\'.md\')').addClass('active').click();
+                    //-         }, 1000);
+
+                    //-         myCodeMirror.setValue('');
+
+                    //-     });
                             
                 })
 

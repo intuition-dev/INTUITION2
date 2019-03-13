@@ -89,7 +89,7 @@ export class EditorRoutes {
          }
       });
       
-      // create new post
+      // clone page
       appE.post("/new-post", (req, res) => {
          let post_id = req.query.post_id;
          let pathPrefix = req.query.pathPrefix;
