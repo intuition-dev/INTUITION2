@@ -52,7 +52,7 @@ class Editors {
                     }, 500);
                     // table refresh
                     this.table
-                        .updateOrAddData([{id:documentRef.data.id ,email: email, name: name}])
+                        .updateOrAddData([{id:documentRef.data.id , name: name}])
                         .then(function(){
                             console.info('table updated');
                         })

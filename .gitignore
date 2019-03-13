@@ -7,7 +7,9 @@ node_modules/
 nohup.out
 
 index.js
+index.min.js
 **/lib/*.js
+**/lib/*.min.js
 **/www/editors/**/*.html
 **/www/admin/**/*.html
 **/www/*.html

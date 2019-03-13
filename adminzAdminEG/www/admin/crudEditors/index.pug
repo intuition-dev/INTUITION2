@@ -1,6 +1,19 @@
 extends ../../layout/layout
 block content
     #parallax
+    .loader.lds-css.ng-scope
+        .text Deploying
+        .lds-ellipsis(style='width:100%;height:100%')
+            div
+                div
+            div
+                div
+            div
+                div
+            div
+                div
+            div
+                div
     .page-content.container
         h1.table-header Editors
 
@@ -42,9 +55,13 @@ block content
                 $(document).on('click', '#add-editor', function (e) {
                     e.preventDefault();
                     $(this).attr("disabled", "disabled");
+                    $('.loader').addClass('active');
                     editors
                         .save()
-                        .then(() => $(this).removeAttr("disabled"));
+                        .then(() => { 
+                            $(this).removeAttr("disabled");
+                            $('.loader').removeClass('active');
+                        });
                 });
                 /* 
                 * edit editor
@@ -52,9 +69,13 @@ block content
                 $(document).find('#edit-editor').on('click', function (e) {
                     e.preventDefault();
                     $(this).attr("disabled", "disabled");
+                    $('.loader').addClass('active');
                     editors
                         .save(rowUid)
-                        .then(() => $(this).removeAttr("disabled"));
+                        .then(() => { 
+                            $(this).removeAttr("disabled");
+                            $('.loader').removeClass('active');
+                        });
                 });
                 /* 
                 * delete editor
@@ -62,9 +83,13 @@ block content
                 $(document).on('click', '#delete-editor', function (e) {
                     e.preventDefault();
                     $(this).attr("disabled", "disabled");
+                    $('.loader').addClass('active');
                     editors
                         .remove(rowUid)
-                        .then(() => $(this).removeAttr("disabled"));
+                        .then(() => { 
+                            $(this).removeAttr("disabled");
+                            $('.loader').removeClass('active');
+                        });
                 });
 
             });
