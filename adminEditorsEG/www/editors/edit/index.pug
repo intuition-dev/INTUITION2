@@ -1,6 +1,19 @@
 extends ../../layout/layout
 block content
     #parallax
+    .loader.lds-css.ng-scope
+        .text Deploying
+        .lds-ellipsis(style='width:100%;height:100%')
+            div
+                div
+            div
+                div
+            div
+                div
+            div
+                div
+            div
+                div
     .page-content.container.edit-blog-page
         .columns
             .col-3
@@ -115,13 +128,14 @@ block content
                     let pathPrefix = $('.blog-item.active').find('span').text();
                     let md = myCodeMirror.getValue();
                     $(this).attr("disabled", "disabled");
+                    $('.loader').addClass('active');
 
                     posts
                         .saveMd(postId, md, pathPrefix)
                         .then(() => {
 
                             $(this).removeAttr("disabled");
-
+                            $('.loader').removeClass('active');
                             $('.notification').removeClass('d-hide').text('The content was successfully updated');
 
                             setTimeout(function() {
