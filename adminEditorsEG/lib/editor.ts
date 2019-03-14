@@ -54,13 +54,11 @@ export class EditorRoutes {
             if (fs.existsSync(md) && fileExt === '.md') {
                fs.readFile(md, 'utf8', function(err, data) {  
                   if (err) throw err;
-                  console.info(data);
                   res.json(data);
                });
             } else if (fs.existsSync(md) && fileExt === '.yaml') {
                fs.readFile(md, 'utf8', function(err, data) {  
                   if (err) throw err;
-                  console.info(data);
                   res.json(data);
                });
             }
@@ -143,21 +141,16 @@ export class EditorRoutes {
       appE.put("/set-publish-date", (req, res) => {
          let post_id = req.body.post_id;
          let publish_date = req.body.publish_date;
+         console.info('post_id, publish_date', post_id, publish_date);
          if (typeof post_id !== 'undefined') {
             let datYaml = new Dat(config.appMount + '/' +  post_id);
             datYaml.set('publishDate', publish_date);
-            res.send(datYaml.getAll());
+            // res.send(datYaml.getAll());
             datYaml.write();
-
-            //let datYaml = '/' + post_id + '/dat.yaml';
-            // let y = yaml.load(fs.readFileSync((datYaml)));
-            // let fileOps = new FileOps(config.appMount);
-            // fileOps.write(md, req.body);
-            // let runMbake = new MBake();
-            // runMbake.itemizeNBake(config.appMount + '/blog');
-            // runMbake.comps(config.appMount);
-            
-            // res.send('OK');
+            let runMbake = new MBake();
+            runMbake.itemizeNBake(config.appMount + '/blog');
+            runMbake.comps(config.appMount);
+            res.send('OK');
          } else {
             res.status(400);
             res.send({ error: 'no post_id' });

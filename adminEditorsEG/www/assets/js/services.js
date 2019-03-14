@@ -137,4 +137,16 @@ class ApiService {
             });
     }
 
+    /**
+    * file upload
+    * @param publish_date epoch date format, eg: '1602288000'
+    * @param pathPrefix path to .md file, eg: 'blog/post-4'
+    */
+    setPublishDate(publish_date, pathPrefix) {
+        return this.service.put('/editors/set-publish-date', {
+            publish_date: publish_date,
+            post_id: pathPrefix
+        });
+    }
+
 }

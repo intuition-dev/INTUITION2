@@ -349,7 +349,7 @@ block content
                             let myEpoch = myDate.getTime()/1000.0;
 
 
-                            posts.setPublishDate(publishDate, pathPrefixPdate)
+                            posts.setPublishDate(myEpoch, pathPrefixPdate)
                                 .then(() => {
 
                                     $(this).find('button').removeAttr("disabled");

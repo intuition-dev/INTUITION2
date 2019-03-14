@@ -40,12 +40,10 @@ class Posts {
    }
 
    saveMd(id, md, pathPrefix) {
-   	// render .md file content in textarea
    	return apiService.savePostMd(id, md, pathPrefix);
    }
 
    addPost(id, pathPrefix) {
-      // render .md file content in textarea
       return apiService.createPost(id, pathPrefix);
    }
 
@@ -54,6 +52,10 @@ class Posts {
       data.append('sampleFile', input);
 
       return apiService.upload(data, pathPrefix);
+   }
+
+   setPublishDate(publishDate, pathPrefix) {
+      return apiService.setPublishDate(publishDate, pathPrefix);
    }
    
 }
