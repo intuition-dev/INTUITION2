@@ -133,7 +133,8 @@
       a {
          font-size: 8px;
          color: $text-color-dark-2;
-         display: block;
+         display: table;
+         margin: 0 auto;
          font-weight: 300;
 
          &:hover {

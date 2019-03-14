@@ -1,4 +1,4 @@
-import { Dirs, BakeWrk, MBake } from 'mbake/lib/Base';
+import { Dirs, BakeWrk, MBake, Dat } from 'mbake/lib/Base';
 import { CustomCors } from './custom-cors';
 import { FileOps } from 'mbake/lib/Wa';
 import { AppAuth } from './app-auth';
@@ -137,6 +137,31 @@ export class EditorRoutes {
             res.send('File uploaded!');
          });
 
+      });
+
+      // set publish date
+      appE.put("/set-publish-date", (req, res) => {
+         let post_id = req.body.post_id;
+         let publish_date = req.body.publish_date;
+         if (typeof post_id !== 'undefined') {
+            let datYaml = new Dat(config.appMount + '/' +  post_id);
+            datYaml.set('publishDate', publish_date);
+            res.send(datYaml.getAll());
+            datYaml.write();
+
+            //let datYaml = '/' + post_id + '/dat.yaml';
+            // let y = yaml.load(fs.readFileSync((datYaml)));
+            // let fileOps = new FileOps(config.appMount);
+            // fileOps.write(md, req.body);
+            // let runMbake = new MBake();
+            // runMbake.itemizeNBake(config.appMount + '/blog');
+            // runMbake.comps(config.appMount);
+            
+            // res.send('OK');
+         } else {
+            res.status(400);
+            res.send({ error: 'no post_id' });
+         }
       });
       
       return appE;

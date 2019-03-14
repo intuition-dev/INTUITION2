@@ -134,6 +134,8 @@
       a {
          color: $text-color-dark-2;
          font-weight: 600;
+         display: table;
+         margin: 0 auto;
 
          &:hover {
             color: rgba($text-color-dark-2, 1);

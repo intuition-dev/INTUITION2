@@ -18,7 +18,7 @@ input:-webkit-autofill {
     -webkit-text-fill-color: $text-color-dark !important;
 }
 
-.post-name-wrap {
+.post-name-wrap, .publish-date-form {
     position: absolute;
     top: 38%;
     z-index: 99;
@@ -93,7 +93,7 @@ input:-webkit-autofill {
     }
 }
 
-.file-upload, .publish-date-form {
+.file-upload {
     position: absolute;
     background: rgba(0,0,0,.8);
     padding: 20px 35px;
@@ -180,17 +180,54 @@ input:-webkit-autofill {
 }
 
 .publish-date-form {
-    .Zebra_DatePicker_Icon_Wrapper {
-        margin-left: 10px;
-    }
     input, button {
         &, &:hover, &:active, &:focus {
             outline: none;
             box-shadow: none;
         }
     }
-    button {
-        top: 5px!important;
-        right: 5px!important;
+    .Zebra_DatePicker_Icon {
+        top: 4px!important;
+        right: 42px!important;
+        width: 30px;
+        height: 26px;
+        border-width: 4px 2px 2px;
+        border-style: solid;
+        border-radius: 4px;
+        background: 0;
+        margin: 5px 1px 1px;
+        display: inline-block;
+        vertical-align: middle;
+        font-style: normal;
+        color: $text-color-dark-2;
+        text-align: left;
+        text-indent: -9999px;
+        direction: ltr;
+        transition: all .2s;
+        opacity: .7;
+        &:after, &:before {
+            content: '';
+            pointer-events: none;
+        }
+        &:before {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            top: 2px;
+            left: 2px;
+            box-shadow: inset 0 0 0 32px, 6px 0, 12px 0, 18px 0, 0 6px, 6px 6px, 12px 6px, 18px 6px, 0 12px, 6px 12px, 12px 12px, 18px 12px;
+        }
+        &:after {
+            position: absolute;
+            width: 4px;
+            height: 8px;
+            box-shadow: inset 0 0 0 32px, 16px 0;
+            border-radius: 4px;
+            top: -8px;
+            left: 3px;
+        }
+        &:hover {
+            opacity: 1;
+        }
     }
 }
