@@ -77,7 +77,8 @@ export class EditorRoutes {
             let fileOps = new FileOps(config.appMount);
             fileOps.write(md, req.body);
             let runMbake = new MBake();
-            runMbake.itemizeNBake(config.appMount + '/blog');
+            let postsFolder = post_id.substr(0, post_id.indexOf('/')); 
+            runMbake.itemizeNBake(config.appMount + '/' + postsFolder);
             runMbake.comps(config.appMount);
             
             res.send('OK');
@@ -141,14 +142,13 @@ export class EditorRoutes {
       appE.put("/set-publish-date", (req, res) => {
          let post_id = req.body.post_id;
          let publish_date = req.body.publish_date;
-         console.info('post_id, publish_date', post_id, publish_date);
          if (typeof post_id !== 'undefined') {
             let datYaml = new Dat(config.appMount + '/' +  post_id);
             datYaml.set('publishDate', publish_date);
-            // res.send(datYaml.getAll());
             datYaml.write();
             let runMbake = new MBake();
-            runMbake.itemizeNBake(config.appMount + '/blog');
+            let postsFolder = post_id.substr(0, post_id.indexOf('/')); 
+            runMbake.itemizeNBake(config.appMount + '/' + postsFolder);
             runMbake.comps(config.appMount);
             res.send('OK');
          } else {
