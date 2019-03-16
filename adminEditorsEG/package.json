@@ -4,20 +4,20 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=10.15.1",
-    "yarn": ">=1.13.0"
+    "node": ">=10.15.3",
+    "yarn": ">=1.15.2"
   },
   "dependencies": {
     "express": ">=4.16.4",
     "express-fileupload": "^1.1.1-alpha.3",
-    "firebase": ">=5.8.4",
-    "firebase-admin": ">=7.0.0",
-    "mbake": ">=4.16.14",
+    "firebase": ">=5.9.0",
+    "firebase-admin": ">=7.1.0",
+    "mbake": ">=5.2.15",
     "unzipper": ">=0.9.11"
   },
   "devDependencies": {
-    "@types/node": ">=11.9.5",
-    "mbake": ">=4.16.14",
+    "@types/node": ">=11.11.3",
+    "mbake": ">=5.2.15",
     
     "typescript": ">=3.3.3333"
   }
