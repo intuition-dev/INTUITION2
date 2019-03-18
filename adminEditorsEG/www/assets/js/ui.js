@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+depp.require('deviceready', function() {
 
    // login form input lables animation
    if ($('input[name="login"]:-webkit-autofill').length > 0) {

@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", onDeviceReady, false)
+
+function onDeviceReady() {
+    console.info('deviceready')
+    depp.done('deviceready')
+}
+
 var responces = [];
 
 depp.define({

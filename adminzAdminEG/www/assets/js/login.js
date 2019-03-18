@@ -2,7 +2,7 @@
     Admin login
 **/
 
-jQuery(document).ready(function($) {
+depp.require('deviceready', function() {
 
     // wrong credentials error message on fail of basic auth
     let errorMessage = sessionStorage.getItem('errorMessage');
