@@ -19,6 +19,7 @@ block content
             .col-3
                 .blog-list
                     .blog-list-wrap
+                    .logo
                         
             .col-9
                 textarea#cms1(rows='400' )
@@ -27,6 +28,10 @@ block content
                 a(href='#', target='_blank').view-page.btn-custom.btn-secondary
                     span view page
         .notification.d-hide
+            .text
+            span.right-top
+            span.right-bottom
+            span.left-bottom
         form.post-name-wrap.d-hide
             label Enter new post name:
             .input-wrap
@@ -142,10 +147,10 @@ block content
 
                             $(this).removeAttr("disabled");
                             $('.loader').removeClass('active');
-                            $('.notification').removeClass('d-hide').text('The content was successfully updated');
+                            $('.notification').removeClass('d-hide').find('.text').text('The content was successfully updated');
 
                             setTimeout(function() {
-                                $('.notification').addClass('d-hide').text('');
+                                $('.notification').addClass('d-hide').find('.text').text('');
                             }, 4000);
 
                         });
@@ -184,18 +189,18 @@ block content
 
                     if (pathPrefix === '') {
 
-                        $('.notification').removeClass('d-hide').addClass('error-msg').text('Please select post on the left to copy');
+                        $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('Please select post on the left to copy');
 
                         setTimeout(function() {
-                            $('.notification').addClass('d-hide').removeClass('error-msg').text('');
+                            $('.notification').addClass('d-hide').removeClass('error-msg').find('.text').text('');
                         }, 4000);
 
                     } else if (postId === '') {
 
-                        $('.notification').removeClass('d-hide').addClass('error-msg').text('Post name can\'t be blank');
+                        $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('Post name can\'t be blank');
 
                         setTimeout(function() {
-                            $('.notification').addClass('d-hide').removeClass('error-msg').text('');
+                            $('.notification').addClass('d-hide').removeClass('error-msg').find('.text').text('');
                         }, 4000);
 
                     } else {
@@ -211,10 +216,10 @@ block content
                                 $(this).removeAttr("disabled");
                                 $('.loader').removeClass('active');
 
-                                $('.notification').removeClass('d-hide').text('New post was added, now you can edit the content');
+                                $('.notification').removeClass('d-hide').find('.text').text('New post was added, now you can edit the content');
 
                                 setTimeout(function() {
-                                    $('.notification').addClass('d-hide').text('');
+                                    $('.notification').addClass('d-hide').find('.text').text('');
                                 }, 4000);
 
                                 $('.post-name-wrap').find('input').val('');
@@ -277,10 +282,10 @@ block content
 
                             $('.file-upload').addClass('d-hide');
 
-                            $('.notification').removeClass('d-hide').text('The file was successfully uploaded to the folder ' + pathPrefixUpload);
+                            $('.notification').removeClass('d-hide').find('.text').text('The file was successfully uploaded to the folder ' + pathPrefixUpload);
 
                             setTimeout(function() {
-                                $('.notification').addClass('d-hide').text('');
+                                $('.notification').addClass('d-hide').find('.text').text('');
                                 $('.file-upload input[type="file"]').val('');
                             }, 4000);
 
@@ -332,9 +337,9 @@ block content
 
                     if (pathPrefixPdate === '') {
 
-                        $('.notification').removeClass('d-hide').addClass('error-msg').text('Please select post on the left to set publish date');
+                        $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('Please select post on the left to set publish date');
                         setTimeout(function() {
-                            $('.notification').addClass('d-hide').text('');
+                            $('.notification').addClass('d-hide').find('.text').text('');
                             $('.publish-date-form input').val('');
                         }, 4000);
 
@@ -357,10 +362,10 @@ block content
 
                                     $('.publish-date-form').addClass('d-hide');
 
-                                    $('.notification').removeClass('d-hide').text('Publish date was successfully set for post ' + pathPrefixPdate);
+                                    $('.notification').removeClass('d-hide').find('.text').text('Publish date was successfully set for post ' + pathPrefixPdate);
 
                                     setTimeout(function() {
-                                        $('.notification').addClass('d-hide').text('');
+                                        $('.notification').addClass('d-hide').find('.text').text('');
                                     }, 4000);
 
                                 });

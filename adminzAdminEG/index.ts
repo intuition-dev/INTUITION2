@@ -17,7 +17,7 @@ adminApp.listen(adminPort, () => {
 // html
 const adminWPort = 8080;
 const adminWApp = express();
-adminWApp.use(express.static('wwwAdmin'));
+adminWApp.use(express.static('../CMS/wwwAdmin'));
 adminWApp.listen(adminWPort, () => {
     console.log(`adminWApp listening on port ${adminWPort}!`);
 });

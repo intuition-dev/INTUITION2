@@ -37,16 +37,16 @@
 	   position: relative;
 	   margin: 0 0 1rem 1rem;
 	   &:before {
-	   	content: '';
-	      display: block;
-	      position: absolute;
-	      z-index: 0;
-	      bottom: -30px;
-	      left: -30px;
-	      width: 250px;
-		  height: 250px;
-		  @include gradient($background-dark, $background-light); 
-	   }
+			content: '';
+			display: block;
+			position: absolute;
+			z-index: 0;
+			bottom: -30px;
+			left: -30px;
+			width: 250px;
+			height: 250px;
+			@include gradient($background-dark, $background-light); 
+		}
 		&-wrap {
 			@include gradient(white, #e7e7e7);
 		 	font-weight: 600;
@@ -55,6 +55,16 @@
 			position: relative;
 			z-index: 1;
 			overflow-y: auto;
+		}
+
+		.logo {
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			bottom: 1rem;
+			left: 1rem;
+			background: url(../../assets/img/logo.jpg) center center / contain;
+			z-index: 999;
 		}
 
 	}

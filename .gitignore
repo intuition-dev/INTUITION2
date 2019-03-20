@@ -11,14 +11,15 @@ index.min.js
 **/lib/*.js
 **/lib/*.min.js
 **/www/editors/**/*.html
-**/www/admin/**/*.html
+**/wwwAdmin/admin/**/*.html
 **/www/*.html
+**/wwwAdmin/*.html
 **/**/assets/css/*.css
 
 serviceAccountKey.json
-/adminEditorsEG/config.yaml
-/adminzAdminEG/www/config.js
-/adminEditorsEG/www/config.js
+/CMS/config.yaml
+/CMS/wwwAdmin/config.js
+/CMS/www/config.js
 keys.yaml
 
 .env

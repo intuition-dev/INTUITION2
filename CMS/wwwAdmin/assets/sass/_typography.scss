@@ -83,7 +83,7 @@ ul {
 .notification {
     font-weight: 500;
     background: rgba(0,0,0,.8);
-    padding: 20px 35px;
+    padding: 30px 40px;
     font-size: $font-size-global;
     position: absolute;
     z-index: 999;
@@ -101,5 +101,64 @@ ul {
     }
     &.error-msg {
         background: rgba($color,.75);
+    }
+    &:after {
+        width: 10px;
+        height: 1px;
+        top: 10px;
+        left: 10px;
+    }
+    &:before {
+        width: 1px;
+        height: 9px;
+        top: 11px;
+        left: 10px;
+    }
+    span:after, &:before, &:after {
+        content: '';
+    }
+    span, span:after, &:after, &:before {
+        display: block;
+        background: rgba(255,255,255,.5);
+        position: absolute;
+        z-index: 99999;
+    }
+    span {
+        &.right-top {
+            width: 10px;
+            height: 1px;
+            top: 10px;
+            right: 10px;
+        }
+        &.right-top:after {
+            width: 1px;
+            height: 9px;
+            top: 0;
+            right: 0;
+        }
+        &.right-bottom {
+            width: 10px;
+            height: 1px;
+            bottom: 10px;
+            right: 10px;
+        }
+        &.right-bottom:after {
+            width: 1px;
+            height: 9px;
+            bottom: 0;
+            right: 0;
+        }
+        &.left-bottom {
+            width: 10px;
+            height: 1px;
+            bottom: 10px;
+            left: 10px;
+        }
+        &.left-bottom:after {
+            width: 1px;
+            height: 9px;
+            bottom: 0;
+            left: 0;
+        }
     }
 }

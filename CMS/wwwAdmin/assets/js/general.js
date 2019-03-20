@@ -43,9 +43,9 @@ class Editors {
         if (id) { // edit user
             return this.apiService.editEditor(id, name)
                 .then((documentRef) => {
-                    $('.notification').removeClass('d-hide').text('user was successfully updated');
+                    $('.notification').removeClass('d-hide').find('.text').text('user was successfully updated');
                     setTimeout(function() {
-                        $('.notification').addClass('d-hide').text('');
+                        $('.notification').addClass('d-hide').find('.text').text('');
                     }, 4000);
                     $('html, body').animate({ // scroll to form
                         scrollTop: $("#editor-form").offset().top
@@ -63,9 +63,9 @@ class Editors {
         } else { // add user
             return this.apiService.addEditor(name, email, password)
                 .then((documentRef) => {
-                    $('.notification').removeClass('d-hide').text('new user was created');
+                    $('.notification').removeClass('d-hide').find('.text').text('new user was created');
                     setTimeout(function() {
-                        $('.notification').addClass('d-hide').text('');
+                        $('.notification').addClass('d-hide').find('.text').text('');
                     }, 4000);
                     $('html, body').animate({ // scroll to form
                         scrollTop: $("#editor-form").offset().top
@@ -85,9 +85,9 @@ class Editors {
                         alert("Unable to create user: " + err.response.data.error);
                     }
                     console.info('err: ', err);
-                    $('.notification').removeClass('d-hide').addClass('error-msg').text('an error occured, user wasn\'t created', err);
+                    $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('an error occured, user wasn\'t created', err);
                     setTimeout(function() {
-                        $('.notification').addClass('d-hide').removeClass('error-msg').text('');
+                        $('.notification').addClass('d-hide').removeClass('error-msg').find('.text').text('');
                     }, 4000);
                 });
         }
@@ -96,9 +96,9 @@ class Editors {
     remove(id) {
         return this.apiService.deleteEditor(id)
             .then(() => {
-                $('.notification').removeClass('d-hide').text(' The user was successfully deleted');
+                $('.notification').removeClass('d-hide').find('.text').text(' The user was successfully deleted');
                 setTimeout(function() {
-                    $('.notification').addClass('d-hide').text('');
+                    $('.notification').addClass('d-hide').find('.text').text('');
                 }, 4000);
                 $('html, body').animate({ // scroll to form
                     scrollTop: $("#editor-form").offset().top
