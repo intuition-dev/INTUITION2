@@ -6,7 +6,7 @@
     ```sh
     $ mkdir blog-cms
     $ cd blog-cms
-    $ mbakeW -c
+    $ mbakeX -c
     ```
 1. Create an account (if you haven't already) and database in [Firebase](https://console.firebase.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the Firebase Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
 
@@ -56,7 +56,7 @@
     ```
 1. in folders `/blog-cms/adminEditorsEG/www/assets` and `/blog-cms/adminzAdminEG/www/assets` accordingly run command to compile sass:
     ```sh
-    $ mbakeW -s .
+    $ mbakeX -s .
     ```
 1. Open in browser:
     ```sh
