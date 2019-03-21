@@ -9,3 +9,7 @@ appMount: /Users/liza/work/MetaBake/examples/blog
 
 # uses firebase auth
 editorAPIport: 9081
+
+# uses basic auth
+secret: 123456
+adminAPIport: 3030

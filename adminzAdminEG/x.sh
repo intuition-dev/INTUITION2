@@ -1,2 +1,0 @@
-tsc
-node index*.js
