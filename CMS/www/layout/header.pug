@@ -1,37 +1,43 @@
 doctype html
 html
-   head
-      script.
-         window.ROOT = '#{ROOT}';
+    head
+        script.
+            (function(_,e,rr,s){_errs=[s];var c=_.onerror;_.onerror=function(){var a=arguments;_errs.push(a);
+            c&&c.apply(this,a)};var b=function(){var c=e.createElement(rr),b=e.getElementsByTagName(rr)[0];
+            c.src="//beacon.errorception.com/"+s+".js";c.async=!0;b.parentNode.insertBefore(c,b)};
+            _.addEventListener?_.addEventListener("load",b,!1):_.attachEvent("onload",b)})
+            (window,document,"script","5c936a0da02fd608f58b0a91");
+        script.
+            window.ROOT = '#{ROOT}';
 
-      meta(charset='utf-8')
+        meta(charset='utf-8')
 
-      meta(name='viewport', content='width=device-width, initial-scale=1')
-      title #{title}
-      link(rel='stylesheet', href='https://unpkg.com/spectre.css/dist/spectre.min.css')
-      link(rel='stylesheet', href= ROOT +'assets/css/screen.css')
-      link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title #{title}
+        link(rel='stylesheet', href='https://unpkg.com/spectre.css/dist/spectre.min.css')
+        link(rel='stylesheet', href= ROOT +'assets/css/screen.css')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i')
 
-      script(src=ROOT +'config.js')
-      script.
-         window.api = [config.api,config.api_pass];
-         window.appMount = [config.appMount];
+        script(src=ROOT +'config.js')
+        script.
+            window.api = [config.api,config.api_pass];
+            window.appMount = [config.appMount];
 
-      script(src='//cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js')
-      script(src='//cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.min.js')
-      script(src='//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js')
-      script(src=ROOT +'assets/js/app.js')
+        script(src='//cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js')
+        script(src='//cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.min.js')
+        script(src='//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js')
+        script(src=ROOT +'assets/js/app.js')
 
-      script(src="//instant.page/1.2.2", type="module", integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU")
+        script(src="//instant.page/1.2.2", type="module", integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU")
 
-   body
-      block header
-         header.header
-            .layout-wrap.container
-               .user-area
-                  a(href='#').btn-custom.publish-date Set publish date
-                  a(href='#').btn-custom.create-post Create new post
-                  .user-name
-                  a(href='#').sign-out#sign-out Sign out
-      
-      block content
+    body
+        block header
+            header.header
+                .layout-wrap.container
+                    .user-area
+                        a(href='#').btn-custom.publish-date Set publish date
+                        a(href='#').btn-custom.create-post Create new post
+                        .user-name
+                        a(href='#').sign-out#sign-out Sign out
+        
+        block content
