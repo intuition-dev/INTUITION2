@@ -1,4 +1,4 @@
-require('dotenv/config');
+//require('dotenv/config');
 
 import { EditorRoutes } from './lib/editor';
 import { Wa } from 'mbake/lib/Wa';
