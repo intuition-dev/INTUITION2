@@ -40,8 +40,8 @@ webHookApp.all('/webHooks', (req, res) => {
 webHookApp.listen(8080);
 
 // ////////////////////////////////////////////////
-// 1 use elements for credit card https://stripe.com/docs/stripe-js/elements/quickstart
-// 2 create source https://stripe.com/docs/sources/cards
+// 1 use elements for credit card http://stripe.com/docs/stripe-js/elements/quickstart
+// 2 create source http://stripe.com/docs/sources/cards
 // 3 some sources need to listen to connect to webhook event
 
 const PORT = 8444;

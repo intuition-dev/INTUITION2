@@ -1,6 +1,6 @@
 # Deploy on linux, via CodeAnywhere online text editor:
 
-1. Finish [this tutorial](https://metabake.github.io/MetaBake-Docs/ca/)
+1. Finish [this tutorial](http://metabake.github.io/MetaBake-Docs/ca/)
 
 1. Create folder for Blog CMS Editor App in your Linux machine terminal in CodeAnywhere editor (hereinafter CA) and download Blog CMS App to this folder, change `blog-cms` with your own name:
     ```sh
@@ -8,7 +8,7 @@
     $ cd blog-cms
     $ mbakeX -c
     ```
-1. Create an account (if you haven't one already) and database in [Firebase](https://console.firebase.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the Firebase Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
+1. Create an account (if you haven't one already) and database in [Firebase](http://console.firebase.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the Firebase Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
 
 1. To CMS App folder add the following files next to example files accordingly:
 

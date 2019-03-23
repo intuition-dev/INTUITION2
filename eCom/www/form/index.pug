@@ -1,11 +1,11 @@
 
 head
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-    script(src='https://js.stripe.com/v3/')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='http://js.stripe.com/v3/')
     script.
         ROOT = '#{ROOT}' //- sets global pug and .js from dat.yaml
     script(src=ROOT + '../assets/js/stripe-register.js')
-    link(href='https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css', rel='stylesheet', type='text/css')
+    link(href='//cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css', rel='stylesheet', type='text/css')
     //- link(href=ROOT + '../assets/css/base.css', rel='stylesheet', type='text/css')
     include ../assets/css/base.pug
 
@@ -376,7 +376,7 @@ body
 
         var elements = stripe.elements({
             fonts: [{
-                cssSrc: 'https://fonts.googleapis.com/css?family=Source+Code+Pro',
+                cssSrc: '//fonts.googleapis.com/css?family=Source+Code+Pro',
             },],
             // Stripe's examples are localized to specific languages, but if
             // you wish to have Elements automatically detect your user's locale,
