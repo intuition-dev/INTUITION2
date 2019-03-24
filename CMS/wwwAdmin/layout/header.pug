@@ -1,6 +1,7 @@
 doctype html
 html
     head
+
         script.
             (function(_,e,rr,s){_errs=[s];var c=_.onerror;_.onerror=function(){var a=arguments;_errs.push(a);
             c&&c.apply(this,a)};var b=function(){var c=e.createElement(rr),b=e.getElementsByTagName(rr)[0];
@@ -16,7 +17,14 @@ html
         title #{title}
         link(rel='stylesheet', href='//unpkg.com/spectre.css/dist/spectre.min.css')
         link(rel='stylesheet', href= ROOT +'assets/css/screen.css')
+
+        //- load fonts last!
         link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i')
+
+        script(src='//www.gstatic.com/firebasejs/5.9.1/firebase-app.js')
+        script(src='//www.gstatic.com/firebasejs/5.9.1/firebase-auth.js')
+        script(src='//www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js')
+        script(src='//www.gstatic.com/firebasejs/5.9.1/firebase-storage.js')
 
         script(src=ROOT +'config.js')
         script.
