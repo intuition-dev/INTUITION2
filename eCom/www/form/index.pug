@@ -361,7 +361,7 @@ body
                 data-amount='500')
 
     script.
-        // radio buttons content show/hide
+        //- radio buttons content show/hide
         (function($){
             $('input[type="radio"]').click(function() {
                 var method = $(this).parents('.wrap').attr('data-js');
@@ -371,20 +371,20 @@ body
             });
         })(jQuery); 
 
-        // stripe
+        //- stripe
         var stripe = Stripe('pk_test_p1V4wvgaB2ldHqyWH5mYLwLI');
 
         var elements = stripe.elements({
             fonts: [{
                 cssSrc: '//fonts.googleapis.com/css?family=Source+Code+Pro',
             },],
-            // Stripe's examples are localized to specific languages, but if
-            // you wish to have Elements automatically detect your user's locale,
-            // use `locale: 'auto'` instead.
+            //- Stripe's examples are localized to specific languages, but if
+            //- you wish to have Elements automatically detect your user's locale,
+            //- use `locale: 'auto'` instead.
             locale: window.__exampleLocale
         });
 
-        // Floating labels
+        //- Floating labels
         var inputs = document.querySelectorAll('.cell.example.example2 .input');
         Array.prototype.forEach.call(inputs, function(input) {
             input.addEventListener('focus', function() {

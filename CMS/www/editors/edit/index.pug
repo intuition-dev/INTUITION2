@@ -116,7 +116,7 @@ block content
                 */
                 $(document).on('click', '.blog-item li', function(e) {
                     e.preventDefault();
-                    e.stopPropagation(); // prevent child trigger click on parent
+                    e.stopPropagation(); //- prevent child trigger click on parent
 
                     $('.blog-item li').removeClass('active');
                     $(this).addClass('active');
@@ -160,7 +160,7 @@ block content
                 /*
                 * create new post
                 */
-                // show/hide post name form
+                //- show/hide post name form
                 $(document).on('click', '.create-post', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -177,7 +177,7 @@ block content
                     event.stopPropagation();
                 });
 
-                // add post form submit
+                //- add post form submit
                 $('.post-name-wrap').on('submit', function(e) {
 
                     e.preventDefault();
@@ -208,7 +208,7 @@ block content
                         $(this).attr("disabled", "disabled");
                         $('.loader').addClass('active');
 
-                        // add post
+                        //- add post
                         posts
                             .addPost(postId, pathPrefix)
                             .then(() => {
@@ -227,7 +227,7 @@ block content
                             });
 
 
-                        // re-render dirs
+                        //- re-render dirs
                         $('.blog-list-wrap').html('');
                         posts
                             .showDirs()
@@ -291,7 +291,7 @@ block content
 
                         });
 
-                    // re-render dirs
+                    //- re-render dirs
                     $('.blog-list-wrap').html('');
                     posts
                         .showDirs()
@@ -349,7 +349,7 @@ block content
                             $(this).find('button').attr("disabled", "disabled");
                             $('.loader').addClass('active');
 
-                            // convert human readable date to epoch
+                            //- convert human readable date to epoch
                             let myDate = new Date(publishDate);
                             let myEpoch = myDate.getTime()/1000.0;
 
@@ -370,7 +370,7 @@ block content
 
                                 });
 
-                            // re-render dirs
+                            //- re-render dirs
                             $('.blog-list-wrap').html('');
                             posts
                                 .showDirs()
