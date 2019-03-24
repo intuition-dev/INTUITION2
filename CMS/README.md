@@ -8,13 +8,13 @@
     $ cd blog-cms
     $ mbakeX -c
     ```
-1. Create an account (if you haven't one already) and database in [Firebase](http://console.firebase.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the Firebase Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
+1. Create an account (if you haven't one already) and database in [FireStore](http://console.FireStore.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the FireStore Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
 
 1. To CMS App folder add the following files next to example files accordingly:
 
-    - Rename downloaded in the previous step Firebase Admin SDK file to: `serviceAccountKey.json` and place it in folder: `/blog-cms/CMS`. 
+    - Rename downloaded in the previous step FireStore Admin SDK file to: `serviceAccountKey.json` and place it in folder: `/blog-cms/CMS`. 
 
-    - Copy file `.env.example ` to the same folder, rename it to `.env`. In the Firebase console go to `Project Overview` tab, on the next screen click `</>` icon, a popup `Add Firebase to your web app` will appear. Fill the `.env` file fields values with according values of your project.
+    - Copy file `.env.example ` to the same folder, rename it to `.env`. In the FireStore console go to `Project Overview` tab, on the next screen click `</>` icon, a popup `Add FireStore to your web app` will appear. Fill the `.env` file fields values with according values of your project.
 
     - Copy file `config.js.example` in the folder `/blog-cms/CMS/wwwAdmin` rename it to `config.js` and change ip url to your server or local ip address.
 
