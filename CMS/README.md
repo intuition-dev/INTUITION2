@@ -8,7 +8,7 @@
     $ cd blog-cms
     $ mbakeX -c
     ```
-1. Create an account (if you haven't one already) and database in [FireStore](http://console.FireStore.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the FireStore Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
+1. Create an account (if you haven't one already) and database in [FireStore](http://console.firebase.google.com). Navigate to the Service Accounts tab in your database project's settings page. Click the `Generate New Private Key` button at the bottom of the FireStore Admin SDK section of the Service Accounts tab. After you click the button, a JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
 
 1. To CMS App folder add the following files next to example files accordingly:
 
