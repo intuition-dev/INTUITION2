@@ -47,24 +47,34 @@
 			height: 250px;
 			@include gradient($background-dark, $background-light); 
 		}
-		&-wrap {
+		&__inside {
 			@include gradient(white, #e7e7e7);
-		 	font-weight: 600;
-			padding: 1rem;
+			font-weight: 600;
 			font-size: 13px;
 			position: relative;
 			z-index: 1;
-			overflow-y: auto;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
 		}
-
+		&-wrap {
+			padding: 1rem;
+			overflow-y: auto;
+			&::-webkit-scrollbar {
+				width: 0px;  /* remove scrollbar space */
+				background: transparent;  /* optional: just make scrollbar invisible */
+			}
+			/* optional: show position indicator in red */
+			&::-webkit-scrollbar-thumb {
+				background: #fff;
+			}
+		}
 		.logo {
-			width: 100px;
-			height: 100px;
-			position: absolute;
-			bottom: 1rem;
-			left: 1rem;
+			width: 70px;
+			height: 70px;
+			margin: 1rem;
+			flex-shrink: 0;
 			background: url(../../assets/img/logo.jpg) center center / contain;
-			z-index: 999;
 		}
 
 	}
@@ -98,6 +108,7 @@
 		.d-flex {
 			align-items: flex-start;
 			justify-content: flex-start;
+			padding-right: 30px;
 		}
 		li {
 			padding-left: 35px;
@@ -119,7 +130,7 @@
 	height: calc(100vh - 70px);
 	display: flex;
     flex-direction: column;
-	.columns, .blog-list, .blog-list-wrap, [class^='col'] {
+	.columns, .blog-list, .blog-list__inside, [class^='col'] {
 		height: 100%;
 	}
 }

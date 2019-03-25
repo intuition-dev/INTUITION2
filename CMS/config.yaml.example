@@ -13,3 +13,8 @@ editorAPIport: 9081
 # uses basic auth
 secret: 123456
 adminAPIport: 3030
+
+# Firebase connection
+FB_API_KEY: xxx
+FB_AUTH_DOMAIN: xxx
+FB_PROJECT_ID: xxx

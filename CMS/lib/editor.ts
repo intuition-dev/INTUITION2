@@ -99,10 +99,11 @@ export class EditorRoutes {
             // create new post folder
             let postPath = config.appMount + '/' + pathPrefix;
             let substring = '/';
+            console.log(pathPrefix.includes(substring));
             if (pathPrefix.includes(substring)) {
                pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
             }
-            let newPost = config.appMount+ '/' + pathPrefix + '(copy)/' + post_id;
+            let newPost = config.appMount+ '/' + pathPrefix + '/' + post_id;
             let fileOps = new FileOps('/');
             fileOps.clone(postPath, newPost);
             
