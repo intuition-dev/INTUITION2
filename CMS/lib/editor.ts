@@ -96,14 +96,18 @@ export class EditorRoutes {
          if (typeof post_id !== 'undefined'
             && typeof pathPrefix !== 'undefined'
          ) {
+            console.info('post_id', post_id, 'pathPrefix', pathPrefix);
             // create new post folder
             let postPath = config.appMount + '/' + pathPrefix;
             let substring = '/';
+            let newPost = '';
             console.log(pathPrefix.includes(substring));
             if (pathPrefix.includes(substring)) {
                pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
+               newPost = config.appMount+ '/' + pathPrefix + '/' + post_id;
+            } else {
+               newPost = config.appMount+ '/' + post_id;
             }
-            let newPost = config.appMount+ '/' + pathPrefix + '/' + post_id;
             let fileOps = new FileOps('/');
             fileOps.clone(postPath, newPost);
             
