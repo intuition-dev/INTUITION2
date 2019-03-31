@@ -11,9 +11,7 @@
    top: 10px;
 }
 
-
-.fix {
-   background-image:  url('logo.jpg');
+.fix, .fix2 {
 
    height: 200px;
 

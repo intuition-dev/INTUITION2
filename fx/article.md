@@ -4,7 +4,7 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 s
 <!--- 
-class: fix
+class: fix2
 background-image: url('logo.jpg')
 --->
 e
