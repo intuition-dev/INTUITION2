@@ -1,0 +1,24 @@
+
+
+/* 
+ http://alligator.io/css/position-sticky
+ http://www.w3schools.com/howto/howto_css_parallax.asp
+*/
+
+.pageBack {
+   background-attachment: fixed;
+   height: 500px;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   padding: 40px;
+}
+
+.fix {
+
+}
+
+.stick {
+   position: sticky; /* sticky */
+   top: 10px;
+}
