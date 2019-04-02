@@ -78,27 +78,36 @@ export class EditorRoutes {
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;
             if (typeof post_id !== 'undefined') {
+
                 let md = '/' + pathPrefix + post_id;
+
                 let fileOps = new FileOps(config.appMount);
                 fileOps.write(md, req.body);
-                let runMbake = new MBake();
-                console.info('post_id ------------------->', post_id);
-                console.info('pathPrefix ------------------->', pathPrefix);
 
+                let runMbake = new MBake();
+                let dirCont = new Dirs(config.appMount);
                 let postsFolder = post_id.substr(0, post_id.indexOf('/')); 
-                runMbake.itemizeNBake(config.appMount + '/' + postsFolder);
+                let substring = '/';
+
+                if (pathPrefix.includes(substring)) {
+                    pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
+                }
+
+                let checkDat_i = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat_i.yaml'));
+                if (checkDat_i.length > 0) {
+                    runMbake.itemizeNBake(config.appMount + '/' + postsFolder);
+                }
+
                 runMbake.comps(config.appMount);
 
-                let dirCont = new Dirs(config.appMount);
                 let checkCsv = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('.csv'));
-                // console.log('dirCont.getInDir(<...> pathPrefix) ---------------------->', dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('.csv')));
-                console.info('checkCsv.length ----------------> ', checkCsv.length);
                 if (checkCsv.length > 0) {
                     let compileCsv = new CSV2Json(config.appMount + '/' + pathPrefix);
                     compileCsv.convert();
                 }
                 
                 res.send('OK');
+
             } else {
                 res.status(400);
                 res.send({ error: 'no post_id' });
