@@ -60,6 +60,7 @@
 		&-wrap {
 			padding: 1rem;
 			overflow-y: auto;
+			overflow-x: hidden;
 			&::-webkit-scrollbar {
 				width: 0px;  /* remove scrollbar space */
 				background: transparent;  /* optional: just make scrollbar invisible */
@@ -110,10 +111,17 @@
 			justify-content: flex-start;
 			padding-right: 30px;
 		}
+		li, span {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: block;
+			max-width: 100%;
+		}
 		li {
 			padding-left: 35px;
 		   	font-size: 13px;
-		   	transition: color .1s linear;
+			transition: color .1s linear;
 			&:before {
 				display: none;
 			}

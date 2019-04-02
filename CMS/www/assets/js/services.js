@@ -55,14 +55,14 @@ class ApiService {
    }
 
     /**
-    * get list of posts directories
+    * get list of directories
     */
     getDirsList() {
         return this.service.get('/editors/posts');
     }
 
     /**
-    * get posts directories' subdirectories list
+    * get directories' subdirectories list
     * @param id path to post, eg: 'blog/post-2'
     */
     getSubDirsList(id) {
@@ -74,9 +74,9 @@ class ApiService {
     }
 
     /**
-    * get .md files
-    * @param id .md file name, eg: '/title.md'
-    * @param pathPrefix path to .md file, eg: 'blog/post-4'
+    * get files
+    * @param id file name, eg: '/title.md'
+    * @param pathPrefix path to file, eg: 'blog/post-4'
     */
     getPostMd(id, pathPrefix) {
         return this.service.get('/editors/post', {
@@ -88,10 +88,10 @@ class ApiService {
     }
 
     /**
-    * save .md and mbake after edit
-    * @param id .md file name, eg: '/title.md'
-    * @param md .md file content, eg: '###### Lorem ipsum dd dolor sit {.title}'
-    * @param pathPrefix path to .md file, eg: 'blog/post-4'
+    * save file and run mbake
+    * @param id file name, eg: '/title.md'
+    * @param md file content, eg: '###### Lorem ipsum dd dolor sit {.title}'
+    * @param pathPrefix path to file, eg: 'blog/post-4'
     */
     savePostMd(id, md, pathPrefix) {
         return this.service.put('/editors/post', md, {
@@ -104,9 +104,9 @@ class ApiService {
     }
 
     /**
-    * create new post
-    * @param id new post folder name, eg: 'post-cpv'
-    * @param pathPrefix path to .md file, eg: 'blog/post-4'
+    * clone page
+    * @param id new page folder name, eg: 'post-cpv'
+    * @param pathPrefix path to file, eg: 'blog/post-4'
     */
     createPost(id, pathPrefix) {
         console.info('post_id', id);
@@ -121,7 +121,7 @@ class ApiService {
     /**
     * file upload
     * @param data FormData
-    * @param pathPrefix path to .md file, eg: 'blog/post-4'
+    * @param pathPrefix path to file, eg: 'blog/post-4'
     */
     upload(data, pathPrefix) {
         return this.service.post('/editors/upload', data, {
