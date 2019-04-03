@@ -23,7 +23,7 @@ depp.require('deviceready', function() {
    });
 
 
-   $('header .user-name').text(sessionStorage.getItem('user_name'));
+   $('.user-name').text(sessionStorage.getItem('user_name'));
 
    $('.datepicker').Zebra_DatePicker();
 

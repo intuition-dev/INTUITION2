@@ -1,6 +1,5 @@
 extends ../../layout/layout
 block content
-    #parallax
     .loader.lds-css.ng-scope
         .text Deploying
         .lds-ellipsis(style='width:100%;height:100%')
@@ -16,18 +15,27 @@ block content
                 div
     .page-content.container.edit-blog-page
         .columns
-            .col-3
+
+            .col-1
+                .user-area
+                    a(href='#').btn-custom.publish-date Set publish date
+                    a(href='#').btn-custom.create-post Clone page
+                    .user-name
+                    a(href='#').sign-out#sign-out Sign out 
+
+            .col-2
                 .blog-list
                     .blog-list__inside
                         .blog-list-wrap
                         .logo
                         
             .col-9
-                textarea#cms1(rows='400' )
-            .btns-wrap
-                a(href='#').save.btn-custom.btn-primary save
-                a(href='#', target='_blank').view-page.btn-custom.btn-secondary
-                    span view page
+                .editor-wrapper
+                    textarea#cms1(rows='400' )
+                    .btns-wrap
+                        a(href='#').save.btn-custom.btn-primary save
+                        a(href='#', target='_blank').view-page.btn-custom.btn-secondary
+                            span view page
         .notification.d-hide
             .text
         form.post-name-wrap.d-hide

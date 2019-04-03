@@ -23,7 +23,7 @@ class Login {
          }
    }
    auth(){
-      // display username in header, get token and current user
+      // display username, get token and current user
       firebase
          .auth()
          .onAuthStateChanged(user => {
