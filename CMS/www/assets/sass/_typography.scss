@@ -4,11 +4,21 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-    font-weight: 200;
-    color: $text-color-dark-2;
-    &.light {
-        color: $text-color-light;
-        
+    font-weight: 400;
+    color: #333;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 1.4rem 0;
+    span {
+        display: inline-block;
+        margin: 0 5px;
+        padding: 6px 10px;
+        background: #f3f3f3;
+        border-radius: 3px;
+        font-style: italic;
     }
 }
 
@@ -60,30 +70,6 @@ p {
 
 ul {
     list-style-type: none;
-    > li {
-        position: relative;
-        margin: 9px 0;
-        &:before {
-            content: '';
-            display: block;
-            width: 4px;
-            height: 4px;
-            line-height: 4px;
-            text-align: center;
-            position: absolute;
-            z-index: 1;
-            top: 0.74em;
-            left: -0.9em;
-            -webkit-border-radius: 50%;
-            -ms-border-radius: 50%;
-            border-radius: 50%;
-            -webkit-transition: all 0.3s ease;
-            -ms-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-            color: $color;
-            background-color: $color;
-        }
-    }
 }
 
 .notification {

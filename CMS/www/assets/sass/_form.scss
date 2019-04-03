@@ -130,12 +130,7 @@ input:-webkit-autofill {
     direction: ltr;
     box-sizing: border-box;
     transition: all .2s;
-    
     cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: -6px;
-    z-index: 999;
 
     &, &:hover, &:active, &:focus {
         outline: none;
@@ -170,7 +165,14 @@ input:-webkit-autofill {
     }
 
     &:hover {
-        color: $color;
+        color: #1b98f8;
+    }
+
+    &.disabled {
+        &, &:hover {
+            cursor: default;
+            color: rgba(0,0,0,.5);
+        }
     }
 }
 

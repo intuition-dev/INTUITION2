@@ -16,21 +16,30 @@ block content
     .page-content.container.edit-blog-page
         .columns
 
-            .col-1
-                .user-area
-                    a(href='#').btn-custom.publish-date Set publish date
-                    a(href='#').btn-custom.create-post Clone page
-                    .user-name
-                    a(href='#').sign-out#sign-out Sign out 
+            .col-settings
+                ul.user-area
+                    li.site-brand Site Name
+                    li.user-name.divider
+                    li
+                        a(href='#').btn-custom.publish-date Set publish date
+                    li.divider
+                        a(href='#').btn-custom.create-post Clone page
+                    li
+                        a(href='#').sign-out#sign-out Sign out 
+                img.logo(src='../../assets/img/logo.jpg', alt='Metabake logo')
 
-            .col-2
+            .col-sidebar
                 .blog-list
                     .blog-list__inside
                         .blog-list-wrap
-                        .logo
                         
-            .col-9
+            .col-editor
                 .editor-wrapper
+                    h1 Editing  
+                        span File name
+                    .icons-row
+                        .icon-wrap
+                            i.upload.disabled
                     textarea#cms1(rows='400' )
                     .btns-wrap
                         a(href='#').save.btn-custom.btn-primary save
@@ -101,6 +110,7 @@ block content
                 */
                 $(document).off().on('click', '.blog-item', function(e) {
                     e.preventDefault();
+                    $('.upload').removeClass('disabled');
                     $('.blog-item ul').remove();
 
                     $('.blog-item').removeClass('active');
@@ -260,7 +270,7 @@ block content
 
                     $('form').addClass('d-hide');
                     $('.file-upload').removeClass('d-hide');
-                    window.pathPrefixUpload = $(this).parents('.blog-item').find('span').text();
+                    window.pathPrefixUpload = $('.blog-item.active').find('span').text();
                 });
 
                 $(window).click(function() {

@@ -35,8 +35,6 @@
 
 .editor-wrapper {
 	height: 100%;
-	background: #fff;
-	padding: 3rem 2rem;
 }
 
 .edit-blog-page {
@@ -52,8 +50,8 @@
 }
 
 svg {
-	width: 20px;
-	height: 20px;
+	width: 15px;
+    height: 15px;
 	flex-shrink: 0;
 }
 
@@ -62,38 +60,56 @@ svg {
 	border: 1px solid #cccccc;
     border-radius: 4px;
 	.CodeMirror-scroll {
-		max-height: 618px;
-		min-height: 400px;
+		height: calc(100vh - 214px);
 	}
 	div, span {
 		font-weight: 300;
 	}
 }
 
+.col {
+	&-settings {
+		width: 145px;
+		padding: 1.1rem 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	&-sidebar {
+		width: 300px;
+		background: #f5f5f5;
+		border-right: 1px solid #ddd;
+		padding: 1.5rem 40px;
+	}
+	&-editor {
+		flex: 1;
+		background: #fff;
+		padding: 1.1rem 1.5rem;
+	}
+}
+
 // sidebar
 .user {
 	&-area {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+		color: #fff;
 		font-size: 12px;
-		padding: 2rem 0;
-		.btn-custom, a, div {
-			font-weight: 300;
-		}
+		margin: 0;
 		.btn-custom {
 			padding: 0;
-			&.create-post {
-				border: .5px solid rgba(255,255,255,.6);
-				padding: 5px 20px;
-			}
+			text-align: left;
+		}
+		.site-brand {
+			font-weight: 600;
+			font-size: 20px;
+		}
+		.divider {
+			margin: 0 0 1rem 0;
+			border: 0;
+			height: initial;
 		}
 	}
 	&-name {
 		font-size: inherit;
-    	font-weight: 300;
-		color: #aaa;
-		
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -102,13 +118,19 @@ svg {
 	}
 }
 
+.logo {
+	display: block;
+	width: 82%;
+	flex-shrink: 0;
+	margin: 0 auto;
+}
+
 // folders sidebar
 .blog {
 	&-list {
 		position: relative;
 		margin: 0;
 		&__inside {
-			background: #f5f5f5;
 			font-weight: 600;
 			font-size: 13px;
 			position: relative;
@@ -118,7 +140,8 @@ svg {
 			justify-content: space-between;
 		}
 		&-wrap {
-			padding: 1rem;
+			padding: 5px 0;
+			height: 100%;
 			overflow-y: auto;
 			overflow-x: hidden;
 			&::-webkit-scrollbar {
@@ -130,13 +153,6 @@ svg {
 				background: #fff;
 			}
 		}
-		.logo {
-			width: 70px;
-			height: 70px;
-			margin: 1rem;
-			flex-shrink: 0;
-			background: url(../../assets/img/logo.jpg) center center / contain;
-		}
 
 	}
 	&-item {
@@ -144,14 +160,14 @@ svg {
 		cursor: pointer;
 		position: relative;
 		span, li {
-			font-weight: 300;
+			font-weight: 400;
 		}
 		span {
 			transition: color 0.1s linear, border 0.1s linear;
 			display: table;
 		}
 		svg {
-			margin: 0 1rem 0 0;
+			margin: 0 7px 0 0;
 			transition: fill .1s linear;
 			fill: #000;
 		}
@@ -171,6 +187,9 @@ svg {
 			justify-content: flex-start;
 			padding-right: 30px;
 		}
+		ul {
+			margin: .4rem 0 0 0;
+		}
 		li, span {
 			white-space: nowrap;
 			overflow: hidden;
@@ -179,14 +198,28 @@ svg {
 			max-width: 100%;
 		}
 		li {
-			padding-left: 35px;
+			margin: 0 0 0 35px;
 		   	font-size: 13px;
-			transition: color .1s linear;
+			div {
+				display: inline-flex;
+				align-items: center;
+				justify-content: flex-start;
+				height: 22px;
+				padding-right: 4px;
+			}
 			&:before {
 				display: none;
 			}
 			&:hover, &.active {
-				color: $color;
+				div {
+					color: #fff;
+					background: #1b98f8;
+					border-radius: 3px;
+				}
+			}
+			i {
+				flex-shrink: 0;
+				transform: scale(.5);
 			}
 		}
 	}
