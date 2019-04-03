@@ -173,10 +173,11 @@ svg {
 		}
 		&:hover, &.active {
 			span {
-				color: $color;
+				// color: $color;
+				font-weight: 600;
 			}
 			svg {
-				fill: $color;
+				// fill: $color;
 			}
 		}
 		&:last-of-type {
