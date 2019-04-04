@@ -114,6 +114,8 @@ block content
                     e.preventDefault();
                     $('.blog-item ul').remove();
                     $('.upload, .i-plusCircle').removeClass('disabled');
+                    $('.knot').removeClass('active');
+                    $(this).find('.knot').addClass('active');
                     $('.blog-item').removeClass('active');
                     $(this).addClass('active');
 

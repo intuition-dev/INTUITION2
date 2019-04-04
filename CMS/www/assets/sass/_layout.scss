@@ -79,7 +79,18 @@ svg {
 		width: 300px;
 		background: #f5f5f5;
 		border-right: 1px solid #ddd;
-		padding: 1.5rem 40px;
+		padding: 1.3rem 40px 1.3rem 60px;
+		overflow-y: auto;
+		overflow-x: hidden;
+		height: 100%;
+		&::-webkit-scrollbar {
+			width: 0px;  /* remove scrollbar space */
+			background: transparent;  /* optional: just make scrollbar invisible */
+		}
+		/* optional: show position indicator */
+		&::-webkit-scrollbar-thumb {
+			background: #fff;
+		}
 	}
 	&-editor {
 		flex: 1;
@@ -130,6 +141,7 @@ svg {
 
 // folders sidebar
 .blog {
+	color: #333;
 	&-list {
 		position: relative;
 		margin: 0;
@@ -144,17 +156,6 @@ svg {
 		}
 		&-wrap {
 			padding: 5px 0;
-			height: 100%;
-			overflow-y: auto;
-			overflow-x: hidden;
-			&::-webkit-scrollbar {
-				width: 0px;  /* remove scrollbar space */
-				background: transparent;  /* optional: just make scrollbar invisible */
-			}
-			/* optional: show position indicator */
-			&::-webkit-scrollbar-thumb {
-				background: #fff;
-			}
 		}
 
 	}
@@ -162,6 +163,20 @@ svg {
 		margin-bottom: .4rem;
 		cursor: pointer;
 		position: relative;
+		&:before {
+			content: '';
+			display: block;
+			background: #979797;
+			width: 1px;
+			left: -17px;
+			top: -4px;
+			bottom: -4px;
+			position: absolute;
+			z-index: -1;
+		}
+		&:last-of-type:before {
+			bottom: 6px;
+		}
 		span, li {
 			font-weight: 400;
 		}
@@ -172,7 +187,7 @@ svg {
 		svg {
 			margin: 0 7px 0 0;
 			transition: fill .1s linear;
-			fill: #000;
+			fill: #333;
 		}
 		&.active {
 			span {
@@ -194,8 +209,19 @@ svg {
 		}
 		ul {
 			margin: .4rem 0 0 0;
+			position: relative;
+			&:before {
+				content: '';
+				display: block;
+				width: 1px;
+				left: 9px;
+				top: -1px;
+				bottom: 18px;
+				position: absolute;
+				background: #979797;
+			}
 		}
-		li, span, li div {
+		span, li div {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -203,8 +229,20 @@ svg {
 			max-width: 100%;
 		}
 		li {
-			margin: 0 0 0 35px;
+			margin: 0 0 0 20px;
 		   	font-size: 13px;
+			position: relative;
+			display: block;
+			&:after {
+				content: '';
+				display: block;
+				width: 11px;
+				height: 1px;
+				background: #979797;
+				position: absolute;
+				left: -10px;
+				top: 10px;
+			}
 			div {
 				display: inline-flex;
 				align-items: center;
@@ -230,6 +268,9 @@ svg {
 			i {
 				flex-shrink: 0;
 				transform: scale(.5);
+				&:hover {
+					color: #fff;
+				}
 			}
 		}
 	}
