@@ -18,10 +18,8 @@ block content
 
             .col-settings
                 ul.user-area
-                    li.site-brand Site Name
-                    li.user-name.divider
-                    li.divider
-                        a(href='#').btn-custom.create-post Clone page
+                    li.site-brand.divider Site Name
+                    li.user-name
                     li
                         a(href='#').sign-out#sign-out Sign out 
                 img.logo(src='../../assets/img/logo.jpg', alt='Metabake logo')
@@ -42,6 +40,8 @@ block content
                             i.i-calendar.disabled.publish-date(title='Set publish date')
                         .icon-wrap
                             i.icono-sync(title='Refresh')
+                        .icon-wrap
+                            i.i-plusCircle.disabled.create-post(title='Clone page')
                     textarea#cms1(rows='400' )
                     .btns-wrap
                         a(href='#').save.btn-custom.btn-primary save
@@ -50,7 +50,7 @@ block content
         .notification.d-hide
             .text
         form.post-name-wrap.d-hide
-            label Enter new post name:
+            label Enter new page name:
             .input-wrap
                 input(name='post-name', type='text', required)
                 button(type='submit')
@@ -113,7 +113,7 @@ block content
                 $(document).off().on('click', '.blog-item', function(e) {
                     e.preventDefault();
                     $('.blog-item ul').remove();
-                    $('.upload').removeClass('disabled');
+                    $('.upload, .i-plusCircle').removeClass('disabled');
                     $('.blog-item').removeClass('active');
                     $(this).addClass('active');
 
@@ -259,7 +259,7 @@ block content
 
                     if (pathPrefix === '') {
 
-                        $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('Please select post on the left to copy');
+                        $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('Please select a page to copy');
 
                         setTimeout(function() {
                             $('.notification').addClass('d-hide').removeClass('error-msg').find('.text').text('');
@@ -267,7 +267,7 @@ block content
 
                     } else if (postId === '') {
 
-                        $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('Post name can\'t be blank');
+                        $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('Page name can\'t be blank');
 
                         setTimeout(function() {
                             $('.notification').addClass('d-hide').removeClass('error-msg').find('.text').text('');

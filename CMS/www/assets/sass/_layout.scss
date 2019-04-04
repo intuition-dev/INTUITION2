@@ -115,6 +115,9 @@ svg {
 		text-overflow: ellipsis;
 		display: block;
 		max-width: 100%;
+		&:first-letter {
+			text-transform: capitalize;
+		}
 	}
 }
 
