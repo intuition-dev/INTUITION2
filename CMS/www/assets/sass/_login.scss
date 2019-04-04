@@ -6,7 +6,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   color: $text-color-dark-2;
+   color: #333;
 
    &.login {
       min-height: 100vh;
@@ -16,6 +16,7 @@
    .login-form {
       width: 340px;
       min-height: 250px;
+      border-radius: 4px;
       padding: 30px;
       text-align: center;
       background: $background-light2;
@@ -24,23 +25,10 @@
 
       &-wrap {
          max-width: 98%;
-         position: relative;
-
-         &:after {
-            content: '';
-            display: block;
-            position: absolute;
-            z-index: 0;
-            bottom: -30px;
-            right: -30px;
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(-135deg,$background-dark,$background-light);
-         }
       }
 
       fieldset legend, label {
-         font-weight: 200;
+         font-weight: 400;
       }
 
       fieldset legend {
@@ -65,6 +53,7 @@
             display: block;
             font-size: 10px;
             color: rgba($text-color-dark, .74);
+            z-index: 9;
          }
       }
 
@@ -85,7 +74,7 @@
 
       input {
          font-family: inherit;
-         font-weight: 300;
+         font-weight: 400;
          border: 0;
          border-radius: 0;
          border-bottom: .5px solid rgba($button-primary, 1);
@@ -135,7 +124,7 @@
          color: $text-color-dark-2;
          display: table;
          margin: 0 auto;
-         font-weight: 300;
+         font-weight: 400;
 
          &:hover {
             color: rgba($text-color-dark-2, 1);
@@ -145,7 +134,7 @@
       span {
          display: block;
          margin: 0 0 3px 0;
-         font-weight: 300;
+         font-weight: 400;
       }
    }
    & .isError {
@@ -157,5 +146,5 @@
 }
 
 .login-bg {
-   @include gradient($background-light, $background-dark); 
+   @include gradient(#252a3a, #f5f5f5); 
 }

@@ -10,6 +10,7 @@
         padding: 8px 15px;
         transition: all .2s ease-in-out;
         display: inline-block;
+        color: #fff;
 
         &::first-letter {
             text-transform: uppercase;
@@ -22,7 +23,7 @@
         }
 
         &[disabled="disabled"] {
-            background: rgba(0,0,0,.5);
+            background: rgba(0,0,0,.2);
         }
 
         

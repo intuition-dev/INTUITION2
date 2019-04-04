@@ -44,8 +44,8 @@ block content
                             i.i-plusCircle.disabled.create-post(title='Clone page')
                     textarea#cms1(rows='400' )
                     .btns-wrap
-                        a(href='#').save.btn-custom.btn-primary save
-                        a(href='#', target='_blank').view-page.btn-custom.btn-secondary
+                        button.save.btn-custom.btn-primary(href='#', disabled='disabled') save
+                        button(href='#', target='_blank', disabled='disabled').view-page.btn-custom.btn-secondary
                             span view page
         .notification.d-hide
             .text
@@ -118,6 +118,8 @@ block content
                     $(this).find('.knot').addClass('active');
                     $('.blog-item').removeClass('active');
                     $(this).addClass('active');
+                    $('.btn-custom.save').attr("disabled", "disabled");
+                    $('.view-page').removeAttr("disabled");
 
                     let postId = $(this).find('span').text();
                     
@@ -192,6 +194,7 @@ block content
 
                         posts.showMd(postId, pathPrefix);
 
+                        $('.btn-custom.save').removeAttr("disabled")
                         $('.i-calendar').addClass('disabled');
                         if (postId.includes(datFile)) {
                             $('.i-calendar').removeClass('disabled');
