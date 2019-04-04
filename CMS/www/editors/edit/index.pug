@@ -36,10 +36,12 @@ block content
             .col-editor
                 .editor-wrapper
                     h1 Editing  
-                        span File name
+                        span.js-file-name Choose file to edit
                     .icons-row
                         .icon-wrap
-                            i.upload.disabled
+                            i.upload.disabled(title='file upload')
+                        .icon-wrap 
+                            i.i-calendar.disabled(title='Set publish date')
                     textarea#cms1(rows='400' )
                     .btns-wrap
                         a(href='#').save.btn-custom.btn-primary save
@@ -110,13 +112,19 @@ block content
                 */
                 $(document).off().on('click', '.blog-item', function(e) {
                     e.preventDefault();
-                    $('.upload').removeClass('disabled');
                     $('.blog-item ul').remove();
 
                     $('.blog-item').removeClass('active');
                     $(this).addClass('active');
 
                     let postId = $(this).find('span').text();
+                    
+                    $('.upload').removeClass('disabled');
+                    let datFile = 'dat.yaml';
+                    if (postId.includes(datFile)) {
+                        $('.i-calendar').removeClass('disabled');
+                    }
+
                     $('.view-page').attr('href', appMount+ '/' + postId);
 
                     if ($(this).find('ul').length === 0) {
@@ -128,25 +136,33 @@ block content
                 });
 
                 /*
-                * show .md for chosen post
+                * show file contents
                 */
                 $(document).on('click', '.blog-item li', function(e) {
                     e.preventDefault();
                     e.stopPropagation(); //- prevent child trigger click on parent
 
-                    $('.blog-item li').removeClass('active');
-                    $(this).addClass('active');
-
                     let postId = $(this).text();
-                    let pathPrefix = $(this).parents('.blog-item').find('span').text();
+                    let mdFile = '.md';
+                    let datFile = 'dat.yaml';
+                    let csvFile = '.csv';
 
-                    posts.showMd(postId, pathPrefix);
+                    if (postId.includes(mdFile) || postId.includes(datFile) || postId.includes(csvFile)) {
+                        $('.blog-item li').removeClass('active');
+                        $(this).addClass('active');
+                        let pathPrefix = $(this).parents('.blog-item').find('span').text();
+
+                        let editedFileName = postId.replace('/', '');
+                        $('.js-file-name').text(editedFileName);
+
+                        posts.showMd(postId, pathPrefix);
+                    }
 
                 });
 
 
                 /*
-                * save .md
+                * save file
                 */
                 $(document).on('click', '.save', function(e) {
                     e.preventDefault();
@@ -174,7 +190,7 @@ block content
                 });
 
                 /*
-                * create new post
+                * clone page
                 */
                 //- show/hide post name form
                 $(document).on('click', '.create-post', function(e) {
@@ -193,7 +209,7 @@ block content
                     event.stopPropagation();
                 });
 
-                //- add post form submit
+                //- clone page form submit
                 $('.post-name-wrap').on('submit', function(e) {
 
                     e.preventDefault();
@@ -262,7 +278,7 @@ block content
                 });
 
                 /*
-                * Upload file
+                * File upload
                 */
                 $(document).on('click', '.upload', function(e) {
                     e.preventDefault();
