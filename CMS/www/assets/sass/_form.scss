@@ -113,68 +113,6 @@ input:-webkit-autofill {
         cursor: pointer;
     }
 }
-.upload {
-    border: 2px solid;
-    width: 24px;
-    height: 22px;
-    border-radius: 3px;
-    overflow: hidden;
-    margin: 4px 2px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    font-style: normal;
-    color: currentColor;
-    text-align: left;
-    text-indent: -9999px;
-    direction: ltr;
-    box-sizing: border-box;
-    transition: all .2s;
-    cursor: pointer;
-
-    &, &:hover, &:active, &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-
-
-    &:before, &:after {
-        content: '';
-        pointer-events: none;
-    }
-
-    &:before {
-        -webkit-transform: rotate(45deg);
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        left: 0;
-        top: 11px;
-        transform: rotate(45deg);
-        box-shadow: inset 0 0 0 32px, 10px -6px 0 0;
-    }
-
-    &:after {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        box-shadow: inset 0 0 0 32px;
-        top: 5px;
-        right: 5px;
-    }
-
-    &:hover {
-        color: #1b98f8;
-    }
-
-    &.disabled {
-        &, &:hover {
-            cursor: default;
-            color: rgba(0,0,0,.5);
-        }
-    }
-}
 
 .file-upload-input {
     margin-left: 7px;
@@ -191,22 +129,22 @@ input:-webkit-autofill {
     .Zebra_DatePicker_Icon {
         top: 4px!important;
         right: 42px!important;
+        margin: 5px 1px 1px;
+        opacity: .7;
         width: 30px;
         height: 26px;
         border-width: 4px 2px 2px;
         border-style: solid;
         border-radius: 4px;
         background: 0;
-        margin: 5px 1px 1px;
         display: inline-block;
         vertical-align: middle;
         font-style: normal;
-        color: $text-color-dark-2;
+        color: currentColor;
         text-align: left;
         text-indent: -9999px;
         direction: ltr;
         transition: all .2s;
-        opacity: .7;
         &:after, &:before {
             content: '';
             pointer-events: none;
