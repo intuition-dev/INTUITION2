@@ -239,6 +239,8 @@ block content
                     
                     $('form').addClass('d-hide');
                     $('.post-name-wrap').removeClass('d-hide');
+                    $('.icon-wrap i').removeClass('active');
+                    $('.icon-wrap .create-post').addClass('active');
                 });
 
                 $(window).click(function() {
@@ -326,11 +328,14 @@ block content
 
                     $('form').addClass('d-hide');
                     $('.file-upload').removeClass('d-hide');
+                    $('.icon-wrap i').removeClass('active');
+                    $('.icon-wrap .upload').addClass('active');
                     window.pathPrefixUpload = $('.blog-item.active').find('span').text();
                 });
 
                 $(window).click(function() {
                     $('.file-upload').addClass('d-hide');
+                    $('.icon-wrap i').removeClass('active');
                 });
 
                 $('.file-upload').click(function(event){
@@ -389,6 +394,8 @@ block content
                     e.preventDefault();
                     e.stopPropagation();
 
+                    $('.icon-wrap i').removeClass('active');
+                    $('.icon-wrap .i-calendar').addClass('active');
                     $('form').addClass('d-hide');
                     $('.publish-date-form').removeClass('d-hide');
                     window.pathPrefixPdate = $('.blog-item.active').find('span').text();

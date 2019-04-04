@@ -73,8 +73,9 @@ ul {
 }
 
 .notification {
-    font-weight: 500;
-    background: rgba(0,0,0,.8);
+    font-weight: 400;
+    background: #e6e6e6;
+    border-radius: 4px;
     padding: 30px 40px;
     font-size: $font-size-global;
     position: absolute;
@@ -84,9 +85,7 @@ ul {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
-    letter-spacing: 1px;
-    word-spacing: 3px;
+    color: #333;
     align-self: center;
     &::first-letter { 
         text-transform: uppercase;

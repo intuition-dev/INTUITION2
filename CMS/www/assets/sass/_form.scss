@@ -18,11 +18,18 @@ input:-webkit-autofill {
     -webkit-text-fill-color: $text-color-dark !important;
 }
 
+.post-name-wrap, .publish-date-form, .file-upload {
+    background: rgba(#252a3a,.9);
+    border-radius: 4px;
+    button i, button i.icono-checkCircle,  button.Zebra_DatePicker_Icon {
+        color: #252a3a;
+    }
+}
+
 .post-name-wrap, .publish-date-form {
     position: absolute;
     top: 38%;
     z-index: 99;
-    background: rgba(0,0,0,.7);
     padding: .5rem 1rem 1rem 1rem;
     align-self: center;
 
@@ -58,10 +65,10 @@ input:-webkit-autofill {
         font-family: inherit;
         font-size: $font-size-global;
         font-weight: 300;
-        color: $text-color-dark-2;
-        background: rgba(255,255,255,.7);
+        color: #252a3a;
+        background: rgba(#e6e6e6,.7);
         border: 0;
-        border-radius: 0;
+        border-radius: 4px;
         width: 500px;
         max-width: 100%;
         height: 40px;
@@ -73,17 +80,17 @@ input:-webkit-autofill {
 
         &::-webkit-input-placeholder {
             font-size: $font-size-global;
-            color: $text-color-dark-2;
+            color: #252a3a;
         }
 
         &::-moz-placeholder {
             font-size: $font-size-global;
-            color: $text-color-dark-2;
+            color: #252a3a;
         }
 
         &::-ms-input-placeholder {
             font-size: $font-size-global;
-            color: $text-color-dark-2;
+            color: #252a3a;
         }
 
         &, &:hover, &:active, &:focus {
@@ -95,7 +102,6 @@ input:-webkit-autofill {
 
 .file-upload {
     position: absolute;
-    background: rgba(0,0,0,.8);
     padding: 20px 35px;
     font-size: $font-size-global;
     position: absolute;
@@ -106,8 +112,6 @@ input:-webkit-autofill {
     justify-content: center;
     text-align: center;
     color: #fff;
-    letter-spacing: 1px;
-    word-spacing: 3px;
     align-self: center;
     input[type='submit'] {
         cursor: pointer;

@@ -143,6 +143,9 @@ i {
     .i-plusCircle {
         transform: scale(.6);
     }
+    i.active {
+        color: #1b98f8; 
+    }
 }
 
 .i-file {
@@ -406,13 +409,4 @@ i {
         top: 5px;
         position: absolute;
     }
-    // &:before {
-    //     content: '';
-    //     display: block;
-    //     width: 1px;
-    //     height: 6px;
-    //     right: 5px;
-    //     top: -6px;
-    //     position: absolute;
-    // }
 }
