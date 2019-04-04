@@ -42,6 +42,8 @@ block content
                             i.upload.disabled(title='file upload')
                         .icon-wrap 
                             i.i-calendar.disabled(title='Set publish date')
+                        .icon-wrap
+                            i.icono-sync(title='Refresh')
                     textarea#cms1(rows='400' )
                     .btns-wrap
                         a(href='#').save.btn-custom.btn-primary save
@@ -113,17 +115,12 @@ block content
                 $(document).off().on('click', '.blog-item', function(e) {
                     e.preventDefault();
                     $('.blog-item ul').remove();
-
+                    $('.upload').removeClass('disabled');
                     $('.blog-item').removeClass('active');
                     $(this).addClass('active');
 
                     let postId = $(this).find('span').text();
                     
-                    $('.upload').removeClass('disabled');
-                    let datFile = 'dat.yaml';
-                    if (postId.includes(datFile)) {
-                        $('.i-calendar').removeClass('disabled');
-                    }
 
                     $('.view-page').attr('href', appMount+ '/' + postId);
 
@@ -133,6 +130,39 @@ block content
                         $(this).find('ul').remove();
                     }
 
+                });
+
+                /*
+                * Refresh directiories
+                */
+                $(document).on('click', '.icono-sync', function(e) {
+                    e.preventDefault();
+                    if ($('.blog-item').hasClass('active')) {
+
+                        window.refreshActiveFolder = $('.blog-item.active').find('span').text();
+                        window.refreshActiveFile = $('.blog-item.active li.active div').text();
+                        $('.blog-list-wrap').html('');
+                        //- re-render dirs
+                        posts
+                            .showDirs()
+                            .then(() => {
+
+                                $('.blog-list-wrap').find('.blog-item span:contains('+ refreshActiveFolder +')').parents('.blog-item').addClass('active').click().find('ul li:contains('+ refreshActiveFile +')').addClass('active').click();
+                                
+                                setTimeout(function() {
+                                    $('.blog-item.active ul li:contains('+ refreshActiveFile +')').addClass('active').click();
+                                }, 1000);
+
+                            });
+
+                    } else {
+
+                        //- re-render dirs
+                        $('.blog-list-wrap').html('');
+
+                        posts.showDirs();
+                                
+                    }
                 });
 
                 /*
@@ -156,6 +186,11 @@ block content
                         $('.js-file-name').text(editedFileName);
 
                         posts.showMd(postId, pathPrefix);
+
+                        $('.i-calendar').addClass('disabled');
+                        if (postId.includes(datFile)) {
+                            $('.i-calendar').removeClass('disabled');
+                        }
                     }
 
                 });
