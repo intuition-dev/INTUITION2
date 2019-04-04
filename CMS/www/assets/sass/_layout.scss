@@ -249,9 +249,9 @@ svg {
 	}
 	.text {
 		color: #fff;
-		letter-spacing: 10px;
 		margin-bottom: 10px;
-		text-transform: uppercase;
+		text-transform: capitalize;
+		letter-spacing: 1px;
 	}
 }
 @keyframes lds-ellipsis3 {

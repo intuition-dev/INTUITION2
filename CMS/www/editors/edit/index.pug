@@ -20,8 +20,6 @@ block content
                 ul.user-area
                     li.site-brand Site Name
                     li.user-name.divider
-                    li
-                        a(href='#').btn-custom.publish-date Set publish date
                     li.divider
                         a(href='#').btn-custom.create-post Clone page
                     li
@@ -41,7 +39,7 @@ block content
                         .icon-wrap
                             i.upload.disabled(title='file upload')
                         .icon-wrap 
-                            i.i-calendar.disabled(title='Set publish date')
+                            i.i-calendar.disabled.publish-date(title='Set publish date')
                         .icon-wrap
                             i.icono-sync(title='Refresh')
                     textarea#cms1(rows='400' )
@@ -141,6 +139,7 @@ block content
 
                         window.refreshActiveFolder = $('.blog-item.active').find('span').text();
                         window.refreshActiveFile = $('.blog-item.active li.active div').text();
+                        $('.loader').addClass('active');
                         $('.blog-list-wrap').html('');
                         //- re-render dirs
                         posts
@@ -151,16 +150,20 @@ block content
                                 
                                 setTimeout(function() {
                                     $('.blog-item.active ul li:contains('+ refreshActiveFile +')').addClass('active').click();
+                                    $('.loader').removeClass('active');
                                 }, 1000);
+
 
                             });
 
                     } else {
 
                         //- re-render dirs
+                        $('.loader').addClass('active');
                         $('.blog-list-wrap').html('');
 
-                        posts.showDirs();
+                        posts.showDirs()
+                        .then(() => $('.loader').removeClass('active'));
                                 
                     }
                 });
@@ -359,15 +362,16 @@ block content
                         });
 
                     //- re-render dirs
+                    window.uploadActiveFile = $('.blog-item.active li.active div').text();
                     $('.blog-list-wrap').html('');
                     posts
                         .showDirs()
                         .then(() => {
 
-                            $('.blog-list-wrap').find('.blog-item span:contains('+ pathPrefixUpload +')').parents('.blog-item').addClass('active').click().find('ul li:contains(\'.md\')').addClass('active').click();
+                            $('.blog-list-wrap').find('.blog-item span:contains('+ pathPrefixUpload +')').parents('.blog-item').addClass('active').click().find('ul li:contains('+ uploadActiveFile +')').addClass('active').click();
 
                             setTimeout(function() {
-                                $('.blog-item.active ul li:contains(\'.md\')').addClass('active').click();
+                                $('.blog-item.active ul li:contains('+ uploadActiveFile +')').addClass('active').click();
                             }, 1000);
 
                             myCodeMirror.setValue('');
@@ -446,7 +450,7 @@ block content
                                     $('.blog-list-wrap').find('.blog-item span:contains('+ pathPrefixPdate +')').parents('.blog-item').addClass('active').click().find('ul li:contains(\'.md\')').addClass('active').click();
 
                                     setTimeout(function() {
-                                        $('.blog-item.active ul li:contains(\'.md\')').addClass('active').click();
+                                        $('.blog-item.active ul li:contains(\'dat.yaml\')').addClass('active').click();
                                     }, 1000);
 
                                     myCodeMirror.setValue('');
