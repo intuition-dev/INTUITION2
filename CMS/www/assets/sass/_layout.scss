@@ -307,7 +307,8 @@ svg {
 	text-align: center;
 	display: flex;
     align-items: center;
-    justify-content: center;
+	justify-content: center;
+	margin-left: 1rem;
 	&.active {
 		opacity: 1;
 	}
