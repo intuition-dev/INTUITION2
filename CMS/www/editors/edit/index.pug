@@ -1,4 +1,14 @@
 extends ../../layout/layout
+block header
+    header
+        .col-settings.container
+            div
+                .site-brand Site Name
+            ul.user-area
+                li
+                    a(href='#').sign-out#sign-out Sign out 
+                li.user-name
+
 block content
     .loader.lds-css.ng-scope
         .text Deploying
@@ -16,21 +26,14 @@ block content
     .page-content.container.edit-blog-page
         .columns
 
-            .col-settings
-                ul.user-area
-                    li.site-brand.divider Site Name
-                    li.user-name
-                    li
-                        a(href='#').sign-out#sign-out Sign out 
-                div
-                    .easter-pug You can edit pug
-                        i.i-arrow-right
-                    img.logo.js-enable-pug(src='../../assets/img/logo.jpg', alt='Metabake logo')
-
             .col-sidebar
                 .blog-list
                     .blog-list__inside
                         .blog-list-wrap
+                .logo-wrap
+                    img.logo.js-enable-pug(src='../../assets/img/logo.jpg', alt='Metabake logo')
+                    .easter-pug You can edit pug
+                        i.i-arrow-right
                         
             .col-editor
                 .editor-wrapper

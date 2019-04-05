@@ -23,7 +23,9 @@
         }
 
         &[disabled="disabled"] {
-            background: rgba(0,0,0,.2);
+            &, &:hover, &:active, &:focus {
+                background: rgba(0,0,0,.2);
+            }
         }
 
         
