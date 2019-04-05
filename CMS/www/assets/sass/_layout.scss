@@ -154,6 +154,7 @@ svg {
 		padding: 1.3rem 40px 1.3rem 60px;
 		overflow-y: auto;
 		overflow-x: hidden;
+		width: 100%;
 		&::-webkit-scrollbar {
 			width: 0px;  /* remove scrollbar space */
 			background: transparent;  /* optional: just make scrollbar invisible */
