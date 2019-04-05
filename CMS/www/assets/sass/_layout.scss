@@ -137,6 +137,7 @@ svg {
 	width: 82%;
 	flex-shrink: 0;
 	margin: 0 auto;
+	cursor: pointer;
 }
 
 // folders sidebar
@@ -175,7 +176,11 @@ svg {
 			z-index: -1;
 		}
 		&:last-of-type:before {
-			bottom: 6px;
+			height: 7px;
+		}
+		&:first-of-type:before {
+			top: 2px;
+			bottom: -11px;
 		}
 		span, li {
 			font-weight: 400;
@@ -216,7 +221,7 @@ svg {
 				width: 1px;
 				left: 9px;
 				top: -1px;
-				bottom: 18px;
+				bottom: 11px;
 				position: absolute;
 				background: #979797;
 			}
@@ -273,6 +278,25 @@ svg {
 				}
 			}
 		}
+	}
+}
+
+// easter egg pug
+.easter-pug {
+	opacity: 0;
+	transition: opacity .3s ease-in-out;
+	color: #1b98f8;
+	font-weight: 200;
+	font-size: 12px;
+	text-align: center;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	&.active {
+		opacity: 1;
+	}
+	i {
+		transform: scale(.8);
 	}
 }
 

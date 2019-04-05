@@ -53,6 +53,7 @@
          display: block;
          transition: all .3s ease-in-out;
          font-size: $font-size-global;
+         font-weight: 200;
          z-index: 0;
          &.focus {
             bottom: 37px;
@@ -153,5 +154,5 @@
 }
 
 .login-bg {
-   @include gradient(#252a3a, #f5f5f5); 
+   @include gradient(#929292, #f5f5f5); 
 }

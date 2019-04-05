@@ -44,24 +44,14 @@ export class EditorRoutes {
             }
         });
         
-        // get .md/.yaml/.csv file 
+        // get .md/.yaml/.csv/.pug file 
         appE.get("/post", (req, res) => {
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;
             if (typeof post_id !== 'undefined') {
                 let md = config.appMount + '/' + pathPrefix + post_id;
                 let fileExt = path.extname(post_id);
-                if (fs.existsSync(md) && fileExt === '.md') {
-                    fs.readFile(md, 'utf8', function(err, data) {  
-                        if (err) throw err;
-                        res.json(data);
-                    });
-                } else if (fs.existsSync(md) && fileExt === '.yaml') {
-                    fs.readFile(md, 'utf8', function(err, data) {  
-                        if (err) throw err;
-                        res.json(data);
-                    });
-                } else if (fs.existsSync(md) && fileExt === '.csv') {
+                if (fs.existsSync(md) && (fileExt === '.md' || fileExt === '.yaml' || fileExt === '.csv' || fileExt === '.pug')) {
                     fs.readFile(md, 'utf8', function(err, data) {  
                         if (err) throw err;
                         res.json(data);
@@ -73,7 +63,7 @@ export class EditorRoutes {
             }
         });
         
-        // update .md/.yaml/.csv file
+        // update .md/.yaml/.csv/.pug file
         appE.put("/post", (req, res) => {
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;

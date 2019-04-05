@@ -22,7 +22,10 @@ block content
                     li.user-name
                     li
                         a(href='#').sign-out#sign-out Sign out 
-                img.logo(src='../../assets/img/logo.jpg', alt='Metabake logo')
+                div
+                    .easter-pug You can edit pug
+                        i.i-arrow-right
+                    img.logo.js-enable-pug(src='../../assets/img/logo.jpg', alt='Metabake logo')
 
             .col-sidebar
                 .blog-list
@@ -194,11 +197,32 @@ block content
 
                         posts.showMd(postId, pathPrefix);
 
-                        $('.btn-custom.save').removeAttr("disabled")
+                        $('.btn-custom.save').removeAttr("disabled");
                         $('.i-calendar').addClass('disabled');
                         if (postId.includes(datFile)) {
                             $('.i-calendar').removeClass('disabled');
                         }
+                    }
+
+                    // enable pug file open
+                    if ($('.js-enable-pug').hasClass('js-pug-enabled')) {
+                        
+                        let pugFile = '.pug';
+
+                        if (postId.includes(pugFile)) {
+                            $('.blog-item li').removeClass('active');
+                            $(this).addClass('active');
+                            let pathPrefix = $(this).parents('.blog-item').find('span').text();
+
+                            let editedFileName = postId.replace('/', '');
+                            $('.js-file-name').text(editedFileName);
+
+                            posts.showMd(postId, pathPrefix);
+
+                            $('.btn-custom.save').removeAttr("disabled");
+                            $('.i-calendar').addClass('disabled');
+                        }
+
                     }
 
                 });
@@ -475,6 +499,18 @@ block content
                     }
 
                             
-                })
+                });
+
+
+                /*
+                * Enable pug editing
+                */
+                $(document).on('click', '.js-enable-pug', function(e) {
+
+                    e.preventDefault();
+                    $(this).toggleClass('js-pug-enabled');
+                    $('.easter-pug').toggleClass('active');
+
+                });
 
             });
