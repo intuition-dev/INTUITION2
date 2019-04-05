@@ -23,6 +23,12 @@
       position: relative;
       z-index: 1;
 
+
+      .site-brand {
+         font-weight: 400;
+         font-size: 14px;
+      }
+
       &-wrap {
          max-width: 98%;
       }
