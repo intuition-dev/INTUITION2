@@ -22,4 +22,6 @@ depp.require('deviceready', function() {
       }
    });
 
+   $('.site-brand').text(siteName);
+
 });

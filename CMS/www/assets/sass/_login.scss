@@ -33,10 +33,17 @@
 
       fieldset legend {
          text-align: center;
-         text-transform: uppercase;
          border: 0;
          padding-bottom: 0;
          margin-bottom: 1.5rem;
+         display: flex;
+         justify-content: center;
+         div {
+            padding: 0 5px;
+            color: #1b98f8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+         }
       }
 
       label {
