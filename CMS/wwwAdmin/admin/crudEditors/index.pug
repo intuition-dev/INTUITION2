@@ -1,6 +1,5 @@
 extends ../../layout/layout
 block content
-    #parallax
     .loader.lds-css.ng-scope
         .text Deploying
         .lds-ellipsis(style='width:100%;height:100%')
@@ -15,35 +14,43 @@ block content
             div
                 div
     .page-content.container
-        h1.table-header
-            | Editors 
-            .site-brand Site Name
+        .columns
+            .col-settings
+                ul.user-area
+                    li.site-brand.divider Site Name
+                    li.user-name
+                    li
+                        a(href='#').sign-out#sign-out Sign out
+                img.logo.js-enable-pug(src='../../assets/img/logo.jpg', alt='Metabake logo')
+            
+            .col-content
+                h1.table-header Users
 
-        .table-wrap
-            #editors-table.table-custom
+                .table-wrap
+                    #editors-table.table-custom
 
-            .space-2v
+                    .space-2v
 
-            form#editor-form.grid-form
-                fieldset
-                    legend Select row to edit/remove editor, to add editor type in new editor's login credentials
-                    div(data-row-span='3')
-                        div(data-field-span='1')
-                            label Email
-                            input(type='text', name='email', required='required')
-                        div(data-field-span='1')
-                            label Name
-                            input(type='text', name='name')
-                        div(data-field-span='1')
-                            label Password
-                            input(type='password', name='password', required='required', minlength='6')
-            .notification.d-hide
-                .text
-            .btn-row.space-2v
-                a(href='#')#add-editor.btn-custom.btn-primary Add
-                a(href='#')#edit-editor.btn-custom.btn-primary Edit
-                a(href='#')#delete-editor.btn-custom.btn-secondary
-                    span Delete
+                    form#editor-form.grid-form
+                        fieldset
+                            legend Select row to edit/remove editor, to add editor type in new editor's login credentials
+                            div(data-row-span='3')
+                                div(data-field-span='1')
+                                    label Email
+                                    input(type='text', name='email', required='required')
+                                div(data-field-span='1')
+                                    label Name
+                                    input(type='text', name='name')
+                                div(data-field-span='1')
+                                    label Password
+                                    input(type='password', name='password', required='required', minlength='6')
+                    .notification.d-hide
+                        .text
+                    .btn-row.space-2v
+                        a(href='#')#add-editor.btn-custom.btn-primary Add
+                        a(href='#')#edit-editor.btn-custom.btn-primary Edit
+                        a(href='#')#delete-editor.btn-custom.btn-secondary
+                            span Delete
 
         script.
 

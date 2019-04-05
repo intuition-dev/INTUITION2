@@ -16,6 +16,7 @@
     .login-form {
         width: 340px;
         padding: 30px;
+        border-radius: 4px;
         text-align: center;
         background: $background-light2;
         position: relative;
@@ -59,6 +60,7 @@
                 display: block;
                 font-size: 10px;
                 color: rgba($text-color-dark-2, .74);
+                z-index: 9;
             }
         }
 

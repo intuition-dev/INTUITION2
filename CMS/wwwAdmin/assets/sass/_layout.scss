@@ -1,67 +1,75 @@
 .page-content, .login-wrapper {
 	font-family: $font-family;
-	padding-top: 1rem;
-	padding-bottom: 1rem
 }
 
 .container {
-	padding-right: 5.5%;
-	padding-left: 5.5%;
 	font-family: $font-family;
+	padding: 0;
+	.columns {
+		margin: 0;
+		height: 100%;
+	}
 }
 
 .page-content {
-	height: calc(100vh - 48px);
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	.table-wrap {
-		height: 100%;
-		background: white; 
-		padding: 1rem 1rem 122px 1rem;
-		margin-bottom: 3rem;
-		position: relative;
+	height: 100vh;
+}
+
+.col {
+	&-settings {
+		background: #252a3a;
+		width: 145px;
+		padding: 1.1rem 10px;
 		display: flex;
-    	flex-direction: column;
-		.btn-row {
-			position: absolute;
-			bottom: 0;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	&-content {
+		flex: 1;
+		background: #f5f5f5;
+		padding: 1.1rem 1.5rem;
+	}
+}
+
+// sidebar
+.user {
+	&-area {
+		color: #fff;
+		font-size: 12px;
+		margin: 0;
+		.btn-custom {
+			padding: 0;
+			text-align: left;
+		}
+		.site-brand {
+			font-weight: 600;
+			font-size: 20px;
+		}
+		.divider {
+			margin: 0 0 1rem 0;
+			border: 0;
+			height: initial;
+		}
+	}
+	&-name {
+		font-size: inherit;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: block;
+		max-width: 100%;
+		&:first-letter {
+			text-transform: capitalize;
 		}
 	}
 }
 
-// spaces
-.space {
-	&-1v {
-	    margin-top: 1rem;
-	    margin-bottom: 1rem;
-	}
-	&-2v {
-	    margin-top: 2rem;
-	    margin-bottom: 2rem;
-	}
-	&-12v {
-		margin-top: 1rem;
-	    margin-bottom: 2rem;
-	}
-	&-21v {
-		margin-top: 2rem;
-	    margin-bottom: 1rem;
-	}
-}
-
-#parallax {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: -100;
-	background-image: url('../../assets/img/main-bg.png');
-	background-color: #3e5a65; //#19292f
-  	background-blend-mode: multiply;
-	background-size: cover;
-    background-repeat: no-repeat;
+.logo {
+	display: block;
+	width: 82%;
+	flex-shrink: 0;
+	margin: 0 auto;
+	cursor: pointer;
 }
 
 // loader

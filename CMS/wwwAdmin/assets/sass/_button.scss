@@ -1,135 +1,56 @@
 .btn {
     &-custom {
-        text-transform: uppercase;
-        letter-spacing: 2px;
         text-align: center;
         border-radius: 0;
         border: 0;
+        border-radius: 45px;
         font-size: 12px;
-        font-weight: 300;
-        min-width: 100px;
-        padding: 12px 20px;
+        font-weight: 400;
+        min-width: 90px;
+        padding: 8px 15px;
         transition: all .2s ease-in-out;
-        display: table;
+        display: inline-block;
+        color: #fff;
 
-        &:hover, &:active, &:focus {
+        &::first-letter {
+            text-transform: uppercase;
+        }
+
+        &, &:hover, &:active, &:focus {
             outline: none;
             text-decoration: none;
             box-shadow: none;
         }
 
         &[disabled="disabled"] {
-            background: rgba(0,0,0,.5);
+            background: rgba(0,0,0,.2);
         }
 
-        .icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            svg {
-                margin-left: 1rem;
-                width: 30px;
-                flex-shrink: 0;
-            }
+        
+    }
+
+    &-primary {
+        &, &:visited {
+            background: #1b98f8;
+        }
+        &:hover, &:active, &:focus {
+            background: #006ec3;
         }
     }
 
-    &-center {
-        margin-right: auto;
-        margin-left: auto;
+    &-secondary {
+       &, &:visited {
+            background: #252a3a;
+        }
+        &:hover, &:active, &:focus  {
+            background: black;
+        }
+
     }
 
     &-row {
-        display: flex;
-        align-items: stretch;
-        justify-content: flex-start;
         .btn-custom {
-            margin: 0 1rem 0 0;
-            &:last-of-type {
-                margin: 0;
-            }
-        }
-    }
-
-    &-primary, &-secondary {
-        background: linear-gradient(to right, $background-dark 50%, $background-light 50%) no-repeat scroll right bottom / 210% 100% $background-dark;
-        -webkit-transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0.3s linear; 
-        -ms-transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0.3s linear; 
-        transition: color 0.3s ease, border-color 0.3s ease, background-position 0.3s ease, background-color 0.3s linear;
-        &, &:hover, &:active, &:focus, &:visited {
-            &, svg {
-                color: $button-primary-color;
-                fill: $button-primary-color;
-            }
-        }
-        &:hover, &:active, &:focus {
-            background-position: left bottom;
-        }
-    }
-
-    &-secondary {
-        padding: 1px;
-
-        &, svg, &:visited {
-            color: $button-secondary-color;
-            fill: $button-secondary-color;
-        }
-
-        &:hover, &:active, &:focus {
-            &, svg {
-                color: $button-secondary-hover;
-                fill: $button-secondary-hover;
-            }
-            span {
-                color: $text-color-dark;
-            }
-        }
-
-        span {
-            background: white;
-            width: 100%;
-            height: 100%;
-            padding: 11px 18px;
-            display: block;
-            transition: all .3s ease-in-out;
-            color: $text-color-dark-2;
-        }
-
-    }
-}
-.link {
-    &-primary {
-        color: $color-secondary;
-        &:hover, &:active, &:focus, &:visited {
-            color: $color;
-        }
-    }
-    &-secondary {
-        color: $color;
-        &:hover, &:active, &:focus, &:visited {
-            color: $color-secondary;
-        }
-    }
-}
-
-.page-content {
-    .btn {
-        &-primary {
-            @include gradient($background-light, $background-dark); 
-            &:hover {
-                background: linear-gradient(to right, $background-dark 50%, $background-light 50%) no-repeat scroll right bottom / 210% 100% $background-dark;
-                background-position: left bottom;
-            }
-        }
-        &-secondary {
-            background: $text-color-dark-2;
-            transition: all .3s ease-in-out;
-            &:hover {
-                background: $button-secondary-hover;
-                &, span {
-                    color: $button-secondary-hover;
-                }
-            }
+            margin-right: 0.5rem;
         }
     }
 }

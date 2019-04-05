@@ -30,16 +30,20 @@
     }
 
     &-primary {
-        background: #1b98f8;
-        &, &:hover, &:active, &:focus, &:visited {
-            
+        &, &:visited {
+            background: #1b98f8;
+        }
+        &:hover, &:active, &:focus {
+            background: #006ec3;
         }
     }
 
     &-secondary {
-        background: #252a3a;
-        &:hover, &:active, &:focus {
-            
+        &, &:visited {
+            background: #252a3a;
+        }
+        &:hover, &:active, &:focus  {
+            background: black;
         }
 
     }

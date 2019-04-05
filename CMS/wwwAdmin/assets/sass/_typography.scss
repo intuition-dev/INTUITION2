@@ -54,30 +54,6 @@ p, ul, .grid-form fieldset legend {
 
 ul {
     list-style-type: none;
-    > li {
-        position: relative;
-        margin: 9px 0;
-        &:before {
-            content: '';
-            display: block;
-            width: 4px;
-            height: 4px;
-            line-height: 4px;
-            text-align: center;
-            position: absolute;
-            z-index: 1;
-            top: 0.74em;
-            left: -0.9em;
-            -webkit-border-radius: 50%;
-            -ms-border-radius: 50%;
-            border-radius: 50%;
-            -webkit-transition: all 0.3s ease;
-            -ms-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-            color: $color;
-            background-color: $color;
-        }
-    }
 }
 
 .notification {
@@ -102,4 +78,24 @@ ul {
     &.error-msg {
         background: rgba($color,.75);
     }
+}
+
+// spaces
+.space {
+	&-1v {
+	    margin-top: 1rem;
+	    margin-bottom: 1rem;
+	}
+	&-2v {
+	    margin-top: 2rem;
+	    margin-bottom: 2rem;
+	}
+	&-12v {
+		margin-top: 1rem;
+	    margin-bottom: 2rem;
+	}
+	&-21v {
+		margin-top: 2rem;
+	    margin-bottom: 1rem;
+	}
 }

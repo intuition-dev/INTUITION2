@@ -1,12 +1,22 @@
 button {
 	cursor: pointer;
 }
-.grid-form fieldset legend {
-    font-weight: 500;
-    margin-bottom: 0;
-    letter-spacing: 1px;
-    word-spacing: 2px;
+.grid-form {
+    fieldset legend {
+        margin-bottom: 0;
+        border-color: #ddd;
+        border-width: 1px;
+    }
+    [data-row-span], [data-field-span] {
+        border-color: #ddd;
+    }
 }
+@media only screen and (min-width: 700px) {
+    .grid-form [data-row-span] [data-field-span] {
+        border-color: #ddd;
+    }
+}
+
 
 /* Change the white to any color ;) */
 input:-webkit-autofill,
