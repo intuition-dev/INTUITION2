@@ -20,13 +20,13 @@ export class AdminRoutes {
       const adminApp = express();
       adminApp.use(customCors.cors());
       adminApp.use(basicAuth({
-         challenge: true,
-         users: { 'admin': config.secret, 'me': 'openforme' }
+         users: { 'admin': config.secret  }
       }));
+
       adminApp.use(bodyParser.json());
       
       adminApp.get("/", (req, res) => {
-         res.send('Hello world');
+         res.send('Nothing to see here, move along');
       });
       
       // get user
