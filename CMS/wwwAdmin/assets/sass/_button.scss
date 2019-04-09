@@ -23,8 +23,9 @@
         }
 
         &[disabled="disabled"] {
-            &, &:hover, &:active, &:focus {
+            &, &:hover, &:active, &:focus, &:visited {
                 background: rgba(0,0,0,.2);
+                color: #fff;
                 cursor: default;
             }
         }

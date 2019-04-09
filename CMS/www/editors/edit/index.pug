@@ -51,7 +51,7 @@ block content
                     textarea#cms1(rows='400' )
                     .btns-wrap
                         button.save.btn-custom.btn-primary(href='#', disabled='disabled') save
-                        button(href='#', target='_blank', disabled='disabled').view-page.btn-custom.btn-secondary
+                        a(href='#', target='_blank', disabled='disabled').view-page.btn-custom.btn-secondary
                             span view page
         .notification.d-hide
             .text
@@ -106,6 +106,12 @@ block content
             
 
             depp.require(['general'], function() {
+
+                $(document).on('click', '.view-page', function(e) {
+                    if ($(this).hasAttribute('disabled')) {
+                        e.preventDefault();
+                    }
+                });
 
                 let posts = new Posts();
                 posts.showDirs();
