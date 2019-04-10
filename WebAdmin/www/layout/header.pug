@@ -16,7 +16,6 @@ html
         title #{title}
         link(rel='stylesheet', href='//unpkg.com/spectre.css/dist/spectre.min.css')
         link(rel='stylesheet', href= ROOT +'assets/css/screen.css')
-        link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i')
 
         script(src=ROOT +'config.js')
         script.
@@ -26,9 +25,13 @@ html
 
         script(src='//cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js')
         script(src='//cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.min.js')
+
+
+    body
         script(src='//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js')
         script(src=ROOT +'assets/js/app.js')
 
-    body
         block header
         block content
+
+        link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i')
