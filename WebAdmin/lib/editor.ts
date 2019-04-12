@@ -44,14 +44,14 @@ export class EditorRoutes {
             }
         });
         
-        // get .md/.yaml/.csv/.pug file 
+        // get .md/.yaml/.csv/.pug/.css file 
         appE.get("/post", (req, res) => {
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;
             if (typeof post_id !== 'undefined') {
                 let md = config.appMount + '/' + pathPrefix + post_id;
                 let fileExt = path.extname(post_id);
-                if (fs.existsSync(md) && (fileExt === '.md' || fileExt === '.yaml' || fileExt === '.csv' || fileExt === '.pug')) {
+                if (fs.existsSync(md) && (fileExt === '.md' || fileExt === '.yaml' || fileExt === '.csv' || fileExt === '.pug' || fileExt === '.css')) {
                     fs.readFile(md, 'utf8', function(err, data) {  
                         if (err) throw err;
                         res.json(data);
@@ -63,7 +63,7 @@ export class EditorRoutes {
             }
         });
         
-        // update .md/.yaml/.csv/.pug file
+        // update .md/.yaml/.csv/.pug/.css file
         appE.put("/post", (req, res) => {
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;

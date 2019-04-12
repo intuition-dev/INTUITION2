@@ -195,8 +195,9 @@ block content
                     let mdFile = '.md';
                     let datFile = 'dat.yaml';
                     let csvFile = '.csv';
+                    let cssFile = '.css';
 
-                    if (postId.includes(mdFile) || postId.includes(datFile) || postId.includes(csvFile)) {
+                    if (postId.includes(mdFile) || postId.includes(datFile) || postId.includes(csvFile) || postId.includes(cssFile)) {
                         $('.blog-item li').removeClass('active');
                         $(this).addClass('active');
                         let pathPrefix = $(this).parents('.blog-item').find('span').text();
