@@ -29,13 +29,22 @@
     }
     .tabulator-row {
         border-color: #f4f4f4;
-        &-odd {
+        &.tabulator-row-odd {
             background: #f9f9f9;
+        }
+        &.tabulator-row-even {
+            background: #fff;
         }
         .tabulator-cell {
             border-right: 0;
             padding: 7px;
         }
+    }
+    .tabulator .tabulator-header, .tabulator .tabulator-header .tabulator-col {
+        position: relative;
+        box-sizing: border-box;
+        background-color: #fff;
+        overflow: hidden;
     }
 }
 

@@ -1,34 +1,27 @@
 doctype html
 html
     head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title #{title}
 
-        script.
-            (function(_,e,rr,s){_errs=[s];var c=_.onerror;_.onerror=function(){var a=arguments;_errs.push(a);
-            c&&c.apply(this,a)};var b=function(){var c=e.createElement(rr),b=e.getElementsByTagName(rr)[0];
-            c.src="//beacon.errorception.com/"+s+".js";c.async=!0;b.parentNode.insertBefore(c,b)};
-            _.addEventListener?_.addEventListener("load",b,!1):_.attachEvent("onload",b)})
-            (window,document,"script","5c936a0da02fd608f58b0a91");      
         script.
             window.ROOT = '#{ROOT}';
 
-        meta(charset='utf-8')
-
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        title #{title}
-        link(rel='stylesheet', href='//unpkg.com/spectre.css/dist/spectre.min.css')
-        link(rel='stylesheet', href= ROOT +'assets/css/screen.css')
-
-        //- load fonts last!
-        link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i')
-
+        script(src='//www.gstatic.com/firebasejs/5.9.1/firebase-app.js')
+        script(src='//www.gstatic.com/firebasejs/5.9.1/firebase-auth.js')
+        script(src='//www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js')
+        script(src='//cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js')
+        script(src='//cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.min.js')
+        
         script(src=ROOT +'config.js')
         script.
             window.api = [config.api];
             window.siteName = [config.siteName];
 
-        script(src='//cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js')
-        script(src='//cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.min.js')
-        script(src=ROOT +'assets/js/app.js')
+        link(rel='stylesheet', href= ROOT +'assets/css/spectreTop.css')
 
     body
+        script(src=ROOT +'assets/js/loader.js')
+
         block content
