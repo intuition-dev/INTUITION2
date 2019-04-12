@@ -201,32 +201,31 @@ block content
                     let datFile = 'dat.yaml';
                     let csvFile = '.csv';
                     let cssFile = '.css';
-                    let pugFile = '.pug';
+                    
 
-                    switch (true) {
-                        case postId.includes(mdFile):
-                            _initCodeMirror('markdown');
-                            break;
-                        case postId.includes(datFile):
-                            _initCodeMirror('yaml');
-                            break;
-                        case postId.includes(csvFile):
-                            _initCodeMirror('csv');
-                            break;
-                        case postId.includes(cssFile):
-                            _initCodeMirror('css');
-                            break;
-                        case postId.includes(cssFile):
-                            _initCodeMirror('css');
-                            break;
-                        case postId.includes(pugFile):
-                            _initCodeMirror('pug');
-                            break;
-                        default:
-                            _initCodeMirror('text');
-                    }
 
                     if (postId.includes(mdFile) || postId.includes(datFile) || postId.includes(csvFile) || postId.includes(cssFile)) {
+                        
+                        switch (true) {
+                            case postId.includes(mdFile):
+                                _initCodeMirror('markdown');
+                                break;
+                            case postId.includes(datFile):
+                                _initCodeMirror('yaml');
+                                break;
+                            case postId.includes(csvFile):
+                                _initCodeMirror('csv');
+                                break;
+                            case postId.includes(cssFile):
+                                _initCodeMirror('css');
+                                break;
+                            case postId.includes(cssFile):
+                                _initCodeMirror('css');
+                                break;
+                            default:
+                                _initCodeMirror('text');
+                        }
+
                         $('.blog-item li').removeClass('active');
                         $(this).addClass('active');
                         let pathPrefix = $(this).parents('.blog-item').find('span').text();
@@ -245,7 +244,11 @@ block content
 
                     // enable pug file open
                     if ($('.js-enable-pug').hasClass('js-pug-enabled')) {
+                        let pugFile = '.pug';
+
                         if (postId.includes(pugFile)) {
+                            _initCodeMirror('pug');
+
                             $('.blog-item li').removeClass('active');
                             $(this).addClass('active');
                             let pathPrefix = $(this).parents('.blog-item').find('span').text();
