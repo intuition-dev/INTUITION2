@@ -8,8 +8,8 @@
 
 1. Create folder for Admin CMS app and download its source code to this folder, eg:
     ```sh
-    $ mkdir blog-cms
-    $ cd blog-cms
+    $ mkdir CMS
+    $ cd CMS
     $ mbakeX -c
     ```
 1. Create an account (if you haven't one already) and database in [FireStore](http://console.firebase.google.com). Navigate to the `Service Accounts` tab in your database project's settings page and press `Generate New Private Key` button. A JSON file containing your service account's credentials will be downloaded. Next go to the `Authentication` tab, click `Sign-in method` and set `Email/Password` method to `Enabled`.
@@ -67,7 +67,7 @@
     - edit `.md`, `.yaml`, `.csv` files. (Also `.pug`)
     - upload files
     - copy pages, to create new page
-    - set posts publish date (for blogs only — if you will set date in future, the post won't publish until that time)
+    - set posts publish date (for CMSs only — if you will set date in future, the post won't publish until that time)
     
     All this operations will be applied to your mounted site.
 
