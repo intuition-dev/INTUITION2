@@ -6,7 +6,9 @@
 
 
 @import '3rd/_gridforms';
-/** Custom Styles **/
+@import '../spectre/_variables';
+@import '../spectre/_mixins';
+
 @import '_variables';
 @import '_mixins';
 @import '_layout';
