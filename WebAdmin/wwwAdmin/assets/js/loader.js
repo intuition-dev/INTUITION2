@@ -15,12 +15,8 @@ depp.define({
         , '//unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js'
         , ROOT + 'assets/css/spectreBottom.css'
     ],
-    'crud': [
-        '#scripts'
-        , ROOT + 'assets/js/crud.js'
-    ],
     'services': [
-        '#crud'
+        '#scripts'
         ,'/assets/js/services.js'
     ],
     'general': [
@@ -32,8 +28,12 @@ depp.define({
         ,'/assets/js/login.js'
         , '/assets/js/ui.js'
     ],
-    'fonts': [
+    'crud': [
         '#rw'
+        , ROOT + 'assets/js/crud.js'
+    ],
+    'fonts': [
+        '#crud'
         ,'css!//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i'
     ]
 });

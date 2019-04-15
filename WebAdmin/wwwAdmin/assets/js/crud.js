@@ -1,49 +1,52 @@
 depp.require(['general'], function() {
-    let editors = new Editors(getApiService());
+    if (window.location.href.indexOf("admin/crudEditors") > -1) {
+        
+        let editors = new Editors(getApiService());
 
-    editors.drawTable();
+        editors.drawTable();
 
-    /*
-    * add editor
-    */
-    $(document).on('click', '#add-editor', function (e) {
-        e.preventDefault();
-        $(this).attr("disabled", "disabled");
-        $('.loader').addClass('active');
-        editors
-            .save()
-            .then(() => { 
-                $(this).removeAttr("disabled");
-                $('.loader').removeClass('active');
-            });
-    });
-    /* 
-    * edit editor
-    */
-    $(document).find('#edit-editor').on('click', function (e) {
-        e.preventDefault();
-        $(this).attr("disabled", "disabled");
-        $('.loader').addClass('active');
-        editors
-            .save(rowUid)
-            .then(() => { 
-                $(this).removeAttr("disabled");
-                $('.loader').removeClass('active');
-            });
-    });
-    /* 
-    * delete editor
-    */
-    $(document).on('click', '#delete-editor', function (e) {
-        e.preventDefault();
-        $(this).attr("disabled", "disabled");
-        $('.loader').addClass('active');
-        editors
-            .remove(rowUid)
-            .then(() => { 
-                $(this).removeAttr("disabled");
-                $('.loader').removeClass('active');
-            });
-    });
-
+        /*
+        * add editor
+        */
+        $(document).on('click', '#add-editor', function (e) {
+            e.preventDefault();
+            $(this).attr("disabled", "disabled");
+            $('.loader').addClass('active');
+            editors
+                .save()
+                .then(() => { 
+                    $(this).removeAttr("disabled");
+                    $('.loader').removeClass('active');
+                });
+        });
+        /* 
+        * edit editor
+        */
+        $(document).find('#edit-editor').on('click', function (e) {
+            e.preventDefault();
+            $(this).attr("disabled", "disabled");
+            $('.loader').addClass('active');
+            editors
+                .save(rowUid)
+                .then(() => { 
+                    $(this).removeAttr("disabled");
+                    $('.loader').removeClass('active');
+                });
+        });
+        /* 
+        * delete editor
+        */
+        $(document).on('click', '#delete-editor', function (e) {
+            e.preventDefault();
+            $(this).attr("disabled", "disabled");
+            $('.loader').addClass('active');
+            editors
+                .remove(rowUid)
+                .then(() => { 
+                    $(this).removeAttr("disabled");
+                    $('.loader').removeClass('active');
+                });
+        });
+    }
+    
 });

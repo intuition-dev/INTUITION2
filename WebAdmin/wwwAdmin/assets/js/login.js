@@ -7,8 +7,10 @@ depp.require('deviceready', function() {
     // wrong credentials error message on fail of basic auth
     let errorMessage = sessionStorage.getItem('errorMessage');
     if (errorMessage !== null) {
+
         $('#error').text(errorMessage).removeClass('d-hide');
         sessionStorage.removeItem('errorMessage');
+
     }
 
     //admin login
@@ -25,9 +27,13 @@ depp.require('deviceready', function() {
     });
 
     $(document).on('click', '#sign-out', function(e) {
+
         sessionStorage.removeItem('username');
         sessionStorage.removeItem('password');
-        window.location = '/';
+        if (window.location.pathname !== '' && window.location.pathname !== '/') {
+            window.location.replace('/');
+        }
+        
     });
 
  });

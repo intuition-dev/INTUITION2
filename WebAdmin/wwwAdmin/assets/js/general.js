@@ -126,7 +126,7 @@ function getApiService() {
         window.location.pathname !== '/'
     ) {
         console.info('unauthorized, redirecting to login page');
-        window.location = '/';
+        window.location.replace('/');
     } else {
         return new ApiService(username, password);
     }
