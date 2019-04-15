@@ -9,7 +9,6 @@ var responces = [];
 
 depp.define({
     'scripts': [
-        // ,'//cdn.jsdelivr.net/npm/tabulator-tables@4.2.3/dist/js/tabulator.min.js'
         '//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.slim.min.js'
         , '/assets/3rd/gridforms.js'
         , '//unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js'
@@ -29,8 +28,12 @@ depp.require(['scripts'], function() {
 
 depp.require(['services'], function() {
     depp.define({
+        'edit': [
+            '/assets/js/edit.js'
+        ],
         'general': [
-            '/assets/js/general.js'
+            '#edit'
+            , '/assets/js/general.js'
             ,'/assets/js/login.js'
         ]
     });
