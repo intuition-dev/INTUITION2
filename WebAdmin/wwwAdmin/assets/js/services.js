@@ -32,10 +32,15 @@ class ApiService {
             // With response error redirect
             if (typeof error.response === 'undefined') {
                 window.sessionStorage.setItem('errorMessage', 'Network Error');
-                window.location = '/';
+                if (window.location.pathname !== '' && window.location.pathname !== '/') {
+                    window.location.replace('/');
+                }
             } else if (401 === error.response.status) {
                 window.sessionStorage.setItem('errorMessage', 'Access denied');
-                window.location = '/';
+                debugger;
+                if (window.location.pathname !== '' && window.location.pathname !== '/') {
+                    window.location.replace('/');
+                }
             }
             return Promise.reject(error);
         });

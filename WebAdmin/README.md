@@ -6,6 +6,11 @@
 
 ## Part 2: CMS deploy
 
+WebAdmin consists of two applications:
+
+    1. Apllication for creating users (on port `:8080`)
+    2. Application for editing site pages content (on port ':9080'), you log in here with the user created in `8080` app.
+
 1. Create folder for Admin CMS app and download its source code to this folder, eg:
     ```sh
     $ mkdir CMS

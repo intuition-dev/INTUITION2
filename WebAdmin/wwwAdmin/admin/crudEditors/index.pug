@@ -1,4 +1,4 @@
-extends ../../layout/layout
+extends /layout/layout
 block content
     .loader.lds-css.ng-scope
         .text Deploying
@@ -21,7 +21,7 @@ block content
                     li.user-name
                     li
                         a(href='#').sign-out#sign-out Sign out
-                img.logo.js-enable-pug(src='../../assets/img/logo.jpg', alt='Metabake logo')
+                img.logo.js-enable-pug(src='/assets/img/logo.jpg', alt='Metabake logo')
             
             .col-content
                 h1.table-header Users
@@ -51,55 +51,3 @@ block content
                             span Delete
         .notification.d-hide
             .text
-
-        script.
-
-            depp.require(['general'], function() {
-                let editors = new Editors(getApiService());
-
-                editors.drawTable();
-
-                /*
-                * add editor
-                */
-                $(document).on('click', '#add-editor', function (e) {
-                    e.preventDefault();
-                    $(this).attr("disabled", "disabled");
-                    $('.loader').addClass('active');
-                    editors
-                        .save()
-                        .then(() => { 
-                            $(this).removeAttr("disabled");
-                            $('.loader').removeClass('active');
-                        });
-                });
-                /* 
-                * edit editor
-                */
-                $(document).find('#edit-editor').on('click', function (e) {
-                    e.preventDefault();
-                    $(this).attr("disabled", "disabled");
-                    $('.loader').addClass('active');
-                    editors
-                        .save(rowUid)
-                        .then(() => { 
-                            $(this).removeAttr("disabled");
-                            $('.loader').removeClass('active');
-                        });
-                });
-                /* 
-                * delete editor
-                */
-                $(document).on('click', '#delete-editor', function (e) {
-                    e.preventDefault();
-                    $(this).attr("disabled", "disabled");
-                    $('.loader').addClass('active');
-                    editors
-                        .remove(rowUid)
-                        .then(() => { 
-                            $(this).removeAttr("disabled");
-                            $('.loader').removeClass('active');
-                        });
-                });
-
-            });

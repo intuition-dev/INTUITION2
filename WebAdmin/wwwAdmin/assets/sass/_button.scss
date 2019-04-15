@@ -1,5 +1,8 @@
+@import "../spectre/_buttons.scss";
+
 .btn {
     &-custom {
+        @extend .btn;
         text-align: center;
         border-radius: 0;
         border: 0;
@@ -11,6 +14,8 @@
         transition: all .2s ease-in-out;
         display: inline-block;
         color: #fff;
+        height: initial;
+        line-height: 1.5;
 
         &::first-letter {
             text-transform: uppercase;
@@ -23,17 +28,21 @@
         }
 
         &[disabled="disabled"] {
-            &, &:hover, &:active, &:focus, &:visited {
-                background: rgba(0,0,0,.2);
-                color: #fff;
-                cursor: default;
+            &.btn, &.btn-custom {
+
+                &, &:hover, &:active, &:focus, &:visited {
+                    background: rgba(0,0,0,.2);
+                    color: #fff;
+                    cursor: default;
+                }
+
             }
         }
 
         
     }
 
-    &-primary {
+    &-primary.btn {
         &, &:visited {
             background: #1b98f8;
         }
@@ -42,7 +51,7 @@
         }
     }
 
-    &-secondary {
+    &-secondary.btn {
        &, &:visited {
             background: #252a3a;
         }
