@@ -3330,10 +3330,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-markdown-it-attrs@>=2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/markdown-it-attrs/-/markdown-it-attrs-2.3.2.tgz#7068c40571735e1b0f5c412ac802627a9fd0db01"
-  integrity sha512-DyatNvpatg7w+fGkplWGeie7o/0TogBr2w0izyz9ZQfTMv5G3lbDHQFQ42aP2e5L2mJQt0IeAjWzvYaa2d9xzQ==
+markdown-it-container@>=2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-container/-/markdown-it-container-2.0.0.tgz#0019b43fd02eefece2f1960a2895fba81a404695"
+  integrity sha1-ABm0P9Au7+zi8ZYKKJX7qBpARpU=
 
 markdown-it-front-matter@^0.1.2:
   version "0.1.2"
@@ -3351,10 +3351,10 @@ markdown-it@>=8.4.2, markdown-it@^8.0.0, markdown-it@^8.4.2:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-mbake@>=5.4.8:
-  version "5.4.8"
-  resolved "https://registry.yarnpkg.com/mbake/-/mbake-5.4.8.tgz#e1054beb21650e7567853ce6c5633b9bfbc10d3d"
-  integrity sha512-J1xmHj7NlTHxPZNCawpHfn+l6e/Fui//23mHZE3APKqL4/7qBYxuzdkPdbrp8tgaTxOBhN/KcMPhzPFH9p1wNg==
+mbake@>=5.4.18:
+  version "5.4.18"
+  resolved "https://registry.yarnpkg.com/mbake/-/mbake-5.4.18.tgz#0cb1f31ee83de68a9ccd279b95f2ebd7a8fc735c"
+  integrity sha512-zdw0rFV/U9gHw2YOOjF8xo/EcMYfclP4DKkQiH5QXfFqsSMaAvegQ9LQ/e6QPhaoNgZWE5mopFv3SQJ7qFp4Ig==
   dependencies:
     "@marp-team/marpit" ">=0.9.2"
     adm-zip ">=0.4.13"
@@ -3380,7 +3380,7 @@ mbake@>=5.4.8:
     jstransformer-markdown-it ">=2.1.0"
     lunr ">=2.3.6"
     markdown-it ">=8.4.2"
-    markdown-it-attrs ">=2.3.2"
+    markdown-it-container ">=2.0.0"
     node-sass ">=4.11.0"
     opn ">=6.0.0"
     probe-image-size ">=4.0.0"
@@ -3393,7 +3393,7 @@ mbake@>=5.4.8:
     terser ">=3.17.0"
     tracer ">=0.9.8"
     traverse ">=0.6.6"
-    typescript ">=3.4.2"
+    typescript ">=3.4.3"
     uglify-es ">=3.3.9"
     unfluff ">=3.2.0"
 
@@ -5406,6 +5406,11 @@ typescript@>=3.4.2:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.2.tgz#9ed4e6475d906f589200193be056f5913caed481"
   integrity sha512-Og2Vn6Mk7JAuWA1hQdDQN/Ekm/SchX80VzLhjKN9ETYrIepBFAd8PkOdOTK2nKt0FCkmMZKBJvQ1dV1gIxPu/A==
+
+typescript@>=3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.3.tgz#0eb320e4ace9b10eadf5bc6103286b0f8b7c224f"
+  integrity sha512-FFgHdPt4T/duxx6Ndf7hwgMZZjZpB+U0nMNGVCYPq0rEzWKjEDobm4J6yb3CS7naZ0yURFqdw9Gwc7UOh/P9oQ==
 
 typical@^4.0.0:
   version "4.0.0"
