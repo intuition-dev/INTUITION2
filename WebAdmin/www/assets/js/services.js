@@ -150,4 +150,15 @@ class ApiService {
         });
     }
 
+    /**
+    * get list of directories
+    */
+    getMbakeVersion() {
+        return this.service
+            .get('/editors/mbake-version')
+            .then(function (response) {
+                console.info('Base.js mbake version:', response.headers['mbake-ver']);
+            });
+    }
+
 }

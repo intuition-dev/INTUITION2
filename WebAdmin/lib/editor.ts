@@ -1,4 +1,4 @@
-import { Dirs, MBake, Dat} from 'mbake/lib/Base';
+import { Dirs, MBake, Dat, Ver} from 'mbake/lib/Base';
 import { CustomCors } from './custom-cors';
 import { FileOps, CSV2Json } from 'mbake/lib/Wa';
 import { AppAuth } from './app-auth';
@@ -174,6 +174,15 @@ export class EditorRoutes {
                 res.status(400);
                 res.send({ error: 'no post_id' });
             }
+        });
+
+        // get mbake version
+        appE.get("/mbake-version", (req, res) => {
+
+            let mbakeVer = new Ver();
+            console.info('endpoint mbake version --------------> ', mbakeVer.ver());
+            res.send(mbakeVer.ver());
+            
         });
         
         return appE;

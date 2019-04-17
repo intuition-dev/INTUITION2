@@ -57,5 +57,9 @@ class Posts {
    setPublishDate(publishDate, pathPrefix) {
       return apiService.setPublishDate(publishDate, pathPrefix);
    }
+
+   MbakeVersion() {
+      return apiService.getMbakeVersion();
+   }
    
 }

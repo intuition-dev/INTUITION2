@@ -510,6 +510,9 @@ if (window.location.href.indexOf('editors/edit') > -1) {
             $(this).toggleClass('js-pug-enabled');
             $('.easter-pug').toggleClass('active');
 
+            // log mbake Base.js version
+            posts.MbakeVersion();
+
         });
 
     });
