@@ -37,6 +37,7 @@ class ApiService {
         this.service.interceptors.response.use(function(response) {
             // Do something with response data
             console.info('response', response);
+            console.info('mbake version: ', response.headers['mbake-ver']);
             return response;
         }, function(error) {
             // With response error redirect
