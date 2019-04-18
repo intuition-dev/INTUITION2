@@ -88,12 +88,17 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                     .showSubDirs(postId)
                     .then(() => {
                         $('.blog-item li').each(function() {
-                            if ($(this).text().includes('.md')) {
+
+                            let fileName = $(this).text();
+
+                            if (fileName.includes('.md')) {
                                 $(this).addClass('md-highlight');
                             }
-                            if ($(this).text().includes('.md') || $(this).text().includes('.yaml') || $(this).text().includes('.css') || $(this).text().includes('.pug')) {
+                            
+                            if (fileName.includes('.md') || fileName.includes('.yaml') || fileName.includes('.css') || fileName.includes('.pug')) {
                                 $(this).addClass('hover-highlight');
                             }
+
                         });
                     });
             } else {

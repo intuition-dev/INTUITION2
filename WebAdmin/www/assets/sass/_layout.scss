@@ -238,7 +238,7 @@ svg {
 				width: 1px;
 				left: 9px;
 				top: -1px;
-				bottom: 11px;
+				bottom: 15px;
 				position: absolute;
 				background: #979797;
 			}
@@ -247,11 +247,11 @@ svg {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			display: block;
+			display: inline-block;
 			max-width: 100%;
 		}
 		li {
-			margin: 0 0 0 20px;
+			margin: 3px 0 2px 20px;
 		   	font-size: 13px;
 			position: relative;
 			display: block;
@@ -270,11 +270,7 @@ svg {
 				top: 10px;
 			}
 			div {
-				display: inline-flex;
-				align-items: center;
-				justify-content: flex-start;
-				height: 22px;
-				padding-right: 4px;
+				padding: 2px 4px 0 0;
 			}
 			&.hover-highlight {
 				div {
@@ -298,6 +294,7 @@ svg {
 			i {
 				flex-shrink: 0;
 				transform: scale(.5);
+				margin: -8px 0 -5px 0;
 				&:hover {
 					color: #fff;
 				}
