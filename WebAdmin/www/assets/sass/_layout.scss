@@ -256,6 +256,7 @@ svg {
 			position: relative;
 			display: block;
 			color: #777;
+			cursor: default;
 			&.md-highlight {
 				color: #000;
 			}
@@ -273,6 +274,7 @@ svg {
 				padding: 2px 4px 0 0;
 			}
 			&.hover-highlight {
+				cursor: pointer;
 				div {
 					&:hover {
 						color: #fff;
