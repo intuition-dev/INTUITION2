@@ -255,6 +255,10 @@ svg {
 		   	font-size: 13px;
 			position: relative;
 			display: block;
+			color: #777;
+			&.md-highlight {
+				color: #000;
+			}
 			&:after {
 				content: '';
 				display: block;
@@ -271,10 +275,14 @@ svg {
 				justify-content: flex-start;
 				height: 22px;
 				padding-right: 4px;
-				&:hover {
-					color: #fff;
-					background: #1b98f8;
-					border-radius: 3px;
+			}
+			&.hover-highlight {
+				div {
+					&:hover {
+						color: #fff;
+						background: #1b98f8;
+						border-radius: 3px;
+					}
 				}
 			}
 			&:before {

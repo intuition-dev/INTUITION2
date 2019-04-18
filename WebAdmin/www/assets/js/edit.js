@@ -84,7 +84,18 @@ if (window.location.href.indexOf('editors/edit') > -1) {
             $('.view-page').attr('href', appMount+ '/' + postId);
 
             if ($(this).find('ul').length === 0) {
-                posts.showSubDirs(postId);
+                posts
+                    .showSubDirs(postId)
+                    .then(() => {
+                        $('.blog-item li').each(function() {
+                            if ($(this).text().includes('.md')) {
+                                $(this).addClass('md-highlight');
+                            }
+                            if ($(this).text().includes('.md') || $(this).text().includes('.yaml') || $(this).text().includes('.css') || $(this).text().includes('.pug')) {
+                                $(this).addClass('hover-highlight');
+                            }
+                        });
+                    });
             } else {
                 $(this).find('ul').remove();
             }
