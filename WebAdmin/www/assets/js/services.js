@@ -1,5 +1,4 @@
 /**
-    * Version v4.2
     * 
     * All rights reserved by Metabake (Metabake.org), licensed under LGPL 3.0
     *
