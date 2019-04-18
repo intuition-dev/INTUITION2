@@ -151,11 +151,14 @@
          font-weight: 400;
       }
    }
-   & .isError {
+   & .isError, & .message {
       color: #f70e0e;
       text-align: center;
       margin-top: 10px;
       font-size: 13px;
+   }
+   & .message-info {
+      color: #333;
    }
 }
 

@@ -16,6 +16,11 @@ class Login {
 				})
 				.catch(error => {
 					console.info('login error', error);
+					if (error.code === 'auth/wrong-password') {
+						$('#error').text('Wrong password').removeClass('d-hide');
+					} else if (error.code === 'auth/user-not-found') {
+						$('#error').addClass('d-hide').text('User not found, please check that login is correct').removeClass('d-hide');
+					}
 				});
 			} else {
 				console.info("All fields must be filled out");

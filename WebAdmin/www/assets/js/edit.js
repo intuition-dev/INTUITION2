@@ -95,7 +95,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                                 $(this).addClass('md-highlight');
                             }
                             
-                            if (fileName.includes('.md') || fileName.includes('.yaml') || fileName.includes('.css') || fileName.includes('.pug')) {
+                            if (fileName.includes('.md') || fileName.includes('.yaml') || fileName.includes('.css') || fileName.includes('.pug') || fileName.includes('.csv')) {
                                 $(this).addClass('hover-highlight');
                             }
 

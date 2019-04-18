@@ -37,7 +37,6 @@ class ApiService {
                 }
             } else if (401 === error.response.status) {
                 window.sessionStorage.setItem('errorMessage', 'Access denied');
-                debugger;
                 if (window.location.pathname !== '' && window.location.pathname !== '/') {
                     window.location.replace('/');
                 }
