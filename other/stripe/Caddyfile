@@ -11,7 +11,7 @@
    errors ../errW
 }
 
-:8081, stripea.cekvenich.com {  
+stripea.cekvenich.com {  
    proxy / :8444
 
    gzip
