@@ -8,7 +8,6 @@ nohup.out
 
 /WebAdmin/*.js
 **/lib/*.js
-**/lib/*.min.js
 **/www/editors/**/*.html
 **/wwwAdmin/admin/**/*.html
 **/www/*.html
