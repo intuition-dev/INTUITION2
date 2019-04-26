@@ -105,3 +105,6 @@ In `/WebAdmin/config.yaml` you specify a path to folder with _site_ which you've
 1. **Login to** `[your-ip]:8080` is: `admin`, password is: `123456` (_Note: if you have changed the password in config.yaml, then use your new password from this file_). Create a new user here.
 
 1. **Reset password** for just created user via received email and then **login to** `[your-ip]:9080` with this user's credentials.
+
+
+ngrok.com may help w/ during development 

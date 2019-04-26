@@ -11,12 +11,3 @@
    errors ../errW
 }
 
-stripea.cekvenich.com {  
-   proxy / :8444
-
-   gzip
-   log ../logS
-   errors ../errS
-}
-
-
