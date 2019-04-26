@@ -1,6 +1,8 @@
 # Deploy
 
-1. Install node, yarn, typescript and mbake
+1. Install node, yarn, and typescript (mbake is recommended)
+
+2. git clone metabake-web-admin
 
 ## Part 1: **Editing site**
 
