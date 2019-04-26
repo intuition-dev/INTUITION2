@@ -1,7 +1,7 @@
 # stripe 
 
 
-http://stripe.com/docs/checkout/express
+https://stripe.com/docs/payments/checkout
 
 Client integration
 
