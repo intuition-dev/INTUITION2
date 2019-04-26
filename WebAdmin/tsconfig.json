@@ -12,7 +12,7 @@
         "baseUrl": ".",
         "paths": {
             "*": ["node_modules/*"]
-        }
+        }, "skipLibCheck": true
     },
     "include": [
         "**/*.ts"

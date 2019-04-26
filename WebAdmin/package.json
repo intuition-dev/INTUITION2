@@ -14,15 +14,16 @@
     "express-basic-auth": ">=1.1.6",
     "express-fileupload": ">=1.1.4",
     "file-system": ">=2.2.2",
-    "js-yaml": ">=3.13.1",
     "firebase": ">=5.10.0",
     "firebase-admin": ">=7.3.0",
-    "mbake": ">=5.4.31",
+    "js-yaml": ">=3.13.1",
+    "mbake": "5.4.26",
+    "open": "6.1.0",
     "unzipper": ">=0.9.11"
   },
   "devDependencies": {
+    "@firebase/app-types": ">=0.3.9",
     "@types/node": ">=11.13.6",
-    "typescript": ">=3.4.4",
-    "@firebase/app-types": ">=0.3.9"
+    "typescript": ">=3.4.4"
   }
 }
