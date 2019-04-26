@@ -43,6 +43,13 @@ class WebAdmin {
             }
             return Promise.reject(error);
         });
+
+        this.serviceRpc = new httpRPC(window.rpc.protocol, window.rpc.host, window.rpc.port);
+        this.serviceRpc.setUser(username, password);
+    }
+
+    test() {
+        return this.serviceRpc.invoke('/auth/editors', 'multiply', {a:5, b:2});
     }
 
     /**
