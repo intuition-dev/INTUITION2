@@ -19,14 +19,14 @@ depp.define({
 
 depp.require(['scripts'], function() {
     depp.define({
-        'services': [
+        'webAdmin': [
             '/assets/js/db.js'
-            , '/assets/js/services.js'
+            , '/assets/js/WebAdmin.js'
         ]
     });
 });
 
-depp.require(['services'], function() {
+depp.require(['webAdmin'], function() {
     depp.define({
         'edit': [
             '/assets/js/edit.js'

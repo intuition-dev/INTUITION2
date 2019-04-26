@@ -8,7 +8,7 @@
 /**
 * CRUD users for Editors App
 */
-class ApiService {
+class WebAdmin {
     /**
     * basic auth 
     * @param username user name

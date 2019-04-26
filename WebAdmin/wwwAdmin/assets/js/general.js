@@ -1,15 +1,15 @@
 class Editors {
-    constructor(apiService) {
+    constructor(webAdmin) {
         this.drawTable = this.drawTable.bind(this);
         this.save = this.save.bind(this);
         this.remove = this.remove.bind(this);
-        this.apiService = apiService;
+        this.webAdmin = webAdmin;
         this.table = null;
         this.activeRow = null;
     }
     drawTable() {
         // render editors table
-        this.apiService.getEditorsList()
+        this.webAdmin.getEditorsList()
             .then(editors => {
                 this.table = new Tabulator("#editors-table", {
                     data:editors.data,      // assign data to table
@@ -42,7 +42,7 @@ class Editors {
         let email = $("#editor-form input[name='email']").val();
         let name = $("#editor-form input[name='name']").val();
         if (id) { // edit user
-            return this.apiService.editEditor(id, name)
+            return this.webAdmin.editEditor(id, name)
                 .then((documentRef) => {
                     $('.notification').removeClass('d-hide').find('.text').text('user was successfully updated');
                     setTimeout(function() {
@@ -62,7 +62,7 @@ class Editors {
                         });
                 });
         } else { // add user
-            return this.apiService.addEditor(name, email, password)
+            return this.webAdmin.addEditor(name, email, password)
                 .then((documentRef) => {
                     $('.notification').removeClass('d-hide').find('.text').text('new user was created');
                     setTimeout(function() {
@@ -95,7 +95,7 @@ class Editors {
     }
 
     remove(id) {
-        return this.apiService.deleteEditor(id)
+        return this.webAdmin.deleteEditor(id)
             .then(() => {
                 $('.notification').removeClass('d-hide').find('.text').text(' The user was successfully deleted');
                 setTimeout(function() {
@@ -120,7 +120,7 @@ class Editors {
 }
 
 // admin basic auth
-function getApiService() {
+function getWebAdmin() {
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     if ((username === null || password === null) &&
@@ -129,6 +129,6 @@ function getApiService() {
         console.info('unauthorized, redirecting to login page');
         window.location.replace('/');
     } else {
-        return new ApiService(username, password);
+        return new WebAdmin(username, password);
     }
 }

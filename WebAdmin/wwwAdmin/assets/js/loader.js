@@ -9,18 +9,18 @@ var responces = [];
 
 depp.define({
     'scripts': [
-        '//cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.slim.min.js'
+        '//cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js'
         ,'//cdn.jsdelivr.net/npm/tabulator-tables@4.2.3/dist/js/tabulator.min.js'
         , '/assets/3rd/gridforms.js'
         , '//unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js'
         , ROOT + 'assets/css/spectreBottom.css'
     ],
-    'services': [
+    'webAdmin': [
         '#scripts'
-        ,'/assets/js/services.js'
+        ,'/assets/js/WebAdmin.js'
     ],
     'general': [
-        '#services'
+        '#webAdmin'
         ,'/assets/js/general.js'
     ],
     'rw': [

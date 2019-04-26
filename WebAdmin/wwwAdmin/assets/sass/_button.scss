@@ -43,10 +43,10 @@
     }
 
     &-primary.btn {
-        &, &:visited {
+        &, &:visited, &:focus {
             background: #1b98f8;
         }
-        &:hover, &:active, &:focus {
+        &:hover, &:active {
             background: #006ec3;
         }
     }

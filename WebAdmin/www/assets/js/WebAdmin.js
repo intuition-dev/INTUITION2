@@ -7,7 +7,7 @@
 /**
 * CRUD .md files and post creation from blog mounted app
 */
-class ApiService {
+class WebAdmin {
 
     /**
     * @param baseURL_ base api url (example: http://0.0.0.0:3030/)
