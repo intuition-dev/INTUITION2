@@ -21,7 +21,7 @@ depp.require(['scripts'], function() {
     depp.define({
         'webAdmin': [
             '/assets/js/db.js'
-            , '/assets/js/WebAdmin.js'
+            , '/assets/webAdmin/WebAdmin.js'
         ]
     });
 });
