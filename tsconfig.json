@@ -1,8 +1,11 @@
 {
     "compilerOptions": {
+
+        "pretty": false,
+        "listEmittedFiles": true,
+
         "module": "commonjs",
         "target": "ES2017",
-   
         
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
