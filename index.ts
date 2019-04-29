@@ -46,12 +46,13 @@ adminApp.listen(adminPort, () => {
     console.log(`wwwAdmin API listening on port ${adminPort}!`);
 });
 
-const adminPort2 = config.adminAPIportRps;
-const adminRoutesRpc = new AdminRoutesRpc();
-adminApp.use('/auth', adminRoutesRpc.routes());
-adminApp.listen(adminPort2, () => {
-    console.log(`wwwAdmin API RPC listening on port ${adminPort2}!`);
-});
+// http-rpc
+// const adminPort2 = config.adminAPIportRps;
+// const adminRoutesRpc = new AdminRoutesRpc();
+// adminApp.use('/auth', adminRoutesRpc.routes());
+// adminApp.listen(adminPort2, () => {
+//     console.log(`wwwAdmin API RPC listening on port ${adminPort2}!`);
+// });
 
 // html
 const adminWPort = 8080;

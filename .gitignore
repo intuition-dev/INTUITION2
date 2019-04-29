@@ -6,13 +6,13 @@ node_modules/
 
 nohup.out
 
-/WebAdmin/*.js
-**/lib/*.js
-**/www/editors/**/*.html
-**/wwwAdmin/admin/**/*.html
-**/www/*.html
-**/wwwAdmin/*.html
-**/**/assets/css/*.css
+*.js
+/lib/*.js
+/www/editors/**/*.html
+/wwwAdmin/admin/**/*.html
+/www/*.html
+/wwwAdmin/*.html
+/**/assets/css/*.css
 
 serviceAccountKey.json
 config.yaml

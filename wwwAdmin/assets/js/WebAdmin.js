@@ -19,7 +19,7 @@ class WebAdmin {
             baseURL: window.api[0],
             auth: {
                 username: username,
-                password: password
+                password: "" + password
             },
             responseType: 'json'
         });
@@ -44,13 +44,13 @@ class WebAdmin {
             return Promise.reject(error);
         });
 
-        this.serviceRpc = new httpRPC(window.rpc.protocol, window.rpc.host, window.rpc.port);
-        this.serviceRpc.setUser(username, password);
+        // this.serviceRpc = new httpRPC(window.rpc.protocol, window.rpc.host, window.rpc.port);
+        // this.serviceRpc.setUser(username, password);
     }
 
-    test() {
-        return this.serviceRpc.invoke('/auth/editors', 'multiply', {a:5, b:2});
-    }
+    // test() {
+    //     return this.serviceRpc.invoke('/auth/editors', 'multiply', {a:5, b:2});
+    // }
 
     /**
     * get data for editors table
