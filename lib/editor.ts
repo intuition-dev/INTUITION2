@@ -68,33 +68,51 @@ export class EditorRoutes {
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;
             if (typeof post_id !== 'undefined') {
-
+                
                 let md = '/' + pathPrefix + post_id;
-
+                
                 let fileOps = new FileOps(config.appMount);
                 fileOps.write(md, req.body);
-
+                
                 let runMbake = new MBake();
                 let dirCont = new Dirs(config.appMount);
-                let postsFolder = post_id.substr(0, post_id.indexOf('/')); 
                 let substring = '/';
-
-                if (pathPrefix.includes(substring)) {
-                    pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
-                }
-
-                let checkDat_i = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat_i.yaml'));
-                if (checkDat_i.length > 0) {
-                    runMbake.itemizeNBake(config.appMount + '/' + postsFolder);
-                }
-
-                runMbake.comps(config.appMount);
 
                 let checkCsv = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('.csv'));
                 if (checkCsv.length > 0) {
                     let compileCsv = new CSV2Json(config.appMount + '/' + pathPrefix);
                     compileCsv.convert();
                 }
+
+                // add /archive
+                let checkDat = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat.yaml'));
+                if (checkDat.length > 0) {
+                    const archivePath = '/' + pathPrefix + '/archive';
+                    if (!fs.existsSync(config.appMount + archivePath)) {
+                        fs.mkdirSync(config.appMount + archivePath);
+                    }
+                    
+                    let archiveFileOps = new FileOps(config.appMount + archivePath);
+                    let count = 0;
+                    if (post_id.charAt(0) === '/') {
+                        count = archiveFileOps.count(post_id.slice(1));
+                    } else {
+                        count = archiveFileOps.count(post_id);
+                    }
+                    let archiveFileName = post_id + '.' + count;
+                    archiveFileOps.write(archiveFileName, req.body);
+                }
+                
+                if (pathPrefix.includes(substring)) {
+                    pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
+                }
+                
+                let checkDat_i = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat_i.yaml'));
+                if (checkDat_i.length > 0) {
+                    runMbake.itemizeNBake(config.appMount + '/' + pathPrefix);
+                }
+                
+                runMbake.comps(config.appMount);
                 
                 res.send('OK');
 
