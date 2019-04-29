@@ -1,6 +1,7 @@
 import { EditorRoutes } from './lib/editor';
 import { Wa } from 'mbake/lib/Wa';
 import { AdminRoutes } from './lib/admin';
+import { AdminRoutesRpc } from './lib/admin-rpc';
 
 const express = require('express');
 const appE = express();
@@ -37,12 +38,19 @@ Wa.watch(config.appMount, config.appPort);
 */
 
 // api for admin
-const adminPort = 3030;
+const adminPort = config.adminAPIport;
 const adminApp = express();
 const adminRoutes = new AdminRoutes();
 adminApp.use('/auth', adminRoutes.routes());
 adminApp.listen(adminPort, () => {
-    console.log(`adminApp listening on port ${adminPort}!`);
+    console.log(`wwwAdmin API listening on port ${adminPort}!`);
+});
+
+const adminPort2 = config.adminAPIportRps;
+const adminRoutesRpc = new AdminRoutesRpc();
+adminApp.use('/auth', adminRoutesRpc.routes());
+adminApp.listen(adminPort2, () => {
+    console.log(`wwwAdmin API RPC listening on port ${adminPort2}!`);
 });
 
 // html
