@@ -11,7 +11,7 @@ appMount: /Users/liza/work/Metabake/examples/blog
 editorAPIport: 9081
 
 # uses basic auth
-secret: 123456
+secret: '123456'
 adminAPIport: 3030
 
 # Firebase connection
