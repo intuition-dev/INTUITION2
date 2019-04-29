@@ -15,7 +15,7 @@ nohup.out
 **/**/assets/css/*.css
 
 serviceAccountKey.json
-/WebAdmin/config.yaml
-/WebAdmin/wwwAdmin/config.js
-/WebAdmin/www/config.js
+config.yaml
+/wwwAdmin/config.js
+/www/config.js
 keys.yaml
