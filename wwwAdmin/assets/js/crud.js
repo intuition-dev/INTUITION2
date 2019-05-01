@@ -1,7 +1,7 @@
 depp.require(['general'], function() {
     if (window.location.href.indexOf("admin/crudEditors") > -1) {
         
-        let editors = new Editors(getWebAdmin());
+        let editors = new Editors(getAdminWebAdmin());
 
         editors.drawTable();
 

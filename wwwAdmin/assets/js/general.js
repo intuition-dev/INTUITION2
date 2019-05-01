@@ -123,7 +123,7 @@ class Editors {
 }
 
 // admin basic auth
-function getWebAdmin() {
+function getAdminWebAdmin() {
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');
     if ((username === null || password === null) &&
@@ -132,6 +132,6 @@ function getWebAdmin() {
         console.info('unauthorized, redirecting to login page');
         window.location.replace('/');
     } else {
-        return new WebAdmin(username, password);
+        return new AdminWebAdmin(username, password);
     }
 }
