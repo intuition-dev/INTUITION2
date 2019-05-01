@@ -4,6 +4,8 @@
 
 2. git clone metabake-web-admin
 
+Yarn install does not work yet.
+
 ## Part 1: **Editing site**
 
 1. Deploy site which you are going to edit through the **WebAdmin application**, eg:
@@ -11,16 +13,16 @@
     1. Download a **blog example site**:
 
         ```conf
-        $ mbake -e
+         mbake -e
         ```
     1. Compile files:
 
         ```conf
-        $ mbakeX -c .
-        $ cd assets
-        $ mbake -s .
-        $ cd ../blog
-        $ mbake -i .
+         mbakeX -c .
+         cd assets
+         mbake -s .
+         cd ../blog
+         mbake -i .
         ```
 
 ## Part 2: **WebAdmin application**
