@@ -9,7 +9,7 @@ $ npm -g i documentation
     Do command from this folder:
 
 ```conf
-$ documentation build --config documentation.yml WebAdmin.js -f html -o api
+$ documentation build --config documentation.yml adminWebAdmin.js -f html -o api
 ```
 
 It will generate `api` folder with the human readable documentation, which can be accessible by the url in browser:

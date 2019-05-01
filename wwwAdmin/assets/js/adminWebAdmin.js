@@ -8,7 +8,7 @@
 /**
 * CRUD users for Editors App
 */
-class WebAdmin {
+class AdminWebAdmin {
     /**
     * basic auth 
     * @param username user name
