@@ -50,12 +50,15 @@ export class EditorRoutes {
             let pathPrefix = req.query.pathPrefix;
             if (typeof post_id !== 'undefined') {
                 let md = config.appMount + '/' + pathPrefix + post_id;
-                let fileExt = path.extname(post_id);
+                let original_post_id = post_id.replace(/\.+\d+$/, "");
+                let fileExt = path.extname(original_post_id);
                 if (fs.existsSync(md) && (fileExt === '.md' || fileExt === '.yaml' || fileExt === '.csv' || fileExt === '.pug' || fileExt === '.css')) {
                     fs.readFile(md, 'utf8', function(err, data) {  
                         if (err) throw err;
                         res.json(data);
                     });
+                } else {
+                    throw "Unknown file type!"
                 }
             } else {
                 res.status(400);
@@ -93,13 +96,11 @@ export class EditorRoutes {
                     }
                     
                     let archiveFileOps = new FileOps(config.appMount + archivePath);
-                    let count = 0;
-                    if (post_id.charAt(0) === '/') {
-                        count = archiveFileOps.count(post_id.slice(1));
-                    } else {
-                        count = archiveFileOps.count(post_id);
-                    }
-                    let archiveFileName = post_id + '.' + count;
+
+                    let extension = path.extname(post_id);
+                    let fileName = path.basename(post_id, extension);
+                    let count = archiveFileOps.count(path.basename(post_id));
+                    let archiveFileName = '/' + fileName + extension + '.' + count;
                     archiveFileOps.write(archiveFileName, req.body);
                 }
                 
