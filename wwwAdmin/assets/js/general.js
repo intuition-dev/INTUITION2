@@ -45,6 +45,7 @@ class Editors {
             return this.webAdmin.editEditor(id, name)
                 .then((documentRef) => {
                     $('.notification').removeClass('d-hide').find('.text').text('user was successfully updated');
+                    $('.grid-form input').val('');
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').find('.text').text('');
                     }, 4000);
@@ -65,6 +66,7 @@ class Editors {
             return this.webAdmin.addEditor(name, email, password)
                 .then((documentRef) => {
                     $('.notification').removeClass('d-hide').find('.text').text('new user was created');
+                    $('.grid-form input').val('');
                     setTimeout(function() {
                         $('.notification').addClass('d-hide').find('.text').text('');
                     }, 4000);
@@ -98,6 +100,7 @@ class Editors {
         return this.webAdmin.deleteEditor(id)
             .then(() => {
                 $('.notification').removeClass('d-hide').find('.text').text(' The user was successfully deleted');
+                $('.grid-form input').val('');
                 setTimeout(function() {
                     $('.notification').addClass('d-hide').find('.text').text('');
                 }, 4000);

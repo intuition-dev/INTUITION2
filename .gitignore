@@ -6,7 +6,7 @@ node_modules/
 
 nohup.out
 
-*.js
+index.js
 /lib/*.js
 /www/editors/**/*.html
 /wwwAdmin/admin/**/*.html

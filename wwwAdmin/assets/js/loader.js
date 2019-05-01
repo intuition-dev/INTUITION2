@@ -18,7 +18,7 @@ depp.define({
     ],
     'webAdmin': [
         '#scripts'
-        ,'/assets/js/WebAdmin.js'
+        ,'/assets/js/adminWebAdmin.js'
     ],
     'general': [
         '#webAdmin'
