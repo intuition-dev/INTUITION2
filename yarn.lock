@@ -2640,14 +2640,7 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jstransformer-markdown-it@>=2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/jstransformer-markdown-it/-/jstransformer-markdown-it-2.1.0.tgz#69ec30ce4518bed5997b38f027648e8c285e92f7"
-  integrity sha1-aewwzkUYvtWZezjwJ2SOjChekvc=
-  dependencies:
-    markdown-it "^8.0.0"
-
-jstransformer@1.0.0, jstransformer@>=1.0.0:
+jstransformer@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/jstransformer/-/jstransformer-1.0.0.tgz#ed8bf0921e2f3f1ed4d5c1a44f68709ed24722c3"
   integrity sha1-7Yvwkh4vPx7U1cGkT2hwntJHIsM=
@@ -2952,7 +2945,7 @@ markdown-it-front-matter@^0.1.2:
   resolved "https://registry.yarnpkg.com/markdown-it-front-matter/-/markdown-it-front-matter-0.1.2.tgz#e50bf56e77e6a4f5ac4ffa894d4d45ccd9896b20"
   integrity sha1-5Qv1bnfmpPWsT/qJTU1FzNmJayA=
 
-markdown-it@>=8.4.2, markdown-it@^8.0.0, markdown-it@^8.4.2:
+markdown-it@>=8.4.2, markdown-it@^8.4.2:
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.2.tgz#386f98998dc15a37722aa7722084f4020bdd9b54"
   integrity sha512-GcRz3AWTqSUphY3vsUqQSFMbgR38a4Lh3GWlHRh/7MRwz8mcu9n2IO7HOh+bXHrR9kOPDl5RNCaEsrneb+xhHQ==
@@ -2963,10 +2956,10 @@ markdown-it@>=8.4.2, markdown-it@^8.0.0, markdown-it@^8.4.2:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-mbake@5.5.4:
-  version "5.5.4"
-  resolved "https://registry.yarnpkg.com/mbake/-/mbake-5.5.4.tgz#2a7490632c0d58d1c65c8e7660b3906819274ee2"
-  integrity sha512-MG7zSmErS7qqgO/u6HU8AJlnsL1hvnWi8xOc2poLnWF0OM7PkGmscI6CZD5I2aOZ7pPi9ft2ergChvMFbJ3tHw==
+mbake@5.5.5:
+  version "5.5.5"
+  resolved "https://registry.yarnpkg.com/mbake/-/mbake-5.5.5.tgz#b8659055d57938c4ecdb5e520e82d57498f853c4"
+  integrity sha512-BigS39EP51b6MCQBSHtUuEoYGefTTM8LzsIRgsph6JU36eV/D8I9FGZEnsUMoT8Peit1DqexT/P1MM/umZTupw==
   dependencies:
     "@marp-team/marpit" ">=0.9.2"
     adm-zip ">=0.4.13"
@@ -2988,8 +2981,6 @@ mbake@5.5.4:
     html-minifier ">=4.0.0"
     javascript-obfuscator ">=0.18.1"
     js-yaml ">=3.13.1"
-    jstransformer ">=1.0.0"
-    jstransformer-markdown-it ">=2.1.0"
     lunr ">=2.3.6"
     markdown-it ">=8.4.2"
     markdown-it-container ">=2.0.0"

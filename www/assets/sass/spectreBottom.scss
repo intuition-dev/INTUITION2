@@ -1,20 +1,20 @@
 * {
-	min-width: 0;
-	min-height: 0;
-	box-sizing: border-box;
+   min-width: 0;
+   min-height: 0;
+   box-sizing: border-box;
 }
 
+@import "3rd/_gridforms";
+@import "../spectre/_variables";
+@import "../spectre/_mixins";
+@import "../spectre/toasts";
 
-@import '3rd/_gridforms';
-@import '../spectre/_variables';
-@import '../spectre/_mixins';
+@import "_variables";
+@import "_mixins";
+@import "_layout";
+@import "_typography";
+@import "_form";
+@import "_button";
+@import "_login";
 
-@import '_variables';
-@import '_mixins';
-@import '_layout';
-@import '_typography';
-@import '_form';
-@import '_button';
-@import '_login';
-
-@import '3rd/_zebra_datepicker';
+@import "3rd/_zebra_datepicker";
