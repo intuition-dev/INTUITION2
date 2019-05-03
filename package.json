@@ -17,9 +17,7 @@
       "firebase": ">=5.10.1",
       "firebase-admin": ">=7.3.0",
       "js-yaml": ">=3.13.1",
-      "mbake": "5.5.5",
-      "open": "6.2.0",
-      "unzipper": ">=0.9.11"
+      "mbake": "5.5.5"
    },
    "devDependencies": {
       "@firebase/app-types": ">=0.3.9",
