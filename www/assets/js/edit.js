@@ -57,8 +57,56 @@ if (window.location.href.indexOf('editors/edit') > -1) {
         });
 
         let posts = new Posts();
+        let hash = window.location.hash.substr(1);;
 
-        posts.showDirs();
+        posts
+            .showDirs()
+            .then(() => {
+
+                if (typeof hash !== 'undefined' && hash !== '') {
+        
+                    let currentPage = $('.blog-item:contains("' + hash + '")');
+                    console.log('currentPage', currentPage);
+        
+                    $('.blog-item ul').remove();
+                    $('.upload, .i-plusCircle').removeClass('disabled');
+                    $('.knot').removeClass('active');
+                    $(currentPage).find('.knot').addClass('active');
+                    $('.blog-item').removeClass('active');
+                    $(currentPage).addClass('active');
+                    $('.btn-custom.save').attr("disabled", "disabled");
+                    $('.view-page').removeAttr("disabled");
+        
+                    let postId = $(currentPage).find('span').text();
+        
+                    $('.view-page').attr('href', appMount + '/' + postId);
+        
+                    if ($(currentPage).find('ul').length === 0) {
+                        posts
+                            .showSubDirs(postId)
+                            .then(() => {
+                                $('.blog-item li').each(function () {
+        
+                                    let fileName = $(this).text();
+        
+                                    if (fileName.includes('.md')) {
+                                        $(this).addClass('md-highlight');
+                                    }
+        
+                                    if (fileName.includes('.md') || fileName.includes('.yaml') || fileName.includes('.css') || fileName.includes('.pug') || fileName.includes('.csv')) {
+                                        $(this).addClass('hover-highlight');
+                                    }
+        
+                                });
+                            });
+                    } else {
+                        $(this).find('ul').remove();
+                    }
+        
+                }
+
+            });
+
 
         let appMount = window.appMount[0];
 
@@ -82,6 +130,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
 
             let postId = $(this).find('span').text();
 
+            window.location.hash = postId;
 
             $('.view-page').attr('href', appMount + '/' + postId);
 
@@ -279,10 +328,14 @@ if (window.location.href.indexOf('editors/edit') > -1) {
             e.preventDefault();
             e.stopPropagation();
 
-            $('form').addClass('d-hide');
-            $('.post-name-wrap').removeClass('d-hide');
-            $('.icon-wrap i').removeClass('active');
-            $('.icon-wrap .create-post').addClass('active');
+            if (!($(this).hasClass('disabled'))) {
+
+                $('form').addClass('d-hide');
+                $('.post-name-wrap').removeClass('d-hide');
+                $('.icon-wrap i').removeClass('active');
+                $('.icon-wrap .create-post').addClass('active');
+            
+            }
 
         });
 
@@ -369,12 +422,16 @@ if (window.location.href.indexOf('editors/edit') > -1) {
             e.preventDefault();
             e.stopPropagation();
 
-            $('form').addClass('d-hide');
-            $('.file-upload').removeClass('d-hide');
-            $('.icon-wrap i').removeClass('active');
-            $('.icon-wrap .upload').addClass('active');
+            if (!($(this).hasClass('disabled'))) {
 
-            window.pathPrefixUpload = $('.blog-item.active').find('span').text();
+                $('form').addClass('d-hide');
+                $('.file-upload').removeClass('d-hide');
+                $('.icon-wrap i').removeClass('active');
+                $('.icon-wrap .upload').addClass('active');
+
+                window.pathPrefixUpload = $('.blog-item.active').find('span').text();
+
+            }
 
         });
 
@@ -443,12 +500,14 @@ if (window.location.href.indexOf('editors/edit') > -1) {
             e.preventDefault();
             e.stopPropagation();
 
-            $('.icon-wrap i').removeClass('active');
-            $('.icon-wrap .i-calendar').addClass('active');
-            $('form').addClass('d-hide');
-            $('.publish-date-form').removeClass('d-hide');
-
-            window.pathPrefixPdate = $('.blog-item.active').find('span').text();
+            if (!($(this).hasClass('disabled'))) {
+                $('.icon-wrap i').removeClass('active');
+                $('.icon-wrap .i-calendar').addClass('active');
+                $('form').addClass('d-hide');
+                $('.publish-date-form').removeClass('d-hide');
+    
+                window.pathPrefixPdate = $('.blog-item.active').find('span').text();
+            }
 
         });
 

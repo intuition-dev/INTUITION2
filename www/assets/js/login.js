@@ -12,7 +12,10 @@ class Login {
 						}
 					})
 				.then(() => {
-					window.location.replace('/editors/edit/');
+
+					let hash = location.hash;
+					window.location.replace('/editors/edit/' + hash);
+
 				})
 				.catch(error => {
 					console.info('login error', error);
