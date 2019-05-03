@@ -297,24 +297,39 @@ if (window.location.href.indexOf('editors/edit') > -1) {
 
             posts
                 .saveMd(postId, md, pathPrefix)
-                .then((response) => {
-                    console.info("--response saveMd:", response)
+                .then(() => {
+
                     $(this).removeAttr("disabled");
                     $('.loader').removeClass('active');
-                    if (response == 'OK') {
-                        $('[data-js="errors"]').addClass('d-hide');
-                        $('.notification').removeClass('d-hide').find('.text').text('The content was successfully updated');
+                    $('.notification').removeClass('d-hide').find('.text').text('The content was successfully updated');
 
-                        setTimeout(function () {
-                            $('.notification').addClass('d-hide').find('.text').text('');
-                        }, 4000);
-                    } else {
-                        var msg = response.msg + ' in ' + response.filename + ' at line ' + response.line + '<br />'
-                        $('[data-js="errors"]').html(msg)
-                        $('[data-js="errors"]').removeClass('d-hide')
-                    }
+                    setTimeout(function () {
+                        $('.notification').addClass('d-hide').find('.text').text('');
+                    }, 2000);
 
+                })
+                .then(() => {
+                    posts
+                        .compile(postId, md, pathPrefix)
+                        .then((response) => {
+                            if (response == 'OK') {
 
+                                let msg = 'Files have been built';
+
+                                $('[data-js="errors"]').removeClass('toast-error d-hide').html(msg);
+                                
+                                setTimeout(function () {
+                                    $('[data-js="errors"]').addClass('d-hide toast-error').html('');
+                                }, 4000);
+
+                            } else {
+
+                                var msg = response.msg + ' in ' + response.filename + ' at line ' + response.line + '<br />'
+                                $('[data-js="errors"]').html(msg);
+                                $('[data-js="errors"]').removeClass('d-hide');
+
+                            }
+                        });
                 });
 
         });

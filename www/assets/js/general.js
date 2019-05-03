@@ -46,6 +46,13 @@ class Posts {
             })
     }
 
+    compile(id, md, pathPrefix) {
+        return webAdmin.build(id, md, pathPrefix)
+            .then(function (resp) {
+                return resp.data.data
+            })
+    }
+
     addPost(id, pathPrefix) {
         return webAdmin.createPost(id, pathPrefix);
     }

@@ -86,6 +86,7 @@ class WebAdmin {
             }
         });
     }
+
     /**
     * save file and run mbake
     * @param id file name, eg: '/title.md'
@@ -99,11 +100,27 @@ class WebAdmin {
                 post_id: id,
                 pathPrefix: pathPrefix
             }
+        });
+    }
+
+    /**
+    * run mbake
+    * @param id file name, eg: '/title.md'
+    * @param md file content, eg: '###### Lorem ipsum dd dolor sit {.title}'
+    * @param pathPrefix path to file, eg: 'blog/post-4'
+    */
+    build(id, md, pathPrefix) {
+        return this.service.put('/editors/post-build', md, {
+            headers: { 'Content-Type': 'text/plain' },
+            params: {
+                post_id: id,
+                pathPrefix: pathPrefix
+            }
         }).then(function (response) {
-            return response
+            return response;
         }).catch(function (error) {
-            return error
-        })
+            return error;
+        });
     }
 
     /**
