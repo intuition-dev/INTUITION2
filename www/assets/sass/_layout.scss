@@ -332,6 +332,11 @@ svg {
                         border-radius: 3px;
                     }
                 }
+                i {
+                    &:hover {
+                        color: #fff;
+                    }
+                }
             }
 
             &:before {
@@ -350,9 +355,8 @@ svg {
                 flex-shrink: 0;
                 transform: scale(0.5);
                 margin: -8px 0 -5px 0;
-
                 &:hover {
-                    color: #fff;
+                    color: #777;
                 }
             }
         }
