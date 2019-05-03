@@ -86,7 +86,6 @@ class WebAdmin {
             }
         });
     }
-
     /**
     * save file and run mbake
     * @param id file name, eg: '/title.md'
@@ -101,10 +100,8 @@ class WebAdmin {
                 pathPrefix: pathPrefix
             }
         }).then(function (response) {
-            console.info("--response savePostMd:", response)
             return response
         }).catch(function (error) {
-            console.info("--error savePostMd:", error)
             return error
         })
     }

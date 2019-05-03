@@ -42,12 +42,6 @@ class Posts {
     saveMd(id, md, pathPrefix) {
         return webAdmin.savePostMd(id, md, pathPrefix)
             .then(function (resp) {
-                // console.info("--resp.data:", resp.data.data)
-                // if (resp.data.data == 'OK') {
-                //    console.log('all good')
-                // } else {
-                //    console.log('some erorrs', resp.data.data)
-                // }
                 return resp.data.data
             })
     }

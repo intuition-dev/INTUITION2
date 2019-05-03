@@ -108,27 +108,23 @@ export class EditorRoutes {
             if (pathPrefix.includes(substring)) {
                pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
             }
-
             let checkDat_i = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat_i.yaml'));
+
+            //need to check what type of file is currently saving and run function based on it, eg: itemizeNbake, or comps
             if (checkDat_i.length > 0) {
-               runMbake.itemizeNBake(config.appMount + '/' + pathPrefix).then(function (response) {
-                  console.log('trying to get api response itemizeNBake', response)
-                  // res.send({ data: 'OK' });
+               runMbake.itemizeNBake(config.appMount + '/' + pathPrefix)
+                  .then(function (response) {
+                     res.send({ data: 'OK' });
+                  }, function (error) {
+                     res.send({ data: error });
+                  })
+            } else {
+               runMbake.comps(config.appMount).then(function (response) {
+                  res.send({ data: 'OK' });
                }, function (error) {
-                  console.log('trying to get api error itemizeNBake', error)
                   res.send({ data: error });
                })
             }
-
-            runMbake.comps(config.appMount).then(function (response) {
-               console.log('trying to get api response comps', response)
-               // res.send({ data: 'OK' });
-            }, function (error) {
-               console.log('trying to get api error comps', error)
-               res.send({ data: error });
-            })
-
-            res.send({ data: 'OK' });
 
          } else {
             res.status(400);
