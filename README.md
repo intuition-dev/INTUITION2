@@ -13,7 +13,7 @@ Yarn install does not work yet.
     1. Download a **blog example site**:
 
         ```conf
-         mbake -e
+         mbake -c
         ```
     1. Compile files:
 
