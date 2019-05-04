@@ -3349,10 +3349,10 @@ markdown-it@>=8.4.2, markdown-it@^8.4.2:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-mbake@5.5.7:
-  version "5.5.7"
-  resolved "https://registry.yarnpkg.com/mbake/-/mbake-5.5.7.tgz#52ee1cc1a78cb749db9eb986a3252b7ac2341c5c"
-  integrity sha512-mpHZG+zIXmETxyzwSKzVJfojEtfOIhTCcClKAV7KA11B6R5Gr4iKc/KZU9YwR6j83IiKQD2bB5FjrZH/RA84aQ==
+mbake@5.5.11:
+  version "5.5.11"
+  resolved "https://registry.yarnpkg.com/mbake/-/mbake-5.5.11.tgz#e259aa11249692384df87724506fd829180ac551"
+  integrity sha512-ccNWgkEji/FGHN1/bqhoQNzwZzmaM/W6mp7OPLOK2+vzlfaOFNgFtFUfTOqTThv+ZvMzIE9q2qxDtnKCO59FWw==
   dependencies:
     "@marp-team/marpit" ">=0.9.2"
     adm-zip ">=0.4.13"
