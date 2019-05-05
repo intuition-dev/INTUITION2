@@ -141,7 +141,7 @@ export class EditorRoutes {
                             res.send({ data: error });
                         })
                 } else {
-                    runMbake.comps(config.appMount).then(function (response) {
+                    runMbake.compsNBake(config.appMount).then(function (response) {
                         res.send({ data: 'OK' });
                     }, function (error) {
                         res.send({ data: error });
@@ -219,7 +219,7 @@ export class EditorRoutes {
                 let runMbake = new MBake();
                 let postsFolder = post_id.substr(0, post_id.indexOf('/'));
                 runMbake.itemizeNBake(config.appMount + '/' + postsFolder);
-                runMbake.comps(config.appMount);
+                runMbake.compsNBake(config.appMount);
                 res.send('OK');
             } else {
                 res.status(400);

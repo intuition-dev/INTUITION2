@@ -3,7 +3,7 @@
 1. To generate human readable documentation install npm documentation globally (`-g`):
 
 ```conf
-$ npm -g i documentation
+$ npm -g we documentation
 ```
 2. In the folder `/wwwAdmin/assets/js` there should be `documentation.yml` file.
     Do command from this folder:
