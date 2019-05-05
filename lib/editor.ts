@@ -68,6 +68,7 @@ export class EditorRoutes {
 
         // update .md/.yaml/.csv/.pug/.css file
         appE.put("/post", (req, res) => {
+            // TODO: What does this do?
             console.info("--res runnnning:")
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;
@@ -134,6 +135,7 @@ export class EditorRoutes {
 
                 //need to check what type of file is currently saving and run function based on it, eg: itemizeNbake, or comps
                 if (checkDat_i.length > 0) {
+                    // this is for yaml
                     runMbake.itemizeNBake(config.appMount + '/' + pathPrefix)
                         .then(function (response) {
                             res.send({ data: 'OK' });
@@ -141,6 +143,7 @@ export class EditorRoutes {
                             res.send({ data: error });
                         })
                 } else {
+                    // TODO: When do we to do components? Why not just bake? md right.
                     runMbake.compsNBake(config.appMount).then(function (response) {
                         res.send({ data: 'OK' });
                     }, function (error) {
@@ -157,6 +160,7 @@ export class EditorRoutes {
 
         // clone page
         appE.post("/new-post", (req, res) => {
+            // TODO: there is a clone method in mbake CLI. Use that and maintain there.
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;
 
