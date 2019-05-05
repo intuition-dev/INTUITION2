@@ -18,3 +18,5 @@ Then npm publish WebAdmin. Do not use local WebAdmin.min.js - get it from CDN. V
 ```
 
 It will generate `docs` folder with the human readable documentation.
+
+Copy .nojekyll into docs
