@@ -1,6 +1,5 @@
 # WebAdmin
 
-Can be installed via yarn install.
+Can be installed via yarn install, go to WebAdmin to see that.
 
-Has an API, docs on:
-
+Has an API, docs in api.

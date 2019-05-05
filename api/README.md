@@ -1,3 +1,6 @@
 # API for MetaBake and WebAdmin
 
-- https://unpkg.com/metabake-web-admin-api@0.1.0/WebAdmin.min.js
+- Docs: https://metabake.github.io/mbakeWebAdmin/
+
+- Use API from //unpkg.com/metabake-web-admin-api@0.1.0/WebAdmin.min.js
+- or better via https://github.com/metabake/metaCake/tree/master/broSys/setup-depp-defs
