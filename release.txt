@@ -1,7 +1,8 @@
-.js here and min.js are linked. You can just change in WebAdmin/www/assets.
+.js here and min.js are linked. You can just edit in WebAdmin/www/assets.
 
-Then build docs and release /API via npm publish.
-Then npm publish WebAdmin. Do not use local WebAdmin.min.js - get it from CDN. Via defs-setup.
+Then build docs and release /API via npm publish. Files are linked (ln without -s).
+Then, change to not use local WebAdmin.min.js - get it from CDN. Via defs-setup.
+Then npm publish WebAdmin. 
 
 # API documentaion
 
