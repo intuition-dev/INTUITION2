@@ -136,7 +136,7 @@ export class EditorRoutes {
                 //need to check what type of file is currently saving and run function based on it, eg: itemizeNbake, or comps
                 if (checkDat_i.length > 0) {
                     // this is for yaml
-                    runMbake.itemizeNBake(config.appMount + '/' + pathPrefix)
+                    runMbake.itemizeNBake(config.appMount + '/' + pathPrefix,3)
                         .then(function (response) {
                             res.send({ data: 'OK' });
                         }, function (error) {
@@ -144,7 +144,7 @@ export class EditorRoutes {
                         })
                 } else {
                     // TODO: When do we to do components? Why not just bake? md right.
-                    runMbake.compsNBake(config.appMount).then(function (response) {
+                    runMbake.compsNBake(config.appMount,3).then(function (response) {
                         res.send({ data: 'OK' });
                     }, function (error) {
                         res.send({ data: error });
@@ -222,8 +222,7 @@ export class EditorRoutes {
                 datYaml.write();
                 let runMbake = new MBake();
                 let postsFolder = post_id.substr(0, post_id.indexOf('/'));
-                runMbake.itemizeNBake(config.appMount + '/' + postsFolder);
-                runMbake.compsNBake(config.appMount);
+                let pro:Promise<string> = runMbake.itemizeNBake(config.appMount + '/' + postsFolder,3);
                 res.send('OK');
             } else {
                 res.status(400);

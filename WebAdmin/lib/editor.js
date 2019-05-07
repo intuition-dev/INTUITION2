@@ -109,7 +109,7 @@ class EditorRoutes {
                 }
                 let checkDat_i = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat_i.yaml'));
                 if (checkDat_i.length > 0) {
-                    runMbake.itemizeNBake(config.appMount + '/' + pathPrefix)
+                    runMbake.itemizeNBake(config.appMount + '/' + pathPrefix, 3)
                         .then(function (response) {
                         res.send({ data: 'OK' });
                     }, function (error) {
@@ -117,7 +117,7 @@ class EditorRoutes {
                     });
                 }
                 else {
-                    runMbake.compsNBake(config.appMount).then(function (response) {
+                    runMbake.compsNBake(config.appMount, 3).then(function (response) {
                         res.send({ data: 'OK' });
                     }, function (error) {
                         res.send({ data: error });
@@ -177,8 +177,7 @@ class EditorRoutes {
                 datYaml.write();
                 let runMbake = new Base_1.MBake();
                 let postsFolder = post_id.substr(0, post_id.indexOf('/'));
-                runMbake.itemizeNBake(config.appMount + '/' + postsFolder);
-                runMbake.compsNBake(config.appMount);
+                let pro = runMbake.itemizeNBake(config.appMount + '/' + postsFolder, 3);
                 res.send('OK');
             }
             else {
