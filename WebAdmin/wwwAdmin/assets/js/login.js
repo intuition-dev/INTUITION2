@@ -2,7 +2,7 @@
     Admin login
 **/
 
-depp.require('deviceready', function() {
+depp.require('general', function() {
 
     // wrong credentials error message on fail of basic auth
     let errorMessage = sessionStorage.getItem('errorMessage');
