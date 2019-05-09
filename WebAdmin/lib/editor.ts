@@ -117,9 +117,6 @@ export class EditorRoutes {
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;
 
-            console.info('post_id --->', post_id);
-            console.info('pathPrefix --->', pathPrefix);
-
             if (typeof post_id !== 'undefined') {
 
                 let runMbake = new MBake();

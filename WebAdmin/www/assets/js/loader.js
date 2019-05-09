@@ -1,8 +1,16 @@
 var responces = [];
 
 depp.define({
+    'fb': [
+        '#polly-core'
+        , '#firestore'
+    ]
+});
+
+depp.define({
     'scripts': [
-        '#jquery'
+        '#fb'
+        , '#jquery'
         , '/assets/3rd/gridforms.js'
         , '//unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js'
         , '//cdn.jsdelivr.net/npm/zebra_datepicker@1.9.6/dist/zebra_datepicker.min.js'
@@ -39,7 +47,7 @@ depp.require(['general'], function() {
         ],
         'fonts': [
             '#rw'
-            ,'css!//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i'
+            , 'css!//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i'
         ]
     });
 });

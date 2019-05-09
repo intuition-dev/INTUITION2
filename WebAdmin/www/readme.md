@@ -5,5 +5,5 @@
     https://chrome.google.com/webstore/category/extensions
 
 2. Type in the search field: **WebAdmin**
-3. select the extention which is offered by: **metabake1**
-4. press **Add to chrome** button, installed extention will appear on top panel of your chrome browser.
+3. Select the extention which is offered by: **metabake1**
+4. Press **Add to chrome** button, installed extention will appear on top panel of your chrome browser.

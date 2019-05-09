@@ -409,6 +409,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                         }, 4000);
 
                         $('.post-name-wrap').addClass('d-hide').find('input').val('');
+                        $('.create-post').removeClass('active');
 
                     });
 
