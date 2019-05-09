@@ -306,6 +306,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                     setTimeout(function () {
                         $('.notification').addClass('d-hide').find('.text').text('');
                     }, 2000);
+                    console.info('saved');
 
                 })
                 .then(() => {
@@ -329,6 +330,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                                 $('[data-js="errors"]').removeClass('d-hide');
 
                             }
+                            console.info('build');
                         });
                 });
 
@@ -406,7 +408,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                             $('.notification').addClass('d-hide').find('.text').text('');
                         }, 4000);
 
-                        $('.post-name-wrap').find('input').val('');
+                        $('.post-name-wrap').addClass('d-hide').find('input').val('');
 
                     });
 

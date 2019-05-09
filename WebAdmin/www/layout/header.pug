@@ -2,18 +2,13 @@ doctype html
 html
     head
         include headFrag
-        meta(charset='utf-8')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        title #{title}
 
         script.
             window.ROOT = '#{ROOT}';
 
-        script(src='//www.gstatic.com/firebasejs/6.0.1/firebase-app.js')
-        script(src='//www.gstatic.com/firebasejs/6.0.1/firebase-auth.js')
-        script(src='//www.gstatic.com/firebasejs/6.0.1/firebase-firestore.js')
-        script(src='//cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js')
-        script(src='//cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.min.js')
+        script(src='//www.gstatic.com/firebasejs/5.11.0/firebase-app.js')
+        script(src='//www.gstatic.com/firebasejs/5.11.0/firebase-auth.js')
+        script(src='//www.gstatic.com/firebasejs/5.11.0/firebase-firestore.js')
 
         script(src=ROOT +'config.js')
         script.

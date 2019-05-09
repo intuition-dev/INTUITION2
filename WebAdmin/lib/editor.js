@@ -132,8 +132,11 @@ class EditorRoutes {
         appE.post("/new-post", (req, res) => {
             let post_id = req.query.post_id;
             let pathPrefix = req.query.pathPrefix;
+            console.info('CLone page ----------------------> :');
+            console.info(', post_id, pathPrefix -------------> ', post_id, pathPrefix);
             if (typeof post_id !== 'undefined'
                 && typeof pathPrefix !== 'undefined') {
+                console.info('if worked ----------------------> :');
                 let postPath = config.appMount + '/' + pathPrefix;
                 let substring = '/';
                 let newPost = '';
@@ -146,6 +149,7 @@ class EditorRoutes {
                 }
                 let fileOps = new Wa_1.FileOps('/');
                 fileOps.clone(postPath, newPost);
+                console.info('fileOps worked ----------------------> :');
                 res.send('OK');
             }
             else {
