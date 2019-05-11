@@ -1,7 +1,8 @@
-import { EditorRoutes } from './lib/editor';
-import { Wa } from 'mbake/lib/Wa';
-import { AdminRoutes } from './lib/admin';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const editor_1 = require("./lib/editor");
+const Wa_1 = require("mbake/lib/Wa");
+const admin_1 = require("./lib/admin");
 const express = require('express');
 const appE = express();
 const yaml = require('js-yaml');
@@ -9,48 +10,28 @@ const fs = require('fs');
 let config = yaml.load(fs.readFileSync(__dirname + '/config.yaml'));
 console.info(config);
 const editorsPort = config.editorAPIport;
-
-/*
-* E D I T O R S
-*/
-
-//express app for editors
-const editorRoutes = new EditorRoutes();
+const editorRoutes = new editor_1.EditorRoutes();
 appE.use('/editors', editorRoutes.routes(config));
 appE.listen(editorsPort, () => {
-   console.info(`appE listening on port ${editorsPort}!`);
+    console.info(`appE listening on port ${editorsPort}!`);
 });
-
-// html
 const wwwPort = config.editorsWwwPort;
 const wwwApp = express();
 wwwApp.use(express.static('www'));
 wwwApp.listen(wwwPort, () => {
-   console.info(`wwwApp listening on port ${wwwPort}!`);
+    console.info(`wwwApp listening on port ${wwwPort}!`);
 });
-
-
-Wa.watch(config.appMount, config.appPort)
-
-/*
-* A D M I N
-*/
-
-// api for admin
+Wa_1.Wa.watch(config.appMount, config.appPort);
 const adminPort = config.adminAPIport;
 const adminApp = express();
-const adminRoutes = new AdminRoutes();
+const adminRoutes = new admin_1.AdminRoutes();
 adminApp.use('/auth', adminRoutes.routes());
 adminApp.listen(adminPort, () => {
-   console.log(`wwwAdmin API listening on port ${adminPort}!`);
+    console.log(`wwwAdmin API listening on port ${adminPort}!`);
 });
-
-
-
-// html
 const adminWPort = 8080;
 const adminWApp = express();
 adminWApp.use(express.static('wwwAdmin'));
 adminWApp.listen(adminWPort, () => {
-   console.log(`adminWApp listening on port ${adminWPort}!`);
+    console.log(`adminWApp listening on port ${adminWPort}!`);
 });

@@ -1,22 +1,14 @@
 /.project
-
 .DS_Store
-
 node_modules/
 
 nohup.out
 
-/WebAdmin/index.js
-/WebAdmin/lib/*.js
-/WebAdmin/www/editors/**/*.html
-/WebAdmin/wwwAdmin/admin/**/*.html
-/WebAdmin/www/*.html
-/WebAdmin/wwwAdmin/*.html
-/WebAdmin/**/assets/css/*.css
+
+# source file for webadmin must be in so npm/yarn install works!!!
+
 
 /WebAdmin/serviceAccountKey.json
 /WebAdmin/config.yaml
-/WebAdmin/wwwAdmin/config.js
-/WebAdmin/www/config.js
 
-keys.yaml
+
