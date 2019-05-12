@@ -17,7 +17,7 @@
       "firebase": ">=6.0.2",
       "firebase-admin": ">=7.3.0",
       "js-yaml": ">=3.13.1",
-      "mbake": "5.5.35"
+      "mbake": "5.5.36"
    },
    "devDependencies": {
       "@firebase/app-types": ">=0.4.0",
