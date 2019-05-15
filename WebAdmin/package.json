@@ -3,7 +3,7 @@
    "version": "5.05.5",
    "description": "Web Admin for web apps written in MetaBake",
    "main": "index.js",
-   "license": "LGPL-3.0-only",
+   "license": "AGPL-3.0-only",
    "engines": {
       "node": ">=12.2.0",
       "yarn": ">=1.16.0"
