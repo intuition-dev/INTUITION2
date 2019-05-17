@@ -9,19 +9,24 @@
       "yarn": ">=1.16.0"
    },
    "dependencies": {
-      "basic-auth": ">=2.0.1",
-      "express": ">=4.16.4",
-      "express-basic-auth": ">=1.2.0",
+
       "express-fileupload": ">=1.1.4",
       "file-system": ">=2.2.2",
       "firebase": ">=6.0.2",
       "firebase-admin": ">=7.3.0",
       "js-yaml": ">=3.13.1",
-      "mbake": "5.5.37"
+      "mbake": "5.6.3"
+ 
+ 
+      ,"basic-auth": ">=2.0.1",
+      "express": ">=4.17.0",
+      "express-basic-auth": ">=1.2.0"
+
+
    },
    "devDependencies": {
       "@firebase/app-types": ">=0.4.0",
-      "@types/node": ">=12.0.0",
+      "@types/node": ">=12.0.2",
       "typescript": ">=3.4.5",
       "npm-check-updates": ">=3.1.9"
 
