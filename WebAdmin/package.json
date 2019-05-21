@@ -15,7 +15,7 @@
       "firebase": ">=6.0.2",
       "firebase-admin": ">=7.3.0",
       "js-yaml": ">=3.13.1",
-      "mbake": "5.6.10"
+      "mbake": "5.6.19"
  
  
       ,"basic-auth": ">=2.0.1",
