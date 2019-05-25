@@ -12,10 +12,10 @@
 
       "express-fileupload": ">=1.1.4",
       "file-system": ">=2.2.2",
-      "firebase": ">=6.0.2",
-      "firebase-admin": ">=7.4.0",
+      "firebase": ">=6.0.4",
+      "firebase-admin": ">=8.0.0",
       "js-yaml": ">=3.13.1",
-      "mbake": "5.6.20"
+      "mbake": "5.6.21"
  
  
       ,"basic-auth": ">=2.0.1",
