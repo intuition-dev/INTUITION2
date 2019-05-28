@@ -230,7 +230,6 @@ export class EditorRoutes {
         // get mbake version
         appE.get("/mbake-version", (req, res) => {
 
-            // let mbakeVer = new Ver();
             console.info('endpoint mbake version --------------> ', Ver.ver());
             res.send(Ver.ver());
 

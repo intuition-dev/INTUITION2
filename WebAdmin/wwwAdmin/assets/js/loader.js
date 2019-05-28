@@ -2,16 +2,15 @@ var responces = [];
 
 depp.define({
     'fb': [
-        '#polly-core'
+        '#polly-core-req'
         , '#firestore'
     ],
     'scripts': [
         '#fb'
         , '#jquery'
         , '#tabulator'
-        , '/assets/3rd/gridforms.js'
+        , '#gridformsJS'
         , '//unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js'
-        // , '//unpkg.com/http-rpc@0.4.1/httpRPC.min.js'
         , ROOT + 'assets/css/spectreBottom.css'
     ],
     'httpRPC': [

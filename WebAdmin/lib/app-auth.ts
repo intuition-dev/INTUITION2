@@ -6,7 +6,6 @@ export class AppAuth {
         return (request, response, next) => {
             const firebaseAdmin = new FirebaseAdmin();
 
-            // let mbakeVer = new Ver();
             response.setHeader('mbake-ver', Ver.ver());
             console.info('mbake version: ', Ver.ver());
             
