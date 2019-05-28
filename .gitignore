@@ -11,4 +11,12 @@ nohup.out
 /WebAdmin/serviceAccountKey.json
 /WebAdmin/config.yaml
 
-
+/WebAdmin/index.js
+/WebAdmin/lib/*.js
+/WebAdmin/www/editors/**/*.html
+/WebAdmin/wwwAdmin/admin/**/*.html
+/WebAdmin/www/*.html
+/WebAdmin/wwwAdmin/*.html
+/WebAdmin/**/assets/css/*.css
+/WebAdmin/wwwAdmin/config.js
+/WebAdmin/www/config.js
