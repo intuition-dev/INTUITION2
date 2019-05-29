@@ -10,53 +10,21 @@
 */
 class AdminWebAdmin {
     /**
-    * basic auth 
     * @param username user name
     * @param password user password
     */
     constructor(username, password) {
-        this.service = axios.create({
-            baseURL: window.api[0],
-            auth: {
-                username: username,
-                password: "" + password
-            },
-            responseType: 'json'
-        });
 
-        this.service.interceptors.response.use(function(response) {
-            // Do something with response data
-            console.info('response', response);
-            return response;
-        }, function(error) {
-            // With response error redirect
-            if (typeof error.response === 'undefined') {
-                window.sessionStorage.setItem('errorMessage', 'Network Error');
-                if (window.location.pathname !== '' && window.location.pathname !== '/') {
-                    window.location.replace('/');
-                }
-            } else if (401 === error.response.status) {
-                window.sessionStorage.setItem('errorMessage', 'Access denied');
-                if (window.location.pathname !== '' && window.location.pathname !== '/') {
-                    window.location.replace('/');
-                }
-            }
-            return Promise.reject(error);
-        });
-
-        // this.serviceRpc = new httpRPC(window.rpc.protocol, window.rpc.host, window.rpc.port);
-        // this.serviceRpc.setUser(username, password);
+        this.serviceRpc = new httpRPC(rpcProtocol, rpcHost, rpcPort);
+        this.serviceRpc.setUser(username, password);
+        
     }
-
-    // test() {
-    //     return this.serviceRpc.invoke('/auth/editors', 'multiply', {a:5, b:2});
-    // }
 
     /**
     * get data for editors table
     */
     getEditorsList() {
-        return this.service.get('/auth/editors');
+        return this.serviceRpc.invoke('/auth/editors', 'get', {});
     }
 
     /**
