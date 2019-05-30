@@ -35,10 +35,10 @@ class AdminWebAdmin {
     */
     addEditor(name, email, password) {
         return this.serviceRpc.invoke('/auth/editors-add', 'post', {
-            name: name,
-            email: email,
-            password: password
-        });
+                name: name,
+                email: email,
+                password: password
+            });
     }
 
     /**
@@ -48,9 +48,9 @@ class AdminWebAdmin {
     */
     editEditor(uid, name) {
         return this.serviceRpc.invoke('/auth/editors-edit', 'put', {
-            name: name,
-            uid: uid
-        });
+                name: name,
+                uid: uid
+            });
     }
 
     /**
@@ -59,10 +59,8 @@ class AdminWebAdmin {
     */
     deleteEditor(uid) {
         return this.serviceRpc.invoke('/auth/editors-delete', 'delete', {
-            // params: {
                 uid: uid
-            // }
-        });
+            });
     }
 
 }

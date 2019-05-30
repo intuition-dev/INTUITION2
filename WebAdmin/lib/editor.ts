@@ -1,22 +1,19 @@
 import { Dirs, MBake, Dat, Ver } from 'mbake/lib/Base';
-import { CustomCors } from './custom-cors';
 import { FileOps, CSV2Json } from 'mbake/lib/Wa';
 import { AppAuth } from './app-auth';
+import { ExpressRPC } from 'mbake/lib/Serv';
 
 export class EditorRoutes {
     routes(config) {
-        const express = require("express");
         const bodyParser = require("body-parser");
         const editorAuth = new AppAuth();
         const fs = require('fs');
         const path = require('path');
         const fileUpload = require('express-fileupload');
 
-        const appE = express();
-        const customCors = new CustomCors();
+        const appE = ExpressRPC.makeInstance(config.corsUrlProd);
 
         appE.use(fileUpload());
-        appE.use(customCors.cors());
         appE.use(editorAuth.auth());
         appE.use(bodyParser.json());
         appE.use(bodyParser.text());

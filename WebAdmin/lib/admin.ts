@@ -1,14 +1,11 @@
 import { RPCBasicAuth } from '../lib/RPCBasicAuth';
 import { Firebase } from './Firebase';
 import { FirebaseAdmin } from "./firebaseAdmin";
-import { CustomCors } from './custom-cors';
 import { ExpressRPC } from 'mbake/lib/Serv';
 
 export class AdminRoutes {
    routes() {
-      const express = require("express");
       const bodyParser = require("body-parser");
-      const customCors = new CustomCors();
       const yaml = require('js-yaml');
       const fs = require('fs');
       const firebaseAdmin = new FirebaseAdmin();
@@ -19,9 +16,7 @@ export class AdminRoutes {
       console.info(config);
       
       const basicAuthRpc = new RPCBasicAuth();
-      // const adminApp = express();
       const adminApp = ExpressRPC.makeInstance(config.corsUrlAdmin);
-      adminApp.use(customCors.cors());
       adminApp.use(bodyParser.json());
 
       adminApp.use(basicAuthRpc.auth('admin', config.secret));
@@ -165,7 +160,6 @@ export class AdminRoutes {
                   let response = {
                      id: userRecord.uid
                   }
-                  // res.json(response); //was
                   resp.result = response;
                   res.json(resp);
                }).catch(function (error) {
