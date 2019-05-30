@@ -10,13 +10,16 @@
    },
    "dependencies": {
 
-      "express-fileupload": ">=1.1.4",
-      "file-system": ">=2.2.2",
       "firebase": ">=6.1.0",
       "firebase-admin": ">=8.0.0",
       "js-yaml": ">=3.13.1",
-      "mbake": "5.6.33",
+      "mbake": "5.6.34",
       
+      "express-fileupload": ">=1.1.4",
+
+      "file-system": ">=2.2.2",
+      "fs-extra": ">=8.0.1",
+
       "basic-auth": ">=2.0.1"
 
    },
