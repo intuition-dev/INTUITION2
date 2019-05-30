@@ -12,7 +12,7 @@ class Editors {
         this.webAdmin.getEditorsList()
             .then(editors => {
                 this.table = new Tabulator("#editors-table", {
-                    data:editors.data,      // assign data to table
+                    data:editors,      // assign data to table
                     layout:"fitColumns",    // fit columns to width of table
                     columns:[               // Define Table Columns
                         {title:"id", field:"id", visible:false},
@@ -54,7 +54,7 @@ class Editors {
                     }, 500);
                     // table refresh
                     this.table
-                        .updateOrAddData([{id:documentRef.data.id , name: name}])
+                        .updateOrAddData([{id:documentRef.id , name: name}])
                         .then(function(){
                             console.info('table updated');
                         })
@@ -75,7 +75,7 @@ class Editors {
                     }, 500);
                     // table refresh
                     this.table
-                        .updateOrAddData([{id:documentRef.data.id ,email: email, name: name}])
+                        .updateOrAddData([{id:documentRef.id ,email: email, name: name}])
                         .then(function(){
                             console.info('table updated');
                         })
@@ -84,8 +84,8 @@ class Editors {
                         });
                 })
                 .catch(err => {
-                    if (typeof err.response.data.error !== 'undefined') {
-                        alert("Unable to create user: " + err.response.data.error);
+                    if (typeof err !== 'undefined') {
+                        alert("Unable to create user: " + err.errorMessage);
                     }
                     console.info('err: ', err);
                     $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('an error occured, user wasn\'t created', err);
@@ -122,7 +122,7 @@ class Editors {
     }
 }
 
-// admin basic auth
+// admin login&password
 function getAdminWebAdmin() {
     let username = sessionStorage.getItem('username');
     let password = sessionStorage.getItem('password');

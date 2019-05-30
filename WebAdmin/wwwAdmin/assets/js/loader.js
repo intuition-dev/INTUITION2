@@ -10,14 +10,14 @@ depp.define({
         , '#jquery'
         , '#tabulator'
         , '#gridformsJS'
-        , '//unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js'
         , ROOT + 'assets/css/spectreBottom.css'
     ],
     'httpRPC': [
-        , '//unpkg.com/http-rpc@0.4.1/httpRPC.min.js'
+        , '#RPC'
     ],
     'webAdmin': [
         '#scripts'
+        ,'#httpRPC'
         , '/assets/js/adminWebAdmin.js'
     ],
     'general': [

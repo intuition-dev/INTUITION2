@@ -34,7 +34,7 @@ class AdminWebAdmin {
     * @param password user password, eg: 'dfgsdgdsfg' 
     */
     addEditor(name, email, password) {
-        return this.service.post('/auth/editors', {
+        return this.serviceRpc.invoke('/auth/editors-add', 'post', {
             name: name,
             email: email,
             password: password
@@ -47,7 +47,7 @@ class AdminWebAdmin {
     * @param name user name, eg: 'Jane Doe'
     */
     editEditor(uid, name) {
-        return this.service.put('/auth/editors', {
+        return this.serviceRpc.invoke('/auth/editors-edit', 'put', {
             name: name,
             uid: uid
         });
@@ -58,10 +58,10 @@ class AdminWebAdmin {
     * @param uid user id, eg: 'I3fE7p5NjtV1Y1m5pWBsZlyi4W62'
     */
     deleteEditor(uid) {
-        return this.service.delete('/auth/editors', {
-            params: {
+        return this.serviceRpc.invoke('/auth/editors-delete', 'delete', {
+            // params: {
                 uid: uid
-            }
+            // }
         });
     }
 
