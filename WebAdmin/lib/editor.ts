@@ -1,12 +1,11 @@
 import { Dirs, MBake, Dat, Ver } from 'mbake/lib/Base';
 import { FileOps, CSV2Json } from 'mbake/lib/Wa';
-import { AppAuth } from './app-auth';
 import { ExpressRPC } from 'mbake/lib/Serv';
+import { FirebaseAdmin } from "./firebaseAdmin";
 
 export class EditorRoutes {
     routes(config) {
         const bodyParser = require("body-parser");
-        const editorAuth = new AppAuth();
         const fs = require('fs');
         const path = require('path');
         const fileUpload = require('express-fileupload');
@@ -14,7 +13,29 @@ export class EditorRoutes {
         const appE = ExpressRPC.makeInstance(config.corsUrlProd);
 
         appE.use(fileUpload());
-        appE.use(editorAuth.auth());
+        appE.use((request, response, next) => {
+            const firebaseAdmin = new FirebaseAdmin();
+            const params = JSON.parse(request.fields.params)
+            const resp: any = {} // new response that will be set via the specific method passed
+
+            console.info('mbake version: ', Ver.ver());
+
+            // interceptor check token
+            let idToken = params['fb-auth-token'];
+            if (typeof idToken === 'undefined') {
+                return response.status(401).send();
+            }
+            return firebaseAdmin.get().auth().verifyIdToken(idToken)
+                .then(function() {
+                    return next();
+                }).catch(function(error) {
+                    resp.errorLevel = -1
+                    resp.errorMessage = error
+                    console.log('noway', resp)
+                    return response.json(resp)
+                });
+        });
+
         appE.use(bodyParser.json());
         appE.use(bodyParser.text());
         appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
@@ -28,11 +49,6 @@ export class EditorRoutes {
                 
                 let dirs = new Dirs(config.appMount);
                 let dirsToIgnore = ['', '.', '..'];
-                // res.send(dirs.getShort()
-                //     .map(el => el.replace(/^\/+/g, ''))
-                //     .filter(el => !dirsToIgnore.includes(el))
-                // );
-
                 resp.result = dirs.getShort()
                     .map(el => el.replace(/^\/+/g, ''))
                     .filter(el => !dirsToIgnore.includes(el));
@@ -127,8 +143,7 @@ export class EditorRoutes {
                 let post_id = params.post_id;
                 let pathPrefix = params.pathPrefix;
                 let content = params.content;
-                let buffUser = new Buffer(content);  
-                content = buffUser.toString('ascii');
+                content = Buffer.from(content,'base64');
 
                 if (typeof post_id !== 'undefined') {
     
@@ -190,8 +205,7 @@ export class EditorRoutes {
                 let post_id = params.post_id;
                 let pathPrefix = params.pathPrefix;
                 // let content = params.content;
-                // let buffUser = new Buffer(content);  
-                // content = buffUser.toString('ascii');
+                // content = Buffer.from(content,'base64');
     
                 if (typeof post_id !== 'undefined') {
     

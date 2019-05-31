@@ -165,7 +165,7 @@ class WebAdmin {
                 'fb-auth-token': this.token
             })
             .then(function (response) {
-                console.info('Base.js mbake version:', response.headers['mbake-ver']);
+                console.info('Base.js mbake version:', response);
             });
     }
 
