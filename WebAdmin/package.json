@@ -18,7 +18,7 @@
       "express-fileupload": ">=1.1.4",
 
       "file-system": ">=2.2.2",
-      "fs-extra": ">=8.0.1",
+      "fs-extra": ">=8.0.1"
 
    },
    "devDependencies": {
