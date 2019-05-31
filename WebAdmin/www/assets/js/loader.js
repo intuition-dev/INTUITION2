@@ -9,12 +9,15 @@ depp.define({
         '#fb'
         , '#jquery'
         , '#gridformsJS'
-        , '//unpkg.com/axios@0.19.0-beta.1/dist/axios.min.js'
         , '#zebraDate'
         , ROOT + 'assets/css/spectreBottom.css'
     ],
+    'httpRPC': [
+        , '#RPC'
+    ],
     'webAdmin': [
         '#scripts'
+        ,'#httpRPC'
         ,'/assets/js/db.js'
         , '/assets/webAdmin/WebAdmin.js'
     ],

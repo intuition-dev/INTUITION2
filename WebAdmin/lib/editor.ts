@@ -20,215 +20,366 @@ export class EditorRoutes {
         appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
         // get dirs list
-        appE.get("/posts", (req, res) => {
-            let dirs = new Dirs(config.appMount);
-            let dirsToIgnore = ['', '.', '..'];
-            res.send(dirs.getShort()
-                .map(el => el.replace(/^\/+/g, ''))
-                .filter(el => !dirsToIgnore.includes(el))
-            );
+        appE.post("/posts", (req, res) => {
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
+
+            if ('get' == method) {
+                
+                let dirs = new Dirs(config.appMount);
+                let dirsToIgnore = ['', '.', '..'];
+                // res.send(dirs.getShort()
+                //     .map(el => el.replace(/^\/+/g, ''))
+                //     .filter(el => !dirsToIgnore.includes(el))
+                // );
+
+                resp.result = dirs.getShort()
+                    .map(el => el.replace(/^\/+/g, ''))
+                    .filter(el => !dirsToIgnore.includes(el));
+                res.json(resp);
+
+            } else {
+
+                console.log('error', resp);
+                return res.json(resp);
+
+            }
+
+
         });
 
         // get sub files in directory
-        appE.get("/files", (req, res) => {
-            let post_id = '/' + req.query.post_id;
-            if (typeof post_id !== 'undefined') {
-                let dirs = new Dirs(config.appMount);
-                res.send(dirs.getInDir(post_id));
+        appE.post("/files", (req, res) => {
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
+            let params = JSON.parse(req.fields.params);
+
+            if ('get' == method) {
+
+                let post_id = '/' + params.post_id;
+                if (typeof post_id !== 'undefined') {
+                    let dirs = new Dirs(config.appMount);
+                    resp.result = dirs.getInDir(post_id);
+                    res.json(resp);
+                } else {
+                    res.status(400);
+                    resp.result = { error: 'no post_id' };
+                    res.json(resp);
+                }
+
             } else {
-                res.status(400);
-                res.send({ error: 'no post_id' });
+
+                console.log('error', resp);
+                return res.json(resp);
+
             }
+
         });
 
         // get .md/.yaml/.csv/.pug/.css file 
-        appE.get("/post", (req, res) => {
-            let post_id = req.query.post_id;
-            let pathPrefix = req.query.pathPrefix;
-            if (typeof post_id !== 'undefined') {
-                let md = config.appMount + '/' + pathPrefix + post_id;
-                let original_post_id = post_id.replace(/\.+\d+$/, "");
-                let fileExt = path.extname(original_post_id);
-                if (fs.existsSync(md) && (fileExt === '.md' || fileExt === '.yaml' || fileExt === '.csv' || fileExt === '.pug' || fileExt === '.css')) {
-                    fs.readFile(md, 'utf8', function (err, data) {
-                        if (err) throw err;
-                        res.json(data);
-                    });
+        appE.post("/post-get", (req, res) => {
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
+            let params = JSON.parse(req.fields.params);
+
+            if ('get' == method) {
+
+                let post_id = params.post_id;
+                let pathPrefix = params.pathPrefix;
+                if (typeof post_id !== 'undefined') {
+                    let md = config.appMount + '/' + pathPrefix + post_id;
+                    let original_post_id = post_id.replace(/\.+\d+$/, "");
+                    let fileExt = path.extname(original_post_id);
+                    if (fs.existsSync(md) && (fileExt === '.md' || fileExt === '.yaml' || fileExt === '.csv' || fileExt === '.pug' || fileExt === '.css')) {
+                        fs.readFile(md, 'utf8', function (err, data) {
+                            if (err) throw err;
+                            resp.result = data;
+                            res.json(resp);
+                        });
+                    } else {
+                        throw "Unknown file type!"
+                    }
                 } else {
-                    throw "Unknown file type!"
+                    res.status(400);
+                    resp.result = { error: 'no post_id' };
+                    res.json(resp);
                 }
+
             } else {
-                res.status(400);
-                res.send({ error: 'no post_id' });
+
+                console.log('error', resp);
+                return res.json(resp);
+
             }
+
         });
 
-        // update .md/.yaml/.csv/.pug/.css file
-        appE.put("/post", (req, res) => {
-            // TODO: What does this do?
-            console.info("--res runnnning:")
-            let post_id = req.query.post_id;
-            let pathPrefix = req.query.pathPrefix;
-            if (typeof post_id !== 'undefined') {
+        // update .md/.yaml/.csv/.pug/.css file and add archived files
+        appE.post("/post-put", (req, res) => {
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
+            let params = JSON.parse(req.fields.params);
 
-                let md = '/' + pathPrefix + post_id;
+            if ('put' == method) {
 
-                let fileOps = new FileOps(config.appMount);
-                fileOps.write(md, req.body);
+                // TODO: What does this do?
+                console.info("--res runnnning:")
+                let post_id = params.post_id;
+                let pathPrefix = params.pathPrefix;
+                let content = params.content;
+                let buffUser = new Buffer(content);  
+                content = buffUser.toString('ascii');
 
-                let dirCont = new Dirs(config.appMount);
-                let substring = '/';
-
-                // add /archive
-                let checkDat = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat.yaml'));
-                if (checkDat.length > 0) {
-                    const archivePath = '/' + pathPrefix + '/archive';
-                    if (!fs.existsSync(config.appMount + archivePath)) {
-                        fs.mkdirSync(config.appMount + archivePath);
+                if (typeof post_id !== 'undefined') {
+    
+                    let md = '/' + pathPrefix + post_id;
+    
+                    let fileOps = new FileOps(config.appMount);
+                    fileOps.write(md, content);
+    
+                    let dirCont = new Dirs(config.appMount);
+                    let substring = '/';
+    
+                    // add /archive
+                    let checkDat = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat.yaml'));
+                    if (checkDat.length > 0) {
+                        const archivePath = '/' + pathPrefix + '/archive';
+                        if (!fs.existsSync(config.appMount + archivePath)) {
+                            fs.mkdirSync(config.appMount + archivePath);
+                        }
+    
+                        let archiveFileOps = new FileOps(config.appMount + archivePath);
+    
+                        let extension = path.extname(post_id);
+                        let fileName = path.basename(post_id, extension);
+                        let count = archiveFileOps.count(path.basename(post_id));
+                        let archiveFileName = '/' + fileName + extension + '.' + count;
+                        archiveFileOps.write(archiveFileName, content);
                     }
-
-                    let archiveFileOps = new FileOps(config.appMount + archivePath);
-
-                    let extension = path.extname(post_id);
-                    let fileName = path.basename(post_id, extension);
-                    let count = archiveFileOps.count(path.basename(post_id));
-                    let archiveFileName = '/' + fileName + extension + '.' + count;
-                    archiveFileOps.write(archiveFileName, req.body);
+    
+                    if (pathPrefix.includes(substring)) {
+                        pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
+                    }
+    
+                    resp.result = { data: 'OK' };
+                    res.json(resp);
+    
+                } else {
+                    res.status(400);
+                    resp.result = { error: 'no post_id' };
+                    res.json(resp);
                 }
-
-                if (pathPrefix.includes(substring)) {
-                    pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
-                }
-
-                res.send({ data: 'OK' });
 
             } else {
-                res.status(400);
-                res.send({ error: 'no post_id' });
+
+                console.log('error', resp);
+                return res.json(resp);
+
             }
+
         });
 
         // build/compile mbake
-        appE.put("/post-build", (req, res) => {
+        appE.post("/post-build", (req, res) => {
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
+            let params = JSON.parse(req.fields.params);
 
-            let post_id = req.query.post_id;
-            let pathPrefix = req.query.pathPrefix;
+            if ('put' == method) {
 
-            if (typeof post_id !== 'undefined') {
-
-                let runMbake = new MBake();
-                let dirCont = new Dirs(config.appMount);
-
-                let checkCsv = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('.csv'));
-                if (checkCsv.length > 0) {
-                    let compileCsv = new CSV2Json(config.appMount + '/' + pathPrefix);
-                    compileCsv.convert();
-                }
-
-                let checkDat_i = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat_i.yaml'));
-
-                //need to check what type of file is currently saving and run function based on it, eg: itemizeNbake, or comps
-                if (checkDat_i.length > 0) {
-                    // this is for yaml
-                    runMbake.itemizeNBake(config.appMount + '/' + pathPrefix,3)
-                        .then(function (response) {
-                            res.send({ data: 'OK' });
+                let post_id = params.post_id;
+                let pathPrefix = params.pathPrefix;
+                // let content = params.content;
+                // let buffUser = new Buffer(content);  
+                // content = buffUser.toString('ascii');
+    
+                if (typeof post_id !== 'undefined') {
+    
+                    let runMbake = new MBake();
+                    let dirCont = new Dirs(config.appMount);
+    
+                    let checkCsv = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('.csv'));
+                    if (checkCsv.length > 0) {
+                        let compileCsv = new CSV2Json(config.appMount + '/' + pathPrefix);
+                        compileCsv.convert();
+                    }
+    
+                    let checkDat_i = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat_i.yaml'));
+    
+                    //need to check what type of file is currently saving and run function based on it, eg: itemizeNbake, or comps
+                    if (checkDat_i.length > 0) {
+                        // this is for yaml
+                        runMbake.itemizeNBake(config.appMount + '/' + pathPrefix,3)
+                            .then(function (response) {
+                                resp.result = { data: 'OK' };
+                                res.json(resp);
+                            }, function (error) {
+                                resp.result = { data: error };
+                                res.json(resp);
+                            })
+                    } else {
+                        // TODO: When do we to do components? Why not just bake? md right.
+                        runMbake.compsNBake(config.appMount,3).then(function (response) {
+                            resp.result = { data: 'OK' };
+                            res.json(resp);
                         }, function (error) {
-                            res.send({ data: error });
+                            resp.result = { data: error };
+                            res.json(resp);
                         })
+                    }
+    
                 } else {
-                    // TODO: When do we to do components? Why not just bake? md right.
-                    runMbake.compsNBake(config.appMount,3).then(function (response) {
-                        res.send({ data: 'OK' });
-                    }, function (error) {
-                        res.send({ data: error });
-                    })
+                    res.status(400);
+                    resp.result = { error: 'no post_id' };
+                    res.json(resp);
                 }
 
             } else {
-                res.status(400);
-                res.send({ error: 'no post_id' });
+
+                console.log('error', resp);
+                return res.json(resp);
+
             }
 
         });
 
         // clone page
         appE.post("/new-post", (req, res) => {
-            // TODO: there is a clone method in mbake CLI. Use that and maintain there.
-            let post_id = req.query.post_id;
-            let pathPrefix = req.query.pathPrefix;
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
+            let params = JSON.parse(req.fields.params);
 
-            if (typeof post_id !== 'undefined'
-                && typeof pathPrefix !== 'undefined'
-            ) {
-                // create new post folder
-                let postPath = config.appMount + '/' + pathPrefix;
-                let substring = '/';
-                let newPost = '';
-                if (pathPrefix.includes(substring)) {
-                    pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
-                    newPost = config.appMount + '/' + pathPrefix + '/' + post_id;
+            if ('post' == method) {
+
+                // TODO: there is a clone method in mbake CLI. Use that and maintain there.
+                let post_id = params.post_id;
+                let pathPrefix = params.pathPrefix;
+    
+                if (typeof post_id !== 'undefined'
+                    && typeof pathPrefix !== 'undefined'
+                ) {
+                    // create new post folder
+                    let postPath = config.appMount + '/' + pathPrefix;
+                    let substring = '/';
+                    let newPost = '';
+                    if (pathPrefix.includes(substring)) {
+                        pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
+                        newPost = config.appMount + '/' + pathPrefix + '/' + post_id;
+                    } else {
+                        newPost = config.appMount + '/' + post_id;
+                    }
+                    let fileOps = new FileOps('/');
+                    fileOps.clone(postPath, newPost);
+    
+                    resp.result = { data: 'OK' };
+                    res.json(resp);
                 } else {
-                    newPost = config.appMount + '/' + post_id;
+                    res.status(400);
+                    resp.result = { error: 'error creating a post' };
+                    res.json(resp);
                 }
-                let fileOps = new FileOps('/');
-                fileOps.clone(postPath, newPost);
 
-                res.send('OK');
             } else {
-                res.status(400);
-                res.send({ error: 'error creating a post' });
+
+                console.log('error', resp);
+                return res.json(resp);
+
             }
+
 
         });
 
         // upload file
+        // TODO
         appE.post("/upload", (req, res) => {
-            let uploadPath;
-            let pathPrefix = req.query.pathPrefix;
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
+            let params = JSON.parse(req.fields.params);
 
-            if (Object.keys(req.files).length == 0) {
-                return res.status(400).send('No files were uploaded.');
-            }
+            if ('post' == method) {
 
-            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-            let sampleFile = req.files.sampleFile;
-            uploadPath = config.appMount + '/' + pathPrefix + '/' + sampleFile.name;
-
-            // Use the mv() method to place the file somewhere on your server
-            sampleFile.mv(uploadPath, function (err) {
-                if (err) {
-                    return res.status(500).send(err);
+                let uploadPath;
+                let pathPrefix = params.pathPrefix;
+    
+                if (Object.keys(req.files).length == 0) {
+                    return res.status(400).send('No files were uploaded.');
                 }
+    
+                // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+                let sampleFile = req.files.sampleFile;
+                uploadPath = config.appMount + '/' + pathPrefix + '/' + sampleFile.name;
+    
+                // Use the mv() method to place the file somewhere on your server
+                sampleFile.mv(uploadPath, function (err) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+    
+                    // res.send('File uploaded!');
+                    resp.result = { data: 'File uploaded!' };
+                    res.json(resp);
+                });
 
-                res.send('File uploaded!');
-            });
+            } else {
+
+                console.log('error', resp);
+                return res.json(resp);
+
+            }
 
         });
 
         // set publish date
-        appE.put("/set-publish-date", (req, res) => {
-            let post_id = req.body.post_id;
-            let publish_date = req.body.publish_date;
-            if (typeof post_id !== 'undefined') {
-                let datYaml = new Dat(config.appMount + '/' + post_id);
-                datYaml.set('publishDate', publish_date);
-                datYaml.write();
-                let runMbake = new MBake();
-                let postsFolder = post_id.substr(0, post_id.indexOf('/'));
-                let pro:Promise<string> = runMbake.itemizeNBake(config.appMount + '/' + postsFolder,3);
-                res.send('OK');
+        appE.post("/set-publish-date", (req, res) => {
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
+            let params = JSON.parse(req.fields.params);
+
+            if ('put' == method) {
+
+                let post_id = params.post_id;
+                let publish_date = params.publish_date;
+                if (typeof post_id !== 'undefined') {
+                    let datYaml = new Dat(config.appMount + '/' + post_id);
+                    datYaml.set('publishDate', publish_date);
+                    datYaml.write();
+                    let runMbake = new MBake();
+                    let postsFolder = post_id.substr(0, post_id.indexOf('/'));
+                    let pro:Promise<string> = runMbake.itemizeNBake(config.appMount + '/' + postsFolder,3);
+                    resp.result = { data: 'OK' };
+                    res.json(resp);
+                } else {
+                    res.status(400);
+                    resp.result = { error: 'no post_id' };
+                    res.json(resp);
+                }
+
             } else {
-                res.status(400);
-                res.send({ error: 'no post_id' });
+
+                console.log('error', resp);
+                return res.json(resp);
+
             }
+
         });
 
         // get mbake version
-        appE.get("/mbake-version", (req, res) => {
+        appE.post("/mbake-version", (req, res) => {
+            const method = req.fields.method;
+            let resp: any = {}; // new response that will be set via the specific method passed
 
-            console.info('endpoint mbake version --------------> ', Ver.ver());
-            res.send(Ver.ver());
+            if ('get' == method) {
+
+                console.info('endpoint mbake version --------------> ', Ver.ver());
+                resp.result = Ver.ver();
+                res.json(resp);
+
+            } else {
+
+                console.log('error', resp);
+                return res.json(resp);
+
+            }
 
         });
 

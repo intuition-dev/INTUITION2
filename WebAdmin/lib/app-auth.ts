@@ -5,12 +5,15 @@ export class AppAuth {
     auth() {
         return (request, response, next) => {
             const firebaseAdmin = new FirebaseAdmin();
+            const params = JSON.parse(request.fields.params)
+            const resp: any = {} // new response that will be set via the specific method passed
 
-            response.setHeader('mbake-ver', Ver.ver());
+            //TODO
+            // response.setHeader('mbake-ver', Ver.ver());
             console.info('mbake version: ', Ver.ver());
-            
+
             // interceptor check token
-            let idToken = request.get('fb-auth-token');
+            let idToken = params['fb-auth-token'];
             if (typeof idToken === 'undefined') {
                 return response.status(401).send();
             }
@@ -18,8 +21,10 @@ export class AppAuth {
                 .then(function() {
                     return next();
                 }).catch(function(error) {
-                    console.info('error', error);
-                    return response.status(401).send();
+                    resp.errorLevel = -1
+                    resp.errorMessage = error
+                    console.log('noway', resp)
+                    return response.json(resp)
                 });
         }
     };

@@ -8,7 +8,10 @@ html
 
         script(src=ROOT +'config.js')
         script.
-            window.api = [config.api,config.api_pass];
+            window.apiProtocol = [config.API_RPC.protocol];
+            window.apiHost = [config.API_RPC.host];
+            window.apiPort = [config.API_RPC.port];
+
             window.appMount = [config.appMount];
             window.siteName = [config.siteName];
 
