@@ -20,8 +20,6 @@
       "file-system": ">=2.2.2",
       "fs-extra": ">=8.0.1",
 
-      "basic-auth": ">=2.0.1"
-
    },
    "devDependencies": {
       "@firebase/app-types": ">=0.4.0",

@@ -304,7 +304,6 @@ export class EditorRoutes {
         });
 
         // upload file
-        // TODO
         appE.post("/upload", (req, res) => {
             const method = req.fields.method;
             let resp: any = {}; // new response that will be set via the specific method passed
@@ -314,7 +313,10 @@ export class EditorRoutes {
 
                 let uploadPath;
                 let pathPrefix = params.pathPrefix;
+                let fileupload = params.fileupload;
+                console.log('fileupload ---=====>', fileupload);
     
+                // TODO
                 if (Object.keys(req.files).length == 0) {
                     return res.status(400).send('No files were uploaded.');
                 }
@@ -329,7 +331,6 @@ export class EditorRoutes {
                         return res.status(500).send(err);
                     }
     
-                    // res.send('File uploaded!');
                     resp.result = { data: 'File uploaded!' };
                     res.json(resp);
                 });

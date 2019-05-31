@@ -130,7 +130,7 @@ class WebAdmin {
     upload(data, pathPrefix) {
         return this.serviceRPC.invoke('/editors/upload', 'post', {
                 pathPrefix: pathPrefix,
-                fileuoload: data,
+                fileupload: data,
                 'fb-auth-token': this.token
             })
             .then(function (response) {
