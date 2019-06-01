@@ -1,6 +1,8 @@
-import { Dirs, MBake, Dat, Ver } from 'mbake/lib/Base';
-import { FileOps, CSV2Json } from 'mbake/lib/Wa';
+import {  MBake, Ver } from 'mbake/lib/Base';
+import { Dat, Dirs } from 'mbake/lib/FileOpsBase'
+import { FileOps, CSV2Json } from 'mbake/lib/FileOpsExtra';
 import { ExpressRPC } from 'mbake/lib/Serv';
+
 import { FirebaseAdmin } from "./firebaseAdmin";
 
 export class EditorRoutes {
