@@ -1,25 +1,26 @@
-class Services {
-    constructor(baseURL_) {
+var Services = (function () {
+    function Services(baseURL_) {
         console.info("--baseURL_:", baseURL_[1]);
         this.baseUrl = baseURL_;
         this.serviceRPC = new httpRPC(baseURL_[0], baseURL_[1], baseURL_[2]);
     }
-    createConfig() {
+    Services.prototype.createConfig = function () {
         this.serviceRPC.invoke('/setup', 'setup')
-            .then((result) => {
+            .then(function (result) {
             console.info('test api: ', result);
             return result;
-        }).catch((error) => {
+        }).catch(function (error) {
             console.info("--error:", error);
         });
-    }
-    deleteTables() {
+    };
+    Services.prototype.deleteTables = function () {
         this.serviceRPC.invoke('/delete', 'delete')
-            .then((result) => {
+            .then(function (result) {
             console.info('test api: ', result);
             return result;
-        }).catch((error) => {
+        }).catch(function (error) {
             console.info("--error:", error);
         });
-    }
-}
+    };
+    return Services;
+}());
