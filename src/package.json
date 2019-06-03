@@ -1,6 +1,6 @@
 {
-   "name": "metabake-web-admin",
-   "version": "5.05.5",
+   "name": "meta-intuition",
+   "version": "0.05.01",
    "description": "Web Admin for web apps written in MetaBake",
    "main": "index.js",
    "license": "LGPL-3.0-only",
