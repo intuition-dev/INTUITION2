@@ -7,7 +7,7 @@ import emailjs from 'emailjs-com' // to send a 3 char validation code
 const bcrypt = require('bcryptjs') // to hash pswdws
 
 const fs = require('fs')
-const pathToDb = './db/ADB.sqlite'
+const pathToDb = 'ADB.sqlite'
 const config_port = 3100
 
 const config_url = ['localhost']
@@ -26,11 +26,16 @@ try {
         appE.use(ExpressRPC.serveStatic('.'));
         //open admin and editor
     } else {
-        fs.writeFile('./db/ADB.sqlite')
-        appE.use(ExpressRPC.serveStatic('setup'));
+        fs.open('ADB.sqlite', 'w', runSetup)
+
     }
+
 } catch (err) {
     console.error(err)
+}
+
+function runSetup() {
+    appE.use(ExpressRPC.serveStatic('setup'));
 }
 
 appE.post("/setup", async (req, res) => {
@@ -93,7 +98,7 @@ appE.post("/delete", async (req, res) => {
 });
 
 async function createNewADBwSchema() {
-    const dbPro = sqlite.open('./db/ADB.sqlite')
+    const dbPro = sqlite.open('ADB.sqlite')
     db = await dbPro
     db.configure('busyTimeout', 2 * 1000)
 
