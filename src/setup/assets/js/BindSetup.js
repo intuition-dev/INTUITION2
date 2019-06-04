@@ -1,6 +1,6 @@
 class BindSetup {
     constructor() {
-        this.services = new Services(['http', 'localhost', '3100'])
+        this.services = new Services(['http', 'localhost', '9081'])
     }
 
     createConfig(form) {
