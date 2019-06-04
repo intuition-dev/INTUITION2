@@ -6,7 +6,7 @@ class AdminRoutes {
     routes() {
         const bodyParser = require("body-parser");
         const basicAuthRpc = new RPCBasicAuth_1.RPCBasicAuth();
-        const adminApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:9080']);
+        const adminApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
         adminApp.use(bodyParser.json());
         return adminApp;
     }

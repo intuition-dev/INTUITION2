@@ -4,12 +4,12 @@ const Serv_1 = require("mbake/lib/Serv");
 const editor_1 = require("./lib/editor");
 const admin_1 = require("./lib/admin");
 const ADB_1 = require("./lib/ADB");
+const adbDB = new ADB_1.ADB();
 const bodyParser = require("body-parser");
 const mainAppG = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
 const appGPORT = '9081';
 const fs = require('fs');
 const pathToDb = 'ADB.sqlite';
-const config_port = 3100;
 mainAppG.use(bodyParser.json());
 mainAppG.use(bodyParser.text());
 mainAppG.use(bodyParser.urlencoded({ extended: true }));
@@ -30,6 +30,7 @@ catch (err) {
 }
 function runSetup() {
     mainAppG.use('/setup', Serv_1.ExpressRPC.serveStatic('setup'));
+    adbDB.createNewADBwSchema('ADB.sqlite');
 }
 mainAppG.post("/setup", async (req, res) => {
     const method = req.fields.method;
@@ -42,8 +43,7 @@ mainAppG.post("/setup", async (req, res) => {
     if ('setup' == method) {
         resp.result = {};
         try {
-            await ADB_1.ADB.createNewADBwSchema();
-            await ADB_1.ADB.addAdmin(email, password, emailjs, pathToSite);
+            adbDB.addAdmin(email, password, emailjs, pathToSite);
         }
         catch (err) {
         }

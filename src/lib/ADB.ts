@@ -1,6 +1,6 @@
 
 
-import sqlite from 'sqlite'
+import sqlite = require('sqlite')
 import SQL from 'sql-template-strings';
 import axios from 'axios'  // to send a 3 char validation code
 const bcrypt = require('bcryptjs') // to hash pswdws
@@ -14,11 +14,12 @@ const bcrypt = require('bcryptjs') // to hash pswdws
 export class ADB { // auth & auth DB
    // emailjs is client side api
    db
-   async createNewADBwSchema() { // the admin db is set to 'P@ssw0rd!' and you have to change it first time on DB create
-      const dbPro = sqlite.open('ADB.sqlite')
+
+   async createNewADBwSchema(dbPath) { // the admin db is set to 'P@ssw0rd!' and you have to change it first time on DB create
+      console.info("--dbPath:", dbPath)
+      const dbPro = sqlite.open(dbPath)
       this.db = await dbPro
       this.db.configure('busyTimeout', 2 * 1000)
-
    }
 
    isUserAuth(userEmail, pswdHash) { // yes the pswds are a hash
@@ -42,6 +43,6 @@ export class ADB { // auth & auth DB
 
 }
 
-module.exports = {
-   ADB
-}
+// module.exports = {
+//    ADB
+// }

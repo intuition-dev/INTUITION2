@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const sqlite_1 = require("sqlite");
+const sqlite = require("sqlite");
 const bcrypt = require('bcryptjs');
 class ADB {
-    async createNewADBwSchema() {
-        const dbPro = sqlite_1.default.open('ADB.sqlite');
+    async createNewADBwSchema(dbPath) {
+        console.info("--dbPath:", dbPath);
+        const dbPro = sqlite.open(dbPath);
         this.db = await dbPro;
         this.db.configure('busyTimeout', 2 * 1000);
     }
@@ -23,6 +24,3 @@ class ADB {
     validateEmail() { }
 }
 exports.ADB = ADB;
-module.exports = {
-    ADB
-};

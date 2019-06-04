@@ -2,9 +2,8 @@ import { ExpressRPC } from 'mbake/lib/Serv';
 import { EditorRoutes } from './lib/editor';
 import { Wa } from 'mbake/lib/Wa';
 import { AdminRoutes } from './lib/admin';
-// import { ADB } from './lib/ADB';
-
-const ADB = require('./lib/ADB');
+import { ADB } from './lib/ADB';
+const adbDB = new ADB()
 
 const bodyParser = require("body-parser");
 const mainAppG = ExpressRPC.makeInstance(['http://localhost:9081']);
@@ -12,7 +11,6 @@ const appGPORT = '9081';
 
 const fs = require('fs')
 const pathToDb = 'ADB.sqlite'
-const config_port = 3100
 
 mainAppG.use(bodyParser.json());
 mainAppG.use(bodyParser.text());
@@ -45,7 +43,6 @@ try {
       //open admin and editor
    } else {
       fs.open('ADB.sqlite', 'w', runSetup);
-      // fs.writeFile('ADB.sqlite', '', runSetup)
    }
 
 } catch (err) {
@@ -53,6 +50,7 @@ try {
 
 function runSetup() {
    mainAppG.use('/setup', ExpressRPC.serveStatic('setup'));
+   adbDB.createNewADBwSchema('ADB.sqlite')
    // mainAppG.use(ExpressRPC.serveStatic('setup'));
 }
 
@@ -71,8 +69,7 @@ mainAppG.post("/setup", async (req, res) => {
       // res.send(resp)
 
       try {
-         await ADB.createNewADBwSchema()
-         await ADB.addAdmin(email, password, emailjs, pathToSite)
+         adbDB.addAdmin(email, password, emailjs, pathToSite)
 
       } catch (err) {
          // next(err);
