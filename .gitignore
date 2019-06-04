@@ -8,15 +8,12 @@ nohup.out
 # source file for webadmin must be in so npm/yarn install works!!!
 
 
-/WebAdmin/serviceAccountKey.json
-/WebAdmin/config.yaml
-
-/WebAdmin/index.js
-/WebAdmin/lib/*.js
-/WebAdmin/www/editors/**/*.html
-/WebAdmin/wwwAdmin/admin/**/*.html
-/WebAdmin/www/*.html
-/WebAdmin/wwwAdmin/*.html
-/WebAdmin/**/assets/css/*.css
-/WebAdmin/wwwAdmin/config.js
-/WebAdmin/www/config.js
+/src/index.js
+/src/lib/*.js
+/src/www/editors/**/*.html
+/src/wwwAdmin/admin/**/*.html
+/src/www/*.html
+/src/wwwAdmin/*.html
+/src/**/assets/css/*.css
+/src/wwwAdmin/config.js
+/src/www/config.js
