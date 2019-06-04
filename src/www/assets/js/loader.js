@@ -17,22 +17,21 @@ depp.define({
     ],
     'webAdmin': [
         '#scripts'
-        ,'#httpRPC'
-        ,'editors/assets/js/db.js'
-        , 'editors/assets/webAdmin/WebAdmin.js'
+        , '#httpRPC'
+        , ROOT + 'editors/assets/webAdmin/WebAdmin.js'
     ],
     'edit': [
         '#webAdmin',
-        'editors/assets/js/edit.js'
+        ROOT + 'editors/assets/js/edit.js'
     ]
     , 'general': [
         '#edit'
-        , 'editors/assets/js/general.js'
-        ,'editors/assets/js/login.js'
+        , ROOT + 'editors/assets/js/BindPosts.js'
+        , ROOT + 'editors/assets/js/login.js'
     ],
     'rw': [
         '#general',
-        'editors/assets/js/ui.js'
+        ROOT + 'editors/assets/js/ui.js'
     ],
     'fonts': [
         '#rw'

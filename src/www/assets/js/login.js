@@ -3,14 +3,22 @@ class Login {
 		this.checkUser = this.checkUser.bind(this);
 		this.auth = this.auth.bind(this);
 	}
-	checkUser(formLogin, formPassw){
+	checkUser(formLogin, formPassw) {
 		if ((formPassw !== '') && (formLogin !== '') && (formPassw !== null) && (formLogin !== null)) {
+			return this.serviceRpc.invoke('/api/editor/checkEditor', 'check-editor', { admin_email: email, admin_pass: pass })
+				.then(function () {
+					_this.serviceRpc.setUser(email, pass);
+					return true
+				})
+
+
+
 			auth.signInWithEmailAndPassword(formLogin, formPassw)
-				.then(user =>{
-						if (user){
-							this.auth();
-						}
-					})
+				.then(user => {
+					if (user) {
+						this.auth();
+					}
+				})
 				.then(() => {
 
 					let hash = location.hash;
@@ -25,12 +33,12 @@ class Login {
 						$('#error').addClass('d-hide').text('User not found, please check that login is correct').removeClass('d-hide');
 					}
 				});
-			} else {
-				console.info("All fields must be filled out");
-				return false;
-			}
+		} else {
+			console.info("All fields must be filled out");
+			return false;
+		}
 	}
-	auth(){
+	auth() {
 		// display username, get token and current user
 		firebase
 			.auth()
@@ -60,9 +68,9 @@ class SignOut {
 		sessionStorage.clear();
 		auth
 			.signOut()
-			.then(function() {
+			.then(function () {
 				window.location = ('/');
-			}).catch(function(error) {
+			}).catch(function (error) {
 				console.info('Something went wrong:', error);
 			});
 	}
@@ -70,65 +78,65 @@ class SignOut {
 
 let logOut = new SignOut();
 
-$('.sign-out').on('click', function(e) {
+$('.sign-out').on('click', function (e) {
 	e.preventDefault();
 	logOut.signOut();
 });
 
-depp.require(['rw'], function() {
+depp.require(['rw'], function () {
 
 	let login = new Login();
 
     /*
     * login user
     */
-	$(document).on('submit', '#login-form', function(e) {
+	$(document).on('submit', '#login-form', function (e) {
 
 		e.preventDefault();
 		let formLogin = $("#login-form input[name='login']").val();
 		let formPassw = $("#login-form input[name='password']").val();
-        login.checkUser(formLogin, formPassw);
-        
+		login.checkUser(formLogin, formPassw);
+
 	});
 
     /*
     * reset password
     */
-	$(document).on('click', '#reset-password-link', function() {
+	$(document).on('click', '#reset-password-link', function () {
 
-        $('#reset-password-form').removeClass('d-hide');
-        $('#login-form').addClass('d-hide');
+		$('#reset-password-form').removeClass('d-hide');
+		$('#login-form').addClass('d-hide');
 
 	});
 
-	$('#reset-password-form').submit(function(e) {
+	$('#reset-password-form').submit(function (e) {
 
-        e.preventDefault();
+		e.preventDefault();
 
-        $('[class^="message"]').addClass('d-hide');
+		$('[class^="message"]').addClass('d-hide');
 
-        let email = $(this).find('input[type="email"]').val();
+		let email = $(this).find('input[type="email"]').val();
 
-        auth.sendPasswordResetEmail(email)
-            .then(() => {
+		auth.sendPasswordResetEmail(email)
+			.then(() => {
 
-                $(this).find('fieldset, button').addClass('d-hide');
-                $(this).find('.message-info').removeClass('d-hide').text('An email with the password reset link has been sent to your email address');
+				$(this).find('fieldset, button').addClass('d-hide');
+				$(this).find('.message-info').removeClass('d-hide').text('An email with the password reset link has been sent to your email address');
 
-                setTimeout(function () {
+				setTimeout(function () {
 
-                    $('#reset-password-form fieldset, #reset-password-form .btn-group, #login-form').removeClass('d-hide');
-                    $('#reset-password-form, #reset-password-form p').addClass('d-hide');
+					$('#reset-password-form fieldset, #reset-password-form .btn-group, #login-form').removeClass('d-hide');
+					$('#reset-password-form, #reset-password-form p').addClass('d-hide');
 
-                }, 5000);
+				}, 5000);
 
-            })
-            .catch(function (error) {
+			})
+			.catch(function (error) {
 
-                console.info('email hasn\'t been sent to user', error);
-                $('.message-warning').removeClass('d-hide').text('No user exists with such email');
+				console.info('email hasn\'t been sent to user', error);
+				$('.message-warning').removeClass('d-hide').text('No user exists with such email');
 
-            });
+			});
 
 	});
 

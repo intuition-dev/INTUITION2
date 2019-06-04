@@ -18,20 +18,20 @@ class WebAdmin {
 
         this.serviceRPC = new httpRPC(apiProtocol, apiHost, apiPort);
 
-        this.token = sessionStorage.getItem('idToken');
+        // this.token = sessionStorage.getItem('idToken');
 
-        if (this.token === null) {
-            auth
-                .signOut()
-                .then(function () {
-                    if (window.location.pathname !== '/' && window.location.pathname !== '') {
-                        window.location = ('/');
-                    }
-                }).catch(function (error) {
-                    console.info('Something went wrong:', error);
-                });
-        }
-        
+        // if (this.token === null) {
+        //     auth
+        //         .signOut()
+        //         .then(function () {
+        //             if (window.location.pathname !== '/' && window.location.pathname !== '') {
+        //                 window.location = ('/');
+        //             }
+        //         }).catch(function (error) {
+        //             console.info('Something went wrong:', error);
+        //         });
+        // }
+
     }
 
     /**
@@ -51,9 +51,9 @@ class WebAdmin {
     */
     getSubDirsList(id) {
         return this.serviceRPC.invoke('/editors/files', 'get', {
-                post_id: id,
-                'fb-auth-token': this.token
-            });
+            post_id: id,
+            'fb-auth-token': this.token
+        });
     }
 
     /**
@@ -64,10 +64,10 @@ class WebAdmin {
     */
     getPostMd(id, pathPrefix) {
         return this.serviceRPC.invoke('/editors/post-get', 'get', {
-                post_id: id,
-                pathPrefix: pathPrefix,
-                'fb-auth-token': this.token
-            });
+            post_id: id,
+            pathPrefix: pathPrefix,
+            'fb-auth-token': this.token
+        });
     }
 
     /**
@@ -79,11 +79,11 @@ class WebAdmin {
     */
     savePostMd(id, md, pathPrefix) {
         return this.serviceRPC.invoke('/editors/post-put', 'put', {
-                post_id: id,
-                pathPrefix: pathPrefix,
-                content: btoa(md),
-                'fb-auth-token': this.token
-            });
+            post_id: id,
+            pathPrefix: pathPrefix,
+            content: btoa(md),
+            'fb-auth-token': this.token
+        });
     }
 
     /**
@@ -95,15 +95,15 @@ class WebAdmin {
     */
     build(id, md, pathPrefix) {
         return this.serviceRPC.invoke('/editors/post-build', 'put', {
-                post_id: id,
-                pathPrefix: pathPrefix,
-                content: btoa(md),
-                'fb-auth-token': this.token
-            }).then(function (response) {
-                return response;
-            }).catch(function (error) {
-                return error;
-            });
+            post_id: id,
+            pathPrefix: pathPrefix,
+            content: btoa(md),
+            'fb-auth-token': this.token
+        }).then(function (response) {
+            return response;
+        }).catch(function (error) {
+            return error;
+        });
     }
 
     /**
@@ -114,10 +114,10 @@ class WebAdmin {
     */
     createPost(id, pathPrefix) {
         return this.serviceRPC.invoke('/editors/new-post', 'post', {
-                post_id: id,
-                pathPrefix: pathPrefix,
-                'fb-auth-token': this.token
-            });
+            post_id: id,
+            pathPrefix: pathPrefix,
+            'fb-auth-token': this.token
+        });
     }
 
     /**
@@ -126,13 +126,13 @@ class WebAdmin {
     * @param pathPrefix path to file, eg: 'blog/post-4'
     * @param token Firebase authentication token
     */
-   // TODO formData file upload
+    // TODO formData file upload
     upload(data, pathPrefix) {
         return this.serviceRPC.invoke('/editors/upload', 'post', {
-                pathPrefix: pathPrefix,
-                fileupload: data,
-                'fb-auth-token': this.token
-            })
+            pathPrefix: pathPrefix,
+            fileupload: data,
+            'fb-auth-token': this.token
+        })
             .then(function (response) {
                 console.info(response);
             })
@@ -149,10 +149,10 @@ class WebAdmin {
     */
     setPublishDate(publish_date, pathPrefix) {
         return this.serviceRPC.invoke('/editors/set-publish-date', 'put', {
-                publish_date: publish_date,
-                post_id: pathPrefix,
-                'fb-auth-token': this.token
-            });
+            publish_date: publish_date,
+            post_id: pathPrefix,
+            'fb-auth-token': this.token
+        });
     }
 
     /**
