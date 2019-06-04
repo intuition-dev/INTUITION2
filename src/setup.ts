@@ -26,8 +26,7 @@ try {
         appE.use(ExpressRPC.serveStatic('.'));
         //open admin and editor
     } else {
-        fs.open('ADB.sqlite', 'w', runSetup)
-
+        fs.writeFile('ADB.sqlite', '', runSetup)
     }
 
 } catch (err) {
@@ -44,16 +43,20 @@ appE.post("/setup", async (req, res) => {
     let params = JSON.parse(req.fields.params)
 
     let email = params.email
+    console.info("--email:", email)
 
     let password = params.password
     var salt = bcrypt.genSaltSync(10);
     var hashPass = bcrypt.hashSync(password, salt);
+    console.info("--hashPass:", hashPass)
 
     // guid for pk client side 
     // eg: bcrypt randomBytes(16).toString("hex") or base64, or Math.random to make base64 char 16 times
     // also to email a random # 
     let emailjs = params.emailjs
+    console.info("--emailjs:", emailjs)
     let pathToSite = params.pathToSite
+    console.info("--pathToSite:", pathToSite)
 
     let resp: any = {}; // new response that will be set via the specific method passed
     if ('setup' == method) {
@@ -62,9 +65,11 @@ appE.post("/setup", async (req, res) => {
 
         try {
             await createNewADBwSchema()
-            await db.run(`CREATE TABLE admin(email,pass,emailJsCode, pathToSite)`);
-            await db.run(`INSERT INTO admin(email, pass, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', ${pathToSite})`, function (err) {
+
+            await db.run(`CREATE TABLE admin(email,password,emailJsCode, pathToSite)`);
+            await db.run(`INSERT INTO admin(email, password, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', '${pathToSite}')`, function (err) {
                 if (err) {
+                    console.log('couldnt write', err)
                 }
                 // get the last insert id
             });
@@ -101,7 +106,7 @@ async function createNewADBwSchema() {
     const dbPro = sqlite.open('ADB.sqlite')
     db = await dbPro
     db.configure('busyTimeout', 2 * 1000)
-
+    console.log('connection done')
 }
 
 appE.listen(config_port, () => {
