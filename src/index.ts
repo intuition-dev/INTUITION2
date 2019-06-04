@@ -7,7 +7,7 @@ const adbDB = new ADB()
 
 const bodyParser = require("body-parser");
 const mainAppG = ExpressRPC.makeInstance(['http://localhost:9081']);
-const appGPORT = '9081';
+const appPORT = '9081';
 
 const fs = require('fs')
 const pathToDb = 'ADB.sqlite'
@@ -80,11 +80,11 @@ mainAppG.post("/setup", async (req, res) => {
 });
 
 
-mainAppG.listen(appGPORT, () => {
-   console.log(`mainAppG listening on port ${appGPORT}!`);
+mainAppG.listen(appPORT, () => {
+   console.log(`mainAppG listening on port ${appPORT}!`);
 
    console.log(`======================================================`);
-   console.log(`App is running at http://localhost:${appGPORT}/editors/`);
-   console.log(`Admin is running at http://localhost:${appGPORT}/admin/`);
+   console.log(`App is running at http://localhost:${appPORT}/editors/`);
+   console.log(`Admin is running at http://localhost:${appPORT}/admin/`);
    console.log(`======================================================`);
 });
