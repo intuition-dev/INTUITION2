@@ -18,7 +18,7 @@ mainApp.use(bodyParser.json());
 mainApp.use(bodyParser.text());
 mainApp.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
-const emailjs = new EmailJs();
+const emailJs = new EmailJs();
 
 try {
    if (fs.existsSync(pathToDb)) {
@@ -70,10 +70,12 @@ mainApp.post("/setup", async (req, res) => {
    if ('setup' == method) {
       resp.result = {}
       // res.send(resp)
-
       try {
-         adbDB.addAdmin(email, password, emailjs, pathToSite)
-         emailjs.send('liza@kislyakova@gmail.com', 'TEST EMAIL JS', 'THIS MESSAGE IS SENT FROM NODE');
+         console.info('setup called ...');
+         adbDB.addAdmin(email, password, emailjs, pathToSite);
+         console.info('db cretated  ...');
+
+         emailJs.send('liza.kislyakova@gmail.com', email);
          resp['result'] = 'OK'
          return res.json(resp)
 
