@@ -4,11 +4,11 @@ export class RPCBasicAuth {
         // console.info('user rpc basic auth', user);
 
         // base64 encode
-        let buffUser = new Buffer(user);  
-        user = buffUser.toString('base64');
-        let buffPwd = new Buffer(password);  
-        password = buffPwd.toString('base64');
-        
+        // let buffUser = new Buffer(user);  
+        // user = buffUser.toString('base64');
+        // let buffPwd = new Buffer(password);  
+        // password = buffPwd.toString('base64');
+
         return (request, response, next) => {
             if (typeof request.fields.user === 'undefined'
                 || typeof request.fields.pswd === 'undefined'

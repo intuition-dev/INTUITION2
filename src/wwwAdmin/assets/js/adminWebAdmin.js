@@ -16,15 +16,24 @@ class AdminWebAdmin {
     constructor(username, password) {
 
         this.serviceRpc = new httpRPC(rpcProtocol, rpcHost, rpcPort);
-        this.serviceRpc.setUser(username, password);
-        
+        // this.serviceRpc.setUser(username, password);
+
+    }
+    checkAdmin(email, pass) {
+        let _this = this
+        return this.serviceRpc.invoke('/api/admin/checkAdmin', 'check-admin', { admin_email: email, admin_pass: pass })
+            .then(function () {
+                _this.serviceRpc.setUser(email, pass);
+                return true
+            })
+
     }
 
     /**
     * get data for editors table
     */
     getEditorsList() {
-        return this.serviceRpc.invoke('/auth/editors', 'get', {});
+        return this.serviceRpc.invoke('/api/editors', 'get');
     }
 
     /**
@@ -34,11 +43,12 @@ class AdminWebAdmin {
     * @param password user password, eg: 'dfgsdgdsfg' 
     */
     addEditor(name, email, password) {
-        return this.serviceRpc.invoke('/auth/editors-add', 'post', {
-                name: name,
-                email: email,
-                password: password
-            });
+        return this.serviceRpc.invoke('/api/editors-add', 'post', {
+            name: name,
+            email: email,
+            password: password,
+            admin_email: email, admin_pass: pass
+        });
     }
 
     /**
@@ -47,10 +57,11 @@ class AdminWebAdmin {
     * @param name user name, eg: 'Jane Doe'
     */
     editEditor(uid, name) {
-        return this.serviceRpc.invoke('/auth/editors-edit', 'put', {
-                name: name,
-                uid: uid
-            });
+        return this.serviceRpc.invoke('/api/editors-edit', 'put', {
+            name: name,
+            uid: uid,
+            admin_email: email, admin_pass: pass
+        });
     }
 
     /**
@@ -58,9 +69,10 @@ class AdminWebAdmin {
     * @param uid user id, eg: 'I3fE7p5NjtV1Y1m5pWBsZlyi4W62'
     */
     deleteEditor(uid) {
-        return this.serviceRpc.invoke('/auth/editors-delete', 'delete', {
-                uid: uid
-            });
+        return this.serviceRpc.invoke('/api/editors-delete', 'delete', {
+            uid: uid,
+            admin_email: email, admin_pass: pass
+        });
     }
 
 }

@@ -16,7 +16,6 @@ export class ADB { // auth & auth DB
    db
 
    async createNewADBwSchema(dbPath) { // the admin db is set to 'P@ssw0rd!' and you have to change it first time on DB create
-      console.info("--dbPath:", dbPath)
       const dbPro = sqlite.open(dbPath)
       this.db = await dbPro
       this.db.configure('busyTimeout', 2 * 1000)
@@ -36,6 +35,18 @@ export class ADB { // auth & auth DB
          }
          // get the last insert id
       });
+   }
+
+   getAdmin(email, password) {
+      return this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
+         if (err) {
+         }
+         return row
+      }).then(function (row) {
+         bcrypt.compare(password, row.password, function (err, res) {
+            return true
+         })
+      })
    }
 
    validateEmail() { }

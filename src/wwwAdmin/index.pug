@@ -17,3 +17,29 @@ block content
                                 input(type='password', name='password', minlength="6", required='required', autocomplete="new-password")
                     #error.d-hide.isError
                     button#btn-login.btn-custom.btn-primary.btn-center.space-21v Login
+    
+    script.
+        depp.require('rw', function () {
+            var bindLogin = new BindLogin()
+            // wrong credentials error message on fail of basic auth
+            //- let errorMessage = sessionStorage.getItem('errorMessage');
+            //- if (errorMessage !== null) {
+
+            //-     $('#error').text(errorMessage).removeClass('d-hide');
+            //-     sessionStorage.removeItem('errorMessage');
+
+            //- }
+
+            //admin login
+            $(document).on('click', '#btn-login', function (ev) {
+                ev.preventDefault()
+                let formLogin = $("#login-form input[name='login']").val();
+                let formPassw = $("#login-form input[name='password']").val();
+                bindLogin.login(formLogin, formPassw)
+            });
+
+            $(document).on('click', '#sign-out', function (e) {
+                bindLogin.signOut()
+            });
+
+        });

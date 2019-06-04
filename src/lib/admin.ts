@@ -1,65 +1,103 @@
-import { RPCBasicAuth } from '../lib/RPCBasicAuth';
-// import { Firebase } from './Firebase';
-// import { FirebaseAdmin } from "./firebaseAdmin";
-import { ExpressRPC } from 'mbake/lib/Serv';
+import { ExpressRPC, RPCBasicAuth } from 'mbake/lib/Serv';
 import axios from 'axios';
 
 export class AdminRoutes {
-   routes() {
+   routes(adbDB) {
       const bodyParser = require("body-parser");
-      
-      // const firebaseAdmin = new FirebaseAdmin();
-      // const firebase = new Firebase();
-      // const dbAdminFs = firebaseAdmin.get().firestore();
-      
-      const basicAuthRpc = new RPCBasicAuth();
+
       const adminApp = ExpressRPC.makeInstance(['http://localhost:9081']);
       adminApp.use(bodyParser.json());
 
-      // adminApp.use(basicAuthRpc.auth('admin', '123456'));
-      
-      // // get users
-      // adminApp.post("/editors", (req, res) => {
-      //    const method = req.fields.method;
-      //    let resp: any = {}; // new response that will be set via the specific method passed
+      // adminApp.use((request, response, next) => {
+      //    // const firebaseAdmin = new FirebaseAdmin();
+      //    const params = JSON.parse(request.fields.params)
+      //    const resp: any = {} // new response that will be set via the specific method passed
 
-      //    if ('get' == method) {
 
-      //       let editorsCollection = dbAdminFs.collection('editors');
-      //       let adminAuth = firebaseAdmin.get().auth();
-      //       editorsCollection
-      //          .get()
-      //          .then(editors => {
-      //             let data = [];
-      //             // map instead of foreach returns array of promises
-      //             Promise.all(editors.docs.map(editor => {
-      //                return adminAuth.getUser(editor.id)
-      //                   .then(userRef => {
-      //                      data.push({
-      //                         id: editor.id,
-      //                         email: userRef.email,
-      //                         name: userRef.displayName
-      //                      });
-      //                   }).catch(e => {
-      //                      console.info("no users found");
-      //                   })
-      //             }))
-      //                .then(() => {
-      //                   resp.result = data;
-      //                   res.json(resp);
-      //                });
-      //          })
-      //          .catch(e => console.error(e.stack));
-        
-      //   } else {
-        
-      //       console.log('error', resp);
-      //       return res.json(resp);
-            
-      //   }
-        
+      //    let email = params.admin_email
+      //    let password = params.admin_pass
+      //    try {
+      //       var pass = adbDB.getAdmin(email)
+
+      //       const basicAuthRpc = new RPCBasicAuth();
+
+      //       next()
+
+      //    } catch (err) {
+      //       // next(err);
+      //    }
+
+
       // });
-      
+
+      adminApp.post('/checkAdmin', (req, res) => {
+         const method = req.fields.method;
+         let params = JSON.parse(req.fields.params)
+         let email = params.admin_email
+         let password = params.admin_pass
+
+         let resp: any = {};
+
+         if ('check-admin' == method) {
+            resp.result = {}
+            // res.send(resp)
+
+            try {
+               var pass = adbDB.getAdmin(email, password)
+               if (pass) {
+                  resp['pass'] = true
+                  return res.json(resp)
+               } else {
+                  resp['pass'] = false
+                  return res.json(resp)
+               }
+
+            } catch (err) {
+               // next(err);
+            }
+         } else {
+            return res.json(resp);
+         }
+      })
+      // // get users
+      adminApp.post("/editors", (req, res) => {
+         const method = req.fields.method;
+         let resp: any = {}; // new response that will be set via the specific method passed
+
+         if ('get' == method) {
+            // let editorsCollection = dbAdminFs.collection('editors');
+            // let adminAuth = firebaseAdmin.get().auth();
+            // editorsCollection
+            //    .get()
+            //    .then(editors => {
+            //       let data = [];
+            //       // map instead of foreach returns array of promises
+            //       Promise.all(editors.docs.map(editor => {
+            //          return adminAuth.getUser(editor.id)
+            //             .then(userRef => {
+            //                data.push({
+            //                   id: editor.id,
+            //                   email: userRef.email,
+            //                   name: userRef.displayName
+            //                });
+            //             }).catch(e => {
+            //             })
+            //       }))
+            //          .then(() => {
+            //             resp.result = data;
+            //             res.json(resp);
+            //          });
+            //    })
+            resp.result = 'editors herer'
+            return res.json(resp);
+         } else {
+
+            return res.json(resp);
+
+         }
+
+      });
+
       // // add user
       // adminApp.post("/editors-add", (req, res) => {
       //    const method = req.fields.method;
@@ -96,19 +134,15 @@ export class AdminRoutes {
       //             })
       //             .then(userRecord => {
       //                let firebaseAuth = firebase.get().auth();
-      //                console.info('sending reset and verification email to user');
       //                return firebaseAuth.sendPasswordResetEmail(email)
       //                   .then(() => {
-      //                      console.info('email has been sent to user');
       //                      return userRecord;
       //                   })
       //                   .catch(function (error) {
-      //                      console.info('email hasn\'t been sent to user', error);
       //                   });
       //             })
       //             .then(function (userRecord) { // send response to client
       //                // See the UserRecord reference doc for the contents of userRecord.
-      //                console.info("Successfully created new user:", userRecord.uid);
       //                let response = {
       //                   id: userRecord.uid
       //                }
@@ -116,7 +150,6 @@ export class AdminRoutes {
       //                res.json(resp);
       //             })
       //             .catch(function (error) {
-      //                console.info("Error creating new user:", error);
       //                res.status(400);
       //                resp.result = { error: error.message };
       //                res.json(resp);
@@ -129,13 +162,12 @@ export class AdminRoutes {
 
       //    } else {
 
-      //       console.log('error', resp);
       //       return res.json(resp);
 
       //    }
 
       // });
-      
+
       // // edit user
       // adminApp.post("/editors-edit", (req, res) => {
       //    const method = req.fields.method;
@@ -153,14 +185,12 @@ export class AdminRoutes {
       //             displayName: name
       //          }).then(function (userRecord) { // send response to client
       //             // See the UserRecord reference doc for the contents of userRecord.
-      //             console.info("Successfully updated user", userRecord.toJSON());
       //             let response = {
       //                id: userRecord.uid
       //             }
       //             resp.result = response;
       //             res.json(resp);
       //          }).catch(function (error) {
-      //             console.info("Error updating user:", error);
       //             res.status(400);
       //             resp.result = { error: error.message };
       //             res.json(resp);
@@ -173,13 +203,12 @@ export class AdminRoutes {
 
       //    } else {
 
-      //       console.log('error', resp);
       //       return res.json(resp);
 
       //    }
 
       // });
-      
+
       // // delete user
       // adminApp.post("/editors-delete", (req, res) => {
       //    const method = req.fields.method;
@@ -198,11 +227,8 @@ export class AdminRoutes {
       //                      resp.result = {};
       //                      res.json(resp);
       //                   })
-      //                   .catch(e => console.error(e.stack));
-      //                console.info("Successfully deleted user");
       //             })
       //             .catch(function (error) {
-      //                console.info("Error deleting user:", error);
       //                res.status(400);
       //                resp.result = { error: error.message };
       //                res.json(resp);
@@ -215,13 +241,12 @@ export class AdminRoutes {
 
       //    } else {
 
-      //       console.log('error', resp);
       //       return res.json(resp);
 
       //    }
 
       // });
-      
+
       return adminApp;
 
    };

@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const mainAppG = ExpressRPC.makeInstance(['http://localhost:9081']);
 const appPORT = '9081';
 
+
 const fs = require('fs')
 const pathToDb = 'ADB.sqlite'
 
@@ -24,9 +25,9 @@ try {
       /*
       * E D I T O R S
       */
-
+      adbDB.createNewADBwSchema('ADB.sqlite')
       const editorRoutes = new EditorRoutes();
-      mainAppG.use('/api/editors', editorRoutes.routes());
+      mainAppG.use('/api/editors', editorRoutes.routes(adbDB));
       mainAppG.use('/editors', ExpressRPC.serveStatic('www'));
 
 
@@ -37,7 +38,7 @@ try {
       */
 
       const adminRoutes = new AdminRoutes();
-      mainAppG.use('/api/admin', adminRoutes.routes());
+      mainAppG.use('/api/admin', adminRoutes.routes(adbDB));
       mainAppG.use('/admin', ExpressRPC.serveStatic('wwwAdmin'));
 
       //open admin and editor
@@ -80,6 +81,7 @@ mainAppG.post("/setup", async (req, res) => {
       return res.json(resp);
    }
 });
+
 
 
 mainAppG.listen(appPORT, () => {

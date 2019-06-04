@@ -2,10 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class RPCBasicAuth {
     auth(user, password) {
-        let buffUser = new Buffer(user);
-        user = buffUser.toString('base64');
-        let buffPwd = new Buffer(password);
-        password = buffPwd.toString('base64');
         return (request, response, next) => {
             if (typeof request.fields.user === 'undefined'
                 || typeof request.fields.pswd === 'undefined') {

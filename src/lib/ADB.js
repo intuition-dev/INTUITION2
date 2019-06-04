@@ -4,7 +4,6 @@ const sqlite = require("sqlite");
 const bcrypt = require('bcryptjs');
 class ADB {
     async createNewADBwSchema(dbPath) {
-        console.info("--dbPath:", dbPath);
         const dbPro = sqlite.open(dbPath);
         this.db = await dbPro;
         this.db.configure('busyTimeout', 2 * 1000);
@@ -19,6 +18,17 @@ class ADB {
         await this.db.run(`INSERT INTO admin(email, password, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', '${pathToSite}')`, function (err) {
             if (err) {
             }
+        });
+    }
+    getAdmin(email, password) {
+        return this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
+            if (err) {
+            }
+            return row;
+        }).then(function (row) {
+            bcrypt.compare(password, row.password, function (err, res) {
+                return true;
+            });
         });
     }
     validateEmail() { }

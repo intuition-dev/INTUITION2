@@ -26,7 +26,7 @@ depp.define({
     ],
     'rw': [
         '#general'
-        , ROOT + 'admin/assets/js/login.js'
+        , ROOT + 'admin/assets/js/BindLogin.js'
         , ROOT + 'admin/assets/js/ui.js'
     ],
     'crud': [
