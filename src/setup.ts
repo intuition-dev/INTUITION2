@@ -26,11 +26,16 @@ try {
         appE.use(ExpressRPC.serveStatic('.'));
         //open admin and editor
     } else {
-        fs.writeFile('./db/ADB.sqlite')
-        appE.use(ExpressRPC.serveStatic('setup'));
+        fs.open('./db/ADB.sqlite', 'w', runSetup)
+
     }
+
 } catch (err) {
     console.error(err)
+}
+
+function runSetup() {
+    appE.use(ExpressRPC.serveStatic('setup'));
 }
 
 appE.post("/setup", async (req, res) => {

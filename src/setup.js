@@ -17,14 +17,17 @@ var db;
 try {
     if (fs.existsSync(pathToDb)) {
         console.log('---db exist already---');
+        appE.use(Serv_1.ExpressRPC.serveStatic('.'));
     }
     else {
-        fs.writeFile('./db/ADB.sqlite');
-        appE.use(Serv_1.ExpressRPC.serveStatic('setup'));
+        fs.open('./db/ADB.sqlite', 'w', runSetup);
     }
 }
 catch (err) {
     console.error(err);
+}
+function runSetup() {
+    appE.use(Serv_1.ExpressRPC.serveStatic('setup'));
 }
 appE.post("/setup", async (req, res) => {
     const method = req.fields.method;
