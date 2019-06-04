@@ -17,17 +17,17 @@ depp.define({
     ],
     'webAdmin': [
         '#scripts'
-        ,'#httpRPC'
-        , 'admin/assets/js/adminWebAdmin.js'
+        , '#httpRPC'
+        , ROOT + 'admin/assets/js/adminWebAdmin.js'
     ],
     'general': [
         '#webAdmin'
-        , 'admin/assets/js/general.js'
+        , ROOT + 'admin/assets/js/general.js'
     ],
     'rw': [
         '#general'
-        , 'admin/assets/js/login.js'
-        , 'admin/assets/js/ui.js'
+        , ROOT + 'admin/assets/js/login.js'
+        , ROOT + 'admin/assets/js/ui.js'
     ],
     'crud': [
         '#rw'

@@ -70,6 +70,8 @@ mainAppG.post("/setup", async (req, res) => {
 
       try {
          adbDB.addAdmin(email, password, emailjs, pathToSite)
+         resp['result'] = 'OK'
+         return res.json(resp)
 
       } catch (err) {
          // next(err);
