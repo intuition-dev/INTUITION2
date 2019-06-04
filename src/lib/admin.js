@@ -7,6 +7,9 @@ class AdminRoutes {
         const adminApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
         adminApp.use(bodyParser.json());
         adminApp.use((request, response, next) => {
+            if (request.path !== '/resetPassword') {
+                next();
+            }
             const params = JSON.parse(request.fields.params);
             const resp = {};
             let email = params.admin_email;
@@ -40,6 +43,52 @@ class AdminRoutes {
                     }
                 }
                 catch (err) {
+                }
+            }
+            else {
+                return res.json(resp);
+            }
+        });
+        adminApp.post('/resetPassword', (req, res) => {
+            const method = req.fields.method;
+            let params = JSON.parse(req.fields.params);
+            let email = params.admin_email;
+            let resp = {};
+            if ('code' == method) {
+                console.info("Reset password code");
+                resp.result = {};
+                try {
+                    var code = adbDB.sendVcode(email);
+                    if (code) {
+                        resp['code'] = true;
+                        return res.json(resp);
+                    }
+                    else {
+                        resp['code'] = false;
+                        return res.json(resp);
+                    }
+                }
+                catch (err) {
+                }
+            }
+            else if ('reset-password' == method) {
+                console.info("Reset password reset-password");
+                resp.result = {};
+                try {
+                    let result = adbDB.resetPassword(email, params.code, params.password);
+                    if (result) {
+                        resp['reset'] = true;
+                        return res.json(resp);
+                    }
+                    else {
+                        resp['reset'] = false;
+                        return res.json(resp);
+                    }
+                }
+                catch (err) {
+                    res.status(400);
+                    resp.result = { error: 'Unable to reset passsord' };
+                    res.json(resp);
                 }
             }
             else {

@@ -29,6 +29,18 @@ class BindLogin {
             window.location.replace('/');
         }
     }
+
+    sendVcode (email) {
+        if (email !== '') {
+            console.info('send code');
+        }
+    }
+
+    resetPass(email, code, pass) {
+        if (email !== '' && pass !== '' && code !== '') {
+            console.info('resetPass');
+        }
+    }
 }
 // depp.require('general', function () {
 

@@ -9,6 +9,10 @@ export class AdminRoutes {
       adminApp.use(bodyParser.json());
 
       adminApp.use((request, response, next) => {
+         if (request.path !== '/resetPassword') {
+            next();
+         }
+
          const params = JSON.parse(request.fields.params)
          const resp: any = {} // new response that will be set via the specific method passed
 
@@ -54,7 +58,55 @@ export class AdminRoutes {
          } else {
             return res.json(resp);
          }
+      });
+
+      adminApp.post('/resetPassword', (req, res) => {
+         const method = req.fields.method;
+         let params = JSON.parse(req.fields.params)
+         let email = params.admin_email
+         let resp: any = {};
+
+         if ('code' == method) {
+            console.info("Reset password code")
+            resp.result = {}
+            // res.send(resp)
+
+            try {
+               var code = adbDB.sendVcode(email)
+               if (code) {
+                  resp['code'] = true
+                  return res.json(resp);
+               } else {
+                  resp['code'] = false
+                  return res.json(resp);
+               }
+            } catch (err) {
+               // next(err);
+            }
+
+         } else if ('reset-password' == method) {
+            console.info("Reset password reset-password")
+            resp.result = {}
+
+            try {
+               let result = adbDB.resetPassword(email, params.code, params.password);
+               if (result) {
+                  resp['reset'] = true
+                  return res.json(resp);
+               } else {
+                  resp['reset'] = false
+                  return res.json(resp);
+               }
+            } catch (err) {
+               res.status(400);
+               resp.result = { error: 'Unable to reset passsord' };
+               res.json(resp);
+            }
+         } else {
+            return res.json(resp);
+         }
       })
+
       // // get users
       adminApp.post("/editors", (req, res) => {
          const method = req.fields.method;
