@@ -16,14 +16,6 @@ editorAPIport: 9081
 # uses basic auth
 secret: '123456'
 adminAPIport: 3030
-adminAPIportRps: 3040
-
-# Firebase connection
-FB_API_KEY: AIzaSyD7P7FfaeH3EShfyEtJuxeNYUHdI-u1Mvk
-FB_AUTH_DOMAIN: blog-editors.firebaseapp.com
-FB_PROJECT_ID: blog-editors
-
-# siteName: Metabake
 
 corsUrlProd: ['http://localhost:9080']
 corsUrlAdmin: ['http://localhost:8080']
