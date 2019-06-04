@@ -12,7 +12,7 @@ export class AdminRoutes {
       // const dbAdminFs = firebaseAdmin.get().firestore();
       
       const basicAuthRpc = new RPCBasicAuth();
-      const adminApp = ExpressRPC.makeInstance(['http://localhost:9080']);
+      const adminApp = ExpressRPC.makeInstance(['http://localhost:9081']);
       adminApp.use(bodyParser.json());
 
       // adminApp.use(basicAuthRpc.auth('admin', '123456'));
