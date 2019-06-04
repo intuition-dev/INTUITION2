@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const sqlite = require("sqlite");
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
-const pathToDb = './db/ADB.sqlite';
+const pathToDb = 'ADB.sqlite';
 const config_port = 3100;
 const config_url = ['localhost'];
 const appE = Serv_1.ExpressRPC.makeInstance(config_url);
@@ -20,7 +20,7 @@ try {
         appE.use(Serv_1.ExpressRPC.serveStatic('.'));
     }
     else {
-        fs.open('./db/ADB.sqlite', 'w', runSetup);
+        fs.open('ADB.sqlite', 'w', runSetup);
     }
 }
 catch (err) {
@@ -74,7 +74,7 @@ appE.post("/delete", async (req, res) => {
     }
 });
 async function createNewADBwSchema() {
-    const dbPro = sqlite.open('./db/ADB.sqlite');
+    const dbPro = sqlite.open('ADB.sqlite');
     db = await dbPro;
     db.configure('busyTimeout', 2 * 1000);
 }
