@@ -43,7 +43,7 @@ class AdminWebAdmin {
     * @param password user password, eg: 'dfgsdgdsfg' 
     */
     addEditor(name, email, password) {
-        return this.serviceRpc.invoke('/api/editors-add', 'post', {
+        return this.serviceRpc.invoke('/api/admin/editors-add', 'post', {
             name: name,
             email: email,
             password: password,
@@ -57,7 +57,7 @@ class AdminWebAdmin {
     * @param name user name, eg: 'Jane Doe'
     */
     editEditor(uid, name) {
-        return this.serviceRpc.invoke('/api/editors-edit', 'put', {
+        return this.serviceRpc.invoke('/api/admin/editors-edit', 'put', {
             name: name,
             uid: uid,
             admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass')
@@ -69,7 +69,7 @@ class AdminWebAdmin {
     * @param uid user id, eg: 'I3fE7p5NjtV1Y1m5pWBsZlyi4W62'
     */
     deleteEditor(uid) {
-        return this.serviceRpc.invoke('/api/editors-delete', 'delete', {
+        return this.serviceRpc.invoke('/api/admin/editors-delete', 'delete', {
             uid: uid,
             admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass')
         });

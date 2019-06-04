@@ -49,6 +49,14 @@ export class ADB { // auth & auth DB
          })
       })
    }
+   getEditors() {
+      return this.db.all(`SELECT name, email FROM editors`, [], function (err, rows) {
+         if (err) {
+            console.info("--err:", err)
+         }
+         return rows
+      })
+   }
 
 
 }

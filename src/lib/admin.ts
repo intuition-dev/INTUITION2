@@ -24,8 +24,6 @@ export class AdminRoutes {
          } catch (err) {
             // next(err);
          }
-
-
       });
 
       adminApp.post('/checkAdmin', (req, res) => {
@@ -63,31 +61,20 @@ export class AdminRoutes {
          let resp: any = {}; // new response that will be set via the specific method passed
 
          if ('get' == method) {
-            // let editorsCollection = dbAdminFs.collection('editors');
-            // let adminAuth = firebaseAdmin.get().auth();
-            // editorsCollection
-            //    .get()
-            //    .then(editors => {
-            //       let data = [];
-            //       // map instead of foreach returns array of promises
-            //       Promise.all(editors.docs.map(editor => {
-            //          return adminAuth.getUser(editor.id)
-            //             .then(userRef => {
-            //                data.push({
-            //                   id: editor.id,
-            //                   email: userRef.email,
-            //                   name: userRef.displayName
-            //                });
-            //             }).catch(e => {
-            //             })
-            //       }))
-            //          .then(() => {
-            //             resp.result = data;
-            //             res.json(resp);
-            //          });
-            //    })
-            resp.result = 'editors herer'
-            return res.json(resp);
+
+            adbDB.getEditors()
+               .then(function (editors) {
+                  let data = []
+                  editors.map(function (editor) {
+                     data.push({
+                        id: editor.id,
+                        email: editor.email,
+                        name: editor.name
+                     });
+                  })
+                  resp.result = data;
+                  return res.json(resp);
+               })
          } else {
 
             return res.json(resp);

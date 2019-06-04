@@ -50,8 +50,19 @@ class AdminRoutes {
             const method = req.fields.method;
             let resp = {};
             if ('get' == method) {
-                resp.result = 'editors herer';
-                return res.json(resp);
+                adbDB.getEditors()
+                    .then(function (editors) {
+                    let data = [];
+                    editors.map(function (editor) {
+                        data.push({
+                            id: editor.id,
+                            email: editor.email,
+                            name: editor.name
+                        });
+                    });
+                    resp.result = data;
+                    return res.json(resp);
+                });
             }
             else {
                 return res.json(resp);
