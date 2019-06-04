@@ -15,15 +15,20 @@
    "dependencies": {
       "concurrently": "^4.1.0",
       "express-fileupload": ">=1.1.4",
+      "fs-extra": ">=8.0.1",
+      "js-yaml": ">=3.13.1",
+      "mbake": "5.7.2",
+      "sql-template-strings": ">=2.2.2",
+      "sqlite": ">=3.0.3",
+      "axios": ">=0.19.0",
+
       "file-system": ">=2.2.2",
       "firebase": ">=6.1.0",
       "firebase-admin": ">=8.0.0",
-      "fs-extra": ">=8.0.1",
-      "http-server": "^0.11.1",
-      "js-yaml": ">=3.13.1",
-      "mbake": "5.7.0",
-      "sqlite": "^3.0.3"
+      "http-server": "^0.11.1"
+
    },
+   
    "devDependencies": {
       "@firebase/app-types": ">=0.4.0",
       "@types/node": ">=12.0.4"
