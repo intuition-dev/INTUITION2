@@ -6,14 +6,12 @@ html
         script.
             window.ROOT = '#{ROOT}';
         
-        script(src=ROOT +'config.js')
         script.
-            window.api = [config.api];
-            //- window.apiRpc = [config.apiRpc]; // TODO REMOVE after HTTP-RPC done
-            window.rpcProtocol = config.API_RPC.protocol;
-            window.rpcHost = config.API_RPC.host;
-            window.rpcPort = config.API_RPC.port;
-            window.siteName = [config.siteName];
+            window.rpcProtocol = 'http';
+            window.rpcHost = '0.0.0.0';
+            window.rpcPort = '9081';
+
+            window.siteName = 'Metabake';
 
         link(rel='stylesheet', href= ROOT +'assets/css/spectreTop.css')
 

@@ -6,14 +6,13 @@ html
         script.
             window.ROOT = '#{ROOT}';
 
-        script(src=ROOT +'config.js')
         script.
-            window.apiProtocol = [config.API_RPC.protocol];
-            window.apiHost = [config.API_RPC.host];
-            window.apiPort = [config.API_RPC.port];
+            window.apiProtocol = 'http';
+            window.apiHost = '0.0.0.0';
+            window.apiPort = '9081';
 
-            window.appMount = [config.appMount];
-            window.siteName = [config.siteName];
+            window.appMount = 'http://0.0.0.0:9082';
+            window.siteName = 'Metabake';
 
         link(rel='stylesheet', href= ROOT +'assets/css/spectreTop.css')
 

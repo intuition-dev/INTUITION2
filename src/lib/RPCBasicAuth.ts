@@ -1,7 +1,7 @@
 export class RPCBasicAuth {
     auth(user, password) {
 
-        console.info('user rpc basic auth', user);
+        // console.info('user rpc basic auth', user);
 
         // base64 encode
         let buffUser = new Buffer(user);  
