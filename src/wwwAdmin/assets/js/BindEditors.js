@@ -1,9 +1,9 @@
 class Editors {
-    constructor(webAdmin) {
+    constructor() {
         this.drawTable = this.drawTable.bind(this);
         this.save = this.save.bind(this);
         this.remove = this.remove.bind(this);
-        this.webAdmin = webAdmin;
+        this.webAdmin = new AdminWebAdmin();
         this.table = null;
         this.activeRow = null;
     }
@@ -12,14 +12,14 @@ class Editors {
         this.webAdmin.getEditorsList()
             .then(editors => {
                 this.table = new Tabulator("#editors-table", {
-                    data:editors,      // assign data to table
-                    layout:"fitColumns",    // fit columns to width of table
-                    columns:[               // Define Table Columns
-                        {title:"id", field:"id", visible:false},
-                        {title:"Email", field:"email", align:"left"},
-                        {title:"Name", field:"name", align:"left"}
+                    data: editors,      // assign data to table
+                    layout: "fitColumns",    // fit columns to width of table
+                    columns: [               // Define Table Columns
+                        { title: "id", field: "id", visible: false },
+                        { title: "Email", field: "email", align: "left" },
+                        { title: "Name", field: "name", align: "left" }
                     ],
-                    rowClick:(e, row) => { // fill the form fields
+                    rowClick: (e, row) => { // fill the form fields
                         this.activeRow = row;
                         var row = row.getData();
                         window.rowUid = row.id;
@@ -46,7 +46,7 @@ class Editors {
                 .then((documentRef) => {
                     $('.notification').removeClass('d-hide').find('.text').text('user was successfully updated');
                     $('.grid-form input').val('');
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('.notification').addClass('d-hide').find('.text').text('');
                     }, 4000);
                     $('html, body').animate({ // scroll to form
@@ -54,20 +54,21 @@ class Editors {
                     }, 500);
                     // table refresh
                     this.table
-                        .updateOrAddData([{id:documentRef.id , name: name}])
-                        .then(function(){
+                        .updateOrAddData([{ id: documentRef.id, name: name }])
+                        .then(function () {
                             console.info('table updated');
                         })
-                        .catch(function(error){
+                        .catch(function (error) {
                             console.info('unable update table', error);
                         });
                 });
         } else { // add user
             return this.webAdmin.addEditor(name, email, password)
                 .then((documentRef) => {
+                    console.info("--documentRef:", documentRef)
                     $('.notification').removeClass('d-hide').find('.text').text('new user was created');
                     $('.grid-form input').val('');
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('.notification').addClass('d-hide').find('.text').text('');
                     }, 4000);
                     $('html, body').animate({ // scroll to form
@@ -75,11 +76,11 @@ class Editors {
                     }, 500);
                     // table refresh
                     this.table
-                        .updateOrAddData([{id:documentRef.id ,email: email, name: name}])
-                        .then(function(){
+                        .updateOrAddData([{ id: documentRef.id, email: email, name: name }])
+                        .then(function () {
                             console.info('table updated');
                         })
-                        .catch(function(error){
+                        .catch(function (error) {
                             console.info('unable update table', error);
                         });
                 })
@@ -89,7 +90,7 @@ class Editors {
                     }
                     console.info('err: ', err);
                     $('.notification').removeClass('d-hide').addClass('error-msg').find('.text').text('an error occured, user wasn\'t created', err);
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('.notification').addClass('d-hide').removeClass('error-msg').find('.text').text('');
                     }, 4000);
                 });
@@ -101,7 +102,7 @@ class Editors {
             .then(() => {
                 $('.notification').removeClass('d-hide').find('.text').text(' The user was successfully deleted');
                 $('.grid-form input').val('');
-                setTimeout(function() {
+                setTimeout(function () {
                     $('.notification').addClass('d-hide').find('.text').text('');
                 }, 4000);
                 $('html, body').animate({ // scroll to form
@@ -109,10 +110,10 @@ class Editors {
                 }, 500);
                 // table refresh
                 this.activeRow.delete()
-                    .then(function(){
+                    .then(function () {
                         console.info('table updated');
                     })
-                    .catch(function(error){
+                    .catch(function (error) {
                         console.info('unable update table', error);
                     });
             })
@@ -123,15 +124,15 @@ class Editors {
 }
 
 // admin login&password
-function getAdminWebAdmin() {
-    let username = sessionStorage.getItem('username');
-    let password = sessionStorage.getItem('password');
-    if ((username === null || password === null) &&
-        window.location.pathname !== '/'
-    ) {
-        console.info('unauthorized, redirecting to login page');
-        window.location.replace('/');
-    } else {
-        return new AdminWebAdmin(username, password);
-    }
-}
+// function getAdminWebAdmin() {
+//     let username = sessionStorage.getItem('username');
+//     let password = sessionStorage.getItem('password');
+//     if ((username === null || password === null) &&
+//         window.location.pathname !== '/'
+//     ) {
+//         console.info('unauthorized, redirecting to login page');
+//         window.location.replace('/');
+//     } else {
+//         return new AdminWebAdmin(username, password);
+//     }
+// }

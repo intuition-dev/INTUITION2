@@ -22,7 +22,7 @@ depp.define({
     ],
     'general': [
         '#webAdmin'
-        , ROOT + 'admin/assets/js/general.js'
+        , ROOT + 'admin/assets/js/BindEditors.js'
     ],
     'rw': [
         '#general'

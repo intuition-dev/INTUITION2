@@ -68,6 +68,36 @@ class AdminRoutes {
                 return res.json(resp);
             }
         });
+        adminApp.post("/editors-add", (req, res) => {
+            const method = req.fields.method;
+            let resp = {};
+            let params = JSON.parse(req.fields.params);
+            if ('post' == method) {
+                let email = params.email;
+                let name = params.name;
+                let password = params.password;
+                if (typeof email !== 'undefined' &&
+                    typeof name !== 'undefined' &&
+                    typeof password !== 'undefined') {
+                    adbDB.addEditor(email, name, password)
+                        .then(function (editorId) {
+                        let response = {
+                            id: editorId
+                        };
+                        resp.result = response;
+                        return res.json(resp);
+                    });
+                }
+                else {
+                    res.status(400);
+                    resp.result = { error: 'parameters missing' };
+                    res.json(resp);
+                }
+            }
+            else {
+                return res.json(resp);
+            }
+        });
         return adminApp;
     }
     ;

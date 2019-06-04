@@ -57,6 +57,17 @@ export class ADB { // auth & auth DB
          return rows
       })
    }
+   addEditor(email, name, password) {
+      var salt = bcrypt.genSaltSync(10);
+      var hashPass = bcrypt.hashSync(password, salt);
+      return this.db.run(`INSERT INTO editors(email, password, name) VALUES('${email}', '${hashPass}', '${name}')`, function (err) {
+         if (err) {
+         }
+         // get the last insert id
+         console.log(`A row has been inserted with rowid ${this.lastID}`);
+         return this.lastID
+      });
+   }
 
 
 }

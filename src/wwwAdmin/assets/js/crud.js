@@ -1,7 +1,7 @@
-depp.require(['general'], function() {
+depp.require(['general'], function () {
     if (window.location.href.indexOf("admin/crudEditors") > -1) {
-        
-        let editors = new Editors(getAdminWebAdmin());
+
+        let editors = new Editors();
 
         editors.drawTable();
 
@@ -14,7 +14,7 @@ depp.require(['general'], function() {
             $('.loader').addClass('active');
             editors
                 .save()
-                .then(() => { 
+                .then(() => {
                     $(this).removeAttr("disabled");
                     $('.loader').removeClass('active');
                 });
@@ -28,7 +28,7 @@ depp.require(['general'], function() {
             $('.loader').addClass('active');
             editors
                 .save(rowUid)
-                .then(() => { 
+                .then(() => {
                     $(this).removeAttr("disabled");
                     $('.loader').removeClass('active');
                 });
@@ -42,11 +42,11 @@ depp.require(['general'], function() {
             $('.loader').addClass('active');
             editors
                 .remove(rowUid)
-                .then(() => { 
+                .then(() => {
                     $(this).removeAttr("disabled");
                     $('.loader').removeClass('active');
                 });
         });
     }
-    
+
 });

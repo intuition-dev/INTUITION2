@@ -11,7 +11,8 @@ class EmailJs {
                 email: email,
                 to_name: email,
                 from_name: from_name,
-                message_html: 'TEST MESSAGE FROM NODE BACKEND'
+                message_html: 'TEST MESSAGE FROM NODE BACKEND',
+                email_to: 'liza.kislyakova@gmail.com'
             }
         })
             .then(res => {

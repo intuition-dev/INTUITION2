@@ -84,74 +84,42 @@ export class AdminRoutes {
       });
 
       // // add user
-      // adminApp.post("/editors-add", (req, res) => {
-      //    const method = req.fields.method;
-      //    let resp: any = {}; // new response that will be set via the specific method passed
-      //    let params = JSON.parse(req.fields.params);
+      adminApp.post("/editors-add", (req, res) => {
+         const method = req.fields.method;
+         let resp: any = {}; // new response that will be set via the specific method passed
+         let params = JSON.parse(req.fields.params);
 
-      //    if ('post' == method) {
+         if ('post' == method) {
 
-      //       let email = params.email;
-      //       let name = params.name;
-      //       let password = params.password;
-      //       if (typeof email !== 'undefined' &&
-      //          typeof name !== 'undefined' &&
-      //          typeof password !== 'undefined'
-      //       ) {
-      //          let editorRef = dbAdminFs.collection('editors').doc(); // get editor id reference
-      //          firebaseAdmin
-      //             .get()
-      //             .auth()
-      //             .createUser({ // create user
-      //                email: email,
-      //                displayName: name,
-      //                password: password,
-      //             })
-      //             .then(userRecord => { // add user to editors collection
-      //                return dbAdminFs.collection('editors')
-      //                   .doc(userRecord.uid)
-      //                   .set({
-      //                      editor_id: editorRef
-      //                   })
-      //                   .then(_ => {
-      //                      return userRecord;
-      //                   });
-      //             })
-      //             .then(userRecord => {
-      //                let firebaseAuth = firebase.get().auth();
-      //                return firebaseAuth.sendPasswordResetEmail(email)
-      //                   .then(() => {
-      //                      return userRecord;
-      //                   })
-      //                   .catch(function (error) {
-      //                   });
-      //             })
-      //             .then(function (userRecord) { // send response to client
-      //                // See the UserRecord reference doc for the contents of userRecord.
-      //                let response = {
-      //                   id: userRecord.uid
-      //                }
-      //                resp.result = response;
-      //                res.json(resp);
-      //             })
-      //             .catch(function (error) {
-      //                res.status(400);
-      //                resp.result = { error: error.message };
-      //                res.json(resp);
-      //             });
-      //       } else {
-      //          res.status(400);
-      //          resp.result = { error: 'parameters missing' };
-      //          res.json(resp);
-      //       }
+            let email = params.email;
+            let name = params.name;
+            let password = params.password;
+            if (typeof email !== 'undefined' &&
+               typeof name !== 'undefined' &&
+               typeof password !== 'undefined'
+            ) {
 
-      //    } else {
+               adbDB.addEditor(email, name, password)
+                  .then(function (editorId) {
+                     let response = {
+                        id: editorId
+                     }
+                     resp.result = response;
+                     return res.json(resp);
+                  })
+            } else {
+               res.status(400);
+               resp.result = { error: 'parameters missing' };
+               res.json(resp);
+            }
 
-      //       return res.json(resp);
+         } else {
 
-      //    }
+            return res.json(resp);
 
-      // });
+         }
+
+      });
 
       // // edit user
       // adminApp.post("/editors-edit", (req, res) => {
