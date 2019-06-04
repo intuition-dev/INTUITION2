@@ -15,12 +15,13 @@ class ADB {
         var salt = bcrypt.genSaltSync(10);
         var hashPass = bcrypt.hashSync(password, salt);
         await this.db.run(`CREATE TABLE admin(email,password,emailJsCode, pathToSite)`);
+        await this.db.run(`CREATE TABLE editors(id,email,password,name,emailJsCode)`);
         await this.db.run(`INSERT INTO admin(email, password, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', '${pathToSite}')`, function (err) {
             if (err) {
             }
         });
     }
-    getAdmin(email, password) {
+    validateEmail(email, password) {
         return this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
             if (err) {
             }
@@ -31,6 +32,5 @@ class ADB {
             });
         });
     }
-    validateEmail() { }
 }
 exports.ADB = ADB;

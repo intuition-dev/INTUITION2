@@ -13,7 +13,7 @@ class AdminWebAdmin {
     * @param username user name
     * @param password user password
     */
-    constructor(username, password) {
+    constructor() {
 
         this.serviceRpc = new httpRPC(rpcProtocol, rpcHost, rpcPort);
         // this.serviceRpc.setUser(username, password);
@@ -33,7 +33,7 @@ class AdminWebAdmin {
     * get data for editors table
     */
     getEditorsList() {
-        return this.serviceRpc.invoke('/api/editors', 'get');
+        return this.serviceRpc.invoke('/api/admin/editors', 'get', { admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass') });
     }
 
     /**
@@ -47,7 +47,7 @@ class AdminWebAdmin {
             name: name,
             email: email,
             password: password,
-            admin_email: email, admin_pass: pass
+            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass')
         });
     }
 
@@ -60,7 +60,7 @@ class AdminWebAdmin {
         return this.serviceRpc.invoke('/api/editors-edit', 'put', {
             name: name,
             uid: uid,
-            admin_email: email, admin_pass: pass
+            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass')
         });
     }
 
@@ -71,7 +71,7 @@ class AdminWebAdmin {
     deleteEditor(uid) {
         return this.serviceRpc.invoke('/api/editors-delete', 'delete', {
             uid: uid,
-            admin_email: email, admin_pass: pass
+            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass')
         });
     }
 

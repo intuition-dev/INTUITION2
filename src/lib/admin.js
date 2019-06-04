@@ -6,6 +6,20 @@ class AdminRoutes {
         const bodyParser = require("body-parser");
         const adminApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
         adminApp.use(bodyParser.json());
+        adminApp.use((request, response, next) => {
+            const params = JSON.parse(request.fields.params);
+            const resp = {};
+            let email = params.admin_email;
+            let password = params.admin_pass;
+            try {
+                var pass = adbDB.validateEmail(email);
+                if (pass) {
+                    next();
+                }
+            }
+            catch (err) {
+            }
+        });
         adminApp.post('/checkAdmin', (req, res) => {
             const method = req.fields.method;
             let params = JSON.parse(req.fields.params);
@@ -15,7 +29,7 @@ class AdminRoutes {
             if ('check-admin' == method) {
                 resp.result = {};
                 try {
-                    var pass = adbDB.getAdmin(email, password);
+                    var pass = adbDB.validateEmail(email, password);
                     if (pass) {
                         resp['pass'] = true;
                         return res.json(resp);

@@ -6,7 +6,7 @@ import { ExpressRPC } from 'mbake/lib/Serv';
 // import { FirebaseAdmin } from "./firebaseAdmin";
 
 export class EditorRoutes {
-    routes() {
+    routes(adbDB) {
         const bodyParser = require("body-parser");
         const fs = require('fs');
         const path = require('path');

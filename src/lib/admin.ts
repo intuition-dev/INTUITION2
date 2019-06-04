@@ -8,27 +8,25 @@ export class AdminRoutes {
       const adminApp = ExpressRPC.makeInstance(['http://localhost:9081']);
       adminApp.use(bodyParser.json());
 
-      // adminApp.use((request, response, next) => {
-      //    // const firebaseAdmin = new FirebaseAdmin();
-      //    const params = JSON.parse(request.fields.params)
-      //    const resp: any = {} // new response that will be set via the specific method passed
+      adminApp.use((request, response, next) => {
+         const params = JSON.parse(request.fields.params)
+         const resp: any = {} // new response that will be set via the specific method passed
 
 
-      //    let email = params.admin_email
-      //    let password = params.admin_pass
-      //    try {
-      //       var pass = adbDB.getAdmin(email)
+         let email = params.admin_email
+         let password = params.admin_pass
+         try {
+            var pass = adbDB.validateEmail(email)
+            if (pass) {
+               next()
+            }
 
-      //       const basicAuthRpc = new RPCBasicAuth();
-
-      //       next()
-
-      //    } catch (err) {
-      //       // next(err);
-      //    }
+         } catch (err) {
+            // next(err);
+         }
 
 
-      // });
+      });
 
       adminApp.post('/checkAdmin', (req, res) => {
          const method = req.fields.method;
@@ -43,7 +41,7 @@ export class AdminRoutes {
             // res.send(resp)
 
             try {
-               var pass = adbDB.getAdmin(email, password)
+               var pass = adbDB.validateEmail(email, password)
                if (pass) {
                   resp['pass'] = true
                   return res.json(resp)

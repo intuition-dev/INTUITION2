@@ -30,6 +30,7 @@ export class ADB { // auth & auth DB
       var hashPass = bcrypt.hashSync(password, salt);
 
       await this.db.run(`CREATE TABLE admin(email,password,emailJsCode, pathToSite)`);
+      await this.db.run(`CREATE TABLE editors(id,email,password,name,emailJsCode)`);
       await this.db.run(`INSERT INTO admin(email, password, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', '${pathToSite}')`, function (err) {
          if (err) {
          }
@@ -37,7 +38,7 @@ export class ADB { // auth & auth DB
       });
    }
 
-   getAdmin(email, password) {
+   validateEmail(email, password) {
       return this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
          if (err) {
          }
@@ -48,8 +49,6 @@ export class ADB { // auth & auth DB
          })
       })
    }
-
-   validateEmail() { }
 
 
 }

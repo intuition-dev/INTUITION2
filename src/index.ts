@@ -51,10 +51,16 @@ try {
 } catch (err) {
 }
 
+
 function runSetup() {
    mainApp.use('/setup', ExpressRPC.serveStatic('setup'));
    adbDB.createNewADBwSchema('ADB.sqlite')
-   // mainApp.use(ExpressRPC.serveStatic('setup'));
+   const editorRoutes = new EditorRoutes();
+   mainApp.use('/api/editors', editorRoutes.routes(adbDB));
+   mainApp.use('/editors', ExpressRPC.serveStatic('www'));
+   const adminRoutes = new AdminRoutes();
+   mainApp.use('/api/admin', adminRoutes.routes(adbDB));
+   mainApp.use('/admin', ExpressRPC.serveStatic('wwwAdmin'));
 }
 
 mainApp.post("/setup", async (req, res) => {

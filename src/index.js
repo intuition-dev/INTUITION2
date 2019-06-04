@@ -32,6 +32,12 @@ catch (err) {
 function runSetup() {
     mainAppG.use('/setup', Serv_1.ExpressRPC.serveStatic('setup'));
     adbDB.createNewADBwSchema('ADB.sqlite');
+    const editorRoutes = new editor_1.EditorRoutes();
+    mainAppG.use('/api/editors', editorRoutes.routes(adbDB));
+    mainAppG.use('/editors', Serv_1.ExpressRPC.serveStatic('www'));
+    const adminRoutes = new admin_1.AdminRoutes();
+    mainAppG.use('/api/admin', adminRoutes.routes(adbDB));
+    mainAppG.use('/admin', Serv_1.ExpressRPC.serveStatic('wwwAdmin'));
 }
 mainAppG.post("/setup", async (req, res) => {
     const method = req.fields.method;

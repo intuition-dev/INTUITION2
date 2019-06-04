@@ -5,7 +5,7 @@ const FileOpsBase_1 = require("mbake/lib/FileOpsBase");
 const FileOpsExtra_1 = require("mbake/lib/FileOpsExtra");
 const Serv_1 = require("mbake/lib/Serv");
 class EditorRoutes {
-    routes() {
+    routes(adbDB) {
         const bodyParser = require("body-parser");
         const fs = require('fs');
         const path = require('path');
