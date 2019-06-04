@@ -9,8 +9,8 @@
       "yarn": ">=1.16.0"
    },
    "scripts": {
-      "start": "yarn & node setup.js & yarn run open",
-      "open": "concurrently \"http-server -a localhost -p 3100\" \"open http://localhost:3100/\""
+      "start": "yarn & node index.js & yarn run open",
+      "open": "concurrently \"http-server -a localhost -p 9080\" \"open http://localhost:9080/setup/\""
    },
    "dependencies": {
       "bcryptjs": "^2.4.3",
