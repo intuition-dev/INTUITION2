@@ -11,6 +11,7 @@ export class EditorRoutes {
         const fs = require('fs');
         const path = require('path');
         const fileUpload = require('express-fileupload');
+        const mountPath = '/Users/liza/work/mbakeCLI/CMS';
 
         const appE = ExpressRPC.makeInstance(['http://localhost:9080']);
 
@@ -49,7 +50,7 @@ export class EditorRoutes {
 
             if ('get' == method) {
 
-                let dirs = new Dirs(config.appMount);
+                let dirs = new Dirs(mountPath);
                 let dirsToIgnore = ['', '.', '..'];
                 resp.result = dirs.getShort()
                     .map(el => el.replace(/^\/+/g, ''))
@@ -74,7 +75,7 @@ export class EditorRoutes {
 
                 let post_id = '/' + params.post_id;
                 if (typeof post_id !== 'undefined') {
-                    let dirs = new Dirs(config.appMount);
+                    let dirs = new Dirs(mountPath);
                     resp.result = dirs.getInDir(post_id);
                     res.json(resp);
                 } else {
@@ -103,7 +104,7 @@ export class EditorRoutes {
                 let post_id = params.post_id;
                 let pathPrefix = params.pathPrefix;
                 if (typeof post_id !== 'undefined') {
-                    let md = config.appMount + '/' + pathPrefix + post_id;
+                    let md = mountPath + '/' + pathPrefix + post_id;
                     let original_post_id = post_id.replace(/\.+\d+$/, "");
                     let fileExt = path.extname(original_post_id);
                     if (fs.existsSync(md) && (fileExt === '.md' || fileExt === '.yaml' || fileExt === '.csv' || fileExt === '.pug' || fileExt === '.css')) {
@@ -149,21 +150,21 @@ export class EditorRoutes {
 
                     let md = '/' + pathPrefix + post_id;
 
-                    let fileOps = new FileOps(config.appMount);
+                    let fileOps = new FileOps(mountPath);
                     fileOps.write(md, content);
 
-                    let dirCont = new Dirs(config.appMount);
+                    let dirCont = new Dirs(mountPath);
                     let substring = '/';
 
                     // add /archive
                     let checkDat = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('dat.yaml'));
                     if (checkDat.length > 0) {
                         const archivePath = '/' + pathPrefix + '/archive';
-                        if (!fs.existsSync(config.appMount + archivePath)) {
-                            fs.mkdirSync(config.appMount + archivePath);
+                        if (!fs.existsSync(mountPath + archivePath)) {
+                            fs.mkdirSync(mountPath + archivePath);
                         }
 
-                        let archiveFileOps = new FileOps(config.appMount + archivePath);
+                        let archiveFileOps = new FileOps(mountPath + archivePath);
 
                         let extension = path.extname(post_id);
                         let fileName = path.basename(post_id, extension);
@@ -210,11 +211,11 @@ export class EditorRoutes {
                 if (typeof post_id !== 'undefined') {
 
                     let runMbake = new MBake();
-                    let dirCont = new Dirs(config.appMount);
+                    let dirCont = new Dirs(mountPath);
 
                     let checkCsv = dirCont.getInDir('/' + pathPrefix).filter(file => file.endsWith('.csv'));
                     if (checkCsv.length > 0) {
-                        let compileCsv = new CSV2Json(config.appMount + '/' + pathPrefix);
+                        let compileCsv = new CSV2Json(mountPath + '/' + pathPrefix);
                         compileCsv.convert();
                     }
 
@@ -223,7 +224,7 @@ export class EditorRoutes {
                     //need to check what type of file is currently saving and run function based on it, eg: itemizeNbake, or comps
                     if (checkDat_i.length > 0) {
                         // this is for yaml
-                        runMbake.itemizeNBake(config.appMount + '/' + pathPrefix, 3)
+                        runMbake.itemizeNBake(mountPath + '/' + pathPrefix, 3)
                             .then(function (response) {
                                 resp.result = { data: 'OK' };
                                 res.json(resp);
@@ -233,7 +234,7 @@ export class EditorRoutes {
                             })
                     } else {
                         // TODO: When do we to do components? Why not just bake? md right.
-                        runMbake.compsNBake(config.appMount, 3).then(function (response) {
+                        runMbake.compsNBake(mountPath, 3).then(function (response) {
                             resp.result = { data: 'OK' };
                             res.json(resp);
                         }, function (error) {
@@ -273,14 +274,14 @@ export class EditorRoutes {
                     && typeof pathPrefix !== 'undefined'
                 ) {
                     // create new post folder
-                    let postPath = config.appMount + '/' + pathPrefix;
+                    let postPath = mountPath + '/' + pathPrefix;
                     let substring = '/';
                     let newPost = '';
                     if (pathPrefix.includes(substring)) {
                         pathPrefix = pathPrefix.substr(0, pathPrefix.indexOf('/'));
-                        newPost = config.appMount + '/' + pathPrefix + '/' + post_id;
+                        newPost = mountPath + '/' + pathPrefix + '/' + post_id;
                     } else {
-                        newPost = config.appMount + '/' + post_id;
+                        newPost = mountPath + '/' + post_id;
                     }
                     let fileOps = new FileOps('/');
                     fileOps.clone(postPath, newPost);
@@ -323,7 +324,7 @@ export class EditorRoutes {
 
                 // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
                 let sampleFile = req.files.sampleFile;
-                uploadPath = config.appMount + '/' + pathPrefix + '/' + sampleFile.name;
+                uploadPath = mountPath + '/' + pathPrefix + '/' + sampleFile.name;
 
                 // Use the mv() method to place the file somewhere on your server
                 sampleFile.mv(uploadPath, function (err) {
@@ -355,12 +356,12 @@ export class EditorRoutes {
                 let post_id = params.post_id;
                 let publish_date = params.publish_date;
                 if (typeof post_id !== 'undefined') {
-                    let datYaml = new Dat(config.appMount + '/' + post_id);
+                    let datYaml = new Dat(mountPath + '/' + post_id);
                     datYaml.set('publishDate', publish_date);
                     datYaml.write();
                     let runMbake = new MBake();
                     let postsFolder = post_id.substr(0, post_id.indexOf('/'));
-                    let pro: Promise<string> = runMbake.itemizeNBake(config.appMount + '/' + postsFolder, 3);
+                    let pro: Promise<string> = runMbake.itemizeNBake(mountPath + '/' + postsFolder, 3);
                     resp.result = { data: 'OK' };
                     res.json(resp);
                 } else {

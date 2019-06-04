@@ -221,7 +221,7 @@ export class AdminRoutes {
 
       // });
       
-      // return adminApp;
+      return adminApp;
 
    };
 }
