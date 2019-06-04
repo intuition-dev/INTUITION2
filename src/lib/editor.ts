@@ -6,13 +6,13 @@ import { ExpressRPC } from 'mbake/lib/Serv';
 // import { FirebaseAdmin } from "./firebaseAdmin";
 
 export class EditorRoutes {
-    routes(config) {
+    routes() {
         const bodyParser = require("body-parser");
         const fs = require('fs');
         const path = require('path');
         const fileUpload = require('express-fileupload');
 
-        const appE = ExpressRPC.makeInstance(config.corsUrlProd);
+        const appE = ExpressRPC.makeInstance(['http://localhost:9080']);
 
         appE.use(fileUpload());
         appE.use((request, response, next) => {

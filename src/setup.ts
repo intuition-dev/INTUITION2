@@ -3,7 +3,7 @@ import { ExpressRPC } from 'mbake/lib/Serv';
 const opn = require('opn');
 const bodyParser = require("body-parser");
 import sqlite = require('sqlite')
-import emailjs from 'emailjs-com' // to send a 3 char validation code
+// import emailjs from 'emailjs-com' // to send a 3 char validation code
 const bcrypt = require('bcryptjs') // to hash pswdws
 
 const fs = require('fs')

@@ -6,19 +6,16 @@ import { ExpressRPC } from 'mbake/lib/Serv';
 export class AdminRoutes {
    routes() {
       const bodyParser = require("body-parser");
-      const yaml = require('js-yaml');
-      const fs = require('fs');
+      
       // const firebaseAdmin = new FirebaseAdmin();
       // const firebase = new Firebase();
       // const dbAdminFs = firebaseAdmin.get().firestore();
       
-      let config = yaml.load(fs.readFileSync(__dirname + '/../config.yaml'));
-      
       const basicAuthRpc = new RPCBasicAuth();
-      const adminApp = ExpressRPC.makeInstance(config.corsUrlAdmin);
+      const adminApp = ExpressRPC.makeInstance(['http://localhost:9080']);
       adminApp.use(bodyParser.json());
 
-      adminApp.use(basicAuthRpc.auth('admin', '123456'));
+      // adminApp.use(basicAuthRpc.auth('admin', '123456'));
       
       // // get users
       // adminApp.post("/editors", (req, res) => {
@@ -224,7 +221,7 @@ export class AdminRoutes {
 
       // });
       
-      return adminApp;
+      // return adminApp;
 
    };
 }

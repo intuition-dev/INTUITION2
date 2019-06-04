@@ -10,7 +10,7 @@ depp.define({
         , '#jquery'
         , '#tabulator'
         , '#gridformsJS'
-        , ROOT + 'assets/css/spectreBottom.css'
+        , ROOT + 'admin/assets/css/spectreBottom.css'
     ],
     'httpRPC': [
         , '#RPC'
@@ -18,20 +18,20 @@ depp.define({
     'webAdmin': [
         '#scripts'
         ,'#httpRPC'
-        , '/assets/js/adminWebAdmin.js'
+        , 'admin/assets/js/adminWebAdmin.js'
     ],
     'general': [
         '#webAdmin'
-        , '/assets/js/general.js'
+        , 'admin/assets/js/general.js'
     ],
     'rw': [
         '#general'
-        , '/assets/js/login.js'
-        , '/assets/js/ui.js'
+        , 'admin/assets/js/login.js'
+        , 'admin/assets/js/ui.js'
     ],
     'crud': [
         '#rw'
-        , ROOT + 'assets/js/crud.js'
+        , ROOT + 'admin/assets/js/crud.js'
     ],
     'fonts': [
         '#crud'

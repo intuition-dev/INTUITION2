@@ -22,7 +22,7 @@ depp.require('general', function() {
         window.sessionStorage.setItem('username', formLogin);
         window.sessionStorage.setItem('password', formPassw);
 
-        window.location = '/admin/crudEditors';
+        window.location = '/crudEditors';
 
     });
 

@@ -10,7 +10,7 @@ depp.define({
         , '#jquery'
         , '#gridformsJS'
         , '#zebraDate'
-        , ROOT + 'assets/css/spectreBottom.css'
+        , ROOT + 'editors/assets/css/spectreBottom.css'
     ],
     'httpRPC': [
         , '#RPC'
@@ -18,21 +18,21 @@ depp.define({
     'webAdmin': [
         '#scripts'
         ,'#httpRPC'
-        ,'/assets/js/db.js'
-        , '/assets/webAdmin/WebAdmin.js'
+        ,'editors/assets/js/db.js'
+        , 'editors/assets/webAdmin/WebAdmin.js'
     ],
     'edit': [
         '#webAdmin',
-        '/assets/js/edit.js'
+        'editors/assets/js/edit.js'
     ]
     , 'general': [
         '#edit'
-        , '/assets/js/general.js'
-        ,'/assets/js/login.js'
+        , 'editors/assets/js/general.js'
+        ,'editors/assets/js/login.js'
     ],
     'rw': [
         '#general',
-        '/assets/js/ui.js'
+        'editors/assets/js/ui.js'
     ],
     'fonts': [
         '#rw'
