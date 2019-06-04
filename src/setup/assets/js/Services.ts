@@ -17,8 +17,13 @@ class Services {
         this.serviceRPC = new httpRPC(baseURL_[0], baseURL_[1], baseURL_[2])
 
     }
-    createConfig() {
-        this.serviceRPC.invoke('/setup', 'setup')
+    createConfig(serialised) {
+
+        var email = serialised.filter(email => email.name == 'email')[0].value
+        var password = serialised.filter(password => password.name == 'password')[0].value
+        var emailjs = serialised.filter(emailjs => emailjs.name == 'emailjs')[0].value
+        console.info("--email:", email)
+        this.serviceRPC.invoke('/setup', 'setup', { email: email, password: password, emailjs: emailjs })
             .then((result) => {
                 console.info('test api: ', result);
                 return result;

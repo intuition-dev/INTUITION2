@@ -35,6 +35,12 @@ appE.post("/", (req, res) => {
 
 appE.post("/setup", async (req, res) => {
     const method = req.fields.method;
+    console.info("--req.fields:", req.fields)
+    let params = JSON.parse(req.fields.params)
+
+    let email = params.email
+    let password = params.password
+    let emailjs = params.emailjs
     let resp: any = {}; // new response that will be set via the specific method passed
     if ('setup' == method) {
         resp.result = {}
@@ -43,8 +49,8 @@ appE.post("/setup", async (req, res) => {
         try {
             await createNewADBwSchema('adminEmail', 'emailJsCode')
 
-            await db.run('CREATE TABLE config(email,pass,emailJsCode)');
-            await db.run(`INSERT INTO config(email, pass, emailJsCode) VALUES('nat@gmail.com', '123', 'emailjscodehere')`, function (err) {
+            await db.run('CREATE TABLE admin(email,pass,emailJsCode)');
+            await db.run(`INSERT INTO admin(email, pass, emailJsCode) VALUES('${email}', '${password}', '${emailjs}')`, function (err) {
                 if (err) {
                 }
                 // get the last insert id
@@ -58,6 +64,7 @@ appE.post("/setup", async (req, res) => {
 
     }
 });
+
 appE.post("/delete", async (req, res) => {
     const method = req.fields.method;
     let resp: any = {}; // new response that will be set via the specific method passed

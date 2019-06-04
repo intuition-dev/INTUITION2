@@ -15,50 +15,43 @@ var db;
 appE.post("/", (req, res) => {
     const method = req.fields.method;
     let resp = {};
-    console.log('hey----------');
     if ('get' == method) {
-        console.log('hey');
         resp.result = {};
         res.sendFile('/src/setup/index.html');
     }
     else {
-        console.log('error', resp);
         return res.json(resp);
     }
 });
 appE.post("/setup", async (req, res) => {
     const method = req.fields.method;
-    console.info("--method:", method);
+    console.info("--req.fields:", req.fields);
+    let params = JSON.parse(req.fields.params);
+    let email = params.email;
+    let password = params.password;
+    let emailjs = params.emailjs;
     let resp = {};
-    console.log('hey----------');
     if ('setup' == method) {
-        console.log('hey');
         resp.result = {};
         try {
             await createNewADBwSchema('adminEmail', 'emailJsCode');
-            await db.run('CREATE TABLE config(email,pass,emailJsCode)');
-            await db.run(`INSERT INTO config(email, pass, emailJsCode) VALUES('nat@gmail.com', '123', 'emailjscodehere')`, function (err) {
+            await db.run('CREATE TABLE admin(email,pass,emailJsCode)');
+            await db.run(`INSERT INTO admin(email, pass, emailJsCode) VALUES('${email}', '${password}', '${emailjs}')`, function (err) {
                 if (err) {
-                    return console.log(err.message);
                 }
-                console.log(`A row has been inserted with rowid ${this.lastID}`);
             });
         }
         catch (err) {
         }
     }
     else {
-        console.log('error', resp);
         return res.json(resp);
     }
 });
 appE.post("/delete", async (req, res) => {
     const method = req.fields.method;
-    console.info("--method:", method);
     let resp = {};
-    console.log('hey----------');
     if ('delete' == method) {
-        console.log('hey');
         resp.result = {};
         try {
             await createNewADBwSchema('adminEmail', 'emailJsCode');
@@ -68,16 +61,13 @@ appE.post("/delete", async (req, res) => {
         }
     }
     else {
-        console.log('error', resp);
         return res.json(resp);
     }
 });
 async function createNewADBwSchema(adminEmail, emailJsCode) {
-    console.info("--adminEmail:", adminEmail);
     const dbPro = sqlite.open('./db/ADB.sqlite');
     db = await dbPro;
     db.configure('busyTimeout', 2 * 1000);
 }
 appE.listen(config_port, () => {
-    console.info(`appE listening on port ${config_port}!`);
 });

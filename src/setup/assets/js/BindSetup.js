@@ -7,11 +7,10 @@ class BindSetup {
         console.info("--form:", form)
         let serialised = $(form).serializeArray();
         console.info("--serialised:", serialised)
-        // this.services.createConfig(serialised)
+        this.services.createConfig(serialised)
     }
 
     deleteTable() {
-        //- this.services.deleteTables()
-
+        this.services.deleteTables()
     }
 }
