@@ -25,13 +25,13 @@ export class ADB { // auth & auth DB
       // run some code and:
       return 'editor'
    }
-   async addAdmin(email, password, emailjs, pathToSite) {
+   async addAdmin(email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) {
       var salt = bcrypt.genSaltSync(10);
       var hashPass = bcrypt.hashSync(password, salt);
 
-      await this.db.run(`CREATE TABLE admin(email,password,emailJsCode, pathToSite)`);
-      await this.db.run(`CREATE TABLE editors(id,email,password,name,emailJsCode)`);
-      await this.db.run(`INSERT INTO admin(email, password, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', '${pathToSite}')`, function (err) {
+      await this.db.run(`CREATE TABLE admin(email,password,emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite)`);
+      await this.db.run(`CREATE TABLE editors(id,email,password,name,emailjsService_id, emailjsTemplate_id, emailjsUser_id)`);
+      await this.db.run(`INSERT INTO admin(email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${email}', '${hashPass}', '${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
          if (err) {
          }
          // get the last insert id

@@ -69,7 +69,9 @@ mainApp.post("/setup", async (req, res) => {
 
    let email = params.email
    let password = params.password
-   let emailjs = params.emailjs
+   let emailjsService_id = params.emailjsService_id
+   let emailjsTemplate_id = params.emailjsTemplate_id
+   let emailjsUser_id = params.emailjsUser_id
    let pathToSite = params.pathToSite
 
    let resp: any = {}; // new response that will be set via the specific method passed
@@ -78,10 +80,10 @@ mainApp.post("/setup", async (req, res) => {
       // res.send(resp)
       try {
          console.info('setup called ...');
-         adbDB.addAdmin(email, password, emailjs, pathToSite);
+         adbDB.addAdmin(email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite);
          console.info('db cretated  ...');
 
-         emailJs.send('liza.kislyakova@gmail.com', email);
+         emailJs.send('liza.kislyakova@gmail.com', email, emailjsService_id, emailjsTemplate_id, emailjsUser_id);
          resp['result'] = 'OK'
          return res.json(resp)
 

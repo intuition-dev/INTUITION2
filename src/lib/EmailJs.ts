@@ -2,19 +2,19 @@
 import axios from 'axios';
 
 export class EmailJs {
-    send(email, from_name) {
+    send(email, from_name, emailjsService_id, emailjsTemplate_id, emailjsUser_id) {
         axios.post('https://api.emailjs.com/api/v1.0/email/send', {
-            service_id: 'gmail',
-            template_id: 'template_IWM2Sp3V',
-            user_id: 'user_PFE8rcsDafCMuUvI1Yj11',
-            template_params: {
-                email: email,
-                to_name: email,
-                from_name: from_name,
-                message_html: 'TEST MESSAGE FROM NODE BACKEND',
-                email_to: 'liza.kislyakova@gmail.com'
-            }
-        })
+                service_id: emailjsService_id,
+                template_id: emailjsTemplate_id,
+                user_id: emailjsUser_id,
+                template_params: {
+                    email: email,
+                    to_name: email,
+                    from_name: from_name,
+                    message_html: 'Hi, your email and password is registered as login credentials for WebAdmin!',
+                    email_to: email
+                }
+            })
             .then(res => {
                 console.info('Email has been sent. Result', res);
             })
