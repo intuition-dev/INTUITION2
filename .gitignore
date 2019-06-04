@@ -5,15 +5,3 @@ node_modules/
 nohup.out
 
 
-# source file for webadmin must be in so npm/yarn install works!!!
-
-
-/src/index.js
-/src/lib/*.js
-/src/www/editors/**/*.html
-/src/wwwAdmin/admin/**/*.html
-/src/www/*.html
-/src/wwwAdmin/*.html
-/src/**/assets/css/*.css
-/src/wwwAdmin/config.js
-/src/www/config.js
