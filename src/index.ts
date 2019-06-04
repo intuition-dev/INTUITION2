@@ -32,7 +32,7 @@ mainAppG.use('/editors', ExpressRPC.serveStatic('www'));
 // });
 
 
-Wa.watch('/Users/liza/work/mbakeCLI/CMS', 9082);
+// Wa.watch('/Users/liza/work/mbakeCLI/CMS', 9082);
 
 /*
 * A D M I N
