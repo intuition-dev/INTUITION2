@@ -23,9 +23,13 @@ class WebAdmin {
         console.info("--pass:", pass)
         let _this = this
         return this.serviceRPC.invoke('/api/editors/checkEditor', 'check-editor', { editor_email: email, editor_pass: pass })
-            .then(function () {
-                _this.serviceRPC.setUser(email, pass);
-                return true
+            .then(function (result) {
+                if (result) {
+                    _this.serviceRPC.setUser(email, pass);
+                    return true
+                } else {
+                    return false
+                }
             })
     }
 
