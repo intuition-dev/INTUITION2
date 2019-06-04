@@ -8,8 +8,9 @@ class Services {
         var email = serialised.filter(email => email.name == 'email')[0].value;
         var password = serialised.filter(password => password.name == 'password')[0].value;
         var emailjs = serialised.filter(emailjs => emailjs.name == 'emailjs')[0].value;
+        var pathToSite = serialised.filter(path => path.name == 'path')[0].value;
         console.info("--email:", email);
-        this.serviceRPC.invoke('/setup', 'setup', { email: email, password: password, emailjs: emailjs })
+        this.serviceRPC.invoke('/setup', 'setup', { email: email, password: password, emailjs: emailjs, pathToSite: pathToSite })
             .then((result) => {
             console.info('test api: ', result);
             return result;

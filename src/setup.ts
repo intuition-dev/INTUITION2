@@ -3,11 +3,11 @@ import { ExpressRPC } from 'mbake/lib/Serv';
 const opn = require('opn');
 const bodyParser = require("body-parser");
 import sqlite = require('sqlite')
+import emailjs from 'emailjs-com' // to send a 3 char validation code
+const bcrypt = require('bcryptjs') // to hash pswdws
 
-// const yaml = require('js-yaml');
-// const fs = require('fs');
-// let config = yaml.load(fs.readFileSync(__dirname + '/config.yaml'));
-
+const fs = require('fs')
+const pathToDb = './db/ADB.sqlite'
 const config_port = 3100
 
 const config_url = ['localhost']
@@ -16,22 +16,22 @@ const appE = ExpressRPC.makeInstance(config_url);
 appE.use(bodyParser.json());
 appE.use(bodyParser.text());
 appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
-appE.use(ExpressRPC.serveStatic('setup'));
+
 var db
 
-appE.post("/", (req, res) => {
-    const method = req.fields.method;
-    let resp: any = {}; // new response that will be set via the specific method passed
-    if ('get' == method) {
-        resp.result = {}
-        // res.send(resp)
-        res.sendFile('/src/setup/index.html')
+try {
+    if (fs.existsSync(pathToDb)) {
+        //file exists
+        console.log('---db exist already---')
+        appE.use(ExpressRPC.serveStatic('.'));
+        //open admin and editor
     } else {
-
-        return res.json(resp);
-
+        fs.writeFile('./db/ADB.sqlite')
+        appE.use(ExpressRPC.serveStatic('setup'));
     }
-});
+} catch (err) {
+    console.error(err)
+}
 
 appE.post("/setup", async (req, res) => {
     const method = req.fields.method;
@@ -39,18 +39,26 @@ appE.post("/setup", async (req, res) => {
     let params = JSON.parse(req.fields.params)
 
     let email = params.email
+
     let password = params.password
+    var salt = bcrypt.genSaltSync(10);
+    var hashPass = bcrypt.hashSync(password, salt);
+
+    // guid for pk client side 
+    // eg: bcrypt randomBytes(16).toString("hex") or base64, or Math.random to make base64 char 16 times
+    // also to email a random # 
     let emailjs = params.emailjs
+    let pathToSite = params.pathToSite
+
     let resp: any = {}; // new response that will be set via the specific method passed
     if ('setup' == method) {
         resp.result = {}
         // res.send(resp)
 
         try {
-            await createNewADBwSchema('adminEmail', 'emailJsCode')
-
-            await db.run('CREATE TABLE admin(email,pass,emailJsCode)');
-            await db.run(`INSERT INTO admin(email, pass, emailJsCode) VALUES('${email}', '${password}', '${emailjs}')`, function (err) {
+            await createNewADBwSchema()
+            await db.run(`CREATE TABLE admin(email,pass,emailJsCode, pathToSite)`);
+            await db.run(`INSERT INTO admin(email, pass, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', ${pathToSite})`, function (err) {
                 if (err) {
                 }
                 // get the last insert id
@@ -72,9 +80,8 @@ appE.post("/delete", async (req, res) => {
         resp.result = {}
         // res.send(resp)
         try {
-            await createNewADBwSchema('adminEmail', 'emailJsCode')
-
-            db.run('DROP TABLE config');
+            await createNewADBwSchema()
+            db.run('DROP TABLE admin');
         } catch (err) {
             // next(err);
         }
@@ -85,10 +92,11 @@ appE.post("/delete", async (req, res) => {
     }
 });
 
-async function createNewADBwSchema(adminEmail, emailJsCode) {
+async function createNewADBwSchema() {
     const dbPro = sqlite.open('./db/ADB.sqlite')
     db = await dbPro
     db.configure('busyTimeout', 2 * 1000)
+
 }
 
 appE.listen(config_port, () => {
