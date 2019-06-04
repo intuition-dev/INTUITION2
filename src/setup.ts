@@ -26,7 +26,8 @@ try {
         appE.use(ExpressRPC.serveStatic('.'));
         //open admin and editor
     } else {
-        fs.writeFile('ADB.sqlite', '', runSetup)
+        fs.open('ADB.sqlite', 'w', runSetup);
+        // fs.writeFile('ADB.sqlite', '', runSetup)
     }
 
 } catch (err) {

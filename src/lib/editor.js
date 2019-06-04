@@ -5,12 +5,12 @@ const FileOpsBase_1 = require("mbake/lib/FileOpsBase");
 const FileOpsExtra_1 = require("mbake/lib/FileOpsExtra");
 const Serv_1 = require("mbake/lib/Serv");
 class EditorRoutes {
-    routes(config) {
+    routes() {
         const bodyParser = require("body-parser");
         const fs = require('fs');
         const path = require('path');
         const fileUpload = require('express-fileupload');
-        const appE = Serv_1.ExpressRPC.makeInstance(config.corsUrlProd);
+        const appE = Serv_1.ExpressRPC.makeInstance(['http://localhost:9080']);
         appE.use(fileUpload());
         appE.use((request, response, next) => {
             const params = JSON.parse(request.fields.params);

@@ -20,7 +20,7 @@ try {
         appE.use(Serv_1.ExpressRPC.serveStatic('.'));
     }
     else {
-        fs.writeFile('ADB.sqlite', '', runSetup);
+        fs.open('ADB.sqlite', 'w', runSetup);
     }
 }
 catch (err) {
