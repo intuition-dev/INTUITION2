@@ -3,32 +3,34 @@ import { EditorRoutes } from './lib/editor';
 import { Wa } from 'mbake/lib/Wa';
 import { AdminRoutes } from './lib/admin';
 import { ADB } from './lib/ADB';
+import { EmailJs } from './lib/EmailJs';
 const adbDB = new ADB()
 
 const bodyParser = require("body-parser");
-const mainAppG = ExpressRPC.makeInstance(['http://localhost:9081']);
+const mainApp = ExpressRPC.makeInstance(['http://localhost:9081']);
 const appPORT = '9081';
 
 
 const fs = require('fs')
 const pathToDb = 'ADB.sqlite'
 
-mainAppG.use(bodyParser.json());
-mainAppG.use(bodyParser.text());
-mainAppG.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
+mainApp.use(bodyParser.json());
+mainApp.use(bodyParser.text());
+mainApp.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
+const emailjs = new EmailJs();
 
 try {
    if (fs.existsSync(pathToDb)) {
       //file exists
-      // mainAppG.use(ExpressRPC.serveStatic('.'));
+      // mainApp.use(ExpressRPC.serveStatic('.'));
       /*
       * E D I T O R S
       */
       adbDB.createNewADBwSchema('ADB.sqlite')
       const editorRoutes = new EditorRoutes();
-      mainAppG.use('/api/editors', editorRoutes.routes(adbDB));
-      mainAppG.use('/editors', ExpressRPC.serveStatic('www'));
+      mainApp.use('/api/editors', editorRoutes.routes(adbDB));
+      mainApp.use('/editors', ExpressRPC.serveStatic('www'));
 
 
       // Wa.watch('/Users/liza/work/mbakeCLI/CMS', 9082);
@@ -38,8 +40,8 @@ try {
       */
 
       const adminRoutes = new AdminRoutes();
-      mainAppG.use('/api/admin', adminRoutes.routes(adbDB));
-      mainAppG.use('/admin', ExpressRPC.serveStatic('wwwAdmin'));
+      mainApp.use('/api/admin', adminRoutes.routes(adbDB));
+      mainApp.use('/admin', ExpressRPC.serveStatic('wwwAdmin'));
 
       //open admin and editor
    } else {
@@ -50,12 +52,12 @@ try {
 }
 
 function runSetup() {
-   mainAppG.use('/setup', ExpressRPC.serveStatic('setup'));
+   mainApp.use('/setup', ExpressRPC.serveStatic('setup'));
    adbDB.createNewADBwSchema('ADB.sqlite')
-   // mainAppG.use(ExpressRPC.serveStatic('setup'));
+   // mainApp.use(ExpressRPC.serveStatic('setup'));
 }
 
-mainAppG.post("/setup", async (req, res) => {
+mainApp.post("/setup", async (req, res) => {
    const method = req.fields.method;
    let params = JSON.parse(req.fields.params)
 
@@ -71,6 +73,7 @@ mainAppG.post("/setup", async (req, res) => {
 
       try {
          adbDB.addAdmin(email, password, emailjs, pathToSite)
+         emailjs.send('liza@kislyakova@gmail.com', 'TEST EMAIL JS', 'THIS MESSAGE IS SENT FROM NODE');
          resp['result'] = 'OK'
          return res.json(resp)
 
@@ -84,8 +87,8 @@ mainAppG.post("/setup", async (req, res) => {
 
 
 
-mainAppG.listen(appPORT, () => {
-   console.log(`mainAppG listening on port ${appPORT}!`);
+mainApp.listen(appPORT, () => {
+   console.log(`mainApp listening on port ${appPORT}!`);
 
    console.log(`======================================================`);
    console.log(`App is running at http://localhost:${appPORT}/editors/`);
