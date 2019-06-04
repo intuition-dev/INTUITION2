@@ -84,24 +84,42 @@ export class ADB { // auth & auth DB
    }
 
    async sendVcode(email) {
-      let vcode = '1234';
+      let vcode = Math.floor(1000 + Math.random() * 9000);
       await this.db.run(`UPDATE admin SET vcode='${vcode}' WHERE email='${email}'`, function (err, rows) {
          if (err) {
             console.info("--err:", err)
          }
          return rows
       });
+
+      return vcode;
    }
 
 
-   async resetPassword(email, vcode, password) {
-      let res = await this.db.run(`UPDATE admin SET password='${password}' WHERE email='${email}' AND vcode='${vcode}'`);
-      if (res.changes > 0) {
-         return true;
-      } else {
-         return false;
-      }
+   resetPassword(email, vcode, password) {
+      return this.db.run(`UPDATE admin SET password='${password}' WHERE email='${email}' AND vcode='${vcode}'`)
+         .then(res => {
+            if (res.changes > 0) {
+               return true;
+            } else {
+               return false;
+            }
+         })
+         .catch(err => {
+            console.info("Error:", err);
+            return false;
+         })
    }
+
+   getEmailJsSettings() {
+      return this.db.all(`SELECT email, emailjsService_id, emailjsTemplate_id, emailjsUser_id FROM admin`, [], function (err, rows) {
+         if (err) {
+            console.info("--err:", err)
+         }
+         return rows
+      })
+   }
+
 }
 
 // module.exports = {

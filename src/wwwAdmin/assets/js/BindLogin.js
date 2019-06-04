@@ -28,15 +28,26 @@ class BindLogin {
         }
     }
 
-    sendVcode (email) {
+    sendVcode(email) {
         if (email !== '') {
-            console.info('send code');
+            this.AdminWebAdmin.sendVcode(email)
+                .then(function (result) {
+                    console.info("--result:", result)
+                })
         }
     }
 
     resetPass(email, code, pass) {
         if (email !== '' && pass !== '' && code !== '') {
-            console.info('resetPass');
+            this.AdminWebAdmin.resetPass(email, code, pass)
+                .then(function (result) {
+                    if (result) {
+                        alert("Password changed")
+                    } else {
+                        alert("Error")
+                    }
+                    console.info("--result:", result)
+                })
         }
     }
 }

@@ -1,8 +1,11 @@
 import { ExpressRPC, RPCBasicAuth } from 'mbake/lib/Serv';
-import axios from 'axios';
+import { EmailJs } from '../lib/EmailJs';
+import { ADB } from '../lib/ADB';
+const adbDB = new ADB();
 
 export class AdminRoutes {
    routes(adbDB) {
+      const emailJs = new EmailJs();
       const bodyParser = require("body-parser");
 
       const adminApp = ExpressRPC.makeInstance(['http://localhost:9081']);
@@ -73,13 +76,23 @@ export class AdminRoutes {
 
             try {
                var code = adbDB.sendVcode(email)
-               if (code) {
-                  resp['code'] = true
-                  return res.json(resp);
-               } else {
-                  resp['code'] = false
-                  return res.json(resp);
-               }
+               .then(function (code) {
+                  console.info('CODE:', code);
+                  adbDB.getEmailJsSettings()
+                     .then(settings => {
+                        console.log('settings', settings[0]);
+                        let setting = settings[0];
+                        emailJs.send(
+                           setting.email,
+                           setting.emailjsService_id,
+                           setting.emailjsTemplate_id,
+                           setting.emailjsUser_id,
+                           'your code: ' + code
+                        )
+                        resp.result = true;
+                        return res.json(resp);
+                     });
+               })
             } catch (err) {
                // next(err);
             }
@@ -88,26 +101,18 @@ export class AdminRoutes {
             console.info("Reset password reset-password")
             resp.result = {}
 
-            try {
-               let result = adbDB.resetPassword(email, params.code, params.password);
-               if (result) {
-                  resp['reset'] = true
+            adbDB.resetPassword(email, params.code, params.password)
+               .then(function (result) {
+                  console.info("RES: ", result);
+                  resp.result = result;
                   return res.json(resp);
-               } else {
-                  resp['reset'] = false
-                  return res.json(resp);
-               }
-            } catch (err) {
-               res.status(400);
-               resp.result = { error: 'Unable to reset passsord' };
-               res.json(resp);
-            }
+               })
          } else {
             return res.json(resp);
          }
       })
 
-      // // get users
+      // get users
       adminApp.post("/editors", (req, res) => {
          const method = req.fields.method;
          let resp: any = {}; // new response that will be set via the specific method passed

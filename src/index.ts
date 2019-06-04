@@ -83,8 +83,8 @@ mainApp.post("/setup", async (req, res) => {
          console.info('setup called ...');
          adbDB.addAdmin(email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite);
          console.info('db cretated  ...');
-
-         emailJs.send('liza.kislyakova@gmail.com', email, emailjsService_id, emailjsTemplate_id, emailjsUser_id);
+         let msg = 'Hi, your email and password are registered as login credentials for WebAdmin!';
+         emailJs.send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg);
          resp['result'] = 'OK'
          return res.json(resp)
 
