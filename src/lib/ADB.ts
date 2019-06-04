@@ -48,28 +48,44 @@ export class ADB { // auth & auth DB
             return row
          }).then(function (row) {
             bcrypt.compare(password, row.password, function (err, res) {
-               console.info("--res:", res)
                resolve(res)
             })
          })
       })
    }
 
-   validateEditorEmail(email, password) {
-      return new Promise(this.db.get(`SELECT password FROM editor WHERE email=?`, email, function (err, row) {
-         if (err) {
-         }
-         return row
-      }).then(function (row) {
-         bcrypt.compare(password, row.password, function (err, res) {
-            return res
+   validateEditorEmail(email, password, adminID) {
+      let _this = this
+      return new Promise(function (resolve, reject) {
+         _this.db.get(`SELECT password FROM editors WHERE email=?`, email, function (err, row) {
+            if (err) {
+            }
+            return row
+         }).then(function (row) {
+            if (typeof row != 'undefined') {
+               return bcrypt.compare(password, row.password)
+                  .then((res) => {
+                     _this.db.get(`SELECT pathToSite FROM admin`, [], function (err, row) {
+                        console.info("--row:", row)
+                        if (err) {
+                        }
+                        return row
+                     }).then(function (row) {
+                        let temp = {}
+                        console.info("--res:", res)
+                        temp['pass'] = res
+                        temp['pathToSite'] = row.pathToSite
+                        console.info("--result:", temp)
+                        resolve(temp)
+                     })
+                  });
+            }
          })
-      }))
+      })
    }
    getEditors() {
-      return this.db.all(`SELECT name, email FROM editors`, [], function (err, rows) {
+      return this.db.all(`SELECT id, name, email FROM editors`, [], function (err, rows) {
          if (err) {
-            console.info("--err:", err)
          }
          return rows
       })
@@ -82,7 +98,6 @@ export class ADB { // auth & auth DB
          if (err) {
          }
          // get the last insert id
-         console.log(`A row has been inserted with rowid ${this.lastID}`);
          return this.lastID
       });
    }
@@ -91,7 +106,6 @@ export class ADB { // auth & auth DB
       let vcode = Math.floor(1000 + Math.random() * 9000);
       await this.db.run(`UPDATE admin SET vcode='${vcode}' WHERE email='${email}'`, function (err, rows) {
          if (err) {
-            console.info("--err:", err)
          }
          return rows
       });
@@ -110,7 +124,6 @@ export class ADB { // auth & auth DB
             }
          })
          .catch(err => {
-            console.info("Error:", err);
             return false;
          })
    }
@@ -118,7 +131,6 @@ export class ADB { // auth & auth DB
    getEmailJsSettings() {
       return this.db.all(`SELECT email, emailjsService_id, emailjsTemplate_id, emailjsUser_id FROM admin`, [], function (err, rows) {
          if (err) {
-            console.info("--err:", err)
          }
          return rows
       })

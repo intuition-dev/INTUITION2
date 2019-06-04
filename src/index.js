@@ -37,7 +37,7 @@ function runSetup() {
     adbDB.createNewADBwSchema('ADB.sqlite');
     const editorRoutes = new editor_1.EditorRoutes();
     mainApp.use('/api/editors', editorRoutes.routes(adbDB));
-    mainApp.use('/editors', Serv_1.ExpressRPC.serveStatic('www'));
+    mainApp.use('/editors/', Serv_1.ExpressRPC.serveStatic('www'));
     const adminRoutes = new admin_1.AdminRoutes();
     mainApp.use('/api/admin', adminRoutes.routes(adbDB));
     mainApp.use('/admin', Serv_1.ExpressRPC.serveStatic('wwwAdmin'));
@@ -58,7 +58,8 @@ mainApp.post("/setup", async (req, res) => {
             console.info('setup called ...');
             adbDB.addAdmin(email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite);
             console.info('db cretated  ...');
-            emailJs.send('liza.kislyakova@gmail.com', email, emailjsService_id, emailjsTemplate_id, emailjsUser_id);
+            let msg = 'Hi, your email and password are registered as login credentials for WebAdmin!';
+            emailJs.send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg);
             resp['result'] = 'OK';
             return res.json(resp);
         }

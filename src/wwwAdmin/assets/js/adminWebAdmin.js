@@ -16,7 +16,6 @@ class AdminWebAdmin {
     constructor() {
 
         this.serviceRpc = new httpRPC(rpcProtocol, rpcHost, rpcPort);
-        // this.serviceRpc.setUser(username, password);
     }
 
     checkAdmin(email, pass) {
@@ -84,7 +83,7 @@ class AdminWebAdmin {
     * TODO 
     * 
     */
-   sendVcode(email) {
+    sendVcode(email) {
         return this.serviceRpc.invoke('/api/admin/resetPassword', 'code', { admin_email: email })
             .then(function () {
                 return true;
@@ -95,12 +94,12 @@ class AdminWebAdmin {
     * TODO 
     * 
     */
-   resetPass(email, code, pass) {
-    return this.serviceRpc.invoke('/api/admin/resetPassword', 'reset-password', {
+    resetPass(email, code, pass) {
+        return this.serviceRpc.invoke('/api/admin/resetPassword', 'reset-password', {
             admin_email: email,
             code: code,
             password: pass
         })
-}
+    }
 
 }

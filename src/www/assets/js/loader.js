@@ -1,12 +1,7 @@
 var responces = [];
 
 depp.define({
-    'fb': [
-        '#polly-core-req'
-        , '#firestore'
-    ],
     'scripts': [
-        '#fb'
         , '#jquery'
         , '#gridformsJS'
         , '#zebraDate'

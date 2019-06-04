@@ -10,17 +10,34 @@ class EditorRoutes {
         const fs = require('fs');
         const path = require('path');
         const fileUpload = require('express-fileupload');
-        const mountPath = '/Users/liza/work/mbakeCLI/CMS';
+        let mountPath = '';
         const appE = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
         appE.use(fileUpload());
         appE.use((request, response, next) => {
             const params = JSON.parse(request.fields.params);
             const resp = {};
-            console.info('mbake version: ', Base_1.Ver.ver());
-            let idToken = params['fb-auth-token'];
-            if (typeof idToken === 'undefined') {
-                return response.status(401).send();
-            }
+            let email = params.editor_email;
+            let password = params.editor_pass;
+            return adbDB.validateEditorEmail(email, password)
+                .then(function (result) {
+                console.info("--result:", result);
+                resp.result = {};
+                if (result.pass) {
+                    mountPath = result.pathToSite;
+                    return next();
+                }
+                else {
+                    resp.errorLevel = -1;
+                    resp.result = false;
+                    return response.json(resp);
+                }
+            }).catch(function (error) {
+                console.info("--error:", error);
+                resp.errorLevel = -1;
+                resp.errorMessage = error;
+                resp.result = false;
+                return response.json(resp);
+            });
         });
         appE.use(bodyParser.json());
         appE.use(bodyParser.text());
@@ -28,21 +45,12 @@ class EditorRoutes {
         appE.post('/checkEditor', (req, res) => {
             const method = req.fields.method;
             let params = JSON.parse(req.fields.params);
-            let email = params.admin_email;
-            let password = params.admin_pass;
             let resp = {};
             if ('check-editor' == method) {
                 resp.result = {};
                 try {
-                    var pass = adbDB.validateEditorEmail(email, password);
-                    if (pass) {
-                        resp['pass'] = true;
-                        return res.json(resp);
-                    }
-                    else {
-                        resp['pass'] = false;
-                        return res.json(resp);
-                    }
+                    resp.result = true;
+                    return res.json(resp);
                 }
                 catch (err) {
                 }
@@ -63,7 +71,6 @@ class EditorRoutes {
                 res.json(resp);
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });
@@ -85,7 +92,6 @@ class EditorRoutes {
                 }
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });
@@ -119,7 +125,6 @@ class EditorRoutes {
                 }
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });
@@ -128,7 +133,6 @@ class EditorRoutes {
             let resp = {};
             let params = JSON.parse(req.fields.params);
             if ('put' == method) {
-                console.info("--res runnnning:");
                 let post_id = params.post_id;
                 let pathPrefix = params.pathPrefix;
                 let content = params.content;
@@ -165,7 +169,6 @@ class EditorRoutes {
                 }
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });
@@ -212,7 +215,6 @@ class EditorRoutes {
                 }
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });
@@ -247,7 +249,6 @@ class EditorRoutes {
                 }
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });
@@ -259,7 +260,6 @@ class EditorRoutes {
                 let uploadPath;
                 let pathPrefix = params.pathPrefix;
                 let fileupload = params.fileupload;
-                console.log('fileupload ---=====>', fileupload);
                 if (Object.keys(req.files).length == 0) {
                     return res.status(400).send('No files were uploaded.');
                 }
@@ -274,7 +274,6 @@ class EditorRoutes {
                 });
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });
@@ -302,7 +301,6 @@ class EditorRoutes {
                 }
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });
@@ -310,12 +308,10 @@ class EditorRoutes {
             const method = req.fields.method;
             let resp = {};
             if ('get' == method) {
-                console.info('endpoint mbake version --------------> ', Base_1.Ver.ver());
                 resp.result = Base_1.Ver.ver();
                 res.json(resp);
             }
             else {
-                console.log('error', resp);
                 return res.json(resp);
             }
         });

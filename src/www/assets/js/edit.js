@@ -58,16 +58,17 @@ if (window.location.href.indexOf('editors/edit') > -1) {
 
         let posts = new Posts();
         let hash = window.location.hash.substr(1);;
+        console.info("--hash:", hash)
 
         posts
             .showDirs()
             .then(() => {
 
                 if (typeof hash !== 'undefined' && hash !== '') {
-        
+
                     let currentPage = $('.blog-item:contains("' + hash + '")');
                     console.log('currentPage', currentPage);
-        
+
                     $('.blog-item ul').remove();
                     $('.upload, .i-plusCircle').removeClass('disabled');
                     $('.knot').removeClass('active');
@@ -76,33 +77,33 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                     $(currentPage).addClass('active');
                     $('.btn-custom.save').attr("disabled", "disabled");
                     $('.view-page').removeAttr("disabled");
-        
+
                     let postId = $(currentPage).find('span').text();
-        
+
                     $('.view-page').attr('href', appMount + '/' + postId);
-        
+
                     if ($(currentPage).find('ul').length === 0) {
                         posts
                             .showSubDirs(postId)
                             .then(() => {
                                 $('.blog-item li').each(function () {
-        
+
                                     let fileName = $(this).text();
-        
+
                                     if (fileName.includes('.md')) {
                                         $(this).addClass('md-highlight');
                                     }
-        
+
                                     if (fileName.includes('.md') || fileName.includes('.yaml') || fileName.includes('.css') || fileName.includes('.pug') || fileName.includes('.csv')) {
                                         $(this).addClass('hover-highlight');
                                     }
-        
+
                                 });
                             });
                     } else {
                         $(this).find('ul').remove();
                     }
-        
+
                 }
 
             });
@@ -318,7 +319,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                                 let msg = 'Files have been built';
 
                                 $('[data-js="errors"]').removeClass('toast-error d-hide').html(msg);
-                                
+
                                 setTimeout(function () {
                                     $('[data-js="errors"]').addClass('d-hide toast-error').html('');
                                 }, 4000);
@@ -351,7 +352,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                 $('.post-name-wrap').removeClass('d-hide');
                 $('.icon-wrap i').removeClass('active');
                 $('.icon-wrap .create-post').addClass('active');
-            
+
             }
 
         });
@@ -523,7 +524,7 @@ if (window.location.href.indexOf('editors/edit') > -1) {
                 $('.icon-wrap .i-calendar').addClass('active');
                 $('form').addClass('d-hide');
                 $('.publish-date-form').removeClass('d-hide');
-    
+
                 window.pathPrefixPdate = $('.blog-item.active').find('span').text();
             }
 

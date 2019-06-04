@@ -14,34 +14,17 @@ class WebAdmin {
     * @param apiHost api host (example: 0.0.0.0)
     * @param apiPort api port (example: 9081)
     */
-    constructor(apiProtocol, apiHost, apiPort) {
-        console.info("--apiPort:", apiPort)
-        console.info("--apiHost:", apiHost)
-        console.info("--apiProtocol:", apiProtocol)
-
+    constructor() {
         this.serviceRPC = new httpRPC(apiProtocol, apiHost, apiPort);
-
-        // this.token = sessionStorage.getItem('idToken');
-
-        // if (this.token === null) {
-        //     auth
-        //         .signOut()
-        //         .then(function () {
-        //             if (window.location.pathname !== '/' && window.location.pathname !== '') {
-        //                 window.location = ('/');
-        //             }
-        //         }).catch(function (error) {
-        //             console.info('Something went wrong:', error);
-        //         });
-        // }
-
     }
 
     checkEditor(email, pass) {
+        console.info("--email:", email)
+        console.info("--pass:", pass)
         let _this = this
-        return this.serviceRpc.invoke('/api/editors/checkEditor', 'check-editor', { editor_email: email, editor_pass: pass })
+        return this.serviceRPC.invoke('/api/editors/checkEditor', 'check-editor', { editor_email: email, editor_pass: pass })
             .then(function () {
-                _this.serviceRpc.setUser(email, pass);
+                _this.serviceRPC.setUser(email, pass);
                 return true
             })
     }
@@ -52,8 +35,7 @@ class WebAdmin {
     */
     getDirsList() {
         return this.serviceRPC.invoke('/api/editors/posts', 'get', {
-            // 'fb-auth-token': this.token
-            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
         });
     }
 
@@ -66,7 +48,7 @@ class WebAdmin {
         return this.serviceRPC.invoke('/api/editors/files', 'get', {
             post_id: id,
             // 'fb-auth-token': this.token,
-            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
         });
     }
 
@@ -80,7 +62,7 @@ class WebAdmin {
         return this.serviceRPC.invoke('/api/editors/post-get', 'get', {
             post_id: id,
             pathPrefix: pathPrefix,
-            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
             // 'fb-auth-token': this.token
         });
     }
@@ -97,7 +79,7 @@ class WebAdmin {
             post_id: id,
             pathPrefix: pathPrefix,
             content: btoa(md),
-            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
             // 'fb-auth-token': this.token
         });
     }
@@ -114,7 +96,7 @@ class WebAdmin {
             post_id: id,
             pathPrefix: pathPrefix,
             content: btoa(md),
-            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
             // 'fb-auth-token': this.token
         }).then(function (response) {
             return response;
@@ -133,7 +115,7 @@ class WebAdmin {
         return this.serviceRPC.invoke('/api/editors/new-post', 'post', {
             post_id: id,
             pathPrefix: pathPrefix,
-            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
             // 'fb-auth-token': this.token
         });
     }
@@ -149,7 +131,7 @@ class WebAdmin {
         return this.serviceRPC.invoke('/api/editors/upload', 'post', {
             pathPrefix: pathPrefix,
             fileupload: data,
-            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
             // 'fb-auth-token': this.token
         })
             .then(function (response) {
@@ -170,7 +152,7 @@ class WebAdmin {
         return this.serviceRPC.invoke('/api/editors/set-publish-date', 'put', {
             publish_date: publish_date,
             post_id: pathPrefix,
-            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
             // 'fb-auth-token': this.token
         });
     }
@@ -182,7 +164,7 @@ class WebAdmin {
     getMbakeVersion() {
         return this.serviceRPC
             .invoke('/api/editors/mbake-version', 'get', {
-                editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+                editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('password')
                 // 'fb-auth-token': this.token
             })
             .then(function (response) {

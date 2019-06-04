@@ -31,27 +31,43 @@ class ADB {
                 return row;
             }).then(function (row) {
                 bcrypt.compare(password, row.password, function (err, res) {
-                    console.info("--res:", res);
                     resolve(res);
                 });
             });
         });
     }
-    validateEditorEmail(email, password) {
-        return new Promise(this.db.get(`SELECT password FROM editor WHERE email=?`, email, function (err, row) {
-            if (err) {
-            }
-            return row;
-        }).then(function (row) {
-            bcrypt.compare(password, row.password, function (err, res) {
-                return res;
+    validateEditorEmail(email, password, adminID) {
+        let _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.db.get(`SELECT password FROM editors WHERE email=?`, email, function (err, row) {
+                if (err) {
+                }
+                return row;
+            }).then(function (row) {
+                if (typeof row != 'undefined') {
+                    return bcrypt.compare(password, row.password)
+                        .then((res) => {
+                        _this.db.get(`SELECT pathToSite FROM admin`, [], function (err, row) {
+                            console.info("--row:", row);
+                            if (err) {
+                            }
+                            return row;
+                        }).then(function (row) {
+                            let temp = {};
+                            console.info("--res:", res);
+                            temp['pass'] = res;
+                            temp['pathToSite'] = row.pathToSite;
+                            console.info("--result:", temp);
+                            resolve(temp);
+                        });
+                    });
+                }
             });
-        }));
+        });
     }
     getEditors() {
-        return this.db.all(`SELECT name, email FROM editors`, [], function (err, rows) {
+        return this.db.all(`SELECT id, name, email FROM editors`, [], function (err, rows) {
             if (err) {
-                console.info("--err:", err);
             }
             return rows;
         });
@@ -63,27 +79,38 @@ class ADB {
         return this.db.run(`INSERT INTO editors(id,email, password, name) VALUES('${randomID}','${email}', '${hashPass}', '${name}')`, function (err) {
             if (err) {
             }
-            console.log(`A row has been inserted with rowid ${this.lastID}`);
             return this.lastID;
         });
     }
     async sendVcode(email) {
-        let vcode = '1234';
+        let vcode = Math.floor(1000 + Math.random() * 9000);
         await this.db.run(`UPDATE admin SET vcode='${vcode}' WHERE email='${email}'`, function (err, rows) {
             if (err) {
-                console.info("--err:", err);
             }
             return rows;
         });
+        return vcode;
     }
-    async resetPassword(email, vcode, password) {
-        let res = await this.db.run(`UPDATE admin SET password='${password}' WHERE email='${email}' AND vcode='${vcode}'`);
-        if (res.changes > 0) {
-            return true;
-        }
-        else {
+    resetPassword(email, vcode, password) {
+        return this.db.run(`UPDATE admin SET password='${password}' WHERE email='${email}' AND vcode='${vcode}'`)
+            .then(res => {
+            if (res.changes > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        })
+            .catch(err => {
             return false;
-        }
+        });
+    }
+    getEmailJsSettings() {
+        return this.db.all(`SELECT email, emailjsService_id, emailjsTemplate_id, emailjsUser_id FROM admin`, [], function (err, rows) {
+            if (err) {
+            }
+            return rows;
+        });
     }
 }
 exports.ADB = ADB;

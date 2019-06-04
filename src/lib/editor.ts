@@ -11,33 +11,39 @@ export class EditorRoutes {
         const fs = require('fs');
         const path = require('path');
         const fileUpload = require('express-fileupload');
-        const mountPath = '/Users/liza/work/mbakeCLI/CMS';
+        let mountPath = '';
 
         const appE = ExpressRPC.makeInstance(['http://localhost:9081']);
 
         appE.use(fileUpload());
         appE.use((request, response, next) => {
-            // const firebaseAdmin = new FirebaseAdmin();
             const params = JSON.parse(request.fields.params)
-            const resp: any = {} // new response that will be set via the specific method passed
+            const resp: any = {}
 
-            console.info('mbake version: ', Ver.ver());
+            let email = params.editor_email
+            let password = params.editor_pass
 
-            // interceptor check token
-            let idToken = params['fb-auth-token'];
-            if (typeof idToken === 'undefined') {
-                return response.status(401).send();
-            }
-            // return firebaseAdmin.get().auth().verifyIdToken(idToken)
-            //     .then(function () {
-            //         return next();
-            //     }).catch(function (error) {
-            //         resp.errorLevel = -1
-            //         resp.errorMessage = error
-            //         console.log('noway', resp)
-            //         return response.json(resp)
-            //     });
+            return adbDB.validateEditorEmail(email, password)
+                .then(function (result) {
+                    console.info("--result:", result)
+                    resp.result = {}
+                    if (result.pass) {
+                        mountPath = result.pathToSite
+                        return next()
+                    } else {
+                        resp.errorLevel = -1
+                        resp.result = false
+                        return response.json(resp)
+                    }
+                }).catch(function (error) {
+                    console.info("--error:", error)
+                    resp.errorLevel = -1
+                    resp.errorMessage = error
+                    resp.result = false
+                    return response.json(resp)
+                });
         });
+
 
         appE.use(bodyParser.json());
         appE.use(bodyParser.text());
@@ -46,24 +52,14 @@ export class EditorRoutes {
         appE.post('/checkEditor', (req, res) => {
             const method = req.fields.method;
             let params = JSON.parse(req.fields.params)
-            let email = params.admin_email
-            let password = params.admin_pass
-
             let resp: any = {};
 
             if ('check-editor' == method) {
                 resp.result = {}
-                // res.send(resp)
 
                 try {
-                    var pass = adbDB.validateEditorEmail(email, password)
-                    if (pass) {
-                        resp['pass'] = true
-                        return res.json(resp)
-                    } else {
-                        resp['pass'] = false
-                        return res.json(resp)
-                    }
+                    resp.result = true
+                    return res.json(resp)
 
                 } catch (err) {
                     // next(err);
@@ -88,7 +84,6 @@ export class EditorRoutes {
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
@@ -115,7 +110,6 @@ export class EditorRoutes {
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
@@ -153,7 +147,6 @@ export class EditorRoutes {
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
@@ -169,7 +162,6 @@ export class EditorRoutes {
             if ('put' == method) {
 
                 // TODO: What does this do?
-                console.info("--res runnnning:")
                 let post_id = params.post_id;
                 let pathPrefix = params.pathPrefix;
                 let content = params.content;
@@ -217,7 +209,6 @@ export class EditorRoutes {
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
@@ -280,7 +271,6 @@ export class EditorRoutes {
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
@@ -325,7 +315,6 @@ export class EditorRoutes {
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
@@ -344,7 +333,6 @@ export class EditorRoutes {
                 let uploadPath;
                 let pathPrefix = params.pathPrefix;
                 let fileupload = params.fileupload;
-                console.log('fileupload ---=====>', fileupload);
 
                 // TODO
                 if (Object.keys(req.files).length == 0) {
@@ -367,7 +355,6 @@ export class EditorRoutes {
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
@@ -401,7 +388,6 @@ export class EditorRoutes {
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
@@ -415,13 +401,11 @@ export class EditorRoutes {
 
             if ('get' == method) {
 
-                console.info('endpoint mbake version --------------> ', Ver.ver());
                 resp.result = Ver.ver();
                 res.json(resp);
 
             } else {
 
-                console.log('error', resp);
                 return res.json(resp);
 
             }
