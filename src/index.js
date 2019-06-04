@@ -5,7 +5,7 @@ const editor_1 = require("./lib/editor");
 const admin_1 = require("./lib/admin");
 const ADB_1 = require("./lib/ADB");
 const bodyParser = require("body-parser");
-const mainAppG = Serv_1.ExpressRPC.makeInstance(['http://localhost:9080']);
+const mainAppG = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
 const appGPORT = '9081';
 const fs = require('fs');
 const pathToDb = 'ADB.sqlite';
@@ -36,8 +36,6 @@ mainAppG.post("/setup", async (req, res) => {
     let params = JSON.parse(req.fields.params);
     let email = params.email;
     let password = params.password;
-    var salt = bcrypt.genSaltSync(10);
-    var hashPass = bcrypt.hashSync(password, salt);
     let emailjs = params.emailjs;
     let pathToSite = params.pathToSite;
     let resp = {};
@@ -45,11 +43,7 @@ mainAppG.post("/setup", async (req, res) => {
         resp.result = {};
         try {
             await ADB_1.ADB.createNewADBwSchema();
-            await db.run(`CREATE TABLE admin(email,password,emailJsCode, pathToSite)`);
-            await db.run(`INSERT INTO admin(email, password, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', '${pathToSite}')`, function (err) {
-                if (err) {
-                }
-            });
+            await ADB_1.ADB.addAdmin(email, password, emailjs, pathToSite);
         }
         catch (err) {
         }

@@ -10,7 +10,7 @@
    },
    "scripts": {
       "start": "yarn & node index.js & yarn run open",
-      "open": "concurrently \"http-server -a localhost -p 9080\" \"open http://localhost:9080/setup/\""
+      "open": "concurrently \"http-server -a localhost -p 9081\" \"open http://localhost:9081/setup/\""
    },
    "dependencies": {
       "bcryptjs": "^2.4.3",

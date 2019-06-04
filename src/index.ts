@@ -5,7 +5,7 @@ import { AdminRoutes } from './lib/admin';
 import { ADB } from './lib/ADB';
 
 const bodyParser = require("body-parser");
-const mainAppG = ExpressRPC.makeInstance(['http://localhost:9080']);
+const mainAppG = ExpressRPC.makeInstance(['http://localhost:9081']);
 const appGPORT = '9081';
 
 const fs = require('fs')
@@ -59,14 +59,7 @@ mainAppG.post("/setup", async (req, res) => {
    let params = JSON.parse(req.fields.params)
 
    let email = params.email
-
    let password = params.password
-   var salt = bcrypt.genSaltSync(10);
-   var hashPass = bcrypt.hashSync(password, salt);
-
-   // guid for pk client side 
-   // eg: bcrypt randomBytes(16).toString("hex") or base64, or Math.random to make base64 char 16 times
-   // also to email a random # 
    let emailjs = params.emailjs
    let pathToSite = params.pathToSite
 
@@ -77,13 +70,8 @@ mainAppG.post("/setup", async (req, res) => {
 
       try {
          await ADB.createNewADBwSchema()
+         await ADB.addAdmin(email, password, emailjs, pathToSite)
 
-         await db.run(`CREATE TABLE admin(email,password,emailJsCode, pathToSite)`);
-         await db.run(`INSERT INTO admin(email, password, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', '${pathToSite}')`, function (err) {
-            if (err) {
-            }
-            // get the last insert id
-         });
       } catch (err) {
          // next(err);
       }

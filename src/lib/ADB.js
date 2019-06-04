@@ -3,13 +3,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sqlite_1 = require("sqlite");
 const bcrypt = require('bcryptjs');
 class ADB {
-    async createNewADBwSchema(adminEmail, emailJsCode) {
-        const dbPro = sqlite_1.default.open('./db/ADB.sqlite');
+    async createNewADBwSchema() {
+        const dbPro = sqlite_1.default.open('ADB.sqlite');
         this.db = await dbPro;
         this.db.configure('busyTimeout', 2 * 1000);
     }
     isUserAuth(userEmail, pswdHash) {
         return 'editor';
+    }
+    async addAdmin(email, password, emailjs, pathToSite) {
+        var salt = bcrypt.genSaltSync(10);
+        var hashPass = bcrypt.hashSync(password, salt);
+        await this.db.run(`CREATE TABLE admin(email,password,emailJsCode, pathToSite)`);
+        await this.db.run(`INSERT INTO admin(email, password, emailJsCode, pathToSite) VALUES('${email}', '${hashPass}', '${emailjs}', '${pathToSite}')`, function (err) {
+            if (err) {
+            }
+        });
     }
     validateEmail() { }
 }
