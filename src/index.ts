@@ -2,7 +2,9 @@ import { ExpressRPC } from 'mbake/lib/Serv';
 import { EditorRoutes } from './lib/editor';
 import { Wa } from 'mbake/lib/Wa';
 import { AdminRoutes } from './lib/admin';
-import { ADB } from './lib/ADB';
+// import { ADB } from './lib/ADB';
+
+const ADB = require('./lib/ADB');
 
 const bodyParser = require("body-parser");
 const mainAppG = ExpressRPC.makeInstance(['http://localhost:9081']);
