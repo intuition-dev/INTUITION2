@@ -11,6 +11,7 @@ class Editors {
         // render editors table
         this.webAdmin.getEditorsList()
             .then(editors => {
+                console.info("--editors:", editors)
                 this.table = new Tabulator("#editors-table", {
                     data: editors,      // assign data to table
                     layout: "fitColumns",    // fit columns to width of table

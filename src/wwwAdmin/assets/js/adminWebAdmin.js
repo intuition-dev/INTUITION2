@@ -22,9 +22,14 @@ class AdminWebAdmin {
     checkAdmin(email, pass) {
         let _this = this
         return this.serviceRpc.invoke('/api/admin/checkAdmin', 'check-admin', { admin_email: email, admin_pass: pass })
-            .then(function () {
-                _this.serviceRpc.setUser(email, pass);
-                return true
+            .then(function (result) {
+                console.info("--result:", result)
+                if (result) {
+                    _this.serviceRpc.setUser(email, pass);
+                    return true
+                } else {
+                    return false
+                }
             })
     }
 
@@ -32,7 +37,8 @@ class AdminWebAdmin {
     * get data for editors table
     */
     getEditorsList() {
-        return this.serviceRpc.invoke('/api/admin/editors', 'get', { admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass') });
+        console.info("--window.sessionStorage.getItem('username'):", window.sessionStorage.getItem('username'))
+        return this.serviceRpc.invoke('/api/admin/editors', 'get', { admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('password') });
     }
 
     /**
@@ -46,7 +52,7 @@ class AdminWebAdmin {
             name: name,
             email: email,
             password: password,
-            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass')
+            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('password')
         });
     }
 
@@ -59,7 +65,7 @@ class AdminWebAdmin {
         return this.serviceRpc.invoke('/api/admin/editors-edit', 'put', {
             name: name,
             uid: uid,
-            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass')
+            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('password')
         });
     }
 
@@ -70,7 +76,7 @@ class AdminWebAdmin {
     deleteEditor(uid) {
         return this.serviceRpc.invoke('/api/admin/editors-delete', 'delete', {
             uid: uid,
-            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('pass')
+            admin_email: window.sessionStorage.getItem('username'), admin_pass: window.sessionStorage.getItem('password')
         });
     }
 

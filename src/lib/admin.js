@@ -7,21 +7,38 @@ class AdminRoutes {
         const adminApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
         adminApp.use(bodyParser.json());
         adminApp.use((request, response, next) => {
-            if (request.path !== '/resetPassword') {
+            if (request.path === '/resetPassword') {
                 next();
             }
             const params = JSON.parse(request.fields.params);
             const resp = {};
             let email = params.admin_email;
+            console.info("--email:", email);
             let password = params.admin_pass;
-            try {
-                var pass = adbDB.validateEmail(email);
+            console.info("--password:", password);
+            return adbDB.validateEmail(email, password)
+                .then(function (pass) {
+                resp.result = {};
+                console.info("--pass:", pass);
                 if (pass) {
-                    next();
+                    console.info("--passsdfsdfsd:", pass);
+                    return next();
                 }
-            }
-            catch (err) {
-            }
+                else {
+                    resp.errorLevel = -1;
+                    resp.result = false;
+                    console.log('noway', resp);
+                    return response.json(resp);
+                }
+            }).catch(function (error) {
+                console.info('=========== token expired catch logout ================');
+                console.info('error', error);
+                resp.errorLevel = -1;
+                resp.errorMessage = error;
+                resp.result = false;
+                console.log('noway', resp);
+                return response.json(resp);
+            });
         });
         adminApp.post('/checkAdmin', (req, res) => {
             const method = req.fields.method;
@@ -31,16 +48,11 @@ class AdminRoutes {
             let resp = {};
             if ('check-admin' == method) {
                 resp.result = {};
+                console.info("--hey:sfsdfsd");
                 try {
-                    var pass = adbDB.validateEmail(email, password);
-                    if (pass) {
-                        resp['pass'] = true;
-                        return res.json(resp);
-                    }
-                    else {
-                        resp['pass'] = false;
-                        return res.json(resp);
-                    }
+                    resp.result = true;
+                    console.info("--resp:", resp);
+                    return res.json(resp);
                 }
                 catch (err) {
                 }
@@ -110,6 +122,7 @@ class AdminRoutes {
                         });
                     });
                     resp.result = data;
+                    console.info("--resp:", resp);
                     return res.json(resp);
                 });
             }

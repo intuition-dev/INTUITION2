@@ -12,25 +12,40 @@ export class AdminRoutes {
       adminApp.use(bodyParser.json());
 
       adminApp.use((request, response, next) => {
-         if (request.path !== '/resetPassword') {
+         if (request.path === '/resetPassword') {
             next();
          }
 
          const params = JSON.parse(request.fields.params)
-         const resp: any = {} // new response that will be set via the specific method passed
-
+         const resp: any = {}
 
          let email = params.admin_email
+         console.info("--email:", email)
          let password = params.admin_pass
-         try {
-            var pass = adbDB.validateEmail(email)
-            if (pass) {
-               next()
-            }
+         console.info("--password:", password)
 
-         } catch (err) {
-            // next(err);
-         }
+         return adbDB.validateEmail(email, password)
+            .then(function (pass) {
+               resp.result = {}
+               console.info("--pass:", pass)
+               if (pass) {
+                  console.info("--passsdfsdfsd:", pass)
+                  return next()
+               } else {
+                  resp.errorLevel = -1
+                  resp.result = false
+                  console.log('noway', resp)
+                  return response.json(resp)
+               }
+            }).catch(function (error) {
+               console.info('=========== token expired catch logout ================');
+               console.info('error', error);
+               resp.errorLevel = -1
+               resp.errorMessage = error
+               resp.result = false
+               console.log('noway', resp)
+               return response.json(resp)
+            });
       });
 
       adminApp.post('/checkAdmin', (req, res) => {
@@ -43,17 +58,12 @@ export class AdminRoutes {
 
          if ('check-admin' == method) {
             resp.result = {}
-            // res.send(resp)
-
+            console.info("--hey:sfsdfsd")
             try {
-               var pass = adbDB.validateEmail(email, password)
-               if (pass) {
-                  resp['pass'] = true
-                  return res.json(resp)
-               } else {
-                  resp['pass'] = false
-                  return res.json(resp)
-               }
+               // var pass = adbDB.validateEmail(email, password)
+               resp.result = true
+               console.info("--resp:", resp)
+               return res.json(resp)
 
             } catch (err) {
                // next(err);
@@ -130,6 +140,7 @@ export class AdminRoutes {
                      });
                   })
                   resp.result = data;
+                  console.info("--resp:", resp)
                   return res.json(resp);
                })
          } else {

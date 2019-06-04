@@ -15,7 +15,7 @@ class ADB {
         let randomID = '_' + Math.random().toString(36).substr(2, 9);
         var salt = bcrypt.genSaltSync(10);
         var hashPass = bcrypt.hashSync(password, salt);
-        await this.db.run(`CREATE TABLE admin(id, email,password,emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite)`);
+        await this.db.run(`CREATE TABLE admin(id, email,password,emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite, vcode)`);
         await this.db.run(`CREATE TABLE editors(id,email,password,name,emailjsService_id, emailjsTemplate_id, emailjsUser_id)`);
         await this.db.run(`INSERT INTO admin(id, email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${randomID}','${email}', '${hashPass}', '${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
             if (err) {
@@ -23,26 +23,30 @@ class ADB {
         });
     }
     validateEmail(email, password) {
-        return this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
-            if (err) {
-            }
-            return row;
-        }).then(function (row) {
-            bcrypt.compare(password, row.password, function (err, res) {
-                return true;
+        let _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
+                if (err) {
+                }
+                return row;
+            }).then(function (row) {
+                bcrypt.compare(password, row.password, function (err, res) {
+                    console.info("--res:", res);
+                    resolve(res);
+                });
             });
         });
     }
     validateEditorEmail(email, password) {
-        return this.db.get(`SELECT password FROM editor WHERE email=?`, email, function (err, row) {
+        return new Promise(this.db.get(`SELECT password FROM editor WHERE email=?`, email, function (err, row) {
             if (err) {
             }
             return row;
         }).then(function (row) {
             bcrypt.compare(password, row.password, function (err, res) {
-                return true;
+                return res;
             });
-        });
+        }));
     }
     getEditors() {
         return this.db.all(`SELECT name, email FROM editors`, [], function (err, rows) {

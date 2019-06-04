@@ -16,7 +16,8 @@ class BindLogin {
                     window.sessionStorage.setItem('password', pass);
 
                     window.location = '/admin/crudEditors';
-
+                } else {
+                    window.location = '/admin/'
                 }
             })
     }

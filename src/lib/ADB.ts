@@ -40,27 +40,31 @@ export class ADB { // auth & auth DB
    }
 
    validateEmail(email, password) {
-      return this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
-         if (err) {
-         }
-         return row
-      }).then(function (row) {
-         bcrypt.compare(password, row.password, function (err, res) {
-            return true
+      let _this = this
+      return new Promise(function (resolve, reject) {
+         _this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
+            if (err) {
+            }
+            return row
+         }).then(function (row) {
+            bcrypt.compare(password, row.password, function (err, res) {
+               console.info("--res:", res)
+               resolve(res)
+            })
          })
       })
    }
 
    validateEditorEmail(email, password) {
-      return this.db.get(`SELECT password FROM editor WHERE email=?`, email, function (err, row) {
+      return new Promise(this.db.get(`SELECT password FROM editor WHERE email=?`, email, function (err, row) {
          if (err) {
          }
          return row
       }).then(function (row) {
          bcrypt.compare(password, row.password, function (err, res) {
-            return true
+            return res
          })
-      })
+      }))
    }
    getEditors() {
       return this.db.all(`SELECT name, email FROM editors`, [], function (err, rows) {
