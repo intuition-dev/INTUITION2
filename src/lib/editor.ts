@@ -43,6 +43,35 @@ export class EditorRoutes {
         appE.use(bodyParser.text());
         appE.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
+        appE.post('/checkEditor', (req, res) => {
+            const method = req.fields.method;
+            let params = JSON.parse(req.fields.params)
+            let email = params.admin_email
+            let password = params.admin_pass
+
+            let resp: any = {};
+
+            if ('check-editor' == method) {
+                resp.result = {}
+                // res.send(resp)
+
+                try {
+                    var pass = adbDB.validateEditorEmail(email, password)
+                    if (pass) {
+                        resp['pass'] = true
+                        return res.json(resp)
+                    } else {
+                        resp['pass'] = false
+                        return res.json(resp)
+                    }
+
+                } catch (err) {
+                    // next(err);
+                }
+            } else {
+                return res.json(resp);
+            }
+        })
         // get dirs list
         appE.post("/posts", (req, res) => {
             const method = req.fields.method;

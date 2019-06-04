@@ -15,6 +15,9 @@ class WebAdmin {
     * @param apiPort api port (example: 9081)
     */
     constructor(apiProtocol, apiHost, apiPort) {
+        console.info("--apiPort:", apiPort)
+        console.info("--apiHost:", apiHost)
+        console.info("--apiProtocol:", apiProtocol)
 
         this.serviceRPC = new httpRPC(apiProtocol, apiHost, apiPort);
 
@@ -34,13 +37,23 @@ class WebAdmin {
 
     }
 
+    checkEditor(email, pass) {
+        let _this = this
+        return this.serviceRpc.invoke('/api/editors/checkEditor', 'check-editor', { editor_email: email, editor_pass: pass })
+            .then(function () {
+                _this.serviceRpc.setUser(email, pass);
+                return true
+            })
+    }
+
     /**
     * get list of directories
     *  @param token Firebase authentication token
     */
     getDirsList() {
-        return this.serviceRPC.invoke('/editors/posts', 'get', {
-            'fb-auth-token': this.token
+        return this.serviceRPC.invoke('/api/editors/posts', 'get', {
+            // 'fb-auth-token': this.token
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
         });
     }
 
@@ -50,9 +63,10 @@ class WebAdmin {
     * @param token Firebase authentication token
     */
     getSubDirsList(id) {
-        return this.serviceRPC.invoke('/editors/files', 'get', {
+        return this.serviceRPC.invoke('/api/editors/files', 'get', {
             post_id: id,
-            'fb-auth-token': this.token
+            // 'fb-auth-token': this.token,
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
         });
     }
 
@@ -63,10 +77,11 @@ class WebAdmin {
     * @param token Firebase authentication token
     */
     getPostMd(id, pathPrefix) {
-        return this.serviceRPC.invoke('/editors/post-get', 'get', {
+        return this.serviceRPC.invoke('/api/editors/post-get', 'get', {
             post_id: id,
             pathPrefix: pathPrefix,
-            'fb-auth-token': this.token
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            // 'fb-auth-token': this.token
         });
     }
 
@@ -78,11 +93,12 @@ class WebAdmin {
     * @param token Firebase authentication token
     */
     savePostMd(id, md, pathPrefix) {
-        return this.serviceRPC.invoke('/editors/post-put', 'put', {
+        return this.serviceRPC.invoke('/api/editors/post-put', 'put', {
             post_id: id,
             pathPrefix: pathPrefix,
             content: btoa(md),
-            'fb-auth-token': this.token
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            // 'fb-auth-token': this.token
         });
     }
 
@@ -94,11 +110,12 @@ class WebAdmin {
     * @param token Firebase authentication token
     */
     build(id, md, pathPrefix) {
-        return this.serviceRPC.invoke('/editors/post-build', 'put', {
+        return this.serviceRPC.invoke('/api/editors/post-build', 'put', {
             post_id: id,
             pathPrefix: pathPrefix,
             content: btoa(md),
-            'fb-auth-token': this.token
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            // 'fb-auth-token': this.token
         }).then(function (response) {
             return response;
         }).catch(function (error) {
@@ -113,10 +130,11 @@ class WebAdmin {
     * @param token Firebase authentication token
     */
     createPost(id, pathPrefix) {
-        return this.serviceRPC.invoke('/editors/new-post', 'post', {
+        return this.serviceRPC.invoke('/api/editors/new-post', 'post', {
             post_id: id,
             pathPrefix: pathPrefix,
-            'fb-auth-token': this.token
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            // 'fb-auth-token': this.token
         });
     }
 
@@ -128,10 +146,11 @@ class WebAdmin {
     */
     // TODO formData file upload
     upload(data, pathPrefix) {
-        return this.serviceRPC.invoke('/editors/upload', 'post', {
+        return this.serviceRPC.invoke('/api/editors/upload', 'post', {
             pathPrefix: pathPrefix,
             fileupload: data,
-            'fb-auth-token': this.token
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            // 'fb-auth-token': this.token
         })
             .then(function (response) {
                 console.info(response);
@@ -148,10 +167,11 @@ class WebAdmin {
     * @param token Firebase authentication token
     */
     setPublishDate(publish_date, pathPrefix) {
-        return this.serviceRPC.invoke('/editors/set-publish-date', 'put', {
+        return this.serviceRPC.invoke('/api/editors/set-publish-date', 'put', {
             publish_date: publish_date,
             post_id: pathPrefix,
-            'fb-auth-token': this.token
+            editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+            // 'fb-auth-token': this.token
         });
     }
 
@@ -161,8 +181,9 @@ class WebAdmin {
     */
     getMbakeVersion() {
         return this.serviceRPC
-            .invoke('/editors/mbake-version', 'get', {
-                'fb-auth-token': this.token
+            .invoke('/api/editors/mbake-version', 'get', {
+                editor_email: window.sessionStorage.getItem('username'), editor_pass: window.sessionStorage.getItem('pass')
+                // 'fb-auth-token': this.token
             })
             .then(function (response) {
                 console.info('Base.js mbake version:', response);

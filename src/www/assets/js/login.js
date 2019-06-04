@@ -2,8 +2,21 @@ class Login {
 	constructor() {
 		this.checkUser = this.checkUser.bind(this);
 		this.auth = this.auth.bind(this);
+		this.WebAdmin = new WebAdmin()
 	}
 	checkUser(formLogin, formPassw) {
+
+		this.WebAdmin.checkEditor(formLogin, formPassw)
+			.then(function (result) {
+				console.info("--result:", result)
+				if (result) {
+					window.sessionStorage.setItem('username', email);
+					window.sessionStorage.setItem('password', pass);
+
+					window.location = '/admin/crudEditors';
+
+				}
+			})
 		if ((formPassw !== '') && (formLogin !== '') && (formPassw !== null) && (formLogin !== null)) {
 			return this.serviceRpc.invoke('/api/editor/checkEditor', 'check-editor', { admin_email: email, admin_pass: pass })
 				.then(function () {

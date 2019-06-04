@@ -17,8 +17,8 @@ class AdminWebAdmin {
 
         this.serviceRpc = new httpRPC(rpcProtocol, rpcHost, rpcPort);
         // this.serviceRpc.setUser(username, password);
-
     }
+
     checkAdmin(email, pass) {
         let _this = this
         return this.serviceRpc.invoke('/api/admin/checkAdmin', 'check-admin', { admin_email: email, admin_pass: pass })
@@ -26,7 +26,6 @@ class AdminWebAdmin {
                 _this.serviceRpc.setUser(email, pass);
                 return true
             })
-
     }
 
     /**

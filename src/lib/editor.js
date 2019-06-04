@@ -25,6 +25,32 @@ class EditorRoutes {
         appE.use(bodyParser.json());
         appE.use(bodyParser.text());
         appE.use(bodyParser.urlencoded({ extended: true }));
+        appE.post('/checkEditor', (req, res) => {
+            const method = req.fields.method;
+            let params = JSON.parse(req.fields.params);
+            let email = params.admin_email;
+            let password = params.admin_pass;
+            let resp = {};
+            if ('check-editor' == method) {
+                resp.result = {};
+                try {
+                    var pass = adbDB.validateEditorEmail(email, password);
+                    if (pass) {
+                        resp['pass'] = true;
+                        return res.json(resp);
+                    }
+                    else {
+                        resp['pass'] = false;
+                        return res.json(resp);
+                    }
+                }
+                catch (err) {
+                }
+            }
+            else {
+                return res.json(resp);
+            }
+        });
         appE.post("/posts", (req, res) => {
             const method = req.fields.method;
             let resp = {};

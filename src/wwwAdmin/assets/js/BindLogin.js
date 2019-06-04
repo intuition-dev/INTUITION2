@@ -19,8 +19,6 @@ class BindLogin {
 
                 }
             })
-
-
     }
     signOut() {
         sessionStorage.removeItem('username');

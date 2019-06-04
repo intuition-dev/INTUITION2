@@ -26,12 +26,13 @@ export class ADB { // auth & auth DB
       return 'editor'
    }
    async addAdmin(email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) {
+      let randomID = '_' + Math.random().toString(36).substr(2, 9)
       var salt = bcrypt.genSaltSync(10);
       var hashPass = bcrypt.hashSync(password, salt);
 
-      await this.db.run(`CREATE TABLE admin(email,password,emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite, vcode)`);
+      await this.db.run(`CREATE TABLE admin(id, email,password,emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite)`);
       await this.db.run(`CREATE TABLE editors(id,email,password,name,emailjsService_id, emailjsTemplate_id, emailjsUser_id)`);
-      await this.db.run(`INSERT INTO admin(email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${email}', '${hashPass}', '${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
+      await this.db.run(`INSERT INTO admin(id, email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${randomID}','${email}', '${hashPass}', '${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
          if (err) {
          }
          // get the last insert id
@@ -40,6 +41,18 @@ export class ADB { // auth & auth DB
 
    validateEmail(email, password) {
       return this.db.get(`SELECT password FROM admin WHERE email=?`, email, function (err, row) {
+         if (err) {
+         }
+         return row
+      }).then(function (row) {
+         bcrypt.compare(password, row.password, function (err, res) {
+            return true
+         })
+      })
+   }
+
+   validateEditorEmail(email, password) {
+      return this.db.get(`SELECT password FROM editor WHERE email=?`, email, function (err, row) {
          if (err) {
          }
          return row
@@ -58,9 +71,10 @@ export class ADB { // auth & auth DB
       })
    }
    addEditor(email, name, password) {
+      let randomID = '_' + Math.random().toString(36).substr(2, 9)
       var salt = bcrypt.genSaltSync(10);
       var hashPass = bcrypt.hashSync(password, salt);
-      return this.db.run(`INSERT INTO editors(email, password, name) VALUES('${email}', '${hashPass}', '${name}')`, function (err) {
+      return this.db.run(`INSERT INTO editors(id,email, password, name) VALUES('${randomID}','${email}', '${hashPass}', '${name}')`, function (err) {
          if (err) {
          }
          // get the last insert id
