@@ -27,7 +27,6 @@ try {
       /*
       * E D I T O R S
       */
-      mainApp.use('/setup', ExpressRPC.serveStatic('setup'));
       adbDB.createNewADBwSchema('ADB.sqlite')
       const editorRoutes = new EditorRoutes();
       mainApp.use('/api/editors', editorRoutes.routes(adbDB));

@@ -105,7 +105,9 @@ class ADB {
         return vcode;
     }
     resetPassword(email, vcode, password) {
-        return this.db.run(`UPDATE admin SET password='${password}' WHERE email='${email}' AND vcode='${vcode}'`)
+        var salt = bcrypt.genSaltSync(10);
+        let hashPass = bcrypt.hashSync(password, salt);
+        return this.db.run(`UPDATE admin SET password='${hashPass}' WHERE email='${email}' AND vcode='${vcode}'`)
             .then(res => {
             if (res.changes > 0) {
                 return true;

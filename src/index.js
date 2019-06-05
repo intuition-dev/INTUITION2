@@ -17,7 +17,6 @@ mainApp.use(bodyParser.urlencoded({ extended: true }));
 const emailJs = new EmailJs_1.EmailJs();
 try {
     if (fs.existsSync(pathToDb)) {
-        mainApp.use('/setup', Serv_1.ExpressRPC.serveStatic('setup'));
         adbDB.createNewADBwSchema('ADB.sqlite');
         const editorRoutes = new editor_1.EditorRoutes();
         mainApp.use('/api/editors', editorRoutes.routes(adbDB));
