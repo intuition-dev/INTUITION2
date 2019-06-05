@@ -23,7 +23,7 @@ block content
                     form#reset-password.d-hide.grid-form(action="#", name='reset-pass-form')
                         fieldset
                             .input-wrap
-                                label Enter email to reset password
+                                label Enter email
                                 input(type='email', name='reset-password-email', required='required')
                         button.btn-custom.btn-primary.btn-center.space-21v(name="reset-password-btn", type='submit') Reset Password
                     
@@ -33,7 +33,8 @@ block content
                                 label Enter new password
                                 input(type='password', name='new-password', required='required')
                             .input-wrap
-                                label.v-code Verification code was sent to your email
+                                div.v-code Verification code was sent to your email
+                                label Enter verification code
                                 input(type='number', name='v-code', required='required')
                         button.btn-custom.btn-primary.btn-center.space-21v(name="reset-password-btn-2", type='submit') Reset Password
     
@@ -68,7 +69,7 @@ block content
                 $("[name='reset-pass-form']").addClass('d-hide');
                 $("[name='reset-pass-form-2']").removeClass('d-hide');
                 window.resetEmail = $("[name='reset-password-email']").val();
-                $('.v-code').html('Verification code was sent to:'+resetEmail+', type it in here');
+                $('.v-code').html('Verification code was sent to ' + resetEmail);
                 bindLogin.sendVcode(resetEmail);
             });
 
