@@ -111,6 +111,14 @@ export class ADB { // auth & auth DB
       });
    }
 
+   deleteEditor(id) {
+      return this.db.run(`DELETE FROM editors WHERE id='${id}'`, function (err) {
+         if (err) {
+         }
+         // get the last insert id
+      });
+   }
+
    async sendVcode(email) {
       let vcode = Math.floor(1000 + Math.random() * 9000);
       await this.db.run(`UPDATE admin SET vcode='${vcode}' WHERE email='${email}'`, function (err, rows) {

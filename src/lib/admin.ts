@@ -227,42 +227,38 @@ export class AdminRoutes {
       });
 
       // // delete user
-      // adminApp.post("/editors-delete", (req, res) => {
-      //    const method = req.fields.method;
-      //    let resp: any = {}; // new response that will be set via the specific method passed
-      //    let params = JSON.parse(req.fields.params);
+      adminApp.post("/editors-delete", (req, res) => {
+         const method = req.fields.method;
+         let resp: any = {}; // new response that will be set via the specific method passed
+         let params = JSON.parse(req.fields.params);
 
-      //    if ('delete' == method) {
-      //       let userId = params.uid;
-      //       if (typeof userId !== 'undefined') {
-      //          firebaseAdmin.get().auth().deleteUser(userId)
-      //             .then(function () {
-      //                dbAdminFs.collection('editors')
-      //                   .doc(userId)
-      //                   .delete()
-      //                   .then(() => {
-      //                      resp.result = {};
-      //                      res.json(resp);
-      //                   })
-      //             })
-      //             .catch(function (error) {
-      //                res.status(400);
-      //                resp.result = { error: error.message };
-      //                res.json(resp);
-      //             });
-      //       } else {
-      //          res.status(400);
-      //          resp.result = { error: 'parameters missing' };
-      //          res.json(resp);
-      //       }
+         if ('delete' == method) {
+            let userId = params.uid;
+            if (typeof userId !== 'undefined') {
+               adbDB.deleteEditor(userId)
+                  .then(function (editorId) {
+                     console.info("--editor have been removed:", editorId)
+                     resp.result = {};
+                     res.json(resp);
+                  })
+                  .catch(function (error) {
+                     res.status(400);
+                     resp.result = { error: error.message };
+                     res.json(resp);
+                  });
+            } else {
+               res.status(400);
+               resp.result = { error: 'parameters missing' };
+               res.json(resp);
+            }
 
-      //    } else {
+         } else {
 
-      //       return res.json(resp);
+            return res.json(resp);
 
-      //    }
+         }
 
-      // });
+      });
 
       return adminApp;
 
