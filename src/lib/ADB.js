@@ -82,6 +82,13 @@ class ADB {
             return this.lastID;
         });
     }
+    editEditor(name, id) {
+        return this.db.run(`UPDATE editors SET name='${name}' WHERE id='${id}'`, function (err) {
+            if (err) {
+            }
+            return this.lastID;
+        });
+    }
     async sendVcode(email) {
         let vcode = Math.floor(1000 + Math.random() * 9000);
         await this.db.run(`UPDATE admin SET vcode='${vcode}' WHERE email='${email}'`, function (err, rows) {

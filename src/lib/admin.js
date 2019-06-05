@@ -142,6 +142,35 @@ class AdminRoutes {
                 return res.json(resp);
             }
         });
+        adminApp.post("/editors-edit", (req, res) => {
+            const method = req.fields.method;
+            let resp = {};
+            let params = JSON.parse(req.fields.params);
+            if ('put' == method) {
+                let name = params.name;
+                let userId = params.uid;
+                if (typeof name !== 'undefined' &&
+                    typeof userId !== 'undefined') {
+                    adbDB.editEditor(name, userId)
+                        .then(function (editorId) {
+                        console.info("--editorId:", editorId);
+                        let response = {
+                            id: editorId
+                        };
+                        resp.result = response;
+                        return res.json(resp);
+                    });
+                }
+                else {
+                    res.status(400);
+                    resp.result = { error: 'parameters missing' };
+                    res.json(resp);
+                }
+            }
+            else {
+                return res.json(resp);
+            }
+        });
         return adminApp;
     }
     ;

@@ -43,7 +43,7 @@ class Editors {
         let email = $("#editor-form input[name='email']").val();
         let name = $("#editor-form input[name='name']").val();
         if (id) { // edit user
-            return this.webAdmin.editEditor(id, name)
+            return this.webAdmin.editEditor(id, name) //id of user is gonna be the same if edit, so we are updating only name
                 .then((documentRef) => {
                     $('.notification').removeClass('d-hide').find('.text').text('user was successfully updated');
                     $('.grid-form input').val('');
@@ -55,7 +55,7 @@ class Editors {
                     }, 500);
                     // table refresh
                     this.table
-                        .updateOrAddData([{ id: documentRef.id, name: name }])
+                        .updateOrAddData([{ id: id, name: name }])
                         .then(function () {
                             console.info('table updated');
                         })

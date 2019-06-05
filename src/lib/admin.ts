@@ -175,45 +175,56 @@ export class AdminRoutes {
       });
 
       // // edit user
-      // adminApp.post("/editors-edit", (req, res) => {
-      //    const method = req.fields.method;
-      //    let resp: any = {}; // new response that will be set via the specific method passed
-      //    let params = JSON.parse(req.fields.params);
+      adminApp.post("/editors-edit", (req, res) => {
+         const method = req.fields.method;
+         let resp: any = {}; // new response that will be set via the specific method passed
+         let params = JSON.parse(req.fields.params);
 
-      //    if ('put' == method) {
+         if ('put' == method) {
 
-      //       let name = params.name;
-      //       let userId = params.uid;
-      //       if (typeof name !== 'undefined' &&
-      //          typeof userId !== 'undefined'
-      //       ) {
-      //          firebaseAdmin.get().auth().updateUser(userId, {
-      //             displayName: name
-      //          }).then(function (userRecord) { // send response to client
-      //             // See the UserRecord reference doc for the contents of userRecord.
-      //             let response = {
-      //                id: userRecord.uid
-      //             }
-      //             resp.result = response;
-      //             res.json(resp);
-      //          }).catch(function (error) {
-      //             res.status(400);
-      //             resp.result = { error: error.message };
-      //             res.json(resp);
-      //          });
-      //       } else {
-      //          res.status(400);
-      //          resp.result = { error: 'parameters missing' };
-      //          res.json(resp);
-      //       }
+            let name = params.name;
+            let userId = params.uid;
+            if (typeof name !== 'undefined' &&
+               typeof userId !== 'undefined'
+            ) {
 
-      //    } else {
+               adbDB.editEditor(name, userId)
+                  .then(function (editorId) {
+                     console.info("--editorId:", editorId)
+                     let response = {
+                        id: editorId
+                     }
+                     resp.result = response;
+                     return res.json(resp);
+                  })
 
-      //       return res.json(resp);
+               // firebaseAdmin.get().auth().updateUser(userId, {
+               //    displayName: name
+               // }).then(function (userRecord) { // send response to client
+               //    // See the UserRecord reference doc for the contents of userRecord.
+               //    let response = {
+               //       id: userRecord.uid
+               //    }
+               //    resp.result = response;
+               //    res.json(resp);
+               // }).catch(function (error) {
+               //    res.status(400);
+               //    resp.result = { error: error.message };
+               //    res.json(resp);
+               // });
+            } else {
+               res.status(400);
+               resp.result = { error: 'parameters missing' };
+               res.json(resp);
+            }
 
-      //    }
+         } else {
 
-      // });
+            return res.json(resp);
+
+         }
+
+      });
 
       // // delete user
       // adminApp.post("/editors-delete", (req, res) => {
