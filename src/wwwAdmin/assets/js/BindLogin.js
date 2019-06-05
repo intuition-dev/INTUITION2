@@ -6,8 +6,6 @@ class BindLogin {
         this.AdminWebAdmin = new AdminWebAdmin()
     }
     login(email, pass) {
-        console.info("--pass:", pass)
-        console.info("--email:", email)
         this.AdminWebAdmin.checkAdmin(email, pass)
             .then(function (result) {
                 console.info("--result:", result)
@@ -17,15 +15,17 @@ class BindLogin {
 
                     window.location = '/admin/crudEditors';
                 } else {
-                    window.location = '/admin/'
+                    window.location = '/admin'
                 }
             })
     }
+
     signOut() {
         sessionStorage.removeItem('username');
+        console.info("--sessionStorage:", sessionStorage)
         sessionStorage.removeItem('password');
-        if (window.location.pathname !== '' && window.location.pathname !== '/') {
-            window.location.replace('/');
+        if (window.location.pathname !== '' && window.location.pathname !== '/admin') {
+            window.location.replace('/admin');
         }
     }
 

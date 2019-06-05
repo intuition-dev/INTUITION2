@@ -57,10 +57,6 @@ block content
                 bindLogin.login(formLogin, formPassw)
             });
 
-            $(document).on('click', '#sign-out', function (e) {
-                bindLogin.signOut()
-            });
-
             $(document).on('click', '[data="reset-password"]', function (e) {
                 e.preventDefault();
                 $('#login-form, #btn-login, [data="reset-password"]').addClass('d-hide');
