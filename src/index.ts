@@ -34,22 +34,20 @@ try {
       mainApp.use('/editors', ExpressRPC.serveStatic('www'));
 
 
-      // Wa.watch('/Users/liza/work/mbakeCLI/CMS', 9082);
-
       /*
       * A D M I N
       */
-
       const adminRoutes = new AdminRoutes();
       mainApp.use('/api/admin', adminRoutes.routes(adbDB));
       mainApp.use('/admin', ExpressRPC.serveStatic('wwwAdmin'));
 
       //open admin and editor
-   } else {
+   } else { // VIC: I don't understand what next line does, if DB does not exists, open path?
       fs.open(pathToDb, 'w', runSetup);
    }
 
 } catch (err) {
+   console.log(err)
 }
 
 
@@ -94,15 +92,11 @@ mainApp.post("/setup", async (req, res) => {
    } else {
       return res.json(resp);
    }
-});
-
-
+})
 
 mainApp.listen(appPORT, () => {
-   console.log(`mainApp listening on port ${appPORT}!`);
 
    console.log(`======================================================`);
    console.log(`App is running at http://localhost:${appPORT}/editors/`);
-   console.log(`Admin is running at http://localhost:${appPORT}/admin/`);
    console.log(`======================================================`);
-});
+})

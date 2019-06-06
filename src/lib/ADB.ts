@@ -15,8 +15,6 @@ export class ADB { // auth & auth DB
       this.db.configure('busyTimeout', 2 * 1000)
    }
 
-
-
    isUserAuth(userEmail, pswdHash) { // yes the pswds are a hash
       // run some code and:
       return 'editor'
@@ -161,6 +159,6 @@ export class ADB { // auth & auth DB
 
 }
 
-// module.exports = {
-//    ADB
-// }
+module.exports = {
+   ADB
+}
