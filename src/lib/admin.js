@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Serv_1 = require("mbake/lib/Serv");
-const EmailJs_1 = require("../lib/EmailJs");
+const Email_1 = require("./Email");
 const ADB_1 = require("../lib/ADB");
 const adbDB = new ADB_1.ADB();
 class AdminRoutes {
     routes(adbDB) {
-        const emailJs = new EmailJs_1.EmailJs();
+        const emailJs = new Email_1.Email();
         const bodyParser = require("body-parser");
         const adminApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
         adminApp.use(bodyParser.json());

@@ -1,11 +1,11 @@
 import { ExpressRPC, RPCBasicAuth } from 'mbake/lib/Serv';
-import { EmailJs } from '../lib/EmailJs';
+import { Email } from './Email';
 import { ADB } from '../lib/ADB';
 const adbDB = new ADB();
 
 export class AdminRoutes {
    routes(adbDB) {
-      const emailJs = new EmailJs();
+      const emailJs = new Email();
       const bodyParser = require("body-parser");
 
       const adminApp = ExpressRPC.makeInstance(['http://localhost:9081']);

@@ -15,8 +15,8 @@ class ADB {
         let randomID = '_' + Math.random().toString(36).substr(2, 9);
         var salt = bcrypt.genSaltSync(10);
         var hashPass = bcrypt.hashSync(password, salt);
-        await this.db.run(`CREATE TABLE admin(id, email,password,emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite, vcode)`);
-        await this.db.run(`CREATE TABLE editors(id,email,password,name,emailjsService_id, emailjsTemplate_id, emailjsUser_id)`);
+        await this.db.run(`CREATE TABLE  admin(id, email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite, vcode)`);
+        await this.db.run(`CREATE TABLE editors(id, email, password, name, emailjsService_id, emailjsTemplate_id, emailjsUser_id)`);
         await this.db.run(`INSERT INTO admin(id, email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${randomID}','${email}', '${hashPass}', '${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
             if (err) {
             }
@@ -36,7 +36,7 @@ class ADB {
             });
         });
     }
-    validateEditorEmail(email, password, adminID) {
+    validateEditorEmail(email, password) {
         let _this = this;
         return new Promise(function (resolve, reject) {
             _this.db.get(`SELECT password FROM editors WHERE email=?`, email, function (err, row) {

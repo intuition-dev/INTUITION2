@@ -1,9 +1,8 @@
 import { ExpressRPC } from 'mbake/lib/Serv';
 import { EditorRoutes } from './lib/editor';
-import { Wa } from 'mbake/lib/Wa';
 import { AdminRoutes } from './lib/admin';
 import { ADB } from './lib/ADB';
-import { EmailJs } from './lib/EmailJs';
+import { Email } from './lib/Email';
 const adbDB = new ADB()
 
 const bodyParser = require("body-parser");
@@ -18,7 +17,7 @@ mainApp.use(bodyParser.json());
 mainApp.use(bodyParser.text());
 mainApp.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
 
-const emailJs = new EmailJs();
+const emailJs = new Email();
 
 try {
    if (fs.existsSync(pathToDb)) {

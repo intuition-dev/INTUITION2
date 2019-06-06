@@ -1,7 +1,7 @@
-"use strict";
 import axios from 'axios';
 
-export class EmailJs {
+export class Email {
+   
     send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg) {
         axios.post('https://api.emailjs.com/api/v1.0/email/send', {
                 service_id: emailjsService_id, // gmail
@@ -22,5 +22,5 @@ export class EmailJs {
     };
 }
 module.exports = {
-    EmailJs
+    Email
 };

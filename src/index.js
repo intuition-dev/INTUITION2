@@ -4,7 +4,7 @@ const Serv_1 = require("mbake/lib/Serv");
 const editor_1 = require("./lib/editor");
 const admin_1 = require("./lib/admin");
 const ADB_1 = require("./lib/ADB");
-const EmailJs_1 = require("./lib/EmailJs");
+const Email_1 = require("./lib/Email");
 const adbDB = new ADB_1.ADB();
 const bodyParser = require("body-parser");
 const mainApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
@@ -14,7 +14,7 @@ const pathToDb = 'ADB.sqlite';
 mainApp.use(bodyParser.json());
 mainApp.use(bodyParser.text());
 mainApp.use(bodyParser.urlencoded({ extended: true }));
-const emailJs = new EmailJs_1.EmailJs();
+const emailJs = new Email_1.Email();
 try {
     if (fs.existsSync(pathToDb)) {
         adbDB.createNewADBwSchema('ADB.sqlite');
