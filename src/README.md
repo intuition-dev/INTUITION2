@@ -1,3 +1,16 @@
+# NEW
+
+1. User does yarn install metaI
+
+2. User does in shell: metaI
+
+3. Go to brower 9080
+
+4. Caddy Porxy 9080 to get https
+
+
+# OLD
+
 # Deploy
 
 1. Install node, yarn, and typescript (mbake is recommended)
