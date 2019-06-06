@@ -1,6 +1,6 @@
 {
    "name": "meta-intuition",
-   "version": "0.05.02",
+   "version": "0.05.03",
    "description": "Web Admin for web apps written in MetaBake",
    "main": "index.js",
    "scripts": {
