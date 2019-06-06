@@ -80,7 +80,7 @@ export class AdminRoutes {
                         .then(settings => {
                            let setting = settings[0];
                            emailJs.send(
-                              setting.email,
+                              email,
                               setting.emailjsService_id,
                               setting.emailjsTemplate_id,
                               setting.emailjsUser_id,

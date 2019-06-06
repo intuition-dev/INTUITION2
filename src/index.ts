@@ -6,14 +6,13 @@ import { EditorRoutes } from './lib/editor';
 import { AdminRoutes } from './lib/admin';
 import { ADB } from './lib/ADB';
 import { Email } from './lib/Email';
+const fs = require('fs-extra')
 const adbDB = new ADB()
 
 const bodyParser = require("body-parser");
-const mainApp = ExpressRPC.makeInstance(['http://localhost:9081']);
 const appPORT = '9081';
+const mainApp = ExpressRPC.makeInstance(['http://localhost:'+appPORT]);
 
-
-const fs = require('fs')
 const pathToDb = 'ADB.sqlite'
 
 mainApp.use(bodyParser.json());
@@ -23,13 +22,13 @@ mainApp.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST re
 const emailJs = new Email();
 
 try {
-   if (fs.existsSync(pathToDb)) {
+   if (adbDB.checkDB(pathToDb)) {
+
       //file exists
-      // mainApp.use(ExpressRPC.serveStatic('.'));
       /*
       * E D I T O R S
       */
-      adbDB.createNewADBwSchema('ADB.sqlite')
+      adbDB.createNewADBwSchema(pathToDb)
       const editorRoutes = new EditorRoutes();
       mainApp.use('/api/editors', editorRoutes.routes(adbDB));
       mainApp.use('/editors', ExpressRPC.serveStatic('www'));
@@ -47,7 +46,7 @@ try {
 
       //open admin and editor
    } else {
-      fs.open('ADB.sqlite', 'w', runSetup);
+      fs.open(pathToDb, 'w', runSetup);
    }
 
 } catch (err) {
@@ -56,7 +55,7 @@ try {
 
 function runSetup() {
    mainApp.use('/setup', ExpressRPC.serveStatic('setup'));
-   adbDB.createNewADBwSchema('ADB.sqlite')
+   adbDB.createNewADBwSchema(pathToDb)
    const editorRoutes = new EditorRoutes();
    mainApp.use('/api/editors', editorRoutes.routes(adbDB));
    mainApp.use('/editors/', ExpressRPC.serveStatic('www'));

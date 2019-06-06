@@ -1,6 +1,7 @@
 
 import sqlite = require('sqlite')
 const bcrypt = require('bcryptjs') // to hash pswdws
+const fs = require('fs-extra')
 
 // include in API for WebAdmin
 
@@ -18,6 +19,8 @@ export class ADB { // auth & auth DB
       this.db.configure('busyTimeout', 2 * 1000)
    }
 
+
+
    isUserAuth(userEmail, pswdHash) { // yes the pswds are a hash
       // run some code and:
       return 'editor'
@@ -27,13 +30,21 @@ export class ADB { // auth & auth DB
       var salt = bcrypt.genSaltSync(10);
       var hashPass = bcrypt.hashSync(password, salt);
 
-      await this.db.run(`CREATE TABLE  admin(id, email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite, vcode)`);
-      await this.db.run(`CREATE TABLE editors(id, email, password, name, emailjsService_id, emailjsTemplate_id, emailjsUser_id)`);
-      await this.db.run(`INSERT INTO admin(id, email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${randomID}','${email}', '${hashPass}', '${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
+      await this.db.run(`CREATE TABLE admin(id, email, password, vcode)`);
+      await this.db.run(`CREATE TABLE configs(emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite)`);
+      await this.db.run(`CREATE TABLE editors(id, email, password, name, vcode)`);
+      await this.db.run(`INSERT INTO admin(id, email, password) VALUES('${randomID}','${email}', '${hashPass}')`, function (err) {
          if (err) {
          }
-         // get the last insert id
       });
+      await this.db.run(`INSERT INTO configs(emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
+         if (err) {
+         }
+      });
+   }
+
+   checkDB(path){
+      return fs.existsSync(path)
    }
 
    validateEmail(email, password) {
@@ -62,7 +73,7 @@ export class ADB { // auth & auth DB
             if (typeof row != 'undefined') {
                return bcrypt.compare(password, row.password)
                   .then((res) => {
-                     _this.db.get(`SELECT pathToSite FROM admin`, [], function (err, row) {
+                     _this.db.get(`SELECT pathToSite FROM configs`, [], function (err, row) {
                         console.info("--row:", row)
                         if (err) {
                         }
@@ -80,6 +91,7 @@ export class ADB { // auth & auth DB
          })
       })
    }
+   
    getEditors() {
       return this.db.all(`SELECT id, name, email FROM editors`, [], function (err, rows) {
          if (err) {
@@ -87,11 +99,12 @@ export class ADB { // auth & auth DB
          return rows
       })
    }
+
    addEditor(email, name, password) {
       let randomID = '_' + Math.random().toString(36).substr(2, 9)
       var salt = bcrypt.genSaltSync(10);
       var hashPass = bcrypt.hashSync(password, salt);
-      return this.db.run(`INSERT INTO editors(id,email, password, name) VALUES('${randomID}','${email}', '${hashPass}', '${name}')`, function (err) {
+      return this.db.run(`INSERT INTO editors(id, email, password, name) VALUES('${randomID}','${email}', '${hashPass}', '${name}')`, function (err) {
          if (err) {
          }
          // get the last insert id
@@ -143,7 +156,7 @@ export class ADB { // auth & auth DB
    }
 
    getEmailJsSettings() {
-      return this.db.all(`SELECT email, emailjsService_id, emailjsTemplate_id, emailjsUser_id FROM admin`, [], function (err, rows) {
+      return this.db.all(`SELECT emailjsService_id, emailjsTemplate_id, emailjsUser_id FROM configs`, [], function (err, rows) {
          if (err) {
          }
          return rows

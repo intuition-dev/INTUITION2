@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sqlite = require("sqlite");
 const bcrypt = require('bcryptjs');
+const fs = require('fs-extra');
 class ADB {
     async createNewADBwSchema(dbPath) {
         const dbPro = sqlite.open(dbPath);
@@ -15,12 +16,20 @@ class ADB {
         let randomID = '_' + Math.random().toString(36).substr(2, 9);
         var salt = bcrypt.genSaltSync(10);
         var hashPass = bcrypt.hashSync(password, salt);
-        await this.db.run(`CREATE TABLE  admin(id, email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite, vcode)`);
-        await this.db.run(`CREATE TABLE editors(id, email, password, name, emailjsService_id, emailjsTemplate_id, emailjsUser_id)`);
-        await this.db.run(`INSERT INTO admin(id, email, password, emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${randomID}','${email}', '${hashPass}', '${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
+        await this.db.run(`CREATE TABLE admin(id, email, password, vcode)`);
+        await this.db.run(`CREATE TABLE configs(emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite)`);
+        await this.db.run(`CREATE TABLE editors(id, email, password, name, vcode)`);
+        await this.db.run(`INSERT INTO admin(id, email, password) VALUES('${randomID}','${email}', '${hashPass}')`, function (err) {
             if (err) {
             }
         });
+        await this.db.run(`INSERT INTO configs(emailjsService_id, emailjsTemplate_id, emailjsUser_id, pathToSite) VALUES('${emailjsService_id}', '${emailjsTemplate_id}', '${emailjsUser_id}', '${pathToSite}')`, function (err) {
+            if (err) {
+            }
+        });
+    }
+    checkDB(path) {
+        return fs.existsSync(path);
     }
     validateEmail(email, password) {
         let _this = this;
@@ -47,7 +56,7 @@ class ADB {
                 if (typeof row != 'undefined') {
                     return bcrypt.compare(password, row.password)
                         .then((res) => {
-                        _this.db.get(`SELECT pathToSite FROM admin`, [], function (err, row) {
+                        _this.db.get(`SELECT pathToSite FROM configs`, [], function (err, row) {
                             console.info("--row:", row);
                             if (err) {
                             }
@@ -76,7 +85,7 @@ class ADB {
         let randomID = '_' + Math.random().toString(36).substr(2, 9);
         var salt = bcrypt.genSaltSync(10);
         var hashPass = bcrypt.hashSync(password, salt);
-        return this.db.run(`INSERT INTO editors(id,email, password, name) VALUES('${randomID}','${email}', '${hashPass}', '${name}')`, function (err) {
+        return this.db.run(`INSERT INTO editors(id, email, password, name) VALUES('${randomID}','${email}', '${hashPass}', '${name}')`, function (err) {
             if (err) {
             }
             return this.lastID;
@@ -121,7 +130,7 @@ class ADB {
         });
     }
     getEmailJsSettings() {
-        return this.db.all(`SELECT email, emailjsService_id, emailjsTemplate_id, emailjsUser_id FROM admin`, [], function (err, rows) {
+        return this.db.all(`SELECT emailjsService_id, emailjsTemplate_id, emailjsUser_id FROM configs`, [], function (err, rows) {
             if (err) {
             }
             return rows;

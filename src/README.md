@@ -4,9 +4,9 @@
 
 2. User does in shell: metaI
 
-3. Go to brower 9080
+3. Go to brower 9081
 
-4. Caddy Porxy 9080 to get https
+4. Caddy Porxy 9081 to get https
 
 
 # OLD

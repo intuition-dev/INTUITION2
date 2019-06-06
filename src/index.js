@@ -6,19 +6,19 @@ const editor_1 = require("./lib/editor");
 const admin_1 = require("./lib/admin");
 const ADB_1 = require("./lib/ADB");
 const Email_1 = require("./lib/Email");
+const fs = require('fs-extra');
 const adbDB = new ADB_1.ADB();
 const bodyParser = require("body-parser");
-const mainApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:9081']);
 const appPORT = '9081';
-const fs = require('fs');
+const mainApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:' + appPORT]);
 const pathToDb = 'ADB.sqlite';
 mainApp.use(bodyParser.json());
 mainApp.use(bodyParser.text());
 mainApp.use(bodyParser.urlencoded({ extended: true }));
 const emailJs = new Email_1.Email();
 try {
-    if (fs.existsSync(pathToDb)) {
-        adbDB.createNewADBwSchema('ADB.sqlite');
+    if (adbDB.checkDB(pathToDb)) {
+        adbDB.createNewADBwSchema(pathToDb);
         const editorRoutes = new editor_1.EditorRoutes();
         mainApp.use('/api/editors', editorRoutes.routes(adbDB));
         mainApp.use('/editors', Serv_1.ExpressRPC.serveStatic('www'));
@@ -27,14 +27,14 @@ try {
         mainApp.use('/admin', Serv_1.ExpressRPC.serveStatic('wwwAdmin'));
     }
     else {
-        fs.open('ADB.sqlite', 'w', runSetup);
+        fs.open(pathToDb, 'w', runSetup);
     }
 }
 catch (err) {
 }
 function runSetup() {
     mainApp.use('/setup', Serv_1.ExpressRPC.serveStatic('setup'));
-    adbDB.createNewADBwSchema('ADB.sqlite');
+    adbDB.createNewADBwSchema(pathToDb);
     const editorRoutes = new editor_1.EditorRoutes();
     mainApp.use('/api/editors', editorRoutes.routes(adbDB));
     mainApp.use('/editors/', Serv_1.ExpressRPC.serveStatic('www'));

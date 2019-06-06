@@ -68,7 +68,7 @@ class AdminRoutes {
                         adbDB.getEmailJsSettings()
                             .then(settings => {
                             let setting = settings[0];
-                            emailJs.send(setting.email, setting.emailjsService_id, setting.emailjsTemplate_id, setting.emailjsUser_id, 'your code: ' + code);
+                            emailJs.send(email, setting.emailjsService_id, setting.emailjsTemplate_id, setting.emailjsUser_id, 'your code: ' + code);
                             resp.result = true;
                             return res.json(resp);
                         });
