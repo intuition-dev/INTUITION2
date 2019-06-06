@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+// All rights reserved by Metabake.org, licensed under LGPL 3.0
+
 import { ExpressRPC } from 'mbake/lib/Serv';
 import { EditorRoutes } from './lib/editor';
 import { AdminRoutes } from './lib/admin';

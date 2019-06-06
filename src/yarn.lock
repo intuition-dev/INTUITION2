@@ -3438,10 +3438,10 @@ markdown-it@>=8.4.2, markdown-it@^8.4.2:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-mbake@5.7.3:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/mbake/-/mbake-5.7.3.tgz#459411d47431a820fefdd916c3e7b8ecf1241a8b"
-  integrity sha512-PH9UWALX80uYrPn4j/Tgup6LjWJ016GAGBII65tG7LA3kqggvmUtBEKoNrJ6iqUkGdiUcstOGevcezmkQiOR8g==
+mbake@5.7.5:
+  version "5.7.5"
+  resolved "https://registry.yarnpkg.com/mbake/-/mbake-5.7.5.tgz#de358f0f415105a1ac3e2305a82e36dbd0c65594"
+  integrity sha512-KZN9nk/ykeUEr4LjqmpgCPhaby8RoS8q2PhBFsGCaP5+xTABERsYa2krKpjFv8Qge3mChkCWcjpKSwjH6r+PGQ==
   dependencies:
     "@firebase/app-types" ">=0.4.0"
     "@marp-team/marpit" ">=1.1.0"

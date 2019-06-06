@@ -23,7 +23,7 @@
       "express-fileupload": ">=1.1.4",
       "fs-extra": ">=8.0.1",
       "js-yaml": ">=3.13.1",
-      "mbake": "5.7.3",
+      "mbake": "5.7.5",
       "sqlite": "^3.0.3"
    },
    "devDependencies": {
