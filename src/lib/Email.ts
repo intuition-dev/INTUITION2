@@ -4,9 +4,9 @@ export class Email {
    
     send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg) {
         axios.post('https://api.emailjs.com/api/v1.0/email/send', {
-                service_id: emailjsService_id, // gmail
-                template_id: emailjsTemplate_id, // template_IWM2Sp3V
-                user_id: emailjsUser_id, // user_PFE8rcsDafCMuUvI1Yj11
+                service_id: emailjsService_id,
+                template_id: emailjsTemplate_id,
+                user_id: emailjsUser_id,
                 template_params: {
                     to_name: email,
                     message_html: msg,

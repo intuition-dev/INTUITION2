@@ -5,10 +5,6 @@ const fs = require('fs-extra')
 
 // include in API for WebAdmin
 
-// guid for pk client side 
-// eg: bcrypt randomBytes(16).toString("hex") or base64, or Math.random to make base64 char 16 times
-// also to email a random # 
-
 export class ADB { // auth & auth DB
    // emailjs is client side api
    db
