@@ -15,17 +15,14 @@ import path = require('path')
 import fs = require('fs-extra')
 import FileHound = require('filehound')
 
-import sharp = require('sharp')
-import probe = require('probe-image-size')
+//import colors = require('colors');
+const logger = require('tracer').console()
 
 import JavaScriptObfuscator = require('javascript-obfuscator')
 import { TInputOptions } from "javascript-obfuscator/src/types/options/TInputOptions"
 
 import * as ts from "typescript"
 const Terser = require("terser")
-
-//import colors = require('colors');
-const logger = require('tracer').console()
 
 export class MinJS {
 
@@ -194,61 +191,6 @@ export class MinJS {
 }//class
 
 // //////////////////////////////////////////////////////////////////
-export class Resize {
-
-   do(dir) {
-      logger.info(dir)
-
-      const rec = FileHound.create() //recursive
-         .paths(dir)
-         .ext('jpg')
-         .findSync()
-
-      let ret: string[] = [] //empty string array
-      for (let s of rec) {//clean the strings
-         let n = s.slice(0, -4)
-         if (n.includes('.min')) continue
-         ret.push(n)
-
-      }
-      for (let s of ret) {
-         this.smaller(s)
-      }
-   }
-
-   isWide(file): boolean {
-      let data = fs.readFileSync(file + '.jpg')
-      let p = probe.sync(data)
-      if (p.width && p.width > 3200) return true
-      logger.info(file, ' is low res')
-      return false
-   }
-
-   smaller(file) {
-      logger.info(file)
-      if (!this.isWide(file)) return
-      sharp(file + '.jpg')
-         .resize(1680 * 1.9)
-         .jpeg({
-            quality: 74,
-            progressive: true,
-            trellisQuantisation: true
-         })
-         .blur()
-         .toFile(file + '.2K.min.jpg')
-
-      sharp(file + '.jpg')
-         .resize(320 * 2)
-         .jpeg({
-            quality: 78,
-            progressive: true,
-            trellisQuantisation: true
-         })
-         .toFile(file + '.32.min.jpg')
-
-   }//()
-
-}//class
 
 export class Sas {
 
@@ -328,5 +270,5 @@ export class Sas {
 }//class
 
 module.exports = {
-   Sas, Resize, MinJS
+   Sas, MinJS
 }

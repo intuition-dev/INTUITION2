@@ -17,12 +17,10 @@ const stripCssComments = require("strip-css-comments");
 const path = require("path");
 const fs = require("fs-extra");
 const FileHound = require("filehound");
-const sharp = require("sharp");
-const probe = require("probe-image-size");
+const logger = require('tracer').console();
 const JavaScriptObfuscator = require("javascript-obfuscator");
 const ts = __importStar(require("typescript"));
 const Terser = require("terser");
-const logger = require('tracer').console();
 class MinJS {
     ts(dir) {
         logger.info(dir);
@@ -160,56 +158,6 @@ MinJS.CompOptionsJS = {
     keep_fnames: true
 };
 exports.MinJS = MinJS;
-class Resize {
-    do(dir) {
-        logger.info(dir);
-        const rec = FileHound.create()
-            .paths(dir)
-            .ext('jpg')
-            .findSync();
-        let ret = [];
-        for (let s of rec) {
-            let n = s.slice(0, -4);
-            if (n.includes('.min'))
-                continue;
-            ret.push(n);
-        }
-        for (let s of ret) {
-            this.smaller(s);
-        }
-    }
-    isWide(file) {
-        let data = fs.readFileSync(file + '.jpg');
-        let p = probe.sync(data);
-        if (p.width && p.width > 3200)
-            return true;
-        logger.info(file, ' is low res');
-        return false;
-    }
-    smaller(file) {
-        logger.info(file);
-        if (!this.isWide(file))
-            return;
-        sharp(file + '.jpg')
-            .resize(1680 * 1.9)
-            .jpeg({
-            quality: 74,
-            progressive: true,
-            trellisQuantisation: true
-        })
-            .blur()
-            .toFile(file + '.2K.min.jpg');
-        sharp(file + '.jpg')
-            .resize(320 * 2)
-            .jpeg({
-            quality: 78,
-            progressive: true,
-            trellisQuantisation: true
-        })
-            .toFile(file + '.32.min.jpg');
-    }
-}
-exports.Resize = Resize;
 class Sas {
     css(dir) {
         const THIZ = this;
@@ -267,5 +215,5 @@ class Sas {
 }
 exports.Sas = Sas;
 module.exports = {
-    Sas, Resize, MinJS
+    Sas, MinJS
 };

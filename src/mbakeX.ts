@@ -7,9 +7,8 @@ import commandLineArgs = require('command-line-args')
 import { Ver,  MBake,  } from './lib/Base'
 import { Wa,  } from './lib/Wa'
 import { Map } from './lib/Spider'
-import { Resize, } from './lib/Extra'
 import { Dirs } from './lib/FileOpsBase'
-import { CSV2Json, DownloadFrag, GitDown, ExportFS, ImportFS, VersionNag  } from './lib/FileOpsExtra'
+import { CSV2Json, DownloadFrag  } from './lib/FileOpsExtra'
 
 // imports done /////////////////////////////////////////////
 const cwd: string = process.cwd()
@@ -19,74 +18,12 @@ function version() {
 }
 
 function help() {
-   let b = new Ver()
-   console.info()
-   console.info('mbakeX CLI version: ' + Ver.ver()) // tsc
-   console.info('  your node version is ' + process.version)
-   console.info('  from ' + __dirname)
-   console.info()
-   console.info('Usage: ')
-   console.info('  For local watcher and server on port:')
-   console.info('    -p, --port to specify port for watcher:                   mbakeX -w . -p 8091 -r 9857')
-   console.info('     (must be used with -r)')
-   console.info('    -r, --reload-port to specify port for live reload :       mbakeX -w . --port=8091 --reload-port=9857')
-   console.info()
 
-   console.info('  To process Pug and RIOT *-comp.pug components:              mbakeX -c .')
-   console.info('    -c also does regular mbake of Pug, not just comps.')
-   console.info('  To bake with dev. ENV flag(1) in prod(default is 0):        mbakeX --bakeD .')
-   console.info('  To bake with staging ENV flag(2) in prod:                   mbakeX --bakeS .')
-   console.info('  To bake with production ENV flag(3) in prod:                mbakeX --bakeP .')
-
-   console.info()
-   console.info('  Download fragment to setup the app devOps:                  mbake --ops .')
-
-   console.info('  To map map.yaml to menu.json, sitemap.xml and FTS.idx:      mbakeX -m .')
-   console.info('  Compress 3200 or larger .jpg images to 2 sizes:             mbakeX -i .')
-   console.info('  To process list.csv to list.json:                           mbakeX -l .')
-   console.info('  To download branch from git, in folder with gitdown.yaml:   mbakeX --gitDown GIT-PSWD')
-   console.info('     passing the git password of gitdown user')
-   console.info('  To recursively remove source files:                         mbakeX --prod .')
-   console.info('  To export FiresStore data, it needs two arguments separated ')
-   console.info('   with ":" :                                                 mbakeX --exportFS serviceAccountKey:name_of_the_file')
-   console.info('  To import FireStore data, it needs two arguments separated  ')
-   console.info('  with ":":                                                   mbakeX --importFS serviceAccountKey:name_of_the_json_exported_file')
-   console.info()
-
-   console.info('    Note: . is current directory, or use any path instead of .')
-
-   console.info(' -------------------------------------------------------------')
-   console.info()
-   console.info(' Starters:')
-   console.info('  For a starter dash web-app:                                 mbakeX -d')
-
-   console.info('  For example slides markdown:                                mbakeX -k')
-
-   console.info('  For a Electron(pre-PhoneGap) app:                           mbakeX -e')
-   console.info('  For a starter hybrid Phonegap app:                          mbakeX -o')
-   console.info('  For an example Ad:                                          mbakeX -a')
-
-   //TODO: check latest version via open of browser to npm
-   console.info()
-
-   VersionNag.isCurrent().then(function(isCurrent_:boolean){
-      try{
-      if(!isCurrent_) 
-         console.log('There is a newer version of mbake CLI, please update.')
-      else
-         console.log('You have the current version of mbake CLI')
-      } catch(err) {
-         console.log(err)
-      }
-   })// pro
 }//()
 
 // args: //////////////////////////////////////////////////////////////////////////////////////////////////////
 const optionDefinitions = [
    { name: 'mbakeX', defaultOption: true },
-
-   { name: 'help', alias: 'h', type: Boolean },
-   { name: 'version', alias: 'v', type: Boolean },
 
    { name: 'watcher', alias: 'w', type: Boolean },
 
@@ -101,19 +38,10 @@ const optionDefinitions = [
    { name: 'bakeD', type: Boolean },
 
    { name: 'ops', type: Boolean },
-   { name: 'gitDown', type: Boolean },
-   { name: 'exportFS', type: Boolean },
-   { name: 'importFS', type: Boolean },
 
    { name: 'map', alias: 'm', type: Boolean },
-   { name: 'img', alias: 'i', type: Boolean },
    { name: 'csv2Json', alias: 'l', type: Boolean },
 
-   { name: 'dash', alias: 'd', type: Boolean },
-   { name: 'slides', alias: 'k', type: Boolean },
-   { name: 'elect', alias: 'e', type: Boolean },
-   { name: 'phonegap', alias: 'o', type: Boolean },
-   { name: 'ad', alias: 'a', type: Boolean },
 ]
 
 const argsParsed = commandLineArgs(optionDefinitions)
@@ -121,47 +49,12 @@ let arg: string = argsParsed.mbakeX
 console.info()
 
 // ///////////////////////////////////////////////////////////////////////////////////////////
-function git(arg) {
-   let gg = new GitDown(arg)
-   // gg.process()
-}//()
 
-function exportFS(arg) {
-   let ef = new ExportFS(arg)
-   ef.export()
-}//()
-
-function importFS(arg) {
-   let ef = new ImportFS(arg)
-   ef.import()
-}//()
 
 function frag(arg) {
    new DownloadFrag(arg, true)
 }
-// unzip: ////////////////////////////////////////////////////////////////////////////////////////////
-function unzipG() {
-   let src: string = __dirname + '/PGap.zip'
-   let zip = new AdmZip(src)
-   zip.extractAllTo(cwd, /*overwrite*/true)
-   console.info('Extracting a starter Phonegap app to ./PG')
-   process.exit()
-}
-function unzipE() {
-   let src: string = __dirname + '/elect.zip'
-   let zip = new AdmZip(src)
-   zip.extractAllTo(cwd, /*overwrite*/true)
-   console.info('Extracting a starter Electron app to ./elect')
-   process.exit()
-}
-
-function unzipD() {
-   let src: string = __dirname + '/ad.zip'
-   let zip = new AdmZip(src)
-   zip.extractAllTo(cwd, /*overwrite*/true)
-   console.info('Extracting an example ad  ./ad')
-   process.exit()
-}
+///////
 
 function unzipL() {
    let src: string = __dirname + '/slidesEx.zip'
@@ -187,9 +80,6 @@ function map(arg) {
    new Map(arg).gen()
 }
 
-function img(arg) {
-   new Resize().do(arg)
-}
 
 function comps(arg) {
    let pro: Promise<string> = new MBake().compsNBake(arg, 0)
@@ -251,20 +141,13 @@ if (argsParsed.comps) {
       console.info(err)
    }
 } else
-   if (argsParsed.elect)
-      unzipE()
-   else if (argsParsed.phonegap)
-      unzipG()
-   else if (argsParsed.ad)
-      unzipD()
-   else if (argsParsed.csv2Json)
+
+   if (argsParsed.csv2Json)
       csv2Json(arg)
    else if (argsParsed.watcher) {
       Wa.watch(arg, argsParsed.port, argsParsed['reload-port']);
    }
-   else if (argsParsed.img) {
-      img(arg)
-   }
+
    else if (argsParsed.dash)
       unzipH()
    else if (argsParsed.map)
@@ -281,12 +164,7 @@ if (argsParsed.comps) {
       bakeD(arg)
    else if (argsParsed.ops)
       frag(arg)
-   else if (argsParsed.gitDown)
-      git(arg)
-   else if (argsParsed.exportFS)
-      exportFS(arg)
-   else if (argsParsed.importFS)
-      importFS(arg)
+
    else if (argsParsed.version)
       version()
    else if (argsParsed.help)
