@@ -7,6 +7,6 @@ npm publish
 # if changed node version do this:
 # sudo yarn global remove mbake
 yarn global add mbake
-mbakeX
+mbake
 
 # find . -type f -name 'package-lock.json' 

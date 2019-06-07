@@ -8,6 +8,7 @@ import clear = require("cli-clear")
 import { Ver, MBake } from './lib/Base'
 import { MinJS,  Sas } from './lib/Extra'
 import { Dirs } from './lib/FileOpsBase'
+import { Wa } from './lib/Wa'
 import { DownloadFrag, Download } from './lib/FileOpsExtra'
 
 clear()
@@ -28,6 +29,8 @@ function help () {
    console.info('Usage:')
    console.info('  To process any_dir Pug to html recursively:                 mbake .')
 
+   console.info('  For local watcher and server:                               mbake -w .')
+
    console.info('  Process SASS/SCSS file into css, requires assets.yaml:      mbake -s .')
    console.info('     or path that has assets.yaml, or any sub-folder under /assets')
 
@@ -43,7 +46,7 @@ function help () {
    console.info(' -------------------------------------------------------------')
    console.info()
    console.info(' Starters:')
-   console.info('  For a starter website:                                      mbake -w')
+   console.info('  For a starter website:                                      mbake -e')
    console.info('  For a starter CMS|items:                                    mbake -c')
 
    console.info('  For an example dynamic web app CRUD:                        mbake -u')
@@ -77,7 +80,11 @@ const optionDefinitions = [
    { name: 'frag', alias: 'f', type: Boolean },
 
    { name: 'CMS', alias: 'c', type: Boolean },
-   { name: 'website', alias: 'w', type: Boolean },
+
+   { name: 'watcher', alias: 'w', type: Boolean },
+
+   { name: 'website', alias: 'e', type: Boolean },
+
    { name: 'CRUD', alias: 'u', type: Boolean }
 ]
 
@@ -187,6 +194,8 @@ else if (argsParsed.version)
    version()
 else if (argsParsed.help)
    help()
+else if (argsParsed.watcher)
+   Wa.watch(arg, argsParsed.port, argsParsed['reload-port']);
 else if (!arg)
    help()
 else
