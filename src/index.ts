@@ -6,6 +6,7 @@ import { EditorRoutes } from './lib/editor';
 import { AdminRoutes } from './lib/admin';
 import { ADB } from './lib/ADB';
 import { Email } from './lib/Email';
+var path = require('path');
 const fs = require('fs-extra')
 const adbDB = new ADB()
 
@@ -13,53 +14,55 @@ const bodyParser = require("body-parser");
 const appPORT = '9081';
 const mainApp = ExpressRPC.makeInstance(['http://localhost:'+appPORT]);
 
-const pathToDb = 'ADB.sqlite'
+const dbName = 'ADB.sqlite'
+console.log("TCL: __dirname", __dirname)
+const pathToDb = path.join(__dirname,dbName)
 
 mainApp.use(bodyParser.json());
 mainApp.use(bodyParser.text());
 mainApp.use(bodyParser.urlencoded({ extended: true })); //To handle HTTP POST request in Express
-
+import opn = require('open')
 const emailJs = new Email();
 
 try {
-   if (adbDB.checkDB(pathToDb)) {
-
-      //file exists
-      /*
-      * E D I T O R S
-      */
-      adbDB.createNewADBwSchema(pathToDb)
-      const editorRoutes = new EditorRoutes();
-      mainApp.use('/api/editors', editorRoutes.routes(adbDB));
-      mainApp.use('/editors', ExpressRPC.serveStatic('www'));
-
-
-      /*
-      * A D M I N
-      */
-      const adminRoutes = new AdminRoutes();
-      mainApp.use('/api/admin', adminRoutes.routes(adbDB));
-      mainApp.use('/admin', ExpressRPC.serveStatic('wwwAdmin'));
-
-      //open admin and editor
-   } else { // VIC: I don't understand what next line does, if DB does not exists, open path?
+   if (adbDB.checkDB(pathToDb)) {//if db exist
+      console.log('run admin')
+      servingFolders()
+      opn('http://localhost:' + appPORT+'/admin')
+   } else {
+      console.log('open db')
       fs.open(pathToDb, 'w', runSetup);
    }
 
 } catch (err) {
-   console.log(err)
 }
 
 
 function runSetup() {
-   mainApp.use('/setup', ExpressRPC.serveStatic('setup'));
-   adbDB.createNewADBwSchema(pathToDb)
-   const editorRoutes = new EditorRoutes();
-   mainApp.use('/api/editors', editorRoutes.routes(adbDB));
-   mainApp.use('/editors/', ExpressRPC.serveStatic('www'));
-   const adminRoutes = new AdminRoutes();
-   mainApp.use('/api/admin', adminRoutes.routes(adbDB));
-   mainApp.use('/admin', ExpressRPC.serveStatic('wwwAdmin'));
+   mainApp.use('/setup', ExpressRPC.serveStatic(path.join(__dirname,'setup')));
+   servingFolders()
+   opn('http://localhost:' + appPORT+'/setup')
+}
+
+function servingFolders(){
+      /*
+      * E D I T O R S
+      */
+     adbDB.createNewADBwSchema(pathToDb)
+     const editorRoutes = new EditorRoutes();
+     mainApp.use('/api/editors', editorRoutes.routes(adbDB));
+     mainApp.use('/editors', ExpressRPC.serveStatic(path.join(__dirname,'www')));
+
+
+     // Wa.watch('/Users/liza/work/mbakeCLI/CMS', 9082);
+
+     /*
+     * A D M I N
+     */
+
+     const adminRoutes = new AdminRoutes();
+     mainApp.use('/api/admin', adminRoutes.routes(adbDB));
+     mainApp.use('/admin', ExpressRPC.serveStatic(path.join(__dirname, 'wwwAdmin')));
 }
 
 mainApp.post("/setup", async (req, res) => {

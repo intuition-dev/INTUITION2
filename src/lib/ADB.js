@@ -138,3 +138,6 @@ class ADB {
     }
 }
 exports.ADB = ADB;
+module.exports = {
+    ADB
+};

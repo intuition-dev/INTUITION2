@@ -6,41 +6,46 @@ const editor_1 = require("./lib/editor");
 const admin_1 = require("./lib/admin");
 const ADB_1 = require("./lib/ADB");
 const Email_1 = require("./lib/Email");
+var path = require('path');
 const fs = require('fs-extra');
 const adbDB = new ADB_1.ADB();
 const bodyParser = require("body-parser");
 const appPORT = '9081';
 const mainApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:' + appPORT]);
-const pathToDb = 'ADB.sqlite';
+const dbName = 'ADB.sqlite';
+console.log("TCL: __dirname", __dirname);
+const pathToDb = path.join(__dirname, dbName);
 mainApp.use(bodyParser.json());
 mainApp.use(bodyParser.text());
 mainApp.use(bodyParser.urlencoded({ extended: true }));
+const opn = require("open");
 const emailJs = new Email_1.Email();
 try {
     if (adbDB.checkDB(pathToDb)) {
-        adbDB.createNewADBwSchema(pathToDb);
-        const editorRoutes = new editor_1.EditorRoutes();
-        mainApp.use('/api/editors', editorRoutes.routes(adbDB));
-        mainApp.use('/editors', Serv_1.ExpressRPC.serveStatic('www'));
-        const adminRoutes = new admin_1.AdminRoutes();
-        mainApp.use('/api/admin', adminRoutes.routes(adbDB));
-        mainApp.use('/admin', Serv_1.ExpressRPC.serveStatic('wwwAdmin'));
+        console.log('run admin');
+        servingFolders();
+        opn('http://localhost:' + appPORT + '/admin');
     }
     else {
+        console.log('open db');
         fs.open(pathToDb, 'w', runSetup);
     }
 }
 catch (err) {
 }
 function runSetup() {
-    mainApp.use('/setup', Serv_1.ExpressRPC.serveStatic('setup'));
+    mainApp.use('/setup', Serv_1.ExpressRPC.serveStatic(path.join(__dirname, 'setup')));
+    servingFolders();
+    opn('http://localhost:' + appPORT + '/setup');
+}
+function servingFolders() {
     adbDB.createNewADBwSchema(pathToDb);
     const editorRoutes = new editor_1.EditorRoutes();
     mainApp.use('/api/editors', editorRoutes.routes(adbDB));
-    mainApp.use('/editors/', Serv_1.ExpressRPC.serveStatic('www'));
+    mainApp.use('/editors', Serv_1.ExpressRPC.serveStatic(path.join(__dirname, 'www')));
     const adminRoutes = new admin_1.AdminRoutes();
     mainApp.use('/api/admin', adminRoutes.routes(adbDB));
-    mainApp.use('/admin', Serv_1.ExpressRPC.serveStatic('wwwAdmin'));
+    mainApp.use('/admin', Serv_1.ExpressRPC.serveStatic(path.join(__dirname, 'wwwAdmin')));
 }
 mainApp.post("/setup", async (req, res) => {
     const method = req.fields.method;
@@ -71,9 +76,7 @@ mainApp.post("/setup", async (req, res) => {
     }
 });
 mainApp.listen(appPORT, () => {
-    console.log(`mainApp listening on port ${appPORT}!`);
     console.log(`======================================================`);
     console.log(`App is running at http://localhost:${appPORT}/editors/`);
-    console.log(`Admin is running at http://localhost:${appPORT}/admin/`);
     console.log(`======================================================`);
 });
