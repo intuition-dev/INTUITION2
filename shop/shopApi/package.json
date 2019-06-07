@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "js-yaml": ">=3.13.1",
-    "mbake": ">=5.7.5",
-    "meta-intuition": ">=0.5.4"
+    "mbake": ">=5.7.6",
+    "meta-intuition": ">=0.5.5"
   },
   "devDependencies": {
-    "@types/node": ">=12.0.6"
+    "@types/node": ">=12.0.7"
   }
 }
