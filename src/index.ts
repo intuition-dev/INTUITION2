@@ -15,7 +15,6 @@ const appPORT = '9081';
 const mainApp = ExpressRPC.makeInstance(['http://localhost:'+appPORT]);
 
 const dbName = 'ADB.sqlite'
-console.log("TCL: __dirname", __dirname)
 const pathToDb = path.join(__dirname,dbName)
 
 mainApp.use(bodyParser.json());
@@ -28,12 +27,11 @@ try {
    if (adbDB.checkDB(pathToDb)) {//if db exist
       console.log('run admin')
       servingFolders()
-      opn('http://localhost:' + appPORT+'/admin')
+      // opn('http://localhost:' + appPORT+'/admin')
    } else {
       console.log('open db')
       fs.open(pathToDb, 'w', runSetup);
    }
-
 } catch (err) {
 }
 

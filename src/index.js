@@ -13,7 +13,6 @@ const bodyParser = require("body-parser");
 const appPORT = '9081';
 const mainApp = Serv_1.ExpressRPC.makeInstance(['http://localhost:' + appPORT]);
 const dbName = 'ADB.sqlite';
-console.log("TCL: __dirname", __dirname);
 const pathToDb = path.join(__dirname, dbName);
 mainApp.use(bodyParser.json());
 mainApp.use(bodyParser.text());
@@ -24,7 +23,6 @@ try {
     if (adbDB.checkDB(pathToDb)) {
         console.log('run admin');
         servingFolders();
-        opn('http://localhost:' + appPORT + '/admin');
     }
     else {
         console.log('open db');

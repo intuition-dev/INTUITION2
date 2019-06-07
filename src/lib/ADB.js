@@ -39,9 +39,14 @@ class ADB {
                 }
                 return row;
             }).then(function (row) {
-                bcrypt.compare(password, row.password, function (err, res) {
-                    resolve(res);
-                });
+                if (typeof row != 'undefined') {
+                    bcrypt.compare(password, row.password, function (err, res) {
+                        resolve(res);
+                    });
+                }
+                else {
+                    resolve(false);
+                }
             });
         });
     }
@@ -70,6 +75,11 @@ class ADB {
                             resolve(temp);
                         });
                     });
+                }
+                else {
+                    let temp = {};
+                    temp['pass'] = false;
+                    resolve(temp);
                 }
             });
         });

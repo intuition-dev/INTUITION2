@@ -49,9 +49,13 @@ export class ADB { // auth & auth DB
             }
             return row
          }).then(function (row) {
-            bcrypt.compare(password, row.password, function (err, res) {
-               resolve(res)
-            })
+            if(typeof row !='undefined'){
+               bcrypt.compare(password, row.password, function (err, res) {
+                  resolve(res)
+               })
+            }else{
+               resolve(false)
+            }
          })
       })
    }
@@ -81,6 +85,10 @@ export class ADB { // auth & auth DB
                         resolve(temp)
                      })
                   });
+            }else{
+               let temp = {}
+               temp['pass'] = false
+               resolve(temp)
             }
          })
       })
