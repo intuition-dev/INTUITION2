@@ -80,14 +80,14 @@ depp.require(['polly'], function () {
          console.log('polly-wcompM', Date.now() - _start)
          depp.done('polly-wcomp')
       })//depp
-   else // ie 11
+   else // eg ie 11
       depp.require('wcomp-loader', function () {
          WebComponents.waitFor(function() {
             console.log('polly-wcomp11', Date.now() - _start)
             depp.done('polly-wcomp')
          })
       })//depp
-})
+})//outer depp
 
 var webAniSupport = false
 try {
