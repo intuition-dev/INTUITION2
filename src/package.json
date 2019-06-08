@@ -7,8 +7,7 @@
         "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, NPM is not supported')\""
     },
     "bin": {
-        "mbake": "mbake.js",
-        "mbakeO": "mbakeX.js"
+        "mbake": "mbake.js"
     },
     "license": "LGPL-3.0-only",
     "author": "http://www.Metabake.org",
