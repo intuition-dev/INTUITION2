@@ -52,7 +52,7 @@ function help () {
    console.info('  For an example dynamic web app CRUD:                        mbake -u')
 
    console.info()
-   console.info('  mbakeX CLI (extra) has watcher, components and more flags and examples: mbakeX')
+   console.info('  mbake-x npm CLI (extra) has watcher, components and more flags and examples')
    console.info()
    console.info(' Full docs: https://docs.Metabake.org')
 
