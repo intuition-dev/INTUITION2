@@ -14,7 +14,7 @@ import { CSV2Json, DownloadFrag  } from './lib/FileOpsExtra'
 const cwd: string = process.cwd()
 
 function version() {
-   console.info('mbakeX CLI version: ' + Ver.ver()) // tsc
+   console.info('mbake-x CLI version: ' + Ver.ver()) // tsc
 }
 
 function help() {
@@ -23,7 +23,7 @@ function help() {
 
 // args: //////////////////////////////////////////////////////////////////////////////////////////////////////
 const optionDefinitions = [
-   { name: 'mbakeX', defaultOption: true },
+   { name: 'mbake-x', defaultOption: true },
 
    { name: 'watcher', alias: 'w', type: Boolean },
 
@@ -45,7 +45,7 @@ const optionDefinitions = [
 ]
 
 const argsParsed = commandLineArgs(optionDefinitions)
-let arg: string = argsParsed.mbakeX
+let arg: string = argsParsed.mbake-x
 console.info()
 
 // ///////////////////////////////////////////////////////////////////////////////////////////
