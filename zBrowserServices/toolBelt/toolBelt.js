@@ -260,7 +260,7 @@ depp.define({
 
    //vid
    ,'mediaelement'   :[ '//cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelementplayer.css'
-                       ,'//cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelement.min.js']
+                     ,  '//cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelement-and-player.min.js']
    ,'bideo' : '//unpkg.com/mtool-belt@1.5.3/vendors/bideo/bideo.min.js'
 
    //voice cmd
