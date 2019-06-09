@@ -36,4 +36,4 @@ More:
 
 ## Awesome list of low-code and MetaBake resources:
 
-- https://github.com/metabake/mbakeDocs/tree/master/awesomeReference
+- https://github.com/MetaBake/mbakeDocs/tree/master/awesomeReference

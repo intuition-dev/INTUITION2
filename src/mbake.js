@@ -38,10 +38,10 @@ function help() {
     console.info();
     console.info('  mbake-x npm CLI (extra) has watcher, components and more flags and examples');
     console.info();
-    console.info(' Full docs: https://docs.Metabake.org');
+    console.info(' Full docs: https://docs.MetaBake.org');
     console.info();
     console.info(' This is the CLI. For WebAdmin version of MetaBake, get from NPM or');
-    console.info('   check this https://github.com/metabake/mbakeWebAdmin ');
+    console.info('   check this https://github.com/MetaBake/mbakeWebAdmin ');
     console.info();
     process.exit();
 }

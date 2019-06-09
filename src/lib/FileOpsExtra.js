@@ -93,7 +93,7 @@ class Download {
         fs.remove(this.targetDir + '/' + fn);
     }
 }
-Download.truth = 'https://metabake.github.io/mBakeCli/versions.yaml';
+Download.truth = 'https://MetaBake.github.io/mBakeCli/versions.yaml';
 exports.Download = Download;
 class Static {
     constructor(jsonUrl, partentFodler, templatePg) {

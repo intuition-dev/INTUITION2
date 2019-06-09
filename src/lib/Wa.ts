@@ -1,4 +1,4 @@
-// All rights reserved by Metabake (Metabake.org) | Cekvenich, licensed under LGPL 3.0
+// All rights reserved by MetaBake (MetaBake.org) | Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
 
 import { MBake} from './Base'
@@ -25,7 +25,7 @@ export class Wa {
       const mp = new MetaPro(dir)
       let ww = new Watch(mp, dir)
       
-      ww.start(500) // build X ms after saving a file
+      ww.start(450) // build X ms after saving a file
 
       console.info(' Serving on ' + 'http://localhost:' + port)
       console.info(' --------------------------')

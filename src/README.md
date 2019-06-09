@@ -196,7 +196,7 @@ In turn, the included file calls a toolBelt.js from a CDN.
 
 ## Next steps
 
-First, please give us a star at: https://github.com/metabake/mbake
+First, please give us a star at: https://github.com/MetaBake/mbake
 
 Now that you know mbake foundation, here are some choices for next things to learn in the advanced docs, pick and chose:
 
@@ -217,7 +217,7 @@ Now that you know mbake foundation, here are some choices for next things to lea
 
 # Links
 
-- Full Docs: [metabake.github.io/mBakeCli](http://metabake.github.io/mBakeCli)
+- Full Docs: [MetaBake.github.io/mBakeCli](http://MetaBake.github.io/mBakeCli)
 - [MetaBake.org](https://www.MetaBake.org)
 - [blog.MetaBake.net](http://blog.MetaBake.net)
 - [Github](http://git.MetaBake.org)

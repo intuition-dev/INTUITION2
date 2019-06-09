@@ -1,4 +1,4 @@
-// All rights reserved by Metabake (Metabake.org) | Cekvenich, licensed under LGPL 3.0
+// All rights reserved by MetaBake (MetaBake.org) | Cekvenich, licensed under LGPL 3.0
 
 //TODO: JSON compress response
 //TODO: b64  encode params

@@ -118,7 +118,7 @@ depp.define({
    'disableAutoFill' :['#jquery','//unpkg.com/mtool-belt@1.5.5/vendors/jquery.disableAutoFill.min.js']
    ,'DEBUG'          :'//unpkg.com/mtool-belt@1.5.5/vendors/debug.css'
 
-   ,'WebAdmin': ['#RPC','//unpkg.com/metabake-web-admin-api@0.1.0/WebAdmin.min.js']
+   ,'WebAdmin': ['#RPC','//unpkg.com/MetaBake-web-admin-api@0.1.0/WebAdmin.min.js']
    ,'RPC': ['#polly', '//unpkg.com/http-rpc@1.0.6/httpRPC.min.js']
    ,'SPA': ['#polly', '//unpkg.com/spa-ts-router@4.15.19/spa-router.min.js', '#state-machine']
 
