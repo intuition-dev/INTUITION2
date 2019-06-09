@@ -457,7 +457,7 @@ function loadFonts(fonts) {
         families: [ fonts ]
      },
      active: function() {
-        console.log('aF')
+        console.log('onFontsLoaded')
         disE('onFontsLoaded')
      }
   }
