@@ -1,6 +1,6 @@
 {
    "name": "mtool-belt",
-   "version": "1.5.3",
+   "version": "1.5.4",
    "description": "Setup app. architecture, 'glue' and standard depp(depp.js) defs to require. By MetaBake.org",
 
    "license": "LGPL-3.0-only"

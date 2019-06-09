@@ -13,7 +13,7 @@ It saves time, sets baseline for depps, defines popular/approved libs:
 
 That will emit this code:
 
-      script(src='//unpkg.com/mtool-belt@1.5.3/toolBelt.min.js')
+      script(src='//unpkg.com/mtool-belt@1.5.4/toolBelt.min.js')
 
 It also contains polyfill and some other frequently needed functions.
 
