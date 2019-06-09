@@ -61,6 +61,7 @@ export class Watch {
       watchList.push(this.root+'/**/*.sass')
       watchList.push(this.root+'/**/*.yaml')
       watchList.push(this.root+'/**/*.js')
+      watchList.push(this.root+'/**/*.json')
 
       logger.trace(watchList)
       this.watcher = chokidar.watch(watchList, {
