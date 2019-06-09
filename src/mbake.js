@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const AdmZip = require("adm-zip");
 const commandLineArgs = require("command-line-args");
 const clear = require("cli-clear");
 const Base_1 = require("./lib/Base");
@@ -63,18 +62,12 @@ const argsParsed = commandLineArgs(optionDefinitions);
 let arg = argsParsed.mbake;
 console.info();
 function unzipCRUD() {
-    let src = __dirname + '/CRUD.zip';
-    let zip = new AdmZip(src);
-    zip.extractAllTo(cwd, true);
+    new FileOpsExtra_1.Download('CRUD', __dirname).autoZ();
     console.info('Extracting an example CRUD to ./CRUD');
-    process.exit();
 }
 function unzipS() {
-    let src = __dirname + '/website.zip';
-    let zip = new AdmZip(src);
-    zip.extractAllTo(cwd, true);
+    new FileOpsExtra_1.Download('website', __dirname).autoZ();
     console.info('Extracting a starter website to ./website');
-    process.exit();
 }
 function unzipE() {
     new FileOpsExtra_1.Download('CMS', __dirname).autoZ();

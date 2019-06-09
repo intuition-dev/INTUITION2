@@ -7,3 +7,5 @@ opsJs: https://unpkg.com/mtool-belt@1.5.2/template/ops.js
 
 
 CMS: https://github.com/metabake/metaIntuition/raw/master/CMS.zip
+website: https://github.com/metabake/metaIntuition/raw/master/examples/website.zip
+CRUD: https://github.com/metabake/mBakeCli/raw/master/CRUD.zip
