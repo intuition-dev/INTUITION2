@@ -94,18 +94,12 @@ console.info()
 
 // unzip: ////////////////////////////////////////////////////////////////////////////////////////////
 function unzipCRUD () {
-   let src: string = __dirname + '/CRUD.zip'
-   let zip = new AdmZip(src)
-   zip.extractAllTo(cwd, /*overwrite*/true)
+   new Download('CRUD', __dirname).autoZ()
    console.info('Extracting an example CRUD to ./CRUD')
-   process.exit()
 }
 function unzipS () {
-   let src: string = __dirname + '/website.zip'
-   let zip = new AdmZip(src)
-   zip.extractAllTo(cwd, /*overwrite*/true)
+   new Download('website', __dirname).autoZ()
    console.info('Extracting a starter website to ./website')
-   process.exit()
 }
 function unzipE () {
    new Download('CMS', __dirname).autoZ()
