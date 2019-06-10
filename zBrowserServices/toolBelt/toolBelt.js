@@ -221,9 +221,9 @@ depp.define({
    // moment is very large, avoid. Do try to use 'long' / linuxtime on back end
    ,'luxon'    : '//cdn.jsdelivr.net/npm/luxon@1.13.0/build/global/luxon.min.js'
 
-   // template-ing, eg for webcomps
-   ,'doTempl1':'//cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
-   ,'doTempl': '//cdn.jsdelivr.net/npm/dot@2.0.0-beta.0/doT.js'
+   // template-ing, eg for webcomps, instead of mustache
+   ,'doTempl': '//cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
+   ,'doTempl2':'//cdn.jsdelivr.net/npm/dot@2.0.0-beta.0/doT.js'
    
    //
    ,'bcrypt':'//cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js'
