@@ -138,9 +138,9 @@ depp.define({
     //vega
    ,'datalib':'//cdn.jsdelivr.net/npm/datalib@1.9.2/datalib.min.js'
 
-   ,'vega'  : [ '//cdn.jsdelivr.net/npm/vega@5.3.5'
-                ,'//cdn.jsdelivr.net/npm/vega-lite@3.2.1'
-                ,'//cdn.jsdelivr.net/npm/vega-embed@4.0.0'
+   ,'vega'  : [ '//cdn.jsdelivr.net/npm/vega@5.4.0'
+                ,'//cdn.jsdelivr.net/npm/vega-lite@3.3.0'
+                ,'//cdn.jsdelivr.net/npm/vega-embed@4.2.0'
                 ,'//cdn.jsdelivr.net/npm/vega-tooltip@0.17.0/build/vega-tooltip.min.js'
               ]
 
