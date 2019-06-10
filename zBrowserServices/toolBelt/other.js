@@ -31,8 +31,10 @@ depp.define({
    ,'MOCKUPStyle': [ '//cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.css',
                     ,'//cdn.jsdelivr.net/npm/spectre.css@0.5.8/dist/spectre.min.css']
 
-   //TODO: test
+   //TODO: test, 
    ,'instantclick':'//cdn.jsdelivr.net/npm/@teamthread/instantclick@4.1.0/src/instantclick.min.js'
+
+   ,'doTempl2':'//cdn.jsdelivr.net/npm/dot@2.0.0-beta.0/doT.js'
 
    // 
    ,'croppie': ['//cdn.jsdelivr.net/npm/croppie@2.6.4/croppie.min.js'
