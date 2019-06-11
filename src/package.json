@@ -76,6 +76,9 @@
         "n": ">=4.1.0",
         "npm-check-updates": ">=3.1.10",
         "ttypescript": ">=1.5.7",
-        "yarn": ">=1.16.0"
+        "yarn": ">=1.16.0",
+        "collect.js": "^4.12.5",
+        "datalib": "^1.9.2",
+        "validate.js": "^0.12.0"
       }
 }
