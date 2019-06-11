@@ -44,9 +44,6 @@ depp.define({
    ,'intro' :['//cdn.jsdelivr.net/npm/intro.js@2.9.3/intro.min.js'
              ,'//cdn.jsdelivr.net/npm/intro.js@2.9.3/introjs.css']
 
-   //for AMP
-   ,'mustache': ['//cdn.jsdelivr.net/npm/mustache@3.0.1/mustache.min.js']
-
    ,'jqTransit':['#jquery','//cdn.jsdelivr.net/jquery.transit/0.9.12/jquery.transit.min.js']
 
    ,'togetherjs':'//togetherjs.com/togetherjs-min.js'

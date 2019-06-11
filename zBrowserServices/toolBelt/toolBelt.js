@@ -222,8 +222,9 @@ depp.define({
    ,'luxon'    : '//cdn.jsdelivr.net/npm/luxon@1.13.0/build/global/luxon.min.js'
 
    // template-ing, eg for webcomps, instead of mustache
-   ,'doTempl': '//cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
-   
+   ,'doTempl':   '//cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
+   ,'mustache': ['//cdn.jsdelivr.net/npm/mustache@3.0.1/mustache.min.js']
+
    //
    ,'bcrypt':'//cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js'
 
