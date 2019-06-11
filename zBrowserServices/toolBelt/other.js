@@ -44,6 +44,8 @@ depp.define({
    ,'intro' :['//cdn.jsdelivr.net/npm/intro.js@2.9.3/intro.min.js'
              ,'//cdn.jsdelivr.net/npm/intro.js@2.9.3/introjs.css']
 
+   ,'validator': ['//cdn.jsdelivr.net/npm/validator@10.11.0/validator.min.js']
+
    ,'jqTransit':['#jquery','//cdn.jsdelivr.net/jquery.transit/0.9.12/jquery.transit.min.js']
 
    ,'togetherjs':'//togetherjs.com/togetherjs-min.js'

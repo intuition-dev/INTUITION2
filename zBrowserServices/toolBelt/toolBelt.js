@@ -146,7 +146,6 @@ depp.define({
 
    // use for validation. eg: check in VM and return 'OK' to view|binding; or return validation errors if found
    ,'validate' :  '//cdn.jsdelivr.net/npm/validate.js@0.12.0/validate.min.js'
-   ,'validator': ['//cdn.jsdelivr.net/npm/validator@10.11.0/validator.min.js']
 
    //intro steps
    ,'hopscotch'   :['//cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/js/hopscotch.min.js'
