@@ -94,11 +94,6 @@ class Download {
 }
 Download.truth = 'https://MetaBake.github.io/mBakeCli/versions.yaml';
 exports.Download = Download;
-class Static {
-    constructor(jsonUrl, partentFodler, templatePg) {
-    }
-}
-exports.Static = Static;
 class YamlConfig {
     constructor(fn) {
         let cfg = yaml.load(fs.readFileSync(fn));

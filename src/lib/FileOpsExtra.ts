@@ -80,7 +80,6 @@ export class Download {
       return new Promise(function (resolve, reject) {
          download(Download.truth).then(data => {
             let dic = yaml.load(data)
-            logger.trace(THIZ.key, dic)
             resolve(dic[THIZ.key])
          })
       })//pro
@@ -105,15 +104,6 @@ export class Download {
    }
 }//class
 
-
-//makes dat.yaml in folders.
-export class Static {
-   constructor(jsonUrl: string, partentFodler: string, templatePg: string) {
-
-   }
-
-
-}
 
 export class YamlConfig {
    constructor(fn) {
