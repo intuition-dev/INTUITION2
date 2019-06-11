@@ -126,7 +126,66 @@ export class Dat {
    }//()
 }//class
 
+export class FileOps {
+   root
+   constructor(root_) {
+      this.root = Dirs.slash(root_)
+   }
+
+   /** returns # of files with the name, used for edit ver */
+   count(fileAndExt): number {
+
+      const files = FileHound.create()
+         .paths(this.root)
+         .depth(0)
+         .match(fileAndExt + '*')
+         .findSync()
+
+      return files.length
+   }
+
+   clone(src, dest): Promise<string> {
+      return new Promise((resolve, reject) => {
+         logger.info('copy?')
+
+         fs.copySync(this.root + src, this.root + dest)
+
+         let p = this.root + dest
+         logger.info(p)
+         const d = new Dat(p)
+         d.write()
+         logger.info('copy!')
+         resolve('OK')
+      })
+   }//()
+
+   write(destFile, txt) {
+      logger.info(this.root + destFile)
+      fs.writeFileSync(this.root + destFile, txt)
+   }
+
+   read(file): string {
+      return fs.readFileSync(this.root + file).toString()
+   }
+
+   remove(path) {
+      let dir_path = this.root + path
+      logger.info('remove:' + dir_path)
+      if (fs.existsSync(dir_path)) {
+         fs.readdirSync(dir_path).forEach(function (entry) {
+            fs.unlinkSync(dir_path + '/' + entry)
+         })
+         fs.rmdirSync(dir_path)
+      }
+   }
+   removeFile(path) {
+      let file_path = this.root + path
+      fs.unlinkSync(file_path)
+   }
+}//class
+
+
 module.exports = {
-  Dat, Dirs
+  Dat, Dirs, FileOps
 }
 

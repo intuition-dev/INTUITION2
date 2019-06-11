@@ -1,6 +1,6 @@
 {
     "name": "mbake",
-    "version": "6.06.07",
+    "version": "6.06.08",
     "description": "*All my friends KNOW the low-coder*; MetaBake(mbake) is open source and extensible low-code productivity tool for programmers.",
     "main": "mbake.js",
     "scripts": {
@@ -72,7 +72,7 @@
         "@marp-team/marpit"
     ],
     "devDependencies": {
-        "@types/node": ">=12.0.7",
+        "@types/node": ">=12.0.8",
         "n": ">=4.1.0",
         "npm-check-updates": ">=3.1.10",
         "ttypescript": ">=1.5.7",
