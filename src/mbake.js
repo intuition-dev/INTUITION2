@@ -1,20 +1,20 @@
 #!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var commandLineArgs = require("command-line-args");
-var clear = require("cli-clear");
-var Base_1 = require("./lib/Base");
-var Extra_1 = require("./lib/Extra");
-var FileOpsBase_1 = require("./lib/FileOpsBase");
-var Wa_1 = require("./lib/Wa");
-var FileOpsExtra_1 = require("./lib/FileOpsExtra");
+const commandLineArgs = require("command-line-args");
+const clear = require("cli-clear");
+const Base_1 = require("./lib/Base");
+const Extra_1 = require("./lib/Extra");
+const FileOpsBase_1 = require("./lib/FileOpsBase");
+const Wa_1 = require("./lib/Wa");
+const FileOpsExtra_1 = require("./lib/FileOpsExtra");
 clear();
-var cwd = process.cwd();
+const cwd = process.cwd();
 function version() {
     console.info('mbake CLI version: ' + Base_1.Ver.ver());
 }
 function help() {
-    var b = new Base_1.Ver();
+    let b = new Base_1.Ver();
     console.info();
     console.info('mbake CLI version: ' + Base_1.Ver.ver());
     console.info();
@@ -45,7 +45,7 @@ function help() {
     console.info();
     process.exit();
 }
-var optionDefinitions = [
+const optionDefinitions = [
     { name: 'mbake', defaultOption: true },
     { name: 'help', alias: 'h', type: Boolean },
     { name: 'version', alias: 'v', type: Boolean },
@@ -58,8 +58,8 @@ var optionDefinitions = [
     { name: 'website', alias: 'e', type: Boolean },
     { name: 'CRUD', alias: 'u', type: Boolean }
 ];
-var argsParsed = commandLineArgs(optionDefinitions);
-var arg = argsParsed.mbake;
+const argsParsed = commandLineArgs(optionDefinitions);
+let arg = argsParsed.mbake;
 console.info();
 function unzipCRUD() {
     new FileOpsExtra_1.Download('CRUD', __dirname).autoZ();
@@ -82,9 +82,9 @@ if (arg) {
     }
     else if (arg.startsWith('..')) {
         arg = arg.substring(2);
-        var d = cwd;
+        let d = cwd;
         d = FileOpsBase_1.Dirs.slash(d);
-        var n = d.lastIndexOf('/');
+        let n = d.lastIndexOf('/');
         d = d.substring(0, n);
         arg = d + arg;
     }
@@ -96,29 +96,29 @@ if (arg) {
     }
 }
 function bake(arg) {
-    var pro = new Base_1.MBake().bake(arg, 0);
+    let pro = new Base_1.MBake().bake(arg, 0);
     pro.then(function (val) {
         console.log(val);
         process.exit();
     });
 }
 function itemize(arg) {
-    var pro = new Base_1.MBake().itemizeNBake(arg, 0);
+    let pro = new Base_1.MBake().itemizeNBake(arg, 0);
     pro.then(function (val) {
         console.log(val);
         process.exit();
     });
 }
 function css(arg) {
-    var pro = new Extra_1.Sas().css(arg);
+    let pro = new Extra_1.Sas().css(arg);
     pro.then(function (val) {
         console.log(val);
         process.exit();
     });
 }
 function minJS(arg) {
-    var min = new Extra_1.MinJS();
-    var pro = min.ts(arg);
+    let min = new Extra_1.MinJS();
+    let pro = min.ts(arg);
     pro.then(function (val) {
         console.log(val);
         min.min(arg);
