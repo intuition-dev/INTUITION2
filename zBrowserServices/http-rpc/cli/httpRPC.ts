@@ -45,7 +45,7 @@ class httpRPC {//
    * @param method CRUD, insert, check, listAll, etc
    * @param params Object of name value pairs, likely include corp so setUser('x') can check if allowed. Params must be JSON safe, so maybe b64
    */
-  invoke(ent, method, params):Promise<string> { // returns promise of results or err
+  invoke(ent, method, params, fileUpload):Promise<string> { // returns promise of results or err
     //if array, return as array
 
     let formData = new FormData()
@@ -55,6 +55,8 @@ class httpRPC {//
     formData.append('pswd', btoa(this.pswd))
 
     formData.append('method', method)
+
+    formData.append('sampleFile', fileUpload)
 
     const THIZ = this
     return new Promise(function(resolve, reject) {
