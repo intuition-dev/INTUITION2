@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = require('express');
-const bodyParser = require('body-parser');
-const formidable = require('express-formidable');
-const logger = require('tracer').console();
-class CustomCors {
-    constructor(validOrigins) {
-        return (request, response, next) => {
-            const origin = request.get('origin');
+var express = require('express');
+var bodyParser = require('body-parser');
+var formidable = require('express-formidable');
+var logger = require('tracer').console();
+var CustomCors = (function () {
+    function CustomCors(validOrigins) {
+        return function (request, response, next) {
+            var origin = request.get('origin');
             if (!origin) {
                 return next();
             }
-            let approved = false;
+            var approved = false;
             validOrigins.forEach(function (ori) {
                 if (ori == '*')
                     approved = true;
@@ -26,38 +26,44 @@ class CustomCors {
             response.status(403).end();
         };
     }
-    static getReqAsOrigin(req) {
-        let proto = req.connection.encrypted ? 'https' : 'http';
-        const host = req.hostname;
-        let original = req.originalUrl;
+    CustomCors.getReqAsOrigin = function (req) {
+        var proto = req.connection.encrypted ? 'https' : 'http';
+        var host = req.hostname;
+        var original = req.originalUrl;
         logger.trace(original);
-        let origin = proto + '://' + host;
+        var origin = proto + '://' + host;
         return origin;
-    }
-}
+    };
+    return CustomCors;
+}());
 exports.CustomCors = CustomCors;
-class ExpressRPC {
-    static makeInstance(origins) {
+var ExpressRPC = (function () {
+    function ExpressRPC() {
+    }
+    ExpressRPC.makeInstance = function (origins) {
         console.log('Allowed >>> ', origins);
-        const cors = new CustomCors(origins);
-        const appInst = express();
+        var cors = new CustomCors(origins);
+        var appInst = express();
         appInst.use(cors);
         appInst.use(bodyParser.urlencoded({ extended: false }));
         appInst.use(formidable());
         return appInst;
-    }
-    static serveStatic(path) {
+    };
+    ExpressRPC.serveStatic = function (path) {
         return express.static(path);
-    }
-}
+    };
+    return ExpressRPC;
+}());
 exports.ExpressRPC = ExpressRPC;
-class RPCBasicAuth {
-    auth(user, password) {
-        let buffUser = new Buffer(user);
+var RPCBasicAuth = (function () {
+    function RPCBasicAuth() {
+    }
+    RPCBasicAuth.prototype.auth = function (user, password) {
+        var buffUser = new Buffer(user);
         user = buffUser.toString('base64');
-        let buffPwd = new Buffer(password);
+        var buffPwd = new Buffer(password);
         password = buffPwd.toString('base64');
-        return (request, response, next) => {
+        return function (request, response, next) {
             if (typeof request.fields.user === 'undefined'
                 || typeof request.fields.pswd === 'undefined') {
                 console.info('user or pswd not exist');
@@ -73,10 +79,11 @@ class RPCBasicAuth {
                 return next();
             }
         };
-    }
+    };
     ;
-}
+    return RPCBasicAuth;
+}());
 exports.RPCBasicAuth = RPCBasicAuth;
 module.exports = {
-    ExpressRPC, RPCBasicAuth
+    ExpressRPC: ExpressRPC, RPCBasicAuth: RPCBasicAuth
 };

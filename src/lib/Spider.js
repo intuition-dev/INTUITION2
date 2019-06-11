@@ -1,60 +1,57 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const FileOpsBase_1 = require("./FileOpsBase");
-const probe = require("probe-image-size");
-const extractor = require("unfluff");
-const axios_1 = __importDefault(require("axios"));
-const logger = require('tracer').console();
-const sm = require("sitemap");
-const traverse = require("traverse");
-const lunr = require("lunr");
-const yaml = require("js-yaml");
-const fs = require("fs-extra");
-const FileHound = require("filehound");
-class Map {
-    constructor(root) {
+var FileOpsBase_1 = require("./FileOpsBase");
+var probe = require("probe-image-size");
+var extractor = require("unfluff");
+var axios_1 = require("axios");
+var logger = require('tracer').console();
+var sm = require("sitemap");
+var traverse = require("traverse");
+var lunr = require("lunr");
+var yaml = require("js-yaml");
+var fs = require("fs-extra");
+var FileHound = require("filehound");
+var Map = (function () {
+    function Map(root) {
         if (!root || root.length < 1) {
             console.info('no path arg passed');
             return;
         }
         this._root = root;
     }
-    gen() {
+    Map.prototype.gen = function () {
         return new Promise(function (resolve, reject) {
-            const m = yaml.load(fs.readFileSync(this._root + '/map.yaml'));
-            let jmenu = JSON.stringify(m.menu, null, 2);
+            var m = yaml.load(fs.readFileSync(this._root + '/map.yaml'));
+            var jmenu = JSON.stringify(m.menu, null, 2);
             fs.writeFileSync(this._root + '/menu.json', jmenu);
             this._sitemap = sm.createSitemap({
                 hostname: m['host']
             });
-            let leaves = traverse(m.menu).reduce(function (acc, x) {
+            var leaves = traverse(m.menu).reduce(function (acc, x) {
                 if (this.isLeaf)
                     acc.push(x);
                 return acc;
             }, []);
-            let itemsRoot = m['itemsRoot'];
+            var itemsRoot = m['itemsRoot'];
             if (itemsRoot) {
-                const d = new FileOpsBase_1.Dirs(this._root + itemsRoot);
+                var d = new FileOpsBase_1.Dirs(this._root + itemsRoot);
                 leaves = leaves.concat(d.getFolders());
             }
-            let arrayLength = leaves.length;
+            var arrayLength = leaves.length;
             logger.info(arrayLength);
-            for (let i = 0; i < arrayLength; i++) {
+            for (var i = 0; i < arrayLength; i++) {
                 try {
-                    let path = leaves[i];
+                    var path = leaves[i];
                     if (path.includes(this._root))
                         path = path.replace(this._root, '');
-                    let fullPath = this._root + path;
-                    let dat = new FileOpsBase_1.Dat(fullPath);
-                    let props = dat.getAll();
+                    var fullPath = this._root + path;
+                    var dat = new FileOpsBase_1.Dat(fullPath);
+                    var props = dat.getAll();
                     logger.info(path);
-                    let priority = props['priority'];
+                    var priority = props['priority'];
                     if (!priority)
                         priority = 0.3;
-                    let image = props['image'];
+                    var image = props['image'];
                     if (!image) {
                         this._sitemap.add({
                             url: path,
@@ -79,7 +76,7 @@ class Map {
                     logger.info(err);
                 }
             }
-            const thiz = this;
+            var thiz = this;
             this._sitemap.toXML(function (err, xml) {
                 fs.writeFileSync(thiz._root + '/sitemap.xml', xml);
                 console.info(' Sitemap ready');
@@ -87,28 +84,29 @@ class Map {
             });
             resolve('OK');
         });
-    }
-    _map(leaves) {
-        let documents = [];
-        let arrayLength = leaves.length;
-        for (let i = 0; i < arrayLength; i++) {
+    };
+    Map.prototype._map = function (leaves) {
+        var documents = [];
+        var arrayLength = leaves.length;
+        for (var i = 0; i < arrayLength; i++) {
             try {
-                let path = leaves[i];
+                var path = leaves[i];
                 if (path.includes(this._root))
                     path = path.replace(this._root, '');
-                let fullPath = this._root + path;
-                const rec = FileHound.create()
+                var fullPath = this._root + path;
+                var rec = FileHound.create()
                     .paths(fullPath)
                     .ext('md')
                     .findSync();
-                let text = '';
-                for (let val of rec) {
+                var text = '';
+                for (var _i = 0, rec_1 = rec; _i < rec_1.length; _i++) {
+                    var val = rec_1[_i];
                     val = FileOpsBase_1.Dirs.slash(val);
                     console.info(val);
-                    let txt1 = fs.readFileSync(val, "utf8");
+                    var txt1 = fs.readFileSync(val, "utf8");
                     text = text + ' ' + txt1;
                 }
-                const row = {
+                var row = {
                     id: path,
                     body: text
                 };
@@ -119,30 +117,31 @@ class Map {
             }
         }
         logger.info(documents.length);
-        let idx = lunr(function () {
+        var idx = lunr(function () {
             this.ref('id');
             this.field('body');
             documents.forEach(function (doc) {
                 this.add(doc);
             }, this);
         });
-        const jidx = JSON.stringify(idx);
+        var jidx = JSON.stringify(idx);
         fs.writeFileSync(this._root + '/FTS.idx', jidx);
         console.info(' Map generated menu.json, sitemap.xml and FTS.idx(json) index in ' + this._root);
-    }
-}
+    };
+    return Map;
+}());
 exports.Map = Map;
-class Scrape {
-    constructor() {
+var Scrape = (function () {
+    function Scrape() {
         axios_1.default.defaults.responseType = 'document';
     }
-    s(url) {
+    Scrape.prototype.s = function (url) {
         return new Promise(function (resolve, reject) {
             try {
                 console.info(url);
                 axios_1.default.get(url).then(function (response) {
-                    let data = extractor.lazy(response.data);
-                    let ret = new Object();
+                    var data = extractor.lazy(response.data);
+                    var ret = new Object();
                     ret['title'] = data.softTitle();
                     ret['content_text'] = data.description();
                     ret['image'] = data.image();
@@ -156,27 +155,28 @@ class Scrape {
                 reject(err);
             }
         });
-    }
-    static __getImageSize(iurl_) {
+    };
+    Scrape.__getImageSize = function (iurl_) {
         logger.info(iurl_);
         return probe(iurl_, { timeout: 3000 });
-    }
-    static alphaNumeric(str) {
+    };
+    Scrape.alphaNumeric = function (str) {
         if (!str)
             return '';
-        const alpha_numeric = Array.from('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' + ' ');
-        let filterd_string = '';
-        for (let i = 0; i < str.length; i++) {
-            let char = str[i];
-            let index = alpha_numeric.indexOf(char);
+        var alpha_numeric = Array.from('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' + ' ');
+        var filterd_string = '';
+        for (var i = 0; i < str.length; i++) {
+            var char = str[i];
+            var index = alpha_numeric.indexOf(char);
             if (index > -1) {
                 filterd_string += alpha_numeric[index];
             }
         }
         return filterd_string;
-    }
-}
+    };
+    return Scrape;
+}());
 exports.Scrape = Scrape;
 module.exports = {
-    Scrape
+    Scrape: Scrape
 };

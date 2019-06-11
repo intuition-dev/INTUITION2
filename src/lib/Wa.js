@@ -1,42 +1,80 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Base_1 = require("./Base");
-const Extra_1 = require("./Extra");
-const FileOpsBase_1 = require("./FileOpsBase");
-const express = require("express");
-const chokidar = require("chokidar");
-const reload = require("reload");
-const cheerio = require("cheerio");
-const interceptor = require("express-interceptor");
-const logger = require('tracer').console();
-const opn = require("open");
-class Wa {
-    static watch(dir, port, reloadPort) {
+var Base_1 = require("./Base");
+var Extra_1 = require("./Extra");
+var FileOpsBase_1 = require("./FileOpsBase");
+var express = require("express");
+var chokidar = require("chokidar");
+var reload = require("reload");
+var cheerio = require("cheerio");
+var interceptor = require("express-interceptor");
+var logger = require('tracer').console();
+var opn = require("open");
+var Wa = (function () {
+    function Wa() {
+    }
+    Wa.watch = function (dir, port, reloadPort) {
         port = port || 8090;
-        let ss = new MDevSrv(dir, port, reloadPort);
-        const mp = new MetaPro(dir);
-        let ww = new Watch(mp, dir);
-        ww.start(400);
+        var ss = new MDevSrv(dir, port, reloadPort);
+        var mp = new MetaPro(dir);
+        var ww = new Watch(mp, dir);
+        ww.start(450);
         console.info(' Serving on ' + 'http://localhost:' + port);
         console.info(' --------------------------');
         console.info('');
         opn('http://localhost:' + port);
-    }
-}
+    };
+    return Wa;
+}());
 exports.Wa = Wa;
-class Watch {
-    constructor(mp_, mount) {
+var Watch = (function () {
+    function Watch(mp_, mount) {
         this.mp = mp_;
         if (mount.endsWith('/.')) {
             mount = mount.slice(0, -1);
         }
         this.root = mount;
     }
-    start(delay_) {
+    Watch.prototype.start = function (delay_) {
         this.delay = delay_;
         console.info(' watcher starting');
         console.info(this.root);
-        let watchList = [];
+        var watchList = [];
         watchList.push(this.root + '/**/*.md');
         watchList.push(this.root + '/**/*.ts');
         watchList.push(this.root + '/**/*.pug');
@@ -44,6 +82,7 @@ class Watch {
         watchList.push(this.root + '/**/*.sass');
         watchList.push(this.root + '/**/*.yaml');
         watchList.push(this.root + '/**/*.js');
+        watchList.push(this.root + '/**/*.json');
         logger.trace(watchList);
         this.watcher = chokidar.watch(watchList, {
             ignoreInitial: true,
@@ -58,122 +97,174 @@ class Watch {
                 pollInterval: delay_ * .5
             }
         });
-        let thiz = this;
-        this.watcher.on('add', async function (path) {
-            await thiz.autoNT(path, 'a');
+        var thiz = this;
+        this.watcher.on('add', function (path) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4, thiz.autoNT(path, 'a')];
+                        case 1:
+                            _a.sent();
+                            return [2];
+                    }
+                });
+            });
         });
-        this.watcher.on('change', async function (path) {
-            await thiz.autoNT(path, 'c');
+        this.watcher.on('change', function (path) {
+            return __awaiter(this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4, thiz.autoNT(path, 'c')];
+                        case 1:
+                            _a.sent();
+                            return [2];
+                    }
+                });
+            });
         });
-    }
-    refreshBro() {
+    };
+    Watch.prototype.refreshBro = function () {
         MDevSrv.reloadServer.reload();
-    }
-    async autoNT(path_, wa) {
-        console.log(wa);
-        let path = FileOpsBase_1.Dirs.slash(path_);
-        let p = path.lastIndexOf('/');
-        let folder = '';
-        let fn = path;
-        if (p > 0) {
-            folder = path.substring(0, p);
-            fn = path.substr(p + 1);
-        }
-        try {
-            logger.info('WATCHED1:', folder + '/' + fn);
-            await this.mp.autoBake(folder, fn);
-            await this.refreshBro();
-        }
-        catch (err) {
-            logger.warn(err);
-        }
-    }
-}
+    };
+    Watch.prototype.autoNT = function (path_, wa) {
+        return __awaiter(this, void 0, void 0, function () {
+            var path, p, folder, fn, err_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(wa);
+                        path = FileOpsBase_1.Dirs.slash(path_);
+                        p = path.lastIndexOf('/');
+                        folder = '';
+                        fn = path;
+                        if (p > 0) {
+                            folder = path.substring(0, p);
+                            fn = path.substr(p + 1);
+                        }
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 4, , 5]);
+                        logger.info('WATCHED1:', folder + '/' + fn);
+                        return [4, this.mp.autoBake(folder, fn)];
+                    case 2:
+                        _a.sent();
+                        return [4, this.refreshBro()];
+                    case 3:
+                        _a.sent();
+                        return [3, 5];
+                    case 4:
+                        err_1 = _a.sent();
+                        logger.warn(err_1);
+                        return [3, 5];
+                    case 5: return [2];
+                }
+            });
+        });
+    };
+    return Watch;
+}());
 exports.Watch = Watch;
-class MetaPro {
-    constructor(mount) {
+var MetaPro = (function () {
+    function MetaPro(mount) {
         this.b = new Base_1.MBake();
         this.mount = mount;
         logger.info('MetaPro', this.mount);
     }
-    bake(dir) {
-        let folder = this.mount + '/' + dir;
+    MetaPro.prototype.bake = function (dir) {
+        var folder = this.mount + '/' + dir;
         logger.info(folder);
         return this.b.bake(folder, 0);
-    }
-    comps(dir) {
-        let folder = this.mount + '/' + dir;
+    };
+    MetaPro.prototype.comps = function (dir) {
+        var folder = this.mount + '/' + dir;
         logger.info(folder);
         return this.b.compsNBake(folder, 0);
-    }
-    itemize(dir) {
+    };
+    MetaPro.prototype.itemize = function (dir) {
         return this.b.itemizeNBake(this.mount + '/' + dir, 0);
-    }
-    css(dir) {
+    };
+    MetaPro.prototype.css = function (dir) {
         return new Extra_1.Sas().css(this.mount + '/' + dir);
-    }
-    ts(dir) {
-        const folder = this.mount + '/' + dir;
-        const js = new Extra_1.MinJS();
+    };
+    MetaPro.prototype.ts = function (dir) {
+        var folder = this.mount + '/' + dir;
+        var js = new Extra_1.MinJS();
         return js.ts(folder);
-    }
-    async autoBake(folder__, file) {
-        const folder = FileOpsBase_1.Dirs.slash(folder__);
-        const ext = file.split('.').pop();
-        logger.info('WATCHED2:', folder, ext);
-        if (ext == 'scss' || ext == 'sass')
-            return await this.css(folder);
-        if (ext == 'ts')
-            return await this.ts(folder);
-        if (ext == 'yaml')
-            return await this.itemize(folder);
-        if (ext == 'md')
-            return await this.bake(folder);
-        if (ext == 'pug') {
-            if (file.indexOf('-comp') >= 0)
-                return await this.comps(folder);
-            else
-                return await this.bake(folder);
-        }
-        return ('Cant process ' + ext);
-    }
-}
-MetaPro.folderProp = 'folder';
-MetaPro.srcProp = 'src';
-MetaPro.destProp = 'dest';
+    };
+    MetaPro.prototype.autoBake = function (folder__, file) {
+        return __awaiter(this, void 0, void 0, function () {
+            var folder, ext;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        folder = FileOpsBase_1.Dirs.slash(folder__);
+                        ext = file.split('.').pop();
+                        logger.info('WATCHED2:', folder, ext);
+                        if (!(ext == 'scss' || ext == 'sass')) return [3, 2];
+                        return [4, this.css(folder)];
+                    case 1: return [2, _a.sent()];
+                    case 2:
+                        if (!(ext == 'ts')) return [3, 4];
+                        return [4, this.ts(folder)];
+                    case 3: return [2, _a.sent()];
+                    case 4:
+                        if (!(ext == 'yaml')) return [3, 6];
+                        return [4, this.itemize(folder)];
+                    case 5: return [2, _a.sent()];
+                    case 6:
+                        if (!(ext == 'md')) return [3, 8];
+                        return [4, this.bake(folder)];
+                    case 7: return [2, _a.sent()];
+                    case 8:
+                        if (!(ext == 'pug')) return [3, 12];
+                        if (!(file.indexOf('-comp') >= 0)) return [3, 10];
+                        return [4, this.comps(folder)];
+                    case 9: return [2, _a.sent()];
+                    case 10: return [4, this.bake(folder)];
+                    case 11: return [2, _a.sent()];
+                    case 12: return [2, ('Cant process ' + ext)];
+                }
+            });
+        });
+    };
+    MetaPro.folderProp = 'folder';
+    MetaPro.srcProp = 'src';
+    MetaPro.destProp = 'dest';
+    return MetaPro;
+}());
 exports.MetaPro = MetaPro;
-class MDevSrv {
-    constructor(dir, port, reloadPort) {
-        let app = express();
+var MDevSrv = (function () {
+    function MDevSrv(dir, port, reloadPort) {
+        var app = express();
         logger.info(dir, port);
         app.set('app port', port);
-        const rport = Number(reloadPort) || 9856;
+        var rport = Number(reloadPort) || 9856;
         reload(app, { verbose: false, port: rport })
-            .then((reloadServer_) => {
+            .then(function (reloadServer_) {
             MDevSrv.reloadServer = reloadServer_;
             logger.info('reloadServer');
-        }).catch(e => {
+        }).catch(function (e) {
             console.log('==================e', e);
         });
         app.set('views', dir);
-        const bodyInterceptor = interceptor(function (req, res) {
+        var bodyInterceptor = interceptor(function (req, res) {
             return {
                 isInterceptable: function () {
                     return /text\/html/.test(res.get('Content-Type'));
                 },
                 intercept: function (body, send) {
-                    let $document = cheerio.load(body);
+                    var $document = cheerio.load(body);
                     $document('body').prepend('<script src="/reload/reload.js"></script>');
                     send($document.html());
                 }
             };
         });
-        const timeInterceptor = interceptor(function (req, res) {
+        var timeInterceptor = interceptor(function (req, res) {
             return {
                 isInterceptable: function () {
-                    let js = /application\/javascript/.test(res.get('Content-Type'));
-                    let cs = /text\/css/.test(res.get('Content-Type'));
-                    let img = /image\/jpg/.test(res.get('Content-Type'));
+                    var js = /application\/javascript/.test(res.get('Content-Type'));
+                    var cs = /text\/css/.test(res.get('Content-Type'));
+                    var img = /image\/jpg/.test(res.get('Content-Type'));
                     return cs || js || img;
                 },
                 intercept: function (body, send) {
@@ -188,8 +279,9 @@ class MDevSrv {
             logger.info('dev srv ' + port);
         });
     }
-}
+    return MDevSrv;
+}());
 exports.MDevSrv = MDevSrv;
 module.exports = {
-    Wa, MetaPro, Watch, MDevSrv
+    Wa: Wa, MetaPro: MetaPro, Watch: Watch, MDevSrv: MDevSrv
 };
