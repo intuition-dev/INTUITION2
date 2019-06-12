@@ -104,11 +104,6 @@ export class Download {
 }//class
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-export class Scrape {
-
-   
-}
-
 export class YamlConfig {
    constructor(fn) {
       let cfg = yaml.load(fs.readFileSync(fn))
@@ -150,5 +145,5 @@ export class CSV2Json { // TODO: get to work with watcher
 }
 
 module.exports = {
- CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag, Scrape
+ CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
 }

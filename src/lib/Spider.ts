@@ -1,7 +1,7 @@
 // All rights reserved by MetaBake (MetaBake.org) | Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
 
-import { Dirs, Dat} from './FileOpsBase'
+import { Dirs, FileOps, Dat} from './FileOpsBase'
 
 import probe = require('probe-image-size')
 
@@ -164,11 +164,26 @@ export class Map {
 }// class
 
 
-
 // //////////////////////////////////////////////////////////////////////////////
 export class Scrape {
    constructor() {
       axios.defaults.responseType = 'document'
+   }
+
+   // in a directory, create a clone of a page: but scrape the dat.yaml from a remote url
+   clone(dir, url, from, to) {
+      const f = new FileOps(dir)
+      f.clone(from, to)
+      let dat = new Dat(to)
+
+      let pro = this.s(url)
+      pro.then(function(scraped){ 
+         for (let [key, value] of Object.entries(scraped)) {
+            logger.trace(key, value)
+            dat.set(key, value)
+        }
+         dat.write()
+      })
    }
 
    s(url) {
@@ -182,8 +197,8 @@ export class Scrape {
                ret['content_text'] = data.description()
                ret['image'] = data.image()
 
-               ret['title'] = Scrape.alphaNumeric(ret['title'])
-               ret['content_text'] = Scrape.alphaNumeric(ret['content_text'])
+               ret['title'] = Scrape.asci(ret['title'])
+               ret['content_text'] = Scrape.asci(ret['content_text'])
                resolve(ret)
             })
          } catch (err) {
@@ -198,7 +213,7 @@ export class Scrape {
       return probe(iurl_, {timeout: 3000})
    }
 
-   static alphaNumeric(str) {
+   static asci(str) {
       if (!str) return ''
       const alpha_numeric = Array.from('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' + ' ')
       let filterd_string = ''
@@ -214,7 +229,6 @@ export class Scrape {
    }//()
 
 }//class
-
 
 module.exports = {
    Scrape
