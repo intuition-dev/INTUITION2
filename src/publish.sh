@@ -9,4 +9,6 @@ npm publish
 yarn global add mbake
 mbake
 
+# also update https://github.com/metabake/mBakeCli/blob/master/docs/versions.yaml
+
 # find . -type f -name 'package-lock.json' 
