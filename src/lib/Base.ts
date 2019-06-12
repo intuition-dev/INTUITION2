@@ -19,6 +19,7 @@ const logger = require('tracer').colorConsole({
    ]
 })
 
+const path = require('path')
 import { MinJS } from './Extra'
 import { Dirs, Dat} from './FileOpsBase'
 
@@ -189,7 +190,6 @@ export class MBake {
                reject(err)
             })
 
-
       })//pro
    }//()
 
@@ -283,6 +283,17 @@ export class BakeWrk {
       }
 
       options['ENV'] = prod
+
+      //global dir
+      const global = options['GLO']
+      if(global) {
+         const p = path(this.dir + global + 'GLO.yaml')
+         logger.trace(p)
+         let glo = yaml.load(fs.readFileSync(p))
+
+         logger.trace(glo)
+         options = Object.assign(glo, options)
+      }//()
 
       if (this.locAll(options)) // if locale, we are not writing here, but in sub folders.
          return ' '

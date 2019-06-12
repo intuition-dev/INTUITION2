@@ -18,6 +18,7 @@ const logger = require('tracer').colorConsole({
         }
     ]
 });
+const path = require('path');
 const Extra_1 = require("./Extra");
 const FileOpsBase_1 = require("./FileOpsBase");
 const Marpit = require("@marp-team/marpit");
@@ -213,6 +214,14 @@ class BakeWrk {
             marp: BakeWrk.marp
         };
         options['ENV'] = prod;
+        const global = options['GLO'];
+        if (global) {
+            const p = path(this.dir + global + 'GLO.yaml');
+            logger.trace(p);
+            let glo = yaml.load(fs.readFileSync(p));
+            logger.trace(glo);
+            options = Object.assign(glo, options);
+        }
         if (this.locAll(options))
             return ' ';
         this.writeFilePg(this.dir + '/index.pug', options, this.dir + '/index.html');
