@@ -78,20 +78,24 @@ class Dat {
             this._addData();
     }
     write() {
-        try {
-            let y = yaml.dump(this.props, {
-                skipInvalid: true,
-                noRefs: true,
-                noCompatMode: true,
-                condenseFlow: true
-            });
-            let p = this._path + '/dat.yaml';
-            logger.info(p);
-            fs.writeFileSync(p, y);
-        }
-        catch (err) {
-            logger.info(err);
-        }
+        return new Promise((resolve, reject) => {
+            try {
+                let y = yaml.dump(this.props, {
+                    skipInvalid: true,
+                    noRefs: true,
+                    noCompatMode: true,
+                    condenseFlow: true
+                });
+                let p = this._path + '/dat.yaml';
+                logger.info(p);
+                fs.writeFileSync(p, y);
+                resolve('OK');
+            }
+            catch (err) {
+                logger.info(err);
+                reject(err);
+            }
+        });
     }
     set(key, val) {
         this.props[key] = val;

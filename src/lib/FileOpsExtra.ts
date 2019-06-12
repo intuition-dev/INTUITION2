@@ -147,5 +147,5 @@ export class CSV2Json { // TODO: get to work with watcher
 
 
 module.exports = {
- CSV2Json, DownloadFrag, YamlConfig, Download, Static, VersionNag
+ CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
 }

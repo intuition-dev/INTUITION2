@@ -14,7 +14,6 @@ function version() {
     console.info('mbake CLI version: ' + Base_1.Ver.ver());
 }
 function help() {
-    let b = new Base_1.Ver();
     console.info();
     console.info('mbake CLI version: ' + Base_1.Ver.ver());
     console.info();

@@ -68,7 +68,6 @@ class Download {
         return new Promise(function (resolve, reject) {
             download(Download.truth).then(data => {
                 let dic = yaml.load(data);
-                logger.trace(THIZ.key, dic);
                 resolve(dic[THIZ.key]);
             });
         });
@@ -131,5 +130,5 @@ class CSV2Json {
 }
 exports.CSV2Json = CSV2Json;
 module.exports = {
-    CSV2Json, DownloadFrag, YamlConfig, Download, Static, VersionNag
+    CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
 };
