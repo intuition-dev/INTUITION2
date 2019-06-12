@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.06.20';
+        return 'v6.06.21';
     }
     static date() {
         return new Date().toISOString();
@@ -216,11 +216,11 @@ class BakeWrk {
         options['ENV'] = prod;
         const global = options['GLO'];
         if (global) {
-            const p = path(this.dir + global + 'GLO.yaml');
-            logger.trace(p);
+            const ps = this.dir + '/' + global;
+            const p = path.normalize(ps + '/GLO.yaml');
             let glo = yaml.load(fs.readFileSync(p));
-            logger.trace(glo);
             options = Object.assign(glo, options);
+            logger.trace(options);
         }
         if (this.locAll(options))
             return ' ';

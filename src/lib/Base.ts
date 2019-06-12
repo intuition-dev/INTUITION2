@@ -3,7 +3,7 @@
 
 export class Ver {
    static ver() {
-      return 'v6.06.20'
+      return 'v6.06.21'
    }
    static date(): string {
       return new Date().toISOString()
@@ -284,15 +284,15 @@ export class BakeWrk {
 
       options['ENV'] = prod
 
-      //global dir
+      //*GLOBAL yaml
       const global = options['GLO']
       if(global) {
-         const p = path(this.dir + global + 'GLO.yaml')
-         logger.trace(p)
+         const ps = this.dir +'/'+ global 
+         const p = path.normalize(ps +'/GLO.yaml')
          let glo = yaml.load(fs.readFileSync(p))
 
-         logger.trace(glo)
          options = Object.assign(glo, options)
+         logger.trace(options)
       }//()
 
       if (this.locAll(options)) // if locale, we are not writing here, but in sub folders.
