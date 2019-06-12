@@ -128,7 +128,6 @@ class CSV2Json {
         });
     }
 }
-exports.CSV2Json = CSV2Json;
-module.exports = {
+=module.exports = {
     CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
 };

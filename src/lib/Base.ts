@@ -145,7 +145,7 @@ export class MBake {
 
             const rec = FileHound.create() //recursive
                .paths(dir)
-               .ext(['pug', 'yaml', 'js', 'ts', 'scss'])
+               .ext(['pug', 'yaml', ,'css', 'js', 'ts', 'scss'])
                .findSync()
 
             rec.forEach(file => {

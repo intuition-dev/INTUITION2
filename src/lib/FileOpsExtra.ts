@@ -1,8 +1,7 @@
 
 import { Ver } from './Base'
-import { Dat, Dirs } from './FileOpsBase'
+import { Dirs } from './FileOpsBase'
 
-import FileHound = require('filehound')
 const logger = require('tracer').console()
 import fs = require('fs-extra')
 
@@ -104,6 +103,11 @@ export class Download {
    }
 }//class
 
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export class Scrape {
+
+   
+}
 
 export class YamlConfig {
    constructor(fn) {
@@ -145,7 +149,6 @@ export class CSV2Json { // TODO: get to work with watcher
    }//()
 }
 
-
 module.exports = {
- CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
+ CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag, Scrape
 }
