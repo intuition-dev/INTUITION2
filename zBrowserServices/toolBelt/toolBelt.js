@@ -1,11 +1,11 @@
-//Thanos has a glove. We just gave you a tool belt:
+//Thanos has a glove. We just gave you a tool belt!
 
 /* This file is a toolbelt, a curated list of libs to use when need arises. 
  And it has auto polly fill for: promise, fetch, CustomEvents, and Standard Web Components - for IE 11 and Modern browsers
  Also tries for a bit of prep in case of Electron or Cordova/PhoneGap
  And fight FOUT
 */
-console.log('Ver:','unpkg.com/mtool-belt@1.5.7/')
+console.log('Ver:','unpkg.com/mtool-belt@1.5.8/')
 
 // can use like this in comp:
 /*
@@ -61,11 +61,11 @@ var CESupported = (function () {
   }
 })()
 if (!CESupported) //custom events polly
-  depp.define({ 'has-CE': 'https://unpkg.com/mtool-belt@1.5.7/poly/EventListener.min.js' })
+  depp.define({ 'has-CE': 'https://unpkg.com/mtool-belt@1.5.8/poly/EventListener.min.js' })
 else
   depp.done('has-CE')
 if (!('fetch' in window))
-  depp.define({ 'has-Fetch': 'https://unpkg.com/mtool-belt@1.5.7/poly/fetch.min.js' })
+  depp.define({ 'has-Fetch': 'https://unpkg.com/mtool-belt@1.5.8/poly/fetch.min.js' })
 else
   depp.done('has-Fetch')
 depp.require(['has-Promise','has-CE','has-Fetch'], function () {
@@ -116,10 +116,10 @@ function addScript(src, callback, attr, attrValue, id) {
 }
 
 depp.define({
-   'disableAutoFill' :['#jquery','https://unpkg.com/mtool-belt@1.5.7/vendors/jquery.disableAutoFill.min.js']
-   ,'DEBUG'          :'https://unpkg.com/mtool-belt@1.5.7/vendors/debug.css'
+   'disableAutoFill' :['#jquery','https://unpkg.com/mtool-belt@1.5.8/vendors/jquery.disableAutoFill.min.js']
+   ,'DEBUG'          :'https://unpkg.com/mtool-belt@1.5.8/vendors/debug.css'
 
-   ,'WebAdmin': ['#RPC','https://unpkg.com/MetaBake-web-admin-api@0.1.0/WebAdmin.min.js']
+   ,'IntuAPI': ['#RPC','https://https://unpkg.com/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
    ,'RPC': [ 'https://unpkg.com/http-rpc@1.0.8/httpRPC.min.js']
    ,'SPA': [ 'https://unpkg.com/spa-ts-router@4.15.19/spa-router.min.js', '#state-machine']
 
@@ -132,7 +132,7 @@ depp.define({
    // 3 libraries you should use often, isJs, collect and state-machine
    // https://www.npmjs.com/package/collect.js
    ,'collect': 'https://cdn.jsdelivr.net/npm/collect.js@4.12.2/build/collect.min.js'
-   ,'isJs': 'https://unpkg.com/mtool-belt@1.5.7/vendors/is.min.js'
+   ,'isJs': 'https://unpkg.com/mtool-belt@1.5.8/vendors/is.min.js'
    // Commercial License # MetaBake LLC
    ,'state-machine': 'https://cdn.jsdelivr.net/npm/javascript-state-machine@3.1.0/lib/state-machine.min.js'
 
@@ -178,8 +178,8 @@ depp.define({
    ,'gridformsJS':['https://cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.js']
 
    ,'accordion': ['#jquery'
-                  ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-accordion/js/jquery.accordion.min.js'
-                  ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-accordion/css/jquery.accordion.css']
+                  ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-accordion/js/jquery.accordion.min.js'
+                  ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-accordion/css/jquery.accordion.css']
 
    ,'emailjs': ['https://cdn.emailjs.com/sdk/2.3.2/email.min.js','#DOM']
 
@@ -196,7 +196,7 @@ depp.define({
                         ,'https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex-theme-flat-attack.css']
 
    // binding - good example
-   ,'jqForm': 'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-jsForm/jquery.jsForm.js'
+   ,'jqForm': 'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-jsForm/jquery.jsForm.js'
 
    ,'codemirror': [   'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.css'
                      ,'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.min.js'
@@ -207,10 +207,10 @@ depp.define({
 
    ,'hotkeys':'https://cdn.jsdelivr.net/npm/hotkeys-js@3.6.11/index.min.js'
 
-   ,'firestore': [ 'https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js'
-                  ,'https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js'
-                  ,'https://www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js' ]
-   ,'firebase-storage':['#firestore','https://www.gstatic.com/firebasejs/6.0.4/firebase-storage.js']
+   ,'firestore': [ 'https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js'
+                  ,'https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js'
+                  ,'https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js' ]
+   ,'firebase-storage':['#firestore','https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js']
 
    ,'chosenSelect': ['#jquery','https://cdn.jsdelivr.net/npm/chosen-js@1.8.7/chosen.jquery.min.js']
 
@@ -236,9 +236,9 @@ depp.define({
                ,'https://cdn.jsdelivr.net/npm/onepage-scroll@1.3.0/jquery.onepage-scroll.min.js']
    
    ,'jqFAQ':[ '#jquery'
-             ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-FAQ/jquery.quicksilver.min.js'
-             ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-FAQ/jquery.simpleFAQ.css'
-             ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
+             ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-FAQ/jquery.quicksilver.min.js'
+             ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-FAQ/jquery.simpleFAQ.css'
+             ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
 
    //*** MetaCake comps:
    ,'flipcard-comp'  : ['https://unpkg.com/metacake@1.2.25/flipcard/comps/flipcard-comp.min.js']
@@ -259,6 +259,7 @@ depp.define({
    ,'font-awesome':'https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css'
 
    // images
+   ,'lazysizes'   : 'https://cdn.jsdelivr.net/npm/lazysizes@5.1.0/lazysizes.min.js'
    ,'svgloader'   : 'https://cdn.jsdelivr.net/npm/boomsvgloader@0.0.2/dist/js/boomsvgloader.min.js'
    ,'imagesloaded':['https://cdn.jsdelivr.net/npm/imagesloaded@4.1.4/imagesloaded.min.js']
    ,'load-image'  : 'https://cdn.jsdelivr.net/npm/blueimp-load-image@2.21.0/js/load-image.all.min.js'
@@ -267,7 +268,7 @@ depp.define({
    //vid
    ,'mediaelement'   :[ 'https://cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelementplayer.css'
                      ,  'https://cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelement-and-player.min.js']
-   ,'bideo' : 'https://unpkg.com/mtool-belt@1.5.7/vendors/bideo/bideo.min.js'
+   ,'bideo' : 'https://unpkg.com/mtool-belt@1.5.8/vendors/bideo/bideo.min.js'
 
    ,'hoverIntent': ['#jquery', 'https://cdn.jsdelivr.net/npm/jquery-hoverintent@1.10.0/jquery.hoverIntent.min.js']
 
@@ -275,14 +276,14 @@ depp.define({
    ,'annYang'  :'https://cdn.jsdelivr.net/npm/annyang@2.6.1/dist/annyang.min.js'
 
    //FX section
-   ,'deli'  : ['https://unpkg.com/mtool-belt@1.5.7/vendors/delighters.min.js',  '#DOM']
-   ,'GSAP'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/TweenLite.min.js',
-               'https://cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/plugins/CSSPlugin.min.js'] // plugin needs to animate css property
+   ,'deli'  : ['https://unpkg.com/mtool-belt@1.5.8/vendors/delighters.min.js',  '#DOM']
+   ,'GSAP'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.3/src/minified/TweenLite.min.js',
+               'https://cdn.jsdelivr.net/npm/gsap@2.1.3/src/minified/plugins/CSSPlugin.min.js'] // plugin needs to animate css property
    ,'polly-ani'   :'https://cdn.jsdelivr.net/npm/web-animations-js@2.3.1/web-animations.min.js'
-   ,'clamp'       :['https://unpkg.com/mtool-belt@1.5.7/vendors/clamp.min.js']
+   ,'clamp'       :['https://unpkg.com/mtool-belt@1.5.8/vendors/clamp.min.js']
    ,'zenscroll'   :['https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js','#DOM']  
    ,'typewriter'  :'https://cdn.jsdelivr.net/npm/typewriter-effect@2.5.3/dist/core.js'
-   ,'parallaxImg' :'https://unpkg.com/mtool-belt@1.5.7/vendors/parallaxImg.min.js'
+   ,'parallaxImg' :'https://unpkg.com/mtool-belt@1.5.8/vendors/parallaxImg.min.js'
 
    ,'jqMapaEl':['#jquery', '#raphael', 'https://cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js']
    ,'raphael' :'https://cdn.jsdelivr.net/npm/raphael@2.2.8/raphael.min.js'

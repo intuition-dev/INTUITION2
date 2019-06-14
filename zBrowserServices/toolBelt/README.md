@@ -1,6 +1,7 @@
 
-
 # MetaBake's Tool Belt
+
+#### 'Thanos has a glove. We just gave you a tool belt!'
 
 
 Listed dependencies gives you application a list of a election curated js libraries that you may chose to use/require.
@@ -13,7 +14,7 @@ It saves time, sets baseline for depps, defines popular/approved libs:
 
 That will emit this code:
 
-      script(src='//unpkg.com/mtool-belt@1.5.7/toolBelt.min.js')
+      script(src='//unpkg.com/mtool-belt@1.5.8/toolBelt.min.js')
 
 It also contains polyfill and some other frequently needed functions.
 
