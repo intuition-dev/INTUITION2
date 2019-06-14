@@ -136,6 +136,19 @@ class Scrape {
     constructor() {
         axios_1.default.defaults.responseType = 'document';
     }
+    clone(dir, url, from, to) {
+        const f = new FileOpsBase_1.FileOps(dir);
+        f.clone(from, to);
+        let dat = new FileOpsBase_1.Dat(to);
+        let pro = this.s(url);
+        pro.then(function (scraped) {
+            for (let [key, value] of Object.entries(scraped)) {
+                logger.trace(key, value);
+                dat.set(key, value);
+            }
+            dat.write();
+        });
+    }
     s(url) {
         return new Promise(function (resolve, reject) {
             try {
@@ -146,8 +159,8 @@ class Scrape {
                     ret['title'] = data.softTitle();
                     ret['content_text'] = data.description();
                     ret['image'] = data.image();
-                    ret['title'] = Scrape.alphaNumeric(ret['title']);
-                    ret['content_text'] = Scrape.alphaNumeric(ret['content_text']);
+                    ret['title'] = Scrape.asci(ret['title']);
+                    ret['content_text'] = Scrape.asci(ret['content_text']);
                     resolve(ret);
                 });
             }
@@ -161,7 +174,7 @@ class Scrape {
         logger.info(iurl_);
         return probe(iurl_, { timeout: 3000 });
     }
-    static alphaNumeric(str) {
+    static asci(str) {
         if (!str)
             return '';
         const alpha_numeric = Array.from('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' + ' ');

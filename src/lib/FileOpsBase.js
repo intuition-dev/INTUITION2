@@ -158,7 +158,7 @@ class FileOps {
         fs.unlinkSync(file_path);
     }
 }
-
+exports.FileOps = FileOps;
 module.exports = {
     Dat, Dirs, FileOps
 };

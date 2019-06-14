@@ -1,5 +1,5 @@
 
-mbake: v6.06.21
+mbake: v6.06.22
 
 headFrag: https://unpkg.com/mtool-belt@1.5.7/template/headFrag.pug
 opsPug: https://unpkg.com/mtool-belt@1.5.7/template/ops.pug

@@ -30,17 +30,9 @@ function help() {
     console.info('     Note: . is current directory, or use any path instead of .');
     console.info(' -------------------------------------------------------------');
     console.info();
-    console.info(' Starters:');
-    console.info('  For a starter website:                                      mbake -e');
-    console.info('  For a starter CMS|items:                                    mbake -c');
-    console.info('  For an example dynamic web app CRUD:                        mbake -u');
-    console.info();
-    console.info('  mbake-x npm CLI (extra) has watcher, components and more flags and examples');
+    console.info('  mbake-x CLI (extra) has more flags');
     console.info();
     console.info(' Full docs: https://docs.MetaBake.org');
-    console.info();
-    console.info(' This is the CLI. For WebAdmin version of MetaBake, get from NPM or');
-    console.info('   check this https://github.com/MetaBake/mbakeWebAdmin ');
     console.info();
     process.exit();
 }
@@ -52,26 +44,11 @@ const optionDefinitions = [
     { name: 'css', alias: 's', type: Boolean },
     { name: 'MinJS', alias: 't', type: Boolean },
     { name: 'frag', alias: 'f', type: Boolean },
-    { name: 'CMS', alias: 'c', type: Boolean },
     { name: 'watcher', alias: 'w', type: Boolean },
-    { name: 'website', alias: 'e', type: Boolean },
-    { name: 'CRUD', alias: 'u', type: Boolean }
 ];
 const argsParsed = commandLineArgs(optionDefinitions);
 let arg = argsParsed.mbake;
 console.info();
-function unzipCRUD() {
-    new FileOpsExtra_1.Download('CRUD', __dirname).autoZ();
-    console.info('Extracting an example CRUD to ./CRUD');
-}
-function unzipS() {
-    new FileOpsExtra_1.Download('website', __dirname).autoZ();
-    console.info('Extracting a starter website to ./website');
-}
-function unzipE() {
-    new FileOpsExtra_1.Download('CMS', __dirname).autoZ();
-    console.info('Extracting a starter CMS app to ./CMS');
-}
 function frag(arg) {
     new FileOpsExtra_1.DownloadFrag(arg, false);
 }
@@ -127,12 +104,6 @@ if (argsParsed.items)
     itemize(arg);
 else if (argsParsed.css)
     css(arg);
-else if (argsParsed.CMS)
-    unzipE();
-else if (argsParsed.CRUD)
-    unzipCRUD();
-else if (argsParsed.website)
-    unzipS();
 else if (argsParsed.MinJS)
     minJS(arg);
 else if (argsParsed.frag)
