@@ -5,7 +5,7 @@
  Also tries for a bit of prep in case of Electron or Cordova/PhoneGap
  And fight FOUT
 */
-console.log('Ver:','unpkg.com/mtool-belt@1.5.6/')
+console.log('Ver:','unpkg.com/mtool-belt@1.5.7/')
 
 // can use like this in comp:
 /*
@@ -49,7 +49,7 @@ if (window.native) {// in case native
 
 // polyfills: require 'polly' in case of ie11 or such, for example to fetch. No need to wait on DOM for data
 if (!window.Promise)
-  depp.define({ 'has-Promise': '//cdn.jsdelivr.net/npm/promise-polyfill@8.1.0/dist/polyfill.min.js' })
+  depp.define({ 'has-Promise': 'https://cdn.jsdelivr.net/npm/promise-polyfill@8.1.0/dist/polyfill.min.js' })
 else
   depp.done('has-Promise')
 var CESupported = (function () {
@@ -61,11 +61,11 @@ var CESupported = (function () {
   }
 })()
 if (!CESupported) //custom events polly
-  depp.define({ 'has-CE': '//unpkg.com/mtool-belt@1.5.6/poly/EventListener.min.js' })
+  depp.define({ 'has-CE': 'https://unpkg.com/mtool-belt@1.5.7/poly/EventListener.min.js' })
 else
   depp.done('has-CE')
 if (!('fetch' in window))
-  depp.define({ 'has-Fetch': '//unpkg.com/mtool-belt@1.5.6/poly/fetch.min.js' })
+  depp.define({ 'has-Fetch': 'https://unpkg.com/mtool-belt@1.5.7/poly/fetch.min.js' })
 else
   depp.done('has-Fetch')
 depp.require(['has-Promise','has-CE','has-Fetch'], function () {
@@ -116,179 +116,179 @@ function addScript(src, callback, attr, attrValue, id) {
 }
 
 depp.define({
-   'disableAutoFill' :['#jquery','//unpkg.com/mtool-belt@1.5.6/vendors/jquery.disableAutoFill.min.js']
-   ,'DEBUG'          :'//unpkg.com/mtool-belt@1.5.6/vendors/debug.css'
+   'disableAutoFill' :['#jquery','https://unpkg.com/mtool-belt@1.5.7/vendors/jquery.disableAutoFill.min.js']
+   ,'DEBUG'          :'https://unpkg.com/mtool-belt@1.5.7/vendors/debug.css'
 
-   ,'WebAdmin': ['#RPC','//unpkg.com/MetaBake-web-admin-api@0.1.0/WebAdmin.min.js']
-   ,'RPC': [ '//unpkg.com/http-rpc@1.0.8/httpRPC.min.js']
-   ,'SPA': [ '//unpkg.com/spa-ts-router@4.15.19/spa-router.min.js', '#state-machine']
+   ,'WebAdmin': ['#RPC','https://unpkg.com/MetaBake-web-admin-api@0.1.0/WebAdmin.min.js']
+   ,'RPC': [ 'https://unpkg.com/http-rpc@1.0.8/httpRPC.min.js']
+   ,'SPA': [ 'https://unpkg.com/spa-ts-router@4.15.19/spa-router.min.js', '#state-machine']
 
-   ,'wcomp-loader':'//unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js'
-   ,'es5-adapter' :'//unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js'
+   ,'wcomp-loader':'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js'
+   ,'es5-adapter' :'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js'
 
    //removes FOUT if you don't put font family in top (then load other, then font, after font: full style)
-   ,'fontloader':'//cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js'
+   ,'fontloader':'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js'
 
    // 3 libraries you should use often, isJs, collect and state-machine
    // https://www.npmjs.com/package/collect.js
-   ,'collect': '//cdn.jsdelivr.net/npm/collect.js@4.12.2/build/collect.min.js'
-   ,'isJs': '//unpkg.com/mtool-belt@1.5.6/vendors/is.min.js'
+   ,'collect': 'https://cdn.jsdelivr.net/npm/collect.js@4.12.2/build/collect.min.js'
+   ,'isJs': 'https://unpkg.com/mtool-belt@1.5.7/vendors/is.min.js'
    // Commercial License # MetaBake LLC
-   ,'state-machine': '//cdn.jsdelivr.net/npm/javascript-state-machine@3.1.0/lib/state-machine.min.js'
+   ,'state-machine': 'https://cdn.jsdelivr.net/npm/javascript-state-machine@3.1.0/lib/state-machine.min.js'
 
     //vega
-   ,'datalib':'//cdn.jsdelivr.net/npm/datalib@1.9.2/datalib.min.js'
+   ,'datalib':'https://cdn.jsdelivr.net/npm/datalib@1.9.2/datalib.min.js'
 
-   ,'vega'  : [ '//cdn.jsdelivr.net/npm/vega@5.4.0'
-                ,'//cdn.jsdelivr.net/npm/vega-lite@3.3.0'
-                ,'//cdn.jsdelivr.net/npm/vega-embed@4.2.0'
-                ,'//cdn.jsdelivr.net/npm/vega-tooltip@0.17.0/build/vega-tooltip.min.js'
+   ,'vega'  : [ 'https://cdn.jsdelivr.net/npm/vega@5.4.0'
+                ,'https://cdn.jsdelivr.net/npm/vega-lite@3.3.0'
+                ,'https://cdn.jsdelivr.net/npm/vega-embed@4.2.0'
+                ,'https://cdn.jsdelivr.net/npm/vega-tooltip@0.17.0/build/vega-tooltip.min.js'
               ]
 
    // use for validation. eg: check in VM and return 'OK' to view|binding; or return validation errors if found
-   ,'validate' :  '//cdn.jsdelivr.net/npm/validate.js@0.12.0/validate.min.js'
+   ,'validate' :  'https://cdn.jsdelivr.net/npm/validate.js@0.12.0/validate.min.js'
 
    //intro steps
-   ,'hopscotch'   :['//cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/js/hopscotch.min.js'
-                   ,'//cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/css/hopscotch.css']
+   ,'hopscotch'   :['https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/js/hopscotch.min.js'
+                   ,'https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/css/hopscotch.css']
    
    // gesture
-   ,'zingtouch':'//cdn.jsdelivr.net/npm/zingtouch@1.0.6/index.min.js'
+   ,'zingtouch':'https://cdn.jsdelivr.net/npm/zingtouch@1.0.6/index.min.js'
 
    //fts: 
-   ,'fuzzyset' :'//cdn.jsdelivr.net/npm/fuzzyset.js@0.0.8/index.min.js'
-   ,'fuse'     :'//cdn.jsdelivr.net/npm/fuse.js@3.4.4/dist/fuse.min.js'
+   ,'fuzzyset' :'https://cdn.jsdelivr.net/npm/fuzzyset.js@0.0.8/index.min.js'
+   ,'fuse'     :'https://cdn.jsdelivr.net/npm/fuse.js@3.4.4/dist/fuse.min.js'
 
-   ,'autoComplete':'//cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@5.0.0/dist/js/autoComplete.min.js'
+   ,'autoComplete':'https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@5.0.0/dist/js/autoComplete.min.js'
 
-   ,'riotjs':'//cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js'
+   ,'riotjs':'https://cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js'
 
-   ,'jquery': ['//cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js', '#DOM']
+   ,'jquery': ['https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js', '#DOM']
 
    // INSIDE the project, also rebuild their sass when tabulator bumps version
-   ,'tabulator': ['//cdn.jsdelivr.net/npm/tabulator-tables@4.2.7/dist/js/tabulator.min.js']
+   ,'tabulator': ['https://cdn.jsdelivr.net/npm/tabulator-tables@4.2.7/dist/js/tabulator.min.js']
 
       // full polly ES5 request for FB in IE11; listen to ready, but not tested w/ polly-wcomp
-   ,'polly-core-req': ['#polly-wcomp','//polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Ces2017&callback=pollycoreready']
+   ,'polly-core-req': ['#polly-wcomp','https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Ces2017&callback=pollycoreready']
 
-   ,'split'       :'//cdn.jsdelivr.net/npm/split.js@1.5.10/dist/split.min.js'
-   ,'progressBar' :'//cdn.jsdelivr.net/npm/progressbar.js@1.0.1/dist/progressbar.min.js'
-   ,'zebraDate'   :['//cdn.jsdelivr.net/npm/zebra_datepicker@1.9.12/dist/css/bootstrap/zebra_datepicker.css',
-                   '//cdn.jsdelivr.net/npm/zebra_datepicker@1.9.12/dist/zebra_datepicker.min.js','#DOM']
-   ,'gridformsJS':['//cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.js']
+   ,'split'       :'https://cdn.jsdelivr.net/npm/split.js@1.5.10/dist/split.min.js'
+   ,'progressBar' :'https://cdn.jsdelivr.net/npm/progressbar.js@1.0.1/dist/progressbar.min.js'
+   ,'zebraDate'   :['https://cdn.jsdelivr.net/npm/zebra_datepicker@1.9.12/dist/css/bootstrap/zebra_datepicker.css',
+                   'https://cdn.jsdelivr.net/npm/zebra_datepicker@1.9.12/dist/zebra_datepicker.min.js','#DOM']
+   ,'gridformsJS':['https://cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.js']
 
    ,'accordion': ['#jquery'
-                  ,'//unpkg.com/mtool-belt@1.5.6/vendors/jquery-accordion/js/jquery.accordion.min.js'
-                  ,'//unpkg.com/mtool-belt@1.5.6/vendors/jquery-accordion/css/jquery.accordion.css']
+                  ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-accordion/js/jquery.accordion.min.js'
+                  ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-accordion/css/jquery.accordion.css']
 
-   ,'emailjs': ['//cdn.emailjs.com/sdk/2.3.2/email.min.js','#DOM']
+   ,'emailjs': ['https://cdn.emailjs.com/sdk/2.3.2/email.min.js','#DOM']
 
-   ,'pagination': ['//cdn.jsdelivr.net/npm/paginationjs@2.1.4/dist/pagination.min.js']
+   ,'pagination': ['https://cdn.jsdelivr.net/npm/paginationjs@2.1.4/dist/pagination.min.js']
 
    // load after jquery is ready
-   ,'qunit': [ '//cdn.jsdelivr.net/npm/qunit@2.9.2/qunit/qunit.css', '#jquery' 
-               ,'//cdn.jsdelivr.net/npm/qunit@2.9.2/qunit/qunit.min.js'
-               ,'//cdn.jsdelivr.net/npm/qunit-promises@0.2.0/qunit-promises.min.js']
+   ,'qunit': [ 'https://cdn.jsdelivr.net/npm/qunit@2.9.2/qunit/qunit.css', '#jquery' 
+               ,'https://cdn.jsdelivr.net/npm/qunit@2.9.2/qunit/qunit.min.js'
+               ,'https://cdn.jsdelivr.net/npm/qunit-promises@0.2.0/qunit-promises.min.js']
 
    // request - 2 steps: or just use the function below
-   ,'vexAlertFlatReq'  :['//cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/js/vex.combined.min.js'
-                        ,'//cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex.css'
-                        ,'//cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex-theme-flat-attack.css']
+   ,'vexAlertFlatReq'  :['https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/js/vex.combined.min.js'
+                        ,'https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex.css'
+                        ,'https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex-theme-flat-attack.css']
 
    // binding - good example
-   ,'jqForm': '//unpkg.com/mtool-belt@1.5.6/vendors/jquery-jsForm/jquery.jsForm.js'
+   ,'jqForm': 'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-jsForm/jquery.jsForm.js'
 
-   ,'codemirror': [   '//cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.css'
-                     ,'//cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.min.js'
-                     ,'//cdn.jsdelivr.net/npm/codemirror@5.47.0/mode/markdown/markdown.js'
-                     ,'//cdn.jsdelivr.net/npm/codemirror@5.47.0/mode/yaml/yaml.js'
-                     ,'//cdn.jsdelivr.net/npm/codemirror@5.47.0/mode/pug/pug.js'
+   ,'codemirror': [   'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.css'
+                     ,'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.min.js'
+                     ,'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/mode/markdown/markdown.js'
+                     ,'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/mode/yaml/yaml.js'
+                     ,'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/mode/pug/pug.js'
                    ]
 
-   ,'hotkeys':'//cdn.jsdelivr.net/npm/hotkeys-js@3.6.11/index.min.js'
+   ,'hotkeys':'https://cdn.jsdelivr.net/npm/hotkeys-js@3.6.11/index.min.js'
 
-   ,'firestore': [ '//www.gstatic.com/firebasejs/6.0.4/firebase-app.js'
-                  ,'//www.gstatic.com/firebasejs/6.0.4/firebase-auth.js'
-                  ,'//www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js' ]
-   ,'firebase-storage':['#firestore','//www.gstatic.com/firebasejs/6.0.4/firebase-storage.js']
+   ,'firestore': [ 'https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js'
+                  ,'https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js'
+                  ,'https://www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js' ]
+   ,'firebase-storage':['#firestore','https://www.gstatic.com/firebasejs/6.0.4/firebase-storage.js']
 
-   ,'chosenSelect': ['#jquery','//cdn.jsdelivr.net/npm/chosen-js@1.8.7/chosen.jquery.min.js']
+   ,'chosenSelect': ['#jquery','https://cdn.jsdelivr.net/npm/chosen-js@1.8.7/chosen.jquery.min.js']
 
-   ,'feather-icons':'//cdn.jsdelivr.net/npm/feather-icons@4.21.0/dist/feather.min.js'
+   ,'feather-icons':'https://cdn.jsdelivr.net/npm/feather-icons@4.21.0/dist/feather.min.js'
 
    // dates:
    // moment is very large, avoid. Do try to use 'long' / linuxtime on back end
-   ,'luxon'    : '//cdn.jsdelivr.net/npm/luxon@1.13.0/build/global/luxon.min.js'
+   ,'luxon'    : 'https://cdn.jsdelivr.net/npm/luxon@1.13.0/build/global/luxon.min.js'
 
    // template-ing, eg for webcomps, instead of mustache
-   ,'doTempl':   '//cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
-   ,'mustache': ['//cdn.jsdelivr.net/npm/mustache@3.0.1/mustache.min.js']
+   ,'doTempl':   'https://cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
+   ,'mustache': ['https://cdn.jsdelivr.net/npm/mustache@3.0.1/mustache.min.js']
 
    //
-   ,'bcrypt':'//cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js'
+   ,'bcrypt':'https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js'
 
-   ,'tippy':'//cdn.jsdelivr.net/npm/tippy.js@4.3.1/umd/index.all.min.js'
+   ,'tippy':'https://cdn.jsdelivr.net/npm/tippy.js@4.3.1/umd/index.all.min.js'
 
    // layout, needs CSS
-   ,'bricklayer':'//cdn.jsdelivr.net/npm/bricklayer@0.4.3/dist/bricklayer-node.min.js'
+   ,'bricklayer':'https://cdn.jsdelivr.net/npm/bricklayer@0.4.3/dist/bricklayer-node.min.js'
 
-   ,'onepage': ['//cdn.jsdelivr.net/npm/onepage-scroll@1.3.0/onepage-scroll.css'
-               ,'//cdn.jsdelivr.net/npm/onepage-scroll@1.3.0/jquery.onepage-scroll.min.js']
+   ,'onepage': ['https://cdn.jsdelivr.net/npm/onepage-scroll@1.3.0/onepage-scroll.css'
+               ,'https://cdn.jsdelivr.net/npm/onepage-scroll@1.3.0/jquery.onepage-scroll.min.js']
    
    ,'jqFAQ':[ '#jquery'
-             ,'//unpkg.com/mtool-belt@1.5.6/vendors/jquery-FAQ/jquery.quicksilver.min.js'
-             ,'//unpkg.com/mtool-belt@1.5.6/vendors/jquery-FAQ/jquery.simpleFAQ.css'
-             ,'//unpkg.com/mtool-belt@1.5.6/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
+             ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-FAQ/jquery.quicksilver.min.js'
+             ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-FAQ/jquery.simpleFAQ.css'
+             ,'https://unpkg.com/mtool-belt@1.5.7/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
 
    //*** MetaCake comps:
-   ,'flipcard-comp'  : ['//unpkg.com/metacake@1.2.25/flipcard/comps/flipcard-comp.min.js']
-   ,'contactus-comp' : ['//unpkg.com/metacake@1.2.27/contactus/comps/contactus-comp.min.js']
-   ,'surveyitem-comp': ['//unpkg.com/metacake@1.2.25/surveryitem/comps/surveyitem-comp.min.js']
-   ,'marq-comp'      : ['//unpkg.com/metacake@1.2.28/smoothMarq/comps/marq-comp.min.js']
+   ,'flipcard-comp'  : ['https://unpkg.com/metacake@1.2.25/flipcard/comps/flipcard-comp.min.js']
+   ,'contactus-comp' : ['https://unpkg.com/metacake@1.2.27/contactus/comps/contactus-comp.min.js']
+   ,'surveyitem-comp': ['https://unpkg.com/metacake@1.2.25/surveryitem/comps/surveyitem-comp.min.js']
+   ,'marq-comp'      : ['https://unpkg.com/metacake@1.2.28/smoothMarq/comps/marq-comp.min.js']
    // todo min-finish
-   ,'star-wcomp'     : ['//unpkg.com/metacake@1.2.25/starRating/comps/star-wcomp.js']
+   ,'star-wcomp'     : ['https://unpkg.com/metacake@1.2.25/starRating/comps/star-wcomp.js']
 
-   ,'slickCarousel': ['//cdn.jsdelivr.net/npm/slick-carousel@1.8.0/slick/slick.min.js'
-                     ,'//cdn.jsdelivr.net/npm/slick-carousel@1.8.0/slick/slick.css']
-   ,'circles': '//cdn.jsdelivr.net/npm/circles.js@0.0.6/circles.min.js'
+   ,'slickCarousel': ['https://cdn.jsdelivr.net/npm/slick-carousel@1.8.0/slick/slick.min.js'
+                     ,'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.0/slick/slick.css']
+   ,'circles': 'https://cdn.jsdelivr.net/npm/circles.js@0.0.6/circles.min.js'
 
    // prefer their SASS:
-   ,'ihover'  :'//cdn.jsdelivr.net/npm/imagehover.css@1.0.0/css/imagehover.css'
+   ,'ihover'  :'https://cdn.jsdelivr.net/npm/imagehover.css@1.0.0/css/imagehover.css'
 
    // https://fontawesome.com/v4.7.0/icons
-   ,'font-awesome':'//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css'
+   ,'font-awesome':'https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css'
 
    // images
-   ,'svgloader'   : '//cdn.jsdelivr.net/npm/boomsvgloader@0.0.2/dist/js/boomsvgloader.min.js'
-   ,'imagesloaded':['//cdn.jsdelivr.net/npm/imagesloaded@4.1.4/imagesloaded.min.js']
-   ,'load-image'  : '//cdn.jsdelivr.net/npm/blueimp-load-image@2.21.0/js/load-image.all.min.js'
-   ,'glfx'        :['//cdn.jsdelivr.net/npm/glfx@0.0.4/glfx.min.js'] // eg tilt shift
+   ,'svgloader'   : 'https://cdn.jsdelivr.net/npm/boomsvgloader@0.0.2/dist/js/boomsvgloader.min.js'
+   ,'imagesloaded':['https://cdn.jsdelivr.net/npm/imagesloaded@4.1.4/imagesloaded.min.js']
+   ,'load-image'  : 'https://cdn.jsdelivr.net/npm/blueimp-load-image@2.21.0/js/load-image.all.min.js'
+   ,'glfx'        :['https://cdn.jsdelivr.net/npm/glfx@0.0.4/glfx.min.js'] // eg tilt shift
 
    //vid
-   ,'mediaelement'   :[ '//cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelementplayer.css'
-                     ,  '//cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelement-and-player.min.js']
-   ,'bideo' : '//unpkg.com/mtool-belt@1.5.6/vendors/bideo/bideo.min.js'
+   ,'mediaelement'   :[ 'https://cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelementplayer.css'
+                     ,  'https://cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelement-and-player.min.js']
+   ,'bideo' : 'https://unpkg.com/mtool-belt@1.5.7/vendors/bideo/bideo.min.js'
 
-   ,'hoverIntent': ['#jquery', '//cdn.jsdelivr.net/npm/jquery-hoverintent@1.10.0/jquery.hoverIntent.min.js']
+   ,'hoverIntent': ['#jquery', 'https://cdn.jsdelivr.net/npm/jquery-hoverintent@1.10.0/jquery.hoverIntent.min.js']
 
    //voice cmd
-   ,'annYang'  :'//cdn.jsdelivr.net/npm/annyang@2.6.1/dist/annyang.min.js'
+   ,'annYang'  :'https://cdn.jsdelivr.net/npm/annyang@2.6.1/dist/annyang.min.js'
 
    //FX section
-   ,'deli'  : ['//unpkg.com/mtool-belt@1.5.6/vendors/delighters.min.js',  '#DOM']
-   ,'GSAP'  : ['//cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/TweenLite.min.js',
-               '//cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/plugins/CSSPlugin.min.js'] // plugin needs to animate css property
-   ,'polly-ani'   :'//cdn.jsdelivr.net/npm/web-animations-js@2.3.1/web-animations.min.js'
-   ,'clamp'       :['//unpkg.com/mtool-belt@1.5.6/vendors/clamp.min.js']
-   ,'zenscroll'   :['//cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js','#DOM']  
-   ,'typewriter'  :'//cdn.jsdelivr.net/npm/typewriter-effect@2.5.3/dist/core.js'
-   ,'parallaxImg' :'//unpkg.com/mtool-belt@1.5.6/vendors/parallaxImg.min.js'
+   ,'deli'  : ['https://unpkg.com/mtool-belt@1.5.7/vendors/delighters.min.js',  '#DOM']
+   ,'GSAP'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/TweenLite.min.js',
+               'https://cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/plugins/CSSPlugin.min.js'] // plugin needs to animate css property
+   ,'polly-ani'   :'https://cdn.jsdelivr.net/npm/web-animations-js@2.3.1/web-animations.min.js'
+   ,'clamp'       :['https://unpkg.com/mtool-belt@1.5.7/vendors/clamp.min.js']
+   ,'zenscroll'   :['https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js','#DOM']  
+   ,'typewriter'  :'https://cdn.jsdelivr.net/npm/typewriter-effect@2.5.3/dist/core.js'
+   ,'parallaxImg' :'https://unpkg.com/mtool-belt@1.5.7/vendors/parallaxImg.min.js'
 
-   ,'jqMapaEl':['#jquery', '#raphael', '//cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js']
-   ,'raphael' :'//cdn.jsdelivr.net/npm/raphael@2.2.8/raphael.min.js'
+   ,'jqMapaEl':['#jquery', '#raphael', 'https://cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js']
+   ,'raphael' :'https://cdn.jsdelivr.net/npm/raphael@2.2.8/raphael.min.js'
 
    //webGL
-   ,'babylon'  :'//cdn.jsdelivr.net/npm/babylonjs@4.0.3/babylon.js' // is min
+   ,'babylon'  :'https://cdn.jsdelivr.net/npm/babylonjs@4.0.3/babylon.js' // is min
 
 })
 
@@ -304,7 +304,7 @@ function loadVexAlertFlat() { // since it has extra call at end
 function loadSnipCart(key) {
    return new Promise(function (resolve, reject) {
       depp.require('jquery', function(){
-         addScript('//cdn.snipcart.com/scripts/2.0/snipcart.js', function(){
+         addScript('https://cdn.snipcart.com/scripts/2.0/snipcart.js', function(){
             resolve('OK')
          }, 'data-api-key', key, 'snipcart')
       })
