@@ -1,6 +1,10 @@
+#### 1.5.10
+- 
+
 #### 1.5.9
 - Axios is back
-
+- Native file checkers moved largely to spa router
+- Bumped SPA version
 
 #### 1.5.7
 - Renamed WebAdmin to IntuAPI

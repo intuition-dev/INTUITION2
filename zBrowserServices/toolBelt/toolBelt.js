@@ -5,7 +5,7 @@
  Also tries for a bit of prep in case of Electron or Cordova/PhoneGap
  And fight FOUT
 */
-console.log('Ver:','unpkg.com/mtool-belt@1.5.8/')
+console.log('Ver:','unpkg.com/mtool-belt@1.5.9/')
 
 // can use like this in comp:
 /*
@@ -13,35 +13,22 @@ if (!depp.isDefined('jquery')) {
   // ... 
 }
 and then you can depp.require(...)
-
-Don't use depp.js for events - use CustomEvents or state machine
 */
 
 //  any locally hosted lib is because we can't find it on a CDN or they have poor builds so we have to host
 
 // native helper:
-window.native = false
+var native = false
 if (document.URL.indexOf('http://') === -1
-  && document.URL.indexOf('https://') === -1) {
-  window.native = true
-}
+  && document.URL.indexOf('https://') === -1) native = true
 var isFile = window.location.protocol == 'file:'
-if(isFile||window.native) {// for electron | build.phonegap, checks if running in real browser from http server 
-  try {
-    window.nodeRequire = require 
-    delete window.require
-    delete window.exports 
-    delete window.module
-    console.log('fixed for non http/native')
-  } catch(err) {
-  }
-}
+
 // helper event: require to wait till 'DOM' aka DOMReady for anything DOM related. But no need to wait on this for fetch
 function onDOM_() {
    console.log('DOM')
    depp.done('DOM')
 }
-if (window.native) {// in case native
+if (native || isFile) {// in case native
   document.addEventListener('deviceready', onDOM_, false)
 } else { // else it is a regular browser
   document.addEventListener('DOMContentLoaded', onDOM_, false)
@@ -121,7 +108,7 @@ depp.define({
 
    ,'IntuAPI': ['#RPC','https://https://unpkg.com/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
    ,'RPC': [ 'https://unpkg.com/http-rpc@1.0.8/httpRPC.min.js']
-   ,'SPA': [ 'https://unpkg.com/spa-ts-router@4.15.19/spa-router.min.js', '#state-machine']
+   ,'SPA':   'https://unpkg.com/spa-ts-router@4.20.0/spa-router.min.js'
 
    ,'wcomp-loader':'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js'
    ,'es5-adapter' :'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js'
