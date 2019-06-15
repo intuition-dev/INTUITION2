@@ -148,6 +148,9 @@ depp.define({
    // use for validation. eg: check in VM and return 'OK' to view|binding; or return validation errors if found
    ,'validate' :  'https://cdn.jsdelivr.net/npm/validate.js@0.12.0/validate.min.js'
 
+  // use for file uploads
+  ,'axios': '//unpkg.com/axios@0.19.0/dist/axios.min.js'
+  
    //intro steps
    ,'hopscotch'   :['https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/js/hopscotch.min.js'
                    ,'https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/css/hopscotch.css']
