@@ -149,7 +149,7 @@ depp.define({
    ,'validate' :  'https://cdn.jsdelivr.net/npm/validate.js@0.12.0/validate.min.js'
 
   // use for file uploads
-  ,'axios': '//unpkg.com/axios@0.19.0/dist/axios.min.js'
+  ,'axios': 'https://unpkg.com/axios@0.19.0/dist/axios.min.js'
   
    //intro steps
    ,'hopscotch'   :['https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/js/hopscotch.min.js'
@@ -166,7 +166,7 @@ depp.define({
 
    ,'riotjs':'https://cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js'
 
-   ,'jquery': ['https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js', '#DOM']
+   ,'jquery': ['https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js', '#DOM']
 
    // INSIDE the project, also rebuild their sass when tabulator bumps version
    ,'tabulator': ['https://cdn.jsdelivr.net/npm/tabulator-tables@4.2.7/dist/js/tabulator.min.js']
