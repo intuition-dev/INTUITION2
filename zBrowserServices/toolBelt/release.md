@@ -1,5 +1,9 @@
+#### 1.5.11
+- Change how DOM ready is done
+
 #### 1.5.10
 - BUGFIX: wait for fontloaderReady
+
 
 #### 1.5.9
 - Axios is back

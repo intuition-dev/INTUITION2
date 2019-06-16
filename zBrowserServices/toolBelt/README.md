@@ -18,3 +18,6 @@ That will emit this code:
 
 It also contains polyfill and some other frequently needed functions.
 
+
+#### Please star the main project here:
+- https://github.com/metabake/metaIntuition

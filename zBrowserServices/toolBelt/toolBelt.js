@@ -4,10 +4,12 @@
  And it has auto polly fill for: promise, fetch, CustomEvents, and Standard Web Components - for IE 11 and Modern browsers
  Also tries for a bit of prep in case of Electron or Cordova/PhoneGap
  And fight FOUT
-*/
-console.log('Ver:','unpkg.com/mtool-belt@1.5.10/')
 
-// can use like this in comp:
+Any locally hosted lib is because we can't find it on a CDN or they have poor builds so we have to host
+
+ */
+console.log('Ver:','unpkg.com/mtool-belt@1.5.11/')
+
 /*
 if (!depp.isDefined('jquery')) {
   // ... 
@@ -15,24 +17,12 @@ if (!depp.isDefined('jquery')) {
 and then you can depp.require(...)
 */
 
-//  any locally hosted lib is because we can't find it on a CDN or they have poor builds so we have to host
-
-// native helper:
-var native = false
-if (document.URL.indexOf('http://') === -1
-  && document.URL.indexOf('https://') === -1) native = true
-var isFile = window.location.protocol == 'file:'
-
-// helper event: require to wait till 'DOM' aka DOMReady for anything DOM related. But no need to wait on this for fetch
 function onDOM_() {
-   console.log('DOM')
-   depp.done('DOM')
+  console.log('DOM')
+  depp.done('DOM')
 }
-if (native || isFile) {// in case native
-  document.addEventListener('deviceready', onDOM_, false)
-} else { // else it is a regular browser
-  document.addEventListener('DOMContentLoaded', onDOM_, false)
-}
+document.addEventListener('deviceready', onDOM_, false)
+document.addEventListener('DOMContentLoaded', onDOM_, false)
 
 // polyfills: require 'polly' in case of ie11 or such, for example to fetch. No need to wait on DOM for data
 if (!window.Promise)
@@ -108,7 +98,7 @@ depp.define({
 
    ,'IntuAPI': ['#RPC','https://https://unpkg.com/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
    ,'RPC': [ 'https://unpkg.com/http-rpc@1.0.8/httpRPC.min.js']
-   ,'SPA':   'https://unpkg.com/spa-ts-router@4.20.0/spa-router.js'
+   ,'SPA':   'https://unpkg.com/spa-ts-router@4.20.1/spa-router.js'
 
    ,'wcomp-loader':'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js'
    ,'es5-adapter' :'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js'
@@ -153,7 +143,7 @@ depp.define({
 
    ,'riotjs':'https://cdn.jsdelivr.net/npm/riot@3.13.2/riot.min.js'
 
-   ,'jquery': ['https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js', '#DOM']
+   ,'jquery': ['https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js']
 
    // INSIDE the project, also rebuild their sass when tabulator bumps version
    ,'tabulator': ['https://cdn.jsdelivr.net/npm/tabulator-tables@4.2.7/dist/js/tabulator.min.js']
@@ -164,14 +154,14 @@ depp.define({
    ,'split'       :'https://cdn.jsdelivr.net/npm/split.js@1.5.10/dist/split.min.js'
    ,'progressBar' :'https://cdn.jsdelivr.net/npm/progressbar.js@1.0.1/dist/progressbar.min.js'
    ,'zebraDate'   :['https://cdn.jsdelivr.net/npm/zebra_datepicker@1.9.12/dist/css/bootstrap/zebra_datepicker.css',
-                   'https://cdn.jsdelivr.net/npm/zebra_datepicker@1.9.12/dist/zebra_datepicker.min.js','#DOM']
+                   'https://cdn.jsdelivr.net/npm/zebra_datepicker@1.9.12/dist/zebra_datepicker.min.js']
    ,'gridformsJS':['https://cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.js']
 
    ,'accordion': ['#jquery'
                   ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-accordion/js/jquery.accordion.min.js'
                   ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-accordion/css/jquery.accordion.css']
 
-   ,'emailjs': ['https://cdn.emailjs.com/sdk/2.3.2/email.min.js','#DOM']
+   ,'emailjs': ['https://cdn.emailjs.com/sdk/2.3.2/email.min.js']
 
    ,'pagination': ['https://cdn.jsdelivr.net/npm/paginationjs@2.1.4/dist/pagination.min.js']
 
@@ -266,12 +256,12 @@ depp.define({
    ,'annYang'  :'https://cdn.jsdelivr.net/npm/annyang@2.6.1/dist/annyang.min.js'
 
    //FX section
-   ,'deli'  : ['https://unpkg.com/mtool-belt@1.5.8/vendors/delighters.min.js',  '#DOM']
+   ,'deli'  : ['https://unpkg.com/mtool-belt@1.5.8/vendors/delighters.min.js']
    ,'GSAP'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.3/src/minified/TweenLite.min.js',
                'https://cdn.jsdelivr.net/npm/gsap@2.1.3/src/minified/plugins/CSSPlugin.min.js'] // plugin needs to animate css property
    ,'polly-ani'   :'https://cdn.jsdelivr.net/npm/web-animations-js@2.3.1/web-animations.min.js'
    ,'clamp'       :['https://unpkg.com/mtool-belt@1.5.8/vendors/clamp.min.js']
-   ,'zenscroll'   :['https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js','#DOM']  
+   ,'zenscroll'   :['https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js']  
    ,'typewriter'  :'https://cdn.jsdelivr.net/npm/typewriter-effect@2.5.3/dist/core.js'
    ,'parallaxImg' :'https://unpkg.com/mtool-belt@1.5.8/vendors/parallaxImg.min.js'
 
