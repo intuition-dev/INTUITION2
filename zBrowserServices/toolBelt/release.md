@@ -1,3 +1,5 @@
+#### 1.5.14
+- httpRPC now has .js
 #### 1.5.12
 - SPA only had min.js, now it has .js
 

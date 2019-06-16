@@ -4,7 +4,7 @@
 Like JSON-RPC but for http; with basic security, and page/component argument so you know what page|component called the RPC.
 
 ## Access via UNPKG
-   https://unpkg.com/http-rpc@1.0.8/httpRPC.min.js
+   https://unpkg.com/http-rpc@1.0.9/httpRPC.min.js
 
 ### Fetures:
 - Typescript
@@ -27,7 +27,10 @@ when you had to talk to two DBs - eg pg and elastic search; or how to manage per
 
 Then we looked json-rpc and... it is not web centric, so we did this.
 
-
 ### JSON-RPC
 - https://dzone.com/articles/a-quick-introduction-to-http-rpc
 - https://thomashunter.name/posts/2017-09-27-is-it-time-to-replace-rest-with-rpc
+
+
+#### Please star the main project here:
+- https://github.com/metabake/metaIntuition

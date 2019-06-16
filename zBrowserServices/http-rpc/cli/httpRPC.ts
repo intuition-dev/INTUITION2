@@ -22,7 +22,8 @@ class httpRPC {//
     this.port = port
 
     this.user = 'guest' // default is guest user
-  
+
+    console.log(this.httpOrs, this.host, this.port)
     //example to pass in args to constructor
     // if 80 or 443 port is empty 
     var srv
