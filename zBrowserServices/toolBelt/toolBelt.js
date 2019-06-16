@@ -8,7 +8,7 @@
 Any locally hosted lib is because we can't find it on a CDN or they have poor builds so we have to host
 
  */
-console.log('Ver:','unpkg.com/mtool-belt@1.5.11/')
+console.log('Ver:','unpkg.com/mtool-belt@1.5.12/')
 
 /*
 if (!depp.isDefined('jquery')) {
@@ -98,7 +98,7 @@ depp.define({
 
    ,'IntuAPI': ['#RPC','https://https://unpkg.com/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
    ,'RPC': [ 'https://unpkg.com/http-rpc@1.0.8/httpRPC.min.js']
-   ,'SPA':   'https://unpkg.com/spa-ts-router@4.20.1/spa-router.js'
+   ,'SPA':   'https://unpkg.com/spa-ts-router@4.20.2/spa-router.js'
 
    ,'wcomp-loader':'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js'
    ,'es5-adapter' :'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js'

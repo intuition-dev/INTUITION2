@@ -1,9 +1,11 @@
+#### 1.5.12
+- SPA only had min.js, now it has .js
+
 #### 1.5.11
-- Change how DOM ready is done
+- Change how DOM-ready is done
 
 #### 1.5.10
 - BUGFIX: wait for fontloaderReady
-
 
 #### 1.5.9
 - Axios is back
