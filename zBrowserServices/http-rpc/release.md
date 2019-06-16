@@ -1,0 +1,1 @@
+- fix console for srv

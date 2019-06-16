@@ -24,13 +24,12 @@ class httpRPC {//
     this.user = 'guest' // default is guest user
 
     console.log(this.httpOrs, this.host, this.port)
+
     //example to pass in args to constructor
     // if 80 or 443 port is empty 
-    var srv
-    if (!window.location.origin) { // ie11
-      srv = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
-    }
+    var srv = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
     console.log( srv )
+
   }
   //apiPath=''
   user
