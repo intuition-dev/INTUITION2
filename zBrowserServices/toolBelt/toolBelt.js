@@ -5,7 +5,7 @@
  Also tries for a bit of prep in case of Electron or Cordova/PhoneGap
  And fight FOUT
 */
-console.log('Ver:','unpkg.com/mtool-belt@1.5.9/')
+console.log('Ver:','unpkg.com/mtool-belt@1.5.10/')
 
 // can use like this in comp:
 /*
@@ -108,7 +108,7 @@ depp.define({
 
    ,'IntuAPI': ['#RPC','https://https://unpkg.com/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
    ,'RPC': [ 'https://unpkg.com/http-rpc@1.0.8/httpRPC.min.js']
-   ,'SPA':   'https://unpkg.com/spa-ts-router@4.20.0/spa-router.min.js'
+   ,'SPA':   'https://unpkg.com/spa-ts-router@4.20.0/spa-router.js'
 
    ,'wcomp-loader':'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js'
    ,'es5-adapter' :'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js'
@@ -425,7 +425,7 @@ function debounceF(callback, time) { //returns a modified function!!!
 depp.require(['DOM' ], function () {
   setTimeout(function(){
     depp.done('DOMDelayed')
-  },100)
+  },200)
   window.addEventListener('scroll', onBrowser)
   window.addEventListener('resize', onBrowser)
   onBrowser()//call it once to layout
@@ -450,16 +450,18 @@ addEventListener('onFontsLoaded', function (evt) {
   depp.done('FontsLoaded')
 })
 function loadFonts(fonts) {
-  var fontConfig = {
-     classes: false,
-     google: {
-        families: [ fonts ]
-     },
-     active: function() {
-        console.log('onFontsLoaded')
-        disE('onFontsLoaded')
-     }
-  }
-  WebFont.load(fontConfig)
+  depp.require('fontloaderReady', function(){
+    var fontConfig = {
+      classes: false,
+      google: {
+          families: [ fonts ]
+      },
+      active: function() {
+          console.log('onFontsLoaded')
+          disE('onFontsLoaded')
+      }
+    }
+    WebFont.load(fontConfig)
+  })
 }
 // END FOUNT section
