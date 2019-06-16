@@ -1,3 +1,6 @@
+#### 1.5.15
+- Cake components bump
+
 #### 1.5.14
 - httpRPC now has .js
 #### 1.5.12

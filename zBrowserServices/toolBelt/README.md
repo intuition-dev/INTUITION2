@@ -3,6 +3,9 @@
 
 #### 'Thanos has a glove. We just gave you a tool belt!'
 
+#### Please star the main project here:
+- https://github.com/metabake/metaIntuition
+
 
 Listed dependencies gives you application a list of a election curated js libraries that you may chose to use/require.
 
@@ -17,7 +20,3 @@ That will emit this code:
       script(src='//unpkg.com/mtool-belt@1.5.8/toolBelt.min.js')
 
 It also contains polyfill and some other frequently needed functions.
-
-
-#### Please star the main project here:
-- https://github.com/metabake/metaIntuition
