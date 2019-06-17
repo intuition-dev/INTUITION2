@@ -123,7 +123,8 @@ depp.define({
               ]
 
    // use for validation. eg: check in VM and return 'OK' to view|binding; or return validation errors if found
-   ,'validate' :  'https://cdn.jsdelivr.net/npm/validate.js@0.12.0/validate.min.js'
+   // http://validatejs.org
+   ,'validate' :  'https://cdn.jsdelivr.net/npm/validate.js@0.13.1/validate.min.js'
 
   // use for file uploads
   ,'axios': 'https://unpkg.com/axios@0.19.0/dist/axios.min.js'

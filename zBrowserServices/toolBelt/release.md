@@ -1,3 +1,6 @@
+
+- Version bump validate js
+
 #### 1.5.15
 - Cake components bump
 
