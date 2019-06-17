@@ -217,7 +217,7 @@ Now that you know mbake foundation, here are some choices for next things to lea
 
 # Links
 
-- Full Docs: [MetaBake.github.io/mBakeCli](http://MetaBake.github.io/mBakeCli)
+- Full Docs: [MetaBake.github.io/mBakeCli](http://MetaBake.github.io/mBakeCLI)
 - [MetaBake.org](https://www.MetaBake.org)
 - [blog.MetaBake.net](http://blog.MetaBake.net)
 - [Github](http://git.MetaBake.org)
