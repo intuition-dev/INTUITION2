@@ -17,9 +17,9 @@ import yaml = require('js-yaml')
 export class DownloadFrag {
    constructor(dir, ops: boolean) {
       console.log('Extracting to', dir)
-      if (!ops)  {
+      if (!ops) {
          new Download('headFrag', dir).auto()
-      }         
+      }
       if (ops) {
          new Download('opsPug', dir).auto()
          new Download('opsJs', dir).auto()
@@ -27,7 +27,7 @@ export class DownloadFrag {
    }//()
 }
 export class VersionNag {
-   static isCurrent():Promise<boolean> {
+   static isCurrent(): Promise<boolean> {
       const down = new Download('mbake', null)
       return down.checkVer()
    }
@@ -37,7 +37,7 @@ export class Download {
    static truth: string = 'https://MetaBake.github.io/mBakeCli/versions.yaml'
    key: string
    targetDir: string
-   
+
    constructor(key_: string, targetDir_: string) {
       this.key = key_
       this.targetDir = targetDir_
@@ -45,30 +45,30 @@ export class Download {
 
    autoZ() { // and unzip
       const THIZ = this
-      this.getVal().then(function(url:string){
+      this.getVal().then(function (url: string) {
          logger.trace(url)
          const fn = THIZ.getFn(url)
          logger.trace(fn)
-         THIZ.down(url, fn).then(function(){
-            THIZ.unzip(fn) 
+         THIZ.down(url, fn).then(function () {
+            THIZ.unzip(fn)
          })
       })
    }
 
    auto() {
       const THIZ = this
-      this.getVal().then(function(url:string){
+      this.getVal().then(function (url: string) {
          const fn = THIZ.getFn(url)
          THIZ.down(url, fn)
       })
    }
 
-   checkVer():Promise<boolean> {
-      const THIZ = this     
+   checkVer(): Promise<boolean> {
+      const THIZ = this
       return new Promise(function (resolve, reject) {
-         THIZ.getVal().then(function(ver:string){
+         THIZ.getVal().then(function (ver: string) {
             logger.trace(ver)
-            if(ver == Ver.ver()) resolve(true)
+            if (ver == Ver.ver()) resolve(true)
             else resolve(false)
          })
       })//pro
@@ -80,6 +80,8 @@ export class Download {
          download(Download.truth).then(data => {
             let dic = yaml.load(data)
             resolve(dic[THIZ.key])
+         }).catch(err => {
+            console.info('err: where is the file?', err)
          })
       })//pro
    }//()
@@ -93,6 +95,8 @@ export class Download {
          download(url).then(data => {
             fs.writeFileSync(THIZ.targetDir + '/' + fn, data)
             resolve('OK')
+         }).catch(err => {
+            console.info('err: where is the file?', err)
          })
       })//pro
    }//()
@@ -145,5 +149,5 @@ export class CSV2Json { // TODO: get to work with watcher
 }
 
 module.exports = {
- CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
+   CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
 }
