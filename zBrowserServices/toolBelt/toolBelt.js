@@ -221,11 +221,11 @@ depp.define({
              ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
 
    //*** MetaCake comps:
-   ,'flipcard-comp'  : ['https://unpkg.com/metacake@1.2.30/flipcard/comps/flipcard-comp.min.js']
-   ,'contactus-comp' : ['https://unpkg.com/metacake@1.2.30/contactus/comps/contactus-comp.min.js']
-   ,'surveyitem-comp': ['https://unpkg.com/metacake@1.2.30/surveryitem/comps/surveyitem-comp.min.js']
-   ,'marq-comp'      : ['https://unpkg.com/metacake@1.2.30/smoothMarq/comps/marq-comp.min.js']
-   ,'star-wcomp'     : ['https://unpkg.com/metacake@1.2.30/starRating/comps/star-wcomp.js']
+   ,'flipcard-comp'  : ['https://unpkg.com/metacake@1.2.29/flipcard/comps/flipcard-comp.min.js']
+   ,'contactus-comp' : ['https://unpkg.com/metacake@1.2.29/contactus/comps/contactus-comp.min.js']
+   ,'surveyitem-comp': ['https://unpkg.com/metacake@1.2.29/surveryitem/comps/surveyitem-comp.min.js']
+   ,'marq-comp'      : ['https://unpkg.com/metacake@1.2.29/smoothMarq/comps/marq-comp.min.js']
+   ,'star-wcomp'     : ['https://unpkg.com/metacake@1.2.29/starRating/comps/star-wcomp.js']
 
    ,'slickCarousel': ['https://cdn.jsdelivr.net/npm/slick-carousel@1.8.0/slick/slick.min.js'
                      ,'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.0/slick/slick.css']
