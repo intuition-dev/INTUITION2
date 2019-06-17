@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.06.22';
+        return 'v6.06.23';
     }
     static date() {
         return new Date().toISOString();
@@ -377,7 +377,6 @@ class Items {
         delete o['ROOT'];
         delete o['pretty'];
         delete o['LOC'];
-        delete o['publishFlag'];
     }
 }
 exports.Items = Items;

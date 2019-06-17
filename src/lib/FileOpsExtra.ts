@@ -34,7 +34,7 @@ export class VersionNag {
 }
 export class Download {
    // in docs root via git
-   static truth: string = 'https://MetaBake.github.io/mBakeCli/versions.yaml'
+   static truth: string = 'https://MetaBake.github.io/mBakeCLI/versions.yaml'
    key: string
    targetDir: string
 

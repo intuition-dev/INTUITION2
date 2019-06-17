@@ -69,6 +69,8 @@ class Download {
             download(Download.truth).then(data => {
                 let dic = yaml.load(data);
                 resolve(dic[THIZ.key]);
+            }).catch(err => {
+                console.info('err: where is the file?', err);
             });
         });
     }
@@ -82,6 +84,8 @@ class Download {
             download(url).then(data => {
                 fs.writeFileSync(THIZ.targetDir + '/' + fn, data);
                 resolve('OK');
+            }).catch(err => {
+                console.info('err: where is the file?', err);
             });
         });
     }
@@ -91,7 +95,7 @@ class Download {
         fs.remove(this.targetDir + '/' + fn);
     }
 }
-Download.truth = 'https://MetaBake.github.io/mBakeCli/versions.yaml';
+Download.truth = 'https://MetaBake.github.io/mBakeCLI/versions.yaml';
 exports.Download = Download;
 class YamlConfig {
     constructor(fn) {

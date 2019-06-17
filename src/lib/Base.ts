@@ -3,7 +3,7 @@
 
 export class Ver {
    static ver() {
-      return 'v6.06.22'
+      return 'v6.06.23'
    }
    static date(): string {
       return new Date().toISOString()
@@ -21,7 +21,7 @@ const logger = require('tracer').colorConsole({
 
 const path = require('path')
 import { MinJS } from './Extra'
-import { Dirs, Dat} from './FileOpsBase'
+import { Dirs, Dat } from './FileOpsBase'
 
 import Marpit = require('@marp-team/marpit')
 const marpit = new Marpit.Marpit()
@@ -145,7 +145,7 @@ export class MBake {
 
             const rec = FileHound.create() //recursive
                .paths(dir)
-               .ext(['pug', 'yaml', ,'css', 'js', 'ts', 'scss'])
+               .ext(['pug', 'yaml', , 'css', 'js', 'ts', 'scss'])
                .findSync()
 
             rec.forEach(file => {
@@ -286,9 +286,9 @@ export class BakeWrk {
 
       //*GLOBAL yaml
       const global = options['GLO']
-      if(global) {
-         const ps = this.dir +'/'+ global 
-         const p = path.normalize(ps +'/GLO.yaml')
+      if (global) {
+         const ps = this.dir + '/' + global
+         const p = path.normalize(ps + '/GLO.yaml')
          let glo = yaml.load(fs.readFileSync(p))
 
          options = Object.assign(glo, options)
