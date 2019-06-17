@@ -8,7 +8,7 @@
 Any locally hosted lib is because we can't find it on a CDN or they have poor builds so we have to host
 
  */
-console.log('Ver:','unpkg.com/mtool-belt@1.5.15/')
+console.log('Ver:','unpkg.com/mtool-belt@1.5.14/')
 
 /*
 if (!depp.isDefined('jquery')) {
