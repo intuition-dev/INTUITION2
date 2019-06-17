@@ -11,6 +11,10 @@ MetaBake(mbake) provides all the necessary tools for a developer to write cleane
 
 You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Web Components, custom CMS/E-Commerce, CRUD and all sorts of dynamic web-apps.
 
+#### Please star our main project here:
+- https://github.com/metabake/metaIntuition
+
+
 ### Prerequisites
 
 You should know HTML, CSS and JavaScript - that is all we use. If you need to catch up, we recommend this book: 'Design and Build Websites' by Jon Duckett.
@@ -193,20 +197,6 @@ mbake -f .
 This emits a Pug file that you should include in your Pug's layout head section.
 In turn, the included file calls a toolBelt.js from a CDN.
 
-
-## Next steps
-
-First, please give us a star at: https://github.com/MetaBake/mbake
-
-Now that you know mbake foundation, here are some choices for next things to learn in the advanced docs, pick and chose:
-
-- CMS: an admin panel that you can host to can use as is; or as a base to build commercial grade CMS or eCommerce site, including browser plugin.
-- MetaCake: plugin components, makes it easy for designers to write real web-apps. Developed with RIOTjs, easier than Reactjs (commercial license optional)
-- AMP
-- SPA router: with page transition effects and state machine (needed for cross-platform development)
-- Cross platform development with real single code base development: single code base for Web, AMP, Electron and PhoneGap/Crodova
-- VS code from the Cloud: multiple developers using a browser against same VS Code host in the cloud
-
 **Other examples include:**
 
 - Using markdown CSS effect: allows non-programmers to write interactive stories
@@ -221,4 +211,3 @@ Now that you know mbake foundation, here are some choices for next things to lea
 - [MetaBake.org](https://www.MetaBake.org)
 - [blog.MetaBake.net](http://blog.MetaBake.net)
 - [Github](http://git.MetaBake.org)
-- Check for the latest version of mbake: [npm.js](http://npmjs.com/package/mbake)
