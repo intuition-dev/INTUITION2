@@ -27,7 +27,7 @@
         "yarn": ">=1.16.0"
     },
     "dependencies": {
-        "@marp-team/marpit": ">=1.1.0",
+        "@marp-team/marpit": ">=1.2.0",
         "adm-zip": ">=0.4.13",
         "autoprefixer": ">=9.6.0",
         "axios": ">=0.19.0",
@@ -43,7 +43,7 @@
         "express-formidable": ">=1.2.0",
         "express-interceptor": ">=1.2.0",
         "filehound": ">=1.17.0",
-        "find-up": ">=4.0.0",
+        "find-up": ">=4.1.0",
         "fs-extra": ">=8.0.1",
         "html-minifier": ">=4.0.0",
         "javascript-obfuscator": ">=0.18.1",
