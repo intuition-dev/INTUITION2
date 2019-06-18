@@ -8,7 +8,7 @@
 Any locally hosted lib is because we can't find it on a CDN or they have poor builds so we have to host
 
  */
-console.log('Ver:','unpkg.com/mtool-belt@1.5.14/')
+console.log('Ver:','unpkg.com/mtool-belt@1.5.18/')
 
 /*
 if (!depp.isDefined('jquery')) {
@@ -38,11 +38,11 @@ var CESupported = (function () {
   }
 })()
 if (!CESupported) //custom events polly
-  depp.define({ 'has-CE': 'https://unpkg.com/mtool-belt@1.5.8/poly/EventListener.min.js' })
+  depp.define({ 'has-CE': 'https://unpkg.com/mtool-belt@1.5.18/poly/EventListener.min.js' })
 else
   depp.done('has-CE')
 if (!('fetch' in window))
-  depp.define({ 'has-Fetch': 'https://unpkg.com/mtool-belt@1.5.8/poly/fetch.min.js' })
+  depp.define({ 'has-Fetch': 'https://unpkg.com/mtool-belt@1.5.18/poly/fetch.min.js' })
 else
   depp.done('has-Fetch')
 depp.require(['has-Promise','has-CE','has-Fetch'], function () {
@@ -80,6 +80,15 @@ function pollycoreready() { // after asking for it, wait on this event.
    depp.done ('polly-core-ready')
 }
 
+function toolBeltDefault() {
+  depp.require('isJs', function(){
+    if (is.ie()) {
+      depp.require('stickyfill')
+    }//fi
+  })//req
+  loadFonts('Open Sans')
+}
+
 // only if script is strange, else use depp
 //- eg addScript('bla.js', null, 'api-key', 'key123') when they want you to use the tag: so you can in your own sequence
 function addScript(src, callback, attr, attrValue, id) {
@@ -93,8 +102,8 @@ function addScript(src, callback, attr, attrValue, id) {
 }
 
 depp.define({
-   'disableAutoFill' :['#jquery','https://unpkg.com/mtool-belt@1.5.8/vendors/jquery.disableAutoFill.min.js']
-   ,'DEBUG'          :'https://unpkg.com/mtool-belt@1.5.8/vendors/debug.css'
+   'disableAutoFill' :['#jquery','https://unpkg.com/mtool-belt@1.5.18/vendors/jquery.disableAutoFill.min.js']
+   ,'DEBUG'          :'https://unpkg.com/mtool-belt@1.5.18/vendors/debug.css'
 
    ,'IntuAPI': ['#RPC','https://https://unpkg.com/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
    ,'RPC': [ 'https://unpkg.com/http-rpc@1.0.9/httpRPC.js']
@@ -103,28 +112,35 @@ depp.define({
    ,'wcomp-loader':'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js'
    ,'es5-adapter' :'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js'
 
+   //polly for sticky
+   ,'stickyfill': 'https://cdn.jsdelivr.net/npm/stickyfilljs@2.1.0/dist/stickyfill.min.js'
+
    //removes FOUT if you don't put font family in top (then load other, then font, after font: full style)
    ,'fontloader':'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js'
 
    // 3 libraries you should use often, isJs, collect and state-machine
    // https://www.npmjs.com/package/collect.js
    ,'collect': 'https://cdn.jsdelivr.net/npm/collect.js@4.12.2/build/collect.min.js'
-   ,'isJs': 'https://unpkg.com/mtool-belt@1.5.8/vendors/is.min.js'
+   ,'isJs': 'https://unpkg.com/mtool-belt@1.5.18/vendors/is.min.js'
    // Commercial License # MetaBake LLC
    ,'state-machine': 'https://cdn.jsdelivr.net/npm/javascript-state-machine@3.1.0/lib/state-machine.min.js'
 
     //vega
    ,'datalib':'https://cdn.jsdelivr.net/npm/datalib@1.9.2/datalib.min.js'
 
-   ,'vega'  : [ 'https://cdn.jsdelivr.net/npm/vega@5.4.0'
+   ,'vega'  : [  'https://cdn.jsdelivr.net/npm/vega@5.4.0'
                 ,'https://cdn.jsdelivr.net/npm/vega-lite@3.3.0'
                 ,'https://cdn.jsdelivr.net/npm/vega-embed@4.2.0'
                 ,'https://cdn.jsdelivr.net/npm/vega-tooltip@0.17.0/build/vega-tooltip.min.js'
               ]
 
-   // use for validation. eg: check in VM and return 'OK' to view|binding; or return validation errors if found
-   // http://validatejs.org
-   ,'validate' :  'https://cdn.jsdelivr.net/npm/validate.js@0.13.1/validate.min.js'
+  // upload libs, 2. also css or?
+  ,'filepond': ['https://cdn.jsdelivr.net/npm/filepond@4.4.9/dist/filepond.css','https://cdn.jsdelivr.net/npm/filepond@4.4.9/dist/filepond.min.js']
+  ,'uppy'    : ['https://cdn.jsdelivr.net/npm/uppy@1.2.0/dist/uppy.css','https://cdn.jsdelivr.net/npm/uppy@1.2.0/dist/uppy.min.js']
+
+  // use for validation. eg: check in VM and return 'OK' to view|binding; or return validation errors if found
+  // http://validatejs.org
+  ,'validate' :  'https://cdn.jsdelivr.net/npm/validate.js@0.13.1/validate.min.js'
 
   // use for file uploads
   ,'axios': 'https://unpkg.com/axios@0.19.0/dist/axios.min.js'
@@ -159,8 +175,8 @@ depp.define({
    ,'gridformsJS':['https://cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.js']
 
    ,'accordion': ['#jquery'
-                  ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-accordion/js/jquery.accordion.min.js'
-                  ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-accordion/css/jquery.accordion.css']
+                  ,'https://unpkg.com/mtool-belt@1.5.18/vendors/jquery-accordion/js/jquery.accordion.min.js'
+                  ,'https://unpkg.com/mtool-belt@1.5.18/vendors/jquery-accordion/css/jquery.accordion.css']
 
    ,'emailjs': ['https://cdn.emailjs.com/sdk/2.3.2/email.min.js']
 
@@ -177,7 +193,7 @@ depp.define({
                         ,'https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex-theme-flat-attack.css']
 
    // binding - good example
-   ,'jqForm': 'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-jsForm/jquery.jsForm.js'
+   ,'jqForm': 'https://unpkg.com/mtool-belt@1.5.18/vendors/jquery-jsForm/jquery.jsForm.js'
 
    ,'codemirror': [   'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.css'
                      ,'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.min.js'
@@ -201,6 +217,9 @@ depp.define({
    // moment is very large, avoid. Do try to use 'long' / linuxtime on back end
    ,'luxon'    : 'https://cdn.jsdelivr.net/npm/luxon@1.13.0/build/global/luxon.min.js'
 
+   ,'picker.date': ['https://cdn.jsdelivr.net/npm/pickadate@3.6.4/lib/compressed/themes/classic.date.css', 'https://cdn.jsdelivr.net/npm/pickadate@3.6.4/lib/compressed/picker.date.js']
+   ,'picker.time': ['https://cdn.jsdelivr.net/npm/pickadate@3.6.4/lib/compressed/themes/classic.time.css', 'https://cdn.jsdelivr.net/npm/pickadate@3.6.4/lib/compressed/picker.time.js']
+
    // template-ing, eg for webcomps, instead of mustache
    ,'doTempl':   'https://cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
    ,'mustache': ['https://cdn.jsdelivr.net/npm/mustache@3.0.1/mustache.min.js']
@@ -217,9 +236,11 @@ depp.define({
                ,'https://cdn.jsdelivr.net/npm/onepage-scroll@1.3.0/jquery.onepage-scroll.min.js']
    
    ,'jqFAQ':[ '#jquery'
-             ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-FAQ/jquery.quicksilver.min.js'
-             ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-FAQ/jquery.simpleFAQ.css'
-             ,'https://unpkg.com/mtool-belt@1.5.8/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
+             ,'https://unpkg.com/mtool-belt@1.5.18/vendors/jquery-FAQ/jquery.quicksilver.min.js'
+             ,'https://unpkg.com/mtool-belt@1.5.18/vendors/jquery-FAQ/jquery.simpleFAQ.css'
+             ,'https://unpkg.com/mtool-belt@1.5.18/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
+
+  ,'switchery':'https://cdn.jsdelivr.net/npm/switchery@0.0.2/switchery.min.js'
 
    //*** MetaCake comps:
    ,'flipcard-comp'  : ['https://unpkg.com/metacake@1.2.29/flipcard/comps/flipcard-comp.min.js']
@@ -248,7 +269,7 @@ depp.define({
    //vid
    ,'mediaelement'   :[ 'https://cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelementplayer.css'
                      ,  'https://cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelement-and-player.min.js']
-   ,'bideo' : 'https://unpkg.com/mtool-belt@1.5.8/vendors/bideo/bideo.min.js'
+   ,'bideo' : 'https://unpkg.com/mtool-belt@1.5.18/vendors/bideo/bideo.min.js'
 
    ,'hoverIntent': ['#jquery', 'https://cdn.jsdelivr.net/npm/jquery-hoverintent@1.10.0/jquery.hoverIntent.min.js']
 
@@ -256,14 +277,14 @@ depp.define({
    ,'annYang'  :'https://cdn.jsdelivr.net/npm/annyang@2.6.1/dist/annyang.min.js'
 
    //FX section
-   ,'deli'  : ['https://unpkg.com/mtool-belt@1.5.8/vendors/delighters.min.js']
+   ,'deli'  : ['https://unpkg.com/mtool-belt@1.5.18/vendors/delighters.min.js']
    ,'GSAP'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.3/src/minified/TweenLite.min.js',
                'https://cdn.jsdelivr.net/npm/gsap@2.1.3/src/minified/plugins/CSSPlugin.min.js'] // plugin needs to animate css property
    ,'polly-ani'   :'https://cdn.jsdelivr.net/npm/web-animations-js@2.3.1/web-animations.min.js'
-   ,'clamp'       :['https://unpkg.com/mtool-belt@1.5.8/vendors/clamp.min.js']
+   ,'clamp'       :['https://unpkg.com/mtool-belt@1.5.18/vendors/clamp.min.js']
    ,'zenscroll'   :['https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js']  
    ,'typewriter'  :'https://cdn.jsdelivr.net/npm/typewriter-effect@2.5.3/dist/core.js'
-   ,'parallaxImg' :'https://unpkg.com/mtool-belt@1.5.8/vendors/parallaxImg.min.js'
+   ,'parallaxImg' :'https://unpkg.com/mtool-belt@1.5.18/vendors/parallaxImg.min.js'
 
    ,'jqMapaEl':['#jquery', '#raphael', 'https://cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js']
    ,'raphael' :'https://cdn.jsdelivr.net/npm/raphael@2.2.8/raphael.min.js'
@@ -412,9 +433,10 @@ function debounceF(callback, time) { //returns a modified function!!!
 }
 
 //scroll and resize example
-depp.require(['DOM' ], function () {
+depp.require(['DOM'], function () {
   setTimeout(function(){
     depp.done('DOMDelayed')
+    toolBeltDefault()
   },200)
   window.addEventListener('scroll', onBrowser)
   window.addEventListener('resize', onBrowser)

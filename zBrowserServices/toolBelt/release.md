@@ -1,5 +1,10 @@
-
+#### 1.5.18
 - Version bump validate js
+- Picker Date/Time added
+- Switchery
+- toolBeltDefault() does some popular things after DOM, like load isJs, Open Sans
+- sticky polly fill
+- 2 file upload libraries, need to pick one
 
 #### 1.5.15
 - Cake components bump
