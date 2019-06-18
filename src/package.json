@@ -68,8 +68,7 @@
     "bundledDependencies": [
         "express",
         "express-formidable",
-        "express-interceptor",
-        "@marp-team/marpit"
+        "express-interceptor"
     ],
     "devDependencies": {
         "@types/node": ">=12.0.8",
