@@ -54,7 +54,7 @@
         "node-sass": ">=4.12.0",
         "open": ">=6.3.0",
         "probe-image-size": ">=4.0.0",
-        "pug": ">=2.0.3",
+        "pug": ">=2.0.4",
         "reload": ">=3.0.1",
         "riot-compiler": "^3.6.0",
         "sitemap": ">=2.2.0",
