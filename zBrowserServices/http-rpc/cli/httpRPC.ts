@@ -61,7 +61,7 @@ class httpRPC {//
     const THIZ = this
     return new Promise(function(resolve, reject) {
       //console.info(formData.get('method'))
-      const url = THIZ.httpOrs+'://'+THIZ.host + ':'+THIZ.port + ent
+      const url = THIZ.httpOrs+'://'+THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + ent
       console.log(url)
       fetch(url, {
             body: formData 

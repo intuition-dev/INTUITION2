@@ -5,10 +5,7 @@ var httpRPC = (function () {
         this.port = port;
         this.user = 'guest';
         console.log(this.httpOrs, this.host, this.port);
-        var srv;
-        if (!window.location.origin) {
-            srv = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
-        }
+        var srv = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
         console.log(srv);
     }
     httpRPC.prototype.setUser = function (user, pswd) {
@@ -24,7 +21,7 @@ var httpRPC = (function () {
         formData.append('sampleFile', fileUpload);
         var THIZ = this;
         return new Promise(function (resolve, reject) {
-            var url = THIZ.httpOrs + '://' + THIZ.host + ':' + THIZ.port + ent;
+            var url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + ent;
             console.log(url);
             fetch(url, {
                 body: formData,

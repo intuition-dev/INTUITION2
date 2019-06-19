@@ -4,7 +4,7 @@
 Like JSON-RPC but for http; with basic security, and page/component argument so you know what page|component called the RPC.
 
 ## Access via UNPKG
-   https://unpkg.com/http-rpc@1.0.9/httpRPC.min.js
+   https://unpkg.com/http-rpc@1.0.10/httpRPC.min.js
 
 ### Fetures:
 - Typescript
