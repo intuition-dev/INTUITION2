@@ -11,7 +11,6 @@ depp.define({
    'GSAPMax'  : ['//cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/TweenMax.min.js']
 
    ,'spoken'   :'//cdn.jsdelivr.net/npm/spoken@1.1.17/spoken.min.js'
-   ,'spacetime': '//cdn.jsdelivr.net/npm/spacetime@5.8.1/builds/spacetime.min.js'
 
    ,'mobi'     :'//cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/js/mobiscroll.javascript.min.js'
    ,'mobiCSS'  :'//cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/css/mobiscroll.css'
@@ -33,17 +32,11 @@ depp.define({
 
    ,'doTempl2':'//cdn.jsdelivr.net/npm/dot@2.0.0-beta.0/doT.js'
 
-   // 
    ,'croppie': ['//cdn.jsdelivr.net/npm/croppie@2.6.4/croppie.min.js'
                ,'//cdn.jsdelivr.net/npm/croppie@2.6.4/croppie.css' ]
             
-   //Commercial license
-   ,'intro' :['//cdn.jsdelivr.net/npm/intro.js@2.9.3/intro.min.js'
-             ,'//cdn.jsdelivr.net/npm/intro.js@2.9.3/introjs.css']
-
-   ,'validator': ['//cdn.jsdelivr.net/npm/validator@10.11.0/validator.min.js']
-
-   ,'jqTransit':['#jquery','//cdn.jsdelivr.net/jquery.transit/0.9.12/jquery.transit.min.js']
+   ,'fluxify':'https://cdn.jsdelivr.net/npm/fluxify@0.2.3/fluxify.min.js'
+   ,'flyd':'https://cdn.jsdelivr.net/npm/flyd@0.2.8/flyd.min.js'
 
    ,'togetherjs':'//togetherjs.com/togetherjs-min.js'
 
