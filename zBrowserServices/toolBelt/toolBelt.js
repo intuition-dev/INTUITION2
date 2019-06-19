@@ -165,7 +165,7 @@ depp.define({
    // INSIDE the project, also rebuild their sass when tabulator bumps version
    ,'tabulator': ['https://cdn.jsdelivr.net/npm/tabulator-tables@4.2.7/dist/js/tabulator.min.js']
 
-      // full polly ES5 request for FB in IE11; listen to ready, but not tested w/ polly-wcomp
+    // full polly ES5 request for FB-only in IE11; listen to ready, but not tested w/ polly-wcomp
    ,'polly-core-req': ['#polly-wcomp','https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Ces2017&callback=pollycoreready']
 
    ,'split'       :'https://cdn.jsdelivr.net/npm/split.js@1.5.10/dist/split.min.js'
@@ -213,19 +213,27 @@ depp.define({
 
    ,'feather-icons':'https://cdn.jsdelivr.net/npm/feather-icons@4.21.0/dist/feather.min.js'
 
-   // dates:
-   // moment is very large, avoid. Do try to use 'long' / linuxtime on back end
+   // try to use 'long' linuxtime for service | api calls 
    ,'luxon'    : 'https://cdn.jsdelivr.net/npm/luxon@1.13.0/build/global/luxon.min.js'
-
    ,'picker.date': ['https://cdn.jsdelivr.net/npm/pickadate@3.6.4/lib/compressed/themes/classic.date.css', 'https://cdn.jsdelivr.net/npm/pickadate@3.6.4/lib/compressed/picker.date.js']
    ,'picker.time': ['https://cdn.jsdelivr.net/npm/pickadate@3.6.4/lib/compressed/themes/classic.time.css', 'https://cdn.jsdelivr.net/npm/pickadate@3.6.4/lib/compressed/picker.time.js']
 
    // template-ing, eg for webcomps, instead of mustache
-   ,'doTempl':   'https://cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
-   ,'mustache': ['https://cdn.jsdelivr.net/npm/mustache@3.0.1/mustache.min.js']
+   ,'doTempl':  'https://cdn.jsdelivr.net/npm/dot@1.1.2/doT.min.js'
+   ,'mustache': 'https://cdn.jsdelivr.net/npm/mustache@3.0.1/mustache.min.js'
 
-   //
-   ,'bcrypt':'https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js'
+   ,'fastdomPro':['https://cdn.jsdelivr.net/npm/fastdom@1.0.9/fastdom.min.js'
+                  ,'https://cdn.jsdelivr.net/npm/fastdom@1.0.9/extensions/fastdom-promised.js'
+                  ,'https://cdn.jsdelivr.net/npm/fastdom-sequencer@1.0.3/fastdom-sequencer.min.js'
+                  ]
+    
+    // https://www.smashingmagazine.com/2012/12/css-baseline-the-good-the-bad-and-the-ugly
+    ,'baseline' :  'https://unpkg.com/mtool-belt@1.5.19/vendors/baseline.min.js'
+    ,'baseliner' : 'https://unpkg.com/mtool-belt@1.5.19/vendors/baseliner.min.js'
+    ,'typewriter' :'https://cdn.jsdelivr.net/npm/typewriter-effect@2.5.3/dist/core.js'
+    ,'letteringjs' :['#jquery','https://unpkg.com/mtool-belt@1.5.19/vendors/letteringjs.min.js']
+  
+    ,'bcrypt':'https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js'
 
    ,'tippy':'https://cdn.jsdelivr.net/npm/tippy.js@4.3.1/umd/index.all.min.js'
 
@@ -283,7 +291,6 @@ depp.define({
    ,'polly-ani'   :'https://cdn.jsdelivr.net/npm/web-animations-js@2.3.1/web-animations.min.js'
    ,'clamp'       :['https://unpkg.com/mtool-belt@1.5.18/vendors/clamp.min.js']
    ,'zenscroll'   :['https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js']  
-   ,'typewriter'  :'https://cdn.jsdelivr.net/npm/typewriter-effect@2.5.3/dist/core.js'
    ,'parallaxImg' :'https://unpkg.com/mtool-belt@1.5.18/vendors/parallaxImg.min.js'
 
    ,'jqMapaEl':['#jquery', '#raphael', 'https://cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js']
@@ -315,12 +322,18 @@ function loadSnipCart(key) {
 
 function loadFB() {// requires polly, load FB w/ ie 11 support
    return new Promise(function (resolve, reject) {
-      depp.require('firestore', function() {
-         depp.require('polly-core-ready', function(){// 2 steps
+      depp.require(['firestore', 'isJs'], function() {
+         if (is.ie()) 
+          depp.require('polly-core-ready', function(){// 2 steps
+              console.log('FB-ready')
+              depp.done('FB-ready')
+              resolve('OK')
+          })//inner  
+          else {
             console.log('FB-ready')
             depp.done('FB-ready')
             resolve('OK')
-         })//inner  
+          }
       })//oute
    })//pro
 }//()

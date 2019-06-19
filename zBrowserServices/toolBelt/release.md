@@ -1,3 +1,8 @@
+
+- FB poly only loaded if ie11
+- added fastdom w/ promises
+- added letterings
+
 #### 1.5.18
 - Version bump validate js
 - Picker Date/Time added
