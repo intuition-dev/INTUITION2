@@ -21,8 +21,6 @@ const logger = require('tracer').colorConsole({
 const path = require('path');
 const Extra_1 = require("./Extra");
 const FileOpsBase_1 = require("./FileOpsBase");
-const Marpit = require("@marp-team/marpit");
-const marpit = new Marpit.Marpit();
 const fs = require("fs-extra");
 const FileHound = require("filehound");
 const yaml = require("js-yaml");
@@ -171,11 +169,6 @@ class BakeWrk {
         console.info(' ', options);
         return md.render(text);
     }
-    static marp(text, options) {
-        console.info(' ', options);
-        const { html, css } = marpit.render(text);
-        return html;
-    }
     static minify_pg(text, inline) {
         let code = text.match(/^\s*\s*$/) ? '' : text;
         let optionsCompH = Object.assign({}, Extra_1.MinJS.CompOptionsJS);
@@ -211,7 +204,6 @@ class BakeWrk {
         let options = dat.getAll();
         options['filters'] = {
             metaMD: BakeWrk.metaMD,
-            marp: BakeWrk.marp
         };
         options['ENV'] = prod;
         const global = options['GLO'];

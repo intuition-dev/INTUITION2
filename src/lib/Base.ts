@@ -23,9 +23,6 @@ const path = require('path')
 import { MinJS } from './Extra'
 import { Dirs, Dat } from './FileOpsBase'
 
-import Marpit = require('@marp-team/marpit')
-const marpit = new Marpit.Marpit()
-
 import fs = require('fs-extra')
 import FileHound = require('filehound')
 import yaml = require('js-yaml')
@@ -211,11 +208,13 @@ export class BakeWrk {
       return md.render(text)
    }
 
+   /*
    static marp(text, options) {//a custom md filter that uses a transformer
       console.info(' ', options)
       const { html, css } = marpit.render(text)
       return html
    }
+   */
 
 
    //http://github.com/kangax/html-minifier/issues/843
@@ -279,7 +278,7 @@ export class BakeWrk {
       let options = dat.getAll()
       options['filters'] = {
          metaMD: BakeWrk.metaMD,
-         marp: BakeWrk.marp
+         //marp: BakeWrk.marp
       }
 
       options['ENV'] = prod
