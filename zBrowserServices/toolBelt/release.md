@@ -1,7 +1,9 @@
 
+#### 1.5.20
 - FB poly only loaded if ie11
 - added fastdom w/ promises
 - added letterings
+- added baseline for text
 
 #### 1.5.18
 - Version bump validate js
