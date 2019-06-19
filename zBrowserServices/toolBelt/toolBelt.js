@@ -155,6 +155,7 @@ depp.define({
    //fts: 
    ,'fuzzyset' :'https://cdn.jsdelivr.net/npm/fuzzyset.js@0.0.8/index.min.js'
    ,'fuse'     :'https://cdn.jsdelivr.net/npm/fuse.js@3.4.4/dist/fuse.min.js'
+   ,'lunr'     :'https://cdn.jsdelivr.net/npm/lunr@2.3.6/lunr.min.js'
 
    ,'autoComplete':'https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@5.0.0/dist/js/autoComplete.min.js'
 
