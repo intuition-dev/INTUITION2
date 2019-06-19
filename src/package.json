@@ -29,7 +29,6 @@
     "dependencies": {
         "adm-zip": ">=0.4.13",
         "autoprefixer": ">=9.6.0",
-        "axios": ">=0.19.0",
         "beeper": ">=2.0.0",
         "cheerio": ">=1.0.0-rc.2",
         "chokidar": ">=3.0.1",
@@ -47,22 +46,17 @@
         "html-minifier": ">=4.0.0",
         "javascript-obfuscator": ">=0.18.1",
         "js-yaml": ">=3.13.1",
-        "lunr": ">=2.3.6",
         "markdown-it": ">=8.4.2",
         "markdown-it-container": ">=2.0.0",
         "node-sass": ">=4.12.0",
         "open": ">=6.3.0",
-        "probe-image-size": ">=4.0.0",
         "pug": ">=2.0.4",
         "reload": ">=3.0.1",
         "riot-compiler": "^3.6.0",
-        "sitemap": ">=2.2.0",
         "strip-css-comments": ">=4.0.0",
         "terser": ">=4.0.0",
         "tracer": ">=0.9.8",
-        "traverse": ">=0.6.6",
-        "typescript": ">=3.5.2",
-        "unfluff": ">=3.2.0"
+        "typescript": ">=3.5.2"
     },
     "browserslist": [
       "> .5%",
