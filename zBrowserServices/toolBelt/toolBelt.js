@@ -105,9 +105,9 @@ depp.define({
    'disableAutoFill' :['#jquery','https://unpkg.com/mtool-belt@1.5.20/vendors/jquery.disableAutoFill.min.js']
    ,'DEBUG'          :'https://unpkg.com/mtool-belt@1.5.20/vendors/debug.css'
 
-   ,'IntuAPI': ['#RPC','https://https://unpkg.com/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
    ,'RPC': [ 'https://unpkg.com/http-rpc@1.0.10/httpRPC.js']
    ,'SPA':   'https://unpkg.com/spa-ts-router@4.20.5/spa-router.js'
+   ,'IntuAPI': ['#RPC','https://https://unpkg.com/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
 
    ,'wcomp-loader':'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/webcomponents-loader.js'
    ,'es5-adapter' :'https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js'
@@ -134,7 +134,7 @@ depp.define({
                 ,'https://cdn.jsdelivr.net/npm/vega-tooltip@0.17.0/build/vega-tooltip.min.js'
               ]
 
-  // upload libs, 2. also css or?
+  // upload libs, also css or?
   ,'filepond': ['https://cdn.jsdelivr.net/npm/filepond@4.4.9/dist/filepond.css','https://cdn.jsdelivr.net/npm/filepond@4.4.9/dist/filepond.min.js']
   ,'uppy'    : ['https://cdn.jsdelivr.net/npm/uppy@1.2.0/dist/uppy.css','https://cdn.jsdelivr.net/npm/uppy@1.2.0/dist/uppy.min.js']
 

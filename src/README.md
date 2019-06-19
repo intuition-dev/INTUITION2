@@ -207,7 +207,7 @@ In turn, the included file calls a toolBelt.js from a CDN.
 
 # Links
 
-- Full Docs: [MetaBake.github.io/mBakeCli](http://MetaBake.github.io/mBakeCLI)
+- Full CLI Docs: [MetaBake.github.io/mBakeCli](http://MetaBake.github.io/mBakeCLI)
 - [MetaBake.org](https://www.MetaBake.org)
 - [blog.MetaBake.net](http://blog.MetaBake.net)
 - [Github](http://git.MetaBake.org)
