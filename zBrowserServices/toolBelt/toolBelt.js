@@ -186,7 +186,9 @@ depp.define({
    // load after jquery is ready
    ,'qunit': [ 'https://cdn.jsdelivr.net/npm/qunit@2.9.2/qunit/qunit.css', '#jquery' 
                ,'https://cdn.jsdelivr.net/npm/qunit@2.9.2/qunit/qunit.min.js'
-               ,'https://cdn.jsdelivr.net/npm/qunit-promises@0.2.0/qunit-promises.min.js']
+               ,'https://cdn.jsdelivr.net/npm/qunit-promises@0.2.0/qunit-promises.min.js'
+              ]
+   ,'blanket':'https://cdn.jsdelivr.net/npm/blanket@1.2.3/dist/qunit/blanket.min.js'
 
    // request - 2 steps: or just use the function below
    ,'vexAlertFlatReq'  :['https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/js/vex.combined.min.js'
@@ -365,8 +367,10 @@ function loadQunit() { // you have to wait on -ready and manually start qunit
       depp.require('qunit',function(){
          QUnit.config.autostart = false
          console.log('qunit-ready')
-         depp.done('qunit-ready')
-         resolve('OK')
+         depp.require('blanket', function() {
+          depp.done('qunit-ready')
+          resolve('OK')
+        })
       })
    })//pro
 }//()

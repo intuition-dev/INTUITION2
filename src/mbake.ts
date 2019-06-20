@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 // All rights reserved by MetaBake.org | Cekvenich, licensed under LGPL 3.0
 
-import AdmZip = require('adm-zip')
 import commandLineArgs = require('command-line-args')
 import clear = require("cli-clear")
 
@@ -9,13 +8,12 @@ import { Ver, MBake } from './lib/Base'
 import { MinJS,  Sas } from './lib/Extra'
 import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
-import { DownloadFrag, Download } from './lib/FileOpsExtra'
+import { DownloadFrag } from './lib/FileOpsExtra'
 
 clear()
 
 // imports done /////////////////////////////////////////////
 const cwd: string = process.cwd()
-
 
 function version () {
    console.info('mbake CLI version: ' + Ver.ver()) // tsc
