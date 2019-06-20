@@ -1,5 +1,5 @@
 ###
-- added blanket to qunit ( https://github.com/alex-seville/blanket/blob/master/docs/getting_started_browser.md )
+-
 
 #### 1.5.20
 - FB poly only loaded if ie11
