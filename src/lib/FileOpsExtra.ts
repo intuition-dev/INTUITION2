@@ -8,11 +8,8 @@ import fs = require('fs-extra')
 import csv2JsonV2 = require('csvtojson')
 
 import AdmZip = require('adm-zip')
-
 import download = require('download')
-
 import yaml = require('js-yaml')
-
 
 export class DownloadFrag {
    constructor(dir, ops: boolean) {
