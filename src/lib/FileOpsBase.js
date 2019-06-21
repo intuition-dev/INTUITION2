@@ -25,10 +25,6 @@ class Dirs {
         const ll = this.dir.length + sub.length;
         for (let s of rec) {
             let n = s.substr(ll);
-            if (n.includes('index.html'))
-                continue;
-            if (n.includes('index.pug'))
-                continue;
             ret.push(n);
         }
         return ret;

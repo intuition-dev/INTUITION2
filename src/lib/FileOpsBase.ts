@@ -33,8 +33,6 @@ export class Dirs {
          //console.info(s)
          let n = s.substr(ll)
          //console.info(n)
-         if (n.includes('index.html')) continue
-         if (n.includes('index.pug')) continue
 
          ret.push(n)
       }
