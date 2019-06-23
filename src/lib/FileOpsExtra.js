@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Base_1 = require("./Base");
 const FileOpsBase_1 = require("./FileOpsBase");
 const logger = require('tracer').console();
 const fs = require("fs-extra");
@@ -22,9 +21,9 @@ class DownloadFrag {
 }
 exports.DownloadFrag = DownloadFrag;
 class VersionNag {
-    static isCurrent() {
-        const down = new Download('mbake', null);
-        return down.checkVer();
+    static isCurrent(prod, ver) {
+        const down = new Download(prod, null);
+        return down.checkVer(ver);
     }
 }
 exports.VersionNag = VersionNag;
@@ -33,7 +32,7 @@ class Download {
         this.key = key_;
         this.targetDir = targetDir_;
     }
-    autoZ() {
+    autoUZ() {
         const THIZ = this;
         this.getVal().then(function (url) {
             logger.trace(url);
@@ -51,12 +50,12 @@ class Download {
             THIZ.down(url, fn);
         });
     }
-    checkVer() {
+    checkVer(lver) {
         const THIZ = this;
         return new Promise(function (resolve, reject) {
             THIZ.getVal().then(function (ver) {
                 logger.trace(ver);
-                if (ver == Base_1.Ver.ver())
+                if (ver == lver)
                     resolve(true);
                 else
                     resolve(false);

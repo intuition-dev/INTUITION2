@@ -23,12 +23,15 @@ export class DownloadFrag {
       }//fi
    }//()
 }
+
 export class VersionNag {
-   static isCurrent(): Promise<boolean> {
-      const down = new Download('mbake', null)
-      return down.checkVer()
+   
+   static isCurrent(prod, ver): Promise<boolean> {
+      const down = new Download(prod, null)
+      return down.checkVer(ver)
    }
 }
+
 export class Download {
    // in docs root via git
    static truth: string = 'https://MetaBake.github.io/mBakeCLI/versions.yaml'
@@ -40,7 +43,7 @@ export class Download {
       this.targetDir = targetDir_
    }// cons
 
-   autoZ() { // and unzip
+   autoUZ() { // and unzip
       const THIZ = this
       this.getVal().then(function (url: string) {
          logger.trace(url)
@@ -60,12 +63,12 @@ export class Download {
       })
    }
 
-   checkVer(): Promise<boolean> {
+   checkVer(lver): Promise<boolean> {
       const THIZ = this
       return new Promise(function (resolve, reject) {
          THIZ.getVal().then(function (ver: string) {
             logger.trace(ver)
-            if (ver == Ver.ver()) resolve(true)
+            if (ver == lver) resolve(true)
             else resolve(false)
          })
       })//pro

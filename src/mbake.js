@@ -118,3 +118,14 @@ else if (!arg)
     help();
 else
     bake(arg);
+FileOpsExtra_1.VersionNag.isCurrent('mbake', Base_1.Ver.ver).then(function (isCurrent_) {
+    try {
+        if (!isCurrent_)
+            console.log('There is a newer version of mbake CLI, please update.');
+        else
+            console.log('You have the current version of mbake CLI');
+    }
+    catch (err) {
+        console.log(err);
+    }
+});

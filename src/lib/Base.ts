@@ -1,9 +1,9 @@
 // All rights reserved by MetaBake (MetaBake.org) | Cekvenich, licensed under LGPL 3.0
-// NOTE: You can extend these classes!
+// NOTE: You can extend any classes!
 
 export class Ver {
    static ver() {
-      return 'v6.06.28'
+      return 'v6.06.29'
    }
    static date(): string {
       return new Date().toISOString()
@@ -35,7 +35,6 @@ const minify = require('html-minifier').minify
 const Terser = require("terser")
 
 import beeper = require('beeper');
-////////////////////////////
 
 import JavaScriptObfuscator = require('javascript-obfuscator')
 

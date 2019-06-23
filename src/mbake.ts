@@ -8,7 +8,7 @@ import { Ver, MBake } from './lib/Base'
 import { MinJS,  Sas } from './lib/Extra'
 import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
-import { DownloadFrag } from './lib/FileOpsExtra'
+import { DownloadFrag, VersionNag } from './lib/FileOpsExtra'
 
 clear()
 
@@ -157,3 +157,16 @@ else if (!arg)
    help()
 else
    bake(arg)
+
+
+   
+VersionNag.isCurrent('mbake', Ver.ver).then(function(isCurrent_:boolean){
+   try{
+   if(!isCurrent_) 
+      console.log('There is a newer version of mbake CLI, please update.')
+   else
+      console.log('You have the current version of mbake CLI')
+   } catch(err) {
+      console.log(err)
+   }
+})// 
