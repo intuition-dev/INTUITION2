@@ -2,6 +2,8 @@
 mbake: v6.06.29
 mbakex: v1.00.23
 intu: v0.9.25
+intu4e: v0.5.1
+
 
 headFrag: https://unpkg.com/mtool-belt@1.5.20/template/headFrag.pug
 opsPug: https://unpkg.com/mtool-belt@1.5.20/template/ops.pug
@@ -11,4 +13,4 @@ opsJs: https://unpkg.com/mtool-belt@1.5.20/template/ops.js
 CMS: https://github.com/MetaBake/metaIntuition/raw/master/CMS.zip
 website: https://github.com/MetaBake/metaIntuition/raw/master/examples/website.zip
 CRUD: https://github.com/MetaBake/mBakeCli/raw/master/CRUD.zip
-SHOP: https://github.com/MetaBake/metaIntuition/raw/master/e-com.zip
+ecom: https://github.com/MetaBake/metaIntuition/raw/master/e-com.zip
