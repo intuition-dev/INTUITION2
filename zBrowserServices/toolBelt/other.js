@@ -8,51 +8,53 @@ console.log('lang', getLang())
 
 depp.define({
 
-   'GSAPMax'  : ['//cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/TweenMax.min.js']
+   'GSAPMax'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/TweenMax.min.js']
 
-   ,'spoken'   :'//cdn.jsdelivr.net/npm/spoken@1.1.17/spoken.min.js'
+   ,'spoken'   :'https://cdn.jsdelivr.net/npm/spoken@1.1.17/spoken.min.js'
 
-   ,'mobi'     :'//cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/js/mobiscroll.javascript.min.js'
-   ,'mobiCSS'  :'//cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/css/mobiscroll.css'
+   ,'mobi'     :'https://cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/js/mobiscroll.javascript.min.js'
+   ,'mobiCSS'  :'https://cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/css/mobiscroll.css'
 
-   ,'impromptu' :['//unpkg.com/mtool-belt@1.5.20/vendors/jquery-impromptu/jquery-impromptu.css', '#jquery'
-            ,'//unpkg.com/mtool-belt@1.5.20/vendors//jquery-impromptu/jquery-impromptu.min.js']
+   ,'impromptu' :['https://unpkg.com/mtool-belt@1.5.20/vendors/jquery-impromptu/jquery-impromptu.css', '#jquery'
+            ,'https://unpkg.com/mtool-belt@1.5.20/vendors//jquery-impromptu/jquery-impromptu.min.js']
 
-   ,'physics2' :'//cdn.jsdelivr.net/npm/p2@0.7.1/src/p2.min.js'
+   ,'physics2' :'https://cdn.jsdelivr.net/npm/p2@0.7.1/src/p2.min.js'
    
-   ,'jqMousewheel':['#jquery','//cdn.jsdelivr.net/npm/jquery-mousewheel@3.1.13/jquery.mousewheel.min.js']
-   ,'scrollify'   :['#jquery','//cdn.jsdelivr.net/npm/jquery-scrollify@1.0.20/jquery.scrollify.min.js']
+   ,'jqMousewheel':['#jquery','https://cdn.jsdelivr.net/npm/jquery-mousewheel@3.1.13/jquery.mousewheel.min.js']
+   ,'scrollify'   :['#jquery','https://cdn.jsdelivr.net/npm/jquery-scrollify@1.0.20/jquery.scrollify.min.js']
 
-   // DO NOT USE THIS FOR DEVELOPMENT. local Sass should be used always, except if you do a quick prototype or a mockup, then use this
-   ,'MOCKUPStyle': [ '//cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.css',
-                    ,'//cdn.jsdelivr.net/npm/spectre.css@0.5.8/dist/spectre.min.css']
+   // DO NOT USE THIS FOR DEVELOPMENT. local Sass should be used always, except if you do a quick prototype or a mockup, then OK to use this
+   ,'MOCKUPStyle': [ 'https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.css,'
+                    ,'https://cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.css'
+                     ,'#bs', '#gridformsJS'
+                  ]
 
    //TODO: test, 
-   ,'instantclick':'//cdn.jsdelivr.net/npm/@teamthread/instantclick@4.1.0/src/instantclick.min.js'
+   ,'instantclick':'https://cdn.jsdelivr.net/npm/@teamthread/instantclick@4.1.0/src/instantclick.min.js'
 
-   ,'doTempl2':'//cdn.jsdelivr.net/npm/dot@2.0.0-beta.0/doT.js'
+   ,'doTempl2':'https://cdn.jsdelivr.net/npm/dot@2.0.0-beta.0/doT.js'
 
-   ,'croppie': ['//cdn.jsdelivr.net/npm/croppie@2.6.4/croppie.min.js'
-               ,'//cdn.jsdelivr.net/npm/croppie@2.6.4/croppie.css' ]
+   ,'croppie': ['https://cdn.jsdelivr.net/npm/croppie@2.6.4/croppie.min.js'
+               ,'https://cdn.jsdelivr.net/npm/croppie@2.6.4/croppie.css' ]
             
    ,'fluxify':'https://cdn.jsdelivr.net/npm/fluxify@0.2.3/fluxify.min.js'
    ,'flyd':'https://cdn.jsdelivr.net/npm/flyd@0.2.8/flyd.min.js'
 
-   ,'togetherjs':'//togetherjs.com/togetherjs-min.js'
+   ,'togetherjs':'https://togetherjs.com/togetherjs-min.js'
 
-   ,'picturefill' : '//cdn.jsdelivr.net/npm/picturefill@3.0.3/dist/picturefill.min.js'
+   ,'picturefill' : 'https://cdn.jsdelivr.net/npm/picturefill@3.0.3/dist/picturefill.min.js'
 
-   ,'reframe'     :['//cdn.jsdelivr.net/npm/reframe.js@2.2.5/dist/reframe.min.js', '#DOM']
-   ,'backstretchJQ':['#jquery','//cdn.jsdelivr.net/npm/jquery-backstretch@2.1.17/jquery.backstretch.min.js']
-   ,'vintage'   :'//cdn.jsdelivr.net/npm/vintagejs@2.2.0/dist/vintage.min.js'
+   ,'reframe'     :['https://cdn.jsdelivr.net/npm/reframe.js@2.2.5/dist/reframe.min.js', '#DOM']
+   ,'backstretchJQ':['#jquery','https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.17/jquery.backstretch.min.js']
+   ,'vintage'   :'https://cdn.jsdelivr.net/npm/vintagejs@2.2.0/dist/vintage.min.js'
 
    //simplistic nav:
-   ,'offcanvasNav':  ['//cdn.jsdelivr.net/npm/js-offcanvas@1.2.9/dist/_js/js-offcanvas.pkgd.js'
-                     ,'//cdn.jsdelivr.net/npm/js-offcanvas@1.2.9/dist/_css/prefixed/js-offcanvas.css']
+   ,'offcanvasNav':  ['https://cdn.jsdelivr.net/npm/js-offcanvas@1.2.9/dist/_js/js-offcanvas.pkgd.js'
+                     ,'https://cdn.jsdelivr.net/npm/js-offcanvas@1.2.9/dist/_css/prefixed/js-offcanvas.css']
 
-   ,'particles'   :'//cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js'
+   ,'particles'   :'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js'
 
-   ,'faker': '//cdn.jsdelivr.net/npm/faker@4.1.0/index.min.js'
+   ,'faker': 'https://cdn.jsdelivr.net/npm/faker@4.1.0/index.min.js'
 
 })
 

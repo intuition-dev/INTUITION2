@@ -146,8 +146,8 @@ depp.define({
   ,'axios': 'https://unpkg.com/axios@0.19.0/dist/axios.min.js'
   
    //intro steps
-   ,'hopscotch'   :['https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/js/hopscotch.min.js'
-                   ,'https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/css/hopscotch.css']
+   ,'hopscotch' :['https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/js/hopscotch.min.js'
+                ,'https://cdn.jsdelivr.net/npm/hopscotch@0.3.1/dist/css/hopscotch.css']
    
    // gesture
    ,'zingtouch':'https://cdn.jsdelivr.net/npm/zingtouch@1.0.6/index.min.js'
@@ -183,6 +183,10 @@ depp.define({
 
    ,'pagination': ['https://cdn.jsdelivr.net/npm/paginationjs@2.1.4/dist/pagination.min.js']
 
+   ,'bs': [ '#jquery', 'https://cdn.jsdelivr.net/npm/popper.js@1.15.0/dist/umd/popper.min.js',
+            'https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js'
+          ]
+  
    // load after jquery is ready
    ,'qunit': [ 'https://cdn.jsdelivr.net/npm/qunit@2.9.2/qunit/qunit.css', '#jquery' 
                ,'https://cdn.jsdelivr.net/npm/qunit@2.9.2/qunit/qunit.min.js'
