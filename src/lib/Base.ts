@@ -9,6 +9,7 @@ export class Ver {
       return new Date().toISOString()
    }
 }
+
 import colors = require('colors')
 const logger = require('tracer').colorConsole({
    filters: [
