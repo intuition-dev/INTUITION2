@@ -1,7 +1,11 @@
-### ### 6.06.28
+
+###
+- removed timeInterceptor
+
+### 6.06.28
 - removed skip of index.html and index.pug in Dirs()
 
-### ### 6.06.26
+### 6.06.26
 - moved spider to mbake-x
 
 ### 6.06.25

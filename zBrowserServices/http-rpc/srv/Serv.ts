@@ -7,6 +7,8 @@ const formidable = require('express-formidable')
 
 const logger = require('tracer').console()
 
+// THIS IS ALL OLD, needs a fix
+
 export class CustomCors { // deprecated , use the class under here: ExpressRPC
    constructor(validOrigins:Array<string>) {
 
