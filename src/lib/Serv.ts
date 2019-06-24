@@ -45,6 +45,8 @@ export class CustomCors {
    }
 }//class
 
+//TODO Vic: Allow static server on same port via flag and in Wa.ts
+
 export class ExpressRPC {
    /**
     * @param origins An array of string that would match a domain. So host would match localhost. Returns express server instance.
