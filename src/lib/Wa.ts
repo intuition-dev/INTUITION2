@@ -224,7 +224,7 @@ export class MDevSrv {
          }
       })
 
-      /*
+      // this randomizes order of assets returned: like real www for localhost
       const timeInterceptor = interceptor(function (req, res) {
          return {
             isInterceptable: function () {
@@ -236,14 +236,13 @@ export class MDevSrv {
             },
             intercept: function (body, send) {
                setTimeout(function () {send(body)},
-                  Math.floor(Math.random() * 200) + 50)
+                  Math.floor(Math.random() * 10))
             }
          }
       })
-      */
 
       app.use(bodyInterceptor)
-      //app.use(timeInterceptor)
+      app.use(timeInterceptor)
 
       app.use(express.static(dir))
       app.listen(port, function () {

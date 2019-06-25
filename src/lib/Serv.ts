@@ -45,7 +45,6 @@ export class CustomCors {
    }
 }//class
 
-//TODO Vic: Allow static server on same port via flag and in Wa.ts
 
 export class ExpressRPC {
    /**
@@ -63,13 +62,7 @@ export class ExpressRPC {
       return appInst
    }
 
-   /**
-    * @param path The path
-    */
-   static serveStatic(path:string) {
-      return express.static(path)
-   }
-}
+}//class
 
 export class RPCBasicAuth {
    auth(user, password) {

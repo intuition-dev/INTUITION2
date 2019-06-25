@@ -1,6 +1,7 @@
 
-###
-- removed timeInterceptor
+####
+-  improve watcher's timeInterceptor to be fast
+-  imprving server for static
 
 ### 6.06.28
 - removed skip of index.html and index.pug in Dirs()
