@@ -16,7 +16,7 @@ class Wa {
         let ss = new MDevSrv(dir, port, reloadPort);
         const mp = new MetaPro(dir);
         let ww = new Watch(mp, dir);
-        ww.start(450);
+        ww.start(400);
         console.info(' Serving on ' + 'http://localhost:' + port);
         console.info(' --------------------------');
         console.info('');
@@ -178,7 +178,7 @@ class MDevSrv {
                     return cs || js || img;
                 },
                 intercept: function (body, send) {
-                    setTimeout(function () { send(body); }, Math.floor(Math.random() * 200) + 50);
+                    setTimeout(function () { send(body); }, Math.floor(Math.random() * 10));
                 }
             };
         });

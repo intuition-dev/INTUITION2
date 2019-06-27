@@ -37,17 +37,17 @@ class CustomCors {
 }
 exports.CustomCors = CustomCors;
 class ExpressRPC {
-    static makeInstance(origins) {
+    makeInstance(origins) {
         console.log('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
-        const appInst = express();
-        appInst.use(cors);
-        appInst.use(bodyParser.urlencoded({ extended: false }));
-        appInst.use(formidable());
-        return appInst;
+        this.appInst = express();
+        this.appInst.use(cors);
+        this.appInst.use(bodyParser.urlencoded({ extended: false }));
+        this.appInst.use(formidable());
+        return this.appInst;
     }
-    static serveStatic(path) {
-        return express.static(path);
+    serveStatic(path) {
+        return this.appInst.static(path);
     }
 }
 exports.ExpressRPC = ExpressRPC;

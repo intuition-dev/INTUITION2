@@ -47,20 +47,28 @@ export class CustomCors {
 
 
 export class ExpressRPC {
+   
+   appInst // forces single port in case of static content
+
    /**
     * @param origins An array of string that would match a domain. So host would match localhost. Returns express server instance.
     */
-   static makeInstance(origins:Array<string>) {
+   makeInstance(origins:Array<string>) {
       console.log('Allowed >>> ', origins)
       const cors = new CustomCors(origins)
-      const appInst = express()
-      appInst.use(cors)
+      this.appInst = express()
+      this.appInst.use(cors)
 
-      appInst.use(bodyParser.urlencoded({ extended: false }))
-      appInst.use(formidable())// for fetch
+      this.appInst.use(bodyParser.urlencoded({ extended: false }))
+      this.appInst.use(formidable())// for fetch
 
-      return appInst
+      return this.appInst
    }
+
+   serveStatic(path:string) {
+      return this.appInst.static(path)
+   }
+
 
 }//class
 
