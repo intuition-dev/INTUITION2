@@ -1,7 +1,7 @@
 
-####
+#### 6.07.01
 -  improve watcher's timeInterceptor to be fast
--  imprving server for static
+-  impoving server for static handling on single port via instance
 
 ### 6.06.28
 - removed skip of index.html and index.pug in Dirs()
