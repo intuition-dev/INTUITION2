@@ -66,7 +66,7 @@ export class ExpressRPC {
    }
 
    serveStatic(path:string) {
-      return express.static(path)
+      return this.appInst.static(path)
    }
 
 
