@@ -40,12 +40,12 @@ class httpRPC {//
   }
 
   /**
-   * 
-   * @param ent  page name | screen name | component name | calling url | VM name | ECSid - should contain route: /api/pageOne
+   * @param route api apth, eg api
+   * @param ent  viewmodel name | page name | screen name | component name | calling url | VM name | ECSid - should contain route: pageOne
    * @param method CRUD, insert, check, listAll, etc
    * @param params Object of name value pairs, likely include corp so setUser('x') can check if allowed. Params must be JSON safe, so maybe b64
    */
-  invoke(ent, method, params, fileUpload):Promise<string> { // returns promise of results or err
+  invoke(route, ent, method, params):Promise<string> { // returns promise of results or err
     //if array, return as array
 
     let formData = new FormData()
@@ -56,12 +56,10 @@ class httpRPC {//
 
     formData.append('method', method)
 
-    formData.append('sampleFile', fileUpload)
-
     const THIZ = this
     return new Promise(function(resolve, reject) {
       //console.info(formData.get('method'))
-      const url = THIZ.httpOrs+'://'+THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + ent
+      const url:string = THIZ.httpOrs+'://'+THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/'+route + '/'+ent
       console.log(url)
       fetch(url, {
             body: formData 

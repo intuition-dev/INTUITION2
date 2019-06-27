@@ -15,8 +15,8 @@ depp.define({
    ,'mobi'     :'https://cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/js/mobiscroll.javascript.min.js'
    ,'mobiCSS'  :'https://cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/css/mobiscroll.css'
 
-   ,'impromptu' :['https://unpkg.com/mtool-belt@1.5.20/vendors/jquery-impromptu/jquery-impromptu.css', '#jquery'
-            ,'https://unpkg.com/mtool-belt@1.5.20/vendors//jquery-impromptu/jquery-impromptu.min.js']
+   ,'impromptu' :['https://unpkg.com/mtool-belt@1.7.0/vendors/jquery-impromptu/jquery-impromptu.css', '#jquery'
+            ,'https://unpkg.com/mtool-belt@1.7.0/vendors//jquery-impromptu/jquery-impromptu.min.js']
 
    ,'physics2' :'https://cdn.jsdelivr.net/npm/p2@0.7.1/src/p2.min.js'
    

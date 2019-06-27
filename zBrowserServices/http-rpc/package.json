@@ -1,6 +1,6 @@
 {
   "name": "http-rpc",
-  "version": "1.0.10",
+  "version": "1.7.0",
   "description": "Simple http-rpc, a bit like json-rpc but with more http. Part of MetaBake.org tool box",
   "license": "LGPL-3.0-only"
 

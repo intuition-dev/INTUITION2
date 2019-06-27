@@ -1,5 +1,6 @@
 
-srv/node_modules/
+srvAPI/node_modules/
+node_modules/
 
 *.sh
 *.cmd

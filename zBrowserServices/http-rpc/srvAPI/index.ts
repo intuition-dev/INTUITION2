@@ -10,7 +10,7 @@ allowedDomains.push('two.org') // XXX host or local would match localhost
 const serviceApp = ExpressRPC.makeInstance(allowedDomains)
 
 
-serviceApp.post('/pageOne', (req, res) => { // post only
+serviceApp.post('/api/pageOne', (req, res) => { // post only
 
    console.log(req.fields)
    const user = req.fields.user // user, for example to check if allowed to work with company in params
