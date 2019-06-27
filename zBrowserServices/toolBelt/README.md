@@ -6,10 +6,9 @@
 #### Please star the main project here:
 - https://github.com/metabake/metaIntuition
 
-
 Listed dependencies gives you application a list of a election curated js libraries that you may chose to use/require.
 
-- Docs: https://MetaBake.github.io/mbakeDocs/#/toolBelt
+- Docs: https://metabake.github.io/mBakeCLI/#/toolBelt
 
 It saves time, sets baseline for depps, defines popular/approved libs:
 

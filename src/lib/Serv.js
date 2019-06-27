@@ -44,13 +44,20 @@ class ExpressRPC {
         console.log('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
         ExpressRPC._appInst = express();
-        ExpressRPC._appInst.use(cors);
-        ExpressRPC._appInst.use(bodyParser.urlencoded({ extended: false }));
-        ExpressRPC._appInst.use(formidable());
-        return ExpressRPC._appInst;
+        this.appInst.use(cors);
+        this.appInst.use(bodyParser.urlencoded({ extended: false }));
+        this.appInst.use(formidable());
+    }
+    handleRRoute(route, foo) {
+        this.appInst.post(route, foo);
     }
     serveStatic(path) {
-        ExpressRPC._appInst.use(express.static(path));
+        this.appInst.use(express.static(path));
+    }
+    listen(port) {
+        this.appInst.listen(port, () => {
+            console.info('server running on port:', port);
+        });
     }
 }
 exports.ExpressRPC = ExpressRPC;
