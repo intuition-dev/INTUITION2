@@ -1,4 +1,5 @@
-###
+### 6.07.02
+- Fix serv static
 - Fix prod clear css
 
 ### 6.07.01

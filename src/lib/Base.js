@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.07.01';
+        return 'v6.07.02';
     }
     static date() {
         return new Date().toISOString();
@@ -116,7 +116,7 @@ class MBake {
                 let dir = FileOpsBase_1.Dirs.slash(path_);
                 const rec = FileHound.create()
                     .paths(dir)
-                    .ext(['pug', 'yaml', , 'css', 'js', 'ts', 'scss'])
+                    .ext(['pug', 'yaml', 'js', 'ts', 'scss', 'sass', 'md'])
                     .findSync();
                 rec.forEach(file => {
                     const min = file.split('.')[file.split('.').length - 2] === 'min';

@@ -37,17 +37,20 @@ class CustomCors {
 }
 exports.CustomCors = CustomCors;
 class ExpressRPC {
+    get appInst() { return ExpressRPC._appInst; }
     makeInstance(origins) {
+        if (ExpressRPC._appInst)
+            throw new Error('one instance of express app already exists');
         console.log('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
-        this.appInst = express();
-        this.appInst.use(cors);
-        this.appInst.use(bodyParser.urlencoded({ extended: false }));
-        this.appInst.use(formidable());
-        return this.appInst;
+        ExpressRPC._appInst = express();
+        ExpressRPC._appInst.use(cors);
+        ExpressRPC._appInst.use(bodyParser.urlencoded({ extended: false }));
+        ExpressRPC._appInst.use(formidable());
+        return ExpressRPC._appInst;
     }
     serveStatic(path) {
-        return this.appInst.static(path);
+        ExpressRPC._appInst.use(express.static(path));
     }
 }
 exports.ExpressRPC = ExpressRPC;
