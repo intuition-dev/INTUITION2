@@ -91,7 +91,15 @@ export class ExpressRPC {
       this.appInst.use(express.static(path))
    }
 
-
+   /**
+    * Start server
+    * @param port 
+    */
+   listen(port) {
+      this.appInst.listen(port, () => {
+         console.info('server running on port:', port)
+      })
+   }
 }//class
 
 export class RPCBasicAuth {
