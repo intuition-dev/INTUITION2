@@ -1,5 +1,5 @@
 (once you release component - you have to register it here)
-rename unpkg.com/mtool-belt@1.0.10 globally via VS Code. It should be like 100 places in all of git.
+rename unpkg.com/mtool-belt@1.7.1/ globally via VS Code. It should be like 100 places in all of git.
 mbake -t .
 bump package.json
 npm publish
