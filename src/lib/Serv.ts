@@ -75,7 +75,7 @@ export class ExpressRPC {
    }
 
    /**
-    * 
+    * It is a post, so won't be edge cached
     * @param route RPC route
     * @param foo function
     */
@@ -83,6 +83,10 @@ export class ExpressRPC {
       this.appInst.post(route, foo)
    }
 
+   /**
+    * Will be edge cached
+    * @param path 
+    */
    serveStatic(path:string) {
       this.appInst.use(express.static(path))
    }
