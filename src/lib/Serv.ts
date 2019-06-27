@@ -59,7 +59,7 @@ export class ExpressRPC {
    get appInst() { return ExpressRPC._appInst }
 
    /**
-    * @param origins An array of string that would match a domain. So host would match localhost. Returns express server instance.
+    * @param origins An array of string that would match a domain. So host would match localhost. eg ['*'] 
     */
    makeInstance(origins:Array<string>) {
       // does it already exist?
@@ -67,16 +67,24 @@ export class ExpressRPC {
       console.log('Allowed >>> ', origins)
       const cors = new CustomCors(origins)
       ExpressRPC._appInst = express()
-      ExpressRPC._appInst.use(cors)
+      this.appInst.use(cors)
 
-      ExpressRPC._appInst.use(bodyParser.urlencoded({ extended: false }))
-      ExpressRPC._appInst.use(formidable())// for fetch
+      this.appInst.use(bodyParser.urlencoded({ extended: false }))
+      this.appInst.use(formidable())// for fetch
 
-      return ExpressRPC._appInst
+   }
+
+   /**
+    * 
+    * @param route RPC route
+    * @param foo function
+    */
+   handleRRoute(route:string, foo:Function) {
+      this.appInst.post(route, foo)
    }
 
    serveStatic(path:string) {
-      ExpressRPC._appInst.use(express.static(path))
+      this.appInst.use(express.static(path))
    }
 
 
