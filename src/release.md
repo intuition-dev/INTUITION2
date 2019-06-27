@@ -1,5 +1,7 @@
+###
+- Fix prod clear css
 
-#### 6.07.01
+### 6.07.01
 -  improve watcher's timeInterceptor to be fast
 -  impoving server for static handling on single port via instance
 
