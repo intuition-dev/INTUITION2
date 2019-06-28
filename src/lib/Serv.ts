@@ -95,7 +95,7 @@ export class ExpressRPC {
     * Start server
     * @param port 
     */
-   listen(port) {
+   listen(port:number) {
       this.appInst.listen(port, () => {
          console.info('server running on port:', port)
       })

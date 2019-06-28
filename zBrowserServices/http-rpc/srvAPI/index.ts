@@ -7,10 +7,11 @@ allowedDomains.push('one.com') // get from config.yaml, should never be '*'
 allowedDomains.push('two.org') // XXX host or local would match localhost
 
 // makes a configured express instance
-const serviceApp = ExpressRPC.makeInstance(allowedDomains)
+const serviceApp = new ExpressRPC()
+serviceApp.makeInstance(['*'])
 
 
-serviceApp.post('/api/pageOne', (req, res) => { // post only
+serviceApp.handleRRoute('/api/pageOne', (req, res) => { // post only
 
    console.log(req.fields)
    const user = req.fields.user // user, for example to check if allowed to work with company in params
@@ -44,7 +45,4 @@ function multiply(a,b) {
    return a*b
 }
 
-
-serviceApp.listen(8888, () => {
-   console.info('server running on port: 8888')
-})
+serviceApp.listen(8888)

@@ -25,11 +25,6 @@ class httpRPC {//
 
     console.log(this.httpOrs, this.host, this.port)
 
-    //example to pass in args to constructor
-    // if 80 or 443 port is empty 
-    var srv = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
-    console.log( srv )
-
   }
   //apiPath=''
   user

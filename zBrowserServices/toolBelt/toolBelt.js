@@ -8,7 +8,7 @@
 Any locally hosted lib is because we can't find it on a CDN or they have poor builds so we have to host
 
  */
-console.log('Ver:','unpkg.laska.io/mtool-belt@1.7.1/')
+console.log('Ver:','unpkg.laska.io/mtool-belt@1.7.2/')
 
 /*
 if (!depp.isDefined('jquery')) {
@@ -38,11 +38,11 @@ var CESupported = (function () {
   }
 })()
 if (!CESupported) //custom events polly
-  depp.define({ 'has-CE': 'https://unpkg.laska.io/mtool-belt@1.7.1/poly/EventListener.min.js' })
+  depp.define({ 'has-CE': 'https://unpkg.laska.io/mtool-belt@1.7.2/poly/EventListener.min.js' })
 else
   depp.done('has-CE')
 if (!('fetch' in window))
-  depp.define({ 'has-Fetch': 'https://unpkg.laska.io/mtool-belt@1.7.1/poly/fetch.min.js' })
+  depp.define({ 'has-Fetch': 'https://unpkg.laska.io/mtool-belt@1.7.2/poly/fetch.min.js' })
 else
   depp.done('has-Fetch')
 depp.require(['has-Promise','has-CE','has-Fetch'], function () {
@@ -102,10 +102,10 @@ function addScript(src, callback, attr, attrValue, id) {
 }
 
 depp.define({
-   'disableAutoFill' :['#jquery','https://unpkg.laska.io/mtool-belt@1.7.1/vendors/jquery.disableAutoFill.min.js']
-   ,'DEBUG'          :'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/debug.css'
+   'disableAutoFill' :['#jquery','https://unpkg.laska.io/mtool-belt@1.7.2/vendors/jquery.disableAutoFill.min.js']
+   ,'DEBUG'          :'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/debug.css'
 
-   ,'RPC': [ 'https://unpkg.laska.io/http-rpc@1.7.0/httpRPC.min.js']
+   ,'RPC': [ 'https://unpkg.laska.io/http-rpc@1.7.1/httpRPC.min.js']
    ,'SPA':   'https://unpkg.laska.io/spa-ts-router@4.20.5/spa-router.js'
    ,'IntuAPI': ['#RPC','https://https://unpkg.laska.io/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
 
@@ -121,7 +121,7 @@ depp.define({
    // 3 libraries you should use often, isJs, collect and state-machine
    // https://www.npmjs.com/package/collect.js
    ,'collect': 'https://cdn.jsdelivr.net/npm/collect.js@4.12.2/build/collect.min.js'
-   ,'isJs': 'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/is.min.js'
+   ,'isJs': 'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/is.min.js'
    // Use for context, SPA and complex apps. Commercial License # MetaBake LLC
    ,'state-machine': 'https://cdn.jsdelivr.net/npm/javascript-state-machine@3.1.0/lib/state-machine.min.js'
 
@@ -176,8 +176,8 @@ depp.define({
    ,'gridformsJS':['https://cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.js']
 
    ,'accordion': ['#jquery'
-                  ,'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/jquery-accordion/js/jquery.accordion.min.js'
-                  ,'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/jquery-accordion/css/jquery.accordion.css']
+                  ,'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/jquery-accordion/js/jquery.accordion.min.js'
+                  ,'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/jquery-accordion/css/jquery.accordion.css']
 
    ,'emailjs': ['https://cdn.emailjs.com/sdk/2.3.2/email.min.js']
 
@@ -199,7 +199,7 @@ depp.define({
                         ,'https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex-theme-flat-attack.css']
 
    // binding - good example
-   ,'jqForm': 'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/jquery-jsForm/jquery.jsForm.js'
+   ,'jqForm': 'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/jquery-jsForm/jquery.jsForm.js'
 
    ,'codemirror': [   'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.css'
                      ,'https://cdn.jsdelivr.net/npm/codemirror@5.47.0/lib/codemirror.min.js'
@@ -234,10 +234,10 @@ depp.define({
                   ]
     
     // https://www.smashingmagazine.com/2012/12/css-baseline-the-good-the-bad-and-the-ugly
-    ,'baseline' :  'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/baseline.min.js'
-    ,'baseliner' : 'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/baseliner.min.js'
+    ,'baseline' :  'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/baseline.min.js'
+    ,'baseliner' : 'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/baseliner.min.js'
     ,'typewriter' :'https://cdn.jsdelivr.net/npm/typewriter-effect@2.5.3/dist/core.js'
-    ,'letteringjs' :['#jquery','https://unpkg.laska.io/mtool-belt@1.7.1/vendors/letteringjs.min.js']
+    ,'letteringjs' :['#jquery','https://unpkg.laska.io/mtool-belt@1.7.2/vendors/letteringjs.min.js']
   
     ,'bcrypt':'https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js'
 
@@ -250,9 +250,9 @@ depp.define({
                ,'https://cdn.jsdelivr.net/npm/onepage-scroll@1.3.0/jquery.onepage-scroll.min.js']
    
    ,'jqFAQ':[ '#jquery'
-             ,'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/jquery-FAQ/jquery.quicksilver.min.js'
-             ,'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/jquery-FAQ/jquery.simpleFAQ.css'
-             ,'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
+             ,'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/jquery-FAQ/jquery.quicksilver.min.js'
+             ,'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/jquery-FAQ/jquery.simpleFAQ.css'
+             ,'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/jquery-FAQ/jquery.simpleFAQ.min.js']
 
   ,'switchery':'https://cdn.jsdelivr.net/npm/switchery@0.0.2/switchery.min.js'
 
@@ -283,7 +283,7 @@ depp.define({
    //vid
    ,'mediaelement'   :[ 'https://cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelementplayer.css'
                      ,  'https://cdn.jsdelivr.net/npm/mediaelement@4.2.10/build/mediaelement-and-player.min.js']
-   ,'bideo' : 'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/bideo/bideo.min.js'
+   ,'bideo' : 'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/bideo/bideo.min.js'
 
    ,'hoverIntent': ['#jquery', 'https://cdn.jsdelivr.net/npm/jquery-hoverintent@1.10.0/jquery.hoverIntent.min.js']
 
@@ -291,13 +291,13 @@ depp.define({
    ,'annYang'  :'https://cdn.jsdelivr.net/npm/annyang@2.6.1/dist/annyang.min.js'
 
    //FX section
-   ,'deli'  : ['https://unpkg.laska.io/mtool-belt@1.7.1/vendors/delighters.min.js']
+   ,'deli'  : ['https://unpkg.laska.io/mtool-belt@1.7.2/vendors/delighters.min.js']
    ,'GSAP'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.3/src/minified/TweenLite.min.js',
                'https://cdn.jsdelivr.net/npm/gsap@2.1.3/src/minified/plugins/CSSPlugin.min.js'] // plugin needs to animate css property
    ,'polly-ani'   :'https://cdn.jsdelivr.net/npm/web-animations-js@2.3.1/web-animations.min.js'
-   ,'clamp'       :['https://unpkg.laska.io/mtool-belt@1.7.1/vendors/clamp.min.js']
+   ,'clamp'       :['https://unpkg.laska.io/mtool-belt@1.7.2/vendors/clamp.min.js']
    ,'zenscroll'   :['https://cdn.jsdelivr.net/npm/zenscroll@4.0.2/zenscroll-min.js']  
-   ,'parallaxImg' :'https://unpkg.laska.io/mtool-belt@1.7.1/vendors/parallaxImg.min.js'
+   ,'parallaxImg' :'https://unpkg.laska.io/mtool-belt@1.7.2/vendors/parallaxImg.min.js'
 
    ,'jqMapaEl':['#jquery', '#raphael', 'https://cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js']
    ,'raphael' :'https://cdn.jsdelivr.net/npm/raphael@2.2.8/raphael.min.js'

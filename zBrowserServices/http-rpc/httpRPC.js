@@ -12,16 +12,15 @@ var httpRPC = (function () {
         this.user = user;
         this.pswd = pswd;
     };
-    httpRPC.prototype.invoke = function (ent, method, params, fileUpload) {
+    httpRPC.prototype.invoke = function (route, ent, method, params) {
         var formData = new FormData();
         formData.append('params', JSON.stringify(params));
         formData.append('user', btoa(this.user));
         formData.append('pswd', btoa(this.pswd));
         formData.append('method', method);
-        formData.append('sampleFile', fileUpload);
         var THIZ = this;
         return new Promise(function (resolve, reject) {
-            var url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + ent;
+            var url = THIZ.httpOrs + '://' + THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/' + route + '/' + ent;
             console.log(url);
             fetch(url, {
                 body: formData,
