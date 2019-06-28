@@ -50,7 +50,7 @@ serviceApp.listen(8888)
 // example impl
 class Check implements iAuth {
 
-   auth(user: string, pswd: string, ctx?: any): Promise<string> {
+   auth(user:string, pswd:string, resp?, ctx?):Promise<string> {
       return new Promise( function (resolve, reject) {
          resolve('NO')
       })
