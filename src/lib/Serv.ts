@@ -73,20 +73,34 @@ export class ExpressRPC {
 
       this.appInst.use(bodyParser.urlencoded({ extended: false }))
       this.appInst.use(formidable())// for fetch
-
    }
-
 
    /**
     * It is a post, so won't be edge cached
     * @param route RPC route
     * @param foo function
+   Example foo(req, res)
+   {
+      const method = req.fields.method
+      const params = JSON.parse( req.fields.params )
+      if('save'==method) { 
+         // possibly send to business layer away from protocol layer, that layer talks to DB and other services 
+      }
+      // etc...
+      const resp:any= {} // new response
+      resp.result = foo(params)
+      res.json(resp)
+   } else {
+      resp.errorLevel = -1
+      resp.errorMessage = 'mismatch'
+      console.log(resp)
+      res.json(resp)
+   }
     */
    handleRRoute2(route:string, pgOrScreen:string, foo:Function) {
       const r: string = '/'+route  + '/'+pgOrScreen
       this.appInst.post(r, foo)
    }
-
 
    /**
     * It is a post, so won't be edge cached
