@@ -127,9 +127,10 @@ export  interface iAuth {
     * Returns 'NO' if not. Else returns some string saying what kind of auth. Eg: 'admin' would be full. Or 'microsoft' would mean only for that company. 
     * @param user 
     * @param pswd 
+    * @param resp response, maybe the auth class does an http response
     * @param ctx Optional context, for example project|company. Is the user allowed in this project|company?
     */
-   auth(user:string, pswd:string, ctx?):Promise<string>
+   auth(user:string, pswd:string, resp?, ctx?):Promise<string>
 
 }
 

@@ -1,6 +1,6 @@
 
 // from mbake
-import { ExpressRPC } from 'mbake/lib/Serv'
+import { ExpressRPC, iAuth } from 'mbake/lib/Serv'
 
 let allowedDomains = []
 allowedDomains.push('one.com') // get from config.yaml, should never be '*'
@@ -11,7 +11,7 @@ const serviceApp = new ExpressRPC()
 serviceApp.makeInstance(['*'])
 
 
-serviceApp.handleRRoute('/api/pageOne', (req, res) => { // post only
+serviceApp.handleRRoute('api', 'pageOne', (req, res) => { // post only
 
    console.log(req.fields)
    const user = req.fields.user // user, for example to check if allowed to work with company in params
@@ -46,3 +46,14 @@ function multiply(a,b) {
 }
 
 serviceApp.listen(8888)
+
+// example impl
+class Check implements iAuth {
+
+   auth(user: string, pswd: string, ctx?: any): Promise<string> {
+      return new Promise( function (resolve, reject) {
+         resolve('NO')
+      })
+   }//()
+
+}//class
