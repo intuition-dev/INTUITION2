@@ -1,3 +1,6 @@
+### 1.7.2
+- Using unpkg.laska.io instead of unpkg.com for assets for now. 
+
 ### 1.7.0
 - Bump RPC
 - BootStrap
