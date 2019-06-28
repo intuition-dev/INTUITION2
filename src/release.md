@@ -1,4 +1,4 @@
-### 6.07.05
+### 6.07.07
 - Remove BasicAuth and add auth interface
 - handleRRoute takes 2 args
 
