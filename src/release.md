@@ -1,3 +1,7 @@
+### 6.07.04
+- Remove BasicAuth and add auth interface
+- handleRRoute takes 2 args
+
 ### 6.07.03
 - Added listen and  handleRRoute to Srv
 

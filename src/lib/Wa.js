@@ -16,7 +16,7 @@ class Wa {
         let ss = new MDevSrv(dir, port, reloadPort);
         const mp = new MetaPro(dir);
         let ww = new Watch(mp, dir);
-        ww.start(300);
+        ww.start(280);
         console.info(' Serving on ' + 'http://localhost:' + port);
         console.info(' --------------------------');
         console.info('');
@@ -169,21 +169,7 @@ class MDevSrv {
                 }
             };
         });
-        const timeInterceptor = interceptor(function (req, res) {
-            return {
-                isInterceptable: function () {
-                    let js = /application\/javascript/.test(res.get('Content-Type'));
-                    let cs = /text\/css/.test(res.get('Content-Type'));
-                    let img = /image\/jpg/.test(res.get('Content-Type'));
-                    return cs || js || img;
-                },
-                intercept: function (body, send) {
-                    setTimeout(function () { send(body); }, Math.floor(Math.random() * 10));
-                }
-            };
-        });
         app.use(bodyInterceptor);
-        app.use(timeInterceptor);
         app.use(express.static(dir));
         app.listen(port, function () {
             logger.info('dev srv ' + port);

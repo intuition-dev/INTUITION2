@@ -48,8 +48,9 @@ class ExpressRPC {
         this.appInst.use(bodyParser.urlencoded({ extended: false }));
         this.appInst.use(formidable());
     }
-    handleRRoute(route, foo) {
-        this.appInst.post(route, foo);
+    handleRRoute(route, pgOrScreen, foo) {
+        const r = '/' + route + '/' + pgOrScreen;
+        this.appInst.post(r, foo);
     }
     serveStatic(path) {
         this.appInst.use(express.static(path));
@@ -61,32 +62,6 @@ class ExpressRPC {
     }
 }
 exports.ExpressRPC = ExpressRPC;
-class RPCBasicAuth {
-    auth(user, password) {
-        let buffUser = new Buffer(user);
-        user = buffUser.toString('base64');
-        let buffPwd = new Buffer(password);
-        password = buffPwd.toString('base64');
-        return (request, response, next) => {
-            if (typeof request.fields.user === 'undefined'
-                || typeof request.fields.pswd === 'undefined') {
-                console.info('user or pswd not exist');
-                response.status(401).send();
-            }
-            else if (request.fields.user !== user
-                || request.fields.pswd !== password) {
-                console.info('user or pswd are not correct');
-                response.status(401).send();
-            }
-            else {
-                console.info('basic auth: success');
-                return next();
-            }
-        };
-    }
-    ;
-}
-exports.RPCBasicAuth = RPCBasicAuth;
 module.exports = {
-    ExpressRPC, RPCBasicAuth
+    ExpressRPC
 };

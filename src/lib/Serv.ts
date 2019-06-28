@@ -103,15 +103,6 @@ export class ExpressRPC {
    }
 
    /**
-    * It is a post, so won't be edge cached
-    * @param route RPC route
-    * @param foo function
-    */
-   handleRRoute0(route:string, foo:Function) {
-      this.appInst.post(route, foo)
-   }
-
-   /**
     * Will be edge cached
     * @param path 
     */
@@ -130,37 +121,18 @@ export class ExpressRPC {
    }
 }//class
 
-export class RPCBasicAuth {
+export  interface iAuth {
 
-   auth(user, password) {
+   /**
+    * Returns 'NO' if not. Else returns some string saying what kind of auth. Eg: 'admin' would be full. Or 'microsoft' would mean only for that company. 
+    * @param user 
+    * @param pswd 
+    * @param ctx Optional context, for example project|company. Is the user allowed in this project|company?
+    */
+   auth(user:string, pswd:string, ctx?):Promise<string>
 
-      // base64 encode
-      let buffUser = new Buffer(user)
-      user = buffUser.toString('base64')
-      let buffPwd = new Buffer(password)
-      password = buffPwd.toString('base64')
-
-      return (request, response, next) => {
-         if (typeof request.fields.user === 'undefined'
-            || typeof request.fields.pswd === 'undefined'
-         ) {
-            console.info('user or pswd not exist');
-            response.status(401).send();
-         } else if (request.fields.user !== user
-            || request.fields.pswd !== password
-         ) {
-            console.info('user or pswd are not correct');
-            response.status(401).send();
-         } else {
-            console.info('basic auth: success');
-            return next();
-         }
-      }
-
-   }//()
-}//
-
+}
 
 module.exports = {
-   ExpressRPC, RPCBasicAuth
+   ExpressRPC
 }
