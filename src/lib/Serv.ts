@@ -76,6 +76,18 @@ export class ExpressRPC {
 
    }
 
+
+   /**
+    * It is a post, so won't be edge cached
+    * @param route RPC route
+    * @param foo function
+    */
+   handleRRoute2(route:string, pgOrScreen:string, foo:Function) {
+      const r: string = '/'+route  + '/'+pgOrScreen
+      this.appInst.post(r, foo)
+   }
+
+
    /**
     * It is a post, so won't be edge cached
     * @param route RPC route
