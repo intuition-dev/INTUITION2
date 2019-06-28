@@ -45,7 +45,9 @@ export class CustomCors {
    }
 }//class
 
-
+/**
+ * Don't use methods here for GET or Upload, use the appInst to do it 'manually'
+ */
 export class ExpressRPC {
    
    /**
