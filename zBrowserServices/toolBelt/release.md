@@ -1,3 +1,6 @@
+### 1.7.3
+- Added BootStrap
+
 ### 1.7.2
 - Using unpkg.laska.io instead of unpkg.com for assets for now. 
 
