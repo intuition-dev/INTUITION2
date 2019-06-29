@@ -15,19 +15,13 @@ depp.define({
    ,'mobi'     :'https://cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/js/mobiscroll.javascript.min.js'
    ,'mobiCSS'  :'https://cdn.jsdelivr.net/npm/@mobiscroll/javascript-lite@4.6.3/dist/css/mobiscroll.css'
 
-   ,'impromptu' :['https://unpkg.laska.io/mtool-belt@1.7.3/vendors/jquery-impromptu/jquery-impromptu.css', '#jquery'
-            ,'https://unpkg.laska.io/mtool-belt@1.7.3/vendors//jquery-impromptu/jquery-impromptu.min.js']
+   ,'impromptu' :['https://unpkg.laska.io/mtool-belt@1.7.4/vendors/jquery-impromptu/jquery-impromptu.css', '#jquery'
+            ,'https://unpkg.laska.io/mtool-belt@1.7.4/vendors//jquery-impromptu/jquery-impromptu.min.js']
 
    ,'physics2' :'https://cdn.jsdelivr.net/npm/p2@0.7.1/src/p2.min.js'
    
    ,'jqMousewheel':['#jquery','https://cdn.jsdelivr.net/npm/jquery-mousewheel@3.1.13/jquery.mousewheel.min.js']
    ,'scrollify'   :['#jquery','https://cdn.jsdelivr.net/npm/jquery-scrollify@1.0.20/jquery.scrollify.min.js']
-
-   // DO NOT USE THIS FOR DEVELOPMENT. local Sass should be used always, except if you do a quick prototype or a mockup, then OK to use this
-   ,'MOCKUPStyle': [ 'https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.css,'
-                    ,'https://cdn.jsdelivr.net/npm/gridforms@1.0.6/gridforms/gridforms.css'
-                     ,'#bs', '#gridformsJS'
-                  ]
 
    //TODO: test, 
    ,'instantclick':'https://cdn.jsdelivr.net/npm/@teamthread/instantclick@4.1.0/src/instantclick.min.js'

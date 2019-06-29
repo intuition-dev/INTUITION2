@@ -5,9 +5,9 @@ intu: v0.9.26
 intu4e: v0.5.1
 
 
-headFrag: https://unpkg.laska.io/mtool-belt@1.7.3/template/headFrag.pug
-opsPug: https://unpkg.laska.io/mtool-belt@1.7.3/template/ops.pug
-opsJs: https://unpkg.laska.io/mtool-belt@1.7.3/template/ops.js
+headFrag: https://unpkg.laska.io/mtool-belt@1.7.4/template/headFrag.pug
+opsPug: https://unpkg.laska.io/mtool-belt@1.7.4/template/ops.pug
+opsJs: https://unpkg.laska.io/mtool-belt@1.7.4/template/ops.js
 
 
 CMS: https://github.com/MetaBake/metaIntuition/raw/master/CMS.zip

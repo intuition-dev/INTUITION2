@@ -1,5 +1,7 @@
-depp.define({'style':'css/bootstrap.css'})
-depp.require(['bs', 'FontsLoaded'], function() {
+
+// depp.define({'style':'css/bootstrap.css'})
+
+depp.require(['bsDefaultStyle'], function() {
    console.log('ready')
    depp.require('style')
 
