@@ -1,3 +1,6 @@
+### 1.7.4
+- headFrag now has default bs top style and loader.js
+
 ### 1.7.3
 - Added BootStrap
 

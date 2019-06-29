@@ -6,6 +6,7 @@ intu4e: v0.5.1
 
 
 headFrag: https://unpkg.laska.io/mtool-belt@1.7.4/template/headFrag.pug
+loader: https://unpkg.laska.io/mtool-belt@1.7.4/template/loader.js
 opsPug: https://unpkg.laska.io/mtool-belt@1.7.4/template/ops.pug
 opsJs: https://unpkg.laska.io/mtool-belt@1.7.4/template/ops.js
 
