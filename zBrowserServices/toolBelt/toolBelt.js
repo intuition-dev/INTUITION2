@@ -451,16 +451,17 @@ function debounceF(callback, time) { //returns a modified function!!!
   }
 }
 
-//scroll and resize example
+// DOMDelayed
 depp.require(['DOM'], function () {
   setTimeout(function(){
     depp.done('DOMDelayed')
     toolBeltDefault()
-  },200)
+  }, 150)
   window.addEventListener('scroll', onBrowser)
   window.addEventListener('resize', onBrowser)
   onBrowser()//call it once to layout
 })
+// scroll and resize example
 function onBrowser(evt) { // just an example
    modOnBrowser(evt) // call the modified function
 }
