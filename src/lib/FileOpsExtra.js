@@ -12,10 +12,12 @@ class DownloadFrag {
         console.log('Extracting to', dir);
         if (!ops) {
             new Download('headFrag', dir).auto();
+            new Download('loader', dir).auto();
         }
         if (ops) {
             new Download('opsPug', dir).auto();
             new Download('opsJs', dir).auto();
+            new Download('loader', dir).auto();
         }
     }
 }
@@ -94,7 +96,7 @@ class Download {
         fs.remove(this.targetDir + '/' + fn);
     }
 }
-Download.truth = 'https://MetaBake.github.io/mBakeCLI/versions.yaml';
+Download.truth = 'https://MetaBake.github.io/mbCLI/versions.yaml';
 exports.Download = Download;
 class YamlConfig {
     constructor(fn) {
