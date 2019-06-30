@@ -5,7 +5,8 @@ const logger = require('tracer').console()
  * Helper for SQLite3
  */
 export class BaseDB {
-      static run(stmt, ...args):Promise<any> {
+
+   protected _run(stmt, ...args):Promise<any> {
       return new Promise( function (resolve, reject) {
          stmt.run( args
             , function (err) {
@@ -18,7 +19,7 @@ export class BaseDB {
       })
    }//()
 
-   static qry(stmt, ...args):Promise<any> {
+   protected _qry(stmt, ...args):Promise<any> {
       return new Promise( function (resolve, reject) {
          stmt.all( args
             , function (err, rows) {

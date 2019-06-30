@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const logger = require('tracer').console();
 class BaseDB {
-    static run(stmt, ...args) {
+    _run(stmt, ...args) {
         return new Promise(function (resolve, reject) {
             stmt.run(args, function (err) {
                 if (err) {
@@ -14,7 +14,7 @@ class BaseDB {
             });
         });
     }
-    static qry(stmt, ...args) {
+    _qry(stmt, ...args) {
         return new Promise(function (resolve, reject) {
             stmt.all(args, function (err, rows) {
                 if (err) {
