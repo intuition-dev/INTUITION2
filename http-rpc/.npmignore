@@ -1,8 +1,0 @@
-
-srvAPI/node_modules/
-node_modules/
-
-*.sh
-*.cmd
-
-.DS_Store
