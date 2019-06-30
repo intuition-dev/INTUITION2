@@ -25,7 +25,7 @@ export class Wa {
       const mp = new MetaPro(dir)
       let ww = new Watch(mp, dir)
       
-      ww.start(280) // build X ms after saving a file
+      ww.start(305) // build X ms after saving a file
 
       console.info(' Serving on ' + 'http://localhost:' + port)
       console.info(' --------------------------')
