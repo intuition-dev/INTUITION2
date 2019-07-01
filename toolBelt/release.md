@@ -1,4 +1,4 @@
-### 1.7.6
+### 1.7.7
 - added flip and spinner
 
 ### 1.7.4
