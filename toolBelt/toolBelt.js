@@ -306,8 +306,7 @@ depp.define({
    ,'jqMapaEl':['#jquery', '#raphael', 'https://cdn.jsdelivr.net/npm/jquery-mapael@2.2.0/js/jquery.mapael.min.js']
    ,'raphael' :'https://cdn.jsdelivr.net/npm/raphael@2.2.8/raphael.min.js'
 
-   //webGL
-   ,'babylon'  :'https://cdn.jsdelivr.net/npm/babylonjs@4.0.3/babylon.js' // is min
+
 
 })
 

@@ -8,7 +8,10 @@ console.log('lang', getLang())
 
 depp.define({
 
-   'GSAPMax'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/TweenMax.min.js']
+   //webGL
+   'babylon'  :'https://cdn.jsdelivr.net/npm/babylonjs@4.0.3/babylon.js' // is min
+
+   ,'GSAPMax'  : ['https://cdn.jsdelivr.net/npm/gsap@2.1.2/src/minified/TweenMax.min.js']
 
    ,'spoken'   :'https://cdn.jsdelivr.net/npm/spoken@1.1.17/spoken.min.js'
 
