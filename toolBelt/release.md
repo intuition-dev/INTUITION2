@@ -1,3 +1,6 @@
+### 1.7.6
+- added flip and spinner
+
 ### 1.7.4
 - headFrag now has default bs top style and loader.js
 
