@@ -1,3 +1,6 @@
+###
+- GUID() added
+
 ### 1.7.7
 - added flip and spinner
 
