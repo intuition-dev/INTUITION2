@@ -1,3 +1,7 @@
+
+### 6.07.11
+- added BasePgRouter
+
 ### 6.07.10
 - added BaseDB
 

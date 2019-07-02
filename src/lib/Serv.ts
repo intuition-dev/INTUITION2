@@ -134,6 +134,68 @@ export  interface iAuth {
 
 }
 
+/*
+Helper/Sugar class
+*/
+export class BasePgRouter {
+
+   /**
+    * returns a data response
+    * @param resp http response
+    * @param result data
+    */
+   ret(resp, result) {
+      const ret:any= {} // new return
+      ret.result = result
+      resp.json(ret)
+   }//()
+
+   /**
+    * returns an error
+    * @param resp http response
+    * @param msg error msg
+    */
+   retErr(resp, msg) {
+      logger.warn(msg)
+      const ret:any= {} // new return
+      ret.errorLevel = -1
+      ret.errorMessage = msg
+      resp.json(ret)
+   }//()
+
+   /**
+    * Dynamically invokes RPC method for a Page, acts like a switch()
+      eg: mainEApp.handleRRoute('api', 'editors', pg1Router.route)
+    * @param req 
+    * @param resp 
+    */
+   route(req, resp) {
+      if(!this) throw new Error('bind of class instance needed')
+      const THIZ = this
+      let method
+      try {
+         const user = req.fields.user
+         const pswd = req.fields.pswd
+      
+         method = req.fields.method
+         const params = JSON.parse( req.fields.params )
+         logger.info(method)
+         //invoke the method request
+         THIZ[method](resp, params, user, pswd)
+      } catch(err) {
+         logger.info(err)
+         THIZ.retErr(resp, method)
+      }
+   }//()
+
+   /* XXX eg how to use: mainEApp.handleRRoute('api', 'editPg', pg1Router.route.bind(pg1Router))
+   selectAll(resp, params, user, pswd) {
+      this.ret(resp, 'OK')
+   }//()
+   */
+
+}//class
+
 module.exports = {
-   ExpressRPC
+   ExpressRPC, BasePgRouter
 }
