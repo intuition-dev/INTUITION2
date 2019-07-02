@@ -1,5 +1,5 @@
-###
-- added addE1Listener() 
+### 1.7.8
+- added addE1Listener() that gets called once
 - GUID() added
 
 ### 1.7.7
