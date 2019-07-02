@@ -1,8 +1,9 @@
 ###
+- added addE1Listener() 
 - GUID() added
 
 ### 1.7.7
-- added flip and spinner
+- added flip 
 
 ### 1.7.4
 - headFrag now has default bs top style and loader.js

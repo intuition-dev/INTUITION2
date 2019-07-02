@@ -10,7 +10,6 @@ Any locally hosted lib is because we can't find it on a CDN or they have poor bu
  */
 console.log('Ver:','unpkg.laska.io/mtool-belt@1.7.7/')
 
-
 function onDOM_() {
   console.log('DOM')
   depp.done('DOM')
@@ -126,8 +125,7 @@ depp.define({
    ,'state-machine': 'https://cdn.jsdelivr.net/npm/javascript-state-machine@3.1.0/lib/state-machine.min.js'
 
    ,'jqFlip': 'https://unpkg.laska.io/mtool-belt@1.7.7/vendors/flip/jquery.flip.min.js'
-   ,'spin':  ['https://unpkg.laska.io/mtool-belt@1.7.7/vendors/spin/spin.umd.min.js'
-             ,'https://unpkg.laska.io/mtool-belt@1.7.7/vendors/spin/spin.css']
+
     //vega
    ,'datalib':'https://cdn.jsdelivr.net/npm/datalib@1.9.2/datalib.min.js'
 
@@ -311,11 +309,15 @@ depp.define({
 
 // common functions:
 function loadVexAlertFlat() { // since it has extra call at end
-   depp.require('vexAlertFlatReq', function(){
-      vex.defaultOptions.className = 'vex-theme-flat-attack' // it needs this hack
-      console.log('vexFlat')
-      depp.done('loadedVexAlertFlat') // now you can vex.dialog.confirm({ message: 'Something went wrong', callback: function(){} })//vexAlert 
-   })//req
+   return new Promise(function (resolve, reject) {
+     depp.require('vexAlertFlatReq', function(){
+        vex.defaultOptions.className = 'vex-theme-flat-attack' // it needs this hack
+        console.log('vexFlat')
+        depp.done('loadedVexAlertFlat') 
+        // now you can vex.dialog.confirm({ message: 'Something went wrong', callback: function(){} })//vexAlert 
+        resolve('OK')
+     })//req
+   })//pro
 }//()
 
 function loadSnipCart(key) {
@@ -354,8 +356,8 @@ function fetchItems(items) {// requires polly
            reject(fullResp.statusText)
          return fullResp.json()
        }).then(function (obj) {
-         //notify, disE is async
-         disE('fetchItems',{items : items}) //the url
+         //notify, disE1 is async
+         disE1('fetchItems',{items : items}) //the url
          resolve(obj)
         })
        .catch(function (err) {
@@ -401,12 +403,33 @@ function getLang() {
   return navigator.language || navigator.userLanguage
 }
 
-// this async dispatch can help, for example in promise
 function disE(evtName, msg) {
     setTimeout(function(){
       dispatchEvent(new CustomEvent(evtName, { detail: msg }))
     },1)
 }
+window.global = {} // to store global data for events
+// this async dispatch can help, for example in promise
+function disE1(evtName, msg) {
+ setTimeout(function(){
+   dispatchEvent(new CustomEvent(evtName, { detail: msg }))
+   window.global[evtName] = msg
+   console.log(evtName)
+ },1)
+}//()
+function addE1Listener(evtName, foo) { // using localstorage has file i/o
+   // 2 choices, if there, call
+   if(window.global[evtName]) { 
+      console.log('data ahead', evtName)
+      foo(window.global[evtName])
+      delete window.global[evtName]
+   }// else fire the event when there
+   else addEventListener(evtName, function(evt){
+      console.log(evtName)   
+      foo(evt.detail)
+      delete window.global[evtName]
+   })   
+}//()
 
 function inView(el) { // is element in view?
   //special bonus for jQuery
@@ -504,7 +527,7 @@ function loadFonts(fonts) {
       },
       active: function() {
           console.log('onFontsLoaded')
-          disE('onFontsLoaded')
+          disE1('onFontsLoaded')
       }
     }
     WebFont.load(fontConfig)
