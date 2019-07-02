@@ -120,7 +120,7 @@ depp.define({
 
    // 3 libraries you should use often, isJs, collect and state-machine
    // https://www.npmjs.com/package/collect.js
-   ,'collect': 'https://cdn.jsdelivr.net/npm/collect.js@4.12.2/build/collect.min.js'
+   ,'collect': 'https://cdn.jsdelivr.net/npm/collect.js@4.12.6/build/collect.min.js'
    ,'isJs': 'https://unpkg.laska.io/mtool-belt@1.7.7/vendors/is.min.js'
    // Use for context, SPA and complex apps. Commercial License # MetaBake LLC
    ,'state-machine': 'https://cdn.jsdelivr.net/npm/javascript-state-machine@3.1.0/lib/state-machine.min.js'
