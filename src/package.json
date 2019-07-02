@@ -56,7 +56,8 @@
         "strip-css-comments": ">=4.0.0",
         "terser": ">=4.0.2",
         "tracer": ">=0.9.8",
-        "typescript": ">=3.5.2"
+        "typescript": ">=3.5.2",
+        "is": ">=3.3.0"
     },
     "browserslist": [
         "> .5%",
