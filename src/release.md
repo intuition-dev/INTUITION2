@@ -1,4 +1,7 @@
 
+### 6.07.12
+- added check that page is passed to RPC
+
 ### 6.07.11
 - added BasePgRouter
 
