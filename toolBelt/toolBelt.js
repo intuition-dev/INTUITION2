@@ -98,8 +98,6 @@ depp.define({
    'disableAutoFill' :['#jquery','https://unpkg.laska.io/mtool-belt@1.7.9/vendors/jquery.disableAutoFill.min.js']
    ,'DEBUG'          :'https://unpkg.laska.io/mtool-belt@1.7.9/vendors/debug.css'
 
-   ,'Uri': 'https://unpkg.laska.io/mtool-belt@1.7.9/vendors/Uri.min.js'
-
    ,'RPC': [ 'https://unpkg.laska.io/http-rpc@1.7.1/httpRPC.min.js']
    ,'SPA':   'https://unpkg.laska.io/spa-ts-router@4.20.5/spa-router.js'
    ,'IntuAPI': ['#RPC','https://https://unpkg.laska.io/intu@0.9.12/www/assets/IntuAPI/IntuAPI.min.js']
