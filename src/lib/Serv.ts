@@ -98,7 +98,7 @@ export class ExpressRPC {
    }
     */
    handleRRoute(route:string, pgOrScreen:string, foo:Function) {
-      if(pgOrScreen.length < 1) throw new Error('This RPC should be called by a named page or screen')
+      if(pgOrScreen.length < 1) throw new Error('Each RPC should be called by a named page or screen')
       const r: string = '/'+route  + '/'+pgOrScreen
       this.appInst.post(r, foo)
    }
