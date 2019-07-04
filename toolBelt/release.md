@@ -1,5 +1,5 @@
-### 1.7.9
-- Added Uri, helps RPC
+### 
+-
 
 ### 1.7.8
 - added addE1Listener() that gets called once
