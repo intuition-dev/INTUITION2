@@ -20,7 +20,6 @@ const logger = require('tracer').console()
 
 import JavaScriptObfuscator = require('javascript-obfuscator')
 import { TInputOptions } from "javascript-obfuscator/src/types/options/TInputOptions"
-import $ from "jquery"
 
 import * as ts from "typescript"
 const Terser = require("terser")

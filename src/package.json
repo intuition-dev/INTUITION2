@@ -27,7 +27,6 @@
         "yarn": ">=1.16.0"
     },
     "dependencies": {
-        "@types/jquery": ">=3.3.30",
         "adm-zip": ">=0.4.13",
         "autoprefixer": ">=9.6.1",
         "beeper": ">=2.0.0",
@@ -70,6 +69,7 @@
         "express-interceptor"
     ],
     "devDependencies": {
+        "@types/jquery": ">=3.3.30",
         "@types/node": ">=12.0.12",
         "dompurify": ">=1.0.11",
         "n": ">=4.1.0",
