@@ -2,7 +2,6 @@
 // All rights reserved by MetaBake.org | Cekvenich, licensed under LGPL 3.0
 
 import commandLineArgs = require('command-line-args')
-import clear = require("cli-clear")
 
 import { Ver, MBake } from './lib/Base'
 import { MinJS,  Sas } from './lib/Extra'
@@ -10,13 +9,25 @@ import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
 import { DownloadFrag, VersionNag } from './lib/FileOpsExtra'
 
-clear()
+   
+VersionNag.isCurrent('mbake', Ver.ver()).then(function(isCurrent_:boolean){
+   try{
+   if(!isCurrent_) 
+      console.log('There is a newer version of mbake CLI, please update.')
+   else
+      console.log('You have the current version of mbake CLI')
+   } catch(err) {
+      console.log(err)
+   }
+})// 
+
+
 
 // imports done /////////////////////////////////////////////
 const cwd: string = process.cwd()
 
 function version () {
-   console.info('mbake CLI version: ' + Ver.ver()) // tsc
+   console.info('mbake CLI version: ' + Ver.ver())
 }
 
 function help () {
@@ -49,7 +60,6 @@ function help () {
 
    console.info()
 
-   process.exit()
 }
 
 // args: //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,15 +168,3 @@ else if (!arg)
 else
    bake(arg)
 
-
-   
-VersionNag.isCurrent('mbake', Ver.ver).then(function(isCurrent_:boolean){
-   try{
-   if(!isCurrent_) 
-      console.log('There is a newer version of mbake CLI, please update.')
-   else
-      console.log('You have the current version of mbake CLI')
-   } catch(err) {
-      console.log(err)
-   }
-})// 

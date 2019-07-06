@@ -56,7 +56,6 @@ class Download {
         const THIZ = this;
         return new Promise(function (resolve, reject) {
             THIZ.getVal().then(function (ver) {
-                logger.trace(ver);
                 if (ver == lver)
                     resolve(true);
                 else

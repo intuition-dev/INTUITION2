@@ -2,13 +2,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const commandLineArgs = require("command-line-args");
-const clear = require("cli-clear");
 const Base_1 = require("./lib/Base");
 const Extra_1 = require("./lib/Extra");
 const FileOpsBase_1 = require("./lib/FileOpsBase");
 const Wa_1 = require("./lib/Wa");
 const FileOpsExtra_1 = require("./lib/FileOpsExtra");
-clear();
+FileOpsExtra_1.VersionNag.isCurrent('mbake', Base_1.Ver.ver()).then(function (isCurrent_) {
+    try {
+        if (!isCurrent_)
+            console.log('There is a newer version of mbake CLI, please update.');
+        else
+            console.log('You have the current version of mbake CLI');
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
 const cwd = process.cwd();
 function version() {
     console.info('mbake CLI version: ' + Base_1.Ver.ver());
@@ -34,7 +43,6 @@ function help() {
     console.info();
     console.info(' Full docs: https://docs.MetaBake.org');
     console.info();
-    process.exit();
 }
 const optionDefinitions = [
     { name: 'mbake', defaultOption: true },
@@ -118,14 +126,3 @@ else if (!arg)
     help();
 else
     bake(arg);
-FileOpsExtra_1.VersionNag.isCurrent('mbake', Base_1.Ver.ver).then(function (isCurrent_) {
-    try {
-        if (!isCurrent_)
-            console.log('There is a newer version of mbake CLI, please update.');
-        else
-            console.log('You have the current version of mbake CLI');
-    }
-    catch (err) {
-        console.log(err);
-    }
-});

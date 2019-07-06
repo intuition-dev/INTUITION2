@@ -1,5 +1,4 @@
 
-import { Ver } from './Base'
 import { Dirs } from './FileOpsBase'
 
 const logger = require('tracer').console()
@@ -69,7 +68,7 @@ export class Download {
       const THIZ = this
       return new Promise(function (resolve, reject) {
          THIZ.getVal().then(function (ver: string) {
-            logger.trace(ver)
+
             if (ver == lver) resolve(true)
             else resolve(false)
          })

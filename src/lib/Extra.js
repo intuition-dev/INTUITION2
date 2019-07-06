@@ -38,7 +38,7 @@ class MinJS {
                 allowJs: true,
                 skipLibCheck: true,
                 lib: [
-                    'dom', 'es5', 'es2015.promise'
+                    'lib.scripthost.d.ts', 'lib.dom.d.ts', 'lib.es5.d.ts', 'lib.es2015.promise.d.ts'
                 ]
             });
             resolve('OK');
