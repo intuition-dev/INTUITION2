@@ -36,10 +36,14 @@ export class MinJS {
             .findSync()
          if (rec.length < 1) resolve('OK')
 
+         // 'ScriptHost'
          THIZ.compile(rec, {
             target: ts.ScriptTarget.ES5,
             //noEmitOnError: true,
-            removeComments: true
+            removeComments: true,
+            lib: [
+               'dom', 'es5', 'es2015.promise'
+            ]
          })
          resolve('OK')
       })

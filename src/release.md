@@ -1,3 +1,6 @@
+### 
+- .ts lib set to: 'dom', 'es5', 'es2015.promise'
+
 
 ### 6.07.12
 - added check that page is passed to RPC

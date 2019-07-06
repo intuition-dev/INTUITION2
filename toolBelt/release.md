@@ -1,5 +1,5 @@
-### 
--
+### 1.7.10
+- new RPC
 
 ### 1.7.8
 - added addE1Listener() that gets called once
