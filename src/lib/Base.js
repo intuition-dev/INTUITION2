@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.07.14';
+        return 'v6.07.15';
     }
     static date() {
         return new Date().toISOString();
@@ -412,7 +412,6 @@ class Comps {
         const THIZ = this;
         return new Promise(function (resolve, reject) {
             const r_options = { 'template': 'pug', 'basedir': dir };
-            logger.info('compiling', fn);
             let js1;
             try {
                 js1 = riotc.compile(s, r_options, fn);
@@ -430,7 +429,6 @@ class Comps {
             let js2 = Terser.minify(js1, optionsCompR);
             let ugs;
             try {
-                logger.info('obs');
                 ugs = JavaScriptObfuscator.obfuscate(js2.code, Extra_1.MinJS.getCompOptions());
             }
             catch (err) {

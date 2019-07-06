@@ -35,6 +35,8 @@ class MinJS {
             THIZ.compile(rec, {
                 target: ts.ScriptTarget.ES5,
                 removeComments: true,
+                allowJs: true,
+                skipLibCheck: true,
                 lib: [
                     'dom', 'es5', 'es2015.promise'
                 ]

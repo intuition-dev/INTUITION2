@@ -1,4 +1,4 @@
-### 6.07.14
+### 6.07.15
 - .ts lib set to: 'dom', 'es5', 'es2015.promise'
 
 

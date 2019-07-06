@@ -3,7 +3,7 @@
 
 export class Ver {
    static ver() {
-      return 'v6.07.14'
+      return 'v6.07.15'
    }
    static date(): string {
       return new Date().toISOString()
@@ -544,7 +544,7 @@ export class Comps {
 
          const r_options = { 'template': 'pug', 'basedir': dir }
 
-         logger.info('compiling', fn)
+         //logger.info('compiling', fn)
          let js1
          try {
 
@@ -566,7 +566,7 @@ export class Comps {
 
          let ugs
          try {
-            logger.info('obs')
+            //logger.info('obs')
             ugs = JavaScriptObfuscator.obfuscate(js2.code, MinJS.getCompOptions())
 
          } catch (err) {

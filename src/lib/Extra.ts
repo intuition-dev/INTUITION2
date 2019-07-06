@@ -36,12 +36,14 @@ export class MinJS {
             .findSync()
          if (rec.length < 1) resolve('OK')
 
-         // 'ScriptHost'
+         //  'ScriptHost'
          THIZ.compile(rec, {
             target: ts.ScriptTarget.ES5,
             //noEmitOnError: true,
             removeComments: true,
-            lib: [
+            allowJs: true,
+            skipLibCheck: true,
+            lib: [ 
                'dom', 'es5', 'es2015.promise'
             ]
          })
@@ -165,7 +167,7 @@ export class MinJS {
 
    compile(fileNames: string[], options_: ts.CompilerOptions): void { //http://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
       let program = ts.createProgram(fileNames, options_)
-      let emitResult = program.emit();
+      let emitResult = program.emit()
 
       let allDiagnostics = ts
          .getPreEmitDiagnostics(program)

@@ -1,6 +1,6 @@
 {
     "name": "mbake",
-    "version": "6.07.14",
+    "version": "6.07.15",
     "description": "*All my friends KNOW the low-coder*; MetaBake(mbake) is open source and extensible low-code productivity tool for programmers.",
     "main": "mbake.js",
     "scripts": {
@@ -44,21 +44,21 @@
         "find-up": ">=4.1.0",
         "fs-extra": ">=8.1.0",
         "html-minifier": ">=4.0.0",
+        "is": ">=3.3.0",
         "javascript-obfuscator": ">=0.18.1",
         "js-yaml": ">=3.13.1",
         "markdown-it": ">=8.4.2",
         "markdown-it-container": ">=2.0.0",
         "node-sass": ">=4.12.0",
         "open": ">=6.4.0",
+        "perfy": ">=1.1.5",
         "pug": ">=2.0.4",
         "reload": ">=3.0.1",
         "riot-compiler": "^3.6.0",
         "strip-css-comments": ">=4.0.0",
         "terser": ">=4.0.2",
         "tracer": ">=0.9.8",
-        "typescript": ">=3.5.2",
-        "is": ">=3.3.0",
-        "perfy": ">=1.1.5"
+        "typescript": ">=3.5.2"
     },
     "browserslist": [
         "> .5%",
@@ -70,11 +70,11 @@
         "express-interceptor"
     ],
     "devDependencies": {
+        "@types/jquery": ">=3.3.30",
         "@types/node": ">=12.0.12",
+        "dompurify": ">=1.0.11",
         "n": ">=4.1.0",
         "npm-check-updates": ">=3.1.14",
-        "yarn": ">=1.16.0",
-        "dompurify": ">=1.0.11"
-
+        "yarn": ">=1.16.0"
     }
 }
