@@ -16,6 +16,6 @@ It saves time, sets baseline for depps, defines popular/approved libs:
 
 That will emit this code:
 
-      script(src='//unpkg.laska.io/mtool-belt@1.7.10/toolBelt.min.js')
+      script(src='//unpkg.laska.io/mtool-belt@1.7.11/toolBelt.min.js')
 
 It also contains polyfill and some other frequently needed functions.

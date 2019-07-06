@@ -1,3 +1,6 @@
+### 1.7.11
+- remove global
+
 ### 1.7.10
 - new RPC
 
