@@ -34,7 +34,10 @@ class MinJS {
                 resolve('OK');
             THIZ.compile(rec, {
                 target: ts.ScriptTarget.ES5,
-                removeComments: true
+                removeComments: true,
+                lib: [
+                    'dom', 'es5', 'es2015.promise'
+                ]
             });
             resolve('OK');
         });

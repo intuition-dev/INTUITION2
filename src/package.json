@@ -1,6 +1,6 @@
 {
     "name": "mbake",
-    "version": "6.07.12",
+    "version": "6.07.14",
     "description": "*All my friends KNOW the low-coder*; MetaBake(mbake) is open source and extensible low-code productivity tool for programmers.",
     "main": "mbake.js",
     "scripts": {
@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "adm-zip": ">=0.4.13",
-        "autoprefixer": ">=9.6.0",
+        "autoprefixer": ">=9.6.1",
         "beeper": ">=2.0.0",
         "cheerio": ">=1.0.0-rc.2",
         "chokidar": ">=3.0.1",
@@ -72,7 +72,7 @@
     "devDependencies": {
         "@types/node": ">=12.0.12",
         "n": ">=4.1.0",
-        "npm-check-updates": ">=3.1.13",
+        "npm-check-updates": ">=3.1.14",
         "yarn": ">=1.16.0",
         "dompurify": ">=1.0.11"
 
