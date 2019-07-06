@@ -37,6 +37,7 @@ class MinJS {
                 removeComments: true,
                 allowJs: true,
                 skipLibCheck: true,
+                allowSyntheticDefaultImports: true,
                 lib: [
                     'lib.scripthost.d.ts', 'lib.dom.d.ts', 'lib.es5.d.ts', 'lib.es2015.promise.d.ts'
                 ]
