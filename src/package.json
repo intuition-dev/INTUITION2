@@ -24,7 +24,8 @@
     ],
     "engines": {
         "node": ">=10.16.0",
-        "yarn": ">=1.16.0"
+        "yarn": ">=1.16.0",
+        "npm": ">=6.10.0"
     },
     "dependencies": {
         "adm-zip": ">=0.4.13",
@@ -69,7 +70,6 @@
         "express-interceptor"
     ],
     "devDependencies": {
-        "@types/jquery": ">=3.3.30",
         "@types/node": ">=12.0.12",
         "dompurify": ">=1.0.11",
         "n": ">=4.1.0",
