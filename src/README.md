@@ -188,7 +188,7 @@ It will create `items.json`. This allows you to fetch that json and search for c
 
 ## MetaBake tool belt
 
-There are some libraries (and polly fills) that you use often. We just have a list of links, making them easy to load(depp.require())
+There are some libraries (and poly fills) that you use often. We just have a list of links, making them easy to load(depp.require())
 
 ```sh
 mbake -f .
