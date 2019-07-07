@@ -1,3 +1,7 @@
+### 6.07.20
+- using jsdeliver CDN in -f
+- moved in FileMethods from intu 
+
 ### 6.07.19
 - .ts lib set to: 'dom', 'es5', 'es2015.promise'
 

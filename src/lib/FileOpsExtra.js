@@ -7,28 +7,6 @@ const csv2JsonV2 = require("csvtojson");
 const AdmZip = require("adm-zip");
 const download = require("download");
 const yaml = require("js-yaml");
-class DownloadFrag {
-    constructor(dir, ops) {
-        console.log('Extracting to', dir);
-        if (!ops) {
-            new Download('headFrag', dir).auto();
-            new Download('loader', dir).auto();
-        }
-        if (ops) {
-            new Download('opsPug', dir).auto();
-            new Download('opsJs', dir).auto();
-            new Download('loader', dir).auto();
-        }
-    }
-}
-exports.DownloadFrag = DownloadFrag;
-class VersionNag {
-    static isCurrent(prod, ver) {
-        const down = new Download(prod, null);
-        return down.checkVer(ver);
-    }
-}
-exports.VersionNag = VersionNag;
 class Download {
     constructor(key_, targetDir_) {
         this.key = key_;
@@ -95,7 +73,7 @@ class Download {
         fs.remove(this.targetDir + '/' + fn);
     }
 }
-Download.truth = 'https://MetaBake.github.io/mbCLI/versions.yaml';
+Download.truth = 'https://cdn.jsdelivr.net/gh/metabake/metaCake/versions.yaml';
 exports.Download = Download;
 class YamlConfig {
     constructor(fn) {
@@ -133,6 +111,48 @@ class CSV2Json {
     }
 }
 exports.CSV2Json = CSV2Json;
+class DownloadFrag {
+    constructor(dir, ops) {
+        console.log('Extracting to', dir);
+        if (!ops) {
+            new Download('headFrag', dir).auto();
+            new Download('loader', dir).auto();
+        }
+        if (ops) {
+            new Download('opsPug', dir).auto();
+            new Download('opsJs', dir).auto();
+            new Download('loader', dir).auto();
+        }
+    }
+}
+exports.DownloadFrag = DownloadFrag;
+class VersionNag {
+    static isCurrent(prod, ver) {
+        const down = new Download(prod, null);
+        return down.checkVer(ver);
+    }
+}
+exports.VersionNag = VersionNag;
+class FileMethods {
+    getDirs(mountPath) {
+        let dirs = new FileOpsBase_1.Dirs(mountPath);
+        let dirsToIgnore = ['.', '..'];
+        return dirs.getShort()
+            .map(el => el.replace(/^\/+/g, ''))
+            .filter(el => !dirsToIgnore.includes(el));
+    }
+    getFiles(mountPath, post_id) {
+        let dirs = new FileOpsBase_1.Dirs(mountPath);
+        let result = dirs.getInDir(post_id);
+        if (post_id === '/') {
+            return result.filter(file => file.indexOf('/') === -1 && !fs.lstatSync(mountPath + '/' + file).isDirectory());
+        }
+        else {
+            return result;
+        }
+    }
+}
+exports.FileMethods = FileMethods;
 module.exports = {
-    CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
+    CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag, FileMethods
 };

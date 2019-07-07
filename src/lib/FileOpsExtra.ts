@@ -10,32 +10,9 @@ import AdmZip = require('adm-zip')
 import download = require('download')
 import yaml = require('js-yaml')
 
-export class DownloadFrag {
-   constructor(dir, ops: boolean) {
-      console.log('Extracting to', dir)
-      if (!ops) {
-         new Download('headFrag', dir).auto()
-         new Download('loader', dir).auto()
-      }
-      if (ops) {
-         new Download('opsPug', dir).auto()
-         new Download('opsJs', dir).auto()
-         new Download('loader', dir).auto()
-      }//fi
-   }//()
-}
-
-export class VersionNag {
-   
-   static isCurrent(prod, ver): Promise<boolean> {
-      const down = new Download(prod, null)
-      return down.checkVer(ver)
-   }
-}
-
 export class Download {
    // in docs root via git
-   static truth: string = 'https://MetaBake.github.io/mbCLI/versions.yaml'
+   static truth: string = 'https://cdn.jsdelivr.net/gh/metabake/metaCake/versions.yaml'
    key: string
    targetDir: string
 
@@ -149,6 +126,55 @@ export class CSV2Json { // TODO: get to work with watcher
    }//()
 }
 
+export class DownloadFrag {
+   constructor(dir, ops: boolean) {
+      console.log('Extracting to', dir)
+      if (!ops) {
+         new Download('headFrag', dir).auto()
+         new Download('loader', dir).auto()
+      }
+      if (ops) {
+         new Download('opsPug', dir).auto()
+         new Download('opsJs', dir).auto()
+         new Download('loader', dir).auto()
+      }//fi
+   }//()
+}
+
+export class VersionNag {
+   
+   static isCurrent(prod, ver): Promise<boolean> {
+      const down = new Download(prod, null)
+      return down.checkVer(ver)
+   }
+}
+
+export class FileMethods {
+
+   // get list of directories
+   getDirs(mountPath:string) {
+       let dirs = new Dirs(mountPath);
+       let dirsToIgnore = ['.', '..'];
+       return dirs.getShort()
+           .map(el => el.replace(/^\/+/g, ''))
+           .filter(el => !dirsToIgnore.includes(el));
+
+   }
+
+   // get files in directory
+   getFiles(mountPath:string, post_id:string) { 
+
+       let dirs = new Dirs(mountPath);
+       let result = dirs.getInDir(post_id);
+       
+       if (post_id === '/') { // if root directory, remove all dirs from output, leave only files:
+           return result.filter(file => file.indexOf('/') === -1 && !fs.lstatSync(mountPath + '/' + file).isDirectory());
+       } else {
+           return result;
+       }
+   }
+}
+
 module.exports = {
-   CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag
+   CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag, FileMethods
 }
