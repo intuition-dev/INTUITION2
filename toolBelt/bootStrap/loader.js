@@ -1,2 +1,0 @@
-
-depp.require(['FontsLoaded','bsDefaultStyle'])
