@@ -12,7 +12,7 @@ import yaml = require('js-yaml')
 
 export class Download {
    // in docs root via git
-   static truth: string = 'https://cdn.jsdelivr.net/gh/metabake/metaCake/versions.yaml'
+   static truth: string = 'https://MetaBake.github.io/mbCLI/versions.yaml'
    key: string
    targetDir: string
 

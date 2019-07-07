@@ -1,4 +1,4 @@
-### 6.07.20
+### 6.07.21
 - using jsdeliver CDN in -f
 - moved in FileMethods from intu 
 
