@@ -12,7 +12,7 @@ MetaBake(mbake) provides all the necessary tools for a developer to write cleane
 You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Web Components, custom CMS/E-Commerce, CRUD and all sorts of dynamic web-apps.
 
 #### Please star our main project here:
-- https://github.com/metabake/metaIntuition
+- https://github.com/metabake/mbIntuition
 
 
 ### Prerequisites
