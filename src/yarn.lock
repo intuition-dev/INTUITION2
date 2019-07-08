@@ -3097,10 +3097,10 @@ npm-bundled@^1.0.1:
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.6.tgz#e7ba9aadcef962bb61248f91721cd932b3fe6bdd"
   integrity sha512-8/JCaftHwbd//k6y2rEWp6k1wxVfpFzB6t1p825+cUb7Ym2XQfhwIC5KwhrvzZRJu+LtDE585zVaS32+CGtf0g==
 
-npm-check-updates@>=3.1.15:
-  version "3.1.15"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-3.1.15.tgz#e7d5b43b49471d318ec24c7f433118c6a7f211a7"
-  integrity sha512-ydwU4JmtZyccOkuvTGWHPaYGOHLZ0+gvcl+2IZMB2N9Vpt+g3rb0S1efkd1fkIEALupYrD4lA9Wdmitiea05zg==
+npm-check-updates@>=3.1.16:
+  version "3.1.16"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-3.1.16.tgz#2eb72fe6db0a5ecfe72132321a423f094387b182"
+  integrity sha512-1c8VvK9QHwsFXyc1T6Dkju9lgfLIzIVF4kQWoY+9i0E3k6ALtOT86i0ToQHcYXBa2FtX90YHtLUeAuvHd6s7Lw==
   dependencies:
     bluebird "^3.5.5"
     chalk "^2.4.2"
@@ -4637,10 +4637,10 @@ term-size@^1.2.0:
   dependencies:
     execa "^0.7.0"
 
-terser@>=4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-4.1.0.tgz#fe949a2189345b2f1789f2bafc6c3b056dab16ed"
-  integrity sha512-O2MzVShUr/B+bxTh83ycpDR+Ocesg5qLR8kphWApRbWCkSnfKq1YPmydnVNfsJuJKHvzSgDNqFq4cr1O36oQ2A==
+terser@>=4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-4.1.2.tgz#b2656c8a506f7ce805a3f300a2ff48db022fa391"
+  integrity sha512-jvNoEQSPXJdssFwqPSgWjsOrb+ELoE+ILpHPKXC83tIxOlh2U75F1KuB2luLD/3a6/7K3Vw5pDn+hvu0C4AzSw==
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
