@@ -1591,10 +1591,10 @@ file-type@^8.1.0:
   resolved "https://registry.yarnpkg.com/file-type/-/file-type-8.1.0.tgz#244f3b7ef641bbe0cca196c7276e4b332399f68c"
   integrity sha512-qyQ0pzAy78gVoJsmYeNgl8uH8yKhr1lVhW7JbzJmnlRi0I4R2eEDEJZVKG8agpDnLpacwNbDhLNG/LMdxHD2YQ==
 
-filehound@>=1.17.0:
-  version "1.17.0"
-  resolved "https://registry.yarnpkg.com/filehound/-/filehound-1.17.0.tgz#61b1e09c6e10dad84846887f2653a2a56f892f69"
-  integrity sha512-eN9QVpJXA/IB4kIkTuLVISqUPsM+CEBhyJtWXgGC2c4PZgelf0gstP4jB7RI1eFMCGphfNk/rVjLSIYKYEKQxg==
+filehound@>=1.17.1:
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/filehound/-/filehound-1.17.1.tgz#0f2d625abf78fe11a10f4aa53f6d37aeadfe7564"
+  integrity sha512-ejYjUWy9wAjNaxLeTtcVddJ0MNFZc0z90mDpmhGZ7JNtiuhTY8YyiBT/mWOPNVRyysWdQNvGk6mF+/cjWhTQpg==
   dependencies:
     bluebird "^3.5.1"
     file-js "0.3.0"
@@ -3102,10 +3102,10 @@ npm-bundled@^1.0.1:
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.6.tgz#e7ba9aadcef962bb61248f91721cd932b3fe6bdd"
   integrity sha512-8/JCaftHwbd//k6y2rEWp6k1wxVfpFzB6t1p825+cUb7Ym2XQfhwIC5KwhrvzZRJu+LtDE585zVaS32+CGtf0g==
 
-npm-check-updates@>=3.1.17:
-  version "3.1.17"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-3.1.17.tgz#7811040d0325e371030dca1800b805b6f8b8f29b"
-  integrity sha512-7AEY6LDTxOc0Rs4bFUzrIGC8qylnEtmiYaSWTRzOZj/n+nvTURkP+Azl/HkfDYteyMxaURf/KT6A2+TyAZI4QA==
+npm-check-updates@>=3.1.18:
+  version "3.1.18"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-3.1.18.tgz#54f3529399dd9aa825e0de718c189ced73c4e59f"
+  integrity sha512-e4UGOGdFs9+9uRrZrojueT+fjg4uVZzi8fyDdWIS9+JIl4J4xqODh0vp1TdCnedjn8jTPy1dhUtbjQtRWAhV8w==
   dependencies:
     bluebird "^3.5.5"
     chalk "^2.4.2"
