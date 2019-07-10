@@ -5,10 +5,10 @@ intu: v0.9.26
 intu4e: v0.5.1
 
 
-headFrag: https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.2/template/headFrag.pug
-loader: https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.2/template/loader.js
-opsPug: https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.2/template/ops.pug
-opsJs: https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.2/template/ops.js
+headFrag: https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.3/template/headFrag.pug
+loader: https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.3/template/loader.js
+opsPug: https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.3/template/ops.pug
+opsJs: https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.3/template/ops.js
 
 
 CMS: https://github.com/metabake/mbIntuition/raw/master/CMS.zip
