@@ -1,3 +1,7 @@
+### 6.07.22
+- just update to readme
+- bug w/ filehound .1 is open
+
 ### 6.07.21
 - using jsdeliver CDN in -f
 - moved in FileMethods from intu 

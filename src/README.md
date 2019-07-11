@@ -155,37 +155,6 @@ mbake -w
 That will extract an example website in the current folder. ( Obviously you can create any layout with any combination of css and other libraries, but here is how we laid out an example/starter website).
 
 
-## Dynamic data/CRUD/'ViewModel'
-
-This relates to dynamic data, not static content (static eg: CMS or eCommerce). To extract an example CRUD web-app in the current folder:
-
-```sh
-mbake -u
-```
-
-It has a README.md in root of the website that you can glance.
-
-
-## CMS/Itemize example
-
-### Itemize (eg CMS)
-
-Lets build a folder called `Items` and in that folder create a blank file `dat_i.yaml,` with nothing there.
-- In the folder called `Items` create folder `Page1` and folder `Page2`. In each page folder create `index.pug` and `dat.yaml`. So you have `Page1` and `Page2` folder under `Items`.
-
-- In each Page's `dat.yaml` add
-```
-title: Page name
-```
-And add a few more key/value words in each dat.yaml, but make each pages values a bit different.
-
-- And now, in the folder `Items` run
-
-```sh
-mbake -i .
-```
-It will create `items.json`. This allows you to fetch that json and search for content, CMS, items, etc.
-
 ## MetaBake tool belt
 
 There are some libraries (and poly fills) that you use often. We just have a list of links, making them easy to load(depp.require())
