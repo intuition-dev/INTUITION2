@@ -10,8 +10,9 @@
 - sass
 - typescript
 - Spectre, 
-- Node js for static server using Srv.ts 
+- Node js (express) for static server using [Srv.ts](https://github.com/metabake/mbCLI/blob/master/src/lib/Serv.ts) 
 - ToolBelt
+- [depp.js](https://github.com/muicss/johnnydepp)
 
 
 # Tasks:
@@ -19,6 +20,12 @@
 1. Install mbake-CLI:
 
     https://www.npmjs.com/package/mbake
+
+    install:
+    ```sh
+    $ yarn global add mbake
+    $ yarn global add mbake-x
+    ```
 
     You can download some starter examples, eg: 
     ```sh
@@ -31,6 +38,8 @@
     more about **tool-belt.js** you can read here: 
 
     https://github.com/metabake/metaCake
+
+    Also use [depp.js](https://github.com/muicss/johnnydepp) to load scripts in order.
 
 ## Write a FB CRUD app using mbake CLI
 
