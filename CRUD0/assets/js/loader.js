@@ -24,8 +24,8 @@ depp.define({
       , '//cdn.jsdelivr.net/npm/js-offcanvas@1.2.8/dist/_js/js-offcanvas.pkgd.js'
       , '//cdn.jsdelivr.net/npm/js-offcanvas@1.2.8/dist/_css/prefixed/js-offcanvas.css'
 
-      , ROOT + 'assets/css/gridform.css'
-      , ROOT + 'assets/3rd/collections.min.js'
+      , '/assets/css/gridform.css'
+      , '/assets/3rd/collections.min.js'
    ]
 
    , 'tabLoaded': ['#pre'
@@ -33,7 +33,7 @@ depp.define({
       , '//cdn.jsdelivr.net/npm/sweetalert2@7.29.2/dist/sweetalert2.css'
       , '//cdn.jsdelivr.net/npm/sweetalert2@7.29.2/dist/sweetalert2.min.js'
 
-      , ROOT + 'assets/3rd/jquery.disableAutoFill.js'
+      , '/assets/3rd/jquery.disableAutoFill.js'
 
       , '//cdn.jsdelivr.net/npm/tabulator-tables@4.2.3/dist/js/tabulator.min.js'
       , '//cdn.jsdelivr.net/npm/tabulator-tables@4.2.3/dist/css/tabulator.min.css'
@@ -41,9 +41,9 @@ depp.define({
    ]
 
    , 'css': ['#tabLoaded'
-      , ROOT + 'assets/css/spectre.css'
-      , ROOT + 'assets/css/nav.css'
-      , ROOT + 'assets/css/main.css'
+      , '/assets/css/spectre.css'
+      , '/assets/css/nav.css'
+      , '/assets/css/main.css'
       , 'css!//fonts.googleapis.com/css?family=Open+Sans:400,600'
    ]
 })//define
