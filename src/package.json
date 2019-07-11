@@ -61,8 +61,8 @@
         "typescript": ">=3.5.3"
     },
     "browserslist": [
-        "> .5%",
-        "cover 99.5%"
+        "> 0.99%",
+        "cover 99.01%"
     ],
     "bundledDependencies": [
         "express",
