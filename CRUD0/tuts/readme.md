@@ -52,7 +52,12 @@
   CRUD code as example, on the basis of this example you can write your app.
 
 
-1. Use Firebase to do crud, using ViewModel approach. 
+1. Use Firebase to do crud, using ViewModel approach:
+
+    https://github.com/metabake/mbCLI/blob/master/CRUD0/README.md
+
+  there are `*Bind.js` file for all UI stuff and then `*Model.js` where operations with the data are made.
+
 1. Also use component in your app, how to write a component, example: 
 
     https://github.com/metabake/metaCake/tree/master/comps/old
