@@ -2,7 +2,7 @@
 const logger = require('tracer').console()
 
 /**
- * Helper for SQLite3
+ * Helper for SQLite3 - must use due to FTS support
  */
 export class BaseDB {
 
@@ -14,7 +14,7 @@ export class BaseDB {
                   logger.trace(err)
                   reject(err)
                }
-               else resolve('okr')
+               else resolve('ok')
             })
       })
    }//()
