@@ -62,7 +62,9 @@ class ExpressRPC {
             const user = req.fields.user;
             const msg = params.msg;
             delete params.msg;
-            resp.end();
+            const ret = {};
+            ret.result = 'Logged';
+            resp.json(ret);
             params['ip'] = req.ip;
             params['date'] = new Date();
             setTimeout(function () {

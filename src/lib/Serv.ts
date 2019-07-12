@@ -118,7 +118,10 @@ export class ExpressRPC {
          const user = req.fields.user
          const msg = params.msg
          delete params.msg 
-         resp.end()
+         
+         const ret:any= {} // new return
+         ret.result = 'Logged'
+         resp.json(ret)
 
          params['ip'] = req.ip // you may need req.ips
          params['date'] = new Date()

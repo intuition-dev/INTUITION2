@@ -1,5 +1,6 @@
-### 6.07.22
+### 6.07.24
 -  retErr(resp, msg) in Srv to allow returning error
+- also iCheck requires retErr implementation
 
 ### 6.07.22
 - just update to readme
