@@ -125,7 +125,7 @@ export class ExpressRPC {
 export  interface iAuth {
 
    /**
-    * Returns 'NO' if not. Else returns some string saying what kind of auth. Eg: 'admin' for full. Or 'microsoft' would mean only for that company. 
+    * Rejects 'NO' if not. Else returns some string saying what kind of auth. Eg: 'admin' for full. Or 'microsoft' would mean only for that company. 
     * @param user 
     * @param pswd 
     * @param resp response, optionally the auth class does the http response
@@ -133,6 +133,8 @@ export  interface iAuth {
     */
    auth(user:string, pswd:string, resp?, ctx?):Promise<string>
 
+   retErr(resp, msg) 
+   
 }
 
 /*

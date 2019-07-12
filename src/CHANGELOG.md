@@ -1,3 +1,7 @@
+###
+-  retErr(resp, msg) in Srv to allow returning error
+
+
 ### 6.07.22
 - just update to readme
 - bug w/ filehound .1 is open
