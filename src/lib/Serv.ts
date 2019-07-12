@@ -69,6 +69,10 @@ export class ExpressRPC {
       console.log('Allowed >>> ', origins)
       const cors = new CustomCors(origins)
       ExpressRPC._appInst = express()
+
+
+      ExpressRPC._appInst.set('trust proxy', true)
+
       this.appInst.use(cors)
 
       this.appInst.use(bodyParser.urlencoded({ extended: false }))
@@ -101,6 +105,29 @@ export class ExpressRPC {
       if(pgOrScreen.length < 1) throw new Error('Each RPC should be called by a named page or screen')
       const r: string = '/'+route  + '/'+pgOrScreen
       this.appInst.post(r, foo)
+   }
+
+   /**
+    * Handle the VM/RPC log
+    * @param foo foo(msg, params, user, req)
+    */
+   handleLog(foo) {
+      const r: string = '/log/log'
+      this.appInst.post(r, function(req, resp){
+         let params = JSON.parse( req.fields.params )
+         const user = req.fields.user
+         const msg = params.msg
+         delete params.msg 
+         resp.end()
+
+         params['ip'] = req.ip // you may need req.ips
+         params['date'] = new Date()
+
+         setTimeout(function(){
+            foo(msg, params, user, req)
+         },1)
+ 
+      })// resp
    }
 
    /**

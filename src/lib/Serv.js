@@ -44,6 +44,7 @@ class ExpressRPC {
         console.log('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
         ExpressRPC._appInst = express();
+        ExpressRPC._appInst.set('trust proxy', true);
         this.appInst.use(cors);
         this.appInst.use(bodyParser.urlencoded({ extended: false }));
         this.appInst.use(formidable());
@@ -53,6 +54,21 @@ class ExpressRPC {
             throw new Error('Each RPC should be called by a named page or screen');
         const r = '/' + route + '/' + pgOrScreen;
         this.appInst.post(r, foo);
+    }
+    handleLog(foo) {
+        const r = '/log/log';
+        this.appInst.post(r, function (req, resp) {
+            let params = JSON.parse(req.fields.params);
+            const user = req.fields.user;
+            const msg = params.msg;
+            delete params.msg;
+            resp.end();
+            params['ip'] = req.ip;
+            params['date'] = new Date();
+            setTimeout(function () {
+                foo(msg, params, user, req);
+            }, 1);
+        });
     }
     serveStatic(path) {
         this.appInst.use(express.static(path));

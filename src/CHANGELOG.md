@@ -1,6 +1,5 @@
-###
+### 6.07.22
 -  retErr(resp, msg) in Srv to allow returning error
-
 
 ### 6.07.22
 - just update to readme
