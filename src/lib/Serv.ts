@@ -152,21 +152,6 @@ export class ExpressRPC {
    }
 }//class
 
-export  interface iAuth {
-
-   /**
-    * Rejects 'NO' if not. Else returns some string saying what kind of auth. Eg: 'admin' for full. Or 'microsoft' would mean only for that company. 
-    * @param user 
-    * @param pswd 
-    * @param resp response, optionally the auth class does the http response
-    * @param ctx Optional context, for example project|company. Is the user allowed in this project|company?
-    */
-   auth(user:string, pswd:string, resp?, ctx?):Promise<string>
-
-   retErr(resp, msg) 
-   
-}
-
 /*
 Helper/Sugar class
 */
@@ -228,6 +213,23 @@ export class BasePgRouter {
    */
 
 }//class
+
+
+export  interface iAuth {
+
+   /**
+    * Rejects with 'NO' if not. Else returns some string saying what kind of auth. Eg: 'admin' for full. Or 'microsoft' would mean only for that company. 
+    * @param user 
+    * @param pswd 
+    * @param resp response, optionally the auth class does the http response
+    * @param ctx Optional context, for example project|company. Is the user allowed in this project|company?
+    */
+   auth(user:string, pswd:string, resp?, ctx?):Promise<string>
+
+   retErr(resp, msg) 
+   
+}
+
 
 module.exports = {
    ExpressRPC, BasePgRouter
