@@ -14,7 +14,7 @@ export class BaseDB {
                   logger.trace(err)
                   reject(err)
                }
-               else resolve('ok')
+               else resolve('OK')
             })
       })
    }//()
