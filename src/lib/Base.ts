@@ -271,6 +271,7 @@ export class BakeWrk {
          return
       }
       process.chdir(this.dir)
+      logger.trace(this.dir)
 
       let dat = new Dat(this.dir)
 
@@ -291,7 +292,7 @@ export class BakeWrk {
          let glo = yaml.load(fs.readFileSync(p))
 
          options = Object.assign(glo, options)
-         logger.trace(options)
+         //logger.trace(options)
       }//()
 
       if (this.locAll(options)) // if locale, we are not writing here, but in sub folders.
