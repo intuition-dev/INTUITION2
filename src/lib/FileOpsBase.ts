@@ -135,7 +135,7 @@ export class FileOps {
       this.root = Dirs.slash(root_)
    }
 
-   /** returns # of files with the name, used for edit ver */
+   /** returns # of files with the name, used to archive ver */
    count(fileAndExt): number {
 
       const files = FileHound.create()

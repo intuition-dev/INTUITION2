@@ -156,18 +156,17 @@ export class FileMethods {
        let dirs = new Dirs(mountPath);
        let dirsToIgnore = ['.', '..'];
        return dirs.getShort()
-           .map(el => el.replace(/^\/+/g, ''))
+           .map(el => el.replace(/^\/+/g, '')) //?
            .filter(el => !dirsToIgnore.includes(el));
-
    }
 
    // get files in directory
-   getFiles(mountPath:string, post_id:string) { 
+   getFiles(mountPath:string, item:string) { 
 
        let dirs = new Dirs(mountPath);
-       let result = dirs.getInDir(post_id);
+       let result = dirs.getInDir(item);
        
-       if (post_id === '/') { // if root directory, remove all dirs from output, leave only files:
+       if (item === '/') { // if root directory, remove all dirs from output, leave only files:
            return result.filter(file => file.indexOf('/') === -1 && !fs.lstatSync(mountPath + '/' + file).isDirectory());
        } else {
            return result;
