@@ -6,6 +6,7 @@ npm publish
 #sudo npm i -g mbake --unsafe-perm=true --allow-root
 # if changed node version do this:
 # sudo yarn global remove mbake
+mbake
 yarn global add mbake
 mbake
 

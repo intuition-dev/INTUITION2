@@ -1,3 +1,6 @@
+### 6.07.25
+- comments for GLO are less
+
 ### 6.07.24
 -  retErr(resp, msg) in Srv to allow returning error
 - also iCheck requires retErr implementation
@@ -46,8 +49,3 @@
 ### 6.06.26
 - moved spider to mbake-x
 
-### 6.06.25
-- Fix auto prefix message
-
-### 6.06.24
-- Pug version bump

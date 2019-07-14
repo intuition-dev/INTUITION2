@@ -141,10 +141,10 @@ class FileMethods {
             .map(el => el.replace(/^\/+/g, ''))
             .filter(el => !dirsToIgnore.includes(el));
     }
-    getFiles(mountPath, post_id) {
+    getFiles(mountPath, item) {
         let dirs = new FileOpsBase_1.Dirs(mountPath);
-        let result = dirs.getInDir(post_id);
-        if (post_id === '/') {
+        let result = dirs.getInDir(item);
+        if (item === '/') {
             return result.filter(file => file.indexOf('/') === -1 && !fs.lstatSync(mountPath + '/' + file).isDirectory());
         }
         else {

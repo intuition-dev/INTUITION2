@@ -2,6 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const logger = require('tracer').console();
 class BaseDB {
+    constructor() {
+        BaseDB.instance++;
+        if (BaseDB.instance > 1)
+            console.warn('extra instance of DB', BaseDB.instance);
+    }
     _run(stmt, ...args) {
         return new Promise(function (resolve, reject) {
             stmt.run(args, function (err) {
@@ -10,7 +15,7 @@ class BaseDB {
                     reject(err);
                 }
                 else
-                    resolve('okr');
+                    resolve('OK');
             });
         });
     }
@@ -27,6 +32,7 @@ class BaseDB {
         });
     }
 }
+BaseDB.instance = 0;
 exports.BaseDB = BaseDB;
 module.exports = {
     BaseDB
