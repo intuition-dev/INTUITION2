@@ -6,6 +6,13 @@ const logger = require('tracer').console()
  */
 export class BaseDB {
 
+   static instance:number = 0
+   
+   constructor() {
+      BaseDB.instance ++
+      if(BaseDB.instance>1) console.warn('extra instance of DB', BaseDB.instance )
+   }
+
    protected _run(stmt, ...args):Promise<any> {
       return new Promise( function (resolve, reject) {
          stmt.run( args
