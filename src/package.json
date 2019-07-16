@@ -40,7 +40,7 @@
         "express": ">=4.17.1",
         "express-formidable": ">=1.2.0",
         "express-interceptor": ">=1.2.0",
-        "filehound": "=1.17.0",
+        "filehound": ">=1.17.3",
         "find-up": ">=4.1.0",
         "fs-extra": ">=8.1.0",
         "html-minifier": ">=4.0.0",
