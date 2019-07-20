@@ -10,7 +10,5 @@ opsPug:   https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.4/toolBelt/template
 opsJs:    https://cdn.jsdelivr.net/gh/metabake/metaCake@v2.0.4/toolBelt/template/ops.js
 
 
-CMS:  https://github.com/metabake/mbIntuition/raw/master/CMS.zip
-website: https://github.com/metabake/mbIntuition/raw/master/examples/website.zip
-CRUD: https://github.com/MetaBake/mBakeCli/raw/master/CRUD.zip
-ecom: https://github.com/metabake/mbIntuition/raw/master/e-com.zip
+intu4SS: https://github.com/metabake/mbIntuition/raw/master/docs/intu4SS.zip
+CRUD:  https://github.com/metabake/mbIntuition/raw/master/docs/CRUD.zip
