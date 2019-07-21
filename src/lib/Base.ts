@@ -271,7 +271,7 @@ export class BakeWrk {
          return
       }
       process.chdir(this.dir)
-      logger.trace(this.dir)
+      console.log(this.dir)
 
       let dat = new Dat(this.dir)
 
