@@ -1,4 +1,4 @@
-### 6.07.26
+### 6.07.27
 - yarn is deprecated, use npm. but can't use sudo
 
 ### 6.07.25
