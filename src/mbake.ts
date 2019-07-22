@@ -31,7 +31,7 @@ function version () {
 }
 
 function help () {
-   console.info();
+   console.info()
    console.info('mbake CLI version: ' + Ver.ver())
    console.info()
    console.info('Usage:')
