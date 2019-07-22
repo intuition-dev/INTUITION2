@@ -1,10 +1,10 @@
 {
     "name": "mbake",
-    "version": "6.07.25",
+    "version": "6.07.26",
     "description": "*All my friends KNOW the low-coder*; MetaBake(mbake) is open source and extensible low-code productivity tool for programmers.",
     "main": "mbake.js",
     "scripts": {
-        "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, NPM is not supported')\""
+        "preinstall1": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, NPM is not supported')\""
     },
     "bin": {
         "mbake": "mbake.js"

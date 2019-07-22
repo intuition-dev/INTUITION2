@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.07.25';
+        return 'v6.07.26';
     }
     static date() {
         return new Date().toISOString();
@@ -200,7 +200,7 @@ class BakeWrk {
             return;
         }
         process.chdir(this.dir);
-        logger.trace(this.dir);
+        console.log(this.dir);
         let dat = new FileOpsBase_1.Dat(this.dir);
         let options = dat.getAll();
         options['filters'] = {

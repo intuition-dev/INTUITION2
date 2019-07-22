@@ -28,6 +28,9 @@ cd website
 mbakeX -w . /* to run the watcher/livereload */
 ```
 
+You can also use: npm i -g mbake
+BUT NOTE: You can't use sudo w/ npm.
+
 
 ## MetaBake in 4 Minutes
 
