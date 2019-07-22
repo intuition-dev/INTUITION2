@@ -7,7 +7,7 @@ npm publish
 # if changed node version do this:
 # sudo yarn global remove mbake
 mbake
-yarn global add mbake
+npm i -g mbake
 mbake
 
 # also update https://github.com/metabake/mBakeCli/blob/master/docs/versions.yaml

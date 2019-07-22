@@ -1,5 +1,5 @@
 ### 6.07.26
-- yarn is not required, but can't use sudo
+- yarn is deprecated, use npm. but can't use sudo
 
 ### 6.07.25
 - comments for GLO are less
