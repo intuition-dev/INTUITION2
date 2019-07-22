@@ -10,5 +10,9 @@ opsPug:   https://cdn.jsdelivr.net/gh/metabake/toolBelt@v2.0.15/toolBelt/templat
 opsJs:    https://cdn.jsdelivr.net/gh/metabake/toolBelt@v2.0.15/toolBelt/template/ops.js
 
 
-intu4SS: https://github.com/metabake/mbIntuition/raw/master/docs/intu4SS.zip
-CRUD:    https://github.com/metabake/mbIntuition/raw/master/docs/CRUD.zip
+intu4SS: https://github.com/metabake/mbIntuition/raw/master/intu4SS.zip
+CRUD:    https://github.com/metabake/mbIntuition/raw/master/CRUD.zip
+
+
+electron: https://github.com/metabake/mbMobile/raw/master/electron.zip
+phoneGap: https://github.com/metabake/mbMobile/raw/master/phoneGap.zip
