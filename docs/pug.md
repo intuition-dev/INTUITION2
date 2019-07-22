@@ -118,9 +118,6 @@ Also, the fact that we are generating this static content allows us to have the 
 
 ---
 
-(For origin we mostly use Caddy http server)
-
-
 ## Re: Build Tools Gulp/Grunt
 
 You can also transpile Pug with other build tools like Gulp/Grunt (or even prepros.io) using their syntax. mbake CLI is written in .js.
