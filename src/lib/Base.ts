@@ -129,38 +129,6 @@ export class MBake {
       })//pro
    }//()
 
-   clearToProd(path_): Promise<string> {
-      return new Promise(function (resolve, reject) {
-         if (!path_ || path_.length < 1) {
-            console.info('no path_ arg passed')
-            reject(('no path_ arg passed'))
-         }
-         try {
-
-            console.info(' Clearing ' + path_)
-            let dir = Dirs.slash(path_)
-
-            const rec = FileHound.create() //recursive
-               .paths(dir)
-               .ext(['pug', 'yaml', 'js', 'ts', 'scss', 'sass', 'md'])
-               .findSync()
-
-            rec.forEach(file => {
-               const min = file.split('.')[file.split('.').length - 2] === 'min';
-
-               if (!min) {
-                  console.info(' Removing ' + file)
-                  fs.removeSync(file)
-               }
-            });
-         } catch (err) {
-            logger.warn(err)
-            reject(err)
-         }
-         resolve('OK')
-      })
-   }
-
    // itemize and bake
    itemizeNBake(ppath_, prod: number): Promise<string> {
       let _this = this
