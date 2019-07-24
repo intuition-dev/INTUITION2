@@ -6,9 +6,9 @@ intu:   v0.17.2
 
 headFrag: https://cdn.jsdelivr.net/gh/metabake/toolBelt@v2.0.15/toolBelt/template/headFrag.pug
 loader:   https://cdn.jsdelivr.net/gh/metabake/toolBelt@v2.0.15/toolBelt/template/ui-loader.js
+baseVM:   https://cdn.jsdelivr.net/gh/metabake/toolBelt@v2.0.15/toolBelt/template/BaseViewModel.ts
 opsPug:   https://cdn.jsdelivr.net/gh/metabake/toolBelt@v2.0.15/toolBelt/template/ops.pug
 opsJs:    https://cdn.jsdelivr.net/gh/metabake/toolBelt@v2.0.15/toolBelt/template/ops.js
-
 
 intu4SS: https://github.com/metabake/mbIntuition/raw/master/intu4SS.zip
 CRUD:    https://github.com/metabake/mbIntuition/raw/master/CRUD.zip
