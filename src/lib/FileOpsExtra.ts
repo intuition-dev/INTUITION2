@@ -130,13 +130,14 @@ export class DownloadFrag {
    constructor(dir, ops: boolean) {
       console.log('Extracting to', dir)
       if (!ops) {
-         new Download('headFrag', dir).auto()
-         new Download('loader', dir).auto()
-         new Download('baseVM', dir).auto()
+         new Download('headFrag',dir).auto()
+         new Download('loader',  dir).auto()
+         new Download('baseVM',  dir).auto()
+         new Download('d',       dir).auto()
       }
       if (ops) {
          new Download('opsPug', dir).auto()
-         new Download('opsJs', dir).auto()
+         new Download('opsJs',  dir).auto()
       }//fi
    }//()
 }
