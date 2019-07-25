@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.07.27';
+        return 'v6.07.29';
     }
     static date() {
         return new Date().toISOString();
@@ -103,34 +103,6 @@ class MBake {
                 logger.info(err);
                 reject(err);
             }
-        });
-    }
-    clearToProd(path_) {
-        return new Promise(function (resolve, reject) {
-            if (!path_ || path_.length < 1) {
-                console.info('no path_ arg passed');
-                reject(('no path_ arg passed'));
-            }
-            try {
-                console.info(' Clearing ' + path_);
-                let dir = FileOpsBase_1.Dirs.slash(path_);
-                const rec = FileHound.create()
-                    .paths(dir)
-                    .ext(['pug', 'yaml', 'js', 'ts', 'scss', 'sass', 'md'])
-                    .findSync();
-                rec.forEach(file => {
-                    const min = file.split('.')[file.split('.').length - 2] === 'min';
-                    if (!min) {
-                        console.info(' Removing ' + file);
-                        fs.removeSync(file);
-                    }
-                });
-            }
-            catch (err) {
-                logger.warn(err);
-                reject(err);
-            }
-            resolve('OK');
         });
     }
     itemizeNBake(ppath_, prod) {

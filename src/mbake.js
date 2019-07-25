@@ -83,21 +83,18 @@ function bake(arg) {
     let pro = new Base_1.MBake().bake(arg, 0);
     pro.then(function (val) {
         console.log(val);
-        process.exit();
     });
 }
 function itemize(arg) {
     let pro = new Base_1.MBake().itemizeNBake(arg, 0);
     pro.then(function (val) {
         console.log(val);
-        process.exit();
     });
 }
 function css(arg) {
     let pro = new Extra_1.Sas().css(arg);
     pro.then(function (val) {
         console.log(val);
-        process.exit();
     });
 }
 function minJS(arg) {
