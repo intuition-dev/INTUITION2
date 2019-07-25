@@ -116,7 +116,6 @@ function bake(arg) {
 
    pro.then(function(val){
       console.log(val)
-      process.exit()
    })
 }
 
@@ -125,7 +124,6 @@ function itemize(arg) {
    
    pro.then(function(val){
       console.log(val)
-      process.exit()
    })
 }
 
@@ -134,7 +132,6 @@ function css(arg) {
 
    pro.then(function(val){
       console.log(val)
-      process.exit()
    })
 }
 
