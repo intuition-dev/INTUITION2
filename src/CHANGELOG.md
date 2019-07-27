@@ -1,3 +1,6 @@
+### 6.07.30
+- Srv to list dirs
+
 ### 6.07.29
 - added email
 - -f has baseVM

@@ -22,9 +22,12 @@ export class Dirs {
    }
 
    getInDir(sub) {
+      console.log('method renamed use getFilesIn')
+     this.getFilesIn(sub)
+   }
+   getFilesIn(sub) {
       const rec = FileHound.create() //recursive
          .paths(this.dir + sub)
-         .not().glob("*.js")
          .findSync()
 
       let ret: string[] = [] //empty string array

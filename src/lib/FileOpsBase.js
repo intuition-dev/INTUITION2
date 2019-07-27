@@ -17,9 +17,12 @@ class Dirs {
         return path.resolve(dir, '..');
     }
     getInDir(sub) {
+        console.log('method renamed use getFilesIn');
+        this.getFilesIn(sub);
+    }
+    getFilesIn(sub) {
         const rec = FileHound.create()
             .paths(this.dir + sub)
-            .not().glob("*.js")
             .findSync();
         let ret = [];
         const ll = this.dir.length + sub.length;

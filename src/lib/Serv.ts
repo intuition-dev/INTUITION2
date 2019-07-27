@@ -1,3 +1,4 @@
+
 // All rights reserved by MetaBake (MetaBake.org) | Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
 
@@ -6,6 +7,8 @@ const bodyParser = require('body-parser')
 const formidable = require('express-formidable')
 
 const logger = require('tracer').console()
+
+import fs = require('fs')
 
 export class CustomCors {
 
@@ -138,8 +141,13 @@ export class ExpressRPC {
     * @param path 
     */
    serveStatic(path:string) {
+      console.log('Serving root:')
+      fs.readdirSync(path).forEach(file => {
+         console.log(file)
+      })
+
       this.appInst.use(express.static(path))
-   }
+   }//()
 
    /**
     * Start server

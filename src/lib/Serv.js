@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const formidable = require('express-formidable');
 const logger = require('tracer').console();
+const fs = require("fs");
 class CustomCors {
     constructor(validOrigins) {
         return (request, response, next) => {
@@ -73,6 +74,10 @@ class ExpressRPC {
         });
     }
     serveStatic(path) {
+        console.log('Serving root:');
+        fs.readdirSync(path).forEach(file => {
+            console.log(file);
+        });
         this.appInst.use(express.static(path));
     }
     listen(port) {
