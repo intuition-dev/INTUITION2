@@ -141,6 +141,7 @@ export class ExpressRPC {
     * @param path 
     */
    serveStatic(path:string) {
+      console.log('_____________')
       console.log('Serving root:')
       fs.readdirSync(path).forEach(file => {
          console.log(file)

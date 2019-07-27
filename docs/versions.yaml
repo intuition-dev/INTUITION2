@@ -1,7 +1,7 @@
 
-mbake:  v6.07.30
+mbake:  v6.07.31
 mbakex: v1.07.29
-intu:   v0.97.02
+intu:   v0.97.04
 
 
 headFrag: https://cdn.jsdelivr.net/gh/metabake/toolBelt@v2.0.18/toolBelt/template/headFrag.pug

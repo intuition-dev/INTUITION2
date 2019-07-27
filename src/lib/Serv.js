@@ -74,6 +74,7 @@ class ExpressRPC {
         });
     }
     serveStatic(path) {
+        console.log('_____________');
         console.log('Serving root:');
         fs.readdirSync(path).forEach(file => {
             console.log(file);
