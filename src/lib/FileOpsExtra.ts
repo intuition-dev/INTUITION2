@@ -132,7 +132,7 @@ export class DownloadFrag {
       if (!ops) {
          new Download('headFrag',dir).auto()
          new Download('loader',  dir).auto()
-         new Download('baseVM',  dir).auto()
+         new Download('VM',  dir).auto()
          new Download('d',       dir).auto()
       }
       if (ops) {
