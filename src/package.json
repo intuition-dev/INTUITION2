@@ -1,6 +1,6 @@
 {
     "name": "mbake",
-    "version": "6.07.33",
+    "version": "6.08.01",
     "description": "*All my friends KNOW the low-coder*; MetaBake(mbake) is open source and extensible low-code productivity tool for programmers.",
     "main": "mbake.js",
     "bin": {
@@ -10,11 +10,11 @@
         "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('npm') === -1) throw new Error('You must use npm to install, yarn is not supported')\""
     },
     "license": "LGPL-3.0-only",
-    "author": "http://www.MetaBake.org",
-    "homepage": "http://www.MetaBake.org",
+    "author": "https://www.Intuition.DEV",
+    "homepage": "https://www.Intuition.DEV",
     "repository": {
         "type": "git",
-        "url": "https://github.com/MetaBake"
+        "url": "https://www.Intuition.DEV"
     },
     "keywords": [
         "pug",

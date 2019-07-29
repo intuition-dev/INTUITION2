@@ -73,7 +73,7 @@ class Download {
         fs.remove(this.targetDir + '/' + fn);
     }
 }
-Download.truth = 'https://MetaBake.github.io/mbCLI/versions.yaml';
+Download.truth = 'https://Intuition-DEV.github.io/mbCLI/versions.yaml';
 exports.Download = Download;
 class YamlConfig {
     constructor(fn) {
