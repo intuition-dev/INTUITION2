@@ -18,7 +18,7 @@ class Dirs {
     }
     getInDir(sub) {
         console.log('method renamed use getFilesIn');
-        this.getFilesIn(sub);
+        return this.getFilesIn(sub);
     }
     getFilesIn(sub) {
         const rec = FileHound.create()

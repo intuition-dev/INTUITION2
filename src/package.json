@@ -1,6 +1,6 @@
 {
     "name": "mbake",
-    "version": "6.07.32",
+    "version": "6.07.33",
     "description": "*All my friends KNOW the low-coder*; MetaBake(mbake) is open source and extensible low-code productivity tool for programmers.",
     "main": "mbake.js",
     "bin": {

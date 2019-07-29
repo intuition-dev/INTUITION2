@@ -23,7 +23,7 @@ export class Dirs {
 
    getInDir(sub):any {
       console.log('method renamed use getFilesIn')
-     this.getFilesIn(sub)
+      return this.getFilesIn(sub)
    }
    getFilesIn(sub) {
       const rec = FileHound.create() //recursive
