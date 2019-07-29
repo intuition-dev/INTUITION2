@@ -21,7 +21,7 @@ export class Dirs {
       return path.resolve(dir, '..')
    }
 
-   getInDir(sub) {
+   getInDir(sub):any {
       console.log('method renamed use getFilesIn')
      this.getFilesIn(sub)
    }
