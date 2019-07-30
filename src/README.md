@@ -180,6 +180,6 @@ In turn, the included file calls a toolBelt.js from a CDN.
 # Links
 
 - Full CLI Docs: [metabake.github.io/mbCLI](http://metabake.github.io/mbCLI)
-- [MetaBake.org](https://www.Intuition.DEV)
+- [MetaBake.org](https://www.INTUITION.DEV)
 - [blog.MetaBake.net](http://blog.MetaBake.net)
 - [Github](http://git.MetaBake.org)
