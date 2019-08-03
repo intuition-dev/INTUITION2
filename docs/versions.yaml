@@ -4,12 +4,12 @@ mbakex: v1.08.2
 intu:   v0.98.8
 
 
-headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.1/toolBelt/template/headFrag.pug
-loader:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.1/toolBelt/template/ui-loader.js
-VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.1/toolBelt/template/iViewModel.ts
-d:        https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.1/toolBelt/template/d.ts
-opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.1/toolBelt/template/ops.pug
-opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.1/toolBelt/template/ops.js
+headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.2/toolBelt/template/headFrag.pug
+loader:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.2/toolBelt/template/ui-loader.js
+VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.2/toolBelt/template/iViewModel.ts
+d:        https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.2/toolBelt/template/d.ts
+opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.2/toolBelt/template/ops.pug
+opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.2/toolBelt/template/ops.js
 
 
 intu4SS: https://github.com/intuition-dev/Intuition/raw/master/intu4SS.zip
