@@ -1,3 +1,6 @@
+### 6.08.9
+- version bump
+
 ### 6.08.2
 - Changed repos
 
