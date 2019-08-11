@@ -185,4 +185,4 @@ In turn, the included file calls a toolBelt.js from a CDN.
 
 [Pug example](https://pug.mbake.org)
 
-[INTUITION.DEV Home Page](https://www.INTU.DEV)
+[INTUITION.DEV Home Page](https://www.INTUITION.DEV)
