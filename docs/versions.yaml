@@ -12,8 +12,8 @@ opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.3/toolBelt/tem
 opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.3/toolBelt/template/ops.js
 
 
-intu4SS: https://github.com/intuition-dev/Intuition/raw/master/intu4SS.zip
-CRUD:    https://github.com/intuition-dev/Intuition/raw/master/CRUD.zip
+intu4SS: https://github.com/intuition-dev/Intuition/raw/master/examples/intu4SS.zip
+CRUD:    https://github.com/intuition-dev/Intuition/raw/master/examples/CRUD.zip
 
 electron: https://github.com/intuition-dev/mbMobile/raw/master/electron.zip
 phoneGap: https://github.com/intuition-dev/mbMobile/raw/master/phoneGap.zip
