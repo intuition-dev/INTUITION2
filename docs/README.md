@@ -1,5 +1,5 @@
 
-# MetaBake
+# MetaBake CLI
 
 ## 'All my friends KNOW the low-coder'
 
