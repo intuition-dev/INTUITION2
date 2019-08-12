@@ -1,0 +1,19 @@
+
+mbake:  v6.08.9
+mbakex: v1.08.9
+intu:   v0.99.9
+
+
+headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.3/toolBelt/template/headFrag.pug
+loader:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.3/toolBelt/template/ui-loader.js
+VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.3/toolBelt/template/iViewModel.ts
+d:        https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.3/toolBelt/template/d.ts
+opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.3/toolBelt/template/ops.pug
+opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.2.3/toolBelt/template/ops.js
+
+
+intu4SS: https://github.com/intuition-dev/Intuition/raw/master/examples/intu4SS.zip
+CRUD:    https://github.com/intuition-dev/Intuition/raw/master/examples/CRUD.zip
+
+electron: https://github.com/intuition-dev/mbMobile/raw/master/electron.zip
+phoneGap: https://github.com/intuition-dev/mbMobile/raw/master/phoneGap.zip
