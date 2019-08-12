@@ -9,7 +9,7 @@
 
 MetaBake(mbake) provides all the necessary tools for a developer to write cleaner code quicker, with `pug` and livereload out of the box.
 
-You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Web Components, custom CMS/E-Commerce, CRUD and all sorts of dynamic web-apps.
+You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Custom Elements, custom CMS/E-Commerce, CRUD and all sorts of dynamic web-apps.
 
 ### Prerequisites
 

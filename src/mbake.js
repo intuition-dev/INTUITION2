@@ -31,7 +31,7 @@ function help() {
     console.info('  For local watcher and server:                               mbake -w .');
     console.info('  Process SASS/SCSS file into css, requires assets.yaml:      mbake -s .');
     console.info('     or path that has assets.yaml, or any sub-folder under /assets');
-    console.info('  Process .ts, .js and native web comps file to .min:         mbake -t .');
+    console.info('  Process .ts, .js and native Custom Elements file to .min:         mbake -t .');
     console.info('  To process Pug and dat_i items to items.json:               mbake -i .');
     console.info('     or any sub-folder, where path is folder containing dat_i.yaml;');
     console.info('     also does regular mbake of Pug');
