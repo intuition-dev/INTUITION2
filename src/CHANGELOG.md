@@ -1,3 +1,6 @@
+### 6.08.13
+- changed `getFolders()` method to get all directories, instead of showing only folders containing `.pug` and `dat.yaml`
+
 ### 6.08.12
 - wcomp must now be -custEl
 

@@ -78,7 +78,7 @@ class MinJS {
         return new Promise(async function (resolve, reject) {
             let result;
             try {
-                console.log(fn);
+                logger.trace(fn);
                 let code = fs.readFileSync(fn).toString('utf8');
                 let optionsCompJS = Object.assign({}, MinJS.CompOptionsJS);
                 let _output = { indent_level: 0, quote_style: 0, semicolons: false };
@@ -94,12 +94,12 @@ class MinJS {
                 if (fn.includes('-custEl')) {
                     let ugs;
                     try {
-                        logger.info('obs');
+                        logger.info('obs', fn);
                         ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptions());
                         txt = ugs.getObfuscatedCode();
                     }
                     catch (err) {
-                        logger.error('error');
+                        logger.error(fn, 'error');
                         logger.error(err);
                         reject(err);
                     }
@@ -111,7 +111,7 @@ class MinJS {
                 resolve('OK');
             }
             catch (err) {
-                logger.warn(err, result);
+                logger.warn(fn, err, result);
                 reject(err);
             }
         });

@@ -47,15 +47,12 @@ class Dirs {
         logger.info(this.dir);
         const rec = FileHound.create()
             .paths(this.dir)
-            .ext('pug')
             .findSync();
         let ret = [];
         for (let val of rec) {
             val = Dirs.slash(val);
             let n = val.lastIndexOf('/');
             let s = val.substring(0, n);
-            if (!fs.existsSync(s + '/dat.yaml'))
-                continue;
             ret.push(s);
         }
         return Array.from(new Set(ret));
