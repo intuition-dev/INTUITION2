@@ -64,15 +64,12 @@ export class Dirs {
       logger.info(this.dir)
       const rec = FileHound.create() //recursive
          .paths(this.dir)
-         .ext('pug')
          .findSync()
       let ret: string[] = [] //empty string array
       for (let val of rec) {//clean the strings
          val = Dirs.slash(val)
          let n = val.lastIndexOf('/')
          let s: string = val.substring(0, n)
-         if (!fs.existsSync(s + '/dat.yaml'))
-            continue
          ret.push(s)
       }
       //logger.info(ret)
