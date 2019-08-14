@@ -1,3 +1,6 @@
+### 6.08.12
+- wcomp must now be -custEl
+
 ### 6.08.9
 - version bump
 

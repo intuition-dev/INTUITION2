@@ -83,7 +83,7 @@ class MinJS {
                 let optionsCompJS = Object.assign({}, MinJS.CompOptionsJS);
                 let _output = { indent_level: 0, quote_style: 0, semicolons: false };
                 optionsCompJS['output'] = _output;
-                if (fn.includes('-wcomp'))
+                if (fn.includes('-custEl'))
                     result = Terser.minify(code, MinJS.CompOptionsJS);
                 else
                     result = Terser.minify(code, optionsCompJS);
@@ -91,7 +91,7 @@ class MinJS {
                 txt = txt.replace(/(\r\n\t|\n|\r\t)/gm, '\n');
                 txt = txt.replace(/\n\s*\n/g, '\n');
                 txt = txt.trim();
-                if (fn.includes('-wcomp')) {
+                if (fn.includes('-custEl')) {
                     let ugs;
                     try {
                         logger.info('obs');

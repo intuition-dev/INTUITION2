@@ -92,7 +92,7 @@ export class MinJS {
             //_output['mangle'] = true
             optionsCompJS['output'] = _output
 
-            if (fn.includes('-wcomp'))
+            if (fn.includes('-custEl'))
                result = Terser.minify(code, MinJS.CompOptionsJS)
             else result = Terser.minify(code, optionsCompJS)
 
@@ -102,7 +102,7 @@ export class MinJS {
             txt = txt.replace(/\n\s*\n/g, '\n')
             txt = txt.trim()
 
-            if (fn.includes('-wcomp')) {
+            if (fn.includes('-custEl')) {
                let ugs
                try {
                   logger.info('obs')
