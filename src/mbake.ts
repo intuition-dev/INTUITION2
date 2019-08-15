@@ -56,7 +56,7 @@ function help () {
    console.info()
    console.info('  mbake-x CLI (extra) has more flags')
    console.info()
-   console.info(' Full docs: https://docs.MetaBake.org')
+   console.info(' Full docs: http://www.INTUITION.DEV')
 
    console.info()
 
