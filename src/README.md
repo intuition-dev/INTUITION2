@@ -183,6 +183,6 @@ In turn, the included file calls a toolBelt.js from a CDN.
 
 [Git Repo](http://git.mbake.org)
 
-[Pug example](https://pug.mbake.org)
+[Pug example](http://pug.mbake.org)
 
 [INTUITION.DEV Home Page](https://www.INTUITION.DEV)
