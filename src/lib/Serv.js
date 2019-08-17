@@ -19,7 +19,6 @@ class CustomCors {
                 if (origin.includes(ori))
                     approved = true;
             });
-            logger.trace(origin, approved);
             if (approved) {
                 response.setHeader('Access-Control-Allow-Origin', origin);
                 return next();
@@ -109,7 +108,6 @@ class BasePgRouter {
             const pswd = req.fields.pswd;
             method = req.fields.method;
             const params = JSON.parse(req.fields.params);
-            logger.info(method);
             THIZ[method](resp, params, user, pswd);
         }
         catch (err) {

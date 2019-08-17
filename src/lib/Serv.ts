@@ -26,7 +26,6 @@ export class CustomCors {
             if(ori=='*')  approved = true
             if(origin.includes(ori)) approved = true // allow on string match
          })
-         logger.trace(origin, approved)
          if(approved) {
             response.setHeader('Access-Control-Allow-Origin', origin)
             return next()
@@ -205,7 +204,6 @@ export class BasePgRouter {
       
          method = req.fields.method
          const params = JSON.parse( req.fields.params )
-         logger.info(method)
          //invoke the method request
          THIZ[method](resp, params, user, pswd)
       } catch(err) {

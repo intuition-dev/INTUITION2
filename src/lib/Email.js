@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const superagent = require('superagent');
+const logger = require('tracer').console();
 class Email {
     send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg) {
         email = Buffer.from(email, 'base64').toString();
@@ -16,10 +17,10 @@ class Email {
             }
         })
             .then(res => {
-            console.info('Email has been sent. Result', res);
+            console.info('Email has been sent. ');
         })
             .catch(err => {
-            console.log('send mail error: ', err);
+            logger.trace('send mail error: ', err);
         });
     }
 }
