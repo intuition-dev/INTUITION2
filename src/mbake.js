@@ -11,8 +11,6 @@ FileOpsExtra_1.VersionNag.isCurrent('mbake', Base_1.Ver.ver()).then(function (is
     try {
         if (!isCurrent_)
             console.log('There is a newer version of mbake CLI, please update.');
-        else
-            console.log('You have the current version of mbake CLI');
     }
     catch (err) {
         console.log(err);
@@ -41,7 +39,7 @@ function help() {
     console.info();
     console.info('  mbake-x CLI (extra) has more flags');
     console.info();
-    console.info(' Full docs: https://docs.INTUITION.DEV');
+    console.info(' Full docs: http://www.INTUITION.DEV');
     console.info();
 }
 const optionDefinitions = [

@@ -2,15 +2,20 @@
 const logger = require('tracer').console()
 
 /**
- * Helper for SQLite3 - must use due to FTS support
+ * Helper for SQLite3 - e due to FTS support
  */
 export class BaseDB {
 
    static instance:number = 0
    
-   constructor() {
+   path
+   fn
+
+   constructor(path, fn) {
       BaseDB.instance ++
-      if(BaseDB.instance>1) console.warn('extra instance of DB', BaseDB.instance )
+      if(BaseDB.instance>1) throw new Error('extra instance of DB' )
+      this.path = path
+      this.fn = fn
    }
 
    protected _run(stmt, ...args):Promise<any> {

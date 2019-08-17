@@ -141,10 +141,9 @@ export class ExpressRPC {
     * @param path 
     */
    serveStatic(path:string) {
-      console.log('_____________')
-      console.log('Serving root:')
+      logger.trace('Serving root:', path)
       fs.readdirSync(path).forEach(file => {
-         console.log(file)
+         //logger.trace(file)
       })
 
       this.appInst.use(express.static(path))

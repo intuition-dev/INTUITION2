@@ -74,10 +74,8 @@ class ExpressRPC {
         });
     }
     serveStatic(path) {
-        console.log('_____________');
-        console.log('Serving root:');
+        logger.trace('Serving root:', path);
         fs.readdirSync(path).forEach(file => {
-            console.log(file);
         });
         this.appInst.use(express.static(path));
     }

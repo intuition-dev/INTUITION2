@@ -2,10 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const logger = require('tracer').console();
 class BaseDB {
-    constructor() {
+    constructor(path, fn) {
         BaseDB.instance++;
         if (BaseDB.instance > 1)
-            console.warn('extra instance of DB', BaseDB.instance);
+            throw new Error('extra instance of DB');
+        this.path = path;
+        this.fn = fn;
     }
     _run(stmt, ...args) {
         return new Promise(function (resolve, reject) {

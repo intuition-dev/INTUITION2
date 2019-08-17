@@ -1,3 +1,6 @@
+### 6.08.17
+- touched up base DB class
+
 ### 6.08.13
 - changed `getFolders()` method to get all directories, instead of showing only folders containing `.pug` and `dat.yaml`
 
