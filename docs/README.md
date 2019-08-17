@@ -216,8 +216,8 @@ Now that you know mbake foundation, here are some choices for next things to lea
 
 # Links
 
-- Full Docs: [docs.MetaBake.org](http://docs.MetaBake.org)
-- [MetaBake.org](https://www.INTUITION.DEV)
+- Full Docs: [docs.INTUITION.DEV](http://docs.INTUITION.DEV)
+- [INTUITION.DEV](https://www.INTUITION.DEV)
 - [blog.MetaBake.net](http://blog.MetaBake.net)
-- [Github](http://git.MetaBake.org)
+- [Github](http://git.INTUITION.DEV)
 - Check for the latest version of mbake: [npm.js](http://npmjs.com/package/mbake)

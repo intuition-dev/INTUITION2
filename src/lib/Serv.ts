@@ -1,5 +1,5 @@
 
-// All rights reserved by MetaBake (MetaBake.org) | Cekvenich, licensed under LGPL 3.0
+// All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
 
 const express = require('express')
