@@ -5,9 +5,6 @@ const fs = require('fs-extra');
 const sqlite3 = require('sqlite3').verbose();
 class BaseDB {
     constructor(path, fn) {
-        BaseDB.instance++;
-        if (BaseDB.instance > 1)
-            throw new Error('extra instance of DB');
         this.path = path;
         this.fn = fn;
     }
@@ -32,6 +29,7 @@ class BaseDB {
         this.db = new sqlite3.Database(this.path + this.fn);
     }
     _run(stmt, ...args) {
+        logger.trace(this.fn);
         return new Promise(function (resolve, reject) {
             stmt.run(args, function (err) {
                 if (err) {
@@ -44,6 +42,7 @@ class BaseDB {
         });
     }
     _qry(stmt, ...args) {
+        logger.trace(this.fn);
         return new Promise(function (resolve, reject) {
             stmt.all(args, function (err, rows) {
                 if (err) {
@@ -56,7 +55,6 @@ class BaseDB {
         });
     }
 }
-BaseDB.instance = 0;
 exports.BaseDB = BaseDB;
 module.exports = {
     BaseDB

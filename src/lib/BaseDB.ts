@@ -8,15 +8,11 @@ const sqlite3 = require('sqlite3').verbose()
  */
 export class BaseDB {
 
-   static instance:number = 0
-   
    path
    fn
    protected db
 
    constructor(path, fn) {
-      BaseDB.instance ++
-      if(BaseDB.instance>1) throw new Error('extra instance of DB' )
       this.path = path
       this.fn = fn
    }
@@ -46,6 +42,7 @@ export class BaseDB {
 
   
    protected _run(stmt, ...args):Promise<any> {
+      logger.trace(this.fn)
       return new Promise( function (resolve, reject) {
          stmt.run( args
             , function (err) {
@@ -59,6 +56,7 @@ export class BaseDB {
    }//()
 
    protected _qry(stmt, ...args):Promise<any> {
+      logger.trace(this.fn)      
       return new Promise( function (resolve, reject) {
          stmt.all( args
             , function (err, rows) {
