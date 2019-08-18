@@ -1,7 +1,7 @@
 
 mbake:  v6.08.17b
 mbakex: v1.08.15
-intu:   v0.99.17b
+intu:   v1.0.0
 
 
 headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.8.14/toolBelt/template/headFrag.pug
