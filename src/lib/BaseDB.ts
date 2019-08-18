@@ -42,7 +42,6 @@ export class BaseDB {
 
   
    protected _run(stmt, ...args):Promise<any> {
-      logger.trace(stmt)
       return new Promise( function (resolve, reject) {
          stmt.run( args
             , function (err) {
@@ -56,7 +55,6 @@ export class BaseDB {
    }//()
 
    protected _qry(stmt, ...args):Promise<any> {
-      logger.trace(stmt)      
       return new Promise( function (resolve, reject) {
          stmt.all( args
             , function (err, rows) {
