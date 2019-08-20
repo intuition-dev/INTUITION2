@@ -23,12 +23,11 @@ export class BaseDB {
 
   delDb() {
       try {
-          this.db.close(function() {
-              fs.removeSync(this.path + this.fn)
+            this.db.close(function() {
+            fs.removeSync(this.path + this.fn)
           })
       } catch(err) {}
 
-      fs.removeSync(this.path + this.fn)
   }
 
   con() {
@@ -43,6 +42,7 @@ export class BaseDB {
   
    protected _run(stmt, ...args):Promise<any> {
       return new Promise( function (resolve, reject) {
+         try {
          stmt.run( args
             , function (err) {
                if (err) {
@@ -51,11 +51,17 @@ export class BaseDB {
                }
                else resolve('OK')
             })
+         } catch(err) {
+            logger.warn(err)
+            reject(err)
+         }
       })
+
    }//()
 
    protected _qry(stmt, ...args):Promise<any> {
       return new Promise( function (resolve, reject) {
+         try {
          stmt.all( args
             , function (err, rows) {
                if (err) {
@@ -64,6 +70,10 @@ export class BaseDB {
                }
                else resolve(rows)
             })
+         } catch(err) {
+            logger.warn(err)
+            reject(err)
+         }
       })
    }//()
 
