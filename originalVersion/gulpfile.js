@@ -40,7 +40,7 @@ gulp.task('html', function() {
 	})
 
 gulp.task('comp', function() {  
-	return gulp.src('./www/custEl/*.pug')
+	return gulp.src('./www/custel/*.pug')
 		.pipe( pug(
 			{pretty: true }
 		)) // pipe to pug plugin
@@ -50,16 +50,16 @@ gulp.task('comp', function() {
 		))
 		.pipe( rename({ extname: '.js'}))
 		//.pipe(debug())
-		.pipe(gulp.dest('./www/custEl/'))
+		.pipe(gulp.dest('./www/custel/'))
 	})
 
 gulp.task('tag', function() {  
-	return gulp.src('./www/custEl/*.pug')
+	return gulp.src('./www/custel/*.pug')
 		.pipe( pug(
 			{pretty: true }
 		)) // pipe to pug plugin
 		.pipe( rename({ extname: '.tag'}))
-		.pipe(gulp.dest('./www/custEl/'))	
+		.pipe(gulp.dest('./www/custel/'))	
 	})
 
 gulp.task('js', function () {
