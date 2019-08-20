@@ -224,7 +224,7 @@ export class BasePgRouter {
 export  interface iAuth {
 
    /**
-    * Rejects with 'NO' if not. Else returns some string saying what kind of auth. Eg: 'admin' for full. Or 'microsoft' would mean only for that company. 
+    * Rejects with 'FAIL' if not. Else returns some string saying what kind of auth. Eg: 'admin' for full. Or 'microsoft' would mean only for that company. 
     * @param user 
     * @param pswd 
     * @param resp response, optionally the auth class does the http response
