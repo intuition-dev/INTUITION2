@@ -29,7 +29,6 @@ class BaseDB {
         this.db = new sqlite3.Database(this.path + this.fn);
     }
     _run(stmt, ...args) {
-        logger.trace(stmt);
         return new Promise(function (resolve, reject) {
             stmt.run(args, function (err) {
                 if (err) {
@@ -42,7 +41,6 @@ class BaseDB {
         });
     }
     _qry(stmt, ...args) {
-        logger.trace(stmt);
         return new Promise(function (resolve, reject) {
             stmt.all(args, function (err, rows) {
                 if (err) {
