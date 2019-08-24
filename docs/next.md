@@ -12,7 +12,7 @@ Also it you you can itemize (-i dat.yaml files) to make a nice SEO friendly CMS.
 Now that you know mbake foundation, here are some choices for next things to learn in the advanced docs, pick and chose:
 
 - CMS: an admin panel that you can host to can use as is; or as a base to build commercial grade CMS or eCommerce site, including browser plugin.
-- MetaCake: plugin components, makes it easy for designers to write real web-apps. Developed with RIOTjs, easier than Reactjs (commercial license optional)
+- MetaCake: plugin components, makes it easy for designers to write real Web Apps. Developed with RIOTjs, easier than Reactjs (commercial license optional)
 - AMP
 - SPA router: with page transition effects and state machine (needed for cross-platform development)
 - Cross platform development with real single code base development: single code base for Web, AMP, Electron and PhoneGap/Crodova

@@ -13,7 +13,7 @@ It has a README.md in root of the website.
 
 ### depp.min.js
 
-Most example web-apps, including the website, need to load external .js libraries. 
+Most example Web Apps, including the website, need to load external .js libraries. 
 MetaBake example the use the CDN centric .js loader 'depp': http://github.com/muicss/johnnydepp but you can use any 'loader' lib you like. But learn the default depp.js, since all the examples us that one:
 
 ```javascript
@@ -41,7 +41,7 @@ You'll find the real loading code in /assets/js/loader.js.
 
 There are many navigation libraries on github - a way to create a navbar, and we leverage one in here.  In advanced docs we review some nav libs, but not here.
 
-And as mentioned at the start: there are 12 example of very different web-apps, you should study a few to see how we chose to layout things so you get your own ideas.
+And as mentioned at the start: there are 12 example of very different Web Apps, you should study a few to see how we chose to layout things so you get your own ideas.
 
 ---
 

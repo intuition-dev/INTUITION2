@@ -114,7 +114,7 @@ This will start a webserver and auto-refresh browser, and watch for file changes
 ```
 
 Instead of . you can specify any path.
-Also, the fact that we are generating this static content allows us to have the entire webapp served by a CDN. 
+Also, the fact that we are generating this static content allows us to have the entire Web App served by a CDN. 
 
 ---
 

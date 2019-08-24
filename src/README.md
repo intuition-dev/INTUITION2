@@ -9,7 +9,7 @@
 
 MetaBake(mbake) provides all the necessary tools for a developer to write cleaner code quicker, with `pug` and livereload out of the box.
 
-You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Custom Elements, custom CMS/E-Commerce, CRUD and all sorts of dynamic web-apps.
+You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Custom Elements, custom CMS/E-Commerce, CRUD and all sorts of dynamic Web Apps.
 
 #### Please star our main project here:
 - https://github.com/intuition-dev/INTUITION
@@ -91,7 +91,7 @@ mbakeX -w .
 ```
 
 Instead of `.` you can specify any path.
-Also, the fact that we are generating this static content allows us to have the entire webapp served by a CDN
+Also, the fact that we are generating this static content allows us to have the entire Web App served by a CDN
 
 
 ## SASS

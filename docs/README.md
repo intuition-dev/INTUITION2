@@ -9,7 +9,7 @@
 
 MetaBake(mbake) provides all the necessary tools for a developer to write cleaner code quicker, with `pug` and livereload out of the box.
 
-You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Custom Elements, custom CMS/E-Commerce, CRUD and all sorts of dynamic web-apps.
+You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Custom Elements, custom CMS/E-Commerce, CRUD and all sorts of dynamic Web Apps.
 
 ### Prerequisites
 
@@ -86,7 +86,7 @@ mbakeX -w .
 ```
 
 Instead of `.` you can specify any path.
-Also, the fact that we are generating this static content allows us to have the entire webapp served by a CDN
+Also, the fact that we are generating this static content allows us to have the entire Web App served by a CDN
 
 
 ## SASS
@@ -154,7 +154,7 @@ That will extract an example website in the current folder. ( Obviously you can 
 
 ## Dynamic data/CRUD/'ViewModel'
 
-This relates to dynamic data, not static content (static eg: CMS or eCommerce). To extract an example CRUD web-app in the current folder:
+This relates to dynamic data, not static content (static eg: CMS or eCommerce). To extract an example CRUD Web App in the current folder:
 
 ```sh
 mbake -u
@@ -200,7 +200,7 @@ In turn, the included file calls a 'setup-deffs' js file that defines and show y
 Now that you know mbake foundation, here are some choices for next things to learn in the advanced docs, pick and chose:
 
 - CMS: an admin panel that you can host to can use as is; or as a base to build commercial grade CMS or eCommerce site, including browser plugin.
-- MetaCake: plugin components, makes it easy for designers to write real web-apps. Developed with RIOTjs, easier than Reactjs (commercial license optional)
+- MetaCake: plugin components, makes it easy for designers to write real Web Apps. Developed with RIOTjs, easier than Reactjs (commercial license optional)
 - AMP
 - SPA router: with page transition effects and state machine (needed for cross-platform development)
 - Cross platform development with real single code base development: single code base for Web, AMP, Electron and PhoneGap/Crodova
