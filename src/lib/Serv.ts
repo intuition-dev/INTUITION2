@@ -232,7 +232,6 @@ export  interface iAuth {
     */
    auth(user:string, pswd:string, resp?, ctx?):Promise<string>
 
-   retErr(resp, msg) 
 }//i
 
 module.exports = {
