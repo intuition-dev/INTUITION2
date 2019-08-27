@@ -212,12 +212,6 @@ export class BasePgRouter {
       }
    }//()
 
-   /* XXX eg how to use: mainEApp.handleRRoute('api', 'editPg', pg1Router.route.bind(pg1Router))
-   selectAll(resp, params, user, pswd) {
-      this.ret(resp, 'OK')
-   }//()
-   */
-
 }//class
 
 
