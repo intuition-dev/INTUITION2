@@ -18,4 +18,4 @@ If there is no .ts, than it will simply slightly mimifify js files into min.js (
 (of course you have to load any polyfills like
 promises, fetch or what you need)
 
-And normally you run that command at the root of your Web App; but don't use it for server-side node.js.
+And normally you run that command at the root of your Web App; but don't use it for back-end node.js.
