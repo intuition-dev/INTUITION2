@@ -18,7 +18,6 @@ class BaseDB {
             });
         }
         catch (err) { }
-        fs.removeSync(this.path + this.fn);
     }
     con() {
         if (this.db) {
@@ -30,26 +29,38 @@ class BaseDB {
     }
     _run(stmt, ...args) {
         return new Promise(function (resolve, reject) {
-            stmt.run(args, function (err) {
-                if (err) {
-                    logger.trace(err);
-                    reject(err);
-                }
-                else
-                    resolve('OK');
-            });
+            try {
+                stmt.run(args, function (err) {
+                    if (err) {
+                        logger.trace(err);
+                        reject(err);
+                    }
+                    else
+                        resolve('OK');
+                });
+            }
+            catch (err) {
+                logger.warn(err);
+                reject(err);
+            }
         });
     }
     _qry(stmt, ...args) {
         return new Promise(function (resolve, reject) {
-            stmt.all(args, function (err, rows) {
-                if (err) {
-                    logger.trace(err);
-                    reject(err);
-                }
-                else
-                    resolve(rows);
-            });
+            try {
+                stmt.all(args, function (err, rows) {
+                    if (err) {
+                        logger.trace(err);
+                        reject(err);
+                    }
+                    else
+                        resolve(rows);
+                });
+            }
+            catch (err) {
+                logger.warn(err);
+                reject(err);
+            }
         });
     }
 }

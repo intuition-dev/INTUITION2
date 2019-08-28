@@ -16,7 +16,7 @@ class Wa {
         let ss = new MDevSrv(dir, port, reloadPort);
         const mp = new MetaPro(dir);
         let ww = new Watch(mp, dir);
-        ww.start(305);
+        ww.start(350);
         console.info(' Serving on ' + 'http://localhost:' + port);
         console.info(' --------------------------');
         console.info('');
@@ -139,10 +139,10 @@ class MetaPro {
         return ('Cant process ' + ext);
     }
 }
+exports.MetaPro = MetaPro;
 MetaPro.folderProp = 'folder';
 MetaPro.srcProp = 'src';
 MetaPro.destProp = 'dest';
-exports.MetaPro = MetaPro;
 class MDevSrv {
     constructor(dir, port, reloadPort) {
         let app = express();

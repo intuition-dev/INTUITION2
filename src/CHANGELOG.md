@@ -1,3 +1,7 @@
+### 6.08.28
+- touched up srv file
+- bump versions
+
 ### 6.08.21
 - touched up base DB class
 
