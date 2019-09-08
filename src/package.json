@@ -55,7 +55,7 @@
         "reload": ">=3.0.1",
         "riot-compiler": "^3.6.0",
         "strip-css-comments": ">=4.0.0",
-        "terser": ">=4.2.1",
+        "terser": ">=4.3.0",
         "tracer": ">=1.0.1",
         "typescript": ">=3.6.2",
         "superagent": ">=5.1.0"
