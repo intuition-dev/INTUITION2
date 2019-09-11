@@ -81,8 +81,10 @@ export class BaseDB {
 
 
 export  interface iDB {
-
-isSetupDone():Promise<boolean> 
+   /**
+    * returns when db is setup
+    */
+   isSetupDone():Promise<boolean> 
 
 }
 
