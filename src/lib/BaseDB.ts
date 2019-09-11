@@ -17,7 +17,7 @@ export class BaseDB {
       this.fn = fn
    }
 
-   dbExists() {
+   fileExists() {
       return fs.existsSync(this.path + this.fn)
   }
 
@@ -29,6 +29,22 @@ export class BaseDB {
       } catch(err) {}
 
   }
+
+async tableExists(tab): Promise<any> { 
+   try {
+      this.con()
+
+      const qry = this.db.prepare("SELECT name FROM sqlite_master WHERE type=\'table\' AND name= ?", tab)
+      const rows = await this._qry(qry)
+      logger.trace('exits?', rows)
+      const row = rows[0]
+      if(row.name == tab) return true
+      return false
+   } catch(err) {
+       return false
+   }   
+}//()
+
 
   con() {
       if (this.db) {
