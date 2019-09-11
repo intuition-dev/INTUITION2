@@ -79,6 +79,13 @@ export class BaseDB {
 
 }//class
 
+
+export  interface iDB {
+
+isSetupDone():Promise<boolean> 
+
+}
+
 module.exports = {
    BaseDB
 }
