@@ -1,3 +1,6 @@
+### 06.09.14
+- Added Pug Intro
+
 ### 06.09.12
 - added interface for DB
 

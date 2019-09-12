@@ -1,5 +1,5 @@
 
-mbake:  v6.09.12
+mbake:  v6.09.14
 intu:   v1.9.12
 mbakex: v1.09.11
 
@@ -11,6 +11,8 @@ d:        https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.12/toolBelt/te
 opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.12/toolBelt/template/ops.pug
 opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.12/toolBelt/template/ops.js
 
+
+pugInto:  https://github.com/intuition-dev/mbCLI/raw/master/pug/pugIntro.zip
 
 intu4SS: https://github.com/intuition-dev/Intuition/raw/master/examples/intu4SS.zip
 CRUD:    https://github.com/intuition-dev/Intuition/raw/master/examples/CRUD.zip

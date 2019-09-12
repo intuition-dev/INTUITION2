@@ -7,7 +7,7 @@ import { Ver, MBake } from './lib/Base'
 import { MinJS,  Sas } from './lib/Extra'
 import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
-import { DownloadFrag, VersionNag } from './lib/FileOpsExtra'
+import { DownloadFrag, VersionNag, Download } from './lib/FileOpsExtra'
 
    
 VersionNag.isCurrent('mbake', Ver.ver()).then(function(isCurrent_:boolean){
@@ -40,15 +40,17 @@ function help () {
    console.info('  Process SASS/SCSS file into css, requires assets.yaml:      mbake -s .')
    console.info('     or path that has assets.yaml, or any sub-folder under /assets')
 
-   console.info('  Process .ts, .js and native Custom Elements file to .min:         mbake -t .')
+   console.info('  Process .ts, .js or native Custom Elements(-custel) :       mbake -t .')
    
    console.info('  To process Pug and dat_i items to items.json:               mbake -i .')
    console.info('     or any sub-folder, where path is folder containing dat_i.yaml;')
    console.info('     also does regular mbake of Pug')
 
    console.info('  Download fragment to setup the app FW(framework):           mbake -f .')
+   console.info()
+   console.info('  Download Intro to Pug example:                              mbake --pug ')
 
-   console.info('     Note: . is current directory, or use any path instead of .')
+   console.info('     Note: . is current directory; or use any path instead of .')
    console.info(' -------------------------------------------------------------')
 
    console.info()
@@ -75,6 +77,9 @@ const optionDefinitions = [
    { name: 'frag', alias: 'f', type: Boolean },
 
    { name: 'watcher', alias: 'w', type: Boolean },
+
+   { name: 'pug', type: Boolean },
+
 ]
 
 const argsParsed = commandLineArgs(optionDefinitions)
@@ -109,6 +114,11 @@ if (arg) {
 }
 
 //  ////////////////////////////////////////////////////////////////////////////////////////////////
+function pugIntro() {
+   new Download('pugInto', __dirname).autoUZ()
+   console.info('Extracted a Intro to Pug example')
+}//()
+
 function bake(arg) {
    let pro:Promise<string> = new MBake().bake(arg, 0)
 
@@ -152,6 +162,8 @@ else if (argsParsed.MinJS)
    minJS(arg)
 else if (argsParsed.frag)
    frag(arg)
+else if (argsParsed.pug)
+   pugIntro()
 else if (argsParsed.version)
    version()
 else if (argsParsed.help)
