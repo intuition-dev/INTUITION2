@@ -72,7 +72,6 @@ export class ExpressRPC {
       const cors = new CustomCors(origins)
       ExpressRPC._appInst = express()
 
-
       ExpressRPC._appInst.set('trust proxy', true)
 
       this.appInst.use(cors)
