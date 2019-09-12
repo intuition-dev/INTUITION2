@@ -1,6 +1,8 @@
 
-# Using, extending and leveraging Pug
-# as the main programming language for static generation, cross-platform development and more.
+## Using, extending and leveraging Pug
+## as the main programming language for static generation, cross-platform development and more.
+
+--- 
 
 ### Quick Intro to Pug
 
