@@ -1,8 +1,6 @@
 
-## Using, extending and leveraging Pug
-## as the main programming language for static generation, cross-platform development and more.
+# Using, extending and leveraging Pug  as the main programming language for static generation, cross-platform development and more.
 
---- 
 
 ### Quick Intro to Pug
 
@@ -22,6 +20,7 @@ We will use *mbake* CLI to compile from the Pug language (https://www.npmjs.com/
 
 But if you are a beginner you can use GUI ( https://prepros.io/downloads )
 If you do the GUI route, once you are comfortable, come back here to continue to the next step, using mbake.
+--- 
 
 ### Extending Pug for static generation and cross-platform development.
 
