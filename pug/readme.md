@@ -72,7 +72,9 @@ custom elements using native api of a browser: no need to download any library. 
 custom elements work on IE11.
 
 
-### Extending Pug w/ Custom Elements example
+### Extending Pug w/ Custom Elements 
+
+
 
 
 
