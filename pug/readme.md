@@ -13,6 +13,8 @@ But Pug is also used with all the other popular tech stacks, for example Laravel
 More here:
 - [PugJS](https://github.com/pugjs/pug)
 
+Alternatives/similar to Pug include Haml and Ebay's MarkoJS concise syntax.
+
 If you have never seen Pug before, I will tech it to you Pug in 15 seconds, you can just look at this page for 15 seconds and ... you know Pug:
 - [Learn Pug by looking at this for 15 seconds](http://pug.mbake.org)
 
@@ -65,7 +67,7 @@ use include and extends (include and extends are Pug keywords) as you wish.
 So to make a new page/screen you must create a new folder. This helps organize the code and the hyperlinks.
 
 
-## Extending Pug!
+# Extending Pug!
 
 Html and Pug have elements like div, article, etc. that Pug and browsers know. We can create 
 custom elements using native api of a browser: no need to download any library. Well, you do need polyfill for IE11, but native 
@@ -73,6 +75,7 @@ custom elements work on IE11.
 
 
 ### Extending Pug w/ Custom Elements 
+
 
 
 
