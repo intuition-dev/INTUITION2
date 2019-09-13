@@ -13,20 +13,57 @@ More here:
 - [PugJS](https://github.com/pugjs/pug)
 
 If you have never seen Pug before, I will tech it to you Pug in 15 seconds, you can just look at this page for 15 seconds and ... you know Pug:
-- [Learn Pug by looking](http://pug.mbake.org)
+- [Learn Pug by looking at this for 15 seconds](http://pug.mbake.org)
 
-We will use *mbake* CLI to transpile from the Pug language (https://www.npmjs.com/package/mbake), so please install that if you want to follow along.
+We will use *mbake* CLI to transpile from the Pug language [mbake CLI](https://www.npmjs.com/package/mbake), so please install that if you want to follow along.
 
-But if you are a beginner you can use a GUI like PrePros ( https://prepros.io/downloads )
+But if you are a beginner you can use a GUI like [PrePros](https://prepros.io/downloads)
 If you do the GUI route, once you are comfortable, come back here to continue to the next step, using mbake.
 
 ### Quick Intro to Pug part 2
 
-So install (https://www.npmjs.com/package/mbake).
+So now install (https://www.npmjs.com/package/mbake) if you have not done so already.
 
+Then you should extract a the example we will use by running ```mbake --pug```, and then ```cd pugIntro```.
 
+Just from fun run ```mbake -s .```. That takes SASS/SCSS files and makes .css.
+
+But we are here for Pug, run ```mbake .``, and it will make html file from the Pug file.
+
+That's it, you know Pug.
 
 --- 
 
 ## Extending Pug for static generation and cross-platform development.
+
+You can now statically generate any kind of a web app, PWA, or if you make an SPA app you can have the same app run not only as
+a web app, but same code can run Electro, or PhoneGap: to make Android or IOS app. (Aside, I use http://build.PhoneGap.com so there is no Android, IOS, or Cordova to install. It is all done in the cloud. )
+
+Here is an example cross platform app: (https://github.com/intuition-dev/mbMobile), for 3 platforms. Notice that the web app, electron app and phonegap app all use a symbolic link to the same directory: **same code base**. We won't spend more time on this, you can look at the code but just a point is: you can make a cross platform app in Pug.
+
+And since it is static: you can serve from the edge via a CDN (my CDN supports QUIC) for a lower cost and higher performance.
+
+### Extending: dat.yaml
+
+Notice that there is a dat.yaml! The mbake CLI has code that extends the standard Pug compiler to provide the data in the yaml file statically
+at compile time.
+
+For example if the pug file has:
+``` 
+    p Hello #{key1}
+```
+and dat.yaml has
+```
+    key1: World
+```
+and you run ```mbake . ``` you will get the expect result :-).
+
+This makes it easier for example to do any SEO, where things like  #{title} is repetitive code.
+Done!
+
+Note there is one *on purpose* limitation in mbake CLI: it must start w/ index.pug (and must have dat.yaml). You can of course still
+use include and extends (include and extends are pug keywords) as you wish.
+So to make a new page/screen you must create a new folder. This helps organize the code and the hyperlinks.
+
+
 
