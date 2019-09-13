@@ -113,7 +113,7 @@ So that is the more part: you can write a text editor for Pug and put it on WWW.
 #### Self promo:
 
 You can check out the project here:
-### - https://www.npmjs.com/package/intu
+#### - https://www.npmjs.com/package/intu
 
 and if you like it, please start the github link there.
 
