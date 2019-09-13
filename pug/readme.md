@@ -67,15 +67,41 @@ use include and extends (include and extends are Pug keywords) as you wish.
 So to make a new page/screen you must create a new folder. This helps organize the code and the hyperlinks.
 
 
-# Extending Pug!
+# Extending Pug w/ Custom Elements 
 
 Html and Pug have elements like div, article, etc. that Pug and browsers know. We can create 
 custom elements using native api of a browser: no need to download any library. Well, you do need polyfill for IE11, but native 
-custom elements work on IE11.
+custom elements work on IE11. 
 
+Here is an example of defining a custom element 'c-custel':
 
-### Extending Pug w/ Custom Elements 
+```
+   var cTemp = document.createElement('template')
+   cTemp.innerHTML = `
+      <b>I'm Comp DOM!</b>
+      <slot></slot>
+   `
+   window.customElements.define('c-custel', class extends HTMLElement {
+      sr 
+      constructor() {
+         super()
+         this.sr = this.attachShadow({mode: 'closed'})
+         this.sr.appendChild(cTemp.content.cloneNode(true))
+      }//cons
+   })
+```
 
+And now you can use 'c-custel' like any other tag in Pug!
+You can continue to a full Custom Element tutorial here:
+
+- http://custel1.mbake.org
+
+With the custom elements you can add more attributes, functionality, events, etc. because it is all standard.
+
+## And there is more
+
+If you are using Pug to build a web app, you may write an admin console, similar to how WordPress and other do. 
+Here is my example:
 
 
 
