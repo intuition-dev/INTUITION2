@@ -110,10 +110,10 @@ For example, if you click that green 'Pop Custom' you get a list of custom eleme
 
 So that is the more part: you can write a text editor for Pug and put it on WWW. The idea is that a pro developer sets up a way for the citizen developer to maintain the application. *Pug!*
 
-### Advertising
+#### Self promo:
 
 You can check out the project here:
-- https://www.npmjs.com/package/intu
+### - https://www.npmjs.com/package/intu
 
 and if you like it, please start the github link there.
 
