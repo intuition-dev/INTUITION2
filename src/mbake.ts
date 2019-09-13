@@ -116,7 +116,7 @@ if (arg) {
 //  ////////////////////////////////////////////////////////////////////////////////////////////////
 function pugIntro() {
    new Download('pugInto', __dirname).autoUZ()
-   console.info('Extracted a Intro to Pug example')
+   console.info('Extracted Intro to Pug example')
 }//()
 
 function bake(arg) {

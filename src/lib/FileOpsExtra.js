@@ -34,7 +34,6 @@ class Download {
         const THIZ = this;
         return new Promise(function (resolve, reject) {
             THIZ.getVal().then(function (ver) {
-                logger.trace(ver, lver);
                 if (ver == lver)
                     resolve(true);
                 else
@@ -62,6 +61,7 @@ class Download {
         return new Promise(function (resolve, reject) {
             download(url).then(data => {
                 fs.writeFileSync(THIZ.targetDir + '/' + fn, data);
+                logger.trace('downloaded');
                 resolve('OK');
             }).catch(err => {
                 console.info('err: where is the file?', err);
@@ -69,7 +69,9 @@ class Download {
         });
     }
     unzip(fn) {
-        let zip = new AdmZip(this.targetDir + '/' + fn);
+        const zfn = this.targetDir + fn;
+        logger.trace(zfn);
+        const zip = new AdmZip(zfn);
         zip.extractAllTo(this.targetDir, true);
         fs.remove(this.targetDir + '/' + fn);
     }

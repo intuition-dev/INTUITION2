@@ -82,7 +82,7 @@ if (arg) {
 }
 function pugIntro() {
     new FileOpsExtra_1.Download('pugInto', __dirname).autoUZ();
-    console.info('Extracted a Intro to Pug example');
+    console.info('Extracted Intro to Pug example');
 }
 function bake(arg) {
     let pro = new Base_1.MBake().bake(arg, 0);
