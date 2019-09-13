@@ -1,6 +1,7 @@
 
-# Using, extending and leveraging Pug  as the main programming language for static generation, cross-platform development and more.
+# Using, leveraging and extending Pug as the main programming language for static generation, cross-platform development and more.
 
+Lets see how to use and **extend* Pug.
 
 ### Quick Intro to Pug part 1
 
@@ -32,9 +33,7 @@ But we are here for Pug, run ```mbake .``, and it will make html file from the P
 
 That's it, you know Pug.
 
---- 
-
-## Extending Pug for static generation and cross-platform development.
+## Leveraging Pug for static generation and cross-platform development.
 
 You can now statically generate any kind of a web app, PWA, or if you make an SPA app you can have the same app run not only as
 a web app, but same code can run Electro, or PhoneGap: to make Android or IOS app. (Aside, I use http://build.PhoneGap.com so there is no Android, IOS, or Cordova to install. It is all done in the cloud. )
@@ -43,12 +42,12 @@ Here is an example cross platform app: (https://github.com/intuition-dev/mbMobil
 
 And since it is static: you can serve from the edge via a CDN (my CDN supports QUIC) for a lower cost and higher performance.
 
-### Extending: dat.yaml
+### Leveraging Pug w/ dat.yaml
 
 Notice that there is a dat.yaml! The mbake CLI has code that extends the standard Pug compiler to provide the data in the yaml file statically
 at compile time.
 
-For example if the pug file has:
+For example if the Pug file has:
 ``` 
     p Hello #{key1}
 ```
@@ -62,8 +61,20 @@ This makes it easier for example to do any SEO, where things like  #{title} is r
 Done!
 
 Note there is one *on purpose* limitation in mbake CLI: it must start w/ index.pug (and must have dat.yaml). You can of course still
-use include and extends (include and extends are pug keywords) as you wish.
+use include and extends (include and extends are Pug keywords) as you wish.
 So to make a new page/screen you must create a new folder. This helps organize the code and the hyperlinks.
+
+
+## Extending Pug!
+
+Html and Pug have elements like div, article, etc. that Pug and browsers know. We can create 
+custom elements using native api of a browser: no need to download any library. Well, you do need polyfill for IE11, but native 
+custom elements work on IE11.
+
+
+### Extending Pug w/ Custom Elements example
+
+
 
 
 
