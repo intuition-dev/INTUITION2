@@ -20,9 +20,11 @@ We will use *mbake* CLI to transpile from the Pug language (https://www.npmjs.co
 But if you are a beginner you can use a GUI like PrePros ( https://prepros.io/downloads )
 If you do the GUI route, once you are comfortable, come back here to continue to the next step, using mbake.
 
-### Quick Intro to Pug part 1
+### Quick Intro to Pug part 2
 
-So install 
+So install (https://www.npmjs.com/package/mbake).
+
+
 
 --- 
 
