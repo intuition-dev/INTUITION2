@@ -103,7 +103,7 @@ With the custom elements you can add more attributes, functionality, events, etc
 If you are using Pug to build a web app, you may write an admin console, similar to how WordPress and other do. 
 Here is my example:
 
-
+<img src="https://github.com/intuition-dev/INTUITION/raw/master/src/intu.png" width="100%"/>
 
 
 
