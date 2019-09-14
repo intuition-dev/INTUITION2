@@ -94,6 +94,7 @@ function frag(arg) {
 // get folder to be processed: ///////////////////////////////////////////////////////////////////////////////////////////////////////
 if (arg) {
    arg = Dirs.slash(arg)
+
    if (arg.startsWith('/')) {
       //do nothing, full path is arg
    } else if (arg.startsWith('..')) { // few  cases to test
@@ -105,13 +106,12 @@ if (arg) {
       d = d.substring(0, n)
       arg = d + arg
    } else if (arg.startsWith('.')) {//cur
-
-      arg = cwd //test ./dd
-
+      arg = cwd 
    } else { // just plain, dir passed
       arg = cwd + '/' + arg
-   }
-}
+   }// inner
+
+}//outer
 
 //  ////////////////////////////////////////////////////////////////////////////////////////////////
 function pugIntro() {
