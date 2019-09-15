@@ -151,7 +151,7 @@ export class ExpressRPC {
       this.appInst.use((req, res, next) => {
          if (req.path.endsWith('.ts') || req.path.endsWith('.pug') || req.path.endsWith('dat.yaml')) {
             res.status(403).send('forbidden')
-         }
+         } else
          next()
       })
 
