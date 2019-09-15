@@ -21,14 +21,13 @@ You should know HTML, CSS and JavaScript - that is all we use. If you need to ca
 
 ## Quick start
 ```sh
-npm i -gmbake
+yarn global add mbake
 mbake -w . /* for a base website */
 cd website
-mbakeX -w . /* to run the watcher/livereload */
+mbake -w . /* to run the watcher livereload */
 ```
 
 You can also use: npm i -g mbake
-BUT NOTE: You can't use sudo w/ npm.
 
 
 ## MetaBake in 4 Minutes
