@@ -31,9 +31,6 @@
 - added email
 - -f has baseVM
 
-### 6.07.27
-- yarn is deprecated, use npm. but can't use sudo
-
 ### 6.07.25
 - comments for GLO are less
 
