@@ -3,7 +3,7 @@
 
 ## 'All my friends KNOW the low-coder'
 
-#### MetaBake is open source and extensible low-code productivity tools that leverages JAMstack.
+#### MetaBake is open source and extensible low-code productivity tools that leverages JAMstack, w/ Pug.
 
 ## Overview
 

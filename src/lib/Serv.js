@@ -3,8 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const bodyParser = require('body-parser');
 const formidable = require('express-formidable');
+const serveStatic = require('serve-static');
+const lz = require('lz-string');
 const logger = require('tracer').console();
-const fs = require("fs");
 class CustomCors {
     constructor(validOrigins) {
         return (request, response, next) => {
@@ -72,11 +73,24 @@ class ExpressRPC {
             }, 1);
         });
     }
-    serveStatic(path) {
-        logger.trace('Serving root:', path);
-        fs.readdirSync(path).forEach(file => {
+    serveStatic(path, broT, cdnT) {
+        if (!broT)
+            broT = 1800;
+        if (!cdnT)
+            cdnT = 1799;
+        logger.trace('Serving root:', path, broT, cdnT);
+        this.appInst.use((req, res, next) => {
+            if (req.path.endsWith('.ts') || req.path.endsWith('.pug') || req.path.endsWith('dat.yaml')) {
+                res.status(403).send('forbidden');
+            }
+            next();
         });
-        this.appInst.use(express.static(path));
+        this.appInst.use(serveStatic(path, {
+            setHeaders: function (res, path) {
+                if (serveStatic.mime.lookup(path) === 'text/html') { }
+                res.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+            }
+        }));
     }
     listen(port) {
         this.appInst.listen(port, () => {

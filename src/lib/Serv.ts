@@ -5,10 +5,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const formidable = require('express-formidable')
+const serveStatic = require('serve-static')
+
+const lz = require('lz-string')
 
 const logger = require('tracer').console()
-
-import fs = require('fs')
 
 export class CustomCors {
 
@@ -135,16 +136,33 @@ export class ExpressRPC {
    }
 
    /**
-    * Will be edge cached
+    * 
     * @param path 
+    * @param broT edge/bro cache time in seconds- 1800
+    * @param cdnT CDN /one less in seconds- 1799
     */
-   serveStatic(path:string) {
-      logger.trace('Serving root:', path)
-      fs.readdirSync(path).forEach(file => {
-         //logger.trace(file)
+   serveStatic(path:string, broT, cdnT) {
+      if(!broT) broT = 1800
+      if(!cdnT) cdnT = 1799
+      
+      logger.trace('Serving root:', path, broT, cdnT)
+
+      //filter forbidden
+      this.appInst.use((req, res, next) => {
+         if (req.path.endsWith('.ts') || req.path.endsWith('.pug') || req.path.endsWith('dat.yaml')) {
+            res.status(403).send('forbidden')
+         }
+         next()
       })
 
-      this.appInst.use(express.static(path))
+      // static
+      this.appInst.use(serveStatic(path, {
+         setHeaders: function(res, path) {
+            if (serveStatic.mime.lookup(path) === 'text/html') { }
+            res.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
+         }//setHeader()
+      }))
+
    }//()
 
    /**
@@ -212,7 +230,6 @@ export class BasePgRouter {
    }//()
 
 }//class
-
 
 export  interface iAuth {
 
