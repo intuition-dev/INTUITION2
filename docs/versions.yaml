@@ -4,12 +4,12 @@ intu:   v1.9.19
 mbakex: v1.09.16
 
 
-headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.15/toolBelt/template/headFrag.pug
-loader:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.15/toolBelt/template/ui-loader.js
-VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.15/toolBelt/template/iViewModel.ts
-d:        https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.15/toolBelt/template/d.ts
-opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.15/toolBelt/template/ops.pug
-opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.15/toolBelt/template/ops.js
+headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.16/toolBelt/template/headFrag.pug
+loader:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.16/toolBelt/template/ui-loader.js
+VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.16/toolBelt/template/iViewModel.ts
+d:        https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.16/toolBelt/template/d.ts
+opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.16/toolBelt/template/ops.pug
+opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.16/toolBelt/template/ops.js
 
 
 pugInto:  https://github.com/intuition-dev/mbCLI/raw/master/pug/pugIntro.zip

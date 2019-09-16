@@ -83,7 +83,8 @@ class ExpressRPC {
             if (req.path.endsWith('.ts') || req.path.endsWith('.pug') || req.path.endsWith('dat.yaml')) {
                 res.status(403).send('forbidden');
             }
-            next();
+            else
+                next();
         });
         this.appInst.use(serveStatic(path, {
             setHeaders: function (res, path) {
