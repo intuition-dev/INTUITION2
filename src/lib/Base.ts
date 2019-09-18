@@ -3,7 +3,7 @@
 
 export class Ver {
    static ver() {
-      return 'v6.09.16'
+      return 'v6.09.17'
    }
    static date(): string {
       return new Date().toISOString()
@@ -41,14 +41,15 @@ import JavaScriptObfuscator = require('javascript-obfuscator')
 
 // code /////////////////////////////////////////////////////////////////////
 
-// metaMD
+// metaMD Mad
 import markdownItCont = require('markdown-it-container')
-const md = require('markdown-it')({
+
+const mad = require('markdown-it')({
    html: true,
    typographer: true,
    linkify: true
-})
-md.use(markdownItCont, 'dynamic', {
+}).use(require('markdown-it-imsize')) // image = 90%
+mad.use(markdownItCont, 'dynamic', {
    // https://github.com/markdown-it/markdown-it-container/issues/23
    validate: function () { return true; },
    render: function (tokens, idx) {
@@ -173,7 +174,7 @@ export class BakeWrk {
 
    static metaMD(text, options) {//a custom md filter that uses a transformer
       console.info(' ', options)
-      return md.render(text)
+      return mad.render(text)
    }
 
    /*

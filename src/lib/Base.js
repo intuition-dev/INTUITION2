@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.09.16';
+        return 'v6.09.17';
     }
     static date() {
         return new Date().toISOString();
@@ -32,12 +32,12 @@ const Terser = require("terser");
 const beeper = require("beeper");
 const JavaScriptObfuscator = require("javascript-obfuscator");
 const markdownItCont = require("markdown-it-container");
-const md = require('markdown-it')({
+const mad = require('markdown-it')({
     html: true,
     typographer: true,
     linkify: true
-});
-md.use(markdownItCont, 'dynamic', {
+}).use(require('markdown-it-imsize'));
+mad.use(markdownItCont, 'dynamic', {
     validate: function () { return true; },
     render: function (tokens, idx) {
         let token = tokens[idx];
@@ -139,7 +139,7 @@ class BakeWrk {
     }
     static metaMD(text, options) {
         console.info(' ', options);
-        return md.render(text);
+        return mad.render(text);
     }
     static minify_pg(text, inline) {
         let code = text.match(/^\s*\s*$/) ? '' : text;

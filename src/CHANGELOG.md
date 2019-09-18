@@ -1,3 +1,6 @@
+### 06.09.17
+- markdown image = 90% support
+
 ### 06.09.16
 - Static to use CDN/Browser
 - Added Pug Intro example
