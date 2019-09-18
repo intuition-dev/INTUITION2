@@ -27,7 +27,7 @@ cd website
 mbake -w . /* to run the watcher livereload */
 ```
 
-You can also use: npm i -g mbake
+You can also use: yarn global add  mbake
 
 
 ## MetaBake in 4 Minutes

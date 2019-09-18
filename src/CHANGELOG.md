@@ -1,5 +1,6 @@
 ### 06.09.17
 - markdown image = 90% support
+- deprecate npm use yarn
 
 ### 06.09.16
 - Static to use CDN/Browser

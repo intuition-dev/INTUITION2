@@ -1,4 +1,3 @@
-// npm i
 var gulp = require('gulp')
 var less = require('gulp-less')
 var LessAutoprefix = require('less-plugin-autoprefix')

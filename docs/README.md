@@ -18,7 +18,7 @@ You should know HTML, CSS and JavaScript - that is all we use. If you need to ca
 
 ## Quick start
 ```sh
-npm i -gmbake
+yarn global add mbake
 mbake -w . /* for a base website */
 cd website
 mbakeX -w . /* to run the watcher/livereload */
