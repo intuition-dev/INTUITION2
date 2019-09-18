@@ -48,7 +48,7 @@ const mad = require('markdown-it')({
    html: true,
    typographer: true,
    linkify: true
-}).use(require('markdown-it-imsize')) // image = 90%
+}).use(require('markdown-it-imsize')) // eg![](main.jpg =50%x50%)
 mad.use(markdownItCont, 'dynamic', {
    // https://github.com/markdown-it/markdown-it-container/issues/23
    validate: function () { return true; },
