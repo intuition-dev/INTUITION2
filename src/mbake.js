@@ -39,7 +39,7 @@ function help() {
     console.info('     Note: . is current directory; or use any path instead of .');
     console.info(' -------------------------------------------------------------');
     console.info();
-    console.info('  mbake-x CLI (extra) has more flags');
+    console.info('  mbakex CLI (extra) has more flags');
     console.info();
     console.info(' Full docs: http://www.INTUITION.DEV');
     console.info();

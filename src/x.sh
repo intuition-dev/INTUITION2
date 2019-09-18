@@ -6,6 +6,6 @@ tsc
 
 node mbake.js --pug # -t /Users/code/Documents/GitHub/alan/al-prod
 
-# node mbake-x.js -w /Users/code/Documents/GitHub/metaCake/metaCake/webC
+# node mbakex.js -w /Users/code/Documents/GitHub/metaCake/metaCake/webC
 
 ls -la
