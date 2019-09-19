@@ -1,6 +1,8 @@
 
 
-depp.require(['FontsLoaded','bsDefaultStyle', 'DOM'], function() {
+toolBeltDefault()
+
+depp.require(['FontsLoaded', 'DOM'], function() {
    
    console.log('loaded')
 
