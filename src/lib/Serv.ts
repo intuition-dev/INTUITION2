@@ -147,6 +147,7 @@ export class ExpressRPC {
     * @param path 
     * @param broT edge/bro cache time in seconds- 1800
     * @param cdnT CDN /one less in seconds- 1799
+    * The longer the better. max is 1 year in seconds. You can flush CDN at CDN and flush browser at browser.
     */
    serveStatic(path:string, broT, cdnT) {
       if(!broT) broT = 30*60
