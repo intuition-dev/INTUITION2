@@ -105,7 +105,7 @@ export class ExpressRPC {
     */
    routeRPC2(route:string, pgOrScreen:string, foo:Function) {
       if(pgOrScreen.length < 1) throw new Error('Each RPC should have the named page or screen argument')
-      const r: string = '/'+route  + '/'+pgOrScreen
+      const r: string = '/'+route  
       this.appInst.get(r, foo)
    }
 
@@ -189,7 +189,7 @@ export class ExpressRPC {
 /*
 Helper class: BaseMethodRouter 
 
-This is called by the handler
+This is called by router: should be in folder handlers
 */
 export class BasePgRouter {
 
@@ -233,24 +233,29 @@ export class BasePgRouter {
     * @param req 
     * @param resp 
     */
-   handleRPC2(req, resp) {
+   handleRPC(req, resp) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
       let method
+      let ent
+      let params
       try {
 
-         const params = URL.parse(req.url, true).query
+         params = URL.parse(req.url, true).query
 
          const user = params.user
          const pswd = params.pswd
+         const token = params.token
+
          method = params.method
+         ent = params.ent
          
          //invoke the method request
-         THIZ[method](resp, params, user, pswd)
+         THIZ[method](resp, params, ent, user, pswd, token)
 
       } catch(err) {
          logger.info(err)
-         THIZ.retErr(resp, method, null, null)
+         THIZ.retErr(resp, params, null, null)
       }
    }//()
 
