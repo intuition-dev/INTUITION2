@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 const formidable = require('express-formidable')
 const serveStatic = require('serve-static')
 // const lz = require('lz-string')
-const queryString = require('querystring')
+const URL = require('url')
 
 const logger = require('tracer').console()
 
@@ -239,7 +239,7 @@ export class BasePgRouter {
       let method
       try {
 
-         const params = queryString(req.url)
+         const params = URL.parse(req.url, true).query
 
          const user = params.user
          const pswd = params.pswd
