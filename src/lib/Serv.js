@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const formidable = require('express-formidable');
 const serveStatic = require('serve-static');
-const lz = require('lz-string');
+const URL = require('url');
 const logger = require('tracer').console();
 class CustomCors {
     constructor(validOrigins) {
@@ -49,6 +49,12 @@ class ExpressRPC {
         this.appInst.use(cors);
         this.appInst.use(bodyParser.urlencoded({ extended: false }));
         this.appInst.use(formidable());
+    }
+    routeRPC2(route, pgOrScreen, foo) {
+        if (pgOrScreen.length < 1)
+            throw new Error('Each RPC should have the named page or screen argument');
+        const r = '/' + route;
+        this.appInst.get(r, foo);
     }
     handleRRoute(route, pgOrScreen, foo) {
         if (pgOrScreen.length < 1)
@@ -100,18 +106,49 @@ class ExpressRPC {
     }
 }
 exports.ExpressRPC = ExpressRPC;
-class BasePgRouter {
-    ret(resp, result) {
+class BaseRPCMethodHandler {
+    ret(resp, result, broT, cdnT) {
+        if (!broT)
+            broT = 3;
+        if (!cdnT)
+            cdnT = 2;
         const ret = {};
         ret.result = result;
+        resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
         resp.json(ret);
     }
-    retErr(resp, msg) {
+    retErr(resp, msg, broT, cdnT) {
+        if (!broT)
+            broT = 2;
+        if (!cdnT)
+            cdnT = 1;
         logger.warn(msg);
         const ret = {};
         ret.errorLevel = -1;
         ret.errorMessage = msg;
+        resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
         resp.json(ret);
+    }
+    handleRPC2(req, resp) {
+        if (!this)
+            throw new Error('bind of class instance needed');
+        const THIZ = this;
+        let method;
+        let ent;
+        let params;
+        try {
+            params = URL.parse(req.url, true).query;
+            const user = params.user;
+            const pswd = params.pswd;
+            const token = params.token;
+            method = params.method;
+            ent = params.ent;
+            THIZ[method](resp, params, ent, user, pswd, token);
+        }
+        catch (err) {
+            logger.info(err);
+            THIZ.retErr(resp, params, null, null);
+        }
     }
     route(req, resp) {
         if (!this)
@@ -127,11 +164,11 @@ class BasePgRouter {
         }
         catch (err) {
             logger.info(err);
-            THIZ.retErr(resp, method);
+            THIZ.retErr(resp, method, null, null);
         }
     }
 }
-exports.BasePgRouter = BasePgRouter;
+exports.BaseRPCMethodHandler = BaseRPCMethodHandler;
 module.exports = {
-    ExpressRPC, BasePgRouter
+    ExpressRPC, BaseRPCMethodHandler
 };
