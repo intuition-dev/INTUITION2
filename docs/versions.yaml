@@ -7,7 +7,7 @@ mbakex: v1.09.16
 
 headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.19/src/template/headFrag.pug
 loader:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.19/src/template/ui-loader.js
-VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.19/src/template/iViewModel.ts
+VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.19/src/template/BaseIViewModel.ts
 d:        https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.19/src/template/d.ts
 opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.19/src/template/ops.pug
 opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.19/src/template/ops.js
