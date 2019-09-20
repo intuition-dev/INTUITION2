@@ -46,7 +46,6 @@
         "is": ">=3.3.0",
         "javascript-obfuscator": ">=0.18.1",
         "js-yaml": ">=3.13.1",
-        "lz-string": ">=1.4.4",
         "markdown-it": ">=10.0.0",
         "markdown-it-container": ">=2.0.0",
         "markdown-it-imsize": "^2.0.1",

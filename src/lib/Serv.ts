@@ -6,8 +6,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const formidable = require('express-formidable')
 const serveStatic = require('serve-static')
-
-const lz = require('lz-string')
+// const lz = require('lz-string')
+const queryString = require('querystring')
 
 const logger = require('tracer').console()
 
@@ -77,12 +77,12 @@ export class ExpressRPC {
 
       this.appInst.use(cors)
 
+      // for old fetch:
       this.appInst.use(bodyParser.urlencoded({ extended: false }))
-      this.appInst.use(formidable())// for fetch
+      this.appInst.use(formidable())// for old fetch
    }
 
    /**
-    * It is a post, so won't be edge cached
     * @param route RPC route
     * @param foo function
    Example foo(req, res)
@@ -103,6 +103,12 @@ export class ExpressRPC {
       res.json(resp)
    }
     */
+   routeRPC2(route:string, pgOrScreen:string, foo:Function) {
+      if(pgOrScreen.length < 1) throw new Error('Each RPC should have the named page or screen argument')
+      const r: string = '/'+route  + '/'+pgOrScreen
+      this.appInst.get(r, foo)
+   }
+
    handleRRoute(route:string, pgOrScreen:string, foo:Function) {
       if(pgOrScreen.length < 1) throw new Error('Each RPC should be called by a named page or screen')
       const r: string = '/'+route  + '/'+pgOrScreen
@@ -116,6 +122,7 @@ export class ExpressRPC {
    handleLog(foo) {
       const r: string = '/log/log'
       this.appInst.post(r, function(req, resp){
+         
          let params = JSON.parse( req.fields.params )
          const user = req.fields.user
          const msg = params.msg
@@ -157,11 +164,14 @@ export class ExpressRPC {
 
       // static
       this.appInst.use(serveStatic(path, {
+
          setHeaders: function(res, path) {
             if (serveStatic.mime.lookup(path) === 'text/html') { }
+         
             res.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
          }//setHeader()
       }))
+
 
    }//()
 
@@ -177,7 +187,9 @@ export class ExpressRPC {
 }//class
 
 /*
-Helper/Sugar class
+Helper class: BaseMethodRouter 
+
+This is called by the handler
 */
 export class BasePgRouter {
 
@@ -186,9 +198,14 @@ export class BasePgRouter {
     * @param resp http response
     * @param result data
     */
-   ret(resp, result) {
+   ret(resp, result, broT, cdnT) {
+      if(!broT) broT = 3
+      if(!cdnT) cdnT = 2
+
       const ret:any= {} // new return
       ret.result = result
+
+      resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
       resp.json(ret)
    }//()
 
@@ -197,20 +214,46 @@ export class BasePgRouter {
     * @param resp http response
     * @param msg error msg
     */
-   retErr(resp, msg) {
+   retErr(resp, msg, broT, cdnT) {
+      if(!broT) broT = 2
+      if(!cdnT) cdnT = 1
+
       logger.warn(msg)
       const ret:any= {} // new return
       ret.errorLevel = -1
       ret.errorMessage = msg
+
+      resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
       resp.json(ret)
    }//()
 
    /**
-    * Dynamically invokes RPC method for a Page, acts like a switch()
-      eg: mainEApp.handleRRoute('api', 'editors', pg1Router.route)
+    * Dynamically invokes a method for a entity, acts like a switch()
+
     * @param req 
     * @param resp 
     */
+   handleRPC2(req, resp) {
+      if(!this) throw new Error('bind of class instance needed')
+      const THIZ = this
+      let method
+      try {
+
+         const params = queryString(req.url)
+
+         const user = params.user
+         const pswd = params.pswd
+         method = params.method
+         
+         //invoke the method request
+         THIZ[method](resp, params, user, pswd)
+
+      } catch(err) {
+         logger.info(err)
+         THIZ.retErr(resp, method, null, null)
+      }
+   }//()
+
    route(req, resp) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
@@ -225,7 +268,7 @@ export class BasePgRouter {
          THIZ[method](resp, params, user, pswd)
       } catch(err) {
          logger.info(err)
-         THIZ.retErr(resp, method)
+         THIZ.retErr(resp, method, null, null)
       }
    }//()
 
