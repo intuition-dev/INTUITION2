@@ -149,8 +149,8 @@ export class ExpressRPC {
     * @param cdnT CDN /one less in seconds- 1799
     */
    serveStatic(path:string, broT, cdnT) {
-      if(!broT) broT = 1800
-      if(!cdnT) cdnT = 1799
+      if(!broT) broT = 30*60
+      if(!cdnT) cdnT = (30*60)-1
       
       logger.trace('Serving root:', path, broT, cdnT)
 
@@ -199,8 +199,8 @@ export class BaseRPCMethodHandler {
     * @param result data
     */
    ret(resp, result, broT, cdnT) {
-      if(!broT) broT = 3
-      if(!cdnT) cdnT = 2
+      if(!broT) broT = 0
+      if(!cdnT) cdnT = 0
 
       const ret:any= {} // new return
       ret.result = result
@@ -215,8 +215,8 @@ export class BaseRPCMethodHandler {
     * @param msg error msg
     */
    retErr(resp, msg, broT, cdnT) {
-      if(!broT) broT = 2
-      if(!cdnT) cdnT = 1
+      if(!broT) broT = 0
+      if(!cdnT) cdnT = 0
 
       logger.warn(msg)
       const ret:any= {} // new return
