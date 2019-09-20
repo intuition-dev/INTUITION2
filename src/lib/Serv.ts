@@ -187,11 +187,11 @@ export class ExpressRPC {
 }//class
 
 /*
-Helper class: BaseMethodRouter 
+Helper class
 
-This is called by router: should be in folder handlers
+This is called by router
 */
-export class BasePgRouter {
+export class BaseRPCMethodHandler {
 
    /**
     * returns a data response
@@ -233,7 +233,7 @@ export class BasePgRouter {
     * @param req 
     * @param resp 
     */
-   handleRPC(req, resp) {
+   handleRPC2(req, resp) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
       let method
@@ -293,5 +293,5 @@ export  interface iAuth {
 }//i
 
 module.exports = {
-   ExpressRPC, BasePgRouter
+   ExpressRPC, BaseRPCMethodHandler
 }
