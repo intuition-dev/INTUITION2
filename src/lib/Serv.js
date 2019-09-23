@@ -81,9 +81,9 @@ class ExpressRPC {
     }
     serveStatic(path, broT, cdnT) {
         if (!broT)
-            broT = 1800;
+            broT = 30 * 60;
         if (!cdnT)
-            cdnT = 1799;
+            cdnT = (30 * 60) - 1;
         logger.trace('Serving root:', path, broT, cdnT);
         this.appInst.use((req, res, next) => {
             if (req.path.endsWith('.ts') || req.path.endsWith('.pug') || req.path.endsWith('dat.yaml')) {
@@ -109,9 +109,9 @@ exports.ExpressRPC = ExpressRPC;
 class BaseRPCMethodHandler {
     ret(resp, result, broT, cdnT) {
         if (!broT)
-            broT = 3;
+            broT = 0;
         if (!cdnT)
-            cdnT = 2;
+            cdnT = 0;
         const ret = {};
         ret.result = result;
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
@@ -119,9 +119,9 @@ class BaseRPCMethodHandler {
     }
     retErr(resp, msg, broT, cdnT) {
         if (!broT)
-            broT = 2;
+            broT = 0;
         if (!cdnT)
-            cdnT = 1;
+            cdnT = 0;
         logger.warn(msg);
         const ret = {};
         ret.errorLevel = -1;
