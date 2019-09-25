@@ -157,7 +157,7 @@ export class ExpressRPC {
 
       //filter forbidden
       this.appInst.use((req, res, next) => {
-         if (req.path.endsWith('.ts') || req.path.endsWith('.pug') || req.path.endsWith('dat.yaml')) {
+         if (req.path.endsWith('.ts') || req.path.endsWith('.pug') ) {
             res.status(403).send('forbidden')
          } else
          next()
