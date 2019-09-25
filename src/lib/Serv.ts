@@ -145,13 +145,13 @@ export class ExpressRPC {
    /**
     * 
     * @param path 
-    * @param broT edge/bro cache time in seconds- 1800
+    * @param broT Bro(wser) cache time in seconds- 1800
     * @param cdnT CDN /one less in seconds- 1799
-    * The longer the better. max is 1 year in seconds. You can flush CDN at CDN and flush browser at browser.
+    * The longer the better! Max is 1 year in seconds ( 60*60*24*364 ). You can flush CDN at CDN and flush browser at browser.
     */
    serveStatic(path:string, broT, cdnT) {
-      if(!broT) broT = 30*60
-      if(!cdnT) cdnT = (30*60)-1
+      if(!broT || broT < 30*60 ) broT = 30*60
+      if(!cdnT || cdnT < ((30*60)-1) ) cdnT = (30*60)-1 // cdn is one less than bro
       
       logger.trace('Serving root:', path, broT, cdnT)
 
@@ -165,14 +165,17 @@ export class ExpressRPC {
 
       // static
       this.appInst.use(serveStatic(path, {
-
          setHeaders: function(res, path) {
             if (serveStatic.mime.lookup(path) === 'text/html') { }
-         
             res.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
-         }//setHeader()
-      }))
 
+            // dynamic is less cache, only 5 minutes
+            if (path.endsWith('.yaml') || path.endsWith('.json')) {
+               res.setHeader('Cache-Control', 'public, max-age='+300+', s-max-age='+299)
+            }
+
+         }//setHeader()
+      }))//use
 
    }//()
 
