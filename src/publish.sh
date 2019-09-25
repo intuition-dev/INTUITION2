@@ -1,7 +1,6 @@
 # zip up the sample apps, update Base.ts version
 # ncu -u
 tsc
-rm -r node_modules
 npm publish
 #sudo yarn global add  mbake --unsafe-perm=true --allow-root
 
