@@ -80,13 +80,13 @@ class ExpressRPC {
         });
     }
     serveStatic(path, broT, cdnT) {
-        if (!broT)
+        if (!broT || broT < 30 * 60)
             broT = 30 * 60;
-        if (!cdnT)
+        if (!cdnT || cdnT < ((30 * 60) - 1))
             cdnT = (30 * 60) - 1;
         logger.trace('Serving root:', path, broT, cdnT);
         this.appInst.use((req, res, next) => {
-            if (req.path.endsWith('.ts') || req.path.endsWith('.pug') || req.path.endsWith('dat.yaml')) {
+            if (req.path.endsWith('.ts') || req.path.endsWith('.pug')) {
                 res.status(403).send('forbidden');
             }
             else
@@ -96,6 +96,9 @@ class ExpressRPC {
             setHeaders: function (res, path) {
                 if (serveStatic.mime.lookup(path) === 'text/html') { }
                 res.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+                if (path.endsWith('.yaml') || path.endsWith('.json')) {
+                    res.setHeader('Cache-Control', 'public, max-age=' + 300 + ', s-max-age=' + 299);
+                }
             }
         }));
     }
@@ -138,6 +141,7 @@ class BaseRPCMethodHandler {
         let params;
         try {
             params = URL.parse(req.url, true).query;
+            console.log(params);
             const user = params.user;
             const pswd = params.pswd;
             const token = params.token;
