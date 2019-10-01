@@ -1,3 +1,6 @@
+### 06.09.30
+- removed frags from -i items.json
+
 ### 06.09.25
 - added UI Binding in mbake -f
 

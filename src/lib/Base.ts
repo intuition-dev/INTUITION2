@@ -3,7 +3,7 @@
 
 export class Ver {
    static ver() {
-      return 'v6.09.25'
+      return 'v6.09.30'
    }
    static date(): string {
       return new Date().toISOString()
@@ -457,7 +457,8 @@ export class Items {
       delete o['ROOT']
       delete o['pretty']
       delete o['LOC']
-      //delete o['publishFlag']
+      delete o['frags']
+
 
    }
 
