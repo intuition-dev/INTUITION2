@@ -17,7 +17,7 @@ opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.23/src/templat
 
 pugInto:  https://github.com/intuition-dev/mbCLI/raw/master/pug/pugIntro.zip
 
-intu4SS: https://github.com/intuition-dev/Intuition/raw/master/examples/intu4SS.zip
+CMS:     https://github.com/intuition-dev/Intuition/raw/master/examples/CMS.zip
 CRUD:    https://github.com/intuition-dev/Intuition/raw/master/examples/CRUD.zip
 
 electron: https://github.com/intuition-dev/mbMobile/raw/master/electron.zip
