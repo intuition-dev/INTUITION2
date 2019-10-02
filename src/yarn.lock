@@ -119,10 +119,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.5.tgz#e19436e7f8e9b4601005d73673b6dc4784ffcc2f"
   integrity sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==
 
-"@types/node@>=12.7.8":
-  version "12.7.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.8.tgz#cb1bf6800238898bc2ff6ffa5702c3cadd350708"
-  integrity sha512-FMdVn84tJJdV+xe+53sYiZS4R5yn1mAIxfj+DVoNiQjTYz1+OYmjwEZr1ev9nU0axXwda0QDbYl06QHanRVH3A==
+"@types/node@>=12.7.9":
+  version "12.7.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.9.tgz#da0210f91096aa67138cf5afd04c4d629f8a406a"
+  integrity sha512-P57oKTJ/vYivL2BCfxCC5tQjlS8qW31pbOL6qt99Yrjm95YdHgNZwjrTTjMBh+C2/y6PXIX4oz253+jUzxKKfQ==
 
 abbrev@1:
   version "1.1.1"
@@ -683,10 +683,10 @@ cheerio@>=1.0.0-rc.2:
     lodash "^4.15.0"
     parse5 "^3.0.1"
 
-chokidar@>=3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.2.0.tgz#a0b08f9b770c082def0100e0fbcef322ad156a8a"
-  integrity sha512-ViJAmAatEHwGCbBa8coPyRY6yiQ+yryuHT9XnkV6l0ct140Tf6JguJ0LtgoJrjxr9I9utL8IRuqbjhDJAeWIeg==
+chokidar@>=3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.2.1.tgz#4634772a1924512d990d4505957bf3a510611387"
+  integrity sha512-/j5PPkb5Feyps9e+jo07jUZGvkB5Aj953NrI4s8xSVScrAo/RHeILrtdb4uzR7N6aaFFxxJ+gt8mA8HfNpw76w==
   dependencies:
     anymatch "~3.1.1"
     braces "~3.0.2"
