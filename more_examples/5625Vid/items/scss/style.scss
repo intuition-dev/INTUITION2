@@ -1,0 +1,87 @@
+
+html { touch-action: manipulation; }
+.delayShowing { opacity: 0; }
+.blur { -webkit-filter:blur(2px);filter:blur(2px); }
+
+
+/* video detach button 
+//  video popout
+    https://css-tricks.com/custom-controls-in-html5-video-full-screen/
+*/
+::-webkit-media-controls {
+    display:none !important;
+}
+video::-webkit-media-controls-enclosure {
+    display:none !important;
+}
+* { margin: 0; padding: 0; }
+html, body { 
+    width: 100%; 
+    height: 100%; 
+}
+
+#heading {
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+.vid {
+    object-fit: fill;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+
+.pgCont {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-height: 100vh;
+}
+.top {
+    height: 50px; /** *C* */
+}
+.main {
+    display: flex; /* 2nd fle level */
+    flex-grow: 1; 
+    min-height: 100px;
+
+}
+
+#left {
+    width: calc(100% - 220px); /** *C* */
+
+    min-width: 150px;
+
+    display: flex; /* 3rd flex level */
+    flex-direction: column;
+
+    Xborder:  .1px solid yellow;
+    Xbackground: gray;	
+}
+#right {
+    border-top: 1.4px solid black;
+    width: 220px;
+    border-radius: 5px 0 0 0;
+    padding: 5px;
+    border-left: 1.4px solid black;
+}
+
+.mediaContainerTop { /* fluid */
+    padding-left: 1px;
+
+    flex-grow: 0;
+
+    Xborder:  .1px solid red;
+    Xbackground: silver;	
+}
+.mainBot {
+    flex-grow: 1;
+
+    background: #fff;	           
+    min-height: 75px;
+
+    border-top: 1.4px solid black;
+    margin-top: 5px;
+}

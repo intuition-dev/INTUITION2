@@ -1,0 +1,71 @@
+
+<head>
+  <script>
+    var _start = Date.now()
+    window.ENV = '0' //- for comps, but it is also in scope for Pug for ENV logic
+    
+  </script>
+  <title>Rambo - Last Blood</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.29/src/toolBelt.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/intuition-dev/intuDS@v1.0.3/src/css/min.min.css"/>
+</head>
+<body>
+  <link rel="stylesheet" href="/items/css/style.css"/>
+  <script src="/items/ui-loader.js"></script>
+  <div class="pgCont">
+    <div class="top">
+      <h3 id="heading">Rambo - Last Blood</h3>
+    </div>
+    <div class="main">
+      <div id="left">
+        <div class="mediaContainerTop">
+          <video class="vid" id="vid1" autoplay="autoplay" preload="auto" loop="loop" muted="muted">
+            <source type="video/mp4"/>
+          </video>
+        </div>
+        <div class="mainBot">
+          <p>.</p>
+        </div>
+      </div>
+      <div id="right">
+        <fraglist-custel></fraglist-custel>
+      </div>
+    </div>
+  </div>
+  <script>
+    addEventListener('firstDataLoad', function (evt) {
+        console.log('first')
+        window.mdata = evt.detail
+        //console.log(window.mdata)
+        window.vid1 = document.getElementById('vid1')     
+    })//()
+    
+    addEventListener('titleClick', function (evt) {
+        const msg = evt.detail
+        console.log(msg)
+    
+        findFrag(msg, window.mdata.frags)
+    })//()
+    
+    function findFrag(msg, frags) {
+        console.log('.')
+        var arrayLength = frags.length;
+        for (var i = 0; i < arrayLength; i++) {
+            var item = frags[i]
+            if(msg == item.title )  {
+                console.log(item.src)
+                
+                vid1.src = item.src
+    
+                break
+            }//fi
+        }//for
+    
+    }//()
+    
+    depp.require([ 'fraglist' ], function() {  }) 
+  </script>
+<!-- mB v6.09.30 on 2019-10-02T21:02:24.902Z --></body>

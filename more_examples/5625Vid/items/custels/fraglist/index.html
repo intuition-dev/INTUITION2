@@ -1,0 +1,36 @@
+
+<head>
+  <script>
+    var _start = Date.now()
+    window.ENV = '0' //- for comps, but it is also in scope for Pug for ENV logic
+    
+  </script>
+  <title>Rambo - Last Blood</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <script src="https://cdn.jsdelivr.net/npm/johnnydepp@0.1.0/dist/depp.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.9.29/src/toolBelt.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/intuition-dev/intuDS@v1.0.3/src/css/min.min.css"/>
+</head>
+<body>
+  <fraglist-custel></fraglist-custel>
+<!-- mB v6.09.30 on 2019-10-02T21:05:55.152Z --></body>
+<script>
+  console.log('oh hi')
+  
+  depp.define({
+   'fraglist':'/items/custels/fraglist/fraglist-custel.js'
+  })
+  
+  depp.require([ 'fraglist' ], function() {
+      console.log('loaded')
+  }) 
+  
+  addEventListener('titleClick', function (evt) {
+      const msg = evt.detail
+      console.log(msg)
+  
+  })//()
+  
+   
+</script>
