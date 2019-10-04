@@ -1,3 +1,6 @@
+###
+- remove old invoke methods for RPC
+
 ### 06.09.30
 - removed frags from -i items.json
 

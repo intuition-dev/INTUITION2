@@ -109,11 +109,13 @@ export class ExpressRPC {
       this.appInst.get(r, foo)
    }
 
+   /*
    handleRRoute(route:string, pgOrScreen:string, foo:Function) {
       if(pgOrScreen.length < 1) throw new Error('Each RPC should be called by a named page or screen')
       const r: string = '/'+route  + '/'+pgOrScreen
       this.appInst.post(r, foo)
    }
+   */
 
    /**
     * Handle the VM/RPC log
@@ -135,9 +137,7 @@ export class ExpressRPC {
          params['ip'] = req.ip // you may need req.ips
          params['date'] = new Date()
 
-         setTimeout(function(){
-            foo(msg, params, user, req)
-         },1)
+         foo(msg, params, user, req) // needs to be very fast, like a Q
  
       })// resp
    }
@@ -264,6 +264,7 @@ export class BaseRPCMethodHandler {
       }
    }//()
 
+   /*
    route(req, resp) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
@@ -281,11 +282,11 @@ export class BaseRPCMethodHandler {
          THIZ.retErr(resp, method, null, null)
       }
    }//()
+   */
 
 }//class
 
 export  interface iAuth {
-
    /**
     * Rejects with 'FAIL' if not. Else returns some string saying what kind of auth. Eg: 'admin' for full. Or 'microsoft' would mean only for that company. 
     * @param user 
