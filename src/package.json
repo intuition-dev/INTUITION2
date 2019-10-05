@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "adm-zip": ">=0.4.13",
-        "autoprefixer": ">=9.6.1",
+        "autoprefixer": ">=9.6.2",
         "beeper": ">=2.0.0",
         "cheerio": ">=1.0.0-rc.2",
         "chokidar": ">=3.2.1",
@@ -58,7 +58,7 @@
         "serve-static": ">=1.14.1",
         "strip-css-comments": ">=4.0.0",
         "superagent": ">=5.1.0",
-        "terser": ">=4.3.4",
+        "terser": ">=4.3.6",
         "tracer": ">=1.0.1",
         "typescript": ">=3.6.3"
     },
