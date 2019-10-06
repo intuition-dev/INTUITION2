@@ -1,5 +1,8 @@
-###
-- remove old invoke methods for RPC
+### 6.10.0
+- remove old invoke methods for RPC !!!
+- added systeminformation and mysql
+- renamed BaseDB to L for sqllite
+- yarn back to 1.17.3, should be v1.19.0
 
 ### 06.09.30
 - removed frags from -i items.json

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const logger = require('tracer').console();
 const fs = require('fs-extra');
 const sqlite3 = require('sqlite3').verbose();
-class BaseDB {
+class BaseDBL {
     constructor(path, fn) {
         this.path = path;
         this.fn = fn;
@@ -79,7 +79,7 @@ class BaseDB {
         });
     }
 }
-exports.BaseDB = BaseDB;
+exports.BaseDBL = BaseDBL;
 module.exports = {
-    BaseDB
+    BaseDBL
 };

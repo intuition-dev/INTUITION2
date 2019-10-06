@@ -139,10 +139,10 @@ class MetaPro {
         return ('Cant process ' + ext);
     }
 }
+exports.MetaPro = MetaPro;
 MetaPro.folderProp = 'folder';
 MetaPro.srcProp = 'src';
 MetaPro.destProp = 'dest';
-exports.MetaPro = MetaPro;
 class MDevSrv {
     constructor(dir, port, reloadPort) {
         let app = express();

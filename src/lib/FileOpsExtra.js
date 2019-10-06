@@ -76,8 +76,8 @@ class Download {
         fs.remove(this.targetDir + '/' + fn);
     }
 }
-Download.truth = 'https://Intuition-DEV.github.io/mbCLI/versions.yaml';
 exports.Download = Download;
+Download.truth = 'https://Intuition-DEV.github.io/mbCLI/versions.yaml';
 class YamlConfig {
     constructor(fn) {
         let cfg = yaml.load(fs.readFileSync(fn));
@@ -119,7 +119,6 @@ class DownloadFrag {
         console.log('Extracting to', dir);
         if (!ops) {
             new Download('headFrag', dir).auto();
-            new Download('loader', dir).auto();
             new Download('VM', dir).auto();
             new Download('Bind', dir).auto();
         }

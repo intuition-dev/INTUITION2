@@ -56,12 +56,6 @@ class ExpressRPC {
         const r = '/' + route;
         this.appInst.get(r, foo);
     }
-    handleRRoute(route, pgOrScreen, foo) {
-        if (pgOrScreen.length < 1)
-            throw new Error('Each RPC should be called by a named page or screen');
-        const r = '/' + route + '/' + pgOrScreen;
-        this.appInst.post(r, foo);
-    }
     handleLog(foo) {
         const r = '/log/log';
         this.appInst.post(r, function (req, resp) {
@@ -74,9 +68,7 @@ class ExpressRPC {
             resp.json(ret);
             params['ip'] = req.ip;
             params['date'] = new Date();
-            setTimeout(function () {
-                foo(msg, params, user, req);
-            }, 1);
+            foo(msg, params, user, req);
         });
     }
     serveStatic(path, broT, cdnT) {
@@ -152,23 +144,6 @@ class BaseRPCMethodHandler {
         catch (err) {
             logger.info(err);
             THIZ.retErr(resp, params, null, null);
-        }
-    }
-    route(req, resp) {
-        if (!this)
-            throw new Error('bind of class instance needed');
-        const THIZ = this;
-        let method;
-        try {
-            const user = req.fields.user;
-            const pswd = req.fields.pswd;
-            method = req.fields.method;
-            const params = JSON.parse(req.fields.params);
-            THIZ[method](resp, params, user, pswd);
-        }
-        catch (err) {
-            logger.info(err);
-            THIZ.retErr(resp, method, null, null);
         }
     }
 }

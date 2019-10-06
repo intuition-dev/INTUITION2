@@ -4,9 +4,9 @@ const fs = require('fs-extra')
 const sqlite3 = require('sqlite3').verbose()
 
 /**
- * Helper for SQLite3 - e due to FTS support
+ * Helper for SQLite3
  */
-export class BaseDB {
+export class BaseDBL {
 
    path
    fn
@@ -96,7 +96,7 @@ async tableExists(tab): Promise<any> {
 }//class
 
 
-export  interface iDB {
+export  interface iDBL {
    /**
     * returns when db is setup
     */
@@ -105,5 +105,5 @@ export  interface iDB {
 }
 
 module.exports = {
-   BaseDB
+   BaseDBL
 }
