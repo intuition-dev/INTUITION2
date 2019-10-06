@@ -7,6 +7,10 @@ const Extra_1 = require("./lib/Extra");
 const FileOpsBase_1 = require("./lib/FileOpsBase");
 const Wa_1 = require("./lib/Wa");
 const FileOpsExtra_1 = require("./lib/FileOpsExtra");
+const SysInfo_1 = require("./lib/SysInfo");
+const s = new SysInfo_1.SysInfo();
+s.info();
+s.ping();
 FileOpsExtra_1.VersionNag.isCurrent('mbake', Base_1.Ver.ver()).then(function (isCurrent_) {
     try {
         if (!isCurrent_)

@@ -9,6 +9,10 @@ import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
 import { DownloadFrag, VersionNag, Download } from './lib/FileOpsExtra'
 
+import { SysInfo } from './lib/SysInfo'
+
+const sa = new SysInfo()
+
    
 VersionNag.isCurrent('mbake', Ver.ver()).then(function(isCurrent_:boolean){
    try{
