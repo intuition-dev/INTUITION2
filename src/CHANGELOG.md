@@ -1,3 +1,6 @@
+### 6.10.1
+- rename assets.yaml to style.yaml
+
 ### 6.10.0
 - remove old invoke methods for RPC !!!
 - added systeminformation and mysql
