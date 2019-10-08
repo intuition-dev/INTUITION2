@@ -4,7 +4,7 @@
 import commandLineArgs = require('command-line-args')
 
 import { Ver, MBake } from './lib/Base'
-import { MinJS,  Sas } from './lib/Extra'
+import { MinJS, Sas } from './lib/Extra'
 import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
 import { DownloadFrag, VersionNag, Download } from './lib/FileOpsExtra'
@@ -13,12 +13,12 @@ import { SysInfo } from './lib/SysInfo'
 
 const sa = new SysInfo()
 
-   
-VersionNag.isCurrent('mbake', Ver.ver()).then(function(isCurrent_:boolean){
-   try{
-   if(!isCurrent_) 
-      console.log('There is a newer version of mbake CLI, please update.')
-   } catch(err) {
+
+VersionNag.isCurrent('mbake', Ver.ver()).then(function (isCurrent_: boolean) {
+   try {
+      if (!isCurrent_)
+         console.log('There is a newer version of mbake CLI, please update.')
+   } catch (err) {
       console.log(err)
    }
 })// 
@@ -27,11 +27,11 @@ VersionNag.isCurrent('mbake', Ver.ver()).then(function(isCurrent_:boolean){
 // imports done /////////////////////////////////////////////
 const cwd: string = process.cwd()
 
-function version () {
+function version() {
    console.info('mbake CLI version: ' + Ver.ver())
 }
 
-function help () {
+function help() {
    console.info()
    console.info('mbake CLI version: ' + Ver.ver())
    console.info()
@@ -40,11 +40,11 @@ function help () {
 
    console.info('  For local watcher and server:                               mbake -w .')
 
-   console.info('  Process SASS/SCSS file into css, requires assets.yaml:      mbake -s .')
-   console.info('     or path that has assets.yaml, or any sub-folder under /assets')
+   console.info('  Process SASS/SCSS file into css, requires style.yaml:      mbake -s .')
+   console.info('     or path that has style.yaml, or any sub-folder under /style')
 
    console.info('  Process .ts, .js or native Custom Elements(-custel) :       mbake -t .')
-   
+
    console.info('  To process Pug and dat_i items to items.json:               mbake -i .')
    console.info('     or any sub-folder, where path is folder containing dat_i.yaml;')
    console.info('     also does regular mbake of Pug')
@@ -71,7 +71,7 @@ const optionDefinitions = [
 
    { name: 'help', alias: 'h', type: Boolean },
    { name: 'version', alias: 'v', type: Boolean },
-   
+
    { name: 'items', alias: 'i', type: Boolean },
    { name: 'css', alias: 's', type: Boolean },
 
@@ -109,7 +109,7 @@ if (arg) {
       d = d.substring(0, n)
       arg = d + arg
    } else if (arg.startsWith('.')) {//cur
-      arg = cwd 
+      arg = cwd
    } else { // just plain, dir passed
       arg = cwd + '/' + arg
    }// inner
@@ -123,33 +123,33 @@ function pugIntro() {
 }//()
 
 function bake(arg) {
-   let pro:Promise<string> = new MBake().bake(arg, 0)
+   let pro: Promise<string> = new MBake().bake(arg, 0)
 
-   pro.then(function(val){
+   pro.then(function (val) {
       console.log(val)
    })
 }
 
 function itemize(arg) {
-   let pro:Promise<string> = new MBake().itemizeNBake(arg, 0)
-   
-   pro.then(function(val){
+   let pro: Promise<string> = new MBake().itemizeNBake(arg, 0)
+
+   pro.then(function (val) {
       console.log(val)
    })
 }
 
 function css(arg) {
-   let pro:Promise<string> = new Sas().css(arg)
+   let pro: Promise<string> = new Sas().css(arg)
 
-   pro.then(function(val){
+   pro.then(function (val) {
       console.log(val)
    })
 }
 
 function minJS(arg) {
    let min = new MinJS()
-   let pro:Promise<string> =min.ts(arg)
-   pro.then(function(val){
+   let pro: Promise<string> = min.ts(arg)
+   pro.then(function (val) {
       console.log(val)
       min.min(arg)
    })
@@ -159,7 +159,7 @@ function minJS(arg) {
 // start: /////////////////////////////////////////////////////////////////////////////////////
 if (argsParsed.items)
    itemize(arg)
-else if (argsParsed.css) 
+else if (argsParsed.css)
    css(arg)
 else if (argsParsed.MinJS)
    minJS(arg)

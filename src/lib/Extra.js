@@ -169,11 +169,11 @@ class Sas {
         const THIZ = this;
         return new Promise(async function (resolve, reject) {
             let a;
-            let fn = dir + '/assets.yaml';
+            let fn = dir + '/style.yaml';
             if (fs.existsSync(fn))
                 a = yaml.load(fs.readFileSync(fn));
             else {
-                let dir2 = findUp.sync('assets.yaml', { cwd: dir });
+                let dir2 = findUp.sync('style.yaml', { cwd: dir });
                 a = yaml.load(fs.readFileSync(dir2));
                 dir = dir2.slice(0, -12);
             }

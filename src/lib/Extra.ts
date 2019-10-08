@@ -43,7 +43,7 @@ export class MinJS {
             allowJs: true,
             skipLibCheck: true,
             allowSyntheticDefaultImports: true,
-            lib: [ 
+            lib: [
                'lib.scripthost.d.ts', 'lib.dom.d.ts', 'lib.es5.d.ts', 'lib.es2015.promise.d.ts'
             ]
          })
@@ -202,18 +202,18 @@ export class Sas {
 
    /** 
     * @param dir 
-    * Find assets.yaml and process each css in the assets.yaml array
+    * Find style.yaml and process each css in the style.yaml array
     */
    css(dir): Promise<string> {
       const THIZ = this
       return new Promise(async function (resolve, reject) {
 
          let a
-         let fn = dir + '/assets.yaml'
+         let fn = dir + '/style.yaml'
          if (fs.existsSync(fn))
             a = yaml.load(fs.readFileSync(fn))
          else {
-            let dir2: string = findUp.sync('assets.yaml', { cwd: dir })
+            let dir2: string = findUp.sync('style.yaml', { cwd: dir })
             a = yaml.load(fs.readFileSync(dir2))
             dir = dir2.slice(0, -12)
          }
@@ -244,34 +244,34 @@ export class Sas {
             console.info('autoprefixer')
             result.warnings().forEach(function (warn) {
                console.warn(warn.toString())
+            })
+
+            let res: string = stripCssComments(result.css, { preserve: false })
+            // lf
+            res = res.replace(/(\r\n\t|\n|\r\t)/gm, '\n')
+            res = res.replace(/\n\s*\n/g, '\n')
+            res = res.trim()
+            res = res.replace(/  /g, ' ')
+            res = res.replace(/; /g, ';')
+            res = res.replace(/: /g, ':')
+            res = res.replace(/ }/g, '}')
+            res = res.replace(/ { /g, '{')
+            res = res.replace(/, /g, ',')
+
+            //add ver string
+            const ver = ' /* mB ' + Ver.ver() + ' on ' + Ver.date() + " */"
+            res = res + ver
+
+            // write the file
+            let filename2 = path.basename(fn2)
+            filename2 = filename2.split('.').slice(0, -1).join('.')
+            let filename = filename2.split('\\').pop().split('/').pop()
+
+            fs.ensureDirSync(dir + '/css')
+
+            fs.writeFileSync(dir + '/css/' + filename + '.css', res)
+
          })
-
-         let res: string = stripCssComments(result.css, { preserve: false })
-         // lf
-         res = res.replace(/(\r\n\t|\n|\r\t)/gm, '\n')
-         res = res.replace(/\n\s*\n/g, '\n')
-         res = res.trim()
-         res = res.replace(/  /g, ' ')
-         res = res.replace(/; /g, ';')
-         res = res.replace(/: /g, ':')
-         res = res.replace(/ }/g, '}')
-         res = res.replace(/ { /g, '{')
-         res = res.replace(/, /g, ',')
-
-         //add ver string
-         const ver = ' /* mB ' + Ver.ver() + ' on ' + Ver.date() + " */"
-         res = res + ver
-
-         // write the file
-         let filename2 = path.basename(fn2)
-         filename2 = filename2.split('.').slice(0, -1).join('.')
-         let filename = filename2.split('\\').pop().split('/').pop()
-
-         fs.ensureDirSync(dir + '/css')
-
-         fs.writeFileSync(dir + '/css/' + filename + '.css', res)
-
-      })
    }//()
 
 }//class
