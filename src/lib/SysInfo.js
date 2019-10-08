@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class SysInfo {
     info() {
         console.log('info');
-        SysInfo.si.getStaticData().then(data => console.log(data));
         if (true)
             return;
         SysInfo.si.networkConnections().then(data => console.log(data));
@@ -27,5 +26,5 @@ class SysInfo {
         SysInfo.si.currentLoad().then(data => console.log(data));
     }
 }
-exports.SysInfo = SysInfo;
 SysInfo.si = require('systeminformation');
+exports.SysInfo = SysInfo;

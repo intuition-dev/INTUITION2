@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.10.0';
+        return 'v6.10.1';
     }
     static date() {
         return new Date().toISOString();
@@ -210,7 +210,7 @@ class BakeWrk {
         const css = a.loc;
         const set = new Set(css);
         logger.info(set);
-        let merged = Object.assign(Object.assign({}, a), options);
+        let merged = Object.assign({}, a, options);
         for (let item of set) {
             this.do1Locale(item, merged);
         }
@@ -226,7 +226,7 @@ class BakeWrk {
                 let key2 = key.substring(0, len);
                 localeProps[key2] = combOptions[key];
             }
-        let locMerged = Object.assign(Object.assign({}, combOptions), localeProps);
+        let locMerged = Object.assign({}, combOptions, localeProps);
         console.log(localeProps);
         let locDir = this.dir + '/' + locale;
         console.log(locDir);
@@ -248,7 +248,6 @@ class BakeWrk {
         fs.writeFileSync(target, html);
     }
 }
-exports.BakeWrk = BakeWrk;
 BakeWrk.ebodyHtml = '</body>';
 BakeWrk.minifyPg = {
     caseSensitive: true,
@@ -264,6 +263,7 @@ BakeWrk.minifyPg = {
     sortAttributes: true,
     sortClassName: true
 };
+exports.BakeWrk = BakeWrk;
 class Items {
     constructor(dir_) {
         let dir = FileOpsBase_1.Dirs.slash(dir_);

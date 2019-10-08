@@ -151,7 +151,6 @@ class MinJS {
         console.info(`status code '${exitCode}'.`);
     }
 }
-exports.MinJS = MinJS;
 MinJS.ver = '// mB ' + Base_1.Ver.ver() + ' on ' + Base_1.Ver.date() + '\r\n';
 MinJS.CompOptionsJS = {
     parse: { html5_comments: false },
@@ -164,6 +163,7 @@ MinJS.CompOptionsJS = {
     keep_classnames: true,
     keep_fnames: true
 };
+exports.MinJS = MinJS;
 class Sas {
     css(dir) {
         const THIZ = this;
