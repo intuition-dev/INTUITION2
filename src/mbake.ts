@@ -12,6 +12,7 @@ import { DownloadFrag, VersionNag, Download } from './lib/FileOpsExtra'
 import { SysAgent } from './lib/SysAgent'
 
 const sa = new SysAgent()
+sa.ping()
 
 
 VersionNag.isCurrent('mbake', Ver.ver()).then(function (isCurrent_: boolean) {

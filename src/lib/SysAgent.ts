@@ -3,11 +3,41 @@
 export class SysAgent { // agent
     static si = require('systeminformation')
 
+    static os = require('os')
+
+    async ping() { // often like 1 second
+        console.log('ping')
+
+        const track =  new Object() 
+        
+        await SysAgent.si.services('node, pm2, mysql, caddy').then(data => console.log(data))
+
+        await SysAgent.si.fsStats().then(data => console.log(data.rx, data.wx))
+
+        await SysAgent.si.disksIO().then(data => console.log(data.rIO, data.wIO))
+
+        await SysAgent.si.fsOpenFiles().then(data => console.log(data.max, data.allocated))
+
+        await  SysAgent.si.networkInterfaceDefault().then(data => console.log(data))
+        await SysAgent.si.networkStats('en0').then( function(data){ 
+            const dat = data[0]
+            console.log(dat.rx_bytes, dat.tx_bytes)
+        })
+
+        await SysAgent.si.mem().then(data => 
+            console.log(data.free, data.used, data.swapused, data.swapfree)
+        )
+
+        await SysAgent.si.currentLoad().then(data => console.log(data.avgload))
+
+        await console.log(SysAgent.os.hostname() )
+
+        await console.log(track)
+
+    }//()
+
     info() { // rare, like day
         console.log('info')
-
-
-        if(true) return
 
         SysAgent.si.networkConnections().then(data => console.log(data))
 
@@ -23,36 +53,11 @@ export class SysAgent { // agent
 
         SysAgent.si.users().then(data => console.log(data))
 
-
-
     }//()
 
-    ping() { // often like 1 second
-        console.log('ping')
-
-        if(true) return
-
-        //files open
-        SysAgent.si.fsOpenFiles().then(data => console.log(data))
-
-        SysAgent.si.networkInterfaceDefault().then(data => console.log(data))
-        SysAgent.si.networkStats('en0').then(data => console.log(data))
-
-        SysAgent.si.fsStats().then(data => console.log(data))
-
-
-        SysAgent.si.disksIO().then(data => console.log(data))
-
-        SysAgent.si.mem().then(data => console.log(data))
-    
-        SysAgent.si.currentLoad().then(data => console.log(data))
-
-    }//()
 }//class
 
 // network. geocode. ip. volume free, ports, who
-
-// message pack compression
 
 // https://www.npmjs.com/package/portscanner
 
@@ -65,3 +70,7 @@ export class SysAgent { // agent
 // https://www.npmjs.com/package/local-devices
 
 // https://millermedeiros.github.io/mdoc/examples/node_api/doc/os.html
+
+// has
+
+//
