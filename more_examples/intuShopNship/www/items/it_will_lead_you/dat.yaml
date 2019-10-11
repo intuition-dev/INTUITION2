@@ -1,6 +1,6 @@
 basedir: ../../
 
-pretty: true
+pretty: false
 
 image: image.png
 

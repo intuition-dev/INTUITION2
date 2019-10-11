@@ -48,6 +48,86 @@ export class CustomCors {
    }
 }//class
 
+/*
+Helper class
+
+This is called by router
+*/
+export class BaseRPCMethodHandler {
+
+   /**
+    * returns a data response
+    * @param resp http response
+    * @param result data
+    */
+   ret(resp, result, broT, cdnT) {
+      if(!broT) broT = 0
+      if(!cdnT) cdnT = 0
+
+      const ret:any= {} // new return
+      ret.result = result
+
+      resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
+      resp.setHeader('X-intu-ts', Date.now() )
+
+      resp.json(ret)
+   }//()
+
+   /**
+    * returns an error
+    * @param resp http response
+    * @param msg error msg
+    */
+   retErr(resp, msg, broT, cdnT) {
+      if(!broT) broT = 2
+      if(!cdnT) cdnT = 1
+
+      logger.warn(msg)
+      const ret:any= {} // new return
+      ret.errorLevel = -1
+      ret.errorMessage = msg
+
+      resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
+      resp.setHeader('X-intu-ts', Date.now() )
+
+      resp.json(ret)
+   }//()
+
+   /**
+    * Dynamically invokes a method for a entity, acts like a switch()
+
+    * @param req 
+    * @param resp 
+    */
+   handleRPC(req, resp) {
+      if(!this) throw new Error('bind of class instance needed')
+      const THIZ = this
+      let method
+      let ent
+      let params
+      try {
+
+         params = URL.parse(req.url, true).query
+         console.log(params) // Nat
+
+         const user = params.user
+         const pswd = params.pswd
+         const token = params.token
+
+         method = params.method
+         ent = params.ent
+         
+         //invoke the method request
+         THIZ[method](resp, params, ent, user, pswd, token)
+
+      } catch(err) {
+         logger.info(err)
+         THIZ.retErr(resp, params, null, null)
+      }
+   }//()
+
+}//class
+
 /**
  * Don't use methods here for GET or Upload, use the appInst to do it 'manually'
  */
@@ -83,25 +163,31 @@ export class ExpressRPC {
    }
 
    /**
-    * @param route RPC route
-    * @param foo function
-   Example foo(req, res)
-   {
-      const method = req.fields.method
-      const params = JSON.parse( req.fields.params )
-      if('save'==method) { 
-         // possibly send to business layer away from protocol layer, that layer talks to DB and other services 
-      }
-      // etc...
-      const resp:any= {} // new response
-      resp.result = foo(params)
-      res.json(resp)
-   } else {
-      resp.errorLevel = -1
-      resp.errorMessage = 'mismatch'
-      console.log(resp)
-      res.json(resp)
-   }
+    * @param route 
+    * @param pgOrScreen 
+    * @param foo 
+      serviceApp.routeRPC('api', 'pageOne', (req, res) => { 
+
+         const params = URL.parse(req.url, true).query
+         console.log(params)
+         const method = params.method
+
+         if('multiply'==method) { // RPC for the page could handle several methods, eg one for each of CRUD
+            let a = params.a
+            let b = params.b
+            const resp:any= {} // new response
+            resp.result = multiply(a,b)
+            handler.ret(res, resp, 4, 3)
+         } else {
+            const resp:any= {} // new response
+            resp.errorMessage = 'mismatch'
+            handler.retErr(res, resp, 4, 3)
+         }
+      })
+      // should be class - maybe used by multiple routes
+      function multiply(a,b) {
+         return a*b
+      
     */
    routeRPC(route:string, pgOrScreen:string, foo:Function) {
       if(pgOrScreen.length < 1) throw new Error('Each RPC should have the named page or screen argument')
@@ -109,30 +195,29 @@ export class ExpressRPC {
       this.appInst.get(r, foo)
    }
 
-   /**
-    * Handle the VM/RPC log
-    * @param foo foo(msg, params, user, req)
-    */
+
+   static logHandler = new BaseRPCMethodHandler()
    handleLog(foo) {
-      const r: string = '/log/log'
-      this.appInst.post(r, function(req, resp){
+      this.routeRPC('log', 'log', (req, res) => { 
+         const params = URL.parse(req.url, true).query
+         const method = params.method
          
-         let params = JSON.parse( req.fields.params )
-         const user = req.fields.user
-         const msg = params.msg
-         delete params.msg 
-         
-         const ret:any= {} // new return
-         ret.result = 'Logged'
-         resp.json(ret)
-
-         params['ip'] = req.ip // you may need req.ips
-         params['date'] = new Date()
-
-         foo(msg, params, user, req) // needs to be very fast, like a Q
+         if('log'==method) { // RPC for the page could handle several methods, eg one for each of CRUD
+            params['ip'] = req.ip // you may need req.ips
+            params['date'] =  Date.now()
  
-      })// resp
-   }
+            foo(params)
+         
+            const resp:any= {} // new response
+            ExpressRPC.logHandler.ret(res, resp, 2, 1)
+         } else {
+            const resp:any= {} // new response
+            resp.errorMessage = 'mismatch'
+            ExpressRPC.logHandler.retErr(res, resp, 2, 1)
+         }
+
+         })//inner
+   }//()
 
    /**
     * 
@@ -182,86 +267,6 @@ export class ExpressRPC {
          console.info('server running on port:', port)
       })
    }
-}//class
-
-/*
-Helper class
-
-This is called by router
-*/
-export class BaseRPCMethodHandler {
-
-   /**
-    * returns a data response
-    * @param resp http response
-    * @param result data
-    */
-   ret(resp, result, broT, cdnT) {
-      if(!broT) broT = 0
-      if(!cdnT) cdnT = 0
-
-      const ret:any= {} // new return
-      ret.result = result
-
-      resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
-      resp.setHeader('X-intu-ts', Date.now() )
-
-      resp.json(ret)
-   }//()
-
-   /**
-    * returns an error
-    * @param resp http response
-    * @param msg error msg
-    */
-   retErr(resp, msg, broT, cdnT) {
-      if(!broT) broT = 0
-      if(!cdnT) cdnT = 0
-
-      logger.warn(msg)
-      const ret:any= {} // new return
-      ret.errorLevel = -1
-      ret.errorMessage = msg
-
-      resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
-      resp.setHeader('X-intu-ts', Date.now() )
-
-      resp.json(ret)
-   }//()
-
-   /**
-    * Dynamically invokes a method for a entity, acts like a switch()
-
-    * @param req 
-    * @param resp 
-    */
-   handleRPC(req, resp) {
-      if(!this) throw new Error('bind of class instance needed')
-      const THIZ = this
-      let method
-      let ent
-      let params
-      try {
-
-         params = URL.parse(req.url, true).query
-         console.log(params) // Nat
-
-         const user = params.user
-         const pswd = params.pswd
-         const token = params.token
-
-         method = params.method
-         ent = params.ent
-         
-         //invoke the method request
-         THIZ[method](resp, params, ent, user, pswd, token)
-
-      } catch(err) {
-         logger.info(err)
-         THIZ.retErr(resp, params, null, null)
-      }
-   }//()
-
 }//class
 
 export  interface iAuth {
