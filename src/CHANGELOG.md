@@ -1,3 +1,6 @@
+### 6.10.3
+- remove '2' methods for RPC, and use proper name
+
 ### 6.10.2
 - rename assets.yaml to style.yaml
 

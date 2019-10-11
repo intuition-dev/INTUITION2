@@ -50,7 +50,7 @@ class ExpressRPC {
         this.appInst.use(bodyParser.urlencoded({ extended: false }));
         this.appInst.use(formidable());
     }
-    routeRPC2(route, pgOrScreen, foo) {
+    routeRPC(route, pgOrScreen, foo) {
         if (pgOrScreen.length < 1)
             throw new Error('Each RPC should have the named page or screen argument');
         const r = '/' + route;
@@ -72,9 +72,9 @@ class ExpressRPC {
         });
     }
     serveStatic(path, broT, cdnT) {
-        if (!broT || broT < 30 * 60)
+        if (!broT)
             broT = 30 * 60;
-        if (!cdnT || cdnT < ((30 * 60) - 1))
+        if (!cdnT)
             cdnT = (30 * 60) - 1;
         logger.trace('Serving root:', path, broT, cdnT);
         this.appInst.use((req, res, next) => {
@@ -91,6 +91,7 @@ class ExpressRPC {
                 if (path.endsWith('.yaml') || path.endsWith('.json')) {
                     res.setHeader('Cache-Control', 'public, max-age=' + 300 + ', s-max-age=' + 299);
                 }
+                res.setHeader('X-intu-ts', Date.now());
             }
         }));
     }
@@ -110,6 +111,7 @@ class BaseRPCMethodHandler {
         const ret = {};
         ret.result = result;
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+        resp.setHeader('X-intu-ts', Date.now());
         resp.json(ret);
     }
     retErr(resp, msg, broT, cdnT) {
@@ -122,9 +124,10 @@ class BaseRPCMethodHandler {
         ret.errorLevel = -1;
         ret.errorMessage = msg;
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+        resp.setHeader('X-intu-ts', Date.now());
         resp.json(ret);
     }
-    handleRPC2(req, resp) {
+    handleRPC(req, resp) {
         if (!this)
             throw new Error('bind of class instance needed');
         const THIZ = this;

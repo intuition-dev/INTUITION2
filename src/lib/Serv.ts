@@ -103,19 +103,11 @@ export class ExpressRPC {
       res.json(resp)
    }
     */
-   routeRPC2(route:string, pgOrScreen:string, foo:Function) {
+   routeRPC(route:string, pgOrScreen:string, foo:Function) {
       if(pgOrScreen.length < 1) throw new Error('Each RPC should have the named page or screen argument')
       const r: string = '/'+route  
       this.appInst.get(r, foo)
    }
-
-   /*
-   handleRRoute(route:string, pgOrScreen:string, foo:Function) {
-      if(pgOrScreen.length < 1) throw new Error('Each RPC should be called by a named page or screen')
-      const r: string = '/'+route  + '/'+pgOrScreen
-      this.appInst.post(r, foo)
-   }
-   */
 
    /**
     * Handle the VM/RPC log
@@ -150,8 +142,8 @@ export class ExpressRPC {
     * The longer the better! Max is 1 year in seconds ( 60*60*24*364 ). You can flush CDN at CDN and flush browser at browser.
     */
    serveStatic(path:string, broT, cdnT) {
-      if(!broT || broT < 30*60 ) broT = 30*60
-      if(!cdnT || cdnT < ((30*60)-1) ) cdnT = (30*60)-1 // cdn is one less than bro
+      if(!broT ) broT = 30*60
+      if(!cdnT ) cdnT = (30*60)-1 // cdn is one less than bro
       
       logger.trace('Serving root:', path, broT, cdnT)
 
@@ -173,6 +165,8 @@ export class ExpressRPC {
             if (path.endsWith('.yaml') || path.endsWith('.json')) {
                res.setHeader('Cache-Control', 'public, max-age='+300+', s-max-age='+299)
             }
+
+            res.setHeader('X-intu-ts', Date.now() )
 
          }//setHeader()
       }))//use
@@ -210,6 +204,8 @@ export class BaseRPCMethodHandler {
       ret.result = result
 
       resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
+      resp.setHeader('X-intu-ts', Date.now() )
+
       resp.json(ret)
    }//()
 
@@ -228,6 +224,8 @@ export class BaseRPCMethodHandler {
       ret.errorMessage = msg
 
       resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
+      resp.setHeader('X-intu-ts', Date.now() )
+
       resp.json(ret)
    }//()
 
@@ -237,7 +235,7 @@ export class BaseRPCMethodHandler {
     * @param req 
     * @param resp 
     */
-   handleRPC2(req, resp) {
+   handleRPC(req, resp) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
       let method
@@ -263,26 +261,6 @@ export class BaseRPCMethodHandler {
          THIZ.retErr(resp, params, null, null)
       }
    }//()
-
-   /*
-   route(req, resp) {
-      if(!this) throw new Error('bind of class instance needed')
-      const THIZ = this
-      let method
-      try {
-         const user = req.fields.user
-         const pswd = req.fields.pswd
-      
-         method = req.fields.method
-         const params = JSON.parse( req.fields.params )
-         //invoke the method request
-         THIZ[method](resp, params, user, pswd)
-      } catch(err) {
-         logger.info(err)
-         THIZ.retErr(resp, method, null, null)
-      }
-   }//()
-   */
 
 }//class
 

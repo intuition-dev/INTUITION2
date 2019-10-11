@@ -1,6 +1,6 @@
 {
     "name": "mbake",
-    "version": "6.10.2",
+    "version": "6.10.3",
     "description": "*All my friends KNOW the low-coder*; INTUITION.DEV's CLI (mbake CLI) is open source and extensible low-code productivity tool for programmers.",
     "main": "mbake.js",
     "bin": {
@@ -62,14 +62,14 @@
         "systeminformation": ">=4.14.11",
         "terser": ">=4.3.8",
         "tracer": ">=1.0.1",
-        "typescript": ">=3.6.3"
+        "typescript": ">=3.6.4"
     },
     "browserslist": [
         "> 0.99%",
         "cover 99.01%"
     ],
     "devDependencies": {
-        "@types/node": ">=12.7.11",
-        "dompurify": ">=2.0.4"
+        "@types/node": ">=12.7.12",
+        "dompurify": ">=2.0.6"
     }
 }

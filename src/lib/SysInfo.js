@@ -26,5 +26,5 @@ class SysInfo {
         SysInfo.si.currentLoad().then(data => console.log(data));
     }
 }
-SysInfo.si = require('systeminformation');
 exports.SysInfo = SysInfo;
+SysInfo.si = require('systeminformation');
