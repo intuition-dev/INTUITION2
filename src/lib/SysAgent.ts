@@ -10,28 +10,51 @@ export class SysAgent { // agent
 
         const track =  new Object() 
         
-        await SysAgent.si.services('node, pm2, mysql, caddy').then(data => console.log(data))
+        await SysAgent.si.services('node, pm2, mysql, caddy').then(data =>  {
+            for(let o of data) 
+                delete o['startmode']
+            
+            track['services']=data
+        })
 
-        await SysAgent.si.fsStats().then(data => console.log(data.rx, data.wx))
+        await SysAgent.si.fsStats().then(data => { 
+            track['fsR']=data.rx
+            track['fsW']=data.wx
+        })
 
-        await SysAgent.si.disksIO().then(data => console.log(data.rIO, data.wIO))
+        await SysAgent.si.disksIO().then(data => {
+            track['ioR']=data.rIO
+            track['ioW']=data.wIO
+        })
 
-        await SysAgent.si.fsOpenFiles().then(data => console.log(data.max, data.allocated))
+        await SysAgent.si.fsOpenFiles().then(data => {
+            track['openMax']=data.max
+            track['openAlloc']=data.allocated
+        })
 
-        await  SysAgent.si.networkInterfaceDefault().then(data => console.log(data))
-        await SysAgent.si.networkStats('en0').then( function(data){ 
+        let nic 
+        await  SysAgent.si.networkInterfaceDefault().then(data => {
+            nic = data
+            console.log(data)
+        })
+
+        await SysAgent.si.networkStats(nic).then( function(data){ 
             const dat = data[0]
+            
             console.log(dat.rx_bytes, dat.tx_bytes)
         })
 
-        await SysAgent.si.mem().then(data => 
+        await SysAgent.si.mem().then(data => {
             console.log(data.free, data.used, data.swapused, data.swapfree)
         )
 
-        await SysAgent.si.currentLoad().then(data => console.log(data.avgload))
+        await SysAgent.si.currentLoad().then(data => {
+            console.log(data.avgload)
+        })
 
         await console.log(SysAgent.os.hostname() )
 
+        await console.log(JSON.stringify(track))
         await console.log(track)
 
     }//()
