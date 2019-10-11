@@ -24,21 +24,33 @@ class SysAgent {
         let nic;
         await SysAgent.si.networkInterfaceDefault().then(data => {
             nic = data;
+            console.log('nic', data);
         });
-        await SysAgent.si.networkStats('en0').then(function (data) {
-            console.log(nic);
+        await SysAgent.si.networkStats(nic).then(function (data) {
             const dat = data[0];
-            console.log(dat.rx_bytes, dat.tx_bytes);
+            track['nicR'] = dat.rx_bytes;
+            track['nicT'] = dat.tx_bytes;
         });
         await SysAgent.si.mem().then(data => {
-            console.log(data.free, data.used, data.swapused, data.swapfree);
+            track['memFree'] = data.free;
+            track['memUsed'] = data.used;
+            track['swapUsed'] = data.swapused;
+            track['swapFree'] = data.swapfree;
         });
         await SysAgent.si.currentLoad().then(data => {
-            console.log(data.avgload);
+            track['cpu'] = data.avgload;
         });
-        await console.log(SysAgent.os.hostname());
+        track['host'] = SysAgent.os.hostname();
         await console.log(JSON.stringify(track));
         await console.log(track);
+        await this.wait(1500);
+    }
+    wait(t) {
+        return new Promise((resolve, reject) => {
+            setTimeout(function () {
+                resolve();
+            }, t);
+        });
     }
     info() {
         console.log('info');
