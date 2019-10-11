@@ -1,4 +1,4 @@
-
+// All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
 export class SysAgent { // agent
     static si = require('systeminformation')

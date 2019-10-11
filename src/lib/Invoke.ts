@@ -1,7 +1,7 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
 
-// requires FormData, promise and fetch for ie11, you should require 'poly'
+// requires promise and fetch for ie11, you should require 'poly'
 class httpRPC {// 
     // uses simple auth
     httpOrs // protocol
@@ -40,10 +40,6 @@ class httpRPC {//
       this.token=token
     }
   
-    invoke2(route, ent, method, params):Promise<string> { // returns promise of results or err
-      console.log('use invoke() not invoke()')
-      return this.invoke(route, ent, method, params)
-    }
     /**
      * @param route api apth, eg api
      * @param ent  viewmodel name | page name | screen name | component name | calling url | ECSid 
@@ -105,58 +101,6 @@ class httpRPC {//
         })//pro
     }//invoke()
   
-    invoke0(route, ent, method, params):Promise<string> { // returns promise of results or err
-      //if array, return as array
-  
-      let formData = new FormData()
-      formData.append('params', JSON.stringify(params))
-  
-      formData.append('user', btoa(this.user))
-      formData.append('pswd', btoa(this.pswd))
-      formData.append('page', window.location.pathname )
-  
-      formData.append('method', method)
-  
-      const THIZ = this
-      return new Promise(function(resolve, reject) {
-        //console.info(formData.get('method'))
-        const url:string = THIZ.httpOrs+'://'+THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/'+route + '/'+ent
-        if(!(url.includes('/log/'))) console.log(url)
-        fetch(url, {
-              body: formData 
-              ,method: 'post',
-              cache: 'no-cache'
-            })//fetch
-            .then(function(fullResp) {
-              const obj = fullResp.json();
-              
-              if(!fullResp.ok) 
-                reject(obj)
-               else {
-                return obj
-              }
-            })
-            .then(function(resp) {
-              if(resp.errorMessage) {
-                reject(resp)
-              }
-              resolve(resp.result)
-            })//fetch
-            .catch(function (err) {
-              console.log('fetch err')
-              console.log(err)
-              reject(err)
-            })
-        })//pro
-    }//invoke()
-  
-    setItem(key:string, val) {
-      sessionStorage.setItem(key, val)
-    }
-  
-    getItem(key:string) {
-      return sessionStorage.getItem(key)
-    }
   
     /**
      * Place this in ViewModel and vm calls the rpc
@@ -175,7 +119,6 @@ class httpRPC {//
       }
       
       try {
-        if(window.ENV) p['ENV'] = window.ENV
         p['appVersion'] = btoa(navigator.appVersion)
         p['userAgent'] = btoa(navigator.userAgent)
         p['platform'] = btoa(navigator.platform)

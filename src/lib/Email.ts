@@ -1,3 +1,5 @@
+// All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
+
 const superagent = require('superagent');
 const logger = require('tracer').console()
 

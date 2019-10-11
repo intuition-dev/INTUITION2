@@ -1,3 +1,4 @@
+// All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
 import { Dirs } from './FileOpsBase'
 
