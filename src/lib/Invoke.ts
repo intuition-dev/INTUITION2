@@ -1,6 +1,5 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
-
 // requires promise and fetch for ie11, you should require 'poly'
 class httpRPC {// 
     // uses simple auth

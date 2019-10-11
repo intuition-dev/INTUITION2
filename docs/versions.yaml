@@ -1,5 +1,5 @@
 
-mbake:  v6.10.3
+mbake:  v6.10.5
 
 mbakex: v1.10.0
 
@@ -7,7 +7,7 @@ intu:   v1.10.2
 
 
 headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.10.8/src/template/headFrag.pug
-VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.10.8/src/template/BaseIViewModel.ts
+VM:       https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.10.8/src/template/BaseViewModel.ts
 Bind:     https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.10.8/src/template/UIBinding.js
 d:        https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.10.8/src/template/d.ts
 opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/toolBelt@v1.10.8/src/template/ops.pug

@@ -37,6 +37,55 @@ class CustomCors {
     }
 }
 exports.CustomCors = CustomCors;
+class BaseRPCMethodHandler {
+    ret(resp, result, broT, cdnT) {
+        if (!broT)
+            broT = 0;
+        if (!cdnT)
+            cdnT = 0;
+        const ret = {};
+        ret.result = result;
+        resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+        resp.setHeader('X-intu-ts', Date.now());
+        resp.json(ret);
+    }
+    retErr(resp, msg, broT, cdnT) {
+        if (!broT)
+            broT = 2;
+        if (!cdnT)
+            cdnT = 1;
+        logger.warn(msg);
+        const ret = {};
+        ret.errorLevel = -1;
+        ret.errorMessage = msg;
+        resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
+        resp.setHeader('X-intu-ts', Date.now());
+        resp.json(ret);
+    }
+    handleRPC(req, resp) {
+        if (!this)
+            throw new Error('bind of class instance needed');
+        const THIZ = this;
+        let method;
+        let ent;
+        let params;
+        try {
+            params = URL.parse(req.url, true).query;
+            console.log(params);
+            const user = params.user;
+            const pswd = params.pswd;
+            const token = params.token;
+            method = params.method;
+            ent = params.ent;
+            THIZ[method](resp, params, ent, user, pswd, token);
+        }
+        catch (err) {
+            logger.info(err);
+            THIZ.retErr(resp, params, null, null);
+        }
+    }
+}
+exports.BaseRPCMethodHandler = BaseRPCMethodHandler;
 class ExpressRPC {
     get appInst() { return ExpressRPC._appInst; }
     makeInstance(origins) {
@@ -57,18 +106,21 @@ class ExpressRPC {
         this.appInst.get(r, foo);
     }
     handleLog(foo) {
-        const r = '/log/log';
-        this.appInst.post(r, function (req, resp) {
-            let params = JSON.parse(req.fields.params);
-            const user = req.fields.user;
-            const msg = params.msg;
-            delete params.msg;
-            const ret = {};
-            ret.result = 'Logged';
-            resp.json(ret);
-            params['ip'] = req.ip;
-            params['date'] = new Date();
-            foo(msg, params, user, req);
+        this.routeRPC('log', 'log', (req, res) => {
+            const params = URL.parse(req.url, true).query;
+            const method = params.method;
+            if ('log' == method) {
+                params['ip'] = req.ip;
+                params['date'] = Date.now();
+                foo(params);
+                const resp = {};
+                ExpressRPC.logHandler.ret(res, resp, 2, 1);
+            }
+            else {
+                const resp = {};
+                resp.errorMessage = 'mismatch';
+                ExpressRPC.logHandler.retErr(res, resp, 2, 1);
+            }
         });
     }
     serveStatic(path, broT, cdnT) {
@@ -102,55 +154,7 @@ class ExpressRPC {
     }
 }
 exports.ExpressRPC = ExpressRPC;
-class BaseRPCMethodHandler {
-    ret(resp, result, broT, cdnT) {
-        if (!broT)
-            broT = 0;
-        if (!cdnT)
-            cdnT = 0;
-        const ret = {};
-        ret.result = result;
-        resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
-        resp.setHeader('X-intu-ts', Date.now());
-        resp.json(ret);
-    }
-    retErr(resp, msg, broT, cdnT) {
-        if (!broT)
-            broT = 0;
-        if (!cdnT)
-            cdnT = 0;
-        logger.warn(msg);
-        const ret = {};
-        ret.errorLevel = -1;
-        ret.errorMessage = msg;
-        resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
-        resp.setHeader('X-intu-ts', Date.now());
-        resp.json(ret);
-    }
-    handleRPC(req, resp) {
-        if (!this)
-            throw new Error('bind of class instance needed');
-        const THIZ = this;
-        let method;
-        let ent;
-        let params;
-        try {
-            params = URL.parse(req.url, true).query;
-            console.log(params);
-            const user = params.user;
-            const pswd = params.pswd;
-            const token = params.token;
-            method = params.method;
-            ent = params.ent;
-            THIZ[method](resp, params, ent, user, pswd, token);
-        }
-        catch (err) {
-            logger.info(err);
-            THIZ.retErr(resp, params, null, null);
-        }
-    }
-}
-exports.BaseRPCMethodHandler = BaseRPCMethodHandler;
+ExpressRPC.logHandler = new BaseRPCMethodHandler();
 module.exports = {
     ExpressRPC, BaseRPCMethodHandler
 };

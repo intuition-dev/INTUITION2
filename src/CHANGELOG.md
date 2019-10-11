@@ -1,4 +1,4 @@
-### 6.10.3
+### 6.10.5
 - remove '2' methods for RPC, and use proper name
 
 ### 6.10.2

@@ -9,9 +9,9 @@ import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
 import { DownloadFrag, VersionNag, Download } from './lib/FileOpsExtra'
 
-import { SysInfo } from './lib/SysInfo'
+import { SysAgent } from './lib/SysAgent'
 
-const sa = new SysInfo()
+const sa = new SysAgent()
 
 
 VersionNag.isCurrent('mbake', Ver.ver()).then(function (isCurrent_: boolean) {
