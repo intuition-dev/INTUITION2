@@ -108,6 +108,7 @@ export class BaseRPCMethodHandler {
       try {
 
          params = URL.parse(req.url, true).query
+         console.log(params) // Nat
 
          const user = params.user
          const pswd = params.pswd
