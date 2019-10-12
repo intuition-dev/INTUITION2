@@ -1,3 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const btoa = function (str) { return Buffer.from(str).toString('base64'); };
 class httpRPC {
     constructor(httpOrs, host, port) {
         this.user = '';
@@ -59,28 +62,5 @@ class httpRPC {
             });
         });
     }
-    log(msg, level, className) {
-        var THIZ = this;
-        let p = {
-            msg: msg,
-            page: window.location.pathname,
-            level: level,
-            className: className
-        };
-        try {
-            p['appVersion'] = btoa(navigator.appVersion);
-            p['userAgent'] = btoa(navigator.userAgent);
-            p['platform'] = btoa(navigator.platform);
-        }
-        catch (err) {
-            console.trace(err);
-        }
-        setTimeout(function () {
-            THIZ.invoke('log', 'log', 'log', p);
-        }, 1);
-        if (className)
-            console.info(className, level, msg);
-        else
-            console.info(msg);
-    }
 }
+exports.httpRPC = httpRPC;

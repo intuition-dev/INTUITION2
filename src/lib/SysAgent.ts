@@ -1,9 +1,12 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
+import { httpRPC } from './Invoke'
 
 export class SysAgent { // agent
     static si = require('systeminformation')
 
     static os = require('os')
+
+    static rpc = new httpRPC('http', 'localhost', 8090)
 
     async ping() { // often like 1 second
         console.log('ping')
@@ -59,15 +62,17 @@ export class SysAgent { // agent
         await console.log(JSON.stringify(track))
         await console.log(track)
 
+        await SysAgent.rpc.invoke('agent', 'agent', 'agent', track)
 
         //wait
-        await this.wait(1500)
-        
+        await this.wait(3500)
+        this.ping()
     }//()
 
     wait(t) {
         return new Promise((resolve, reject) => {
             setTimeout(function(){
+                console.log('.')
                 resolve()
             },t)
         })

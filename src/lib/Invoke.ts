@@ -1,7 +1,11 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
+const fetch = require('node-fetch')
+
+const btoa = function(str){ return Buffer.from(str).toString('base64'); }
+
 // requires promise and fetch for ie11, you should require 'poly'
-class httpRPC {// 
+export class httpRPC {// 
     // uses simple auth
     httpOrs // protocol
     host
@@ -100,36 +104,6 @@ class httpRPC {//
         })//pro
     }//invoke()
   
-  
-    /**
-     * Place this in ViewModel and vm calls the rpc
-     * and then in page you can say vm.log(..)
-     * @param msg 
-     * @param level 
-     * @param className 
-     */
-    log(msg:string, level?:number, className?:string) {
-      var THIZ = this
-      let p = {
-        msg: msg,
-        page: window.location.pathname,
-        level: level,
-        className: className
-      }
-      
-      try {
-        p['appVersion'] = btoa(navigator.appVersion)
-        p['userAgent'] = btoa(navigator.userAgent)
-        p['platform'] = btoa(navigator.platform)
-      } catch(err) {console.trace(err)}
-  
-      setTimeout(function(){
-        //send to server
-        THIZ.invoke('log','log', 'log', p)
-      },1)
-      if(className) console.info(className, level, msg)
-      else console.info(msg)
-    }//()
   
   }//class
   

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Invoke_1 = require("./Invoke");
 class SysAgent {
     async ping() {
         console.log('ping');
@@ -43,11 +44,14 @@ class SysAgent {
         track['host'] = SysAgent.os.hostname();
         await console.log(JSON.stringify(track));
         await console.log(track);
-        await this.wait(1500);
+        await SysAgent.rpc.invoke('agent', 'agent', 'agent', track);
+        await this.wait(3500);
+        this.ping();
     }
     wait(t) {
         return new Promise((resolve, reject) => {
             setTimeout(function () {
+                console.log('.');
                 resolve();
             }, t);
         });
@@ -66,3 +70,4 @@ class SysAgent {
 exports.SysAgent = SysAgent;
 SysAgent.si = require('systeminformation');
 SysAgent.os = require('os');
+SysAgent.rpc = new Invoke_1.httpRPC('http', 'localhost', 8090);
