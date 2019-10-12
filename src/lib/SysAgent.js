@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Invoke_1 = require("./Invoke");
 class SysAgent {
     async ping() {
-        console.log('ping');
+        console.log('ping:->');
         const track = new Object();
         await SysAgent.si.services('node, pm2, mysql, caddy').then(data => {
             for (let o of data)
@@ -42,10 +42,9 @@ class SysAgent {
             track['cpu'] = data.avgload;
         });
         track['host'] = SysAgent.os.hostname();
-        await console.log(JSON.stringify(track));
-        await console.log(track);
-        await SysAgent.rpc.invoke('agent', 'agent', 'agent', track);
-        await this.wait(3500);
+        await SysAgent.rpc.invoke('monitor', 'monitor', 'monitor', track);
+        await console.log('<-', JSON.stringify(track));
+        await this.wait(2000);
         this.ping();
     }
     wait(t) {
@@ -70,4 +69,4 @@ class SysAgent {
 exports.SysAgent = SysAgent;
 SysAgent.si = require('systeminformation');
 SysAgent.os = require('os');
-SysAgent.rpc = new Invoke_1.httpRPC('http', 'localhost', 8090);
+SysAgent.rpc = new Invoke_1.httpRPC('http', 'localhost', 8888);

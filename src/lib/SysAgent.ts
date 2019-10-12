@@ -6,10 +6,10 @@ export class SysAgent { // agent
 
     static os = require('os')
 
-    static rpc = new httpRPC('http', 'localhost', 8090)
+    static rpc = new httpRPC('http', 'localhost', 8888)
 
     async ping() { // often like 1 second
-        console.log('ping')
+        console.log('ping:->')
 
         const track =  new Object() 
         
@@ -58,14 +58,13 @@ export class SysAgent { // agent
         })
 
         track['host']=SysAgent.os.hostname() 
-
-        await console.log(JSON.stringify(track))
-        await console.log(track)
-
-        await SysAgent.rpc.invoke('agent', 'agent', 'agent', track)
-
+        
+        await SysAgent.rpc.invoke('monitor', 'monitor', 'monitor', track)
+        
+        await console.log('<-',JSON.stringify(track))
+        
         //wait
-        await this.wait(3500)
+        await this.wait(2000)
         this.ping()
     }//()
 

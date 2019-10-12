@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const fetch = require('node-fetch');
 const btoa = function (str) { return Buffer.from(str).toString('base64'); };
 class httpRPC {
     constructor(httpOrs, host, port) {
