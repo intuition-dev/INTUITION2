@@ -13,7 +13,7 @@ export class SysAgent { // agent
 
         const track =  new Object() 
         
-        await SysAgent.si.services('node, pm2, mysql, caddy').then(data =>  {
+        await SysAgent.si.services('node, pm2, caddy').then(data =>  {
             for(let o of data) 
                 delete o['startmode']
             
