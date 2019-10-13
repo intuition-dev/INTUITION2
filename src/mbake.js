@@ -7,9 +7,6 @@ const Extra_1 = require("./lib/Extra");
 const FileOpsBase_1 = require("./lib/FileOpsBase");
 const Wa_1 = require("./lib/Wa");
 const FileOpsExtra_1 = require("./lib/FileOpsExtra");
-const SysAgent_1 = require("./lib/SysAgent");
-const sa = new SysAgent_1.SysAgent();
-sa.ping();
 FileOpsExtra_1.VersionNag.isCurrent('mbake', Base_1.Ver.ver()).then(function (isCurrent_) {
     try {
         if (!isCurrent_)
