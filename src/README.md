@@ -165,7 +165,7 @@ mbake -f .
 ```
 
 This emits a Pug file that you should include in your Pug's layout head section.
-In turn, the included file calls a toolBelt.js from a CDN.
+In turn, the included file calls a mbToolBelt.js from a CDN.
 
 **Other examples include:**
 

@@ -4,7 +4,7 @@
 
 Listed dependencies gives you application a list of a election curated js libraries that you may chose to use/require.
 
-- Docs: https://MetaBake.github.io/mbakeDocs/#/toolBelt
+- Docs: https://MetaBake.github.io/mbakeDocs/#/mbToolBelt
 
 It saves time, sets baseline for depps, defines popular/approved libs:
 
