@@ -1,4 +1,4 @@
-### 6.10.
+### 6.10.7
 - switched to better 3 for SQLite lib
 
 ### 6.10.5
