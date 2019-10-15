@@ -71,12 +71,7 @@ export class BaseDBL {
       this.write('ROLLBACK')
    }
 
-
-   fileExists() {
-      return fs.existsSync(this._fn)
-  }
-
-  delDb() {
+  delDB() {
       try {
          this._db.close()
          fs.removeSync(this._fn)
