@@ -1,9 +1,7 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
-
 var logger = require('tracer').console()
 const fs = require('fs-extra')
-
 
 export class BaseDBL {
    protected _fn
@@ -85,7 +83,6 @@ export class BaseDBL {
    
       } catch(err) {}
   }
-
 
 }//class
 
