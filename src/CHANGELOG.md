@@ -1,3 +1,6 @@
+### 6.10.
+- switched to better 3 for SQLite lib
+
 ### 6.10.5
 - remove '2' methods for RPC, and use proper name
 

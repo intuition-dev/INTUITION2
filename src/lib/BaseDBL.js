@@ -1,32 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const logger = require('tracer').console();
+var logger = require('tracer').console();
 const fs = require('fs-extra');
-const sqlite3 = require('sqlite3').verbose();
 class BaseDBL {
-    constructor(path, fn) {
-        this.path = path;
-        this.fn = fn;
+    defCon(path, fn) {
+        this._fn = path + fn;
+        logger.trace(this._fn);
+        this._db = new BaseDBL.Database(fn);
+        this._db.pragma('cache_size = 5000');
+        logger.trace(this._db.pragma('cache_size', { simple: true }));
+        this._db.pragma('synchronous=OFF');
+        this._db.pragma('count_changes=OFF');
+        this._db.pragma('journal_mode=MEMORY');
+        this._db.pragma('temp_store=MEMORY');
+        this._db.pragma('locking_mode=EXCLUSIVE');
+        logger.trace(this._db.pragma('locking_mode', { simple: true }));
+        this._db.pragma('automatic_index=false');
     }
-    fileExists() {
-        return fs.existsSync(this.path + this.fn);
-    }
-    delDb() {
+    tableExists(tab) {
         try {
-            this.db.close(function () {
-                fs.removeSync(this.path + this.fn);
-            });
-        }
-        catch (err) { }
-    }
-    async tableExists(tab) {
-        try {
-            this.con();
-            const qry = this.db.prepare("SELECT name FROM sqlite_master WHERE type=\'table\' AND name= ?", tab);
-            const rows = await this._qry(qry);
-            logger.trace('exits?', rows);
-            const row = rows[0];
-            if (row.name == tab)
+            const row = this.readOne("SELECT name FROM sqlite_master WHERE type=\'table\' AND name= ?", tab);
+            if (row['name'] == tab)
                 return true;
             return false;
         }
@@ -34,52 +28,41 @@ class BaseDBL {
             return false;
         }
     }
-    con() {
-        if (this.db) {
-            logger.trace('connection exists');
-            return;
+    write(sql, ...args) {
+        const stmt = this._db.prepare(sql);
+        const info = stmt.run(args);
+        return info.changes;
+    }
+    read(sql, ...args) {
+        const stmt = this._db.prepare(sql);
+        return stmt.all(args);
+    }
+    readOne(sql, ...args) {
+        const stmt = this._db.prepare(sql);
+        return stmt.get(args);
+    }
+    BEGIN() {
+        this.write('BEGIN');
+    }
+    COMMIT() {
+        this.write('COMMIT');
+    }
+    ROLLBACK() {
+        this.write('ROLLBACK');
+    }
+    fileExists() {
+        return fs.existsSync(this._fn);
+    }
+    delDb() {
+        try {
+            this._db.close();
+            fs.removeSync(this._fn);
         }
-        logger.trace('new connection');
-        this.db = new sqlite3.Database(this.path + this.fn);
-    }
-    _run(stmt, ...args) {
-        return new Promise(function (resolve, reject) {
-            try {
-                stmt.run(args, function (err) {
-                    if (err) {
-                        logger.trace(err);
-                        reject(err);
-                    }
-                    else
-                        resolve('OK');
-                });
-            }
-            catch (err) {
-                logger.warn(err);
-                reject(err);
-            }
-        });
-    }
-    _qry(stmt, ...args) {
-        return new Promise(function (resolve, reject) {
-            try {
-                stmt.all(args, function (err, rows) {
-                    if (err) {
-                        logger.trace(err);
-                        reject(err);
-                    }
-                    else
-                        resolve(rows);
-                });
-            }
-            catch (err) {
-                logger.warn(err);
-                reject(err);
-            }
-        });
+        catch (err) { }
     }
 }
 exports.BaseDBL = BaseDBL;
+BaseDBL.Database = require('better-sqlite3');
 module.exports = {
     BaseDBL
 };
