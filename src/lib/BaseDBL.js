@@ -6,7 +6,7 @@ class BaseDBL {
     defCon(path, fn) {
         this._fn = path + fn;
         logger.trace(this._fn);
-        this._db = new BaseDBL.Database(fn);
+        this._db = new BaseDBL.Database(this._fn);
         this._db.pragma('cache_size = 5000');
         logger.trace(this._db.pragma('cache_size', { simple: true }));
         this._db.pragma('synchronous=OFF');
