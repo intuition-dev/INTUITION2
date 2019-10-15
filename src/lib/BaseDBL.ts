@@ -57,7 +57,7 @@ async tableExists(tab): Promise<any> {
           return
       }
       logger.trace('new connection')
-      this.db = new sqlite3.Database(this.path + this.fn)
+      this.db = new sqlite3.cached.Database(this.path + this.fn)
   }//()
 
   
