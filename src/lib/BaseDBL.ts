@@ -94,7 +94,7 @@ export  interface iDBL {
    /**
     * returns when db is setup w schema
     */
-   isSetupDone():Promise<boolean> 
+   isSetupDone():boolean
 }
 
 module.exports = {
