@@ -13,6 +13,10 @@ export class BaseDBL {
    fn
    protected db
 
+   /**
+    * @param path consider using process.cwd()
+    * @param fn 
+    */
    constructor(path, fn) {
       this.path = path
       this.fn = fn
