@@ -15,7 +15,7 @@ export class BaseDBL {
 
    /**
     * @param path consider using process.cwd()
-    * @param fn 
+    * @param fn  /name.db
     */
    constructor(path, fn) {
       this.path = path
