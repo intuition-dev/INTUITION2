@@ -25,7 +25,7 @@ export class BaseDBL {
       this._db.pragma('journal_mode=MEMORY')
       this._db.pragma('temp_store=MEMORY')
 
-      this._db.pragma('locking_mode=EXCLUSIVE')
+      //this._db.pragma('locking_mode=EXCLUSIVE')
       logger.trace(this._db.pragma('locking_mode', { simple: true }))
 
       this._db.pragma('automatic_index=false')
