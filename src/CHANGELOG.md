@@ -1,3 +1,6 @@
+### 6.10.9
+- add SysAgent and Invoke
+
 ### 6.10.8
 - switched to better 3 for SQLite lib
 

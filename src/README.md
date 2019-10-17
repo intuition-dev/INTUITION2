@@ -27,7 +27,9 @@ cd website
 mbake -w . /* to run the watcher livereload */
 ```
 
-mbake may require https://github.com/nodejs/node-gyp due to 3rd party libs
+
+Note: if changed node version you may need to do this first:  `yarn global remove mbake`
+
 
 You can also use: yarn global add  mbake
 
