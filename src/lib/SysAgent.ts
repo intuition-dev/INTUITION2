@@ -9,7 +9,7 @@ export class SysAgent { // agent
 
     static os = require('os')
 
-    async ping() { // often like 1 second
+    static async ping() { // often like 1 second
 
         const track =  new Object() 
         track['guid']= SysAgent.guid()
@@ -58,7 +58,7 @@ export class SysAgent { // agent
      
     }//()
 
-    wait(t) {
+    static wait(t):Promise<any> {
         return new Promise((resolve, reject) => {
             setTimeout(function(){
                 logger.trace('.')
@@ -67,7 +67,8 @@ export class SysAgent { // agent
         })
     }//()
 
-    async _info() { // rare, like day
+    static async _info() { // rare, like day
+        /*
         logger.trace('info')
 
         await SysAgent.si.services('node, pm2, caddy').then(data =>  {
@@ -91,6 +92,7 @@ export class SysAgent { // agent
 
         SysAgent.si.users().then(data => logger.trace(data))
 
+        */
     }//()
 
 }//class

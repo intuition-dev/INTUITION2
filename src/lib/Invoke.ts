@@ -7,7 +7,7 @@ var logger = require('tracer').console()
 const btoa = function(str){ return Buffer.from(str).toString('base64'); }
 
 // requires promise and fetch for ie11, you should require 'poly'
-export class httpRPC {// 
+export class HttpRPC {// 
     // uses simple auth
     httpOrs // protocol
     host
