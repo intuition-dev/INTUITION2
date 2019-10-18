@@ -132,7 +132,7 @@ export class CSV2Json { // TODO: get to work with watcher
 
 export class DownloadFrag {
    constructor(dir, ops: boolean) {
-      console.log('Extracting to', dir)
+      logger.trace('Extracting to', dir)
       if (!ops) {
          new Download('headFrag',dir).auto()
          new Download('VM',  dir).auto()

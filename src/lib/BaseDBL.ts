@@ -81,14 +81,6 @@ export class BaseDBL {
 
 }//class
 
-
-export  interface iDBL {
-   /**
-    * returns when db is setup w schema
-    */
-   isSetupDone():boolean
-}
-
 module.exports = {
    BaseDBL
 }

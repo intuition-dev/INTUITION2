@@ -108,7 +108,7 @@ export class BaseRPCMethodHandler {
       try {
 
          params = URL.parse(req.url, true).query
-         console.log(params) // Nat
+         logger.trace(params) // Nat
 
          const user = params.user
          const pswd = params.pswd
@@ -149,7 +149,7 @@ export class ExpressRPC {
    makeInstance(origins:Array<string>) {
       // does it already exist?
       if(ExpressRPC._appInst) throw new Error( 'one instance of express app already exists')
-      console.log('Allowed >>> ', origins)
+      logger.trace('Allowed >>> ', origins)
       const cors = new CustomCors(origins)
       ExpressRPC._appInst = express()
 
@@ -169,7 +169,7 @@ export class ExpressRPC {
       serviceApp.routeRPC('api', 'pageOne', (req, res) => { 
 
          const params = URL.parse(req.url, true).query
-         console.log(params)
+         logger.trace(params)
          const method = params.method
 
          if('multiply'==method) { // RPC for the page could handle several methods, eg one for each of CRUD

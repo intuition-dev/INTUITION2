@@ -94,7 +94,7 @@ export class Watch {
 
 
    async autoNT(path_: string, wa:string) {//process
-      console.log(wa)
+      logger.trace(wa)
       let path = Dirs.slash(path_)
 
       let p = path.lastIndexOf('/')
@@ -204,7 +204,7 @@ export class MDevSrv {
          MDevSrv.reloadServer = reloadServer_
          logger.info('reloadServer')
       }).catch(e => {
-         console.log('==================e', e)
+         logger.trace('==================e', e)
       })
 
       app.set('views', dir)

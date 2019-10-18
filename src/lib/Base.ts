@@ -240,7 +240,7 @@ export class BakeWrk {
          return
       }
       process.chdir(this.dir)
-      console.log(this.dir)
+      logger.trace(this.dir)
 
       let dat = new Dat(this.dir)
 
@@ -307,7 +307,7 @@ export class BakeWrk {
 
    do1Locale(locale, combOptions) {
       //extract locale var
-      console.log(locale)
+      logger.trace(locale)
       let localeProps = {}
       localeProps['LOCALE'] = locale // any let can be access in pug or js  eg window.locale = '#{LOCALE}'
 
@@ -319,11 +319,11 @@ export class BakeWrk {
          }
 
       let locMerged = { ...combOptions, ...localeProps } // es18 spread
-      console.log(localeProps)
+      logger.trace(localeProps)
 
       // if dir not exists
       let locDir = this.dir + '/' + locale
-      console.log(locDir)
+      logger.trace(locDir)
       fs.ensureDirSync(locDir)
 
       // if loc.pug exists
