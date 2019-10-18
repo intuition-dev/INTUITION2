@@ -27,7 +27,7 @@ cd website
 mbake -w . /* to run the watcher livereload */
 ```
 
-
+Note: currently node needs to be install via nvm (https://github.com/nvm-sh/nvm)
 Note: if changed node version you may need to do this first:  `yarn global remove mbake`
 
 
