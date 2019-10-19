@@ -9,7 +9,7 @@ export class SysAgent { // agent
 
     static os = require('os')
 
-    static async ping() { // often like 1 second
+    static async stats() { // often like 1 second
 
         const track =  new Object() 
         track['guid']= SysAgent.guid()
@@ -61,7 +61,6 @@ export class SysAgent { // agent
     static wait(t):Promise<any> {
         return new Promise((resolve, reject) => {
             setTimeout(function(){
-                logger.trace('.')
                 resolve()
             },t)
         })
