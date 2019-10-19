@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var logger = require('tracer').console();
 class SysAgent {
-    async ping() {
+    static async ping() {
         const track = new Object();
         track['guid'] = SysAgent.guid();
         track['dt_stamp'] = new Date().toISOString();
@@ -40,7 +40,7 @@ class SysAgent {
         track['host'] = SysAgent.os.hostname();
         return track;
     }
-    wait(t) {
+    static wait(t) {
         return new Promise((resolve, reject) => {
             setTimeout(function () {
                 logger.trace('.');
@@ -48,19 +48,7 @@ class SysAgent {
             }, t);
         });
     }
-    async _info() {
-        logger.trace('info');
-        await SysAgent.si.services('node, pm2, caddy').then(data => {
-            for (let o of data)
-                delete o['startmode'];
-        });
-        SysAgent.si.networkConnections().then(data => logger.trace(data));
-        SysAgent.si.processes().then(data => logger.trace(data));
-        SysAgent.si.networkInterfaces().then(data => logger.trace(data));
-        SysAgent.si.fsSize().then(data => logger.trace(data));
-        SysAgent.si.blockDevices().then(data => logger.trace(data));
-        SysAgent.si.osInfo().then(data => logger.trace(data));
-        SysAgent.si.users().then(data => logger.trace(data));
+    static async _info() {
     }
 }
 exports.SysAgent = SysAgent;

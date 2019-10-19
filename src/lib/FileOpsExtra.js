@@ -116,7 +116,7 @@ class CSV2Json {
 exports.CSV2Json = CSV2Json;
 class DownloadFrag {
     constructor(dir, ops) {
-        console.log('Extracting to', dir);
+        logger.trace('Extracting to', dir);
         if (!ops) {
             new Download('headFrag', dir).auto();
             new Download('VM', dir).auto();

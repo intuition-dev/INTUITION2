@@ -17,7 +17,7 @@ class Dirs {
         return path.resolve(dir, '..');
     }
     getInDir(sub) {
-        console.log('method renamed use getFilesIn');
+        logger.trace('method renamed use getFilesIn');
         return this.getFilesIn(sub);
     }
     getFilesIn(sub) {

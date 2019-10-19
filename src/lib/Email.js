@@ -5,7 +5,7 @@ const logger = require('tracer').console();
 class Email {
     send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg) {
         email = Buffer.from(email, 'base64').toString();
-        console.log('email_to: ', email);
+        logger.trace('email_to: ', email);
         superagent.post('https://api.emailjs.com/api/v1.0/email/send', {
             service_id: emailjsService_id,
             template_id: emailjsTemplate_id,

@@ -46,7 +46,7 @@ class BaseRPCMethodHandler {
         const ret = {};
         ret.result = result;
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
-        resp.setHeader('X-intu-ts', Date.now());
+        resp.setHeader('x-intu-ts', new Date().toISOString());
         resp.json(ret);
     }
     retErr(resp, msg, broT, cdnT) {
@@ -59,7 +59,7 @@ class BaseRPCMethodHandler {
         ret.errorLevel = -1;
         ret.errorMessage = msg;
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
-        resp.setHeader('X-intu-ts', Date.now());
+        resp.setHeader('x-intu-ts', new Date().toISOString());
         resp.json(ret);
     }
     handleRPC(req, resp) {
@@ -71,7 +71,7 @@ class BaseRPCMethodHandler {
         let params;
         try {
             params = URL.parse(req.url, true).query;
-            console.log(params);
+            logger.trace(params);
             const user = params.user;
             const pswd = params.pswd;
             const token = params.token;
@@ -91,7 +91,7 @@ class ExpressRPC {
     makeInstance(origins) {
         if (ExpressRPC._appInst)
             throw new Error('one instance of express app already exists');
-        console.log('Allowed >>> ', origins);
+        logger.trace('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
         ExpressRPC._appInst = express();
         ExpressRPC._appInst.set('trust proxy', true);
@@ -111,7 +111,7 @@ class ExpressRPC {
             const method = params.method;
             if ('log' == method) {
                 params['ip'] = req.ip;
-                params['date'] = Date.now();
+                params['date'] = new Date().toISOString();
                 foo(params);
                 const resp = {};
                 ExpressRPC.logHandler.ret(res, resp, 2, 1);
@@ -143,7 +143,7 @@ class ExpressRPC {
                 if (path.endsWith('.yaml') || path.endsWith('.json')) {
                     res.setHeader('Cache-Control', 'public, max-age=' + 300 + ', s-max-age=' + 299);
                 }
-                res.setHeader('X-intu-ts', Date.now());
+                res.setHeader('x-intu-ts', new Date().toISOString());
             }
         }));
     }

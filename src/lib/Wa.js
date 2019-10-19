@@ -71,7 +71,7 @@ class Watch {
         MDevSrv.reloadServer.reload();
     }
     async autoNT(path_, wa) {
-        console.log(wa);
+        logger.trace(wa);
         let path = FileOpsBase_1.Dirs.slash(path_);
         let p = path.lastIndexOf('/');
         let folder = '';
@@ -154,7 +154,7 @@ class MDevSrv {
             MDevSrv.reloadServer = reloadServer_;
             logger.info('reloadServer');
         }).catch(e => {
-            console.log('==================e', e);
+            logger.trace('==================e', e);
         });
         app.set('views', dir);
         const bodyInterceptor = interceptor(function (req, res) {

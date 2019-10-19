@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fetch = require('node-fetch');
 var logger = require('tracer').console();
 const btoa = function (str) { return Buffer.from(str).toString('base64'); };
-class httpRPC {
+class HttpRPC {
     constructor(httpOrs, host, port) {
         this.user = '';
         this.pswd = '';
@@ -64,4 +64,4 @@ class httpRPC {
         });
     }
 }
-exports.httpRPC = httpRPC;
+exports.HttpRPC = HttpRPC;

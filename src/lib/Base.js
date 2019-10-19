@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.10.9';
+        return 'v6.10.10';
     }
     static date() {
         return new Date().toISOString();
@@ -172,7 +172,7 @@ class BakeWrk {
             return;
         }
         process.chdir(this.dir);
-        console.log(this.dir);
+        logger.trace(this.dir);
         let dat = new FileOpsBase_1.Dat(this.dir);
         let options = dat.getAll();
         options['filters'] = {
@@ -217,7 +217,7 @@ class BakeWrk {
         fs.remove(this.dir + '/index.html');
     }
     do1Locale(locale, combOptions) {
-        console.log(locale);
+        logger.trace(locale);
         let localeProps = {};
         localeProps['LOCALE'] = locale;
         for (let key in combOptions)
@@ -227,9 +227,9 @@ class BakeWrk {
                 localeProps[key2] = combOptions[key];
             }
         let locMerged = Object.assign(Object.assign({}, combOptions), localeProps);
-        console.log(localeProps);
+        logger.trace(localeProps);
         let locDir = this.dir + '/' + locale;
-        console.log(locDir);
+        logger.trace(locDir);
         fs.ensureDirSync(locDir);
         if (fs.existsSync(locDir + '/loc.pug'))
             this.writeFilePg(locDir + '/loc.pug', locMerged, locDir + '/index.html');
