@@ -25,7 +25,7 @@ export class Wa {
       const mp = new MetaPro(dir)
       let ww = new Watch(mp, dir)
       
-      ww.start(350) // build x ms after saving a file
+      ww.start(250) // build x ms after saving a file
 
       console.info(' Serving on ' + 'http://localhost:' + port)
       console.info(' --------------------------')
@@ -139,13 +139,6 @@ export class MetaPro {
       return this.b.bake(folder, 0)
    }
 
-   comps(dir: string): Promise<string> {
-      let folder = this.mount + '/' + dir
-      logger.info(folder)
-      return this.b.compsNBake(folder, 0)
-   }
-  
-
    itemize(dir: string): Promise<string> {
       return this.b.itemizeNBake(this.mount + '/' + dir, 0)
    }
@@ -180,10 +173,7 @@ export class MetaPro {
          return await this.bake(folder)
 
       if (ext == 'pug') {
-         if (file.indexOf('-comp') >= 0)
-            return await this.comps(folder)
-         else
-            return await this.bake(folder)
+         return await this.bake(folder)
       }
       return ('Cant process ' + ext)
    }//()

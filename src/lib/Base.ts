@@ -25,12 +25,10 @@ import { MinJS } from './Extra'
 import { Dirs, Dat } from './FileOpsBase'
 
 import fs = require('fs-extra')
-import FileHound = require('filehound')
 import yaml = require('js-yaml')
 
 import findUp = require('find-up')
 
-import riotc = require('riot-compiler')
 import pug = require('pug')
 const minify = require('html-minifier').minify
 const Terser = require("terser")
@@ -94,39 +92,6 @@ export class MBake {
             logger.info(err)
             reject(err)
          }
-      })//pro
-   }//()
-
-   compsNBake(path_, prod: number): Promise<string> {
-      let _this = this
-      return new Promise(async function (resolve, reject) {
-
-         if (!path_ || path_.length < 1) {
-            console.info('no path_ arg passed')
-            reject("no path args passed")
-         }
-         try {
-            console.info(' Xomp ' + path_)
-
-            let t = new Comps(path_)
-            let lst = t.get()
-
-            await t.comps(lst)
-
-            _this.bake(path_, prod)
-               .then(function () {
-                  resolve('OK')
-               })
-               .catch(function (err) {
-                  logger.info(err)
-                  reject(err)
-               })
-         } catch (err) {
-            logger.info(err)
-            reject(err)
-         }
-
-
       })//pro
    }//()
 
@@ -459,101 +424,11 @@ export class Items {
       delete o['LOC']
       delete o['frags']
 
-
    }
 
-}//class
-
-export class Comps {
-   dir: string
-
-   constructor(dir_: string) {
-      let dir = Dirs.slash(dir_)
-      this.dir = dir
-   }
-
-   get() {
-      const rec = FileHound.create() //recursive
-         .paths(this.dir)
-         .ext('pug')
-         .glob('*-comp.pug')
-         .findSync()
-      let ret: string[] = [] //empty string array
-      for (let val of rec) {//clean the strings
-         val = val.split('\\').join('/') // windoze
-         ret.push(val)
-      }
-      return ret
-   }//()
-
-   comps(list): Promise<string> {
-      const THIZ = this
-      return new Promise(async function (resolve, reject) {
-
-         console.info('Looking for comps: *-comp ' + THIZ.dir)
-         for (let val of list) {//clean the strings
-            let s: string = fs.readFileSync(val).toString()
-
-            let n = val.lastIndexOf('/')
-            let dir: string = val.substring(0, n)
-            let name: string = val.substring(n)
-            let p = name.lastIndexOf('.')
-            name = name.substring(0, p)
-            console.info(' ' + dir + name);
-            await THIZ.process(s, dir, dir + name)
-         }
-         resolve('OK')
-      })
-   }//()
-
-
-   ver = '// mB ' + Ver.ver() + ' on ' + Ver.date() + '\r\n'
-
-   process(s: string, dir: string, fn: string): Promise<string> {
-      const THIZ = this
-      return new Promise(function (resolve, reject) {
-
-         const r_options = { 'template': 'pug', 'basedir': dir }
-
-         //logger.info('compiling', fn)
-         let js1
-         try {
-
-            js1 = riotc.compile(s, r_options, fn) //tagpath
-
-         } catch (err) {
-            beeper(1);
-            logger.error('compiler error')
-            logger.error(err)
-            reject(err)
-         }
-         fs.writeFileSync(fn + '.js', js1)
-
-         let optionsCompR = Object.assign({}, MinJS.CompOptionsJS)
-         let _output = { indent_level: 0, quote_style: 0, semicolons: false }
-         //_output['mangle'] = true
-         optionsCompR['output'] = _output
-         let js2 = Terser.minify(js1, optionsCompR)
-
-         let ugs
-         try {
-            //logger.info('obs')
-            ugs = JavaScriptObfuscator.obfuscate(js2.code, MinJS.getCompOptions())
-
-         } catch (err) {
-            logger.error('error')
-            logger.error(err)
-            reject(err)
-         }
-
-         let obCode = THIZ.ver + ugs.getObfuscatedCode()
-         fs.writeFileSync(fn + '.min.js', obCode)
-         resolve('OK')
-      })
-   }
 }//class
 
 
 module.exports = {
-   BakeWrk, Items, Comps, Ver, MBake
+   BakeWrk, Items, Ver, MBake
 }

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var logger = require('tracer').console();
 class SysAgent {
-    static async ping() {
+    static async stats() {
         const track = new Object();
         track['guid'] = SysAgent.guid();
         track['dt_stamp'] = new Date().toISOString();
@@ -43,7 +43,6 @@ class SysAgent {
     static wait(t) {
         return new Promise((resolve, reject) => {
             setTimeout(function () {
-                logger.trace('.');
                 resolve();
             }, t);
         });

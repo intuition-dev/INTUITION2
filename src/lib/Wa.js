@@ -16,7 +16,7 @@ class Wa {
         let ss = new MDevSrv(dir, port, reloadPort);
         const mp = new MetaPro(dir);
         let ww = new Watch(mp, dir);
-        ww.start(350);
+        ww.start(250);
         console.info(' Serving on ' + 'http://localhost:' + port);
         console.info(' --------------------------');
         console.info('');
@@ -102,11 +102,6 @@ class MetaPro {
         logger.info(folder);
         return this.b.bake(folder, 0);
     }
-    comps(dir) {
-        let folder = this.mount + '/' + dir;
-        logger.info(folder);
-        return this.b.compsNBake(folder, 0);
-    }
     itemize(dir) {
         return this.b.itemizeNBake(this.mount + '/' + dir, 0);
     }
@@ -131,10 +126,7 @@ class MetaPro {
         if (ext == 'md')
             return await this.bake(folder);
         if (ext == 'pug') {
-            if (file.indexOf('-comp') >= 0)
-                return await this.comps(folder);
-            else
-                return await this.bake(folder);
+            return await this.bake(folder);
         }
         return ('Cant process ' + ext);
     }

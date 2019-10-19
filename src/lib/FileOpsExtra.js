@@ -119,7 +119,6 @@ class DownloadFrag {
         logger.trace('Extracting to', dir);
         if (!ops) {
             new Download('headFrag', dir).auto();
-            new Download('VM', dir).auto();
             new Download('Bind', dir).auto();
         }
         if (ops) {

@@ -22,15 +22,12 @@ const path = require('path');
 const Extra_1 = require("./Extra");
 const FileOpsBase_1 = require("./FileOpsBase");
 const fs = require("fs-extra");
-const FileHound = require("filehound");
 const yaml = require("js-yaml");
 const findUp = require("find-up");
-const riotc = require("riot-compiler");
 const pug = require("pug");
 const minify = require('html-minifier').minify;
 const Terser = require("terser");
 const beeper = require("beeper");
-const JavaScriptObfuscator = require("javascript-obfuscator");
 const markdownItCont = require("markdown-it-container");
 const mad = require('markdown-it')({
     html: true,
@@ -71,33 +68,6 @@ class MBake {
                     n.bake(prod);
                 }
                 resolve('OK');
-            }
-            catch (err) {
-                logger.info(err);
-                reject(err);
-            }
-        });
-    }
-    compsNBake(path_, prod) {
-        let _this = this;
-        return new Promise(async function (resolve, reject) {
-            if (!path_ || path_.length < 1) {
-                console.info('no path_ arg passed');
-                reject("no path args passed");
-            }
-            try {
-                console.info(' Xomp ' + path_);
-                let t = new Comps(path_);
-                let lst = t.get();
-                await t.comps(lst);
-                _this.bake(path_, prod)
-                    .then(function () {
-                    resolve('OK');
-                })
-                    .catch(function (err) {
-                    logger.info(err);
-                    reject(err);
-                });
             }
             catch (err) {
                 logger.info(err);
@@ -345,77 +315,6 @@ class Items {
     }
 }
 exports.Items = Items;
-class Comps {
-    constructor(dir_) {
-        this.ver = '// mB ' + Ver.ver() + ' on ' + Ver.date() + '\r\n';
-        let dir = FileOpsBase_1.Dirs.slash(dir_);
-        this.dir = dir;
-    }
-    get() {
-        const rec = FileHound.create()
-            .paths(this.dir)
-            .ext('pug')
-            .glob('*-comp.pug')
-            .findSync();
-        let ret = [];
-        for (let val of rec) {
-            val = val.split('\\').join('/');
-            ret.push(val);
-        }
-        return ret;
-    }
-    comps(list) {
-        const THIZ = this;
-        return new Promise(async function (resolve, reject) {
-            console.info('Looking for comps: *-comp ' + THIZ.dir);
-            for (let val of list) {
-                let s = fs.readFileSync(val).toString();
-                let n = val.lastIndexOf('/');
-                let dir = val.substring(0, n);
-                let name = val.substring(n);
-                let p = name.lastIndexOf('.');
-                name = name.substring(0, p);
-                console.info(' ' + dir + name);
-                await THIZ.process(s, dir, dir + name);
-            }
-            resolve('OK');
-        });
-    }
-    process(s, dir, fn) {
-        const THIZ = this;
-        return new Promise(function (resolve, reject) {
-            const r_options = { 'template': 'pug', 'basedir': dir };
-            let js1;
-            try {
-                js1 = riotc.compile(s, r_options, fn);
-            }
-            catch (err) {
-                beeper(1);
-                logger.error('compiler error');
-                logger.error(err);
-                reject(err);
-            }
-            fs.writeFileSync(fn + '.js', js1);
-            let optionsCompR = Object.assign({}, Extra_1.MinJS.CompOptionsJS);
-            let _output = { indent_level: 0, quote_style: 0, semicolons: false };
-            optionsCompR['output'] = _output;
-            let js2 = Terser.minify(js1, optionsCompR);
-            let ugs;
-            try {
-                ugs = JavaScriptObfuscator.obfuscate(js2.code, Extra_1.MinJS.getCompOptions());
-            }
-            catch (err) {
-                logger.error('error');
-                logger.error(err);
-                reject(err);
-            }
-            let obCode = THIZ.ver + ugs.getObfuscatedCode();
-            fs.writeFileSync(fn + '.min.js', obCode);
-            resolve('OK');
-        });
-    }
-}
-exports.Comps = Comps;
 module.exports = {
-    BakeWrk, Items, Comps, Ver, MBake
+    BakeWrk, Items, Ver, MBake
 };
