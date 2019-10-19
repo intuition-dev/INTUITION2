@@ -68,7 +68,7 @@ export class BaseRPCMethodHandler {
       ret.result = result
 
       resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
-      resp.setHeader('X-intu-ts', Date.now() )
+      resp.setHeader('x-intu-ts', new Date().toISOString() )
 
       resp.json(ret)
    }//()
@@ -88,7 +88,7 @@ export class BaseRPCMethodHandler {
       ret.errorMessage = msg
 
       resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
-      resp.setHeader('X-intu-ts', Date.now() )
+      resp.setHeader('x-intu-ts', new Date().toISOString() )
 
       resp.json(ret)
    }//()
@@ -204,7 +204,7 @@ export class ExpressRPC {
          
          if('log'==method) { // RPC for the page could handle several methods, eg one for each of CRUD
             params['ip'] = req.ip // you may need req.ips
-            params['date'] =  Date.now()
+            params['date'] =  new Date().toISOString()
  
             foo(params)
          
@@ -251,7 +251,7 @@ export class ExpressRPC {
                res.setHeader('Cache-Control', 'public, max-age='+300+', s-max-age='+299)
             }
 
-            res.setHeader('X-intu-ts', Date.now() )
+            res.setHeader('x-intu-ts', new Date().toISOString() )
 
          }//setHeader()
       }))//use
