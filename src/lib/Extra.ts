@@ -61,9 +61,7 @@ export class MinJS {
                if (fn._pathname.endsWith('.min.js')) {
                   return false
                }
-               if (fn._pathname.endsWith('-comp.js')) { // no riot comps
-                  return false
-               }
+
                return true
             })
             .findSync()
