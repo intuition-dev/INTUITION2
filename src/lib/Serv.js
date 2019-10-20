@@ -1,8 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
-const bodyParser = require('body-parser');
-const formidable = require('express-formidable');
 const serveStatic = require('serve-static');
 const URL = require('url');
 const logger = require('tracer').console();
@@ -96,8 +94,6 @@ class ExpressRPC {
         ExpressRPC._appInst = express();
         ExpressRPC._appInst.set('trust proxy', true);
         this.appInst.use(cors);
-        this.appInst.use(bodyParser.urlencoded({ extended: false }));
-        this.appInst.use(formidable());
     }
     routeRPC(route, pgOrScreen, foo) {
         if (pgOrScreen.length < 1)

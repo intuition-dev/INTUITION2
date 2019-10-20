@@ -3,8 +3,6 @@
 // NOTE: You can extend these classes!
 
 const express = require('express')
-const bodyParser = require('body-parser')
-const formidable = require('express-formidable')
 const serveStatic = require('serve-static')
 // const lz = require('lz-string')
 const URL = require('url')
@@ -157,9 +155,6 @@ export class ExpressRPC {
 
       this.appInst.use(cors)
 
-      // for old fetch:
-      this.appInst.use(bodyParser.urlencoded({ extended: false }))
-      this.appInst.use(formidable())// for old fetch
    }
 
    /**
