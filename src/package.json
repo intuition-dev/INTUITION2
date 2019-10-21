@@ -67,8 +67,8 @@
         "cover 99.01%"
     ],
     "devDependencies": {
-        "@types/node": ">=12.11.1",
-        "dompurify": ">=2.0.6",
+        "@types/node": ">=12.11.2",
+        "dompurify": ">=2.0.7",
         "is": ">=3.3.0"
 
     }
