@@ -35,8 +35,6 @@ const Terser = require("terser")
 
 import beeper = require('beeper');
 
-import JavaScriptObfuscator = require('javascript-obfuscator')
-
 // code /////////////////////////////////////////////////////////////////////
 
 // metaMD Mad

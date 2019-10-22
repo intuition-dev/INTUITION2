@@ -15,7 +15,6 @@ import path = require('path')
 import fs = require('fs-extra')
 import FileHound = require('filehound')
 
-//import colors = require('colors');
 const logger = require('tracer').console()
 
 import JavaScriptObfuscator = require('javascript-obfuscator')
@@ -38,11 +37,14 @@ export class MinJS {
 
          THIZ.compile(rec, {
             target: ts.ScriptTarget.ES5,
-            //noEmitOnError: true,
             removeComments: true,
             allowJs: true,
             skipLibCheck: true,
             allowSyntheticDefaultImports: true,
+
+            noImplicitThis: true,
+            strictBindCallApply: true,
+            
             lib: [
                'lib.scripthost.d.ts', 'lib.dom.d.ts', 'lib.es5.d.ts', 'lib.es2015.promise.d.ts'
             ]
@@ -104,7 +106,7 @@ export class MinJS {
                let ugs
                try {
                   logger.info('obs', fn)
-                  ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptions())
+                  ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptionsES5())
                   txt = ugs.getObfuscatedCode()
 
                } catch (err) {
@@ -128,7 +130,7 @@ export class MinJS {
    }//()
 
 
-   static getCompOptions(): TInputOptions {
+   static getCompOptionsES5(): TInputOptions {
       let t = {
          identifierNamesGenerator: 'hexadecimal' // for virus
          , disableConsoleOutput: false // setting to true breaks things
@@ -163,7 +165,7 @@ export class MinJS {
       keep_fnames: true
    }
 
-   compile(fileNames: string[], options_: ts.CompilerOptions): void { //http://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
+   compile(fileNames: string[], options_: ts.CompilerOptions): void { // http://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
       let program = ts.createProgram(fileNames, options_)
       let emitResult = program.emit()
 
