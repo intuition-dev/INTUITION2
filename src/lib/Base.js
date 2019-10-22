@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.10.11';
+        return 'v6.10.12';
     }
     static date() {
         return new Date().toISOString();
@@ -180,7 +180,7 @@ class BakeWrk {
         const css = a.loc;
         const set = new Set(css);
         logger.info(set);
-        let merged = Object.assign(Object.assign({}, a), options);
+        let merged = { ...a, ...options };
         for (let item of set) {
             this.do1Locale(item, merged);
         }
@@ -196,7 +196,7 @@ class BakeWrk {
                 let key2 = key.substring(0, len);
                 localeProps[key2] = combOptions[key];
             }
-        let locMerged = Object.assign(Object.assign({}, combOptions), localeProps);
+        let locMerged = { ...combOptions, ...localeProps };
         logger.trace(localeProps);
         let locDir = this.dir + '/' + locale;
         logger.trace(locDir);

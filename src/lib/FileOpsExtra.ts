@@ -109,19 +109,20 @@ export class CSV2Json { // TODO: get to work with watcher
    }
 
    convert(): Promise<string> {
+      const THIZ:CSV2Json = this
       return new Promise(function (resolve, reject) {
-         let fn: string = this.dir + '/list.csv'
+
+         let fn: string = THIZ.dir + '/list.csv'
          if (!fs.existsSync(fn)) { //if it does not exist, go up a level
             console.info('not found')
             reject('not found')
          }
-         let thiz = this
          logger.info('1')
 
          csv2JsonV2({ noheader: true }).fromFile(fn)
             .then(function (jsonO) {
                logger.info(jsonO)
-               let fj: string = thiz.dir + '/list.json'
+               let fj: string = THIZ.dir + '/list.json'
 
                fs.writeFileSync(fj, JSON.stringify(jsonO, null, 3))
                resolve('OK')

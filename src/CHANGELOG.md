@@ -1,3 +1,6 @@
+### 6.10.12
+- update tsc config
+
 ### 6.10.11
 - remove riot
 
