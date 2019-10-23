@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "INTUITION.DEV WebAdmin for e-com",
   "private": true,
-  "main": "index.js",
+
   "author": "",
   "engines": {
     "node": ">=12.13.0",
