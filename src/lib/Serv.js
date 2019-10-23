@@ -38,9 +38,9 @@ exports.CustomCors = CustomCors;
 class BaseRPCMethodHandler {
     ret(resp, result, broT, cdnT) {
         if (!broT)
-            broT = 0;
+            broT = 1;
         if (!cdnT)
-            cdnT = 0;
+            cdnT = 1;
         const ret = {};
         ret.result = result;
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
@@ -49,7 +49,7 @@ class BaseRPCMethodHandler {
     }
     retErr(resp, msg, broT, cdnT) {
         if (!broT)
-            broT = 2;
+            broT = 1;
         if (!cdnT)
             cdnT = 1;
         logger.warn(msg);
@@ -69,7 +69,6 @@ class BaseRPCMethodHandler {
         let params;
         try {
             params = URL.parse(req.url, true).query;
-            logger.trace(params);
             const user = params.user;
             const pswd = params.pswd;
             const token = params.token;

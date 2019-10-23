@@ -38,6 +38,8 @@ class MinJS {
                 allowJs: true,
                 skipLibCheck: true,
                 allowSyntheticDefaultImports: true,
+                noImplicitThis: true,
+                strictBindCallApply: true,
                 lib: [
                     'lib.scripthost.d.ts', 'lib.dom.d.ts', 'lib.es5.d.ts', 'lib.es2015.promise.d.ts'
                 ]
@@ -92,7 +94,7 @@ class MinJS {
                     let ugs;
                     try {
                         logger.info('obs', fn);
-                        ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptions());
+                        ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptionsES5());
                         txt = ugs.getObfuscatedCode();
                     }
                     catch (err) {
@@ -113,7 +115,7 @@ class MinJS {
             }
         });
     }
-    static getCompOptions() {
+    static getCompOptionsES5() {
         let t = {
             identifierNamesGenerator: 'hexadecimal',
             disableConsoleOutput: false,
