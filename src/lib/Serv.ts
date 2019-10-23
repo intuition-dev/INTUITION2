@@ -54,13 +54,14 @@ This is called by router
 export class BaseRPCMethodHandler {
 
    /**
-    * returns a data response
-    * @param resp http response
-    * @param result data
+    * @param resp 
+    * @param result 
+    * @param broT careful: defaults to 1, should be larger than cdnT, maybe 0 is best for your cache
+    * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
     */
-   ret(resp, result, broT, cdnT) {
-      if(!broT) broT = 0
-      if(!cdnT) cdnT = 0
+   ret(resp, result, broT?, cdnT?) {
+      if(!broT) broT = 1
+      if(!cdnT) cdnT = 1
 
       const ret:any= {} // new return
       ret.result = result
@@ -72,12 +73,13 @@ export class BaseRPCMethodHandler {
    }//()
 
    /**
-    * returns an error
-    * @param resp http response
-    * @param msg error msg
+    * @param resp 
+    * @param msg 
+    * @param broT careful: defaults to 1, maybe 0 is best for your cache
+    * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
     */
-   retErr(resp, msg, broT, cdnT) {
-      if(!broT) broT = 2
+   retErr(resp, msg, broT?, cdnT?) {
+      if(!broT) broT = 1
       if(!cdnT) cdnT = 1
 
       logger.warn(msg)
