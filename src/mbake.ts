@@ -37,7 +37,7 @@ function help() {
 
    console.info('  For local watcher and server:                               mbake -w .')
 
-   console.info('  Process SASS/SCSS file into css, requires style.yaml:      mbake -s .')
+   console.info('  Process SASS/SCSS file into css, requires style.yaml:       mbake -s .')
    console.info('     or path that has style.yaml, or any sub-folder under /style')
 
    console.info('  Process .ts, .js or native Custom Elements(-custel) :       mbake -t .')
