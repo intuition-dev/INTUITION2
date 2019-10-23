@@ -108,7 +108,6 @@ export class BaseRPCMethodHandler {
       try {
 
          params = URL.parse(req.url, true).query
-         logger.trace(params) // Nat
 
          const user = params.user
          const pswd = params.pswd
