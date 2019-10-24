@@ -27,7 +27,7 @@ function help() {
     console.info('Usage:');
     console.info('  To process any_dir Pug to html recursively:                 mbake .');
     console.info('  For local watcher and server:                               mbake -w .');
-    console.info('  Process SASS/SCSS file into css, requires style.yaml:      mbake -s .');
+    console.info('  Process SASS/SCSS file into css, requires style.yaml:       mbake -s .');
     console.info('     or path that has style.yaml, or any sub-folder under /style');
     console.info('  Process .ts, .js or native Custom Elements(-custel) :       mbake -t .');
     console.info('  To process Pug and dat_i items to items.json:               mbake -i .');

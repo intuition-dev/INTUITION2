@@ -1,3 +1,6 @@
+### 6.10.15
+- bump -sass for pre node v13
+
 ### 6.10.14
 - update tsc config
 
