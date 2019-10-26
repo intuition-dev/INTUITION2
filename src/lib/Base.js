@@ -27,7 +27,6 @@ const findUp = require("find-up");
 const pug = require("pug");
 const minify = require('html-minifier').minify;
 const Terser = require("terser");
-const beeper = require("beeper");
 const markdownItCont = require("markdown-it-container");
 const mad = require('markdown-it')({
     html: true,
@@ -119,7 +118,6 @@ class BakeWrk {
         let result = Terser.minify(code, optionsCompH);
         if (result.error) {
             console.info('Terser error:', result.error);
-            beeper();
             return text;
         }
         return result.code.replace(/;$/, '');

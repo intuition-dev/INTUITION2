@@ -25,7 +25,6 @@
     "dependencies": {
         "adm-zip": ">=0.4.13",
         "autoprefixer": ">=9.7.0",
-        "beeper": ">=2.0.0",
         "better-sqlite3": ">=5.4.3",
         "cheerio": ">=1.0.0-rc.2",
         "chokidar": ">=3.2.2",

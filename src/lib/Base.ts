@@ -33,8 +33,6 @@ import pug = require('pug')
 const minify = require('html-minifier').minify
 const Terser = require("terser")
 
-import beeper = require('beeper');
-
 // code /////////////////////////////////////////////////////////////////////
 
 // metaMD Mad
@@ -161,7 +159,6 @@ export class BakeWrk {
       let result = Terser.minify(code, optionsCompH)
       if (result.error) {
          console.info('Terser error:', result.error)
-         beeper()
          return text
       }
       return result.code.replace(/;$/, '')
