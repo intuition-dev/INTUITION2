@@ -1,3 +1,6 @@
+
+- remove tracer for winston
+
 ### 6.10.15
 - bump -sass for pre node v13
 
