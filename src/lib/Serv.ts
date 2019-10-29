@@ -8,7 +8,7 @@ const serveStatic = require('serve-static')
 const URL = require('url')
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({name: "class name"})
+const log = bunyan.createLogger({name: "serv"})
 
 export class CustomCors {
 

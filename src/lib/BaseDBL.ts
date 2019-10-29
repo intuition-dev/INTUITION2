@@ -1,7 +1,7 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({name: "class name"})
+const log = bunyan.createLogger({name: "b DBL"})
 const fs = require('fs-extra')
 
 export class BaseDBL {

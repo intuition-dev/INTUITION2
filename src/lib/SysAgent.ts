@@ -1,7 +1,5 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
-var logger = require('tracer').console()
-
 export class SysAgent { 
     static guid = require('uuid/v4')
 
