@@ -6,7 +6,7 @@ const bunyan = require('bunyan')
 const log = bunyan.createLogger({name: "class name"})
 import fs = require('fs-extra')
 
-import csv2Json = require('csvtojson')
+const csv = require('csv-parser')
 
 import AdmZip = require('adm-zip')
 import download = require('download')
@@ -99,7 +99,7 @@ export class YamlConfig {
    }//()
 }//class
 
-export class CSV2Json { // TODO: get to work with watcher
+export class CSV2Json { 
    dir: string
    constructor(dir_: string) {
       if (!dir_ || dir_.length < 1) {
@@ -120,8 +120,14 @@ export class CSV2Json { // TODO: get to work with watcher
          }
          log.info('1')
 
-         csv2Json({ noheader: true }).fromFile(fn)
-            .then(function (jsonO) {
+         const list = []
+         fs.createReadStream(fn)
+            .pipe(csv({headers: false}))
+            .on('data', function(row){
+               list.push(row)
+             })
+            .on('end', () => {
+               const jsonO = JSON.stringify(list)
                log.info(jsonO)
                let fj: string = THIZ.dir + '/list.json'
 

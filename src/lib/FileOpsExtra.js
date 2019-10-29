@@ -4,7 +4,7 @@ const FileOpsBase_1 = require("./FileOpsBase");
 const bunyan = require('bunyan');
 const log = bunyan.createLogger({ name: "class name" });
 const fs = require("fs-extra");
-const csv2Json = require("csvtojson");
+const csv = require('csv-parser');
 const AdmZip = require("adm-zip");
 const download = require("download");
 const yaml = require("js-yaml");
@@ -104,8 +104,14 @@ class CSV2Json {
                 reject('not found');
             }
             log.info('1');
-            csv2Json({ noheader: true }).fromFile(fn)
-                .then(function (jsonO) {
+            const list = [];
+            fs.createReadStream(fn)
+                .pipe(csv({ headers: false }))
+                .on('data', function (row) {
+                list.push(row);
+            })
+                .on('end', () => {
+                const jsonO = JSON.stringify(list);
                 log.info(jsonO);
                 let fj = THIZ.dir + '/list.json';
                 fs.writeFileSync(fj, JSON.stringify(jsonO, null, 3));

@@ -1,4 +1,6 @@
 
+### 6.10.17
+- changed to csv from csv2json
 - remove tracer for winston
 
 ### 6.10.15
