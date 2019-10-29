@@ -1,4 +1,6 @@
 
+XX - to do test the new CSV
+
 ### 6.10.17
 - changed to csv from csv2json
 - remove tracer for winston

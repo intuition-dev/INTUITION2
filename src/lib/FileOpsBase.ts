@@ -3,7 +3,7 @@
 import FileHound = require('filehound')
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({name: "file ops b"})
+const log = bunyan.createLogger({src: true, name: "file ops b"})
 import fs = require('fs-extra')
 
 import yaml = require('js-yaml')

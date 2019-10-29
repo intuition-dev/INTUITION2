@@ -3,7 +3,7 @@
 const fetch = require('node-fetch')
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({name: "invoke"})
+const log = bunyan.createLogger({src: true, name: "invoke"})
 
 
 const btoa = function(str){ return Buffer.from(str).toString('base64'); }

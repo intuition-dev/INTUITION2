@@ -2,7 +2,7 @@
 
 const superagent = require('superagent');
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({name: "Email"})
+const log = bunyan.createLogger({src: true, name: "Email"})
 
 export class Email {
     send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg) {

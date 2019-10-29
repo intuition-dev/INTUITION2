@@ -13,7 +13,7 @@ import reload = require('reload')
 import cheerio = require('cheerio')
 import interceptor = require('express-interceptor')
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({name: "WA"})
+const log = bunyan.createLogger({src: true, name: "WA"})
 
 import opn = require('open')
 

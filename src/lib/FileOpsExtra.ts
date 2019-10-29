@@ -3,7 +3,7 @@
 import { Dirs } from './FileOpsBase'
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({name: "file ops x"})
+const log = bunyan.createLogger({src: true, name: "file ops x"})
 import fs = require('fs-extra')
 
 const csv = require('csv-parser')
@@ -124,7 +124,7 @@ export class CSV2Json {
          fs.createReadStream(fn)
             .pipe(csv({headers: false}))
             .on('data', function(row){
-               list.push(row)
+               list.push(Object.values(row))
              })
             .on('end', () => {
                const jsonO = JSON.stringify(list)
