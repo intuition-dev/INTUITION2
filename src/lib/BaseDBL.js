@@ -1,19 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger = require('tracer').console();
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({ name: "class name" });
 const fs = require('fs-extra');
 class BaseDBL {
     defCon(path, fn) {
         this._fn = path + fn;
-        logger.trace(this._fn);
+        log.info(this._fn);
         this._db = new BaseDBL.Database(this._fn);
         this._db.pragma('cache_size = 5000');
-        logger.trace(this._db.pragma('cache_size', { simple: true }));
+        log.info(this._db.pragma('cache_size', { simple: true }));
         this._db.pragma('synchronous=OFF');
         this._db.pragma('count_changes=OFF');
         this._db.pragma('journal_mode=MEMORY');
         this._db.pragma('temp_store=MEMORY');
-        logger.trace(this._db.pragma('locking_mode', { simple: true }));
+        log.info(this._db.pragma('locking_mode', { simple: true }));
         this._db.pragma('automatic_index=false');
     }
     tableExists(tab) {

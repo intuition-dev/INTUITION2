@@ -47,8 +47,6 @@ class SysAgent {
             }, t);
         });
     }
-    static async _info() {
-    }
 }
 exports.SysAgent = SysAgent;
 SysAgent.guid = require('uuid/v4');

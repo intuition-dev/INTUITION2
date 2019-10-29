@@ -10,15 +10,8 @@ export class Ver {
    }
 }
 
-import colors = require('colors')
-const logger = require('tracer').colorConsole({
-   filters: [
-      {
-         warn: colors.yellow,
-         error: [colors.red]
-      }
-   ]
-})
+const bunyan = require('bunyan')
+const log = bunyan.createLogger({name: "Base"})
 
 const path = require('path')
 import { MinJS } from './Extra'
@@ -62,11 +55,11 @@ export class MBake {
    bake(path_, prod: number): Promise<string> {
       return new Promise(function (resolve, reject) {
          if (!path_ || path_.length < 1) {
-            console.info('no path_ arg passed')
+            log.info('no path_ arg passed')
             reject('no path_ arg passed')
          }
          try {
-            console.info(' Baking ' + path_)
+            log.info(' Baking ' + path_)
 
             let d = new Dirs(path_)
             let dirs = d.getFolders()
@@ -74,7 +67,7 @@ export class MBake {
             if (!dirs || dirs.length < 1) {
                //go one up
                path_ = Dirs.goUpOne(path_)
-               console.info(' New Dir: ', path_)
+               log.info(' New Dir: ', path_)
                d = new Dirs(path_)
                dirs = d.getFolders()
             }
@@ -85,7 +78,7 @@ export class MBake {
             }
             resolve('OK')
          } catch (err) {
-            logger.info(err)
+            log.info(err)
             reject(err)
          }
       })//pro
@@ -96,24 +89,24 @@ export class MBake {
       let _this = this
       return new Promise(function (resolve, reject) {
          if (!ppath_ || ppath_.length < 1) {
-            console.info('no path_ arg passed')
+            log.info('no path_ arg passed')
             reject('no path arg passed')
          }
-         logger.info('ib:', ppath_)
+         log.info('ib:', ppath_)
 
          try {
             const i = new Items(ppath_)
             i.itemize()
 
          } catch (err) {
-            logger.info(err)
+            log.info(err)
             reject(err)
          }
 
          _this.bake(ppath_, prod)
             .then(function () { resolve('OK') })
             .catch(function (err) {
-               logger.info(err)
+               log.info(err)
                reject(err)
             })
 
@@ -130,17 +123,17 @@ export class BakeWrk {
       let dir = Dirs.slash(dir_)
 
       this.dir = dir
-      console.info(' processing: ' + this.dir)
+      log.info(' processing: ' + this.dir)
    }
 
    static metaMD(text, options) {//a custom md filter that uses a transformer
-      console.info(' ', options)
+      log.info(' ', options)
       return mad.render(text)
    }
 
    /*
    static marp(text, options) {//a custom md filter that uses a transformer
-      console.info(' ', options)
+      log.info(' ', options)
       const { html, css } = marpit.render(text)
       return html
    }
@@ -158,7 +151,7 @@ export class BakeWrk {
 
       let result = Terser.minify(code, optionsCompH)
       if (result.error) {
-         console.info('Terser error:', result.error)
+         log.info('Terser error:', result.error)
          return text
       }
       return result.code.replace(/;$/, '')
@@ -200,7 +193,7 @@ export class BakeWrk {
          return
       }
       process.chdir(this.dir)
-      logger.trace(this.dir)
+      log.info(this.dir)
 
       let dat = new Dat(this.dir)
 
@@ -221,7 +214,7 @@ export class BakeWrk {
          let glo = yaml.load(fs.readFileSync(p))
 
          options = Object.assign(glo, options)
-         //logger.trace(options)
+         //log.info(options)
       }//()
 
       if (this.locAll(options)) // if locale, we are not writing here, but in sub folders.
@@ -254,7 +247,7 @@ export class BakeWrk {
       // found
       const css: string[] = a.loc
       const set: Set<string> = new Set(css)
-      logger.info(set)
+      log.info(set)
 
       let merged = { ...a, ...options } // es18 spread
       for (let item of set) {
@@ -267,7 +260,7 @@ export class BakeWrk {
 
    do1Locale(locale, combOptions) {
       //extract locale var
-      logger.trace(locale)
+      log.info(locale)
       let localeProps = {}
       localeProps['LOCALE'] = locale // any let can be access in pug or js  eg window.locale = '#{LOCALE}'
 
@@ -279,11 +272,11 @@ export class BakeWrk {
          }
 
       let locMerged = { ...combOptions, ...localeProps } // es18 spread
-      logger.trace(localeProps)
+      log.info(localeProps)
 
       // if dir not exists
       let locDir = this.dir + '/' + locale
-      logger.trace(locDir)
+      log.info(locDir)
       fs.ensureDirSync(locDir)
 
       // if loc.pug exists
@@ -356,7 +349,7 @@ export class Items {
 
          let dl = dn.lastIndexOf('/')
          let url = dn.substring(dl + 1)
-         console.info('', url)
+         log.info('', url)
          y.url = url
 
          if (!y.hasOwnProperty('id'))
@@ -367,16 +360,16 @@ export class Items {
             this.feed.items = []
 
          y.index = this.feed.items.length
-         //console.info('', this.feed.items.length)
+         //log.info('', this.feed.items.length)
          this.feed.items.push(y)
 
       } catch (err) {
-         logger.info(err)
+         log.info(err)
       }
    }
 
    itemize(): string {
-      logger.info('Itemizing: ' + this.dir)
+      log.info('Itemizing: ' + this.dir)
 
       const rootDir: string = this.dir
       // header file
@@ -388,7 +381,7 @@ export class Items {
       Items.clean(y)
       y.mbVer = Ver.ver()
       this.feed = y
-      logger.warn(this.feed)
+      log.warn(this.feed)
 
       for (let val of this.dirs) {
          this._addAnItem(val)
@@ -398,7 +391,7 @@ export class Items {
          this.feed.items = []
 
       if (0 == this.feed.items.length) {
-         logger.info('no items')
+         log.info('no items')
          return
       }
       this.feed.count = this.feed.items.length
@@ -408,7 +401,7 @@ export class Items {
       let items = rootDir + '/items.json'
       fs.writeFileSync(items, json)
 
-      console.info(' processed.')
+      log.info(' processed.')
       return ' processed '
    }
 

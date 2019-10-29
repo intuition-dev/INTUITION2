@@ -9,15 +9,8 @@ class Ver {
     }
 }
 exports.Ver = Ver;
-const colors = require("colors");
-const logger = require('tracer').colorConsole({
-    filters: [
-        {
-            warn: colors.yellow,
-            error: [colors.red]
-        }
-    ]
-});
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({ name: "Base" });
 const path = require('path');
 const Extra_1 = require("./Extra");
 const FileOpsBase_1 = require("./FileOpsBase");
@@ -49,16 +42,16 @@ class MBake {
     bake(path_, prod) {
         return new Promise(function (resolve, reject) {
             if (!path_ || path_.length < 1) {
-                console.info('no path_ arg passed');
+                log.info('no path_ arg passed');
                 reject('no path_ arg passed');
             }
             try {
-                console.info(' Baking ' + path_);
+                log.info(' Baking ' + path_);
                 let d = new FileOpsBase_1.Dirs(path_);
                 let dirs = d.getFolders();
                 if (!dirs || dirs.length < 1) {
                     path_ = FileOpsBase_1.Dirs.goUpOne(path_);
-                    console.info(' New Dir: ', path_);
+                    log.info(' New Dir: ', path_);
                     d = new FileOpsBase_1.Dirs(path_);
                     dirs = d.getFolders();
                 }
@@ -69,7 +62,7 @@ class MBake {
                 resolve('OK');
             }
             catch (err) {
-                logger.info(err);
+                log.info(err);
                 reject(err);
             }
         });
@@ -78,22 +71,22 @@ class MBake {
         let _this = this;
         return new Promise(function (resolve, reject) {
             if (!ppath_ || ppath_.length < 1) {
-                console.info('no path_ arg passed');
+                log.info('no path_ arg passed');
                 reject('no path arg passed');
             }
-            logger.info('ib:', ppath_);
+            log.info('ib:', ppath_);
             try {
                 const i = new Items(ppath_);
                 i.itemize();
             }
             catch (err) {
-                logger.info(err);
+                log.info(err);
                 reject(err);
             }
             _this.bake(ppath_, prod)
                 .then(function () { resolve('OK'); })
                 .catch(function (err) {
-                logger.info(err);
+                log.info(err);
                 reject(err);
             });
         });
@@ -104,10 +97,10 @@ class BakeWrk {
     constructor(dir_) {
         let dir = FileOpsBase_1.Dirs.slash(dir_);
         this.dir = dir;
-        console.info(' processing: ' + this.dir);
+        log.info(' processing: ' + this.dir);
     }
     static metaMD(text, options) {
-        console.info(' ', options);
+        log.info(' ', options);
         return mad.render(text);
     }
     static minify_pg(text, inline) {
@@ -117,7 +110,7 @@ class BakeWrk {
         optionsCompH['output'] = _output;
         let result = Terser.minify(code, optionsCompH);
         if (result.error) {
-            console.info('Terser error:', result.error);
+            log.info('Terser error:', result.error);
             return text;
         }
         return result.code.replace(/;$/, '');
@@ -140,7 +133,7 @@ class BakeWrk {
             return;
         }
         process.chdir(this.dir);
-        logger.trace(this.dir);
+        log.info(this.dir);
         let dat = new FileOpsBase_1.Dat(this.dir);
         let options = dat.getAll();
         options['filters'] = {
@@ -177,7 +170,7 @@ class BakeWrk {
         }
         const css = a.loc;
         const set = new Set(css);
-        logger.info(set);
+        log.info(set);
         let merged = { ...a, ...options };
         for (let item of set) {
             this.do1Locale(item, merged);
@@ -185,7 +178,7 @@ class BakeWrk {
         fs.remove(this.dir + '/index.html');
     }
     do1Locale(locale, combOptions) {
-        logger.trace(locale);
+        log.info(locale);
         let localeProps = {};
         localeProps['LOCALE'] = locale;
         for (let key in combOptions)
@@ -195,9 +188,9 @@ class BakeWrk {
                 localeProps[key2] = combOptions[key];
             }
         let locMerged = { ...combOptions, ...localeProps };
-        logger.trace(localeProps);
+        log.info(localeProps);
         let locDir = this.dir + '/' + locale;
-        logger.trace(locDir);
+        log.info(locDir);
         fs.ensureDirSync(locDir);
         if (fs.existsSync(locDir + '/loc.pug'))
             this.writeFilePg(locDir + '/loc.pug', locMerged, locDir + '/index.html');
@@ -264,7 +257,7 @@ class Items {
             Items.clean(y);
             let dl = dn.lastIndexOf('/');
             let url = dn.substring(dl + 1);
-            console.info('', url);
+            log.info('', url);
             y.url = url;
             if (!y.hasOwnProperty('id'))
                 y.id = url;
@@ -274,11 +267,11 @@ class Items {
             this.feed.items.push(y);
         }
         catch (err) {
-            logger.info(err);
+            log.info(err);
         }
     }
     itemize() {
-        logger.info('Itemizing: ' + this.dir);
+        log.info('Itemizing: ' + this.dir);
         const rootDir = this.dir;
         let fn = rootDir + '/dat_i.yaml';
         if (!fs.existsSync(fn))
@@ -287,21 +280,21 @@ class Items {
         Items.clean(y);
         y.mbVer = Ver.ver();
         this.feed = y;
-        logger.warn(this.feed);
+        log.warn(this.feed);
         for (let val of this.dirs) {
             this._addAnItem(val);
         }
         if (!this.feed.items)
             this.feed.items = [];
         if (0 == this.feed.items.length) {
-            logger.info('no items');
+            log.info('no items');
             return;
         }
         this.feed.count = this.feed.items.length;
         let json = JSON.stringify(this.feed, null, 2);
         let items = rootDir + '/items.json';
         fs.writeFileSync(items, json);
-        console.info(' processed.');
+        log.info(' processed.');
         return ' processed ';
     }
     static clean(o) {

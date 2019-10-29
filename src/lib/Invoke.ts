@@ -2,7 +2,9 @@
 
 const fetch = require('node-fetch')
 
-var logger = require('tracer').console()
+const bunyan = require('bunyan')
+const log = bunyan.createLogger({name: "invoke"})
+
 
 const btoa = function(str){ return Buffer.from(str).toString('base64'); }
 
@@ -30,7 +32,7 @@ export class HttpRPC {//
       this.host = host
       this.port = port
   
-      logger.trace(this.httpOrs, this.host, this.port)
+      log.info(this.httpOrs, this.host, this.port)
   
     }
     //apiPath=''
@@ -67,7 +69,7 @@ export class HttpRPC {//
   
       const THIZ = this
       return new Promise(function(resolve, reject) {
-        //console.info(formData.get('method'))
+        //log.info(formData.get('method'))
         let url:string = THIZ.httpOrs+'://'+THIZ.host + (THIZ.port ? (':' + THIZ.port) : '') + '/'+route 
   
         url = url + '/?' + query
@@ -97,8 +99,8 @@ export class HttpRPC {//
               resolve(resp.result)
             })//fetch
             .catch(function (err) {
-              logger.trace('fetch err')
-              logger.trace(err)
+              log.info('fetch err')
+              log.info(err)
               reject(err)
             })
         })//pro

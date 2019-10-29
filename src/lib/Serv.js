@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const serveStatic = require('serve-static');
 const URL = require('url');
-const logger = require('tracer').console();
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({ name: "class name" });
 class CustomCors {
     constructor(validOrigins) {
         return (request, response, next) => {
@@ -29,7 +30,7 @@ class CustomCors {
         let proto = req.connection.encrypted ? 'https' : 'http';
         const host = req.hostname;
         let original = req.originalUrl;
-        logger.trace(original);
+        log.info(original);
         let origin = proto + '://' + host;
         return origin;
     }
@@ -52,7 +53,7 @@ class BaseRPCMethodHandler {
             broT = 1;
         if (!cdnT)
             cdnT = 1;
-        logger.warn(msg);
+        log.warn(msg);
         const ret = {};
         ret.errorLevel = -1;
         ret.errorMessage = msg;
@@ -77,7 +78,7 @@ class BaseRPCMethodHandler {
             THIZ[method](resp, params, ent, user, pswd, token);
         }
         catch (err) {
-            logger.info(err);
+            log.info(err);
             THIZ.retErr(resp, params, null, null);
         }
     }
@@ -88,7 +89,7 @@ class ExpressRPC {
     makeInstance(origins) {
         if (ExpressRPC._appInst)
             throw new Error('one instance of express app already exists');
-        logger.trace('Allowed >>> ', origins);
+        log.info('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
         ExpressRPC._appInst = express();
         ExpressRPC._appInst.set('trust proxy', true);
@@ -123,7 +124,7 @@ class ExpressRPC {
             broT = 30 * 60;
         if (!cdnT)
             cdnT = (30 * 60) - 1;
-        logger.trace('Serving root:', path, broT, cdnT);
+        log.info('Serving root:', path, broT, cdnT);
         this.appInst.use((req, res, next) => {
             if (req.path.endsWith('.ts') || req.path.endsWith('.pug')) {
                 res.status(403).send('forbidden');
@@ -144,7 +145,7 @@ class ExpressRPC {
     }
     listen(port) {
         this.appInst.listen(port, () => {
-            console.info('server running on port:', port);
+            log.info('server running on port:', port);
         });
     }
 }

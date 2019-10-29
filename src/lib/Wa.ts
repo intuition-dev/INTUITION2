@@ -12,7 +12,8 @@ import reload = require('reload')
 
 import cheerio = require('cheerio')
 import interceptor = require('express-interceptor')
-const logger = require('tracer').console()
+const bunyan = require('bunyan')
+const log = bunyan.createLogger({name: "class name"})
 
 import opn = require('open')
 
@@ -27,9 +28,9 @@ export class Wa {
       
       ww.start(250) // build x ms after saving a file
 
-      console.info(' Serving on ' + 'http://localhost:' + port)
-      console.info(' --------------------------')
-      console.info('')
+      log.info(' Serving on ' + 'http://localhost:' + port)
+      log.info(' --------------------------')
+      log.info('')
       opn('http://localhost:' + port)
    }//()
 }
@@ -51,8 +52,8 @@ export class Watch {
    delay
    start(delay_) {// true for WAN
       this.delay = delay_
-      console.info(' watcher starting')
-      console.info(this.root)
+      log.info(' watcher starting')
+      log.info(this.root)
       let watchList = []
       watchList.push(this.root+'/**/*.md')
       watchList.push( this.root+'/**/*.ts')
@@ -63,7 +64,7 @@ export class Watch {
       watchList.push(this.root+'/**/*.js')
       watchList.push(this.root+'/**/*.json')
 
-      logger.trace(watchList)
+      log.info(watchList)
       this.watcher = chokidar.watch(watchList, {
          ignoreInitial: true,
          cwd: this.root,
@@ -94,7 +95,7 @@ export class Watch {
 
 
    async autoNT(path_: string, wa:string) {//process
-      logger.trace(wa)
+      log.info(wa)
       let path = Dirs.slash(path_)
 
       let p = path.lastIndexOf('/')
@@ -107,12 +108,12 @@ export class Watch {
       }
 
       try {
-         logger.info('WATCHED1:', folder + '/' + fn)
+         log.info('WATCHED1:', folder + '/' + fn)
          await this.mp.autoBake(folder, fn)
          await this.refreshBro()
       
       } catch (err) {
-         logger.warn(err)
+         log.warn(err)
       }
    }//()
 }//class
@@ -129,13 +130,13 @@ export class MetaPro {
 
    constructor(mount) {
       this.mount = mount
-      logger.info('MetaPro', this.mount)
+      log.info('MetaPro', this.mount)
    }
 
    bake(dir: string): Promise<string> {
 
       let folder = this.mount + '/' + dir
-      logger.info(folder)
+      log.info(folder)
       return this.b.bake(folder, 0)
    }
 
@@ -158,7 +159,7 @@ export class MetaPro {
       const folder = Dirs.slash(folder__)
 
       const ext = file.split('.').pop()
-      logger.info('WATCHED2:', folder, ext)
+      log.info('WATCHED2:', folder, ext)
 
       if (ext == 'scss' || ext == 'sass') // css
          return await this.css(folder)
@@ -186,15 +187,15 @@ export class MDevSrv {
 
    constructor(dir, port, reloadPort?) {
       let app = express()
-      logger.info(dir, port)
+      log.info(dir, port)
       app.set('app port', port)
       const rport = Number(reloadPort) || 9856;
       reload(app, {verbose: false, port: rport})
       .then((reloadServer_) => {
          MDevSrv.reloadServer = reloadServer_
-         logger.info('reloadServer')
+         log.info('reloadServer')
       }).catch(e => {
-         logger.trace('==================e', e)
+         log.info('==================e', e)
       })
 
       app.set('views', dir)
@@ -206,7 +207,7 @@ export class MDevSrv {
                return /text\/html/.test(res.get('Content-Type'))
             },
             intercept: function (body, send) {
-               //console.info(' .')
+               //log.info(' .')
                let $document = cheerio.load(body)
                $document('body').prepend('<script src="/reload/reload.js"></script>')
                send($document.html())
@@ -218,7 +219,7 @@ export class MDevSrv {
 
       app.use(express.static(dir))
       app.listen(port, function () {
-         logger.info('dev srv ' + port)
+         log.info('dev srv ' + port)
       })
 
    }//()

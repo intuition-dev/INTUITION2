@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const fetch = require('node-fetch');
-var logger = require('tracer').console();
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({ name: "invoke" });
 const btoa = function (str) { return Buffer.from(str).toString('base64'); };
 class HttpRPC {
     constructor(httpOrs, host, port) {
@@ -11,7 +12,7 @@ class HttpRPC {
         this.httpOrs = httpOrs;
         this.host = host;
         this.port = port;
-        logger.trace(this.httpOrs, this.host, this.port);
+        log.info(this.httpOrs, this.host, this.port);
     }
     setUser(user, pswd) {
         this.user = user;
@@ -57,8 +58,8 @@ class HttpRPC {
                 resolve(resp.result);
             })
                 .catch(function (err) {
-                logger.trace('fetch err');
-                logger.trace(err);
+                log.info('fetch err');
+                log.info(err);
                 reject(err);
             });
         });

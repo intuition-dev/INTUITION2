@@ -2,7 +2,8 @@
 
 import FileHound = require('filehound')
 
-const logger = require('tracer').console()
+const bunyan = require('bunyan')
+const log = bunyan.createLogger({name: "class name"})
 import fs = require('fs-extra')
 
 import yaml = require('js-yaml')
@@ -23,7 +24,7 @@ export class Dirs {
    }
 
    getInDir(sub):any {
-      logger.trace('method renamed use getFilesIn')
+      log.info('method renamed use getFilesIn')
       return this.getFilesIn(sub)
    }
    getFilesIn(sub) {
@@ -34,9 +35,9 @@ export class Dirs {
       let ret: string[] = [] //empty string array
       const ll = this.dir.length + sub.length
       for (let s of rec) {//clean the strings
-         //console.info(s)
+         //log.info(s)
          let n = s.substr(ll)
-         //console.info(n)
+         //log.info(n)
 
          ret.push(n)
       }
@@ -50,19 +51,19 @@ export class Dirs {
       let lst = this.getFolders()
       let ret: string[] = [] //empty string array
       const ll = this.dir.length
-      logger.info(this.dir, ll)
+      log.info(this.dir, ll)
 
       for (let s of lst) {//clean the strings
-         //console.info(s)
+         //log.info(s)
          let n = s.substr(ll)
-         //console.info(n)
+         //log.info(n)
          ret.push(n)
       }
       return ret
    }
 
    getFolders() {
-      logger.info(this.dir)
+      log.info(this.dir)
       const rec = FileHound.create() //recursive
          .paths(this.dir)
          .findSync()
@@ -73,7 +74,7 @@ export class Dirs {
          let s: string = val.substring(0, n)
          ret.push(s)
       }
-      //logger.info(ret)
+      //log.info(ret)
 
       return Array.from(new Set(ret))
    }//()
@@ -84,7 +85,7 @@ export class Dat {
    _path: string
    constructor(path__: string) {
       let path_ = Dirs.slash(path__)
-      //logger.info(path)
+      //log.info(path)
       this._path = path_
 
       let y
@@ -107,10 +108,10 @@ export class Dat {
                condenseFlow: true
             })
             let p = this._path + '/dat.yaml'
-            logger.info(p)
+            log.info(p)
             fs.writeFileSync(p, y)
             resolve('OK')
-         } catch (err) { logger.info(err); reject(err) }
+         } catch (err) { log.info(err); reject(err) }
       })//()
    }
 
@@ -120,7 +121,7 @@ export class Dat {
    _addData() {
       let jn = this.props.include
       let fn = this._path + '/' + jn
-      logger.info(fn)
+      log.info(fn)
       let jso = fs.readFileSync(fn)
       Object.assign(this.props, JSON.parse(jso.toString())) // merge
    }
@@ -150,21 +151,21 @@ export class FileOps {
 
    clone(src, dest): Promise<string> {
       return new Promise((resolve, reject) => {
-         logger.info('copy?')
+         log.info('copy?')
 
          fs.copySync(this.root + src, this.root + dest)
 
          let p = this.root + dest
-         logger.info(p)
+         log.info(p)
          const d = new Dat(p)
          d.write()
-         logger.info('copy!')
+         log.info('copy!')
          resolve('OK')
       })
    }//()
 
    write(destFile, txt) {
-      logger.info(this.root + destFile)
+      log.info(this.root + destFile)
       fs.writeFileSync(this.root + destFile, txt)
    }
 
@@ -174,7 +175,7 @@ export class FileOps {
 
    remove(path) {
       let dir_path = this.root + path
-      logger.info('remove:' + dir_path)
+      log.info('remove:' + dir_path)
       if (fs.existsSync(dir_path)) {
          fs.readdirSync(dir_path).forEach(function (entry) {
             fs.unlinkSync(dir_path + '/' + entry)

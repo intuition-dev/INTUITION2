@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const FileOpsBase_1 = require("./FileOpsBase");
-const logger = require('tracer').console();
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({ name: "class name" });
 const fs = require("fs-extra");
-const csv2JsonV2 = require("csvtojson");
+const csv2Json = require("csvtojson");
 const AdmZip = require("adm-zip");
 const download = require("download");
 const yaml = require("js-yaml");
@@ -15,9 +16,9 @@ class Download {
     autoUZ() {
         const THIZ = this;
         this.getVal().then(function (url) {
-            logger.trace(url);
+            log.info(url);
             const fn = THIZ.getFn(url);
-            logger.trace(fn);
+            log.info(fn);
             THIZ.down(url, fn).then(function () {
                 THIZ.unzip(fn);
             });
@@ -48,7 +49,7 @@ class Download {
                 let dic = yaml.load(data);
                 resolve(dic[THIZ.key]);
             }).catch(err => {
-                console.info('err: where is the file?', err);
+                log.info('err: where is the file?', err);
             });
         });
     }
@@ -61,16 +62,16 @@ class Download {
         return new Promise(function (resolve, reject) {
             download(url).then(data => {
                 fs.writeFileSync(THIZ.targetDir + '/' + fn, data);
-                logger.trace('downloaded');
+                log.info('downloaded');
                 resolve('OK');
             }).catch(err => {
-                console.info('err: where is the file?', err);
+                log.info('err: where is the file?', err);
             });
         });
     }
     unzip(fn) {
         const zfn = this.targetDir + fn;
-        logger.trace(zfn);
+        log.info(zfn);
         const zip = new AdmZip(zfn);
         zip.extractAllTo(this.targetDir, true);
         fs.remove(this.targetDir + '/' + fn);
@@ -81,7 +82,7 @@ Download.truth = 'https://Intuition-DEV.github.io/mbCLI/versions.yaml';
 class YamlConfig {
     constructor(fn) {
         let cfg = yaml.load(fs.readFileSync(fn));
-        console.info(cfg);
+        log.info(cfg);
         return cfg;
     }
 }
@@ -89,7 +90,7 @@ exports.YamlConfig = YamlConfig;
 class CSV2Json {
     constructor(dir_) {
         if (!dir_ || dir_.length < 1) {
-            console.info('no path arg passed');
+            log.info('no path arg passed');
             return;
         }
         this.dir = FileOpsBase_1.Dirs.slash(dir_);
@@ -99,13 +100,13 @@ class CSV2Json {
         return new Promise(function (resolve, reject) {
             let fn = THIZ.dir + '/list.csv';
             if (!fs.existsSync(fn)) {
-                console.info('not found');
+                log.info('not found');
                 reject('not found');
             }
-            logger.info('1');
-            csv2JsonV2({ noheader: true }).fromFile(fn)
+            log.info('1');
+            csv2Json({ noheader: true }).fromFile(fn)
                 .then(function (jsonO) {
-                logger.info(jsonO);
+                log.info(jsonO);
                 let fj = THIZ.dir + '/list.json';
                 fs.writeFileSync(fj, JSON.stringify(jsonO, null, 3));
                 resolve('OK');
@@ -116,7 +117,7 @@ class CSV2Json {
 exports.CSV2Json = CSV2Json;
 class DownloadFrag {
     constructor(dir, ops) {
-        logger.trace('Extracting to', dir);
+        log.info('Extracting to', dir);
         if (!ops) {
             new Download('headFrag', dir).auto();
             new Download('Bind', dir).auto();

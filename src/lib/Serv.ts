@@ -7,7 +7,8 @@ const serveStatic = require('serve-static')
 // const lz = require('lz-string')
 const URL = require('url')
 
-const logger = require('tracer').console()
+const bunyan = require('bunyan')
+const log = bunyan.createLogger({name: "class name"})
 
 export class CustomCors {
 
@@ -39,7 +40,7 @@ export class CustomCors {
       let proto = req.connection.encrypted ? 'https' : 'http'
       const host = req.hostname
       let original = req.originalUrl
-      logger.trace(original)
+      log.info(original)
 
       let origin = proto + '://' + host
       return origin
@@ -82,7 +83,7 @@ export class BaseRPCMethodHandler {
       if(!broT) broT = 1
       if(!cdnT) cdnT = 1
 
-      logger.warn(msg)
+      log.warn(msg)
       const ret:any= {} // new return
       ret.errorLevel = -1
       ret.errorMessage = msg
@@ -120,7 +121,7 @@ export class BaseRPCMethodHandler {
          THIZ[method](resp, params, ent, user, pswd, token)
 
       } catch(err) {
-         logger.info(err)
+         log.info(err)
          THIZ.retErr(resp, params, null, null)
       }
    }//()
@@ -148,7 +149,7 @@ export class ExpressRPC {
    makeInstance(origins:Array<string>) {
       // does it already exist?
       if(ExpressRPC._appInst) throw new Error( 'one instance of express app already exists')
-      logger.trace('Allowed >>> ', origins)
+      log.info('Allowed >>> ', origins)
       const cors = new CustomCors(origins)
       ExpressRPC._appInst = express()
 
@@ -165,7 +166,7 @@ export class ExpressRPC {
       serviceApp.routeRPC('api', 'pageOne', (req, res) => { 
 
          const params = URL.parse(req.url, true).query
-         logger.trace(params)
+         log.info(params)
          const method = params.method
 
          if('multiply'==method) { // RPC for the page could handle several methods, eg one for each of CRUD
@@ -226,7 +227,7 @@ export class ExpressRPC {
       if(!broT ) broT = 30*60
       if(!cdnT ) cdnT = (30*60)-1 // cdn is one less than bro
       
-      logger.trace('Serving root:', path, broT, cdnT)
+      log.info('Serving root:', path, broT, cdnT)
 
       //filter forbidden
       this.appInst.use((req, res, next) => {
@@ -260,7 +261,7 @@ export class ExpressRPC {
     */
    listen(port:number) {
       this.appInst.listen(port, () => {
-         console.info('server running on port:', port)
+         log.info('server running on port:', port)
       })
    }
 }//class

@@ -17,13 +17,14 @@ const stripCssComments = require("strip-css-comments");
 const path = require("path");
 const fs = require("fs-extra");
 const FileHound = require("filehound");
-const logger = require('tracer').console();
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({ name: "extra" });
 const JavaScriptObfuscator = require("javascript-obfuscator");
 const ts = __importStar(require("typescript"));
 const Terser = require("terser");
 class MinJS {
     ts(dir) {
-        logger.info(dir);
+        log.info(dir);
         const THIZ = this;
         return new Promise(function (resolve, reject) {
             const rec = FileHound.create()
@@ -65,11 +66,11 @@ class MinJS {
                     await THIZ._minOneJS(fn);
                 }
                 catch (err) {
-                    logger.warn(err);
+                    log.warn(err);
                     reject(err);
                 }
             }
-            console.info('Done!'.green);
+            log.info('Done!');
             resolve('OK');
         });
     }
@@ -77,7 +78,7 @@ class MinJS {
         return new Promise(async function (resolve, reject) {
             let result;
             try {
-                logger.trace(fn);
+                log.info(fn);
                 let code = fs.readFileSync(fn).toString('utf8');
                 let optionsCompJS = Object.assign({}, MinJS.CompOptionsJS);
                 let _output = { indent_level: 0, quote_style: 0, semicolons: false };
@@ -93,13 +94,13 @@ class MinJS {
                 if (fn.includes('-custel')) {
                     let ugs;
                     try {
-                        logger.info('obs', fn);
+                        log.info('obs', fn);
                         ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptionsES5());
                         txt = ugs.getObfuscatedCode();
                     }
                     catch (err) {
-                        logger.error(fn, 'error');
-                        logger.error(err);
+                        log.error(fn, 'error');
+                        log.error(err);
                         reject(err);
                     }
                 }
@@ -110,7 +111,7 @@ class MinJS {
                 resolve('OK');
             }
             catch (err) {
-                logger.warn(fn, err, result);
+                log.warn(fn, err, result);
                 reject(err);
             }
         });
@@ -140,14 +141,14 @@ class MinJS {
             if (diagnostic.file) {
                 let { line, character } = diagnostic.file.getLineAndCharacterOfPosition(diagnostic.start);
                 let message = ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n");
-                console.info(`${diagnostic.file.fileName}:`.cyan, `${line + 1}:${character + 1}`.yellow, `${message}`);
+                log.info(`${diagnostic.file.fileName}:`, `${line + 1}:${character + 1}`, `${message}`);
             }
             else {
-                console.info(`${ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")}`);
+                log.info(`${ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")}`);
             }
         });
         let exitCode = emitResult.emitSkipped ? 1 : 0;
-        console.info(`status code '${exitCode}'.`);
+        log.info(`status code '${exitCode}'.`);
     }
 }
 exports.MinJS = MinJS;
@@ -176,15 +177,15 @@ class Sas {
                 a = yaml.load(fs.readFileSync(dir2));
                 dir = dir2.slice(0, -12);
             }
-            logger.info(dir);
+            log.info(dir);
             const css = a.css;
             const set = new Set(css);
-            logger.info(set);
+            log.info(set);
             for (let item of set) {
                 await THIZ._trans(item, dir);
             }
-            console.info();
-            console.info(' Done!'.green);
+            log.info();
+            log.info(' Done!');
             resolve('OK');
         });
     }
@@ -195,7 +196,7 @@ class Sas {
         });
         postcss([autoprefixer])
             .process(css.css, { from: undefined }).then(function (result) {
-            console.info('autoprefixer');
+            log.info('autoprefixer');
             result.warnings().forEach(function (warn) {
                 console.warn(warn.toString());
             });
