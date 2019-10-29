@@ -5,7 +5,7 @@ import { Dirs } from './FileOpsBase'
 const logger = require('tracer').console()
 import fs = require('fs-extra')
 
-import csv2JsonV2 = require('csvtojson')
+import csv2Json = require('csvtojson')
 
 import AdmZip = require('adm-zip')
 import download = require('download')
@@ -119,7 +119,7 @@ export class CSV2Json { // TODO: get to work with watcher
          }
          logger.info('1')
 
-         csv2JsonV2({ noheader: true }).fromFile(fn)
+         csv2Json({ noheader: true }).fromFile(fn)
             .then(function (jsonO) {
                logger.info(jsonO)
                let fj: string = THIZ.dir + '/list.json'
