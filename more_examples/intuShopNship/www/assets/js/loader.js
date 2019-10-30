@@ -1,5 +1,5 @@
 depp.define({
-    'poly': [
+    'pre': [
         '#jquery',
         '#RPC',
         '/sapi/sapi.js',
@@ -13,4 +13,4 @@ depp.define({
     ]
 });
 
-depp.require(['DOM', 'poly', 'css']);
+depp.require(['DOM', 'ppreoly', 'css'])
