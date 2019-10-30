@@ -9,7 +9,9 @@ const reload = require("reload");
 const cheerio = require("cheerio");
 const interceptor = require("express-interceptor");
 const bunyan = require('bunyan');
-const log = bunyan.createLogger({ name: "class name" });
+const bformat = require('bunyan-format');
+const formatOut = bformat({ outputMode: 'short' });
+const log = bunyan.createLogger({ src: true, stream: formatOut, name: "WA" });
 const opn = require("open");
 class Wa {
     static watch(dir, port, reloadPort) {

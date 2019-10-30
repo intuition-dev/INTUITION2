@@ -4,7 +4,9 @@ const express = require('express');
 const serveStatic = require('serve-static');
 const URL = require('url');
 const bunyan = require('bunyan');
-const log = bunyan.createLogger({ name: "class name" });
+const bformat = require('bunyan-format');
+const formatOut = bformat({ outputMode: 'short' });
+const log = bunyan.createLogger({ src: true, stream: formatOut, name: "serv" });
 class CustomCors {
     constructor(validOrigins) {
         return (request, response, next) => {

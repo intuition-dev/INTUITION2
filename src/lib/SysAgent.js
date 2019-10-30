@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger = require('tracer').console();
 class SysAgent {
     static async stats() {
         const track = new Object();

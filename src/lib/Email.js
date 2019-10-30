@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const superagent = require('superagent');
 const bunyan = require('bunyan');
-const log = bunyan.createLogger({ name: "class name" });
+const bformat = require('bunyan-format');
+const formatOut = bformat({ outputMode: 'short' });
+const log = bunyan.createLogger({ src: true, stream: formatOut, name: "Email" });
 class Email {
     send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg) {
         email = Buffer.from(email, 'base64').toString();

@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const FileOpsBase_1 = require("./FileOpsBase");
 const bunyan = require('bunyan');
-const log = bunyan.createLogger({ name: "class name" });
+const bformat = require('bunyan-format');
+const formatOut = bformat({ outputMode: 'short' });
+const log = bunyan.createLogger({ src: true, stream: formatOut, name: "file ops x" });
 const fs = require("fs-extra");
 const csv = require('csv-parser');
 const AdmZip = require("adm-zip");
@@ -108,7 +110,7 @@ class CSV2Json {
             fs.createReadStream(fn)
                 .pipe(csv({ headers: false }))
                 .on('data', function (row) {
-                list.push(row);
+                list.push(Object.values(row));
             })
                 .on('end', () => {
                 const jsonO = JSON.stringify(list);

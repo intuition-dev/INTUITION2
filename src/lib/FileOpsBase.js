@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const FileHound = require("filehound");
 const bunyan = require('bunyan');
-const log = bunyan.createLogger({ name: "class name" });
+const bformat = require('bunyan-format');
+const formatOut = bformat({ outputMode: 'short' });
+const log = bunyan.createLogger({ src: true, stream: formatOut, name: "file ops b" });
 const fs = require("fs-extra");
 const yaml = require("js-yaml");
 const path = require("path");
