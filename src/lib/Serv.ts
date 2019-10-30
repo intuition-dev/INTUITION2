@@ -8,7 +8,9 @@ const serveStatic = require('serve-static')
 const URL = require('url')
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({src: true, name: "serv"})
+const bformat = require('bunyan-format')  
+const formatOut = bformat({ outputMode: 'short' })
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "serv"})
 
 export class CustomCors {
 

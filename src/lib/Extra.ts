@@ -16,7 +16,9 @@ import fs = require('fs-extra')
 import FileHound = require('filehound')
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({src: true, name: "extra"})
+const bformat = require('bunyan-format')  
+const formatOut = bformat({ outputMode: 'short' })
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "extra"})
 
 import JavaScriptObfuscator = require('javascript-obfuscator')
 import { TInputOptions } from "javascript-obfuscator/src/types/options/TInputOptions"

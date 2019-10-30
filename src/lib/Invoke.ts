@@ -3,7 +3,9 @@
 const fetch = require('node-fetch')
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({src: true, name: "invoke"})
+const bformat = require('bunyan-format')  
+const formatOut = bformat({ outputMode: 'short' })
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "invoke"})
 
 
 const btoa = function(str){ return Buffer.from(str).toString('base64'); }

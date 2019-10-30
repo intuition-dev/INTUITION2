@@ -3,7 +3,9 @@
 import { Dirs } from './FileOpsBase'
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({src: true, name: "file ops x"})
+const bformat = require('bunyan-format')  
+const formatOut = bformat({ outputMode: 'short' })
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "file ops x"})
 import fs = require('fs-extra')
 
 const csv = require('csv-parser')

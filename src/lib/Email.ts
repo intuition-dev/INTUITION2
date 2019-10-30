@@ -2,7 +2,9 @@
 
 const superagent = require('superagent');
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({src: true, name: "Email"})
+const bformat = require('bunyan-format')  
+const formatOut = bformat({ outputMode: 'short' })
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "Email"})
 
 export class Email {
     send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg) {

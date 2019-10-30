@@ -1,7 +1,9 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({src: true, name: "b DBL"})
+const bformat = require('bunyan-format')  
+const formatOut = bformat({ outputMode: 'short' })
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "b DBL"})
 const fs = require('fs-extra')
 
 export class BaseDBL {

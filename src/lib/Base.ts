@@ -11,7 +11,9 @@ export class Ver {
 }
 
 const bunyan = require('bunyan')
-const log = bunyan.createLogger({src: true, name: "Base"})
+const bformat = require('bunyan-format')  
+const formatOut = bformat({ outputMode: 'short' })
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "Base"})
 
 const path = require('path')
 import { MinJS } from './Extra'
