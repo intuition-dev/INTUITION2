@@ -8,8 +8,6 @@ const formatOut = bformat({ outputMode: 'short' })
 const log = bunyan.createLogger({src: true, stream: formatOut, name: "file ops x"})
 import fs = require('fs-extra')
 
-const csv = require('csv-parser')
-
 import AdmZip = require('adm-zip')
 import download = require('download')
 import yaml = require('js-yaml')
@@ -100,45 +98,6 @@ export class YamlConfig {
       return cfg
    }//()
 }//class
-
-export class CSV2Json { 
-   dir: string
-   constructor(dir_: string) {
-      if (!dir_ || dir_.length < 1) {
-         log.info('no path arg passed')
-         return
-      }
-      this.dir = Dirs.slash(dir_)
-   }
-
-   convert(): Promise<string> {
-      const THIZ:CSV2Json = this
-      return new Promise(function (resolve, reject) {
-
-         let fn: string = THIZ.dir + '/list.csv'
-         if (!fs.existsSync(fn)) { //if it does not exist, go up a level
-            log.info('not found')
-            reject('not found')
-         }
-         log.info('1')
-
-         const list = []
-         fs.createReadStream(fn)
-            .pipe(csv({headers: false}))
-            .on('data', function(row){
-               list.push(Object.values(row))
-             })
-            .on('end', () => {
-               const jsonO = JSON.stringify(list)
-               log.info(jsonO)
-               let fj: string = THIZ.dir + '/list.json'
-
-               fs.writeFileSync(fj, JSON.stringify(jsonO, null, 3))
-               resolve('OK')
-            })
-      })
-   }//()
-}
 
 export class DownloadFrag {
    constructor(dir, ops: boolean) {

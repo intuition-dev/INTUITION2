@@ -1,8 +1,11 @@
+### 6.10.20
 
+- remove CSV. use client side yaml
 
 ### 6.10.19
 - changed to csv from csv2json
 - remove tracer for winston
+- convert logger to bunyarn
 
 ### 6.10.15
 - bump -sass for pre node v13
