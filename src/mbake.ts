@@ -9,8 +9,6 @@ import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
 import { DownloadFrag, VersionNag, Download } from './lib/FileOpsExtra'
 
-
-
 VersionNag.isCurrent('mbake', Ver.ver()).then(function (isCurrent_: boolean) {
    try {
       if (!isCurrent_)
