@@ -136,9 +136,9 @@ export class BaseRPCMethodHandler {
 export class ExpressRPC {
    
    /**
-    * DON'T access outside
+    * DON'T access outside, use appInst()
     */
-   static _appInst // forces single port in case of static content
+   private static  _appInst // forces single port in case of static content
 
    /**
     This is how to a access it
@@ -155,11 +155,11 @@ export class ExpressRPC {
       const cors = new CustomCors(origins)
       ExpressRPC._appInst = express()
 
-      ExpressRPC._appInst.set('trust proxy', true)
+      // ExpressRPC._appInst.set('trust proxy', true)
 
       this.appInst.use(cors)
 
-   }
+   }//()
 
    /**
     * @param route 
