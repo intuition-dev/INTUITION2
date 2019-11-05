@@ -63,6 +63,7 @@
         "cover 99.01%"
     ],
     "devDependencies": {
+         "lodash": ">=4.17.15",
         "@types/express": ">=4.17.2",
         "@types/node": ">=12.12.5",
         "async-limiter": ">=1.0.1",
