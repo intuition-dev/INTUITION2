@@ -17,7 +17,7 @@ export class CustomCors {
    constructor(validOrigins:Array<string>) {
 
       return (request, response, next) => {
-   
+         log.info('cors')
          const origin = request.get('origin')
          if (!origin) {
             return next()
