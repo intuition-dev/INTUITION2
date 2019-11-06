@@ -1,5 +1,8 @@
-### 6.10.20
+### 6.11.1
+- tsc bump
+- minor server trace
 
+### 6.10.20
 - remove CSV. use client side yaml
 
 ### 6.10.19
@@ -132,7 +135,7 @@
 
 ### 6.07.01
 -  improve watcher's timeInterceptor to be fast
--  impoving server for static handling on single port via instance
+-  improving server for static handling on single port via instance
 
 ### 6.06.28
 - removed skip of index.html and index.pug in Dirs()

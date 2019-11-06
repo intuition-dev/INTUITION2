@@ -148,5 +148,5 @@ export class FileMethods {
 }
 
 module.exports = {
-   CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag, FileMethods
+ DownloadFrag, YamlConfig, Download, VersionNag, FileMethods
 }

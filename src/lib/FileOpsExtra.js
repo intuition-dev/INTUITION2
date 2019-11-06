@@ -6,7 +6,6 @@ const bformat = require('bunyan-format');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "file ops x" });
 const fs = require("fs-extra");
-const csv = require('csv-parser');
 const AdmZip = require("adm-zip");
 const download = require("download");
 const yaml = require("js-yaml");
@@ -89,40 +88,6 @@ class YamlConfig {
     }
 }
 exports.YamlConfig = YamlConfig;
-class CSV2Json {
-    constructor(dir_) {
-        if (!dir_ || dir_.length < 1) {
-            log.info('no path arg passed');
-            return;
-        }
-        this.dir = FileOpsBase_1.Dirs.slash(dir_);
-    }
-    convert() {
-        const THIZ = this;
-        return new Promise(function (resolve, reject) {
-            let fn = THIZ.dir + '/list.csv';
-            if (!fs.existsSync(fn)) {
-                log.info('not found');
-                reject('not found');
-            }
-            log.info('1');
-            const list = [];
-            fs.createReadStream(fn)
-                .pipe(csv({ headers: false }))
-                .on('data', function (row) {
-                list.push(Object.values(row));
-            })
-                .on('end', () => {
-                const jsonO = JSON.stringify(list);
-                log.info(jsonO);
-                let fj = THIZ.dir + '/list.json';
-                fs.writeFileSync(fj, JSON.stringify(jsonO, null, 3));
-                resolve('OK');
-            });
-        });
-    }
-}
-exports.CSV2Json = CSV2Json;
 class DownloadFrag {
     constructor(dir, ops) {
         log.info('Extracting to', dir);
@@ -165,5 +130,5 @@ class FileMethods {
 }
 exports.FileMethods = FileMethods;
 module.exports = {
-    CSV2Json, DownloadFrag, YamlConfig, Download, VersionNag, FileMethods
+    DownloadFrag, YamlConfig, Download, VersionNag, FileMethods
 };

@@ -57,7 +57,14 @@ class BaseDBL {
             this._db.close();
             fs.removeSync(this._fn);
         }
-        catch (err) { }
+        catch (err) {
+            log.warn(err);
+        }
+    }
+    async backup(newName) {
+        await this._db.backup(newName, { progress({ totalPages: t, remainingPages: r }) {
+                log.trace(r);
+            } });
     }
 }
 exports.BaseDBL = BaseDBL;
