@@ -5,7 +5,7 @@ import { PaidHook } from './lib/PaidHook';
 import { SDB } from './lib/SDB';
 
 const yaml = require("js-yaml")
-const fs = require("fs")
+const fs = require("fs-extra")
 
 const srv = new ExpressRPC()
 srv.makeInstance(['*'])
