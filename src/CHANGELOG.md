@@ -1,4 +1,4 @@
-### 6.11.1
+### 6.11.2
 - tsc bump
 - minor server trace
 

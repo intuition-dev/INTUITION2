@@ -10,7 +10,6 @@ const log = bunyan.createLogger({ src: true, stream: formatOut, name: "serv" });
 class CustomCors {
     constructor(validOrigins) {
         return (request, response, next) => {
-            log.info('cors');
             const origin = request.get('origin');
             if (!origin) {
                 return next();
