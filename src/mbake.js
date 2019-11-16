@@ -87,6 +87,7 @@ function pugIntro() {
     new FileOpsExtra_1.Download('pugInto', __dirname).autoUZ();
     console.info('Extracted Intro to Pug example');
 }
+SysAgent_1.SysAgent.diskUsage();
 function ports() {
     SysAgent_1.SysAgent.ports();
 }

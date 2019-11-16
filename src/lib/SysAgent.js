@@ -1,7 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const find = require('find-process');
+const disk = require('diskusage');
 class SysAgent {
+    static async diskUsage() {
+        const diskS = await disk.check('/');
+        console.log(JSON.stringify(diskS));
+        return diskS;
+    }
     static async ports() {
         let ports = [];
         await SysAgent.si.networkConnections().then(data => {

@@ -118,7 +118,10 @@ function pugIntro() {
    console.info('Extracted Intro to Pug example')
 }//()
 
-function ports() {
+
+function ports() { // and disk
+   SysAgent.diskUsage()
+
    SysAgent.ports()
 }
 

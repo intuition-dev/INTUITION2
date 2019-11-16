@@ -1,6 +1,7 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
 const find = require('find-process')
+const disk = require('diskusage')
 
 export class SysAgent { 
     static guid = require('uuid/v4')
@@ -8,6 +9,12 @@ export class SysAgent {
     static si = require('systeminformation')
 
     static os = require('os')
+
+    static async diskUsage() { // free disk space 
+      const diskS = await disk.check('/')
+      console.log(JSON.stringify(diskS))
+      return diskS
+    }
 
     static async ports() { 
       let ports = []
