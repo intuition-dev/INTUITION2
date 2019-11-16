@@ -21,6 +21,7 @@ export class SysAgent {
       for (let i = 0; i < ports.length; i++) {
          let row = await find('port', ports[i])
             row = row[0]
+            if(!row) continue
             row['port'] = ports[i]
             delete row['ppid']
             delete row['uid']
