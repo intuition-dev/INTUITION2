@@ -7,6 +7,7 @@ const Extra_1 = require("./lib/Extra");
 const FileOpsBase_1 = require("./lib/FileOpsBase");
 const Wa_1 = require("./lib/Wa");
 const FileOpsExtra_1 = require("./lib/FileOpsExtra");
+const SysAgent_1 = require("./lib/SysAgent");
 FileOpsExtra_1.VersionNag.isCurrent('mbake', Base_1.Ver.ver()).then(function (isCurrent_) {
     try {
         if (!isCurrent_)
@@ -33,6 +34,7 @@ function help() {
     console.info('  To process Pug and dat_i items to items.json:               mbake -i .');
     console.info('     or any sub-folder, where path is folder containing dat_i.yaml;');
     console.info('     also does regular mbake of Pug');
+    console.info('  List ports in use w/ process ID:                            mbake -p');
     console.info('  Download fragment to setup the app FW(framework):           mbake -f .');
     console.info();
     console.info('  Download Intro to Pug example:                              mbake --pug ');
@@ -53,6 +55,7 @@ const optionDefinitions = [
     { name: 'MinJS', alias: 't', type: Boolean },
     { name: 'frag', alias: 'f', type: Boolean },
     { name: 'watcher', alias: 'w', type: Boolean },
+    { name: 'ports', alias: 'p', type: Boolean },
     { name: 'pug', type: Boolean },
 ];
 const argsParsed = commandLineArgs(optionDefinitions);
@@ -83,6 +86,9 @@ if (arg) {
 function pugIntro() {
     new FileOpsExtra_1.Download('pugInto', __dirname).autoUZ();
     console.info('Extracted Intro to Pug example');
+}
+function ports() {
+    SysAgent_1.SysAgent.ports();
 }
 function bake(arg) {
     let pro = new Base_1.MBake().bake(arg, 0);
@@ -124,6 +130,8 @@ else if (argsParsed.version)
     version();
 else if (argsParsed.help)
     help();
+else if (argsParsed.ports)
+    ports();
 else if (argsParsed.watcher)
     Wa_1.Wa.watch(arg, argsParsed.port, argsParsed['reload-port']);
 else if (!arg)

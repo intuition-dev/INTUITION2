@@ -1,6 +1,29 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const find = require('find-process');
 class SysAgent {
+    static async ports() {
+        let ports = [];
+        await SysAgent.si.networkConnections().then(data => {
+            data.forEach(function (v) {
+                ports.push(v.localport);
+            });
+        });
+        let results = [];
+        for (let i = 0; i < ports.length; i++) {
+            let row = await find('port', ports[i]);
+            row = row[0];
+            row['port'] = ports[i];
+            delete row['ppid'];
+            delete row['uid'];
+            delete row['gid'];
+            delete row['cmd'];
+            delete row['bin'];
+            results.push(row);
+        }
+        console.log(results);
+        return results;
+    }
     static async stats() {
         const track = new Object();
         track['guid'] = SysAgent.guid();
