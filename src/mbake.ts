@@ -119,8 +119,7 @@ function pugIntro() {
 }//()
 
 
-function ports() { // and disk
-   SysAgent.diskUsage()
+function ports() { 
 
    SysAgent.ports()
 }

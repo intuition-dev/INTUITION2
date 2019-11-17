@@ -219,6 +219,7 @@ export class ExpressRPC {
    }//()
 
    /**
+    * Set the cache header and time
     * 
     * @param path 
     * @param broT Bro(wser) cache time in seconds- 1800
