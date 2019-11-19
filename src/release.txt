@@ -1,5 +1,5 @@
 base lib
-package,
+pacakge.json
 change notes
 versions
 
