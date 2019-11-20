@@ -1,10 +1,9 @@
 
 mbake:  v6.11.7
 
-mbakex: v1.11.7
+mbakex: v1.11.8
 
 intu:   v1.11.7
-
 
 headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/headFrag.pug
 VM:       https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/BaseViewModel.ts
@@ -12,7 +11,6 @@ Bind:     https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/templ
 d:        https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/d.ts
 opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/ops.pug
 opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/ops.js
-
 
 pugInto:  https://github.com/intuition-dev/mbCLI/raw/master/pug/pugIntro.zip
 
