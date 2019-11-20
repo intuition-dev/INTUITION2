@@ -9,7 +9,7 @@ const fs = require("fs-extra");
 const AdmZip = require("adm-zip");
 const download = require("download");
 const yaml = require("js-yaml");
-class Download {
+class DownloadC {
     constructor(key_, targetDir_) {
         this.key = key_;
         this.targetDir = targetDir_;
@@ -46,11 +46,11 @@ class Download {
     getVal() {
         const THIZ = this;
         return new Promise(function (resolve, reject) {
-            download(Download.truth).then(data => {
+            download(DownloadC.truth).then(data => {
                 let dic = yaml.load(data);
                 resolve(dic[THIZ.key]);
             }).catch(err => {
-                log.info('err: where is the file?', err);
+                log.info('err: where is the vfile?', err, DownloadC.truth);
             });
         });
     }
@@ -66,7 +66,7 @@ class Download {
                 log.info('downloaded');
                 resolve('OK');
             }).catch(err => {
-                log.info('err: where is the file?', err);
+                log.info('err: where is the file?', err, url);
             });
         });
     }
@@ -78,8 +78,8 @@ class Download {
         fs.remove(this.targetDir + '/' + fn);
     }
 }
-exports.Download = Download;
-Download.truth = 'https://Intuition-DEV.github.io/mbCLI/versions.yaml';
+exports.DownloadC = DownloadC;
+DownloadC.truth = 'https://Intuition-DEV.github.io/mbCLI/versions.yaml';
 class YamlConfig {
     constructor(fn) {
         let cfg = yaml.load(fs.readFileSync(fn));
@@ -92,19 +92,19 @@ class DownloadFrag {
     constructor(dir, ops) {
         log.info('Extracting to', dir);
         if (!ops) {
-            new Download('headFrag', dir).auto();
-            new Download('Bind', dir).auto();
+            new DownloadC('headFrag', dir).auto();
+            new DownloadC('Bind', dir).auto();
         }
         if (ops) {
-            new Download('opsPug', dir).auto();
-            new Download('opsJs', dir).auto();
+            new DownloadC('opsPug', dir).auto();
+            new DownloadC('opsJs', dir).auto();
         }
     }
 }
 exports.DownloadFrag = DownloadFrag;
 class VersionNag {
     static isCurrent(prod, ver) {
-        const down = new Download(prod, null);
+        const down = new DownloadC(prod, null);
         return down.checkVer(ver);
     }
 }
@@ -130,5 +130,5 @@ class FileMethods {
 }
 exports.FileMethods = FileMethods;
 module.exports = {
-    DownloadFrag, YamlConfig, Download, VersionNag, FileMethods
+    DownloadFrag, YamlConfig, DownloadC, VersionNag, FileMethods
 };

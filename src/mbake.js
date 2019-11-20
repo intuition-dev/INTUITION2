@@ -84,7 +84,7 @@ if (arg) {
     }
 }
 function pugIntro() {
-    new FileOpsExtra_1.Download('pugInto', __dirname).autoUZ();
+    new FileOpsExtra_1.DownloadC('pugInto', __dirname).autoUZ();
     console.info('Extracted Intro to Pug example');
 }
 function ports() {

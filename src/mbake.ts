@@ -7,7 +7,7 @@ import { Ver, MBake } from './lib/Base'
 import { MinJS, Sas } from './lib/Extra'
 import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
-import { DownloadFrag, VersionNag, Download } from './lib/FileOpsExtra'
+import { DownloadFrag, VersionNag, DownloadC } from './lib/FileOpsExtra'
 import { SysAgent } from './lib/SysAgent'
 
 VersionNag.isCurrent('mbake', Ver.ver()).then(function (isCurrent_: boolean) {
@@ -114,7 +114,7 @@ if (arg) {
 
 //  ////////////////////////////////////////////////////////////////////////////////////////////////
 function pugIntro() {
-   new Download('pugInto', __dirname).autoUZ()
+   new DownloadC('pugInto', __dirname).autoUZ()
    console.info('Extracted Intro to Pug example')
 }//()
 

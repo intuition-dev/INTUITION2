@@ -12,7 +12,7 @@ import AdmZip = require('adm-zip')
 import download = require('download')
 import yaml = require('js-yaml')
 
-export class Download {
+export class DownloadC {
    // in docs root via git
    static truth: string = 'https://Intuition-DEV.github.io/mbCLI/versions.yaml'
    key: string
@@ -57,11 +57,11 @@ export class Download {
    getVal() { // from truth
       const THIZ = this
       return new Promise(function (resolve, reject) {
-         download(Download.truth).then(data => {
+         download(DownloadC.truth).then(data => {
             let dic = yaml.load(data)
             resolve(dic[THIZ.key])
          }).catch(err => {
-            log.info('err: where is the file?', err)
+            log.info('err: where is the vfile?', err, DownloadC.truth)
          })
       })//pro
    }//()
@@ -77,7 +77,7 @@ export class Download {
             log.info('downloaded')
             resolve('OK')
          }).catch(err => {
-            log.info('err: where is the file?', err)
+            log.info('err: where is the file?', err, url)
          })
       })//pro
    }//()
@@ -103,13 +103,13 @@ export class DownloadFrag {
    constructor(dir, ops: boolean) {
       log.info('Extracting to', dir)
       if (!ops) {
-         new Download('headFrag',dir).auto()
+         new DownloadC('headFrag',dir).auto()
          //new Download('VM',  dir).auto()
-         new Download('Bind',  dir).auto()
+         new DownloadC('Bind',  dir).auto()
       }
       if (ops) {
-         new Download('opsPug', dir).auto()
-         new Download('opsJs',  dir).auto()
+         new DownloadC('opsPug', dir).auto()
+         new DownloadC('opsJs',  dir).auto()
       }//fi
    }//()
 }
@@ -117,7 +117,7 @@ export class DownloadFrag {
 export class VersionNag {
    
    static isCurrent(prod, ver): Promise<boolean> {
-      const down = new Download(prod, null)
+      const down = new DownloadC(prod, null)
       return down.checkVer(ver)
    }
 }
@@ -148,5 +148,5 @@ export class FileMethods {
 }
 
 module.exports = {
- DownloadFrag, YamlConfig, Download, VersionNag, FileMethods
+ DownloadFrag, YamlConfig, DownloadC, VersionNag, FileMethods
 }
