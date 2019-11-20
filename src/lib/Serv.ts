@@ -17,7 +17,6 @@ export class CustomCors {
    constructor(validOrigins:Array<string>) {
 
       return (request, response, next) => {
-         // use proxy or such instead log.info('cors', request.path)
          const origin = request.get('origin')
          if (!origin) {
             return next()
@@ -145,10 +144,15 @@ export class ExpressRPC {
     */
    get appInst() { return ExpressRPC._appInst }
 
+   _origins:Array<string>
+
    /**
     * @param origins An array of string that would match a domain. So host would match localhost. eg ['*'] 
     */
    makeInstance(origins:Array<string>) {
+      
+      this._origins = origins
+
       // does it already exist?
       if(ExpressRPC._appInst) throw new Error( 'one instance of express app already exists')
       log.info('Allowed >>> ', origins)
