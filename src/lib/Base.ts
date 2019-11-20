@@ -3,7 +3,7 @@
 
 export class Ver {
    static ver() {
-      return 'v6.11.6'
+      return 'v6.11.7'
    }
    static date(): string {
       return new Date().toISOString()
@@ -11,7 +11,7 @@ export class Ver {
 }
 
 const bunyan = require('bunyan')
-const bformat = require('bunyan-format')  
+const bformat = require('bunyan-format2')  
 const formatOut = bformat({ outputMode: 'short' })
 const log = bunyan.createLogger({src: true, stream: formatOut, name: "Base"})
 

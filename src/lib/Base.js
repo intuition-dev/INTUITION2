@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v6.11.6';
+        return 'v6.11.7';
     }
     static date() {
         return new Date().toISOString();
@@ -10,7 +10,7 @@ class Ver {
 }
 exports.Ver = Ver;
 const bunyan = require('bunyan');
-const bformat = require('bunyan-format');
+const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "Base" });
 const path = require('path');

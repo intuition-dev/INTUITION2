@@ -18,7 +18,7 @@ const path = require("path");
 const fs = require("fs-extra");
 const FileHound = require("filehound");
 const bunyan = require('bunyan');
-const bformat = require('bunyan-format');
+const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "extra" });
 const JavaScriptObfuscator = require("javascript-obfuscator");
@@ -200,7 +200,7 @@ class Sas {
             .process(css.css, { from: undefined }).then(function (result) {
             log.info('autoprefixer');
             result.warnings().forEach(function (warn) {
-                console.warn(warn.toString());
+                log.warn(warn.toString());
             });
             let res = stripCssComments(result.css, { preserve: false });
             res = res.replace(/(\r\n\t|\n|\r\t)/gm, '\n');

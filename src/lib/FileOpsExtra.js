@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const FileOpsBase_1 = require("./FileOpsBase");
 const bunyan = require('bunyan');
-const bformat = require('bunyan-format');
+const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "file ops x" });
 const fs = require("fs-extra");

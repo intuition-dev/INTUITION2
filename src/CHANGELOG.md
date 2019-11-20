@@ -1,4 +1,5 @@
-### 6.11.6
+### 6.11.7
+- bunyan format 2
 - moved DB to mbakex
 
 ### 6.11.4
