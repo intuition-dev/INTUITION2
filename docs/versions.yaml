@@ -3,7 +3,7 @@ mbake:  v6.11.9
 
 mbakex: v1.11.10
 
-intu:   v1.11.7
+intu:   v1.11.10
 
 headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/headFrag.pug
 VM:       https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/BaseViewModel.ts
