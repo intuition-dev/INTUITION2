@@ -120,7 +120,6 @@ function pugIntro() {
 
 
 function ports() { 
-
    SysAgent.ports()
 }
 
