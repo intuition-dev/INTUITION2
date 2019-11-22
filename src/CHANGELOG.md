@@ -1,4 +1,4 @@
-### 6.11.11
+### 6.11.12
 - bunyan format 2
 - moved DB to mbakex
 

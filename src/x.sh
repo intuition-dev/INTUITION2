@@ -2,7 +2,7 @@
 clear
 tsc
 
-node mbake.js
+node mbake.js -p
 
 # node mbake.js -i /Users/code/Documents/GitHub/intuDocs/5625/items
 

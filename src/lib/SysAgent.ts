@@ -1,5 +1,12 @@
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 
+
+const bunyan = require('bunyan')
+const bformat = require('bunyan-format2')  
+const formatOut = bformat({ outputMode: 'short' })
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "Base"})
+
+
 const find = require('find-process')
 const disk = require('diskusage')
 
@@ -28,22 +35,23 @@ export class SysAgent {
       let pids = {}
       for (let i = 0; i < ports.length; i++) {
          let row = await find('port', ports[i])
-            row = row[0]
-            if(!row) continue
+         row = row[0]
+         if(!row) continue
 
-            // do we have that port?
-            if(row['pid'] in pids)
-               return
-            pids['pid']= 'X'
+         // do we have that port?
+         let pid = row['pid'] 
+         //console.log(pid, pids)
+         if(pids.hasOwnProperty(pid)) continue
+         pids[pid]= 'X'
 
-            row['port'] = ports[i]
-            delete row['ppid']
-            delete row['uid']
-            delete row['gid']
-            //delete row['cmd']
-            delete row['bin']
-            results.push(row)
-         }
+         row['port'] = ports[i]
+         delete row['ppid']
+         delete row['uid']
+         delete row['gid']
+         delete row['cmd']
+         delete row['bin']
+         results.push(row)
+      }
 
       console.log(results)
       return results

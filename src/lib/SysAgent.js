@@ -1,5 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const bunyan = require('bunyan');
+const bformat = require('bunyan-format2');
+const formatOut = bformat({ outputMode: 'short' });
+const log = bunyan.createLogger({ src: true, stream: formatOut, name: "Base" });
 const find = require('find-process');
 const disk = require('diskusage');
 class SysAgent {
@@ -22,13 +26,15 @@ class SysAgent {
             row = row[0];
             if (!row)
                 continue;
-            if (row['pid'] in pids)
-                return;
-            pids['pid'] = 'X';
+            let pid = row['pid'];
+            if (pids.hasOwnProperty(pid))
+                continue;
+            pids[pid] = 'X';
             row['port'] = ports[i];
             delete row['ppid'];
             delete row['uid'];
             delete row['gid'];
+            delete row['cmd'];
             delete row['bin'];
             results.push(row);
         }
