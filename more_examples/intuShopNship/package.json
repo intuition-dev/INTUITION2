@@ -6,7 +6,7 @@
 
   "author": "",
   "engines": {
-    "node": ">=13.1.0"
+    "node": ">=13.2.0"
   },
   "dependencies": {
     "intu": ">=1.9.21",
