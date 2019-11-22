@@ -16,16 +16,19 @@ class SysAgent {
             });
         });
         let results = [];
+        let pids = {};
         for (let i = 0; i < ports.length; i++) {
             let row = await find('port', ports[i]);
             row = row[0];
             if (!row)
                 continue;
+            if (row['pid'] in pids)
+                return;
+            pids['pid'] = 'X';
             row['port'] = ports[i];
             delete row['ppid'];
             delete row['uid'];
             delete row['gid'];
-            delete row['cmd'];
             delete row['bin'];
             results.push(row);
         }
