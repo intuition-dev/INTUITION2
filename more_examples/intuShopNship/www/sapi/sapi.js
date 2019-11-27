@@ -8,7 +8,7 @@ var Services = (function () {
             data: data,
             address: address
         };
-        return this.serviceRPC.invoke("stripe", "get-session", "createSession", request);
+        return this.serviceRPC.invoke("stripe", "createSession", request);
     };
     return Services;
 }());
