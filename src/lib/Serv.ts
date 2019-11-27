@@ -7,6 +7,7 @@ const serveStatic = require('serve-static')
 // const lz = require('lz-string')
 const URL = require('url')
 
+//log
 const bunyan = require('bunyan')
 const bformat = require('bunyan-format2')  
 const formatOut = bformat({ outputMode: 'short' })
@@ -52,9 +53,8 @@ export class CustomCors {
 }//class
 
 /*
-Helper class
-
-This is called by router
+Handler class
+This is called by the RPC router
 */
 export class BaseRPCMethodHandler {
 
@@ -99,8 +99,7 @@ export class BaseRPCMethodHandler {
    }//()
 
    /**
-    * Dynamically invokes a method for a entity, acts like a switch()
-
+    * In the background this method dynamically invokes the called method
     * @param req 
     * @param resp 
     */
@@ -108,21 +107,15 @@ export class BaseRPCMethodHandler {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
       let method
-      let ent
       let params
       try {
 
          params = URL.parse(req.url, true).query
 
-         const user = params.user
-         const pswd = params.pswd
-         const token = params.token
-
          method = params.method
-         ent = params.ent
          
          //invoke the method request
-         THIZ[method](resp, params, ent, user, pswd, token)
+         THIZ[method](resp, params)
 
       } catch(err) {
          log.info(err)
@@ -132,98 +125,64 @@ export class BaseRPCMethodHandler {
 
 }//class
 
-/**
- * Don't use methods here for GET or Upload, use the appInst to do it 'manually'
- */
-export class ExpressRPC {
-   
-   /**
-    * DON'T access outside, use appInst()
-    */
-   private static  _appInst // forces single port in case of static content
+class LogHandler extends BaseRPCMethodHandler {
+   _foo
+   constructor(foo) {
+      super()
+      this._foo = foo
+   }
 
-   /**
-    This is how to a access it
-    */
-   get appInst() { return ExpressRPC._appInst }
+   //THIZ[method](resp, params)
+   async log(res, params) {
+      await this._foo(params)
+      res.json('OK')
+   }
+}//()
+
+/**
+ * Should be single socket for everything.
+ * Don't use methods here for Upload, use the expInst property to do it 'manually'
+ */
+export class Serv {
+   
+   static _expInst // forces single port in case of static content
 
    _origins:Array<string>
 
    /**
     * @param origins An array of string that would match a domain. So host would match localhost. eg ['*'] 
     */
-   makeInstance(origins:Array<string>) {
-      
+   constructor(origins:Array<string>) {
       this._origins = origins
 
       // does it already exist?
-      if(ExpressRPC._appInst) throw new Error( 'one instance of express app already exists')
+      if(Serv._expInst) throw new Error( 'one instance of express app already exists')
       log.info('Allowed >>> ', origins)
       const cors = new CustomCors(origins)
-      ExpressRPC._appInst = express()
+      Serv._expInst = express()
 
-      // ExpressRPC._appInst.set('trust proxy', true)
+      // Serv._expInst.set('trust proxy', true)
 
-      this.appInst.use(cors)
+      Serv._expInst.use(cors)
+
+      this.routeRPC('log', null)
 
    }//()
 
-   /**
-    * @param route 
-    * @param pgOrScreen 
-    * @param foo 
-      serviceApp.routeRPC('api', 'pageOne', (req, res) => { 
-
-         const params = URL.parse(req.url, true).query
-         log.info(params)
-         const method = params.method
-
-         if('multiply'==method) { // RPC for the page could handle several methods, eg one for each of CRUD
-            let a = params.a
-            let b = params.b
-            const resp:any= {} // new response
-            resp.result = multiply(a,b)
-            handler.ret(res, resp, 4, 3)
-         } else {
-            const resp:any= {} // new response
-            resp.errorMessage = 'mismatch'
-            handler.retErr(res, resp, 4, 3)
-         }
-      })
-      // should be class - maybe used by multiple routes
-      function multiply(a,b) {
-         return a*b
-      
-    */
-   routeRPC(route:string, pgOrScreen:string, foo:Function) {
-      if(pgOrScreen.length < 1) throw new Error('Each RPC should have the named page or screen argument')
-      const r: string = '/'+route  
-      this.appInst.get(r, foo)
+   setLogger(foo) {
+      this.routeRPC('log', new LogHandler(foo) )
    }
 
+   /**
+    * Route to a handler
+    * @param route 
+    * @param foo 
+   */
+   routeRPC(route:string, handler:BaseRPCMethodHandler) {
+      const r: string = '/'+route  
 
-   static logHandler = new BaseRPCMethodHandler()
-   handleLog(foo) {
-      this.routeRPC('log', 'log', (req, res) => { 
-         const params = URL.parse(req.url, true).query
-         const method = params.method
-         
-         if('log'==method) { // RPC for the page could handle several methods, eg one for each of CRUD
-            params['ip'] = req.ip // you may need req.ips
-            params['date'] =  new Date().toISOString()
- 
-            foo(params)
-         
-            const resp:any= {} // new response
-            ExpressRPC.logHandler.ret(res, resp, 2, 1)
-         } else {
-            const resp:any= {} // new response
-            resp.errorMessage = 'mismatch'
-            ExpressRPC.logHandler.retErr(res, resp, 2, 1)
-         }
-
-         })//inner
-   }//()
+      Serv._expInst.get(r, handler.handleRPC)
+   }
 
    /**
     * Set the cache header and time
@@ -240,15 +199,14 @@ export class ExpressRPC {
       log.info('Serving root:', path, broT, cdnT)
 
       //filter forbidden
-      this.appInst.use((req, res, next) => {
+      Serv._expInst.use((req, res, next) => {
          if (req.path.endsWith('.ts') || req.path.endsWith('.pug') ) {
             res.status(403).send('forbidden')
          } else
          next()
       })
 
-      // static
-      this.appInst.use(serveStatic(path, {
+      Serv._expInst.use(serveStatic(path, {
          setHeaders: function(res, path) {
             if (serveStatic.mime.lookup(path) === 'text/html') { }
             res.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
@@ -260,7 +218,7 @@ export class ExpressRPC {
 
             res.setHeader('x-intu-ts', new Date().toISOString() )
 
-         }//setHeader()
+         }
       }))//use
 
    }//()
@@ -270,8 +228,8 @@ export class ExpressRPC {
     * @param port 
     */
    listen(port:number) {
-      this.appInst.listen(port, () => {
-         log.info('server running on port:', port)
+      Serv._expInst.listen(port, () => {
+         log.info('services running on port:', port)
       })
    }
 }//class
@@ -289,5 +247,5 @@ export  interface iAuth {
 }//i
 
 module.exports = {
-   ExpressRPC, BaseRPCMethodHandler
+   Serv, BaseRPCMethodHandler
 }
