@@ -1,3 +1,6 @@
+### 7.11.15
+- new RPC signatures, also include w/ lz
+
 ### 6.11.12
 - bunyan format 2
 - moved DB to mbakex

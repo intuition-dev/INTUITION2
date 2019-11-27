@@ -1,9 +1,9 @@
 
-mbake:  v6.11.12
+mbake:  v7.11.15
 
-mbakex: v1.11.11
+mbakex: v2.11.15
 
-intu:   v1.11.11
+intu:   v2.11.15
 
 headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/headFrag.pug
 VM:       https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v2.11.2/src/template/BaseViewModel.ts

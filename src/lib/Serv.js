@@ -2,17 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const serveStatic = require('serve-static');
+const lz = require('lz-string');
 const URL = require('url');
 const bunyan = require('bunyan');
 const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "serv" });
+const log = bunyan.createLogger({ src: true, stream: formatOut, name: "Serv" });
 class CustomCors {
     constructor(validOrigins) {
         return (request, response, next) => {
             const origin = request.get('origin');
             const origin2 = request.headers.origin;
-            log.trace(origin, origin2);
+            log.info(origin, origin2);
             if (!origin) {
                 return next();
             }
@@ -50,78 +51,77 @@ class BaseRPCMethodHandler {
         ret.result = result;
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
         resp.setHeader('x-intu-ts', new Date().toISOString());
-        resp.json(ret);
+        let json = JSON.stringify(ret);
+        resp.status(200).send(lz.compress(json));
     }
     retErr(resp, msg, broT, cdnT) {
         if (!broT)
             broT = 1;
         if (!cdnT)
             cdnT = 1;
+        if ((!msg) || msg.length < 1)
+            throw new Error('no message');
         log.warn(msg);
         const ret = {};
         ret.errorLevel = -1;
         ret.errorMessage = msg;
         resp.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
         resp.setHeader('x-intu-ts', new Date().toISOString());
-        resp.json(ret);
+        let json = JSON.stringify(ret);
+        resp.status(200).send(lz.compress(json));
     }
     handleRPC(req, resp) {
         if (!this)
             throw new Error('bind of class instance needed');
         const THIZ = this;
         let method;
-        let ent;
-        let params;
+        let qstr;
         try {
-            params = URL.parse(req.url, true).query;
-            const user = params.user;
-            const pswd = params.pswd;
-            const token = params.token;
+            qstr = URL.parse(req.url, true).query;
+            let compressed = qstr['p'];
+            let str = lz.decompressFromEncodedURIComponent(compressed);
+            const params = JSON.parse(str);
             method = params.method;
-            ent = params.ent;
-            THIZ[method](resp, params, ent, user, pswd, token);
+            if (typeof THIZ[method] != 'function') {
+                this.retErr(resp, 'no such method ' + method);
+                return;
+            }
+            THIZ[method](resp, params);
         }
         catch (err) {
             log.info(err);
-            THIZ.retErr(resp, params, null, null);
+            THIZ.retErr(resp, qstr, null, null);
         }
     }
 }
 exports.BaseRPCMethodHandler = BaseRPCMethodHandler;
-class ExpressRPC {
-    get appInst() { return ExpressRPC._appInst; }
-    makeInstance(origins) {
+class LogHandler extends BaseRPCMethodHandler {
+    constructor(foo) {
+        super();
+        this._foo = foo;
+    }
+    async log(resp, params) {
+        await this._foo(params);
+        let json = JSON.stringify('logged');
+        resp.status(200).send(lz.compress(json));
+    }
+}
+class Serv {
+    constructor(origins) {
         this._origins = origins;
-        if (ExpressRPC._appInst)
+        if (Serv._expInst)
             throw new Error('one instance of express app already exists');
         log.info('Allowed >>> ', origins);
         const cors = new CustomCors(origins);
-        ExpressRPC._appInst = express();
-        this.appInst.use(cors);
+        Serv._expInst = express();
+        Serv._expInst.use(cors);
     }
-    routeRPC(route, pgOrScreen, foo) {
-        if (pgOrScreen.length < 1)
-            throw new Error('Each RPC should have the named page or screen argument');
+    setLogger(foo) {
+        this.routeRPC('log', new LogHandler(foo));
+    }
+    routeRPC(route, handler) {
         const r = '/' + route;
-        this.appInst.get(r, foo);
-    }
-    handleLog(foo) {
-        this.routeRPC('log', 'log', (req, res) => {
-            const params = URL.parse(req.url, true).query;
-            const method = params.method;
-            if ('log' == method) {
-                params['ip'] = req.ip;
-                params['date'] = new Date().toISOString();
-                foo(params);
-                const resp = {};
-                ExpressRPC.logHandler.ret(res, resp, 2, 1);
-            }
-            else {
-                const resp = {};
-                resp.errorMessage = 'mismatch';
-                ExpressRPC.logHandler.retErr(res, resp, 2, 1);
-            }
-        });
+        Serv._expInst.get(r, handler.handleRPC.bind(handler));
     }
     serveStatic(path, broT, cdnT) {
         if (!broT)
@@ -129,14 +129,14 @@ class ExpressRPC {
         if (!cdnT)
             cdnT = (30 * 60) - 1;
         log.info('Serving root:', path, broT, cdnT);
-        this.appInst.use((req, res, next) => {
+        Serv._expInst.use((req, res, next) => {
             if (req.path.endsWith('.ts') || req.path.endsWith('.pug')) {
                 res.status(403).send('forbidden');
             }
             else
                 next();
         });
-        this.appInst.use(serveStatic(path, {
+        Serv._expInst.use(serveStatic(path, {
             setHeaders: function (res, path) {
                 if (serveStatic.mime.lookup(path) === 'text/html') { }
                 res.setHeader('Cache-Control', 'public, max-age=' + broT + ', s-max-age=' + cdnT);
@@ -148,13 +148,12 @@ class ExpressRPC {
         }));
     }
     listen(port) {
-        this.appInst.listen(port, () => {
-            log.info('server running on port:', port);
+        Serv._expInst.listen(port, () => {
+            log.info('services running on port:', port);
         });
     }
 }
-exports.ExpressRPC = ExpressRPC;
-ExpressRPC.logHandler = new BaseRPCMethodHandler();
+exports.Serv = Serv;
 module.exports = {
-    ExpressRPC, BaseRPCMethodHandler
+    Serv, BaseRPCMethodHandler
 };
