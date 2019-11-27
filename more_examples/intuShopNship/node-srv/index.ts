@@ -1,14 +1,13 @@
 
 import { Stripe } from './handlers/Handler'
-import { ExpressRPC } from "mbake/lib/Serv"
+import { Serv } from "mbake/lib/Serv"
 import { PaidHook } from './lib/PaidHook';
 import { SDB } from './lib/SDB';
 
 const yaml = require("js-yaml")
 const fs = require("fs-extra")
 
-const srv = new ExpressRPC()
-srv.makeInstance(['*'])
+const srv = new Serv(['*'])
 const port = 3000
 
 let db:SDB
