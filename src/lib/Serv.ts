@@ -4,14 +4,14 @@
 
 const express = require('express')
 const serveStatic = require('serve-static')
-// const lz = require('lz-string')
+const lz = require('lz-string')
 const URL = require('url')
 
 //log
 const bunyan = require('bunyan')
 const bformat = require('bunyan-format2')  
 const formatOut = bformat({ outputMode: 'short' })
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "serv"})
+const log = bunyan.createLogger({src: true, stream: formatOut, name: "Serv"})
 
 export class CustomCors {
 
@@ -21,7 +21,7 @@ export class CustomCors {
          const origin = request.get('origin')
          const origin2= request.headers.origin
 
-         log.trace(origin, origin2)
+         log.info(origin, origin2)
          if (!origin) {
             return next()
          }
@@ -74,7 +74,8 @@ export class BaseRPCMethodHandler {
       resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
       resp.setHeader('x-intu-ts', new Date().toISOString() )
 
-      resp.json(ret)
+      let json = JSON.stringify(ret)
+      resp.status(200).send(lz.compress(json))
    }//()
 
    /**
@@ -87,6 +88,7 @@ export class BaseRPCMethodHandler {
       if(!broT) broT = 1
       if(!cdnT) cdnT = 1
 
+      if((!msg) || msg.length < 1) throw new Error('no message')
       log.warn(msg)
       const ret:any= {} // new return
       ret.errorLevel = -1
@@ -95,7 +97,8 @@ export class BaseRPCMethodHandler {
       resp.setHeader('Cache-Control', 'public, max-age='+broT+', s-max-age='+cdnT)
       resp.setHeader('x-intu-ts', new Date().toISOString() )
 
-      resp.json(ret)
+      let json = JSON.stringify(ret)
+      resp.status(200).send(lz.compress(json))
    }//()
 
    /**
@@ -107,19 +110,27 @@ export class BaseRPCMethodHandler {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
       let method
-      let params
+      let qstr
       try {
 
-         params = URL.parse(req.url, true).query
+         qstr = URL.parse(req.url, true).query
+         let compressed = qstr['p']
+         let str = lz.decompressFromEncodedURIComponent(compressed)
 
+         const params = JSON.parse(str)
          method = params.method
          
+         if(typeof THIZ[method] != 'function') {
+            this.retErr(resp, 'no such method '+ method)
+            return
+         }
+
          //invoke the method request
          THIZ[method](resp, params)
 
       } catch(err) {
          log.info(err)
-         THIZ.retErr(resp, params, null, null)
+         THIZ.retErr(resp, qstr, null, null)
       }
    }//()
 
@@ -132,10 +143,10 @@ class LogHandler extends BaseRPCMethodHandler {
       this._foo = foo
    }
 
-   //THIZ[method](resp, params)
-   async log(res, params) {
+   async log(resp, params) {// 'log', 'log'
       await this._foo(params)
-      res.json('OK')
+      let json = JSON.stringify('logged')
+      resp.status(200).send(lz.compress(json))
    }
 }//()
 
@@ -165,8 +176,6 @@ export class Serv {
 
       Serv._expInst.use(cors)
 
-      this.routeRPC('log', null)
-
    }//()
 
    setLogger(foo) {
@@ -181,7 +190,7 @@ export class Serv {
    routeRPC(route:string, handler:BaseRPCMethodHandler) {
       const r: string = '/'+route  
 
-      Serv._expInst.get(r, handler.handleRPC)
+      Serv._expInst.get(r, handler.handleRPC.bind(handler))
    }
 
    /**
