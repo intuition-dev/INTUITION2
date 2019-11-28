@@ -1,3 +1,4 @@
+import { Response, Request } from "express"
 
 // All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend these classes!
@@ -64,7 +65,7 @@ export class BaseRPCMethodHandler {
     * @param broT careful: defaults to 1, should be larger than cdnT, maybe 0 is best for your cache
     * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
     */
-   ret(resp, result, broT?, cdnT?) {
+   ret(resp:Response, result, broT?, cdnT?) {
       if(!broT) broT = 1
       if(!cdnT) cdnT = 1
 
@@ -84,7 +85,7 @@ export class BaseRPCMethodHandler {
     * @param broT careful: defaults to 1, maybe 0 is best for your cache
     * @param cdnT careful: defaults to 1, maybe 0 is best for your cache
     */
-   retErr(resp, msg, broT?, cdnT?) {
+   retErr(resp:Response, msg, broT?, cdnT?) {
       if(!broT) broT = 1
       if(!cdnT) cdnT = 1
 
@@ -106,7 +107,7 @@ export class BaseRPCMethodHandler {
     * @param req 
     * @param resp 
     */
-   handleRPC(req, resp) {
+   handleRPC(req:Request, resp:Response) {
       if(!this) throw new Error('bind of class instance needed')
       const THIZ = this
       let method
