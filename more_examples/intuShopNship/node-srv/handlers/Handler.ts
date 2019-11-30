@@ -17,7 +17,7 @@ export class Stripe extends BaseRPCMethodHandler {
       this.db = db
    }
 
-   async createSession(resp, params) {
+   async createSession(params) {
       let address = params.address
       console.log('Address:', address)
 
