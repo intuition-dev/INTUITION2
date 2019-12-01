@@ -39,7 +39,7 @@
         "find-up": ">=4.1.0",
         "fs-extra": ">=8.1.0",
         "html-minifier": ">=4.0.0",
-        "javascript-obfuscator": ">=0.18.5",
+        "javascript-obfuscator": ">=0.18.6",
         "js-yaml": ">=3.13.1",
         "markdown-it": ">=10.0.0",
         "markdown-it-container": ">=2.0.0",
