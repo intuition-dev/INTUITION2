@@ -155,16 +155,6 @@ mbake -w
 That will extract an example website in the current folder. ( Obviously you can create any layout with any combination of css and other libraries, but here is how we laid out an example/starter website).
 
 
-## Dynamic data/CRUD/'ViewModel'
-
-This relates to dynamic data, not static content (static eg: CMS or eCommerce). To extract an example CRUD Web App in the current folder:
-
-```sh
-mbake -u
-```
-
-It has a README.md in root of the website that you can glance.
-
 
 ## CMS/Itemize example
 
