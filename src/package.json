@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "adm-zip": ">=0.4.13",
-        "autoprefixer": ">=9.7.2",
+        "autoprefixer": ">=9.7.3",
         "bunyan": ">=1.8.12",
         "bunyan-format2": ">=0.2.2",
         "cheerio": ">=1.0.0-rc.2",
@@ -39,7 +39,7 @@
         "find-up": ">=4.1.0",
         "fs-extra": ">=8.1.0",
         "html-minifier": ">=4.0.0",
-        "javascript-obfuscator": ">=0.18.4",
+        "javascript-obfuscator": ">=0.18.5",
         "js-yaml": ">=3.13.1",
         "markdown-it": ">=10.0.0",
         "markdown-it-container": ">=2.0.0",
