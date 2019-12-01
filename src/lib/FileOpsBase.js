@@ -39,7 +39,6 @@ class Dirs {
         let lst = this.getFolders();
         let ret = [];
         const ll = this.dir.length;
-        log.info(this.dir, ll);
         for (let s of lst) {
             let n = s.substr(ll);
             ret.push(n);
@@ -47,7 +46,6 @@ class Dirs {
         return ret;
     }
     getFolders() {
-        log.info(this.dir);
         const rec = FileHound.create()
             .paths(this.dir)
             .findSync();
@@ -86,12 +84,11 @@ class Dat {
                     condenseFlow: true
                 });
                 let p = this._path + '/dat.yaml';
-                log.info(p);
                 fs.writeFileSync(p, y);
                 resolve('OK');
             }
             catch (err) {
-                log.info(err);
+                log.warn(err);
                 reject(err);
             }
         });
@@ -102,7 +99,6 @@ class Dat {
     _addData() {
         let jn = this.props.include;
         let fn = this._path + '/' + jn;
-        log.info(fn);
         let jso = fs.readFileSync(fn);
         Object.assign(this.props, JSON.parse(jso.toString()));
     }
@@ -125,10 +121,8 @@ class FileOps {
     }
     clone(src, dest) {
         return new Promise((resolve, reject) => {
-            log.info('copy?');
             fs.copySync(this.root + src, this.root + dest);
             let p = this.root + dest;
-            log.info(p);
             const d = new Dat(p);
             d.write();
             log.info('copy!');
