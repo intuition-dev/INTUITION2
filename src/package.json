@@ -51,9 +51,9 @@
         "pug": ">=2.0.4",
         "reload": ">=3.0.3",
         "strip-css-comments": ">=4.1.0",
-        "superagent": ">=5.1.1",
+        "superagent": ">=5.1.2",
         "systeminformation": ">=4.16.0",
-        "terser": ">=4.4.0",
+        "terser": ">=4.4.1",
         "typescript": ">=3.7.2",
         "uuid": ">=3.3.3"
     },
