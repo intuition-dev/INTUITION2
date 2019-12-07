@@ -36,11 +36,14 @@ JAMStack architecture talks about *' prerendered Markup, served without web serv
 
 ### Mark up
 
+eBay uses Marko, eg:
+<img src="marko.png" width="60%"/>
 
 
 
 So how do we pre-render? 
 
+![](marko.png)
 
 
 
