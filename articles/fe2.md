@@ -61,18 +61,70 @@ With a generate for example you can reuse snipets, use same markup for SEO|AMP-n
 
 #### Static / Dynamic?
 
-An example JAMstack would be: show a story static! And then use .js to display comments dynamic.
+An example JAMstack is both static and dynamic: show a story static without need for .js! Then progressively enhance to display comments dynamically and improve UX. 
 
 
-### Front end frameworks and who to hire
+## Cross Platform: Electron
 
-Portfolio
+Responsive approach allow us to develop a web app that works on desktop and mobile screens. 
+One important tool to master is Electron. It allows a path to cross platform development.
 
+For example: IOS and Andorid running the same exact code base that is running your Web App.
+But it should be done in two steps:
+1. Port your app to Electron 
+2. Port the Electron app to Adobe PhoneGap at build.phonegap.com.
+
+
+## Lab: Non-imperative
+
+To get the feel for non-imperative programing you should write a hello world levering in Mavo.io.
+Mavo is developed by Lea Verou who is on the HTML standards committee.
+
+Note: I'm not recommending or using Mavo. I am saying it is a great learning tool that takes less than an hour so you can feel an important concept.
+
+Instead of html, use Pug (eg: Prepros.io). 
+
+1. A hello world Mavo in Pug, the simpler the better (instructor provided)
+2. Port to Electron (instructor provided)
+3. Port to build.PhoneGap
+
+Email the app file produced by build.PhoneGap to your phone. 
+
+
+### Org chart
+
+Obviously having a separate mobile team doing Android and IOs will obstruct cross platform productivity: DRY.
+
+Instead the front end team's teach leads are broken up by the users persona, the people your org is targeting in helping. 
+
+(aside: each front end team should have a single member from the back end team that is writing the client side apis for them - APIs that map to the view model)
+
+The front end developers tend to be more senior and should have potential to become principal engineers, designers or product managers.
+
+Some call the sr. front end developers unicorns: designers that code. That is one of the reasons that front end is a higher salary band than back end.
+Also due to constraints, sr. front end developers maybe remote or at least have a Friday WAH (work from home), (vs back end that likely have to be local due to security of back end data).
+
+Candidates Sr. Front End developers should have some example sites, including their own, and opinion on css websites they like and other other sr front end developers they admire. (note: If the people they admire are .js or imperative developers I myself would consider them for the back end team)
+
+
+
+### Front end frameworks
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
+" target="_blank"> <img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+width="240" height="180" border="10" /></a>
+
+
+
+
+Experience migrating and running two at a time.
 
 
 ### Confusing? Maybe a bit
 
 
 ## Mastery
+
+Naming
 
 
