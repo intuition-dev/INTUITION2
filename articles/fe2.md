@@ -79,7 +79,7 @@ But it should be done in two steps:
 
 Lets write a standard (built into browser with no 3rd party libs) custom element:
 
-    ```
+```
     var cTemp = document.createElement('template')
     cTemp.innerHTML = `
     <style>
@@ -97,7 +97,7 @@ Lets write a standard (built into browser with no 3rd party libs) custom element
     }//cons
 
     })//custel
-    ```
+```
 
 
 
