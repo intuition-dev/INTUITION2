@@ -77,7 +77,28 @@ But it should be done in two steps:
 
 ### Confusing? Maybe a bit
 
-.ts
+Lets write a standard (built into browser with no 3rd party libs) custom element:
+
+    ```
+    var cTemp = document.createElement('template')
+    cTemp.innerHTML = `
+    <style>
+    </style>
+
+    <b>I'm a Cust. El</b>
+    `
+    window.customElements.define('c-custel', class extends HTMLElement {
+    sr 
+    constructor() {
+        super()
+
+        this.sr = this.attachShadow({ mode: 'closed' })
+        this.sr.appendChild(cTemp.content.cloneNode(true))
+    }//cons
+
+    })//custel
+    ```
+
 
 
 
