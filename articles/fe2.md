@@ -1,11 +1,11 @@
 
 # Advanced Frontend Development for (real and) experienced developers 
 
-Previously I outlined beginner back end development in article (here:  )
+Previously I outlined beginner backend development in article (here:  )
 And now here in part 2, I'll tackle how to effectively do Frontend development: targeting experienced developers, 7+ years of professional
 web development. The 7 years being based on book called: 10K hours to mastery. 
 For example, you got your bachelor's in 2013 and have been doing 7 years of paid development in something like PHP, MS ASP, Java JSP or similar web development, that would be an example of 7 years of Frontend development. Also the degree can be a master degree in graphics design from one of the top schools or similar.
-What I am saying to the reader is if you are a jr Frontend developer this article is not targeting you, but you can likely do beginner back end development as linked at the top - it is much easier to start and master back end - and while doing back end you can get exposed to non-imperative styles of programing, for example using SQL is declarative. 
+What I am saying to the reader is if you are a jr Frontend developer this article is not targeting you, but you can likely do beginner backend development as linked at the top - it is much easier to start and master backend - and while doing backend you can get exposed to non-imperative styles of programing, for example using SQL is declarative. 
 
 Some of the concepts I introduce may seem strange at first, a bit like eating sushi the first time. But then, you end up developing a taste for it.
 
@@ -31,11 +31,11 @@ What you have to have resized years ago: you can't use .js client side for anyth
 And for improved mobile SEO you may need to render AMP. Again: no .js.
 
 Just HTML and CSS.
-You should get the idea that imperative development is mostly for back end and beginners. Imperative is not for advanced and not for Frontend.
+You should get the idea that imperative development is mostly for backend and beginners. Imperative is not for advanced and not for Frontend.
 
 ## Real (and fake) Frontend development and tooling
 
-JAMStack architecture talks about *' prerendered Markup, served without web servers '*. Nice thing about pre-rendered is: SEO :-). No need to dynamically render. No web servers also means fast, served by the edge (CDN) and infinitely scalable. ( Infinitely scalable of the Frontend; the back end APIs is a different team ).
+JAMStack architecture talks about *' prerendered Markup, served without web servers '*. Nice thing about pre-rendered is: SEO :-). No need to dynamically render. No web servers also means fast, served by the edge (CDN) and infinitely scalable. ( Infinitely scalable of the Frontend; the backend APIs is a different team ).
 
 ### Mark up
 
@@ -96,12 +96,14 @@ Lets write a standard (built into browser with no 3rd party libs) custom element
         this.sr.appendChild(cTemp.content.cloneNode(true))
     }//cons
 
-    })//custel
+    })//define
 ```
 
+That code creates a nother dom element: c-custel. 
 
-
-
+The purpose of writing imperative (.js) is to: add a new DOM element c-custel. 
+The purpose is: to reduce .js code! And increase DOM code.
+Make sure you have purpose in mind. 
 
 ## Lab: Non-imperative
 
@@ -132,9 +134,10 @@ Senior Frontend Developer should have experience with a more than one Frontend C
 
 Note: above all, a Senior Frontend developers has years of experience and depp knowledge of CSS. 
 
-Note: there are two things hard in CS. Caching(back end) and naming. Naming DOM and 'classes' is hard.
+Note: there are two things hard in CS. Caching(backend) and naming. Naming DOM and 'classes' is hard.
 One bad thing is to use inline styles, for example the 'atomic' approach.
 
+That is the main challenge for Sr. Frontend developers: naming. The names have to be socialized and rehashed from time to time. 
 
 ### Org chart
 
@@ -142,15 +145,28 @@ Obviously having a separate mobile team doing Android and IOs will obstruct cros
 
 Instead the frontend team's teach leads are broken up by the users persona, the people your org is targeting in helping. 
 
-(aside: each frontend team should have a single member from the back end team that is writing the client side apis for them - APIs that map to the view model)
+(aside: each frontend team should have a single member from the backend team that is writing the client side apis for them - APIs that map to the view model)
 
-The Frontend developers tend to be more senior and should have potential to become principal Developers, designers or product managers. 
-Likely each developer on the frontend team is at least at senior level. 
+Some call the Senior Frontend developers unicorns: designers that code. That is one of the reasons that the frontend is a higher salary band than backend.
+Also due to constraints, Senior Frontend developers maybe remote or at least have a Friday WAH (work from home), (vs backend that likely have to be local due to security of backend data).
 
-Some call the Senior Frontend developers unicorns: designers that code. That is one of the reasons that the frontend is a higher salary band than back end.
-Also due to constraints, Senior Frontend developers maybe remote or at least have a Friday WAH (work from home), (vs back end that likely have to be local due to security of back end data).
+Candidates Senior Frontend developers should have some example sites, including their own, and opinion on css websites they like and other other sr Frontend developers they admire. (note: If the people they admire are .js or imperative developers I myself would consider them for the backend team)
 
-Candidates Senior Frontend developers should have some example sites, including their own, and opinion on css websites they like and other other sr Frontend developers they admire. (note: If the people they admire are .js or imperative developers I myself would consider them for the back end team)
+The Frontend developers tend to be more senior than backend: and should have potential to become principal Developers, designers or product managers once they advance.
+
+
+### .js Frameworks
+
+There are developers that use .js frameworks, such as React, Angular, etc. Those developers are a better fit for the backend team.
+
+### Low-code
+
+There are also low-code tools that are coming up in the future, something to keep an eye one.
+
+## Summary:
+
+Sr Frontend developers must have deep expertise in CSS, SEO and know cross platform development.
+As a bonus, it is helpful if they are familiar with static generation apporach. 
 
 
 
