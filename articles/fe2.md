@@ -107,13 +107,11 @@ Also due to constraints, sr. front end developers maybe remote or at least have 
 Candidates Sr. Front End developers should have some example sites, including their own, and opinion on css websites they like and other other sr front end developers they admire. (note: If the people they admire are .js or imperative developers I myself would consider them for the back end team)
 
 
-
+https://youtu.be/Jpr2RvAQtm8 
 ### Front end frameworks
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
-" target="_blank"> <img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+ 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=Jpr2RvAQtm8" target="_blank"> <img src="http://img.youtube.com/vi/Jpr2RvAQtm8/0.jpg" 
 width="240" height="180" border="10" /></a>
-
 
 
 
