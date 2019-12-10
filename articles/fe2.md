@@ -99,7 +99,7 @@ Lets write a standard (built into browser with no 3rd party libs) custom element
     })//define
 ```
 
-That code creates a nother dom element: c-custel. 
+That code creates a new dom element: c-custel without any 3rd party libs or packs. Also standard custom elements have ie11 polyfills. 
 
 The purpose of writing imperative (.js) is to: add a new DOM element c-custel. 
 The purpose is: to reduce .js code! And increase DOM code.
