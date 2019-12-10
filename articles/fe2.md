@@ -105,6 +105,8 @@ The purpose of writing imperative (.js) is to: add a new DOM element c-custel.
 The purpose is: to reduce .js code! And increase DOM code.
 Make sure you have purpose in mind. 
 
+The nice thing about using standard custom elements is that you can use them with any other .js framework (eg: vue single file components), with typescript. 
+
 ## Lab: Non-imperative
 
 To get the feel for non-imperative programing you should write a hello world levering in Mavo.io.
@@ -154,10 +156,7 @@ Candidates Senior Frontend developers should have some example sites, including 
 
 The Frontend developers tend to be more senior than backend: and should have potential to become principal Developers, designers or product managers once they advance.
 
-
-### .js Frameworks
-
-There are developers that use .js frameworks, such as React, Angular, etc. Those developers are a better fit for the backend team.
+One should also know how long it takes to build an average CRUD page. 
 
 ### Low-code
 
