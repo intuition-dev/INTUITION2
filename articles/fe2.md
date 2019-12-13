@@ -1,11 +1,10 @@
 
 # Advanced Frontend Development for (real and) experienced developers 
 
-Previously I outlined beginner backend development in article (here:  )
+Previously I outlined beginner backend development in article (here:  https://github.com/intuition-dev/httpRPC/tree/master/other/doc  )
 And now here in part 2, I'll tackle how to effectively do Frontend development: targeting experienced developers, 7+ years of professional
 web development. The 7 years being based on book called: 10K hours to mastery. 
-For example, you got your bachelor's in 2013 and have been doing 7 years of paid development in something like PHP, MS ASP, Java JSP or similar web development, that would be an example of 7 years of Frontend development. Also the degree can be a master degree in graphics design from one of the top schools or similar.
-What I am saying to the reader is if you are a jr Frontend developer this article is not targeting you, but you can likely do beginner backend development as linked at the top - it is much easier to start and master backend - and while doing backend you can get exposed to non-imperative styles of programing, for example using SQL is declarative. 
+What I am saying to the reader is if you are a jr Frontend developer this article is not for  you, ( but you can likely do beginner backend development as linked at the top - it is much easier to start and master backend - and while doing backend you can get exposed to non-imperative styles of programing, for example using SQL is declarative.)
 
 Some of the concepts I introduce may seem strange at first, a bit like eating sushi the first time. But then, you end up developing a taste for it.
 
@@ -33,11 +32,11 @@ And for improved mobile SEO you may need to render AMP. Again: no .js.
 Just HTML and CSS.
 You should get the idea that imperative development is mostly for backend and beginners. Imperative is not for advanced and not for Frontend.
 
-## Real (and fake) Frontend development and tooling
+## Real Frontend development and tooling
 
 JAMStack architecture talks about *' prerendered Markup, served without web servers '*. Nice thing about pre-rendered is: SEO :-). No need to dynamically render. No web servers also means fast, served by the edge (CDN) and infinitely scalable. ( Infinitely scalable of the Frontend; the backend APIs is a different team ).
 
-### Mark up
+## Mark up
 
 eBay uses Marko for markup, eg:
 
@@ -45,7 +44,6 @@ eBay uses Marko for markup, eg:
 
 Nodejs Express uses the more popular Pug for Markup, and most people are familiar with it:
 - https://expressjs.com/en/guide/using-template-engines.html
-
 
 
 #### So how do we pre-render? 
@@ -69,13 +67,13 @@ An example JAMstack is both static and dynamic: show a story static without need
 Responsive approach allow us to develop a web app that works on desktop and mobile screens. 
 One important tool to master is Electron. It allows a path to cross platform development.
 
-For example: IOS and Andorid running the same exact code base that is running your Web App.
+For example: IOS and Android running the same exact code base that is running your Web App.
 But it should be done in two steps:
 1. Port your app to Electron 
 2. Port the Electron app to Adobe PhoneGap at build.phonegap.com.
 
 
-### Confusing? Maybe a bit
+### Custom Elements
 
 Lets write a standard (built into browser with no 3rd party libs) custom element:
 
@@ -105,9 +103,11 @@ The purpose of writing imperative (.js) is to: add a new DOM element c-custel.
 The purpose is: to reduce .js code! And increase DOM code.
 Make sure you have purpose in mind. 
 
-The nice thing about using standard custom elements is that you can use them with any other .js framework (eg: vue single file components), with typescript. 
+The nice thing about using standard custom elements is that you can use them with any .js framework|library (eg: Vue single file components), with typescript. 
+And you can deliver in several shareable bundles to avoid downloading a large monolithic bundle.
 
-## Lab: Non-imperative
+
+### Lab: Non-imperative
 
 To get the feel for non-imperative programing you should write a hello world levering in Mavo.io.
 Mavo is developed by Lea Verou who is on the HTML standards committee.
@@ -123,7 +123,7 @@ Instead of html, use Pug (eg: Prepros.io).
 Email the app file produced by build.PhoneGap to your phone. 
 
 
-### Frontend frameworks and naming.
+## Frontend (CSS) frameworks, and naming.
  
 Here is a video showing some results when you google for Frontend frameworks:
 
@@ -140,8 +140,10 @@ Note: there are two things hard in CS. Caching(backend) and naming. Naming DOM a
 One bad thing is to use inline styles, for example the 'atomic' approach.
 
 That is the main challenge for Sr. Frontend developers: naming. The names have to be socialized and rehashed from time to time. 
+One thing that might 
+It's not just rapid development of front end prototypes - the aim is maintainable naming.
 
-### Org chart
+### Mobile org chart
 
 Obviously having a separate mobile team doing Android and IOs will obstruct cross platform productivity: DRY.
 
@@ -158,17 +160,19 @@ The Frontend developers tend to be more senior than backend: and should have pot
 
 One should also know how long it takes to build an average CRUD page. 
 
-### Low-code
+### Low-code future
 
 There are also low-code tools that are coming up in the future, something to keep an eye one.
 
 ## Summary:
 
 Sr Frontend developers must have deep expertise in CSS, SEO and know cross platform development.
-As a bonus, it is helpful if they are familiar with static generation apporach. 
 
-
-
+Skills include:
+- Markup, declarative and CSS
+- Good 'class' naming is the bane of front end development
+- Mobile is cross platform
+- Custom elements can be used with any .js lib, it is built into the browser
 
 
 
