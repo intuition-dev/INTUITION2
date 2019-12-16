@@ -12,7 +12,7 @@ MetaBake(mbake) provides all the necessary tools for a developer to write cleane
 You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Custom Elements, custom CMS/E-Commerce, CRUD and all sorts of dynamic Web Apps.
 
 #### Please star our main project here:
-- https://github.com/intuition-dev/INTUITION
+- https://github.com/intuition-dev/INTU
 
 ### Prerequisites
 
@@ -188,4 +188,4 @@ In turn, the included file calls a mbToolBelt.js from a CDN.
 
 [Pug example](http://pug.mbake.org)
 
-[INTUITION.DEV Home Page](https://www.INTUITION.DEV)
+[INTU.DEV Home Page](https://www.INTU.DEV)

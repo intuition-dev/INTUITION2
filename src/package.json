@@ -2,13 +2,13 @@
     "name": "mbake",
     "preferGlobal": true,
     "version": "7.12.1",
-    "description": "*All my friends KNOW the low-coder*; INTUITION.DEV's CLI (mbake CLI) is open source and extensible low-code productivity tool for programmers.",
+    "description": "*All my friends KNOW the low-coder*; INTU.DEV's CLI (mbake CLI) is open source and extensible low-code productivity tool for programmers.",
     "bin": {
         "mbake": "mbake.js"
     },
     "license": "LGPL-3.0-only",
-    "author": "http://www.INTUITION.DEV",
-    "homepage": "http://www.INTUITION.DEV",
+    "author": "http://www.INTU.DEV",
+    "homepage": "http://www.INTU.DEV",
     "repository": {
         "type": "git",
         "url": "http://git.mbake.org"

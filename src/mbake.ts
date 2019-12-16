@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// All rights reserved by INTUITION.DEV | Cekvenich, licensed under LGPL 3.0
+// All rights reserved by INTU.DEV | Cekvenich, licensed under LGPL 3.0
 
 import commandLineArgs = require('command-line-args')
 
@@ -55,7 +55,7 @@ function help() {
    console.info()
    console.info('  mbakex CLI (extra) has more flags')
    console.info()
-   console.info(' Full docs: http://www.INTUITION.DEV')
+   console.info(' Full docs: http://www.INTU.DEV')
 
    console.info()
 }

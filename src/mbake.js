@@ -43,7 +43,7 @@ function help() {
     console.info();
     console.info('  mbakex CLI (extra) has more flags');
     console.info();
-    console.info(' Full docs: http://www.INTUITION.DEV');
+    console.info(' Full docs: http://www.INTU.DEV');
     console.info();
 }
 const optionDefinitions = [

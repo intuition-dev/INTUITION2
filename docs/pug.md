@@ -29,7 +29,7 @@ In addition you can include html parts as needed:
 
 Also you extend a layout, you can see that in the example apps.
 
-And there are online converters where you type in html and it gives you pug equivalent. (eg: http://pug.INTUITION.DEV)
+And there are online converters where you type in html and it gives you pug equivalent. (eg: http://pug.INTU.DEV)
 
 And that is all there is about Pug.
 
