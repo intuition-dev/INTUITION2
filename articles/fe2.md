@@ -36,6 +36,8 @@ You should get the idea that imperative development is mostly for backend and be
 
 JAMStack architecture talks about *' prerendered Markup, served without web servers '*. Nice thing about pre-rendered is: SEO :-). No need to dynamically render. No web servers also means fast, served by the edge (CDN) and infinitely scalable. ( Infinitely scalable of the Frontend; the backend APIs is a different team ).
 
+I highly recommend that all FE developers have a github page! 
+
 ## Mark up
 
 eBay uses Marko for markup, eg:
@@ -44,7 +46,6 @@ eBay uses Marko for markup, eg:
 
 Nodejs Express uses the more popular Pug for Markup, and most people are familiar with it:
 - https://expressjs.com/en/guide/using-template-engines.html
-
 
 #### So how do we pre-render? 
 
@@ -155,6 +156,7 @@ Some call the Senior Frontend developers unicorns: designers that code. That is 
 Also due to constraints, Senior Frontend developers maybe remote or at least have a Friday WAH (work from home), (vs backend that likely have to be local due to security of backend data).
 
 Candidates Senior Frontend developers should have some example sites, including their own, and opinion on css websites they like and other other sr Frontend developers they admire. (note: If the people they admire are .js or imperative developers I myself would consider them for the backend team)
+And they must demonstrate a liking for CSS.
 
 The Frontend developers tend to be more senior than backend: and should have potential to become principal Developers, designers or product managers once they advance.
 
