@@ -5,11 +5,11 @@ mbakex: v2.12.1
 
 intu:   v2.11.26
 
-headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.26/src/template/headFrag.pug
-Bind:     https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.26/src/template/UIBinding.js
+headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.14/src/template/headFrag.pug
+Bind:     https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.14/src/template/UIBinding.js
 
-opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.26/src/template/ops.pug
-opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.26/src/template/ops.js
+opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.14/src/template/ops.pug
+opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.14/src/template/ops.js
 
 pugInto:  https://github.com/intuition-dev/mbCLI/raw/master/pug/pugIntro.zip
 CMS:     https://github.com/intuition-dev/INTU/raw/master/examples/CMS.zip
@@ -17,6 +17,9 @@ CMS:     https://github.com/intuition-dev/INTU/raw/master/examples/CMS.zip
 electron: https://github.com/intuition-dev/mbMobile/raw/master/electron.zip
 phoneGap: https://github.com/intuition-dev/mbMobile/raw/master/phoneGap.zip
 
+# ############################
 # new
+
 CRUD:    https://github.com/intuition-dev/INTU/raw/master/examples/CRUD.zip
-VM:       https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.11.26/src/template/BaseViewModel.ts
+
+VM:      https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.14/src/template/BaseViewModel.ts
