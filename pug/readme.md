@@ -16,7 +16,7 @@ More here:
 Alternatives/similar to Pug include Haml and Ebay's MarkoJS concise syntax.
 
 If you have never seen Pug before, I will tech it to you Pug in 15 seconds, you can just look at this page for 15 seconds and ... you know Pug:
-- [Learn Pug by looking at this for 15 seconds](http://pug.mbake.org)
+- [Learn Pug by looking at this for 15 seconds](http://pug.metabake.net)
 
 We will use *mbake* CLI to transpile from the Pug language [mbake CLI](https://www.npmjs.com/package/mbake), so please install that if you want to follow along.
 
@@ -94,7 +94,7 @@ Here is an example of defining a custom element 'c-custel':
 And now you can use 'c-custel' like any other tag in Pug!
 You can continue to a full Custom Element tutorial here:
 
-- http://custel1.mbake.org
+- http://custel1.metabake.net
 
 With the custom elements you can add more attributes, functionality, events, etc. because it is all standard.
 
@@ -105,7 +105,7 @@ Here is my example:
 
 <img src="https://github.com/intuition-dev/INTU/raw/master/src/intu.png" width="100%"/>
 
-This uses CodeMirrorJS to edit a Pug file on the www. My open source project (www.INTU.DEV ) is based on JAMStack, built to maximite leverage Pug.
+This uses CodeMirrorJS to edit a Pug file on the www. My open source project (www.INTUITION.DEV ) is based on JAMStack, built to maximite leverage Pug.
 For example, if you click that green 'Pop Custom' you get a list of custom elements you paste into your code!
 
 So that is the more part: you can write a text editor for Pug and put it on WWW. The idea is that a pro developer sets up a way for the citizen developer to maintain the application. *Pug!*

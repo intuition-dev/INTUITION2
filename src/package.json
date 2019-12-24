@@ -1,17 +1,17 @@
 {
     "name": "mbake",
     "preferGlobal": true,
-    "version": "7.12.1",
-    "description": "*All my friends KNOW the low-coder*; INTU.DEV's CLI (mbake CLI) is open source and extensible low-code productivity tool for programmers.",
+    "version": "7.12.2",
+    "description": "*All my friends KNOW the low-coder*; INTUITION.DEV's CLI (mbake CLI) is open source and extensible low-code productivity tool for programmers.",
     "bin": {
         "mbake": "mbake.js"
     },
     "license": "LGPL-3.0-only",
-    "author": "http://www.INTU.DEV",
-    "homepage": "http://www.INTU.DEV",
+    "author": "http://www.INTUITION.DEV",
+    "homepage": "http://www.INTUITION.DEV",
     "repository": {
         "type": "git",
-        "url": "http://git.mbake.org"
+        "url": "http://git.metabake.net"
     },
     "keywords": [
         "pug",
@@ -64,7 +64,7 @@
     "devDependencies": {
         "stack-trace": ">=0.0.10",
         "@types/express": ">=4.17.2",
-        "@types/node": ">=12.12.21",
+        "@types/node": ">=13.1.0",
         "async-limiter": ">=2.0.0",
         "dompurify": ">=2.0.7",
         "legit": ">=1.0.7",

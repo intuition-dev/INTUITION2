@@ -1,9 +1,9 @@
-// All rights reserved by MetaBake (INTU.DEV) | Cekvenich, licensed under LGPL 3.0
+// All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
 // NOTE: You can extend any classes!
 
 export class Ver {
    static ver() {
-      return 'v7.12.1'
+      return 'v7.12.2'
    }
    static date(): string {
       return new Date().toISOString()

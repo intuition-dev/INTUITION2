@@ -1,7 +1,7 @@
 
-mbake:  v7.12.1
+mbake:  v7.12.2
 
-mbakex: v2.12.1
+mbakex: v2.12.2
 
 intu:   v2.11.26
 
@@ -12,7 +12,7 @@ opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.15/src/temp
 opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.15/src/template/ops.js
 
 pugInto:  https://github.com/intuition-dev/mbCLI/raw/master/pug/pugIntro.zip
-CMS:     https://github.com/intuition-dev/INTU/raw/master/examples/CMS.zip
+CMS:      https://github.com/intuition-dev/INTU/raw/master/examples/CMS.zip
 
 electron: https://github.com/intuition-dev/mbMobile/raw/master/electron.zip
 phoneGap: https://github.com/intuition-dev/mbMobile/raw/master/phoneGap.zip

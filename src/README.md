@@ -3,7 +3,7 @@
 
 ## 'All my friends KNOW the low-coder'
 
-#### MetaBake is open source and extensible low-code productivity tools that leverages JAMstack, w/ Pug.
+#### MetaBake is open source and extensible low-code productivity tools that leverages Pug and JAMstack.
 
 ## Overview
 
@@ -27,12 +27,10 @@ cd website
 mbake -w . /* to run the watcher livereload */
 ```
 
-Note: currently node needs to be install via nvm (https://github.com/nvm-sh/nvm)
+Note: It is best to install node via via nvm (https://github.com/nvm-sh/nvm)
 Note: if changed node version you may need to do this first:  `yarn global remove mbake`
 
-
 You can also use: yarn global add  mbake
-
 
 ## MetaBake in 4 Minutes
 
@@ -182,10 +180,10 @@ In turn, the included file calls a mbToolBelt.js from a CDN.
 
 # Links
 
-[Docs](http://docs.mbake.org)
+[Docs](http://docs.metabake.net)
 
-[Git Repo](http://git.mbake.org)
+[Git Repo](http://git.metabake.net)
 
-[Pug example](http://pug.mbake.org)
+[Pug example](http://pug.metabake.net)
 
-[INTU.DEV Home Page](https://www.INTU.DEV)
+[INTUITION.DEV Home Page](https://www.INTUITION.DEV)
