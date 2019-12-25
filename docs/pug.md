@@ -121,6 +121,6 @@ Also, the fact that we are generating this static content allows us to have the 
 ## Re: Build Tools Gulp/Grunt
 
 You can also transpile Pug with other build tools like Gulp/Grunt (or even prepros.io) using their syntax. mbake CLI is written in .js.
-This allows us to use the latest features of the needed npm libraries. And allows you to extend our classes to write your custom version of mbake CLI - explained in the advanced sections. At least MetaBake should inspire you to use generators.
+This allows us to use the latest features of the needed npm libraries. And allows you to extend our classes to write your custom version of mbake CLI - explained in the advanced sections. At least INTUITION  should inspire you to use generators.
 
 

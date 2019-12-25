@@ -79,7 +79,7 @@ class DownloadC {
     }
 }
 exports.DownloadC = DownloadC;
-DownloadC.truth = 'https://intuition-dev.github.io/mbCLI/versions.yaml';
+DownloadC.truth = 'https://INTUITION-dev.github.io/mbCLI/versions.yaml';
 class YamlConfig {
     constructor(fn) {
         let cfg = yaml.load(fs.readFileSync(fn));

@@ -32,9 +32,9 @@ More:
 - PWA 
 - Federated CMS (commercial)
 - Consulting: audit software development productivity best practices
-- Commercial development by sponsor: www.MetaBake .net - 10X cheaper and quicker
+- Commercial development by sponsor: www.INTUITION .net - 10X cheaper and quicker
 
 
-## Awesome list of low-code and MetaBake resources:
+## Awesome list of low-code and INTUITION  resources:
 
 - https://github.com/MetaBake/mbakeDocs/tree/master/awesomeReference

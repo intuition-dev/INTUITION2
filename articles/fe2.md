@@ -1,7 +1,7 @@
 
 # Advanced Frontend Development for (real and) experienced developers 
 
-Previously I outlined beginner backend development in article (here:  https://github.com/intuition-dev/httpRPC/tree/master/other/doc  )
+Previously I outlined beginner backend development in article (here:  https://github.com/INTUITION-dev/httpRPC/tree/master/other/doc  )
 And now here in part 2, I'll tackle how to effectively do Frontend development: targeting experienced developers, 7+ years of professional
 web development. The 7 years being based on book called: 10K hours to mastery. 
 What I am saying to the reader is if you are a jr Frontend developer this article is not for  you, ( but you can likely do beginner backend development as linked at the top - it is much easier to start and master backend - and while doing backend you can get exposed to non-imperative styles of programing, for example using SQL is declarative.)

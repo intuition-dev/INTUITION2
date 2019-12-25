@@ -5,21 +5,22 @@ mbakex: v2.12.2
 
 intu:   v2.11.26
 
-headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.16/src/template/headFrag.pug
-Bind:     https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.16/src/template/UIBinding.ts
-VM:       https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.16/src/template/BaseVM.ts
-Tests:    https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.16/src/template/tests.ts
+headFrag: https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/headFrag.pug
+Bind:     https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/UIBinding.ts
 
-opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.16/src/template/ops.pug
-opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v3.12.16/src/template/ops.js
+VM:       https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/BaseVM.ts
+Tests:    https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/tests.ts
 
-pugInto:  https://github.com/intuition-dev/mbCLI/raw/master/pug/pugIntro.zip
-CMS:      https://github.com/intuition-dev/INTU/raw/master/examples/CMS.zip
+opsPug:   https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/ops.pug
+opsJs:    https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/ops.js
 
-electron: https://github.com/intuition-dev/mbMobile/raw/master/electron.zip
-phoneGap: https://github.com/intuition-dev/mbMobile/raw/master/phoneGap.zip
+pugInto:  https://github.com/INTUITION-dev/mbCLI/raw/master/pug/pugIntro.zip
+CMS:      https://github.com/INTUITION-dev/INTU/raw/master/examples/CMS.zip
+
+electron: https://github.com/INTUITION-dev/mbMobile/raw/master/electron.zip
+phoneGap: https://github.com/INTUITION-dev/mbMobile/raw/master/phoneGap.zip
 
 # 
 
-CRUD:    https://github.com/intuition-dev/INTU/raw/master/examples/CRUD.zip
+CRUD:    https://github.com/INTUITION-dev/INTU/raw/master/examples/CRUD.zip
 

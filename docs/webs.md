@@ -14,7 +14,7 @@ It has a README.md in root of the website.
 ### depp.min.js
 
 Most example Web Apps, including the website, need to load external .js libraries. 
-MetaBake example the use the CDN centric .js loader 'depp': http://github.com/muicss/johnnydepp but you can use any 'loader' lib you like. But learn the default depp.js, since all the examples us that one:
+INTUITION example the use the CDN centric .js loader 'depp': http://github.com/muicss/johnnydepp but you can use any 'loader' lib you like. But learn the default depp.js, since all the examples us that one:
 
 ```javascript
 // define dependencies

@@ -1,4 +1,4 @@
-// All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
+// All rights reserved by CekvenichINTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 
 import { Dirs } from './FileOpsBase'
 
@@ -14,7 +14,7 @@ import yaml = require('js-yaml')
 
 export class DownloadC {
    // in docs root via git
-   static truth: string = 'https://intuition-dev.github.io/mbCLI/versions.yaml'
+   static truth: string = 'https://INTUITION-dev.github.io/mbCLI/versions.yaml'
    key: string
    targetDir: string
 
@@ -104,7 +104,8 @@ export class DownloadFrag {
       log.info('Extracting to', dir)
       if (!ops) {
          new DownloadC('headFrag',dir).auto()
-         //new Download('VM',  dir).auto()
+         new DownloadC('VM',  dir).auto()
+         new DownloadC('Tests',  dir).auto()
          new DownloadC('Bind',  dir).auto()
       }
       if (ops) {

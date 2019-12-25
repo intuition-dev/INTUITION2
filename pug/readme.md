@@ -40,7 +40,7 @@ That's it, you know Pug.
 You can now statically generate any kind of a web app, PWA, or if you make an SPA app you can have the same app run not only as
 a web app, but same code can run Electro, or PhoneGap: to make Android or IOS app. (Aside, I use http://build.PhoneGap.com so there is no Android, IOS, or Cordova to install. It is all done in the cloud. )
 
-Here is an example cross platform app: (https://github.com/intuition-dev/mbMobile), for 3 platforms. Notice that the web app, electron app and phonegap app all use a symbolic link to the same directory: **same code base**. We won't spend more time on this, you can look at the code but just a point is: you can make a cross platform app in Pug.
+Here is an example cross platform app: (https://github.com/INTUITION-dev/mbMobile), for 3 platforms. Notice that the web app, electron app and phonegap app all use a symbolic link to the same directory: **same code base**. We won't spend more time on this, you can look at the code but just a point is: you can make a cross platform app in Pug.
 
 And since it is static: you can serve from the edge via a CDN (my CDN supports QUIC) for a lower cost and higher performance.
 
@@ -103,7 +103,7 @@ With the custom elements you can add more attributes, functionality, events, etc
 If you are using Pug to build a web app, you may write an admin console, similar to how WordPress and other do. 
 Here is my example:
 
-<img src="https://github.com/intuition-dev/INTU/raw/master/src/intu.png" width="100%"/>
+<img src="https://github.com/INTUITION-dev/INTU/raw/master/src/intu.png" width="100%"/>
 
 This uses CodeMirrorJS to edit a Pug file on the www. My open source project (www.INTUITION.DEV ) is based on JAMStack, built to maximite leverage Pug.
 For example, if you click that green 'Pop Custom' you get a list of custom elements you paste into your code!

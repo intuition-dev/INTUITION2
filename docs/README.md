@@ -1,9 +1,9 @@
 
-# MetaBake CLI
+# INTUITION  CLI
 
 ## 'All my friends KNOW the low-coder'
 
-#### MetaBake is open source and extensible low-code productivity tool for front-end developers.
+#### INTUITION  is open source and extensible low-code productivity tool for front-end developers.
 
 ## Overview
 
@@ -28,7 +28,7 @@ Note: currently node needs to be install via nvm (https://github.com/nvm-sh/nvm)
 Note: if changed node version you may need to do this first:  `yarn global remove mbake`
 
 
-## MetaBake in 4 Minutes
+## INTUITION  in 4 Minutes
 
 Building sites take a few moments, just add `index.pug` and `dat.yaml` files in the folder, and compile it with `mbake .` from the root folder of your site.
 
@@ -58,7 +58,7 @@ key1: World
 mbake .
 ```
 
-This will create `index.html`. Of course you can use regular Pug syntax to include other Pug files or Markdown. (MetaBake Markdown flavor includes CSS support):
+This will create `index.html`. Of course you can use regular Pug syntax to include other Pug files or Markdown. (INTUITION Markdown flavor includes CSS support):
 ```pug
 body
    div
@@ -176,7 +176,7 @@ mbake -i .
 ```
 It will create `items.json`. This allows you to fetch that json and search for content, CMS, items, etc.
 
-## MetaBake FrameWork(FW)/Application Architecture(AA)
+## INTUITION  FrameWork(FW)/Application Architecture(AA)
 
 There is not much to ours. 
 

@@ -29,4 +29,4 @@ In general you should leverage a CSS framework, there are many to chose from. We
 
 For font, we default to Open Sans, but like a CSS framework, you can use any.
 
-Also, as mentioned before MetaBake Markdown supports css classes. 
+Also, as mentioned before INTUITION  Markdown supports css classes. 

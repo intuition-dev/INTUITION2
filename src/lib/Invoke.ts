@@ -1,4 +1,4 @@
-// All rights reserved by MetaBake (INTUITION.DEV) | Cekvenich, licensed under LGPL 3.0
+// All rights reserved by CekvenichINTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 
 const fetch = require('node-fetch')
 

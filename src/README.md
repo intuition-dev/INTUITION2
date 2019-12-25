@@ -3,7 +3,7 @@
 
 ## 'All my friends KNOW the low-coder'
 
-#### MetaBake is open source and extensible low-code productivity tools that leverages Pug and JAMstack.
+#### INTUITION  is open source and extensible low-code productivity tools that leverages Pug and JAMstack.
 
 ## Overview
 
@@ -12,7 +12,7 @@ MetaBake(mbake) provides all the necessary tools for a developer to write cleane
 You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Custom Elements, custom CMS/E-Commerce, CRUD and all sorts of dynamic Web Apps.
 
 #### Please star our main project here:
-- https://github.com/intuition-dev/INTU
+- https://github.com/INTUITION-dev/INTU
 
 ### Prerequisites
 
@@ -32,7 +32,7 @@ Note: if changed node version you may need to do this first:  `yarn global remov
 
 You can also use: yarn global add  mbake
 
-## MetaBake in 4 Minutes
+## INTUITION  in 4 Minutes
 
 Building sites take a few moments, just add `index.pug` and `dat.yaml` files in the folder, and compile it with `mbake .` from the root folder of your site.
 
@@ -62,7 +62,7 @@ key1: World
 mbake .
 ```
 
-This will create `index.html`. Of course you can use regular Pug syntax to include other Pug files or Markdown. (MetaBake Markdown flavor includes CSS support):
+This will create `index.html`. Of course you can use regular Pug syntax to include other Pug files or Markdown. (INTUITION Markdown flavor includes CSS support):
 ```pug
 body
    div
@@ -158,7 +158,7 @@ mbake -w
 That will extract an example website in the current folder. ( Obviously you can create any layout with any combination of css and other libraries, but here is how we laid out an example/starter website).
 
 
-## MetaBake tool belt
+## INTUITION  tool belt
 
 There are some libraries (and poly fills) that you use often. We just have a list of links, making them easy to load(depp.require())
 
