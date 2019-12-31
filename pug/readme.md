@@ -1,6 +1,6 @@
 ## Advanced Front End Development with ExpressJS's built in *Pug* markup (JAMStack)
 
-
+ 
 ### Markdown
 
 If you use Github, you know README.md markdown. ( I use Marker editor https://fabiocolacio.github.io/Marker ). Also everyone and every project should use Github pages. 
@@ -86,13 +86,14 @@ Above was all statically generated data, great for SEO.
 For dynamic you would write fetch .js code to get the dynamic results. And here is one example of how to do dynamic binding, in this case using MustacheJS:
 
 `
-template#card
-    span {{#.}}
-      .txtCont
-         h4 {{title}}
-         p {{desc}}
-    span {{/.}}
+   template#card
+      span {{#.}}
+         .txtCont
+            h4 {{title}}
+            p {{desc}}
+      span {{/.}}
 `
+
 Above is Pug code to create a MustacheJS template, that you can then render via with your data. You can use any dynamic data binding you like with JAMStack.
 
 
@@ -139,17 +140,31 @@ Here is an example cross platform app: (https://github.com/INTUITION-dev/mbMobil
 And since it is static: you can serve from the edge via a CDN (my CDN supports QUIC) for a lower cost and higher performance.
 
 
-## And a bonus:
+## Future
 
-If you are using Pug to build a web app, you may write an admin console, similar to how WordPress and other do. 
-Here is my example:
+One example of DOM-centric, eschew imperative is MABO.io.
 
-<img src="https://github.com/INTUITION-dev/INTU/raw/master/src/intu.png" width="100%"/>
+Here is an example of using Pug w/ MAVO:
 
-This uses CodeMirrorJS to edit a Pug file on the www. My open source project (www.INTUITION.DEV ) is based on JAMStack, built to maximite leverage Pug.
-For example, if you click that green 'Pop Custom' you get a list of custom elements you paste into your code!
+`
+   head      
+      script(src='https://get.mavo.io/mavo.js')
+      link(rel='stylesheet' href='https://get.mavo.io/mavo.css')
 
-So that is the more part: you can write a text editor for Pug and put it on WWW. The idea is that a pro developer sets up a way for the citizen developer to maintain the application. *Pug!*
+   body
+      div(mv-app='mavoTest' mv-storage='local') My first Mavo app!
+`
+
+
+### Hiring
+
+A good place to find developers that will be successful as advanced front end developers is Dribble. 
+
+
+#### Related
+
+There is a back end basics article by the authour:
+- https://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
 
 #### Self promo:
 
