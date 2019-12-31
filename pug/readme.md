@@ -1,14 +1,37 @@
-# JAMstack.org as a modern Front End Developer/Designer platform used to leverages ExpressJS's built in *Pug* markup.
+# JAMstack.org as a modern tool for Senior/advanced Front End Developers/Designers used to leverages ExpressJS's built in *Pug* markup.
 ( and eschew imperative languages )
 
-### Learning, leveraging and *extending* Pug as the main programming language for static generation, cross-platform development and more.
+#### Learning, leveraging and *extending* Pug as the main programming language for static generation, cross-platform development and more.
 
-
-## Quick Intro to Pug part 1
+## Background:
 
 ### Markdown
 
-Using
+If you use Github, you know README.md markdown. ( I use Marker editor https://fabiocolacio.github.io/Marker ). Also everyone and every project should use Github pages. 
+
+##### Lab 1: 
+If you are not familiar with github pages, then set that up now before proceeding. One easy way is with http://docsify.js.org.
+
+Ex. Github pages: _sidebar.md
+   `
+   * [Home Page](README.md)
+   * [Page1](pg1.md)
+   * [Page2](pg2.md)
+   `
+Now create those 3 files, and  use the index.html file that you get from Docsify's website.
+
+Above helps you learn markdown, before we get into markup.
+
+#### SASS
+
+IMO, Compared to HTML and .js, CSS is most important and most powerful tool for Front End Developers/Designers. But we no longer write CSS by hand, we now generate CSS from SASS (or Scss) files. We likely download a SASS(or Scss) library from WWW (eg: https://github.com/owenversteeg/min/tree/gh-pages/sass ), edit the files and generate CSS files.
+To generate the CSS, we can use Grunt, Gulp, PrePros.IO or write a new shell command via a script in node.js. 
+
+##### Lab 2: 
+If  you have never generated CSS, install the free PrePros.IO - you'll need it later anyway. Now download the https://github.com/owenversteeg/min/tree/gh-pages/sass and generate CSS.
+
+
+## Quick Intro to Pug:
 
 You have heard of NodeJS, and even NodesJS http server: ExpressJS. A *rendering engine used by ExpressJS template engine is Pug*.
 - [ExpressJS Pug](https://expressjs.com/en/guide/using-template-engines.html)
@@ -25,12 +48,11 @@ If you have never seen Pug before, I will tech it to you Pug in 15 seconds, you 
 
 We will use *mbake* CLI to transpile from the Pug language [mbake CLI](https://www.npmjs.com/package/mbake), so please install that if you want to follow along.
 
-But if you are a beginner you can use a GUI like [PrePros](https://prepros.io/downloads)
-If you do the GUI route, once you are comfortable, come back here to continue to the next step, using mbake.
+But if you are a beginner you can use a GUI like [PrePros](https://prepros.io/downloads) to take a Pug file and make html.
 
-### Quick Intro to Pug part 2
+### mbake CLI
 
-So now install (https://www.npmjs.com/package/mbake) if you have not done so already.
+Install (https://www.npmjs.com/package/mbake) if you have not done so already.
 
 Then you should extract a the example we will use by running ```mbake --pug```, and then ```cd pugIntro```.
 
@@ -39,6 +61,8 @@ Just from fun run ```mbake -s .```. That takes SASS/SCSS files and makes .css.
 But we are here for Pug, run ```mbake .``, and it will make html file from the Pug file.
 
 That's it, you know Pug.
+
+
 
 ## Leveraging Pug for static generation and cross-platform development.
 
