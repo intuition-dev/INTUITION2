@@ -1,4 +1,4 @@
-# JAMstack.org as a modern tool for Senior/advanced Front End Developers/Designers used to leverages ExpressJS's built in *Pug* markup.
+## JAMstack.org as a modern tool for Senior/advanced Front End Developers/Designers used to leverages ExpressJS's built in *Pug* markup.
 ( and eschew imperative languages )
 
 #### Learning, leveraging and *extending* Pug as the main programming language for static generation, cross-platform development and more.

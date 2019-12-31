@@ -93,6 +93,8 @@ class DownloadFrag {
         log.info('Extracting to', dir);
         if (!ops) {
             new DownloadC('headFrag', dir).auto();
+            new DownloadC('VM', dir).auto();
+            new DownloadC('Tests', dir).auto();
             new DownloadC('Bind', dir).auto();
         }
         if (ops) {
