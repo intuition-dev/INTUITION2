@@ -1,9 +1,14 @@
+# JAMstack.org as a modern Front End Developer/Designer platform used to leverages ExpressJS's built in *Pug* markup.
+( and eschew imperative languages )
 
-# Using, leveraging and extending Pug as the main programming language for static generation, cross-platform development and more.
+### Learning, leveraging and *extending* Pug as the main programming language for static generation, cross-platform development and more.
 
-Lets see how to use and **extend* Pug.
 
-### Quick Intro to Pug part 1
+## Quick Intro to Pug part 1
+
+### Markdown
+
+Using
 
 You have heard of NodeJS, and even NodesJS http server: ExpressJS. A *rendering engine used by ExpressJS template engine is Pug*.
 - [ExpressJS Pug](https://expressjs.com/en/guide/using-template-engines.html)
@@ -118,4 +123,4 @@ You can check out the project here:
 and if you like it, please start the github link there.
 
 
-
+INTUITION: adds editor, WIP
