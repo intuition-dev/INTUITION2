@@ -180,7 +180,9 @@ In turn, the included file calls a mbToolBelt.js from a CDN.
 
 # Links
 
-[Docs](http://docs.metabake.net)
+[Advanced Front End w/ Pug](https://github.com/intuition-dev/mbCLI/tree/master/pug)
+
+[mbake CLI Docs](http://intuition-dev.github.io/mbCLI)
 
 [Git Repo](http://git.metabake.net)
 
