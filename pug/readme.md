@@ -9,11 +9,13 @@ If you use Github, you know README.md markdown. ( I use Marker editor https://fa
 If you are not familiar with github pages, then set that up now before proceeding. One easy way is with http://docsify.js.org. This way you practice markdown.
 
 Ex. Github pages: _sidebar.md
-   `
+
+```
    * [Home Page](README.md)
    * [Page1](pg1.md)
    * [Page2](pg2.md)
-   `
+```
+
 Now create those 3 files, and  use the index.html file that you get from Docsify's website.
 
 Above helps you learn markdown, before we get into markup.
@@ -85,14 +87,14 @@ So to make a new page/screen you must create a new folder. This helps organize t
 Above was all statically generated data, great for SEO.
 For dynamic you would write fetch .js code to get the dynamic results. And here is one example of how to do dynamic binding, in this case using MustacheJS:
 
-`
+```
    template#card
       span {{#.}}
          .txtCont
             h4 {{title}}
             p {{desc}}
       span {{/.}}
-`
+```
 
 Above is Pug code to create a MustacheJS template, that you can then render via with your data. You can use any dynamic data binding you like with JAMStack.
 
@@ -146,14 +148,14 @@ One example of DOM-centric, eschew imperative is MABO.io.
 
 Here is an example of using Pug w/ MAVO:
 
-`
+```
    head      
       script(src='https://get.mavo.io/mavo.js')
       link(rel='stylesheet' href='https://get.mavo.io/mavo.css')
 
    body
       div(mv-app='mavoTest' mv-storage='local') My first Mavo app!
-`
+```
 
 
 ### Hiring
