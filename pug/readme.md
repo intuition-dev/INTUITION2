@@ -1,9 +1,7 @@
 ## Advanced Front End Development with JAMStack that leverage ExpressJS's built in *Pug* markup; plus hands on examples
-
-
 ### Markdown
 
-If you use Github, you know README.md markdown. I use Marker editor http://fabiocolacio.github.io/Marker, it is one of my favorite tools. Also everyone (and every project) should use Github pages. 
+If you use Github, you know README.md markdown. I use Marker editor http://fabiocolacio.github.io/Marker, it is one of my favorite tools. Also, everyone (and every project) should use Github pages. 
 
 #### Required Lab 1: 
 If you are not familiar with github pages, then set that up now before proceeding. One easy way is with http://docsify.js.org. This way you practice markdown.
@@ -16,7 +14,7 @@ Ex. Github pages, source for _sidebar.md:
    * [Page2](pg2.md)
 ```
 
-Now create those 3 files, and  use the index.html file that you get from Docsify's website.
+Now create those 3 files, and use the index.html file that you get from Docsify's website.
 
 Above helps you learn markdown, before we get into markup and static generation. 
 
@@ -27,7 +25,7 @@ Aside: You can do charts and slides in markdown.
 CSS is the most important and most powerful tool for Front End Developers/Designers. But we no longer write CSS by hand, we now generate CSS from SASS (or Scss) files. We likely download a SASS(or Scss) library from WWW (eg: http://github.com/owenversteeg/min/tree/gh-pages/sass ), edit the SASS files and generate CSS files.
 To generate the CSS, we can use Grunt, Gulp, PrePros.IO or write a new shell command via a script in node.js. 
 
-If  you have never generated CSS, install the free http://www.PrePros.IO and try it. 
+If you have never generated CSS, install the free http://www.PrePros.IO and try it. 
 
 # Quick Intro to Pug:
 
@@ -44,7 +42,7 @@ Alternatives/similar to Pug include Haml and Ebay's MarkoJS concise syntax.
 ## mbake CLI
 ---
 
-You can use Grunt, Gulp, Prepros.IO or write a script in node.js to convert Pug to HTML. The later is most flexibile, I wrote a script to convert Pug to HTML, and I named that command mbakeWe will use *mbake* CLI to generate html from the Pug language: 
+You can use Grunt, Gulp, Prepros.IO or write a script in node.js to convert Pug to HTML. The later is most flexible, I wrote a script to convert Pug to HTML, and I named that command mbake. We will use *mbake* CLI to generate html from the Pug language: 
 
 - [mbake CLI](http://www.npmjs.com/package/mbake)
 
@@ -178,15 +176,15 @@ Here is an example of MAVO w/ Pug:
 
 ### Low Code
 
-In the future Low-Code tools will further increasing productivity. You can use a search engine to find low code tools, one of them is my own http://www.intuition.DEV. Basically the idea is to allow regular users and developers maintain Web Applications. 
+In the future, Low-Code tools will further increase productivity. You can use a search engine to find low code tools, one of them is my own http://www.intuition.DEV. Basically the idea is to allow regular users and developers maintain Web Applications. 
 
 ## Summary
 
-You can start by using markdwon, and then learn how to generate web apps using markup. Some can go further and extend the markup DOM or even do cross platform development.
+You can start by using markdown, and then learn how to generate web apps using markup. Some can go further and extend the markup DOM or even do cross-platform development.
 
 # Other
 
-A back end basics article by the authour:
+A back end basics article by the author:
 - http://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
 
 #### Hiring
