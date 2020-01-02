@@ -161,9 +161,10 @@ a web app, but same code can run Electron. JAMStack is just HTML, css and .js.
 Here is an example cross platform app: (https://github.com/INTUITION-dev/mbMobile), for 3 platforms. Notice that the web app, electron app and phonegap app all use a symbolic link to the same directory: **same code base**. We won't spend more time on this, you can look at the code but just a point is: you can make a cross platform app in Pug.
 
 
-## Future and Low-code
+# Future and Low-code
 
-One example of DOM-centric, eschew imperative is MABO.io.
+## MAVO
+One example of DOM-centric, eschew imperative ECMAScript is http://MAVO.io.
 
 Here is an example of using Pug w/ MAVO:
 
@@ -176,7 +177,16 @@ Here is an example of using Pug w/ MAVO:
       div(mv-app='mavoTest' mv-storage='local') My first Mavo app!
 ```
 
-### Hiring
+### Low Code
+
+And further down, the generators are used to make Low-Code tools, further increasing productivity. You can use a search engine to find low code tools, one of them is my own https://www.intuition.DEV
+
+## Summary
+
+You can start up using markdwon, and then learn how to generate web apps using markup.
+
+# Other:
+#### Hiring
 
 A good place to find developers that will be successful as advanced front end developers is Dribble. 
 
