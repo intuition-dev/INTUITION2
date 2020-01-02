@@ -189,6 +189,7 @@ A back end basics article by the author:
 
 #### Hiring
 
-A good place to find developers that will be successful as advanced front end developers is Dribble. If your candidate is eager for imperative programing, they maybe a better fit for fullstack/back end role.
+A good place to find developers that will be successful as advanced front end developers is Dribble. 
+If your candidate is eager for imperative programming, they may be a better fit for full-stack/back end role.
 
 
