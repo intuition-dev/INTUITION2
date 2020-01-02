@@ -186,20 +186,15 @@ And further down, the generators are used to make Low-Code tools, further increa
 You can start up using markdwon, and then learn how to generate web apps using markup.
 
 # Other:
-#### Hiring
-
-A good place to find developers that will be successful as advanced front end developers is Dribble. 
-
 
 #### Related
 
 There is a back end basics article by the authour:
 - https://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
 
-#### Self promo:
 
-You can check out the project here:
-#### - https://www.npmjs.com/package/intu
+#### Hiring
 
-and if you like it, please start the github link there.
+A good place to find developers that will be successful as advanced front end developers is Dribble. If your candidate is eager for imperative programing, they maybe a better fit for fullstack/back end role.
+
 
