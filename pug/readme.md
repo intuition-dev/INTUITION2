@@ -1,4 +1,4 @@
-## Advanced Front End Development with ExpressJS's built in *Pug* markup, a JAMStack example
+## Advanced Front End Development with JAMStack plus hands on examples, leveraging ExpressJS's built in *Pug* markup
 
 
 
@@ -21,7 +21,7 @@ Now create those 3 files, and  use the index.html file that you get from Docsify
 
 Above helps you learn markdown, before we get into markup and static generation. 
 
-Aside: You can even do charts and slides in markdown.
+Aside: You can do charts and slides in markdown.
 
 ### SASS to CSS
 
@@ -110,9 +110,8 @@ Above is Pug code to create a MustacheJS template, that you can then render via 
 
 # Extending DOM tags w/ Custom Elements 
 
-Html and Pug have elements like div, article, etc. that Pug and browsers know. We can create 
-custom elements using native api of a browser: no need to download any library. Well, you do need polyfill for IE11, but native 
-custom elements work on IE11. 
+Html and Pug have elements like div, article, etc. that Pug and browsers know. We can create additional
+custom elements using native api of a browser: no need to download any .js library. Well, you do need polyfill for IE11. 
 
 Here is an example of defining a custom element 'c-custel':
 
@@ -166,7 +165,7 @@ Here is an example cross platform app: (https://github.com/INTUITION-dev/mbMobil
 ## MAVO
 One example of DOM-centric, eschew imperative ECMAScript is http://MAVO.io.
 
-Here is an example of using Pug w/ MAVO:
+Here is an example of MAVO w/ Pug:
 
 ```
    head      
@@ -176,22 +175,20 @@ Here is an example of using Pug w/ MAVO:
    body
       div(mv-app='mavoTest' mv-storage='local') My first Mavo app!
 ```
+(full example is here: https://github.com/intuition-dev/mbCLI/tree/master/more_examples/mavo ) 
 
 ### Low Code
 
-And further down, the generators are used to make Low-Code tools, further increasing productivity. You can use a search engine to find low code tools, one of them is my own https://www.intuition.DEV
+In the future Low-Code tools will further increasing productivity. You can use a search engine to find low code tools, one of them is my own https://www.intuition.DEV. Basically the idea is to allow regular users and developers maintain Web Applications. 
 
 ## Summary
 
-You can start up using markdwon, and then learn how to generate web apps using markup.
+You can start by using markdwon, and then learn how to generate web apps using markup. Some can go further and extend the markup DOM or even do cross platform development.
 
-# Other:
+# Other
 
-#### Related
-
-There is a back end basics article by the authour:
+A back end basics article by the authour:
 - https://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
-
 
 #### Hiring
 
