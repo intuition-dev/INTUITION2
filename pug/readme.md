@@ -1,10 +1,9 @@
-## Advanced Front End Development with JAMStack plus hands on examples, leveraging ExpressJS's built in *Pug* markup
-
+## Advanced Front End Development with JAMStack that leverage ExpressJS's built in *Pug* markup; plus hands on examples
 
 
 ### Markdown
 
-If you use Github, you know README.md markdown. I use Marker editor https://fabiocolacio.github.io/Marker, it is one of my favorite tools. Also everyone (and every project) should use Github pages. 
+If you use Github, you know README.md markdown. I use Marker editor http://fabiocolacio.github.io/Marker, it is one of my favorite tools. Also everyone (and every project) should use Github pages. 
 
 #### Required Lab 1: 
 If you are not familiar with github pages, then set that up now before proceeding. One easy way is with http://docsify.js.org. This way you practice markdown.
@@ -25,7 +24,7 @@ Aside: You can do charts and slides in markdown.
 
 ### SASS to CSS
 
-CSS is the most important and most powerful tool for Front End Developers/Designers. But we no longer write CSS by hand, we now generate CSS from SASS (or Scss) files. We likely download a SASS(or Scss) library from WWW (eg: https://github.com/owenversteeg/min/tree/gh-pages/sass ), edit the SASS files and generate CSS files.
+CSS is the most important and most powerful tool for Front End Developers/Designers. But we no longer write CSS by hand, we now generate CSS from SASS (or Scss) files. We likely download a SASS(or Scss) library from WWW (eg: http://github.com/owenversteeg/min/tree/gh-pages/sass ), edit the SASS files and generate CSS files.
 To generate the CSS, we can use Grunt, Gulp, PrePros.IO or write a new shell command via a script in node.js. 
 
 If  you have never generated CSS, install the free http://www.PrePros.IO and try it. 
@@ -33,12 +32,12 @@ If  you have never generated CSS, install the free http://www.PrePros.IO and try
 # Quick Intro to Pug:
 
 You have heard of NodeJS, and even NodesJS http server: ExpressJS. A *rendering engine used by ExpressJS template engine is **Pug**!:
-- [ExpressJS Pug](https://expressjs.com/en/guide/using-template-engines.html)
+- [ExpressJS Pug](http://expressjs.com/en/guide/using-template-engines.html)
 
 And here is what Pug looks like, click around a bit: 
-- https://html2pug.now.sh
+- http://html2pug.now.sh
 
-But Pug is also used with *all* the other popular tech stacks, for example [Laravel Pug](https://github.com/BKWLD/laravel-pug), and others as well.
+But Pug is also used with *all* the other popular tech stacks, for example [Laravel Pug](http://github.com/BKWLD/laravel-pug), and others as well.
 
 Alternatives/similar to Pug include Haml and Ebay's MarkoJS concise syntax.
 
@@ -47,12 +46,12 @@ Alternatives/similar to Pug include Haml and Ebay's MarkoJS concise syntax.
 
 You can use Grunt, Gulp, Prepros.IO or write a script in node.js to convert Pug to HTML. The later is most flexibile, I wrote a script to convert Pug to HTML, and I named that command mbakeWe will use *mbake* CLI to generate html from the Pug language: 
 
-- [mbake CLI](https://www.npmjs.com/package/mbake)
+- [mbake CLI](http://www.npmjs.com/package/mbake)
 
 You can install that if you want to follow along.
 
 #### Optional Lab 2:
-Install https://www.npmjs.com/package/mbake
+Install http://www.npmjs.com/package/mbake
 
 Then you should extract a the example we will use by running ```mbake --pug```, and then ```cd pugIntro```.
 
@@ -157,7 +156,7 @@ a web app, but same code can run Electron. JAMStack is just HTML, css and .js.
 
  You can also use Cordova or PhoneGap: to make Android or IOS app.  I use http://build.PhoneGap.com so there is no Android, IOS, or Cordova to install. It is all done in the cloud.
 
-Here is an example cross platform app: (https://github.com/INTUITION-dev/mbMobile), for 3 platforms. Notice that the web app, electron app and phonegap app all use a symbolic link to the same directory: **same code base**. We won't spend more time on this, you can look at the code but just a point is: you can make a cross platform app in Pug.
+Here is an example cross platform app: (http://github.com/INTUITION-dev/mbMobile), for 3 platforms. Notice that the web app, electron app and phonegap app all use a symbolic link to the same directory: **same code base**. We won't spend more time on this, you can look at the code but just a point is: you can make a cross platform app in Pug.
 
 
 # Future and Low-code
@@ -169,17 +168,17 @@ Here is an example of MAVO w/ Pug:
 
 ```
    head      
-      script(src='https://get.mavo.io/mavo.js')
-      link(rel='stylesheet' href='https://get.mavo.io/mavo.css')
+      script(src='http://get.mavo.io/mavo.js')
+      link(rel='stylesheet' href='http://get.mavo.io/mavo.css')
 
    body
       div(mv-app='mavoTest' mv-storage='local') My first Mavo app!
 ```
-(full example is here: https://github.com/intuition-dev/mbCLI/tree/master/more_examples/mavo ) 
+(full example is here: http://github.com/intuition-dev/mbCLI/tree/master/more_examples/mavo ) 
 
 ### Low Code
 
-In the future Low-Code tools will further increasing productivity. You can use a search engine to find low code tools, one of them is my own https://www.intuition.DEV. Basically the idea is to allow regular users and developers maintain Web Applications. 
+In the future Low-Code tools will further increasing productivity. You can use a search engine to find low code tools, one of them is my own http://www.intuition.DEV. Basically the idea is to allow regular users and developers maintain Web Applications. 
 
 ## Summary
 
@@ -188,7 +187,7 @@ You can start by using markdwon, and then learn how to generate web apps using m
 # Other
 
 A back end basics article by the authour:
-- https://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
+- http://medium.com/@cekvneich/short-review-of-basics-of-full-stack-big-data-scalability-and-clusters-of-distributed-data-bcc8e3a8abd3
 
 #### Hiring
 
