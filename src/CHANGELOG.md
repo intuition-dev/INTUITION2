@@ -1,4 +1,4 @@
-### 7.12.3
+### 7.12.4
 - new RPC signatures, also include w/ lz
 
 ### 6.11.12
