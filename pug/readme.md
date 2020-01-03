@@ -190,6 +190,6 @@ A back end basics article by the author:
 #### Hiring
 
 A good place to find developers that will be successful as advanced front end developers is Dribble. 
-If your candidate is eager for imperative programming, they may be a better fit for full-stack/back end role.
+If your candidate is eager for imperative programming, they may be a better fit for full-stack/back end role. Wile front end development roles are demanding, one nice things is that they are suitable for remote or work from home resources.
 
 
