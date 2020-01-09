@@ -63,7 +63,7 @@
     ],
     "devDependencies": {
         "@types/express": ">=4.17.2",
-        "@types/node": ">=13.1.4",
+        "@types/node": ">=13.1.6",
         "async-limiter": ">=2.0.0",
         "dompurify": ">=2.0.7",
         "legit": ">=1.0.7",
