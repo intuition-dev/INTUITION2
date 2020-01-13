@@ -1,7 +1,7 @@
 {
     "name": "mbake",
     "preferGlobal": true,
-    "version": "7.12.4",
+    "version": "7.12.100",
     "description": "*All my friends KNOW the low-coder*; INTUITION.DEV's CLI (mbake CLI) is open source and extensible low-code productivity tool for programmers.",
     "bin": {
         "mbake": "mbake.js"
@@ -52,7 +52,7 @@
         "reload": ">=3.0.3",
         "strip-css-comments": ">=4.1.0",
         "superagent": ">=5.2.1",
-        "systeminformation": ">=4.18.3",
+        "systeminformation": ">=4.19.0",
         "terser": ">=4.6.2",
         "typescript": ">=3.7.4",
         "uuid": ">=3.3.3"

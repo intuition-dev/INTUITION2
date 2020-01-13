@@ -1,3 +1,7 @@
+### 7.12.100
+- new year
+
+
 ### 7.12.4
 - new RPC signatures, also include w/ lz
 

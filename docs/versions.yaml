@@ -1,18 +1,18 @@
 
-mbake:  v7.12.4
+mbake:  v7.12.100
 
-mbakex: v2.12.4
+mbakex: v2.12.100
 
-intu:   v2.12.4
+intu:   v2.12.100
 
-headFrag: https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/headFrag.pug
-Bind:     https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/UIBinding.ts
+headFrag: https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.100/src/template/headFrag.pug
+Bind:     https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.100/src/template/UIBinding.ts
 
-VM:       https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/BaseVM.ts
-Tests:    https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/tests.ts
+VM:       https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.100/src/template/BaseVM.ts
+Tests:    https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.100/src/template/tests.ts
 
-opsPug:   https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/ops.pug
-opsJs:    https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.16/src/template/ops.js
+opsPug:   https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.100/src/template/ops.pug
+opsJs:    https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.100/src/template/ops.js
 
 pugInto:  https://github.com/INTUITION-dev/mbCLI/raw/master/pug/pugIntro.zip
 CMS:      https://github.com/INTUITION-dev/INTU/raw/master/examples/CMS.zip
