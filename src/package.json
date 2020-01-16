@@ -54,8 +54,8 @@
         "superagent": ">=5.2.1",
         "systeminformation": ">=4.19.1",
         "terser": ">=4.6.3",
-        "typescript": ">=3.7.4",
-        "uuid": ">=3.3.3"
+        "typescript": ">=3.7.5",
+        "uuid": ">=3.4.0"
     },
     "browserslist": [
         "> 0.99%",
