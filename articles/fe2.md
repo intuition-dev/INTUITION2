@@ -150,7 +150,7 @@ Obviously having a separate mobile team doing Android and IOs will obstruct cros
 
 Instead the frontend team's teach leads are broken up by the users persona, the people your org is targeting in helping. 
 
-(aside: each frontend team should have a single member from the backend team that is writing the client side apis for them - APIs that map to the view model)
+(aside: each frontend team should have a single member from the backend team that is writing the client side apis for them - APIs that map to the ViewModel)
 
 Some call the Senior Frontend developers unicorns: designers that code. That is one of the reasons that the frontend is a higher salary band than backend.
 Also due to constraints, Senior Frontend developers maybe remote or at least have a Friday WAH (work from home), (vs backend that likely have to be local due to security of backend data).
