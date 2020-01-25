@@ -24,8 +24,10 @@ cd website
 mbakeX -w . /* to run the watcher/livereload */
 ```
 
-Note: currently node needs to be install via nvm (https://github.com/nvm-sh/nvm)
-Note: if changed node version you may need to do this first:  `yarn global remove mbake`
+Notes: 
+- It is best to install node via via nvm (https://github.com/nvm-sh/nvm)
+- I use yarn > v2.x, but npm should work
+
 
 
 ## INTUITION  in 4 Minutes

@@ -27,10 +27,10 @@ cd website
 mbake -w . /* to run the watcher livereload */
 ```
 
-Note: It is best to install node via via nvm (https://github.com/nvm-sh/nvm)
-Note: if changed node version you may need to do this first:  `yarn global remove mbake`
+Notes: 
+- It is best to install node via via nvm (https://github.com/nvm-sh/nvm)
+- I use yarn > v2.x, but npm should work
 
-You can also use: yarn global add  mbake
 
 ## INTUITION  in 4 Minutes
 
