@@ -1,4 +1,4 @@
-### 7.12.101
+### 7.12.102
 - new year
 
 
@@ -22,7 +22,7 @@
 ### 6.10.19
 - changed to csv from csv2json
 - remove tracer for winston
-- convert logger to bunyarn
+- convert logger to bunyon
 
 ### 6.10.15
 - bump -sass for pre node v13
@@ -55,7 +55,6 @@
 - remove old invoke methods for RPC !!!
 - added systeminformation and mysql
 - renamed BaseDB to L for sqllite
-- yarn back to 1.17.3, should be v1.19.0
 
 ### 06.09.30
 - removed frags from -i items.json
@@ -71,7 +70,6 @@
 
 ### 06.09.17
 - markdown image = 90% support
-- deprecate npm use yarn
 
 ### 06.09.16
 - Static to use CDN/Browser

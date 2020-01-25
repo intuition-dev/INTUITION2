@@ -21,7 +21,8 @@ You should know HTML, CSS and JavaScript - that is all we use. If you need to ca
 
 ## Quick start
 ```sh
-yarn global add mbake
+npm i -g npm@next
+npm i -g mbake
 mbake -w . /* for a base website */
 cd website
 mbake -w . /* to run the watcher livereload */
@@ -29,7 +30,6 @@ mbake -w . /* to run the watcher livereload */
 
 Notes: 
 - It is best to install node via via nvm (https://github.com/nvm-sh/nvm)
-- I use yarn > v2.x, but npm should work
 
 
 ## INTUITION  in 4 Minutes
