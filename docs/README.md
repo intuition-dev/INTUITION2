@@ -17,15 +17,16 @@ You should know HTML, CSS and JavaScript - that is all we use. If you need to ca
 
 
 ## Quick start
+
+Note: Some of the upstream packages we user are native, so you need to : apt-get install build-essential or similar to get the platfrom C compiler. 
+
 ```sh
-npm i -g npm@next
-npm i -g mbake
-mbake -w . /* for a base website */
+   apt-get install build-essential
+   npm i -g npm@next
+   npm i -g node-gyp@latest 
+   npm i -g --unsafe-perm=true --allow-root mbake
+   mbake -w . /* for a base website */
 ```
-
-Notes: 
-- It is best to install node via via nvm (https://github.com/nvm-sh/nvm)
-
 
 
 ## INTUITION  in 4 Minutes
