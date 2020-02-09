@@ -1,9 +1,9 @@
 
-mbake:  v7.14.2
+mbake:  v7.14.4
 
-mbakex: v2.14.3
+mbakex: v2.14.4
 
-intu:   v2.14.2
+intu:   v2.14.4
 
 headFrag: https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.100/src/template/headFrag.pug
 Bind:     https://cdn.jsdelivr.net/gh/INTUITION-dev/mbToolBelt@v3.12.100/src/template/UIBinding.ts

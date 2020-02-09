@@ -19,6 +19,7 @@ class SysAgent {
                 ports.push(v.localport);
             });
         });
+        console.log(ports);
         let results = [];
         let pids = {};
         for (let i = 0; i < ports.length; i++) {
