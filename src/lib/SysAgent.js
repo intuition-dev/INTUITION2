@@ -24,9 +24,11 @@ class SysAgent {
         let pids = {};
         for (let i = 0; i < ports.length; i++) {
             let row = await find('port', ports[i]);
-            row = row[0];
+            console.log(row);
             if (!row)
                 continue;
+            if (row[0])
+                row = row[0];
             let pid = row['pid'];
             if (pids.hasOwnProperty(pid))
                 continue;
