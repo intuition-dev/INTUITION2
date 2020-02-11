@@ -37,7 +37,7 @@ export class SysAgent {
       let pids = {}
       for (let i = 0; i < ports.length; i++) {
          let row = await find('port', ports[i])
-         console.log(row)
+         console.log(ports[i], row)
          if(!row) continue
          if(row[0]) row = row[0]
 
