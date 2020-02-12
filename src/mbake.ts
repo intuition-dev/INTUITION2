@@ -5,9 +5,9 @@ import commandLineArgs = require('command-line-args')
 
 import { Ver, MBake } from './lib/Base'
 import { MinJS, Sas } from './lib/Extra'
-import { Dirs } from './lib/FileOpsBase'
+const {Dirs} = require('agentg/lib/FileOpsExtra')
 import { Wa } from './lib/Wa'
-import { DownloadFrag, VersionNag, DownloadC } from './lib/FileOpsExtra'
+const { DownloadFrag, VersionNag, DownloadC } =  require('agentg/lib/FileOpsExtra')
 
 VersionNag.isCurrent('mbake', Ver.ver()).then(function (isCurrent_: boolean) {
    try {

@@ -4,10 +4,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const commandLineArgs = require("command-line-args");
 const Base_1 = require("./lib/Base");
 const Extra_1 = require("./lib/Extra");
-const FileOpsBase_1 = require("./lib/FileOpsBase");
+const { Dirs } = require('agentg/lib/FileOpsExtra');
 const Wa_1 = require("./lib/Wa");
-const FileOpsExtra_1 = require("./lib/FileOpsExtra");
-FileOpsExtra_1.VersionNag.isCurrent('mbake', Base_1.Ver.ver()).then(function (isCurrent_) {
+const { DownloadFrag, VersionNag, DownloadC } = require('agentg/lib/FileOpsExtra');
+VersionNag.isCurrent('mbake', Base_1.Ver.ver()).then(function (isCurrent_) {
     try {
         if (!isCurrent_)
             console.log('There is a newer version of mbake CLI, please update.');
@@ -59,16 +59,16 @@ const argsParsed = commandLineArgs(optionDefinitions);
 let arg = argsParsed.mbake;
 console.info();
 function frag(arg) {
-    new FileOpsExtra_1.DownloadFrag(arg, false);
+    new DownloadFrag(arg, false);
 }
 if (arg) {
-    arg = FileOpsBase_1.Dirs.slash(arg);
+    arg = Dirs.slash(arg);
     if (arg.startsWith('/')) {
     }
     else if (arg.startsWith('..')) {
         arg = arg.substring(2);
         let d = cwd;
-        d = FileOpsBase_1.Dirs.slash(d);
+        d = Dirs.slash(d);
         let n = d.lastIndexOf('/');
         d = d.substring(0, n);
         arg = d + arg;
@@ -81,7 +81,7 @@ if (arg) {
     }
 }
 function pugIntro() {
-    new FileOpsExtra_1.DownloadC('pugInto', __dirname).autoUZ();
+    new DownloadC('pugInto', __dirname).autoUZ();
     console.info('Extracted Intro to Pug example');
 }
 function bake(arg) {

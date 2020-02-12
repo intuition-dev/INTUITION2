@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Base_1 = require("./Base");
 const Extra_1 = require("./Extra");
-const FileOpsBase_1 = require("./FileOpsBase");
+const { Dirs } = require('agentg/lib/FileOpsExtra');
 const express = require("express");
 const chokidar = require("chokidar");
 const reload = require("reload");
@@ -75,7 +75,7 @@ class Watch {
     }
     async autoNT(path_, wa) {
         log.info(wa);
-        let path = FileOpsBase_1.Dirs.slash(path_);
+        let path = Dirs.slash(path_);
         let p = path.lastIndexOf('/');
         let folder = '';
         let fn = path;
@@ -117,7 +117,7 @@ class MetaPro {
         return js.ts(folder);
     }
     async autoBake(folder__, file) {
-        const folder = FileOpsBase_1.Dirs.slash(folder__);
+        const folder = Dirs.slash(folder__);
         const ext = file.split('.').pop();
         log.info('WATCHED2:', folder, ext);
         if (ext == 'scss' || ext == 'sass')

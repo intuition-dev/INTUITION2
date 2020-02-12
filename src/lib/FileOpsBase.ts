@@ -1,6 +1,5 @@
 // All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 
-import FileHound = require('filehound')
 
 const bunyan = require('bunyan')
 const bformat = require('bunyan-format2')  
@@ -9,72 +8,9 @@ const log = bunyan.createLogger({src: true, stream: formatOut, name: "file ops b
 import fs = require('fs-extra')
 
 import yaml = require('js-yaml')
-import path = require("path")
+import FileHound = require('filehound')
 
-export class Dirs {
-   dir: string
-   constructor(dir_: string) {
-      let dir = Dirs.slash(dir_)
-      this.dir = dir
-   }
-   static slash(path_) {// windowze
-      return path_.replace(/\\/g, '/')
-   }
-   static goUpOne(dir): string {
-      return path.resolve(dir, '..')
-   }
-
-   getInDir(sub):any {
-      log.info('method renamed use getFilesIn')
-      return this.getFilesIn(sub)
-   }
-   getFilesIn(sub) {
-      const rec = FileHound.create() //recursive
-         .paths(this.dir + sub)
-         .findSync()
-
-      let ret: string[] = [] //empty string array
-      const ll = this.dir.length + sub.length
-      for (let s of rec) {//clean the strings
-
-         let n = s.substr(ll)
-
-         ret.push(n)
-      }
-      return ret
-   }
-
-   /**
-    * Get list of dirs w/o root part
-    */
-   getShort() {
-      let lst = this.getFolders()
-      let ret: string[] = [] //empty string array
-      const ll = this.dir.length
-
-      for (let s of lst) {//clean the strings
-         let n = s.substr(ll)
-         //log.(n)
-         ret.push(n)
-      }
-      return ret
-   }
-
-   getFolders() {
-      const rec = FileHound.create() //recursive
-         .paths(this.dir)
-         .findSync()
-      let ret: string[] = [] //empty string array
-      for (let val of rec) {//clean the strings
-         val = Dirs.slash(val)
-         let n = val.lastIndexOf('/')
-         let s: string = val.substring(0, n)
-         ret.push(s)
-      }
-
-      return Array.from(new Set(ret))
-   }//()
-}//class
+const {Dirs} = require('agentg/lib/FileOpsExtra')
 
 export class Dat {
    props: any
@@ -181,7 +117,32 @@ export class FileOps {
 }//class
 
 
+export class FileMethods {
+
+   // get list of directories
+   getDirs(mountPath:string) {
+       let dirs = new Dirs(mountPath);
+       let dirsToIgnore = ['.', '..'];
+       return dirs.getShort()
+           .map(el => el.replace(/^\/+/g, '')) //?
+           .filter(el => !dirsToIgnore.includes(el));
+   }
+
+   // get files in directory
+   getFiles(mountPath:string, item:string) { 
+
+       let dirs = new Dirs(mountPath);
+       let result = dirs.getInDir(item);
+       
+       if (item === '/') { // if root directory, remove all dirs from output, leave only files:
+           return result.filter(file => file.indexOf('/') === -1 && !fs.lstatSync(mountPath + '/' + file).isDirectory());
+       } else {
+           return result;
+       }
+   }
+}
+
 module.exports = {
-  Dat, Dirs, FileOps
+  Dat, FileOps, FileMethods
 }
 

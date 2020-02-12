@@ -1,65 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const FileHound = require("filehound");
 const bunyan = require('bunyan');
 const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "file ops b" });
 const fs = require("fs-extra");
 const yaml = require("js-yaml");
-const path = require("path");
-class Dirs {
-    constructor(dir_) {
-        let dir = Dirs.slash(dir_);
-        this.dir = dir;
-    }
-    static slash(path_) {
-        return path_.replace(/\\/g, '/');
-    }
-    static goUpOne(dir) {
-        return path.resolve(dir, '..');
-    }
-    getInDir(sub) {
-        log.info('method renamed use getFilesIn');
-        return this.getFilesIn(sub);
-    }
-    getFilesIn(sub) {
-        const rec = FileHound.create()
-            .paths(this.dir + sub)
-            .findSync();
-        let ret = [];
-        const ll = this.dir.length + sub.length;
-        for (let s of rec) {
-            let n = s.substr(ll);
-            ret.push(n);
-        }
-        return ret;
-    }
-    getShort() {
-        let lst = this.getFolders();
-        let ret = [];
-        const ll = this.dir.length;
-        for (let s of lst) {
-            let n = s.substr(ll);
-            ret.push(n);
-        }
-        return ret;
-    }
-    getFolders() {
-        const rec = FileHound.create()
-            .paths(this.dir)
-            .findSync();
-        let ret = [];
-        for (let val of rec) {
-            val = Dirs.slash(val);
-            let n = val.lastIndexOf('/');
-            let s = val.substring(0, n);
-            ret.push(s);
-        }
-        return Array.from(new Set(ret));
-    }
-}
-exports.Dirs = Dirs;
+const FileHound = require("filehound");
+const { Dirs } = require('agentg/lib/FileOpsExtra');
 class Dat {
     constructor(path__) {
         let path_ = Dirs.slash(path__);
@@ -152,6 +100,26 @@ class FileOps {
     }
 }
 exports.FileOps = FileOps;
+class FileMethods {
+    getDirs(mountPath) {
+        let dirs = new Dirs(mountPath);
+        let dirsToIgnore = ['.', '..'];
+        return dirs.getShort()
+            .map(el => el.replace(/^\/+/g, ''))
+            .filter(el => !dirsToIgnore.includes(el));
+    }
+    getFiles(mountPath, item) {
+        let dirs = new Dirs(mountPath);
+        let result = dirs.getInDir(item);
+        if (item === '/') {
+            return result.filter(file => file.indexOf('/') === -1 && !fs.lstatSync(mountPath + '/' + file).isDirectory());
+        }
+        else {
+            return result;
+        }
+    }
+}
+exports.FileMethods = FileMethods;
 module.exports = {
-    Dat, Dirs, FileOps
+    Dat, FileOps, FileMethods
 };

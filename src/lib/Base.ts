@@ -17,7 +17,9 @@ const log = bunyan.createLogger({src: true, stream: formatOut, name: "Base"})
 
 const path = require('path')
 import { MinJS } from './Extra'
-import { Dirs, Dat } from './FileOpsBase'
+import { Dat } from './FileOpsBase'
+
+const {Dirs} = require('agentg/lib/FileOpsExtra')
 
 import fs = require('fs-extra')
 import yaml = require('js-yaml')

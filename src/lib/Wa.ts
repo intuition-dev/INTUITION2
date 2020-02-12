@@ -3,7 +3,8 @@
 
 import { MBake} from './Base'
 import { Sas, MinJS } from './Extra'
-import { Dirs } from './FileOpsBase'
+
+const {Dirs} = require('agentg/lib/FileOpsExtra')
 
 import express = require('express')
 

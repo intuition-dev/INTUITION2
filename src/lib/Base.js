@@ -16,6 +16,7 @@ const log = bunyan.createLogger({ src: true, stream: formatOut, name: "Base" });
 const path = require('path');
 const Extra_1 = require("./Extra");
 const FileOpsBase_1 = require("./FileOpsBase");
+const { Dirs } = require('agentg/lib/FileOpsExtra');
 const fs = require("fs-extra");
 const yaml = require("js-yaml");
 const findUp = require("find-up");
@@ -49,12 +50,12 @@ class MBake {
             }
             try {
                 log.info(' Baking ' + path_);
-                let d = new FileOpsBase_1.Dirs(path_);
+                let d = new Dirs(path_);
                 let dirs = d.getFolders();
                 if (!dirs || dirs.length < 1) {
-                    path_ = FileOpsBase_1.Dirs.goUpOne(path_);
+                    path_ = Dirs.goUpOne(path_);
                     log.info(' New Dir: ', path_);
-                    d = new FileOpsBase_1.Dirs(path_);
+                    d = new Dirs(path_);
                     dirs = d.getFolders();
                 }
                 for (let val of dirs) {
@@ -97,7 +98,7 @@ class MBake {
 exports.MBake = MBake;
 class BakeWrk {
     constructor(dir_) {
-        let dir = FileOpsBase_1.Dirs.slash(dir_);
+        let dir = Dirs.slash(dir_);
         this.dir = dir;
         log.info(' processing: ' + this.dir);
     }
@@ -229,7 +230,7 @@ BakeWrk.minifyPg = {
 };
 class Items {
     constructor(dir_) {
-        let dir = FileOpsBase_1.Dirs.slash(dir_);
+        let dir = Dirs.slash(dir_);
         let fn = dir + '/dat_i.yaml';
         if (!fs.existsSync(fn)) {
             let dir2 = findUp.sync('dat_i.yaml', { cwd: dir });
@@ -238,7 +239,7 @@ class Items {
             }
         }
         this.dir = dir;
-        let d = new FileOpsBase_1.Dirs(dir);
+        let d = new Dirs(dir);
         this.dirs = d.getFolders();
     }
     _addAnItem(dn) {
