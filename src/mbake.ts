@@ -8,7 +8,6 @@ import { MinJS, Sas } from './lib/Extra'
 import { Dirs } from './lib/FileOpsBase'
 import { Wa } from './lib/Wa'
 import { DownloadFrag, VersionNag, DownloadC } from './lib/FileOpsExtra'
-import { SysAgent } from './lib/SysAgent'
 
 VersionNag.isCurrent('mbake', Ver.ver()).then(function (isCurrent_: boolean) {
    try {
@@ -44,7 +43,6 @@ function help() {
    console.info('     or any sub-folder, where path is folder containing dat_i.yaml;')
    console.info('     also does regular mbake of Pug')
 
-   console.info('  List ports in use w/ process ID:                            mbake -p')
    console.info('  Download fragment to setup the app FW(framework):           mbake -f .')
    console.info()
    console.info('  Download Intro to Pug example:                              mbake --pug ')
@@ -75,8 +73,6 @@ const optionDefinitions = [
    { name: 'frag', alias: 'f', type: Boolean },
 
    { name: 'watcher', alias: 'w', type: Boolean },
-
-   { name: 'ports', alias: 'p', type: Boolean },
 
    { name: 'pug', type: Boolean },
 ]
@@ -118,10 +114,6 @@ function pugIntro() {
    console.info('Extracted Intro to Pug example')
 }//()
 
-
-function ports() { 
-   SysAgent.ports()
-}
 
 function bake(arg) {
    let pro: Promise<string> = new MBake().bake(arg, 0)
@@ -172,8 +164,6 @@ else if (argsParsed.version)
    version()
 else if (argsParsed.help)
    help()
-else if (argsParsed.ports)
-   ports()
 else if (argsParsed.watcher)
    Wa.watch(arg, argsParsed.port, argsParsed['reload-port']);
 else if (!arg)
