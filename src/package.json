@@ -21,7 +21,7 @@
         "node": ">=10.16.1"
     },
     "dependencies": {
-        "agentg": ">=1.0.1",
+        "agentg": ">=1.0.5",
         "autoprefixer": ">=9.7.4",
         "bunyan": ">=1.8.12",
         "bunyan-format2": ">=0.2.2",
