@@ -25,7 +25,7 @@ It will create a css file with auto-prefixes.
 
 
 ### More on Sass 
-In general you should leverage a CSS framework, there are many to chose from. We default to http://github.com/picturepan2/spectre , it looks nice, is small, has full features and can be modified for AMP. 
+In general you should leverage a CSS framework, there are many to chose from. 
 
 For font, we default to Open Sans, but like a CSS framework, you can use any.
 
