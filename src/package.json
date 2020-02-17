@@ -45,7 +45,7 @@
         "pug": ">=2.0.4",
         "reload": ">=3.0.4",
         "strip-css-comments": ">=4.1.0",
-        "superagent": ">=5.2.1",
+        "superagent": ">=5.2.2",
         "terser": ">=4.6.3",
         "typescript": ">=3.7.5"
     },
