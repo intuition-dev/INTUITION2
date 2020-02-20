@@ -1,0 +1,8 @@
+base lib
+pacakge.json
+change notes
+versions
+
+Note: if changed node version you may need to do this first:  `yarn global remove mbake`
+or  /usr/local/share/.config/yarn/global/node_modules
+
