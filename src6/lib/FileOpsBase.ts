@@ -142,7 +142,3 @@ export class FileMethods {
    }
 }
 
-module.exports = {
-  Dat, FileOps, FileMethods
-}
-

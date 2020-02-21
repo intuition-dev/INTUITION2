@@ -228,7 +228,3 @@ export class MDevSrv {
    }//()
 }//class
 
-
-module.exports = {
-   Wa, MetaPro, Watch, MDevSrv
-}

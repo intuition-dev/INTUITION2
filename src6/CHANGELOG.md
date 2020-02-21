@@ -1,3 +1,8 @@
+
+- es in html to level 8 / ES2017
+- ts emits es level 9 / ES2018
+
+
 ### 7.14.15
 - moved download ops to agentg
 

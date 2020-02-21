@@ -143,13 +143,11 @@ export class BakeWrk {
    }
    */
 
-
-   //http://github.com/kangax/html-minifier/issues/843
    static minify_pg(text, inline) {
 
       let code = text.match(/^\s*\s*$/) ? '' : text
 
-      let optionsCompH = Object.assign({}, MinJS.CompOptionsJS)
+      let optionsCompH = Object.assign({}, MinJS.CompOptionsES)
       let _output = { indent_level: 0, quote_style: 3, semicolons: false }
       optionsCompH['output'] = _output
 
@@ -419,8 +417,3 @@ export class Items {
    }
 
 }//class
-
-
-module.exports = {
-   BakeWrk, Items, Ver, MBake
-}

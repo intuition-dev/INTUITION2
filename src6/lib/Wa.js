@@ -172,6 +172,3 @@ class MDevSrv {
     }
 }
 exports.MDevSrv = MDevSrv;
-module.exports = {
-    Wa, MetaPro, Watch, MDevSrv
-};

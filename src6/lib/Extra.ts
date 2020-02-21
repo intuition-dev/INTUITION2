@@ -39,7 +39,7 @@ export class MinJS {
          if (rec.length < 1) resolve('OK')
 
          THIZ.compile(rec, {
-            target: ts.ScriptTarget.ES5,
+            target: ts.ScriptTarget.ES2018,
             removeComments: true,
             allowJs: true,
             skipLibCheck: true,
@@ -49,7 +49,7 @@ export class MinJS {
             strictBindCallApply: true,
             
             lib: [
-               'lib.scripthost.d.ts', 'lib.dom.d.ts', 'lib.es5.d.ts', 'lib.es2015.promise.d.ts'
+               'lib.es2018.d.ts', 'lib.es2018.promise.d.ts', 'lib.dom.iterable.d.ts', 'lib.scripthost.d.ts', 'lib.dom.d.ts', ';ib.webworker.d.ts'
             ]
          })
          resolve('OK')
@@ -90,13 +90,13 @@ export class MinJS {
             log.info(fn)
             let code: string = fs.readFileSync(fn).toString('utf8')
 
-            let optionsCompJS = Object.assign({}, MinJS.CompOptionsJS)
+            let optionsCompJS = Object.assign({}, MinJS.CompOptionsES)
             let _output = { indent_level: 0, quote_style: 0, semicolons: false }
             //_output['mangle'] = true
             optionsCompJS['output'] = _output
 
             if (fn.includes('-custel'))
-               result = Terser.minify(code, MinJS.CompOptionsJS)
+               result = Terser.minify(code, MinJS.CompOptionsES)
             else result = Terser.minify(code, optionsCompJS)
 
             let txt = result.code
@@ -109,7 +109,7 @@ export class MinJS {
                let ugs
                try {
                   log.info('obs', fn)
-                  ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptionsES5())
+                  ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptionsES())
                   txt = ugs.getObfuscatedCode()
 
                } catch (err) {
@@ -133,7 +133,7 @@ export class MinJS {
    }//()
 
 
-   static getCompOptionsES5(): TInputOptions {
+   static getCompOptionsES(): TInputOptions {
       let t = {
          identifierNamesGenerator: 'hexadecimal' // for virus
          , disableConsoleOutput: false // setting to true breaks things
@@ -155,14 +155,14 @@ export class MinJS {
 
    static ver = '// mB ' + Ver.ver() + ' on ' + Ver.date() + '\r\n'
 
-   static CompOptionsJS = {
+   static CompOptionsES = { // terser
       parse: { html5_comments: false },
       compress: {
          drop_console: true,
          keep_fargs: true, reduce_funcs: false
       },
       output: { indent_level: 1, quote_style: 3, semicolons: false },
-      ecma: 5,
+      ecma: 8,
       //mangle: false, // this breaks things in pg
       keep_classnames: true,
       keep_fnames: true
@@ -279,6 +279,3 @@ export class Sas {
 
 }//class
 
-module.exports = {
-   Sas, MinJS
-}

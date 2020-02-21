@@ -108,7 +108,7 @@ class BakeWrk {
     }
     static minify_pg(text, inline) {
         let code = text.match(/^\s*\s*$/) ? '' : text;
-        let optionsCompH = Object.assign({}, Extra_1.MinJS.CompOptionsJS);
+        let optionsCompH = Object.assign({}, Extra_1.MinJS.CompOptionsES);
         let _output = { indent_level: 0, quote_style: 3, semicolons: false };
         optionsCompH['output'] = _output;
         let result = Terser.minify(code, optionsCompH);
@@ -309,6 +309,3 @@ class Items {
     }
 }
 exports.Items = Items;
-module.exports = {
-    BakeWrk, Items, Ver, MBake
-};

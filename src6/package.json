@@ -45,7 +45,7 @@
         "strip-css-comments": ">=4.1.0",
         "superagent": ">=5.2.2",
         "terser": ">=4.6.3",
-        "typescript": ">=3.7.5"
+        "typescript": ">=3.8.2"
     },
     "browserslist": [
         "> 0.99%",

@@ -28,6 +28,3 @@ class Email {
     }
 }
 exports.Email = Email;
-module.exports = {
-    Email
-};

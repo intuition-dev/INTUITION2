@@ -7,6 +7,7 @@ const formatOut = bformat({ outputMode: 'short' })
 const log = bunyan.createLogger({src: true, stream: formatOut, name: "Email"})
 
 export class Email {
+    
     send(email, emailjsService_id, emailjsTemplate_id, emailjsUser_id, msg) {
         email = Buffer.from(email, 'base64').toString()
         log.info('email_to: ', email);
@@ -30,6 +31,3 @@ export class Email {
     
 }//class
 
-module.exports = {
-    Email
-}

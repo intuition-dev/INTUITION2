@@ -120,6 +120,3 @@ class FileMethods {
     }
 }
 exports.FileMethods = FileMethods;
-module.exports = {
-    Dat, FileOps, FileMethods
-};
