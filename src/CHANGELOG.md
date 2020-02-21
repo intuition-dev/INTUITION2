@@ -1,3 +1,7 @@
+### 8.2.0
+- ts emits es ES2018 (level 9)
+- ( but js in html work to level 8 (ES2017), should avoid .js in html anyway )
+
 ### 7.14.15
 - moved download ops to agentg
 
