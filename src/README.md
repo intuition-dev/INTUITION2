@@ -142,8 +142,6 @@ and run
 mbake -t .
 ```
 
-It will create a `.js` and `min.js` files. It will output ES5 to support IE11, so feel free to use class { } syntax.
-If there is no `.ts`, than it will simply slightly mimifify js files into min.js (but no ES5 conversion).
 
 Lots of time you use .ts to call DB services: such as Google FireStore.
 
@@ -159,7 +157,7 @@ That will extract an example website in the current folder. ( Obviously you can 
 
 ## INTUITION  toolbelt
 
-There are some libraries (and poly fills) that you use often. We just have a list of links, making them easy to load(depp.require())
+
 
 ```sh
 mbake -f .

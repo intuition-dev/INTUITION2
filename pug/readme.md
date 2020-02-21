@@ -108,7 +108,7 @@ Above is Pug code to create a MustacheJS template, that you can then render via 
 # Extending DOM tags w/ Custom Elements 
 
 Html and Pug have elements like div, article, etc. that Pug and browsers know. We can create additional
-custom elements using native api of a browser: no need to download any .js library. Well, you do need polyfill for IE11. 
+custom elements using native api of a browser: no need to download any .js library.
 
 Here is an example of defining a custom element 'c-custel':
 

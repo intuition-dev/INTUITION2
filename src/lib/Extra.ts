@@ -49,7 +49,7 @@ export class MinJS {
             strictBindCallApply: true,
             
             lib: [
-               'lib.es2018.d.ts', 'lib.es2018.promise.d.ts', 'lib.dom.iterable.d.ts', 'lib.scripthost.d.ts', 'lib.dom.d.ts', ';ib.webworker.d.ts'
+               'lib.es2018.d.ts', 'lib.es2018.promise.d.ts', 'lib.dom.iterable.d.ts', 'lib.scripthost.d.ts', 'lib.dom.d.ts', 'lib.webworker.d.ts'
             ]
          })
          resolve('OK')
