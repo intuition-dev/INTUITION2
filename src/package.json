@@ -46,10 +46,12 @@
         "superagent": ">=5.2.2",
         "terser": ">=4.6.3",
         "typescript": ">=3.8.2",
-        "open": ">=7.0.2"
+        "open": ">=7.0.2",
+        "sqlite3": ">=4.1.1"
+
     },
     "browserslist": [
-        "> 3%"
+        "> 3%", "last 2 versions, ", "not dead", "not ie < 14 "
     ],
     "devDependencies": {
         "@types/express": ">=4.17.2",
