@@ -21,6 +21,7 @@ const bunyan = require('bunyan');
 const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "extra" });
+const JavaScriptObfuscator = require("javascript-obfuscator");
 const ts = __importStar(require("typescript"));
 const Terser = require("terser");
 class MinJS {
@@ -90,6 +91,8 @@ class MinJS {
                     let ugs;
                     try {
                         log.info('obs', fn);
+                        ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getObOptionsXES());
+                        txt = ugs.getObfuscatedCode();
                     }
                     catch (err) {
                         log.error(fn, 'error');
@@ -114,13 +117,12 @@ class MinJS {
             identifierNamesGenerator: 'hexadecimal',
             disableConsoleOutput: false,
             target: 'browser',
-            stringArray: true,
             stringArrayThreshold: 1,
             stringArrayEncoding: 'rc4',
-            selfDefending: false,
+            splitStrings: true,
+            splitStringsChunkLength: 5,
             controlFlowFlattening: true,
-            controlFlowFlatteningThreshold: .6,
-            deadCodeInjection: false
+            controlFlowFlatteningThreshold: .7
         };
         return t;
     }
@@ -150,14 +152,17 @@ MinJS.CompOptionsTES = {
     ecma: 2018,
     keep_classnames: true,
     keep_fnames: true,
+    module: true,
     parse: { html5_comments: false },
     compress: {
         drop_console: true,
-        keep_fargs: true, reduce_funcs: false
+        keep_fargs: true, reduce_funcs: false,
+        ecma: 2018, module: true,
     },
     mangle: false,
-    module: true,
-    output: { indent_level: 1, quote_style: 3, semicolons: false },
+    output: { indent_level: 1, quote_style: 3,
+        beautify: false, comments: false, ecma: 2018,
+        inline_script: false },
 };
 class Sas {
     css(dir) {

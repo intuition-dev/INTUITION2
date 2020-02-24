@@ -102,8 +102,8 @@ export class MinJS {
                try {
                   log.info('obs', fn)
                   
-                  //ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getObOptionsXES())
-                  //txt = ugs.getObfuscatedCode()
+                  ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getObOptionsXES())
+                  txt = ugs.getObfuscatedCode()
 
                } catch (err) {
                   log.error(fn, 'error')
@@ -132,15 +132,18 @@ export class MinJS {
       ecma: 2018,
       keep_classnames: true,
       keep_fnames: true,
-
+      module: true,
+      
       parse: { html5_comments: false },
       compress: {
          drop_console: true,
-         keep_fargs: true, reduce_funcs: false
+         keep_fargs: true, reduce_funcs: false,
+         ecma: 2018, module: true,
       },
       mangle: false, // this breaks things in pg
-      module: true,
-      output: { indent_level: 1, quote_style: 3, semicolons: false },
+      output: { indent_level: 1, quote_style: 3, 
+         beautify: false, comments: false,  ecma: 2018,
+         inline_script: false },
 
    }
 
@@ -150,16 +153,14 @@ export class MinJS {
          , disableConsoleOutput: false // setting to true breaks things
          , target: 'browser' //-no-eval'
 
-         , stringArray: true
          , stringArrayThreshold: 1
          , stringArrayEncoding: 'rc4' // breaks if not
-
-         , selfDefending: false // low sec
+         , splitStrings: true
+         , splitStringsChunkLength: 5
 
          , controlFlowFlattening: true
-         , controlFlowFlatteningThreshold: .6 // low sec
+         , controlFlowFlatteningThreshold: .7 // low sec
 
-         , deadCodeInjection: false
       }
       return t as TInputOptions
    }
