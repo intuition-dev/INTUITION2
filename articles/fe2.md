@@ -86,7 +86,7 @@ Lets write a standard (built into browser with no 3rd party libs) custom element
 
     <b>I'm a Cust. El</b>
     `
-    window.customElements.define('c-custel', class extends HTMLElement {
+    customElements.define('c-custel', class extends HTMLElement {
     sr 
     constructor() {
         super()

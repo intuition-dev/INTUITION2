@@ -118,7 +118,7 @@ Here is an example of defining a custom element 'c-custel':
       <b>I'm Comp DOM!</b>
       <slot></slot>
    `
-   window.customElements.define('c-custel', class extends HTMLElement {
+   customElements.define('c-custel', class extends HTMLElement {
       sr 
       constructor() {
          super()
