@@ -3,7 +3,7 @@
 
 export class Ver {
    static ver() {
-      return 'v8.2.1'
+      return 'v8.2.2'
    }
    static date(): string {
       return new Date().toISOString()
@@ -99,7 +99,7 @@ export class MBake {
          log.info('ib:', ppath_)
 
          try {
-            const i = new Items(ppath_)
+            const i = new JsonFeed(ppath_)
             i.itemize()
 
          } catch (err) {
@@ -304,7 +304,7 @@ export class BakeWrk {
 }//class
 
 
-export class Items {
+export class JsonFeed {
    dir: string
    dirs // array
    feed //rss
@@ -347,7 +347,7 @@ export class Items {
             return;
          }
 
-         Items.clean(y)
+         JsonFeed.clean(y)
 
          let dl = dn.lastIndexOf('/')
          let url = dn.substring(dl + 1)
@@ -380,7 +380,7 @@ export class Items {
 
       let y = yaml.load(fs.readFileSync((fn)))
 
-      Items.clean(y)
+      JsonFeed.clean(y)
       y.mbVer = Ver.ver()
       this.feed = y
       log.warn(this.feed)
@@ -400,7 +400,7 @@ export class Items {
 
       //write
       let json = JSON.stringify(this.feed, null, 2)
-      let items = rootDir + '/items.json'
+      let items = rootDir + '/jsonfeed.json'
       fs.writeFileSync(items, json)
 
       log.info(' processed.')

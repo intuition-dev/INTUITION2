@@ -3,7 +3,7 @@
 
 ## 'All my friends KNOW the low-coder'
 
-#### INTUITION  is open source and extensible low-code productivity bundler/builder that leverage Pug and JAMstack.
+#### mbake CLI is open source and extensible low-code productivity bundler/builder that leverages Pug and JAMstack.
 
 ## Overview
 

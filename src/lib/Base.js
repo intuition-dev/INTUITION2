@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Ver {
     static ver() {
-        return 'v8.2.1';
+        return 'v8.2.2';
     }
     static date() {
         return new Date().toISOString();
@@ -79,7 +79,7 @@ class MBake {
             }
             log.info('ib:', ppath_);
             try {
-                const i = new Items(ppath_);
+                const i = new JsonFeed(ppath_);
                 i.itemize();
             }
             catch (err) {
@@ -228,7 +228,7 @@ BakeWrk.minifyPg = {
     sortAttributes: true,
     sortClassName: true
 };
-class Items {
+class JsonFeed {
     constructor(dir_) {
         let dir = Dirs.slash(dir_);
         let fn = dir + '/dat_i.yaml';
@@ -257,7 +257,7 @@ class Items {
                 && (y.publishDate - Date.now()) > 0) {
                 return;
             }
-            Items.clean(y);
+            JsonFeed.clean(y);
             let dl = dn.lastIndexOf('/');
             let url = dn.substring(dl + 1);
             log.info('', url);
@@ -280,7 +280,7 @@ class Items {
         if (!fs.existsSync(fn))
             return;
         let y = yaml.load(fs.readFileSync((fn)));
-        Items.clean(y);
+        JsonFeed.clean(y);
         y.mbVer = Ver.ver();
         this.feed = y;
         log.warn(this.feed);
@@ -295,7 +295,7 @@ class Items {
         }
         this.feed.count = this.feed.items.length;
         let json = JSON.stringify(this.feed, null, 2);
-        let items = rootDir + '/items.json';
+        let items = rootDir + '/jsonfeed.json';
         fs.writeFileSync(items, json);
         log.info(' processed.');
         return ' processed ';
@@ -308,4 +308,4 @@ class Items {
         delete o['frags'];
     }
 }
-exports.Items = Items;
+exports.JsonFeed = JsonFeed;

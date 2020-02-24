@@ -1,3 +1,6 @@
+### 8.2.2
+- jsonfeed in items
+
 ### 8.2.1
 - ts emits es ES2018 (level 9)
 - ( but js in html work to level 8 (ES2017), should avoid .js in html anyway )
