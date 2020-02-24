@@ -2,7 +2,9 @@
 clear
 tsc
 
-node mbake.js -p
+node mbake.js -t /home/vic/Documents/GitHub/mbToolBelt/custel/custel1/custel
+
+* /home/vic/Documents/GitHub/mbToolBelt/src/vendors/eventBus
 
 # node mbake.js -i /Users/code/Documents/GitHub/intuDocs/5625/items
 

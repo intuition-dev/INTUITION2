@@ -148,8 +148,6 @@ export class BakeWrk {
       let code = text.match(/^\s*\s*$/) ? '' : text
 
       let optionsCompH = Object.assign({}, MinJS.CompOptionsES)
-      let _output = { indent_level: 0, quote_style: 3, semicolons: false }
-      optionsCompH['output'] = _output
 
       let result = Terser.minify(code, optionsCompH)
       if (result.error) {
