@@ -147,9 +147,8 @@ export class BakeWrk {
 
       let code = text.match(/^\s*\s*$/) ? '' : text
 
-      let optionsCompH = Object.assign({}, MinJS.CompOptionsES)
+      let result = Terser.minify(code,  MinJS.CompOptionsTES)
 
-      let result = Terser.minify(code, optionsCompH)
       if (result.error) {
          log.info('Terser error:', result.error)
          return text

@@ -89,15 +89,7 @@ export class MinJS {
          try {
             log.info(fn)
             let code: string = fs.readFileSync(fn).toString('utf8')
-
-            let optionsCompJS = Object.assign({}, MinJS.CompOptionsES)
-            let _output = { indent_level: 0, quote_style: 0, semicolons: false }
-            //_output['mangle'] = true
-            optionsCompJS['output'] = _output
-
-            if (fn.includes('-custel'))
-               result = Terser.minify(code, MinJS.CompOptionsES)
-            else result = Terser.minify(code, optionsCompJS)
+            result = Terser.minify(code, MinJS.CompOptionsTES)
 
             let txt = result.code
 
@@ -109,8 +101,9 @@ export class MinJS {
                let ugs
                try {
                   log.info('obs', fn)
-                  ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptionsES())
-                  txt = ugs.getObfuscatedCode()
+                  
+                  //ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getObOptionsXES())
+                  //txt = ugs.getObfuscatedCode()
 
                } catch (err) {
                   log.error(fn, 'error')
@@ -133,7 +126,7 @@ export class MinJS {
    }//()
 
 
-   static getCompOptionsES(): TInputOptions {
+   static getObOptionsXES(): TInputOptions {
       let t = {
          identifierNamesGenerator: 'hexadecimal' // for virus
          , disableConsoleOutput: false // setting to true breaks things
@@ -155,14 +148,14 @@ export class MinJS {
 
    static ver = '// mB ' + Ver.ver() + ' on ' + Ver.date() + '\r\n'
 
-   static CompOptionsES = { // terser
+   static CompOptionsTES = { // terser
       parse: { html5_comments: false },
       compress: {
          drop_console: true,
          keep_fargs: true, reduce_funcs: false
       },
       output: { indent_level: 1, quote_style: 3, semicolons: false },
-      ecma: 8,
+      ecma: 2018,
       //mangle: false, // this breaks things in pg
       keep_classnames: true,
       keep_fnames: true

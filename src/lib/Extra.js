@@ -21,7 +21,6 @@ const bunyan = require('bunyan');
 const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "extra" });
-const JavaScriptObfuscator = require("javascript-obfuscator");
 const ts = __importStar(require("typescript"));
 const Terser = require("terser");
 class MinJS {
@@ -82,13 +81,7 @@ class MinJS {
             try {
                 log.info(fn);
                 let code = fs.readFileSync(fn).toString('utf8');
-                let optionsCompJS = Object.assign({}, MinJS.CompOptionsES);
-                let _output = { indent_level: 0, quote_style: 0, semicolons: false };
-                optionsCompJS['output'] = _output;
-                if (fn.includes('-custel'))
-                    result = Terser.minify(code, MinJS.CompOptionsES);
-                else
-                    result = Terser.minify(code, optionsCompJS);
+                result = Terser.minify(code, MinJS.CompOptionsTES);
                 let txt = result.code;
                 txt = txt.replace(/(\r\n\t|\n|\r\t)/gm, '\n');
                 txt = txt.replace(/\n\s*\n/g, '\n');
@@ -97,8 +90,6 @@ class MinJS {
                     let ugs;
                     try {
                         log.info('obs', fn);
-                        ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getCompOptionsES());
-                        txt = ugs.getObfuscatedCode();
                     }
                     catch (err) {
                         log.error(fn, 'error');
@@ -118,7 +109,7 @@ class MinJS {
             }
         });
     }
-    static getCompOptionsES() {
+    static getObOptionsXES() {
         let t = {
             identifierNamesGenerator: 'hexadecimal',
             disableConsoleOutput: false,
@@ -155,14 +146,14 @@ class MinJS {
 }
 exports.MinJS = MinJS;
 MinJS.ver = '// mB ' + Base_1.Ver.ver() + ' on ' + Base_1.Ver.date() + '\r\n';
-MinJS.CompOptionsES = {
+MinJS.CompOptionsTES = {
     parse: { html5_comments: false },
     compress: {
         drop_console: true,
         keep_fargs: true, reduce_funcs: false
     },
     output: { indent_level: 1, quote_style: 3, semicolons: false },
-    ecma: 8,
+    ecma: 2018,
     keep_classnames: true,
     keep_fnames: true
 };
