@@ -126,6 +126,24 @@ export class MinJS {
    }//()
 
 
+   static ver = '// mB ' + Ver.ver() + ' on ' + Ver.date() + '\r\n'
+
+   static CompOptionsTES = { // terser
+      ecma: 2018,
+      keep_classnames: true,
+      keep_fnames: true,
+
+      parse: { html5_comments: false },
+      compress: {
+         drop_console: true,
+         keep_fargs: true, reduce_funcs: false
+      },
+      mangle: false, // this breaks things in pg
+      module: true,
+      output: { indent_level: 1, quote_style: 3, semicolons: false },
+
+   }
+
    static getObOptionsXES(): TInputOptions {
       let t = {
          identifierNamesGenerator: 'hexadecimal' // for virus
@@ -144,21 +162,6 @@ export class MinJS {
          , deadCodeInjection: false
       }
       return t as TInputOptions
-   }
-
-   static ver = '// mB ' + Ver.ver() + ' on ' + Ver.date() + '\r\n'
-
-   static CompOptionsTES = { // terser
-      parse: { html5_comments: false },
-      compress: {
-         drop_console: true,
-         keep_fargs: true, reduce_funcs: false
-      },
-      output: { indent_level: 1, quote_style: 3, semicolons: false },
-      ecma: 2018,
-      //mangle: false, // this breaks things in pg
-      keep_classnames: true,
-      keep_fnames: true
    }
 
    compile(fileNames: string[], options_: ts.CompilerOptions): void { // http://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API

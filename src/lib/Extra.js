@@ -147,15 +147,17 @@ class MinJS {
 exports.MinJS = MinJS;
 MinJS.ver = '// mB ' + Base_1.Ver.ver() + ' on ' + Base_1.Ver.date() + '\r\n';
 MinJS.CompOptionsTES = {
+    ecma: 2018,
+    keep_classnames: true,
+    keep_fnames: true,
     parse: { html5_comments: false },
     compress: {
         drop_console: true,
         keep_fargs: true, reduce_funcs: false
     },
+    mangle: false,
+    module: true,
     output: { indent_level: 1, quote_style: 3, semicolons: false },
-    ecma: 2018,
-    keep_classnames: true,
-    keep_fnames: true
 };
 class Sas {
     css(dir) {
