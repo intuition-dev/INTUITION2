@@ -1,3 +1,6 @@
+### 8.2.5
+- remove .ts
+
 ### 8.2.3
 - jsonfeed in items
 

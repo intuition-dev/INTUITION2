@@ -1,4 +1,6 @@
 "use strict";
+// All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
+// NOTE: You can extend these classes!
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
@@ -29,7 +31,7 @@ class MinJS {
         log.info(dir);
         const THIZ = this;
         return new Promise(function (resolve, reject) {
-            const rec = FileHound.create()
+            const rec = FileHound.create() //recursive
                 .paths(dir)
                 .ext("ts")
                 .findSync();
@@ -37,7 +39,7 @@ class MinJS {
                 resolve('OK');
             THIZ.compile(rec, {
                 target: ts.ScriptTarget.ES2018,
-                removeComments: true,
+                removeComments: false,
                 allowJs: true,
                 skipLibCheck: true,
                 allowSyntheticDefaultImports: true,
@@ -53,7 +55,7 @@ class MinJS {
     min(dir) {
         const THIZ = this;
         return new Promise(async function (resolve, reject) {
-            const rec = FileHound.create()
+            const rec = FileHound.create() //recursive
                 .paths(dir)
                 .ext("js")
                 .addFilter(function (fn) {
@@ -63,7 +65,7 @@ class MinJS {
                 return true;
             })
                 .findSync();
-            for (let fn of rec) {
+            for (let fn of rec) { //clean the strings
                 try {
                     await THIZ._minOneJS(fn);
                 }
@@ -111,18 +113,22 @@ class MinJS {
                 reject(err);
             }
         });
-    }
+    } //()
     static getObOptionsXES() {
         let t = {
-            identifierNamesGenerator: 'hexadecimal',
-            disableConsoleOutput: false,
-            target: 'browser',
+            identifierNamesGenerator: 'hexadecimal' // for virus
+            ,
+            disableConsoleOutput: false // setting to true breaks things
+            ,
+            target: 'browser' //-no-eval'
+            ,
             stringArrayThreshold: 1,
-            stringArrayEncoding: 'rc4',
+            stringArrayEncoding: 'rc4' // breaks if not
+            ,
             splitStrings: true,
             splitStringsChunkLength: 5,
             controlFlowFlattening: true,
-            controlFlowFlatteningThreshold: .7
+            controlFlowFlatteningThreshold: .7 // low sec
         };
         return t;
     }
@@ -144,8 +150,8 @@ class MinJS {
         });
         let exitCode = emitResult.emitSkipped ? 1 : 0;
         log.info(`status code '${exitCode}'.`);
-    }
-}
+    } //()
+} //class
 exports.MinJS = MinJS;
 MinJS.ver = '// mB ' + Base_1.Ver.ver() + ' on ' + Base_1.Ver.date() + '\r\n';
 MinJS.CompOptionsTES = {
@@ -164,7 +170,12 @@ MinJS.CompOptionsTES = {
         beautify: false, comments: false, ecma: 2018,
         inline_script: false },
 };
+// //////////////////////////////////////////////////////////////////
 class Sas {
+    /**
+     * @param dir
+     * Find style.yaml and process each css in the style.yaml array
+     */
     css(dir) {
         const THIZ = this;
         return new Promise(async function (resolve, reject) {
@@ -188,7 +199,7 @@ class Sas {
             log.info(' Done!');
             resolve('OK');
         });
-    }
+    } //()
     _trans(fn2, dir) {
         let css = sass.renderSync({
             file: dir + '/' + fn2,
@@ -201,6 +212,7 @@ class Sas {
                 log.warn(warn.toString());
             });
             let res = stripCssComments(result.css, { preserve: false });
+            // lf
             res = res.replace(/(\r\n\t|\n|\r\t)/gm, '\n');
             res = res.replace(/\n\s*\n/g, '\n');
             res = res.trim();
@@ -210,14 +222,16 @@ class Sas {
             res = res.replace(/ }/g, '}');
             res = res.replace(/ { /g, '{');
             res = res.replace(/, /g, ',');
+            //add ver string
             const ver = ' /* mB ' + Base_1.Ver.ver() + ' on ' + Base_1.Ver.date() + " */";
             res = res + ver;
+            // write the file
             let filename2 = path.basename(fn2);
             filename2 = filename2.split('.').slice(0, -1).join('.');
             let filename = filename2.split('\\').pop().split('/').pop();
             fs.ensureDirSync(dir + '/css');
             fs.writeFileSync(dir + '/css/' + filename + '.css', res);
         });
-    }
-}
+    } //()
+} //class
 exports.Sas = Sas;

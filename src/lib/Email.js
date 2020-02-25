@@ -1,4 +1,5 @@
 "use strict";
+// All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 Object.defineProperty(exports, "__esModule", { value: true });
 const superagent = require('superagent');
 const bunyan = require('bunyan');
@@ -25,6 +26,6 @@ class Email {
             .catch(err => {
             log.info('send mail error: ', err);
         });
-    }
-}
+    } //()
+} //class
 exports.Email = Email;

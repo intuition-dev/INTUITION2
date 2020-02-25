@@ -1,4 +1,6 @@
 "use strict";
+// All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
+// NOTE: You can extend these classes!
 Object.defineProperty(exports, "__esModule", { value: true });
 const Base_1 = require("./Base");
 const Extra_1 = require("./Extra");
@@ -13,18 +15,19 @@ const bformat = require('bunyan-format2');
 const formatOut = bformat({ outputMode: 'short' });
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "WA" });
 const opn = require("open");
+// watch: /////////////////////////////////////////////////////////////////////////////////////////////////
 class Wa {
     static watch(dir, port, reloadPort) {
         port = port || 8090;
         let ss = new MDevSrv(dir, port, reloadPort);
         const mp = new MetaPro(dir);
         let ww = new Watch(mp, dir);
-        ww.start(250);
+        ww.start(250); // build x ms after saving a file
         log.info(' Serving on ' + 'http://localhost:' + port);
         log.info(' --------------------------');
         log.info('');
         opn('http://localhost:' + port);
-    }
+    } //()
 }
 exports.Wa = Wa;
 class Watch {
@@ -55,7 +58,8 @@ class Watch {
             usePolling: true,
             useFsEvents: false,
             binaryInterval: delay_ * 5,
-            interval: delay_,
+            interval: delay_ //time
+            ,
             atomic: delay_,
             awaitWriteFinish: {
                 stabilityThreshold: delay_ * 1.2,
@@ -69,7 +73,7 @@ class Watch {
         this.watcher.on('change', async function (path) {
             await thiz.autoNT(path, 'c');
         });
-    }
+    } //()
     refreshBro() {
         MDevSrv.reloadServer.reload();
     }
@@ -91,8 +95,8 @@ class Watch {
         catch (err) {
             log.warn(err);
         }
-    }
-}
+    } //()
+} //class
 exports.Watch = Watch;
 class MetaPro {
     constructor(mount) {
@@ -116,15 +120,16 @@ class MetaPro {
         const js = new Extra_1.MinJS();
         return js.ts(folder);
     }
+    // when you pass the file name, ex: watch
     async autoBake(folder__, file) {
         const folder = Dirs.slash(folder__);
         const ext = file.split('.').pop();
         log.info('WATCHED2:', folder, ext);
-        if (ext == 'scss' || ext == 'sass')
+        if (ext == 'scss' || ext == 'sass') // css
             return await this.css(folder);
-        if (ext == 'ts')
+        if (ext == 'ts') // ts
             return await this.ts(folder);
-        if (ext == 'yaml')
+        if (ext == 'yaml') // bake and itemize
             return await this.itemize(folder);
         if (ext == 'md')
             return await this.bake(folder);
@@ -132,12 +137,13 @@ class MetaPro {
             return await this.bake(folder);
         }
         return ('Cant process ' + ext);
-    }
-}
+    } //()
+} //class
 exports.MetaPro = MetaPro;
 MetaPro.folderProp = 'folder';
 MetaPro.srcProp = 'src';
 MetaPro.destProp = 'dest';
+// Meta: //////////////////////
 class MDevSrv {
     constructor(dir, port, reloadPort) {
         let app = express();
@@ -154,10 +160,12 @@ class MDevSrv {
         app.set('views', dir);
         const bodyInterceptor = interceptor(function (req, res) {
             return {
+                // Only HTML responses will be intercepted
                 isInterceptable: function () {
                     return /text\/html/.test(res.get('Content-Type'));
                 },
                 intercept: function (body, send) {
+                    //log.info(' .')
                     let $document = cheerio.load(body);
                     $document('body').prepend('<script src="/reload/reload.js"></script>');
                     send($document.html());
@@ -169,6 +177,6 @@ class MDevSrv {
         app.listen(port, function () {
             log.info('dev srv ' + port);
         });
-    }
-}
+    } //()
+} //class
 exports.MDevSrv = MDevSrv;

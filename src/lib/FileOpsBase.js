@@ -1,4 +1,5 @@
 "use strict";
+// All rights reserved by Cekvenich|INTUITION.DEV) |  Cekvenich, licensed under LGPL 3.0
 Object.defineProperty(exports, "__esModule", { value: true });
 const bunyan = require('bunyan');
 const bformat = require('bunyan-format2');
@@ -39,7 +40,7 @@ class Dat {
                 log.warn(err);
                 reject(err);
             }
-        });
+        }); //()
     }
     set(key, val) {
         this.props[key] = val;
@@ -48,17 +49,18 @@ class Dat {
         let jn = this.props.include;
         let fn = this._path + '/' + jn;
         let jso = fs.readFileSync(fn);
-        Object.assign(this.props, JSON.parse(jso.toString()));
+        Object.assign(this.props, JSON.parse(jso.toString())); // merge
     }
     getAll() {
         return this.props;
-    }
-}
+    } //()
+} //class
 exports.Dat = Dat;
 class FileOps {
     constructor(root_) {
         this.root = Dirs.slash(root_);
     }
+    /** returns # of files with the name, used to archive ver */
     count(fileAndExt) {
         const files = FileHound.create()
             .paths(this.root)
@@ -76,7 +78,7 @@ class FileOps {
             log.info('copy!');
             resolve('OK');
         });
-    }
+    } //()
     write(destFile, txt) {
         log.info(this.root + destFile);
         fs.writeFileSync(this.root + destFile, txt);
@@ -98,20 +100,22 @@ class FileOps {
         let file_path = this.root + path;
         fs.unlinkSync(file_path);
     }
-}
+} //class
 exports.FileOps = FileOps;
 class FileMethods {
+    // get list of directories
     getDirs(mountPath) {
         let dirs = new Dirs(mountPath);
         let dirsToIgnore = ['.', '..'];
         return dirs.getShort()
-            .map(el => el.replace(/^\/+/g, ''))
+            .map(el => el.replace(/^\/+/g, '')) //?
             .filter(el => !dirsToIgnore.includes(el));
     }
+    // get files in directory
     getFiles(mountPath, item) {
         let dirs = new Dirs(mountPath);
         let result = dirs.getInDir(item);
-        if (item === '/') {
+        if (item === '/') { // if root directory, remove all dirs from output, leave only files:
             return result.filter(file => file.indexOf('/') === -1 && !fs.lstatSync(mountPath + '/' + file).isDirectory());
         }
         else {

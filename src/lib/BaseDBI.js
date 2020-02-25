@@ -12,6 +12,7 @@ class BaseDBI {
         this._fn = path + fn;
         this._db = new this.sqlite3.Database(this._fn);
     }
+    // passs in an array
     async read(sql, arr) {
         if (!arr)
             arr = [];
@@ -23,9 +24,10 @@ class BaseDBI {
                 else
                     resolve(rows);
             });
-        });
+        }); //pro
         return rows;
-    }
+    } //()
+    // passs in an array
     async readOne(sql, arr) {
         if (!arr)
             arr = [];
@@ -37,9 +39,10 @@ class BaseDBI {
                 else
                     resolve(row);
             });
-        });
+        }); //pro
         return row;
-    }
+    } //()
+    // passs in an array
     async write(sql, arr) {
         if (!arr)
             arr = [];
@@ -51,8 +54,8 @@ class BaseDBI {
                 else
                     resolve();
             });
-        });
-    }
-}
+        }); //pro
+    } //()
+} // class
 exports.BaseDBI = BaseDBI;
 BaseDBI.MAXINT = 9223372036854775807;

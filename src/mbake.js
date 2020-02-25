@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 "use strict";
+// All rights reserved by INTUITION.DEV |  Cekvenich, licensed under LGPL 3.0
 Object.defineProperty(exports, "__esModule", { value: true });
 const commandLineArgs = require("command-line-args");
 const Base_1 = require("./lib/Base");
@@ -15,7 +16,8 @@ VersionNag.isCurrent('mbake', Base_1.Ver.ver()).then(function (isCurrent_) {
     catch (err) {
         console.log(err);
     }
-});
+}); // 
+// imports done /////////////////////////////////////////////
 const cwd = process.cwd();
 function version() {
     console.info('mbake CLI version: ' + Base_1.Ver.ver());
@@ -44,6 +46,7 @@ function help() {
     console.info(' Full docs: http://www.INTUITION.DEV');
     console.info();
 }
+// args: //////////////////////////////////////////////////////////////////////////////////////////////////////
 const optionDefinitions = [
     { name: 'mbake', defaultOption: true },
     { name: 'help', alias: 'h', type: Boolean },
@@ -61,29 +64,33 @@ console.info();
 function frag(arg) {
     new DownloadFrag(arg, false);
 }
+// get folder to be processed: ///////////////////////////////////////////////////////////////////////////////////////////////////////
 if (arg) {
     arg = Dirs.slash(arg);
     if (arg.startsWith('/')) {
+        //do nothing, full path is arg
     }
-    else if (arg.startsWith('..')) {
+    else if (arg.startsWith('..')) { // few  cases to test
         arg = arg.substring(2);
         let d = cwd;
         d = Dirs.slash(d);
+        // find offset
         let n = d.lastIndexOf('/');
         d = d.substring(0, n);
         arg = d + arg;
     }
-    else if (arg.startsWith('.')) {
+    else if (arg.startsWith('.')) { //cur
         arg = cwd;
     }
-    else {
+    else { // just plain, dir passed
         arg = cwd + '/' + arg;
-    }
-}
+    } // inner
+} //outer
+//  ////////////////////////////////////////////////////////////////////////////////////////////////
 function pugIntro() {
     new DownloadC('pugInto', __dirname).autoUZ();
     console.info('Extracted Intro to Pug example');
-}
+} //()
 function bake(arg) {
     let pro = new Base_1.MBake().bake(arg, 0);
     pro.then(function (val) {
@@ -110,6 +117,7 @@ function minJS(arg) {
         min.min(arg);
     });
 }
+// start: /////////////////////////////////////////////////////////////////////////////////////
 if (argsParsed.items)
     itemize(arg);
 else if (argsParsed.css)
