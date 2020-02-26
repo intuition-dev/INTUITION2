@@ -4,7 +4,7 @@ tsc
 
 node mbake.js -t /home/vic/Documents/GitHub/mbToolBelt/custel/custel1/custel
 
-# /home/vic/Documents/GitHub/mbToolBelt/src/vendors/eventBus
+# /home/vic/Documents/GitHub/mbToolBelt/src/vendors/defEventBus
 
 # node mbake.js -i /Users/code/Documents/GitHub/intuDocs/5625/items
 
