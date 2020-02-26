@@ -62,7 +62,7 @@ const argsParsed = commandLineArgs(optionDefinitions);
 let arg = argsParsed.mbake;
 console.info();
 function frag(arg) {
-    new DownloadFrag(arg, false);
+    new DownloadFrag(arg);
 }
 // get folder to be processed: ///////////////////////////////////////////////////////////////////////////////////////////////////////
 if (arg) {

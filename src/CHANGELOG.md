@@ -1,6 +1,6 @@
 
-### 8.2.x
-- obuscate all js
+### 8.2.6
+- obfuscate all js
 - need proper ; or it won't work
 
 ### 8.2.3
