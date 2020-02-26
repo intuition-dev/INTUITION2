@@ -9,18 +9,11 @@ intu:   v8.2.4
 
 
 headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.3/src/template/headFrag.pug
-Bind:     https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.3/src/template/UIBinding.ts
-
+Bind:     https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.3/src/template/UIBinding.js
 VM:       https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.3/src/template/BaseVM.ts
-Tests:    https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.3/src/template/tests.ts
-
-opsPug:   https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.3/src/template/ops.pug
-opsJs:    https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.3/src/template/ops.js
 
 pugInto:  https://github.com/INTUITION-dev/mbCLI/raw/master/pug/pugIntro.zip
-CMS:      https://github.com/INTUITION-dev/INTU/raw/master/examples/CMS.zip
+CRUD:     https://github.com/intuition-dev/httpRPC/raw/master/back/CRUD/CRUD.zip
 
 electron: https://github.com/INTUITION-dev/mbMobile/raw/master/electron.zip
-phoneGap: https://github.com/INTUITION-dev/mbMobile/raw/master/phoneGap.zip
 
-CRUD:     https://github.com/intuition-dev/httpRPC/raw/master/back/CRUD/CRUD.zip
