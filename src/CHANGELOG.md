@@ -1,5 +1,7 @@
-### 8.2.5
-- remove .ts
+
+### 8.2.x
+- obuscate all js
+- need proper ; or it won't work
 
 ### 8.2.3
 - jsonfeed in items

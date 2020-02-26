@@ -97,20 +97,20 @@ export class MinJS {
             txt = txt.replace(/\n\s*\n/g, '\n')
             txt = txt.trim()
 
-            if (fn.includes('-custel')) {
-               let ugs
-               try {
-                  log.info('obs', fn)
-                  
-                  ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getObOptionsXES())
-                  txt = ugs.getObfuscatedCode()
+            //if (fn.includes('-custel')) {
+            let ugs
+            try {
+               log.info('obs', fn)
+               
+               ugs = JavaScriptObfuscator.obfuscate(txt, MinJS.getObOptionsXES())
+               txt = ugs.getObfuscatedCode()
 
-               } catch (err) {
-                  log.error(fn, 'error')
-                  log.error(err)
-                  reject(err)
-               }
+            } catch (err) {
+               log.error(fn, 'error')
+               log.error(err)
+               reject(err)
             }
+            //}
 
             txt = MinJS.ver + txt
 
