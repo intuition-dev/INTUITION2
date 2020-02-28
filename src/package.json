@@ -30,6 +30,8 @@
         "express-interceptor": ">=1.2.0",
         "filehound": ">=1.17.4",
         "find-up": ">=4.1.0",
+        "make-fetch-happen": ">=8.0.2",
+
         "fs-extra": ">=8.1.0",
         "html-minifier": ">=4.0.0",
         "javascript-obfuscator": ">=0.25.2",
