@@ -8,9 +8,7 @@ mbakex: v8.2.6
 intu:   v8.2.6
 
 
-headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.7/src/template/headFrag.pug
-Bind:     https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.7/src/template/UIBinding.js
-VM:       https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.7/src/template/BaseVM.ts
+headFrag: https://cdn.jsdelivr.net/gh/intuition-dev/mbToolBelt@v8.2.8/src/template/headFrag.pug
 
 pugInto:  https://github.com/INTUITION-dev/mbCLI/raw/master/pug/pugIntro.zip
 CRUD:     https://github.com/intuition-dev/httpRPC/raw/master/back/CRUD/CRUD.zip
