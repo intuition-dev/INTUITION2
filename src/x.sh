@@ -2,7 +2,7 @@
 clear
 tsc
 
-node mbake.js -t /home/vic/Documents/GitHub/mbToolBelt/custel/custel1/custel
+node mbake.js -t /home/vic/Documents/GitHub/mbToolBelt/spa-router
 
 # /home/vic/Documents/GitHub/mbToolBelt/src/vendors/defEventBus
 
