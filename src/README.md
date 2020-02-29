@@ -1,191 +1,82 @@
 
-# MetaBake
+# INTUITION.DEV
 
-## 'All my friends KNOW the low-coder'
-
-#### mbake CLI is open source and extensible low-code productivity bundler/builder that leverages Pug and JAMstack.
-
-## Overview
-
-MetaBake(mbake) provides a bundler/builder for a developer to write cleaner code quicker, with `pug` and livereload out of the box.
-
-You can gradually adopt it while it allows you to develop quicker - and with clean simplicity - Static Websites, Custom Elements, custom CMS/E-Commerce, CRUD and all sorts of dynamic Web Apps.
+#### INTUITION.DEV is the futuristic open source bundler/builder for pro developers with 10-fold productivity via automation, low-code, cross-platform, static-generator, and a built-in WebAdmin editor, leveraging JAMstack, w/ Pug and facilitating app maintenance by end-users.
 
 #### Please star our main project here:
 - https://github.com/INTUITION-dev/INTU
 
-### Prerequisites
+## INTUITION.DEV approach:
 
-You should know HTML, CSS and JavaScript - that is all we use. If you need to catch up, we recommend this book: 'Design and Build Websites' by Jon Duckett.
+In a future with increasing automation, citizen-developers have become more widespread. Nowadays almost anyone can pull out a form or a web app using low-code tools. Unlike other low-code tools, this one is aimed at professional developers and uses a standard language: Pug. We started first with a static code generator that leverage JAMstack, w/ Pug. And then added a WebAdmin that lets you edit—and then keep adding features. 
+[Medium Article](https://medium.com/@uptimevic/how-software-developers-can-survive-the-coming-tech-crash-796dd8dc5a7e) 
+
+### INTUITION.DEV pro development features:
+
+1. Standards Based / Pug
+1. Open Source
+1. SEO
+2. CRUD | ViewModel
+2. built in user auth
+2. FTS and SQL
+2. keyboard driven (F12 Custom Elements In V1.1)
+2. cross platform / mobile from single code base
 
 
-## Quick start
+### Easy
+
+<img src="https://github.com/INTUITION-dev/INTU/raw/master/src/intu.png" width="100%"/>
+
+
+We have open source low-code with static generation with the ability to add a ‘WebAdmin’ editor to INTUITION.DEV and your application. Once a professional developer writes and sets up Version 1 of the app, end-users can be enabled to maintain the app and possibly write the next version of the app. As the business needs change, the resulting evergreen web app is always aligned to the business.
+
+You can write any and every kind of app, since we generate HTML, javascript an css. Our main language is Pug, if you have not seen Pug before, here is a quick intro to Pug:
+- [Click for generic Pug example](http://pug.metabake.net)
+
+
+## Installation and Intro
+
+1. Before you run, create free [emailJs](https://www.emailjs.com) account: so that INTUITION.DEV your local accounts can be validated via email. Also create a email template, and note your emailJs `service_id`, `user_id`,  `template_id`, needed to send validation emails. Yes, user admin is built in.
+
+2. Then install the INTUITION.DEV tool:
 
 Note: Some of the upstream packages we user are native, so you need to : apt-get install build-essential or similar to get the platfrom C compiler. https://github.com/npm/cli/issues/287
 
 ```sh
-   apt-get install build-essential
-   npm i -g --unsafe-perm=true --allow-root mbake
-   mbake -w . /* for a base website */
-   cd website
-   mbake -w . /* to run the watcher livereload */
+    apt-get install build-essential
+    npm i -g npm@next
+    npm i -g node-gyp@latest 
+    node-gyp -v
+    npm i -g --unsafe-perm=true --allow-root intu
 ```
 
-## INTUITION  in 4 Minutes
+Edit intu-config.yaml to set the admin password, and where your webapp will reside.
+And you have to restart intu.
 
-Building sites take a few moments, just add `index.pug` and `dat.yaml` files in the folder, and compile it with `mbake .` from the root folder of your site.
+3. Configure email. You'll need an account on emil
+   Remember your admin email and password.
+   Once you login as admin: add a user
 
+4. URL's
+   `:9081/admin` - to add end-users
+   `:9081/edit` - to edit site
 
-### Example
-Create a folder called 'one'.
-In the folder 'one', create file index.pug
+IMPORTANT: you  must go to admin/settings to configure email.
 
-```pug
+5. You can edit the small app in ROOT, that you can see at `:9081/`
 
-header
-body
-   p Hello #{key1}
-
-```
-
-and create file dat.yaml
-```yaml
-key1: World
-```
-> Note: to create a new page|screen in mbake, create a new folder with an index.pug and day.yaml in each folder.
-
-
-### Now make with mbake:
-
-```sh
-mbake .
-```
-
-This will create `index.html`. Of course you can use regular Pug syntax to include other Pug files or Markdown. (INTUITION Markdown flavor includes CSS support):
-```pug
-body
-   div
-      include:metaMD comment.md
-```
-
-And example Markdown file with CSS nested classes. Title is nested in 2 levels, .column class CSS and second level .stick CSS class
-```
-:::: column col-2
-::: stick
-Title 
-:::
-::::
-
-```
+6. For a more realistic app, in Terminal run command to create a sample CRUD app: 
+    ```
+    intu -c
+    cd CRUD
+    npm
+    ```
 
 
-So if you write a Markdown file comment.md, it will be included in index.html
----
+### Links
+- [INTUITION Docs](http://intuition-dev.github.io/intuDocs)
+- [Home Page](https://www.INTUITION.DEV)
+- [mbake CLI Docs](http://intuition-dev.github.io/mbCLI)
+- [Git Repo](http://git.metabake.net)
+- [Slides] (https://github.com/INTUITION-dev/INTUDocs/blob/master/slides/slides.md)
 
-
-### Watcher
-
-This will start a webserver and auto-refresh browser, and watch for file changes to auto build:
-```sh
-mbakeX -w .
-```
-
-Instead of `.` you can specify any path.
-Also, the fact that we are generating this static content allows us to have the entire Web App served by a CDN
-
-
-## SASS
-CSS can be hard to work with, so people use Sass/Scss. Create a `style.scss` file:
-```css
-$font-stack: Helvetica, sans-serif;
-$primary-color: #333;
-
-body {
-   font: 100% $font-stack;
-   color: $primary-color;
-}
-```
-Create file `style.yaml` in assets folder, to compile your scss to css
-
-```
-css:
-- style.scss
-```
-
-and run
-```sh
-mbake -s .
-```
-
-It will create a css file in `assets/css` with auto-prefixes.
-
-So the structure of asset folder should look something like that:
-```folder
-assets/
-   css/style.css /* this is going to be compiled from style.scss */
-   scss/style.scss /* your working area */
-   style.yaml /* with `scss` files that need to be compiled */
-	...
-```
-
-## TypeScript
-
-TypeScript is supper-set of JavaScript. Write a ts file, like foo.ts:
-```ts
-foo(i:number) {
-	console.log('oh hi')
-}
-```
-
-and run
-```sh
-mbake -t .
-```
-
-
-Lots of time you use .ts to call DB services: such as Google FireStore.
-
-## Examples - Website
-
-There are 12 very different examples included in the mbake CLI. One is just a website:
-```sh
-mbake -w
-```
-
-That will extract an example website in the current folder. ( Obviously you can create any layout with any combination of css and other libraries, but here is how we laid out an example/starter website).
-
-
-
-```sh
-mbake -f .
-```
-
-This emits a Pug file that you should include in your Pug's layout head section.
-In turn, the included file calls a mbToolBelt.js from a CDN. 
-
-
-## Apps
-
-While you can build websites: you can also build full webapps, eg. CRUD.
-
-
-**Other examples include:**
-
-- Using markdown CSS effect: allows non-programmers to write interactive stories
-- Slide show with markdown
-- Dashboard example
-- Ads example
-
-
-
-# Links
-
-[Advanced Front End w/ Pug](https://github.com/intuition-dev/mbCLI/tree/master/pug)
-
-[mbake CLI Docs](http://intuition-dev.github.io/mbCLI)
-
-[Git Repo](http://git.metabake.net)
-
-[Pug example](http://pug.metabake.net)
-
-[INTUITION.DEV Home Page](https://www.INTUITION.DEV)
