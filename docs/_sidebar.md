@@ -7,5 +7,5 @@
 
 * [CMS/Itemize example](itemize.md)
 
-* [Tool Belt (of js libs)](mbToolBelt.md)
+* [ToolBelt (of js libs)](mbToolBelt.md)
 * [Review, extras and Next steps](next.md)

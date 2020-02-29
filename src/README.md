@@ -155,22 +155,18 @@ mbake -w
 That will extract an example website in the current folder. ( Obviously you can create any layout with any combination of css and other libraries, but here is how we laid out an example/starter website).
 
 
-## INTUITION  toolbelt
-
-
 
 ```sh
 mbake -f .
 ```
 
 This emits a Pug file that you should include in your Pug's layout head section.
-In turn, the included file calls a mbToolBelt.js from a CDN. The toolbelt comes with fetch() & RPC.
+In turn, the included file calls a mbToolBelt.js from a CDN. 
 
 
 ## Apps
 
 While you can build websites: you can also build full webapps, eg. CRUD.
-The toolbelt comes with https://github.com/theiconic/event-bus - used for the FLUX pattern.
 
 
 **Other examples include:**

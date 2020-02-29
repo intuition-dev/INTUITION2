@@ -1,6 +1,6 @@
 
 
-# MetaBake's Tool Belt
+# MetaBake's ToolBelt
 
 Listed dependencies gives you application a list of a election curated js libraries that you may chose to use/require.
 
