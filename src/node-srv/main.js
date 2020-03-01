@@ -4,7 +4,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const commandLineArgs = require("command-line-args");
 const IDB_1 = require("./lib/IDB");
-const FileOpsExtra_1 = require("agentg/lib/FileOpsExtra");
 const IntuApp_1 = require("./IntuApp");
 const BusLogic_1 = require("./lib/BusLogic");
 const BusLogic_2 = require("./lib/BusLogic");
@@ -16,22 +15,12 @@ const optionDefinitions = [
     { name: 'intu', defaultOption: true },
     { name: 'help', alias: 'h', type: Boolean },
     { name: 'version', alias: 'v', type: Boolean },
-    { name: 'CRUD', alias: 'c', type: Boolean },
-    { name: 'CMS', alias: 's', type: Boolean },
 ];
 const yaml = require("js-yaml");
 const fs = require("fs-extra");
 const argsParsed = commandLineArgs(optionDefinitions);
 log.info(argsParsed);
 const cwd = process.cwd();
-function unzipCMS() {
-    new FileOpsExtra_1.DownloadC('CMS', cwd).autoUZ();
-    console.info('Extracted an example CMS');
-}
-function unzipC() {
-    new FileOpsExtra_1.DownloadC('CRUD', cwd).autoUZ();
-    console.info('Extracted an example CRUD app');
-}
 async function runInSrv() {
     const ip = require('ip');
     const ipAddres = ip.address();
@@ -91,17 +80,12 @@ function help() {
     console.info(' To run:                                                intu');
     console.info(' and then open a browser on the specified port. There is small app in ROOT');
     console.info();
-    console.info('  For starter CRUD app:                                  intu -c');
-    console.info('  For an example of an e-commerce (shop and ship) app:   intu -s');
+    // console.info('  For an example of an e-commerce (shop and ship) app:   intu -s')
 } //()
 // start: /////////////////////////////////////////////////////////////////////////////////////
-if (argsParsed.CRUD)
-    unzipC();
-else if (argsParsed.help)
+if (argsParsed.help)
     help();
 else if (argsParsed.version)
     help();
-else if (argsParsed.CMS)
-    unzipCMS();
 else
     runInSrv();
