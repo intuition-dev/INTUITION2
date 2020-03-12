@@ -12,7 +12,7 @@ const adminHandler_1 = require("./handlers/adminHandler");
 const uploadHandler_1 = require("./handlers/uploadHandler");
 class IntuApp extends Serv_1.Serv {
     constructor(db, origins, configIntu) {
-        super(origins);
+        super(origins, 16);
         this.db = db;
         this.configIntu = configIntu;
         this.uploadRoute = new uploadHandler_1.UploadHandler(this.db, this.configIntu);

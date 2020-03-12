@@ -1,3 +1,6 @@
+### 8.3.0
+- versions bump
+
 ### 8.2.11
 - moved samples
 
