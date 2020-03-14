@@ -7,14 +7,12 @@ const IDB_1 = require("../lib/IDB");
 const FileOpsBase_1 = require("mbake/lib/FileOpsBase");
 const FileOpsBase_2 = require("mbake/lib/FileOpsBase");
 const BusLogic_1 = require("../lib/BusLogic");
-const bunyan = require('bunyan');
-const bformat = require('bunyan-format2');
-const formatOut = bformat({ outputMode: 'short' });
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "editor" });
+const terse_b_1 = require("terse-b/terse-b");
 const fs = require('fs-extra');
 class EditorHandler extends Serv_1.BaseRPCMethodHandler {
     constructor(IDB, configIntu) {
         super(1);
+        this.log = new terse_b_1.TerseB(this.constructor.name);
         this.emailJs = new Email_1.Email();
         this.fm = new FileOpsBase_1.FileMethods();
         this.appLogic = new BusLogic_1.BusLogic();
@@ -46,14 +44,14 @@ class EditorHandler extends Serv_1.BaseRPCMethodHandler {
         return result;
     } //()
     async getDirs(params) {
-        log.info("TCL: EditorHandler -> getDirs -> user");
-        log.info("TCL: EditorHandler -> getDirs -> params", params);
+        this.log.info("TCL: EditorHandler -> getDirs -> user");
+        this.log.info("TCL: EditorHandler -> getDirs -> params", params);
         // user = Buffer.from(params.editor_email).toString('base64');
         // log.info("TCL: EditorHandler -> getDirs -> user", user)
         // pswd = Buffer.from(params.editor_pass).toString('base64');
         // log.info("TCL: EditorHandler -> getDirs -> pswd", pswd)
         let auth = await this.auth.auth(params.editor_email, params.editor_pass);
-        log.info("TCL: EditorHandler -> getDirs -> auth", auth);
+        this.log.info("TCL: EditorHandler -> getDirs -> auth", auth);
         if (auth != 'OK')
             return;
         const appPath = this.configIntu.path;
@@ -79,9 +77,9 @@ class EditorHandler extends Serv_1.BaseRPCMethodHandler {
         let file = params.itemPath;
         const appPath = this.configIntu.path;
         let fileName = appPath + itemPath + file;
-        log.info(fileName);
+        this.log.info(fileName);
         let data = await fs.readFile(fileName, 'utf8');
-        log.info(data);
+        this.log.info(data);
         return data;
     } //() 
     async saveFile(params) {

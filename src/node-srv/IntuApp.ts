@@ -1,11 +1,8 @@
 
 import { Serv } from 'http-rpc/lib/Serv'
 
-
- 
-
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "Intu App"})
-
+import { TerseB } from "terse-b/terse-b"
+    
 import { IDB } from './lib/IDB';
 
 import { VersionNag } from 'agentg/lib/FileOpsExtra';
@@ -17,6 +14,8 @@ import { UploadHandler } from './handlers/uploadHandler'
 
 export class IntuApp extends Serv {
 
+    log:any = new TerseB(this.constructor.name) 
+
     db: IDB
     uploadRoute
     configIntu
@@ -27,26 +26,28 @@ export class IntuApp extends Serv {
         this.db = db
         this.configIntu = configIntu
         this.uploadRoute = new UploadHandler(this.db, this.configIntu)
+        const THIZ = this
 
         VersionNag.isCurrent('intu', BusLogic.veri()).then(function (isCurrent_: boolean) {
             try {
                 if (!isCurrent_)
-                    log.info('There is a newer version of intu(INTUITION.DEV), please update.')
+                    THIZ.log.info('There is a newer version of intu(INTUITION.DEV), please update.')
             } catch (err) {
-                log.info(err)
+                THIZ.log.warn(err)
             }
         })// 
     }//()
 
    start(intuPath) {
-         Serv._expInst.use(function (req, res, next) {
-            log.trace("--req.url", req.url)
+        const THIZ = this
+        Serv._expInst.use(function (req, res, next) {
+            THIZ.log.info("--req.url", req.url)
             next()
         })
 
         // await this.db.isSetupDone()
         // order of Handler: api, all intu apps, Web App
-        log.info('----running')
+        this.log.info('----running')
         //1 API
         const ar = new AdminHandler(this.db, this.configIntu)
         const er = new EditorHandler(this.db, this.configIntu)

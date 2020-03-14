@@ -7,10 +7,8 @@ const IDB_1 = require("./lib/IDB");
 const IntuApp_1 = require("./IntuApp");
 const BusLogic_1 = require("./lib/BusLogic");
 const BusLogic_2 = require("./lib/BusLogic");
-const bunyan = require('bunyan');
-const bformat = require('bunyan-format2');
-const formatOut = bformat({ outputMode: 'short' });
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "main start" });
+const terse_b_1 = require("terse-b/terse-b");
+const log = new terse_b_1.TerseB('main in INTU');
 const optionDefinitions = [
     { name: 'intu', defaultOption: true },
     { name: 'help', alias: 'h', type: Boolean },

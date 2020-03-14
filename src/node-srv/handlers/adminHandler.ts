@@ -1,13 +1,13 @@
+
 import { Email } from 'mbake/lib/Email'
 import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 import { IDB } from '../lib/IDB'
 
-
- 
-
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "admin"})
+import { TerseB } from "terse-b/terse-b"
+    
 
 export class AdminHandler extends BaseRPCMethodHandler {
+   log:any = new TerseB(this.constructor.name) 
 
    emailJs = new Email()
    IDB: IDB
@@ -21,7 +21,7 @@ export class AdminHandler extends BaseRPCMethodHandler {
    }//()
 
    auth(login, pass) {
-      log.info('admin')
+      this.log.info('admin')
       const user = 'admin'
       const pswd = this.configIntu.secret
       if (login == user && pass == pswd) {
@@ -31,7 +31,7 @@ export class AdminHandler extends BaseRPCMethodHandler {
    }
 
    async checkAdmin(params) {
-      log.info('checkAdmin')
+      this.log.info('checkAdmin')
       let auth = await this.auth(params.admin_email, params.admin_pass)
 
       if (auth != 'OK') 
@@ -63,7 +63,7 @@ export class AdminHandler extends BaseRPCMethodHandler {
       let emailjsUser_id = params.emailjsUser_id
 
       let res =  this.IDB.updateConfig(emailjsService_id, emailjsTemplate_id, emailjsUser_id);
-      log.info("TCL: AdminHandler -> updateConfig -> res", res)
+      this.log.info("TCL: AdminHandler -> updateConfig -> res", res)
       if (res) {
          let data = [];
          data.push({

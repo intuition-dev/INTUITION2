@@ -8,14 +8,14 @@ import { FileMethods } from 'mbake/lib/FileOpsBase'
 import { FileOps } from 'mbake/lib/FileOpsBase'
 import { BusLogic } from '../lib/BusLogic';
 
-
- 
-
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "editor"})
-
+import { TerseB } from "terse-b/terse-b"
+    
 const fs = require('fs-extra')
 
 export class EditorHandler extends BaseRPCMethodHandler {
+
+   log:any = new TerseB(this.constructor.name) 
+
    emailJs = new Email()
 
    db: IDB;
@@ -69,14 +69,14 @@ export class EditorHandler extends BaseRPCMethodHandler {
    }//()
 
    async getDirs(params) {
-      log.info("TCL: EditorHandler -> getDirs -> user")
-      log.info("TCL: EditorHandler -> getDirs -> params", params)
+      this.log.info("TCL: EditorHandler -> getDirs -> user")
+      this.log.info("TCL: EditorHandler -> getDirs -> params", params)
       // user = Buffer.from(params.editor_email).toString('base64');
       // log.info("TCL: EditorHandler -> getDirs -> user", user)
       // pswd = Buffer.from(params.editor_pass).toString('base64');
       // log.info("TCL: EditorHandler -> getDirs -> pswd", pswd)
       let auth = await this.auth.auth(params.editor_email, params.editor_pass)
-      log.info("TCL: EditorHandler -> getDirs -> auth", auth)
+      this.log.info("TCL: EditorHandler -> getDirs -> auth", auth)
       if (auth != 'OK') return
 
       const appPath = this.configIntu.path
@@ -106,10 +106,10 @@ export class EditorHandler extends BaseRPCMethodHandler {
       const appPath = this.configIntu.path
       let fileName = appPath + itemPath + file
 
-      log.info(fileName)
+      this.log.info(fileName)
 
       let data = await fs.readFile(fileName, 'utf8')
-      log.info(data)     
+      this.log.info(data)     
       return data
    
 

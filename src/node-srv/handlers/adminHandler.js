@@ -2,19 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Email_1 = require("mbake/lib/Email");
 const Serv_1 = require("http-rpc/lib/Serv");
-const bunyan = require('bunyan');
-const bformat = require('bunyan-format2');
-const formatOut = bformat({ outputMode: 'short' });
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "admin" });
+const terse_b_1 = require("terse-b/terse-b");
 class AdminHandler extends Serv_1.BaseRPCMethodHandler {
     constructor(IDB, configIntu) {
         super(1);
+        this.log = new terse_b_1.TerseB(this.constructor.name);
         this.emailJs = new Email_1.Email();
         this.IDB = IDB;
         this.configIntu = configIntu;
     } //()
     auth(login, pass) {
-        log.info('admin');
+        this.log.info('admin');
         const user = 'admin';
         const pswd = this.configIntu.secret;
         if (login == user && pass == pswd) {
@@ -23,7 +21,7 @@ class AdminHandler extends Serv_1.BaseRPCMethodHandler {
         return 'FAIL';
     }
     async checkAdmin(params) {
-        log.info('checkAdmin');
+        this.log.info('checkAdmin');
         let auth = await this.auth(params.admin_email, params.admin_pass);
         if (auth != 'OK')
             return 'FAIL';
@@ -45,7 +43,7 @@ class AdminHandler extends Serv_1.BaseRPCMethodHandler {
         let emailjsTemplate_id = params.emailjsTemplate_id;
         let emailjsUser_id = params.emailjsUser_id;
         let res = this.IDB.updateConfig(emailjsService_id, emailjsTemplate_id, emailjsUser_id);
-        log.info("TCL: AdminHandler -> updateConfig -> res", res);
+        this.log.info("TCL: AdminHandler -> updateConfig -> res", res);
         if (res) {
             let data = [];
             data.push({

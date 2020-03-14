@@ -1,10 +1,9 @@
 // Bus. Layer test
 
 
+import { TerseB } from "terse-b/terse-b"
 
- 
-
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "dev"})
+const log:any = new TerseB('dev') 
 
 const perfy = require('perfy')
 

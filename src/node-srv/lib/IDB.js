@@ -1,12 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt = require('bcryptjs'); // to hash passwords
-const bunyan = require('bunyan');
-const bformat = require('bunyan-format2');
-const formatOut = bformat({ outputMode: 'short' });
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "IDB" });
-const BaseDBL_1 = require("mbakex/lib/BaseDBL");
-class IDB extends BaseDBL_1.BaseDBL {
+const terse_b_1 = require("terse-b/terse-b");
+const log = new terse_b_1.TerseB('idb');
+const BaseNDBSi_1 = require("mbakex/lib/BaseNDBSi");
+class IDB extends BaseNDBSi_1.BaseNDBSi {
     constructor(path, fn) {
         log.info("TCL: IDB -> constructor -> path", path);
         super();

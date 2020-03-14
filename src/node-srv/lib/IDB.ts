@@ -1,14 +1,13 @@
 
 const bcrypt = require('bcryptjs') // to hash passwords
-
  
+import { TerseB } from "terse-b/terse-b"
+const log:any = new TerseB('idb')
 
-const log = bunyan.createLogger({src: true, stream: formatOut, name: "IDB"})
-
-import { BaseDBL } from 'mbakex/lib/BaseDBL'
+import { BaseNDBSi } from 'mbakex/lib/BaseNDBSi'
 import { iAuth } from 'http-rpc/lib/Serv'
 
-export class IDB extends BaseDBL  {
+export class IDB extends BaseNDBSi  {
 
     protected salt
 

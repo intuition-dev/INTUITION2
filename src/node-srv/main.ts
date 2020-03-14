@@ -7,10 +7,9 @@ import { IntuApp } from './IntuApp'
 import { BusLogic } from './lib/BusLogic';
 import { Util } from './lib/BusLogic';
 
+import { TerseB } from "terse-b/terse-b"
 
-
-
-const log = bunyan.createLogger({ src: true, stream: formatOut, name: "main start" })
+const log:any = new TerseB('main in INTU') 
 
 const optionDefinitions = [
     { name: 'intu', defaultOption: true },

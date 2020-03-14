@@ -1,7 +1,7 @@
 {
     "name": "intu",
     "preferGlobal": true,
-    "version": "8.3.0",
+    "version": "8.3.2",
     "description": "INTUITION.DEV is the futuristic open source bundler/builder for pro developers with 10-fold productivity via automation, low-code, cross-platform, static-generator, and a built-in WebAdmin editor, leveraging JAMstack, w/ Pug and facilitating app maintenance by end-users.",
     "bin": "./node-srv/main.js",
     "license": "LGPL-3.0-only",
@@ -24,9 +24,9 @@
         "bcryptjs": ">=2.4.3",
         "express-fileupload": ">=1.1.6",
         "ip": ">=1.1.5",
-        "mbakex": ">=8.3.0"
+        "mbakex": ">=8.3.2"
     },
     "devDependencies": {
-        "@types/node": ">=13.9.0"
+        "@types/node": ">=13.9.1"
     }
 }
