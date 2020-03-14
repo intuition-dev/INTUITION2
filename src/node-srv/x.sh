@@ -1,4 +1,4 @@
 
 tsc
 clear
-node main.js 
+DEV=true node main.js 

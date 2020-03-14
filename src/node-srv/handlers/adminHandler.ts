@@ -2,9 +2,9 @@ import { Email } from 'mbake/lib/Email'
 import { BaseRPCMethodHandler } from 'http-rpc/lib/Serv'
 import { IDB } from '../lib/IDB'
 
-const bunyan = require('bunyan')
-const bformat = require('bunyan-format2')  
-const formatOut = bformat({ outputMode: 'short' })
+
+ 
+
 const log = bunyan.createLogger({src: true, stream: formatOut, name: "admin"})
 
 export class AdminHandler extends BaseRPCMethodHandler {

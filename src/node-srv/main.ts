@@ -7,9 +7,9 @@ import { IntuApp } from './IntuApp'
 import { BusLogic } from './lib/BusLogic';
 import { Util } from './lib/BusLogic';
 
-const bunyan = require('bunyan')
-const bformat = require('bunyan-format2')
-const formatOut = bformat({ outputMode: 'short' })
+
+
+
 const log = bunyan.createLogger({ src: true, stream: formatOut, name: "main start" })
 
 const optionDefinitions = [
