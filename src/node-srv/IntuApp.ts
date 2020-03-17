@@ -21,7 +21,7 @@ export class IntuApp extends Serv {
     configIntu
 
     constructor(db: IDB, origins: Array<string>, configIntu) {
-        super(origins, 16)
+        super(origins, 4 * 1024 )
 
         this.db = db
         this.configIntu = configIntu

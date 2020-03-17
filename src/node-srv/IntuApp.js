@@ -9,7 +9,7 @@ const adminHandler_1 = require("./handlers/adminHandler");
 const uploadHandler_1 = require("./handlers/uploadHandler");
 class IntuApp extends Serv_1.Serv {
     constructor(db, origins, configIntu) {
-        super(origins, 16);
+        super(origins, 4 * 1024);
         this.log = new terse_b_1.TerseB(this.constructor.name);
         this.db = db;
         this.configIntu = configIntu;

@@ -16,7 +16,6 @@ class EditorHandler extends Serv_1.BaseRPCMethodHandler {
         this.emailJs = new Email_1.Email();
         this.fm = new FileOpsBase_1.FileMethods();
         this.appLogic = new BusLogic_1.BusLogic();
-        //this.DEBUG = true
         this.db = IDB;
         this.auth = new IDB_1.EditorAuthX(IDB);
         this.configIntu = configIntu;
